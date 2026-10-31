@@ -1,19 +1,37 @@
 const WebSocket = require('ws');
 
 class WebSocketServerBridge {
-    constructor(port = 8080) {
-        this.port = port;
-        this.wss = null;
+    constructor(options = { port: 8080 }) {
+        this.options = typeof options === 'number' ? { port: options } : options;
+        this.wssList = [];
         this.clients = new Set();
         this.initialStateProvider = null;
     }
 
-    start() {
-        this.wss = new WebSocket.Server({ port: this.port });
+    start(httpServer = null) {
+        // 1. Tạo WebSocket Server gắn kèm HTTP Server (để hỗ trợ Cloudflare Tunnel / Ngrok qua cổng web duy nhất)
+        if (httpServer) {
+            const httpWss = new WebSocket.Server({ server: httpServer, path: '/ws' });
+            this.setupWssListeners(httpWss, 'HTTP-Path /ws');
+            this.wssList.push(httpWss);
+        }
 
-        this.wss.on('connection', (ws, req) => {
+        // 2. Mở cổng độc lập (mặc định 8080) cho Unity Client / local tools
+        const standalonePort = this.options.port || 8080;
+        try {
+            const standaloneWss = new WebSocket.Server({ port: standalonePort });
+            this.setupWssListeners(standaloneWss, `Standalone Port ${standalonePort}`);
+            this.wssList.push(standaloneWss);
+            console.log(`[WebSocket] Standalone Server đang lắng nghe tại ws://localhost:${standalonePort}`);
+        } catch (e) {
+            console.warn(`[WebSocket] Không thể mở port riêng ${standalonePort}: ${e.message}`);
+        }
+    }
+
+    setupWssListeners(wss, label) {
+        wss.on('connection', (ws, req) => {
             const ip = req.socket.remoteAddress;
-            console.log(`[WebSocket] Client 3D đã kết nối từ ${ip}. Tổng clients: ${this.clients.size + 1}`);
+            console.log(`[WebSocket (${label})] Client 3D đã kết nối từ ${ip}. Tổng clients: ${this.clients.size + 1}`);
             this.clients.add(ws);
 
             // Gửi trạng thái đồng bộ ban đầu cho client mới kết nối
@@ -26,7 +44,7 @@ class WebSocketServerBridge {
                 });
             }
 
-            // Xử lý tin nhắn từ client (nếu client gửi feedback hoặc heartbeat)
+            // Xử lý heartbeat / ping
             ws.on('message', (message) => {
                 try {
                     const data = JSON.parse(message);
@@ -40,16 +58,14 @@ class WebSocketServerBridge {
 
             ws.on('close', () => {
                 this.clients.delete(ws);
-                console.log(`[WebSocket] Client 3D đã ngắt kết nối. Còn lại: ${this.clients.size}`);
+                console.log(`[WebSocket (${label})] Client 3D đã ngắt kết nối. Còn lại: ${this.clients.size}`);
             });
 
             ws.on('error', (err) => {
-                console.error('[WebSocket] Lỗi kết nối client:', err.message);
+                console.error(`[WebSocket (${label})] Lỗi kết nối client:`, err.message);
                 this.clients.delete(ws);
             });
         });
-
-        console.log(`[WebSocket] WebSocket Server đang lắng nghe tại ws://localhost:${this.port}`);
     }
 
     /**
@@ -85,10 +101,12 @@ class WebSocketServerBridge {
     }
 
     close() {
-        if (this.wss) {
-            this.wss.close();
-            this.wss = null;
+        for (const wss of this.wssList) {
+            try {
+                wss.close();
+            } catch (e) {}
         }
+        this.wssList = [];
     }
 }
 

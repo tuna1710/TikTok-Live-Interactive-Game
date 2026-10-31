@@ -39,8 +39,8 @@ wsBridge.initialStateProvider = () => ({
     }
 });
 
-// Khởi động WebSocket Server
-wsBridge.start();
+// Cấu hình WebSocket Bridge
+// (sẽ khởi động sau khi HTTP server lắng nghe)
 
 // Khi hàng đợi dispatch một hành động tới Client 3D
 queue.onDispatchAction = (item, remainingQueue) => {
@@ -412,6 +412,7 @@ app.post('/api/reset', (req, res) => {
 // Khởi chạy HTTP Server
 const server = app.listen(config.ports.http, () => {
     console.log(`[HTTP Dashboard] Bảng điều khiển Web & REST API đang chạy tại: http://localhost:${config.ports.http}`);
+    wsBridge.start(server);
 });
 
 // Xử lý dừng server gọn gàng

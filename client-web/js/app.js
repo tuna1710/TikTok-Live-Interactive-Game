@@ -12,8 +12,14 @@ document.addEventListener('DOMContentLoaded', () => {
         audio.toggleWoodenFishAuto(true);
     }, { once: true });
 
-    // Kết nối WebSocket tới Connector Bridge
-    const wsUrl = `ws://${window.location.hostname || 'localhost'}:8080`;
+    // Tự động nhận diện URL WebSocket (hỗ trợ cả localhost, Cloudflare Tunnel, Google Colab và HTTPS)
+    let wsUrl = '';
+    if (window.location.protocol.startsWith('http')) {
+        const wsProto = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+        wsUrl = `${wsProto}//${window.location.host}/ws`;
+    } else {
+        wsUrl = 'ws://localhost:8080';
+    }
     let ws = null;
     let reconnectTimer = null;
 

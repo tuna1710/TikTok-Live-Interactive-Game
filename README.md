@@ -2,6 +2,7 @@
 
 <div align="center">
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/tuna1710/TikTok-Live-Interactive-Game/blob/main/Chua_Online_TikTok_Live.ipynb)
 ![TikTok Live Interactive Game](https://img.shields.io/badge/Platform-TikTok%20Live-fe2c55?style=for-the-badge&logo=tiktok&logoColor=white)
 ![Engine](https://img.shields.io/badge/Engine-Unity%20%2F%20WebGL-black?style=for-the-badge&logo=unity&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Bridge-Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
