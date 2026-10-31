@@ -1,4 +1,10 @@
-const { WebcastPushConnection } = require('tiktok-live-connector');
+let TikTokLiveConnectionClass = null;
+try {
+    const tlc = require('tiktok-live-connector');
+    TikTokLiveConnectionClass = tlc.TikTokLiveConnection || tlc.WebcastPushConnection || tlc.default;
+} catch (err) {
+    console.error('[TikTokService] Lỗi nạp thư viện tiktok-live-connector:', err);
+}
 
 class TikTokLiveService {
     constructor({ username, onGift, onChat, onLike, onFollow, onShare, onRoomUser, onStatusChange }) {
@@ -24,19 +30,32 @@ class TikTokLiveService {
             return;
         }
 
+        if (!TikTokLiveConnectionClass) {
+            console.error('[TikTokService] Thư viện tiktok-live-connector không khả dụng!');
+            this.updateStatus('ERROR', 'Thư viện kết nối chưa sẵn sàng');
+            return;
+        }
+
         console.log(`[TikTokService] Đang kết nối tới phòng TikTok Live của: @${this.username}...`);
         this.updateStatus('CONNECTING', `Đang kết nối tới @${this.username}`);
 
-        this.connection = new WebcastPushConnection(this.username, {
-            processInitialData: false,
-            enableExtendedGiftInfo: true,
-            enableWebsocketUpgrade: true,
-            requestPollingIntervalMs: 2000,
-            clientParams: {
-                app_language: 'vi-VN',
-                device_platform: 'web'
-            }
-        });
+        try {
+            this.connection = new TikTokLiveConnectionClass(this.username, {
+                processInitialData: false,
+                enableExtendedGiftInfo: true,
+                enableWebsocketUpgrade: true,
+                requestPollingIntervalMs: 2000,
+                clientParams: {
+                    app_language: 'vi-VN',
+                    device_platform: 'web'
+                }
+            });
+        } catch (err) {
+            console.error('[TikTokService] Lỗi khi tạo đối tượng kết nối:', err.message);
+            this.updateStatus('ERROR', err.message);
+            this.scheduleReconnect();
+            return;
+        }
 
         // Đã kết nối thành công vào phòng Live
         this.connection.connect().then(state => {

@@ -415,6 +415,15 @@ const server = app.listen(config.ports.http, () => {
     wsBridge.start(server);
 });
 
+// Xử lý bắt lỗi toàn cục tránh crash tiến trình
+process.on('uncaughtException', (err) => {
+    console.error('[Global Error] Bắt lỗi uncaughtException:', err.message);
+});
+
+process.on('unhandledRejection', (reason, promise) => {
+    console.error('[Global Error] Bắt lỗi unhandledRejection:', reason);
+});
+
 // Xử lý dừng server gọn gàng
 process.on('SIGINT', () => {
     console.log('\n[Shutdown] Đang dừng server...');
