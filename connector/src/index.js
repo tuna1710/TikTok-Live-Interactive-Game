@@ -1,5 +1,6 @@
 const express = require('express');
 const http = require('http');
+const path = require('path');
 const config = require('./config');
 const LeaderboardManager = require('./leaderboardManager');
 const QueueManager = require('./queueManager');
@@ -192,6 +193,7 @@ if (config.mockMode) {
 // ==========================================
 const app = express();
 app.use(express.json());
+app.use('/client', express.static(path.join(__dirname, '../../client-web')));
 
 // Dashboard Web UI
 app.get('/', (req, res) => {
@@ -233,6 +235,9 @@ app.get('/', (req, res) => {
             <h1>🪷 TikTok Live Bridge: Chùa Online</h1>
             <p>Trạng thái kết nối: <span class="badge ${roomStats.state === 'CONNECTED' || roomStats.state === 'MOCK_MODE' ? 'badge-success' : 'badge-warning'}">${roomStats.state}</span> - ${roomStats.message}</p>
             <p><strong>TikTok Kênh:</strong> @${roomStats.username} | <strong>WebSocket 3D Client:</strong> ws://localhost:${config.ports.ws} (${wsBridge.getClientCount()} clients kết nối)</p>
+            <div style="margin: 15px 0;">
+                <a href="/client" target="_blank" style="display:inline-block; background: #27ae60; color: white; text-decoration: none; padding: 10px 18px; border-radius: 6px; font-weight: bold; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">📺 MỞ MÀN HÌNH 3D CHÙA ONLINE (DÙNG CHO OBS BROWSER SOURCE)</a>
+            </div>
 
             <div class="grid">
                 <div class="card">

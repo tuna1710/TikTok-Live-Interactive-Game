@@ -116,15 +116,37 @@ TikTok-Live-Interactive-Game/
 
 ---
 
+## ⚡ Hướng dẫn Chạy Nhanh (Quick Start)
+
+Chỉ cần 3 bước đơn giản để khởi chạy toàn bộ hệ thống (bao gồm cả Server Bridge và Màn hình Chùa Online 3D):
+
+```bash
+# 1. Di chuyển vào thư mục connector và cài đặt thư viện
+cd connector
+npm install
+
+# 2. Khởi chạy thử nghiệm ở chế độ Giả lập (Mock Mode)
+npm run mock
+
+# 3. Mở trình duyệt để trải nghiệm:
+# - Bảng điều khiển quản trị: http://localhost:3000
+# - Màn hình 3D Chùa Online (Tỉ lệ 9:16): http://localhost:3000/client
+```
+
+> **Để phát sóng lên TikTok qua OBS Studio:**  
+> Thêm một nguồn **Browser Source** trong OBS, đặt URL là `http://localhost:3000/client`, kích thước **Width: 1080**, **Height: 1920**, 60 FPS.
+
+---
+
 ## 🚀 Kế hoạch Triển khai (Roadmap)
 
 - [x] **Phân tích yêu cầu & Thiết kế kiến trúc hệ thống.**
 - [x] **Khởi tạo kho lưu trữ GitHub và tài liệu kỹ thuật README.md.**
-- [ ] **Giai đoạn 1:** Xây dựng module kết nối TikTok Live (`connector/`) bắt sự kiện quà tặng, bình luận, like theo thời gian thực.
-- [ ] **Giai đoạn 2:** Dựng cảnh Chánh điện 3D, gắn xương (Rigging) và Animation cho nhân vật áo lam (Dâng hương, Lễ Phật, Dâng hoa sen).
-- [ ] **Giai đoạn 3:** Hoàn thiện giao diện HUD: Bảng xếp hạng Tấm Lòng Thành, bong bóng chat, danh sách thẻ tên phật tử và chữ chạy kinh Phật.
-- [ ] **Giai đoạn 4:** Kết nối hoàn chỉnh giữa Connector và Client 3D qua WebSocket, xử lý hàng đợi và chống spam.
-- [ ] **Giai đoạn 5:** Tối ưu hóa hiệu năng GPU/CPU và hướng dẫn kết nối OBS Studio / TikTok Live Studio để phát sóng 24/7.
+- [x] **Giai đoạn 1:** Xây dựng module kết nối TikTok Live (`connector/`) bắt sự kiện quà tặng, bình luận, like theo thời gian thực.
+- [x] **Giai đoạn 2:** Dựng cảnh Chánh điện 3D, gắn xương (Rigging) và Animation cho nhân vật áo lam (Dâng hương, Lễ Phật, Dâng hoa sen).
+- [x] **Giai đoạn 3:** Hoàn thiện giao diện HUD: Bảng xếp hạng Tấm Lòng Thành, bong bóng chat, danh sách thẻ tên phật tử và chữ chạy kinh Phật.
+- [x] **Giai đoạn 4:** Kết nối hoàn chỉnh giữa Connector và Client 3D qua WebSocket, xử lý hàng đợi và chống spam.
+- [ ] **Giai đoạn 5:** Hướng dẫn kết nối TikTok Live Studio thực tế và kịch bản vận hành 24/7.
 
 ---
 

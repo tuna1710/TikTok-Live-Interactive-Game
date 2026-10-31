@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Chùa Online - TikTok Live Interactive Game</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Three.js 3D Engine -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+    <div id="app-viewport">
+        <!-- 3D WebGL Canvas Layer -->
+        <div id="canvas-container"></div>
+
+        <!-- UI / HUD Overlay Layer -->
+        <div id="ui-overlay">
+            <!-- Header bar -->
+            <div class="header-bar">
+                <span class="live-badge">LIVE</span>
+                <span class="room-title">Chùa Online • Cùng niệm Phật</span>
+            </div>
+
+            <!-- Bảng mẫu quà tặng nhanh góc phải -->
+            <div class="gifts-menu-sidebar">
+                <div class="gift-menu-item">
+                    <span class="gift-icon">🌹</span>
+                    <span>Dâng hương</span>
+                </div>
+                <div class="gift-menu-item">
+                    <span class="gift-icon">🙏</span>
+                    <span>Lễ Phật</span>
+                </div>
+                <div class="gift-menu-item">
+                    <span class="gift-icon">🪷</span>
+                    <span>Dâng Hoa Sen</span>
+                </div>
+            </div>
+
+            <!-- Phụ đề Kinh Phật A Di Đà chạy chữ -->
+            <div class="subtitles-container">
+                <div id="subtitles-text">Nam Mô A Di Đà Phật...</div>
+            </div>
+
+            <!-- Bong bóng thoại chat của Phật tử -->
+            <div id="speech-bubble">Mô Phật 🙏</div>
+
+            <!-- Hai hàng thẻ danh sách Phật tử tham gia (Badges) -->
+            <div class="badges-container">
+                <div class="badge-column left" id="left-badges"></div>
+                <div class="badge-column right" id="right-badges"></div>
+            </div>
+
+            <!-- Khu vực điều khiển & Bảng xếp hạng dưới cùng -->
+            <div class="bottom-controls">
+                <!-- Dải băng cảm ơn chạy ngang -->
+                <div class="ticker-bar">
+                    <div id="ticker-text">Chào mừng quý Phật tử đến với đạo tràng Chùa Online 🙏</div>
+                </div>
+
+                <div class="hud-split-row">
+                    <!-- 3 Ô giá Coin quà tặng -->
+                    <div class="coin-price-cards">
+                        <div class="price-card">
+                            <div class="action-label">Dâng hương</div>
+                            <div class="coin-val">1 COIN</div>
+                        </div>
+                        <div class="price-card">
+                            <div class="action-label">Lễ Phật</div>
+                            <div class="coin-val">5 COINS</div>
+                        </div>
+                        <div class="price-card">
+                            <div class="action-label">Hoa sen</div>
+                            <div class="coin-val">10+ COINS</div>
+                        </div>
+                    </div>
+
+                    <!-- Bảng vinh danh Tấm Lòng Thành -->
+                    <div class="leaderboard-panel">
+                        <div class="lb-title">TẤM LÒNG THÀNH</div>
+                        <div id="leaderboard-list">
+                            <div class="empty-lb">Đang kết nối...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts logic -->
+    <script src="js/audioManager.js"></script>
+    <script src="js/scene3d.js"></script>
+    <script src="js/uiManager.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
