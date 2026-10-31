@@ -1,0 +1,27 @@
+{
+  "name": "tiktok-live-connector-service",
+  "version": "1.0.0",
+  "description": "TikTok Live Connector & Event Bridge for 3D Interactive Buddhist Temple Game",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "mock": "MOCK_MODE=true node src/index.js",
+    "test": "node src/index.js --test"
+  },
+  "keywords": [
+    "tiktok-live",
+    "interactive-game",
+    "websocket",
+    "unity-bridge",
+    "chua-online"
+  ],
+  "author": "tuna1710",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "tiktok-live-connector": "^1.2.3",
+    "ws": "^8.18.0"
+  }
+}
