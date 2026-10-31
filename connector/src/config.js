@@ -3,6 +3,8 @@ require('dotenv').config();
 const config = {
     tiktok: {
         username: process.env.TIKTOK_USERNAME || 'zuno_live',
+        signApiKey: process.env.SIGN_API_KEY || process.env.EULER_API_KEY || '',
+        sessionId: process.env.TIKTOK_SESSION_ID || '',
         reconnectInterval: parseInt(process.env.RECONNECT_INTERVAL_MS || '5000', 10),
         maxReconnectAttempts: parseInt(process.env.MAX_RECONNECT_ATTEMPTS || '10', 10),
     },

@@ -7,8 +7,10 @@ try {
 }
 
 class TikTokLiveService {
-    constructor({ username, onGift, onChat, onLike, onFollow, onShare, onRoomUser, onStatusChange }) {
+    constructor({ username, signApiKey, sessionId, onGift, onChat, onLike, onFollow, onShare, onRoomUser, onStatusChange }) {
         this.username = username;
+        this.signApiKey = signApiKey || '';
+        this.sessionId = sessionId || '';
         this.onGift = onGift;
         this.onChat = onChat;
         this.onLike = onLike;
@@ -36,11 +38,18 @@ class TikTokLiveService {
             return;
         }
 
+        try {
+            const tlc = require('tiktok-live-connector');
+            if (tlc.SignConfig && this.signApiKey) {
+                tlc.SignConfig.apiKey = this.signApiKey;
+            }
+        } catch (e) {}
+
         console.log(`[TikTokService] Đang kết nối tới phòng TikTok Live của: @${this.username}...`);
         this.updateStatus('CONNECTING', `Đang kết nối tới @${this.username}`);
 
         try {
-            this.connection = new TikTokLiveConnectionClass(this.username, {
+            const connOptions = {
                 processInitialData: false,
                 enableExtendedGiftInfo: true,
                 enableWebsocketUpgrade: true,
@@ -49,7 +58,21 @@ class TikTokLiveService {
                     app_language: 'vi-VN',
                     device_platform: 'web'
                 }
-            });
+            };
+
+            if (this.signApiKey) {
+                connOptions.signApiKey = this.signApiKey;
+            }
+
+            if (this.sessionId) {
+                connOptions.session = {
+                    cookie: {
+                        sessionId: this.sessionId
+                    }
+                };
+            }
+
+            this.connection = new TikTokLiveConnectionClass(this.username, connOptions);
         } catch (err) {
             console.error('[TikTokService] Lỗi khi tạo đối tượng kết nối:', err.message);
             this.updateStatus('ERROR', err.message);

@@ -170,6 +170,8 @@ if (config.mockMode) {
 } else {
     tiktokService = new TikTokLiveService({
         username: config.tiktok.username,
+        signApiKey: config.tiktok.signApiKey,
+        sessionId: config.tiktok.sessionId,
         onGift: handleGiftEvent,
         onChat: handleChatEvent,
         onLike: handleLikeEvent,
