@@ -14,7 +14,7 @@ class UIManager {
 
         this.leftBadges = [];
         this.rightBadges = [];
-        this.maxBadges = 14;
+        this.maxBadges = 32;
 
         this.chants = [
             'Xá Lợi Phất! Nếu có thiện nam tử, thiện nữ nhân nào nghe nói đức Phật A Di Đà...',
@@ -27,7 +27,64 @@ class UIManager {
         ];
         this.currentChantIndex = 0;
 
+        this.initDefaultViewerBadges();
         this.initChantsLoop();
+    }
+
+    getRandomColor() {
+        const colors = ['#e74c3c', '#3498db', '#2ecc71', '#9b59b6', '#f1c40f', '#e67e22', '#1abc9c', '#34495e'];
+        return colors[Math.floor(Math.random() * colors.length)];
+    }
+
+    /**
+     * Khởi tạo danh sách dày đặc các Phật tử 2 bên đạo tràng giống clip gốc
+     */
+    initDefaultViewerBadges() {
+        if (!this.leftBadgesEl || !this.rightBadgesEl) return;
+        this.leftBadgesEl.innerHTML = '';
+        this.rightBadgesEl.innerHTML = '';
+
+        const leftNames = [
+            'st', 'ngư', 'Văn', 'Hực', 'nenph', 'Võ Ng Gia Bả...',
+            'Ngọc Y', 'anh', 'Việt', 'Thanh sơn', 'su', 'Gnas 2.0',
+            'Thứ H', 'Swe', 'mpe', 'Quoc', 'nào có bả', 'vi',
+            'Vuong', 'pho', 'Hu', 'Flora', 'djket', 'Khủng lon',
+            'kent', 'Vk Gà rán', 'Mint', 'sống có phủ...'
+        ];
+
+        const rightNames = [
+            'Ti', '-ng', 'Chuối', 'Thu', 'Bac', 'Trấn quỳnh',
+            'Nie', 'Công', 'Bình Trị', 'tro', 'Ngu', 'And',
+            'Đỗ Đ', 'Nguyệt Dương', 'Bo cute', 'td', 'Hii', 'Ngọc C',
+            'Tí Đ', 'Tr Phc', 'Huong', 'Folo', 'Tạp Hóa', 'Ẩn danh',
+            'Ye', 'Lâm', 'Tu', 'godzilla'
+        ];
+
+        leftNames.forEach(name => {
+            const badge = document.createElement('div');
+            badge.className = 'viewer-badge';
+            const color = this.getRandomColor();
+            const initial = name[0].toUpperCase();
+            badge.innerHTML = `
+                <span class="badge-icon-circle" style="background-color: ${color}">${initial}</span>
+                <span class="badge-name">${this.truncate(name, 11)}</span>
+            `;
+            this.leftBadgesEl.appendChild(badge);
+            this.leftBadges.push(badge);
+        });
+
+        rightNames.forEach(name => {
+            const badge = document.createElement('div');
+            badge.className = 'viewer-badge';
+            const color = this.getRandomColor();
+            const initial = name[0].toUpperCase();
+            badge.innerHTML = `
+                <span class="badge-icon-circle" style="background-color: ${color}">${initial}</span>
+                <span class="badge-name">${this.truncate(name, 11)}</span>
+            `;
+            this.rightBadgesEl.appendChild(badge);
+            this.rightBadges.push(badge);
+        });
     }
 
     /**
@@ -64,8 +121,10 @@ class UIManager {
 
         const badge = document.createElement('div');
         badge.className = 'viewer-badge fade-in';
+        const color = user.color || this.getRandomColor();
+        const initial = (user.nickname || 'P')[0].toUpperCase();
         badge.innerHTML = `
-            <span class="badge-dot">●</span>
+            <span class="badge-icon-circle" style="background-color: ${color}">${initial}</span>
             <span class="badge-name">${this.truncate(user.nickname || 'Phật tử', 11)}</span>
         `;
 

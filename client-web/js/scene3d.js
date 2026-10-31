@@ -36,10 +36,10 @@ class Scene3D {
         this.scene.background = new THREE.Color(0x120703); // Tông màu chùa cổ trầm ấm
         this.scene.fog = new THREE.FogExp2(0x180b06, 0.04);
 
-        // Khởi tạo Camera góc nhìn từ lối đi chính nhìn lên bàn thờ
-        this.camera = new THREE.PerspectiveCamera(48, width / height, 0.1, 100);
-        this.camera.position.set(0, 2.2, 7.8);
-        this.camera.lookAt(0, 3.2, 0);
+        // Khởi tạo Camera góc nhìn toàn cảnh chánh điện chuẩn 9:16
+        this.camera = new THREE.PerspectiveCamera(52, width / height, 0.1, 100);
+        this.camera.position.set(0, 2.8, 8.5);
+        this.camera.lookAt(0, 2.4, 0);
 
         // Khởi tạo Renderer
         this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
@@ -54,7 +54,7 @@ class Scene3D {
         this.setupLights();
         this.buildTempleEnvironment();
         this.buildBuddhaAltar();
-        this.buildCharacter();
+        this.buildSittingDevotees();
         this.createSmokeSystem();
 
         window.addEventListener('resize', () => this.onWindowResize());
@@ -143,25 +143,26 @@ class Scene3D {
             });
         });
 
-        // Bồ đoàn (đệm ngồi nhung đỏ) xếp hai bên lối đi
-        const cushionGeo = new THREE.CylinderGeometry(0.38, 0.42, 0.16, 16);
-        const cushionMat = new THREE.MeshStandardMaterial({ color: 0x8b120c, roughness: 0.6 });
-        const centerCushionMat = new THREE.MeshStandardMaterial({ color: 0xb51e16, roughness: 0.5 });
-
-        [-1.6, 1.6].forEach(x => {
-            [1.5, 3.2, 4.9, 6.6].forEach(z => {
-                const cushion = new THREE.Mesh(cushionGeo, cushionMat);
-                cushion.position.set(x, 0.08, z);
-                cushion.receiveShadow = true;
-                this.scene.add(cushion);
-            });
+        // Bồ đoàn (đệm ngồi nhung đỏ) xếp hai bên theo phối cảnh chánh điện
+        [
+            { x: -0.88, z: 2.2 }, { x: 0.88, z: 2.2 },
+            { x: -0.85, z: 3.6 }, { x: 0.85, z: 3.6 },
+            { x: -0.82, z: 5.0 }, { x: 0.82, z: 5.0 },
+            { x: -0.80, z: 6.4 }, { x: 0.80, z: 6.4 }
+        ].forEach(pt => {
+            const cushion = new THREE.Mesh(cushionGeo, cushionMat);
+            cushion.position.set(pt.x, 0.08, pt.z);
+            cushion.receiveShadow = true;
+            this.scene.add(cushion);
         });
 
-        // Bồ đoàn chính giữa để phật tử quỳ lạy
-        this.centerCushion = new THREE.Mesh(cushionGeo, centerCushionMat);
-        this.centerCushion.position.set(0, 0.08, 2.4);
-        this.centerCushion.receiveShadow = true;
-        this.scene.add(this.centerCushion);
+        // Bồ đoàn chính giữa chánh điện để phật tử dâng hương & quỳ lạy
+        [1.6, 2.8].forEach(z => {
+            const cushion = new THREE.Mesh(cushionGeo, centerCushionMat);
+            cushion.position.set(0, 0.08, z);
+            cushion.receiveShadow = true;
+            this.scene.add(cushion);
+        });
     }
 
     buildBuddhaAltar() {
@@ -362,52 +363,122 @@ class Scene3D {
         }
     }
 
-    buildCharacter() {
-        // Phật tử mặc áo lam truyền thống
-        this.character = new THREE.Group();
+    buildSittingDevotees() {
+        this.devotees = [];
+        this.tagsContainer = document.getElementById('devotees-tags-container');
+        if (this.tagsContainer) this.tagsContainer.innerHTML = '';
 
-        const robeMat = new THREE.MeshStandardMaterial({ color: 0x7a8b99, roughness: 0.7 }); // Màu áo lam
-        const skinMat = new THREE.MeshStandardMaterial({ color: 0xf5cba7, roughness: 0.6 }); // Màu da
-        const hairMat = new THREE.MeshStandardMaterial({ color: 0x1c1c1c, roughness: 0.8 }); // Tóc đen búi
+        // Danh sách các Phật tử ngồi quỳ trong chánh điện theo đúng clip gốc
+        const devoteesData = [
+            { id: 'dev-0', name: 'Chang0307', initial: 'C', color: '#27ae60', pos: [0, 0.08, 2.8], isMain: true, robeColor: 0x758594 },
+            { id: 'dev-1', name: 'hanwa', initial: 'H', color: '#2980b9', pos: [0, 0.08, 1.6], isMain: false, robeColor: 0x687b8c },
+            { id: 'dev-2', name: 'Phạm văn anh', initial: 'P', color: '#e67e22', pos: [-0.88, 0.08, 2.2], isMain: false, robeColor: 0x5a3d2e },
+            { id: 'dev-3', name: 'Hoàng Vũ', initial: 'H', color: '#8e44ad', pos: [0.88, 0.08, 2.2], isMain: false, robeColor: 0x6c7c8c },
+            { id: 'dev-4', name: 'Chi Phèo', initial: 'C', color: '#d35400', pos: [-0.85, 0.08, 3.6], isMain: false, subtext: 'luôn r..', robeColor: 0x4a5568 },
+            { id: 'dev-5', name: 'Trang', initial: 'T', color: '#16a085', pos: [0.85, 0.08, 3.6], isMain: false, subtext: ':))', robeColor: 0x758594 },
+            { id: 'dev-6', name: 'Văn Nhiêu', initial: 'V', color: '#2ecc71', pos: [-0.82, 0.08, 5.0], isMain: false, subtext: 'A men', robeColor: 0x5a3d2e },
+            { id: 'dev-7', name: 'bum bum', initial: 'B', color: '#e74c3c', pos: [0.82, 0.08, 5.0], isMain: false, robeColor: 0x687b8c }
+        ];
 
-        // Thân áo lam
-        const robeGeo = new THREE.CylinderGeometry(0.24, 0.38, 1.15, 12);
-        this.charBody = new THREE.Mesh(robeGeo, robeMat);
-        this.charBody.position.y = 0.62;
-        this.charBody.castShadow = true;
-        this.character.add(this.charBody);
+        devoteesData.forEach((data) => {
+            const devoteeObj = this.createSingleDevotee(data);
+            this.devotees.push(devoteeObj);
+            this.scene.add(devoteeObj.mesh);
 
-        // Đầu & Tóc
-        const headGeo = new THREE.SphereGeometry(0.18, 14, 14);
+            if (data.isMain) {
+                this.character = devoteeObj.mesh;
+                this.mainDevotee = devoteeObj;
+            }
+        });
+    }
+
+    createSingleDevotee(data) {
+        const group = new THREE.Group();
+        group.position.set(data.pos[0], data.pos[1], data.pos[2]);
+
+        const robeMat = new THREE.MeshStandardMaterial({ color: data.robeColor || 0x758594, roughness: 0.7 });
+        const skinMat = new THREE.MeshStandardMaterial({ color: 0xf5cba7, roughness: 0.6 });
+        const hairMat = new THREE.MeshStandardMaterial({ color: 0x1a1a1a, roughness: 0.8 });
+
+        // Đùi / vạt áo lam xếp bằng quỳ trên bồ đoàn
+        const lapGeo = new THREE.BoxGeometry(0.52, 0.22, 0.48);
+        const lap = new THREE.Mesh(lapGeo, robeMat);
+        lap.position.set(0, 0.11, 0);
+        lap.castShadow = true;
+        group.add(lap);
+
+        // Thân áo lam ngồi ngay ngắn
+        const torsoGeo = new THREE.CylinderGeometry(0.2, 0.28, 0.62, 12);
+        const torso = new THREE.Mesh(torsoGeo, robeMat);
+        torso.position.set(0, 0.48, -0.02);
+        torso.castShadow = true;
+        group.add(torso);
+
+        // Đầu & khuôn mặt
+        const headGeo = new THREE.SphereGeometry(0.16, 14, 14);
         const head = new THREE.Mesh(headGeo, skinMat);
-        head.position.y = 1.32;
+        head.position.set(0, 0.92, -0.02);
         head.castShadow = true;
-        this.character.add(head);
+        group.add(head);
 
-        const hairGeo = new THREE.SphereGeometry(0.19, 12, 12, 0, Math.PI * 2, 0, Math.PI / 2);
+        // Tóc đen búi gọn
+        const hairGeo = new THREE.SphereGeometry(0.17, 12, 12, 0, Math.PI * 2, 0, Math.PI / 2);
         const hair = new THREE.Mesh(hairGeo, hairMat);
-        hair.position.y = 1.34;
-        this.character.add(hair);
+        hair.position.set(0, 0.94, -0.02);
+        group.add(hair);
 
-        // Hai tay chắp trước ngực (Anjali Mudra)
-        this.handsGroup = new THREE.Group();
-        const handGeo = new THREE.BoxGeometry(0.08, 0.18, 0.05);
+        // Hai tay chắp trang nghiêm trước ngực (Anjali Mudra)
+        const handsGroup = new THREE.Group();
+        const handGeo = new THREE.BoxGeometry(0.06, 0.14, 0.04);
         const leftHand = new THREE.Mesh(handGeo, skinMat);
-        leftHand.position.set(-0.03, 0, 0.18);
+        leftHand.position.set(-0.025, 0, 0.12);
         leftHand.rotation.y = 0.2;
 
         const rightHand = new THREE.Mesh(handGeo, skinMat);
-        rightHand.position.set(0.03, 0, 0.18);
+        rightHand.position.set(0.025, 0, 0.12);
         rightHand.rotation.y = -0.2;
 
-        this.handsGroup.add(leftHand);
-        this.handsGroup.add(rightHand);
-        this.handsGroup.position.set(0, 0.9, 0);
-        this.character.add(this.handsGroup);
+        handsGroup.add(leftHand);
+        handsGroup.add(rightHand);
+        handsGroup.position.set(0, 0.52, -0.02);
+        group.add(handsGroup);
 
-        // Vị trí mặc định đứng ở bồ đoàn
-        this.character.position.set(0, 0.1, 2.8);
-        this.scene.add(this.character);
+        // Điểm neo nhãn tên 3D (3D Tag Anchor)
+        const anchor = new THREE.Object3D();
+        anchor.position.set(0, 1.22, 0);
+        group.add(anchor);
+
+        // Tạo phần tử DOM nhãn tên nổi
+        let tagEl = null;
+        let badgeTextEl = null;
+        let avatarEl = null;
+
+        if (this.tagsContainer) {
+            tagEl = document.createElement('div');
+            tagEl.className = 'sitting-devotee-badge-wrapper';
+            tagEl.id = `devotee-tag-${data.id}`;
+            tagEl.innerHTML = `
+                <div class="sitting-devotee-badge">
+                    <span class="avatar-badge" style="background-color: ${data.color}">${data.initial}</span>
+                    <span class="badge-text">${data.name}</span>
+                </div>
+                ${data.subtext ? `<div class="devotee-mini-bubble">${data.subtext}</div>` : ''}
+            `;
+            this.tagsContainer.appendChild(tagEl);
+            badgeTextEl = tagEl.querySelector('.badge-text');
+            avatarEl = tagEl.querySelector('.avatar-badge');
+        }
+
+        return {
+            id: data.id,
+            mesh: group,
+            torso,
+            anchor,
+            tagEl,
+            badgeTextEl,
+            avatarEl,
+            data
+        };
     }
 
     /**
@@ -419,20 +490,29 @@ class Scene3D {
 
         if (this.audio) this.audio.playBell();
 
+        if (this.mainDevotee) {
+            if (userName) {
+                if (this.mainDevotee.badgeTextEl) this.mainDevotee.badgeTextEl.innerText = userName;
+                if (this.mainDevotee.avatarEl) this.mainDevotee.avatarEl.innerText = userName[0].toUpperCase();
+            }
+            const badgeEl = this.mainDevotee.tagEl ? this.mainDevotee.tagEl.querySelector('.sitting-devotee-badge') : null;
+            if (badgeEl) badgeEl.classList.add('active-offering');
+        }
+
         const startZ = 2.8;
         const targetZ = 1.25;
         let progress = 0;
 
-        // Giai đoạn 1: Tiến lên trước bát hương
+        // Giai đoạn 1: Phật tử chính đứng dậy tiến lên trước bát hương
         const walkForward = () => {
-            progress += 0.04;
+            progress += 0.035;
             this.character.position.z = startZ + (targetZ - startZ) * Math.sin(progress * Math.PI / 2);
-            this.character.position.y = 0.1 + Math.sin(progress * Math.PI * 4) * 0.03; // Nhấp nhô bước đi
+            this.character.position.y = 0.08 + Math.sin(progress * Math.PI * 4) * 0.04; // Nhấp nhô bước đi
 
             if (progress < 1) {
                 requestAnimationFrame(walkForward);
             } else {
-                // Giai đoạn 2: Cắm hương & Bừng sáng cột sáng
+                // Giai đoạn 2: Cắm hương & Bừng sáng cột sáng linh thiêng
                 this.flashLightBeam();
                 setTimeout(() => {
                     walkBack();
@@ -443,14 +523,16 @@ class Scene3D {
         // Giai đoạn 3: Lùi lại vị trí bồ đoàn
         let backProgress = 0;
         const walkBack = () => {
-            backProgress += 0.04;
+            backProgress += 0.035;
             this.character.position.z = targetZ + (startZ - targetZ) * Math.sin(backProgress * Math.PI / 2);
-            this.character.position.y = 0.1 + Math.sin(backProgress * Math.PI * 4) * 0.03;
+            this.character.position.y = 0.08 + Math.sin(backProgress * Math.PI * 4) * 0.04;
 
             if (backProgress < 1) {
                 requestAnimationFrame(walkBack);
             } else {
-                this.character.position.set(0, 0.1, startZ);
+                this.character.position.set(0, 0.08, startZ);
+                const badgeEl = this.mainDevotee.tagEl ? this.mainDevotee.tagEl.querySelector('.sitting-devotee-badge') : null;
+                if (badgeEl) badgeEl.classList.remove('active-offering');
                 this.isAnimatingAction = false;
                 if (onComplete) onComplete();
             }
@@ -482,7 +564,7 @@ class Scene3D {
     }
 
     /**
-     * Hành động 2: Lễ Phật - Quỳ lạy ba lạy (5 Coins)
+     * Hành động 2: Lễ Phật - Cả đạo tràng đồng loạt quỳ lạy ba lạy (5 Coins)
      */
     triggerBowAction(userName, onComplete) {
         if (this.isAnimatingAction) return;
@@ -490,27 +572,39 @@ class Scene3D {
 
         if (this.audio) this.audio.playBell();
 
+        if (this.mainDevotee && userName) {
+            if (this.mainDevotee.badgeTextEl) this.mainDevotee.badgeTextEl.innerText = userName;
+            if (this.mainDevotee.avatarEl) this.mainDevotee.avatarEl.innerText = userName[0].toUpperCase();
+        }
+
         let bowsCount = 0;
         let step = 0;
 
         const doSingleBow = () => {
             step += 0.05;
-            // Hạ thấp người quỳ xuống bồ đoàn và gập đầu lạy
-            const angle = Math.sin(step) * 1.1; // Góc cúi gập
-            this.character.rotation.x = Math.max(0, angle);
-            this.character.position.y = 0.1 - Math.max(0, Math.sin(step)) * 0.35;
+            const angle = Math.sin(step) * 0.85; // Góc cúi gập lạy Phật
+            
+            // Tất cả các phật tử đồng loạt cúi lạy trang nghiêm
+            if (this.devotees) {
+                this.devotees.forEach(dev => {
+                    if (dev.mesh) dev.mesh.rotation.x = Math.max(0, angle);
+                });
+            }
 
             if (step < Math.PI) {
                 requestAnimationFrame(doSingleBow);
             } else {
                 bowsCount++;
                 step = 0;
-                this.character.rotation.x = 0;
-                this.character.position.y = 0.1;
+                if (this.devotees) {
+                    this.devotees.forEach(dev => {
+                        if (dev.mesh) dev.mesh.rotation.x = 0;
+                    });
+                }
                 if (this.audio) this.audio.playWoodenFish();
 
                 if (bowsCount < 3) {
-                    setTimeout(doSingleBow, 200);
+                    setTimeout(doSingleBow, 250);
                 } else {
                     this.isAnimatingAction = false;
                     if (onComplete) onComplete();
@@ -599,6 +693,30 @@ class Scene3D {
                 p.material.opacity = 0.35;
             }
         });
+
+        // Chiếu tọa độ 3D của các Phật tử thành tọa độ 2D cho nhãn tên nổi
+        if (this.devotees && this.devotees.length > 0 && this.container) {
+            const widthHalf = this.container.clientWidth / 2;
+            const heightHalf = this.container.clientHeight / 2;
+            const tempV = new THREE.Vector3();
+
+            this.devotees.forEach(dev => {
+                if (!dev.tagEl || !dev.anchor) return;
+                dev.anchor.getWorldPosition(tempV);
+                tempV.project(this.camera);
+
+                // Kiểm tra xem vị trí có nằm trước camera không
+                if (tempV.z < 1) {
+                    const x = (tempV.x * widthHalf) + widthHalf;
+                    const y = -(tempV.y * heightHalf) + heightHalf;
+                    dev.tagEl.style.left = `${x}px`;
+                    dev.tagEl.style.top = `${y}px`;
+                    dev.tagEl.style.display = 'flex';
+                } else {
+                    dev.tagEl.style.display = 'none';
+                }
+            });
+        }
 
         this.renderer.render(this.scene, this.camera);
     }
