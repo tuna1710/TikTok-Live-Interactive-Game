@@ -1,57 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Streamer - Tower Control</title>
+  <title>Bảng Điều Khiển Streamer - Đỏ vs Xanh</title>
   <style>
-    body { font-family: system-ui, sans-serif; background: #12081a; color: #eee; padding: 24px; max-width: 480px; margin: 0 auto; }
-    h1 { font-size: 1.2rem; margin-bottom: 16px; }
-    label { display: block; margin-top: 12px; font-size: 12px; opacity: 0.85; }
-    input, button { width: 100%; padding: 10px; margin-top: 6px; border-radius: 8px; border: 1px solid #444; background: #1e1428; color: #fff; }
-    button { cursor: pointer; background: linear-gradient(135deg, #ff3b8d, #7b5cff); border: none; font-weight: 700; margin-top: 10px; }
-    button:hover { filter: brightness(1.08); }
+    body { font-family: system-ui, -apple-system, sans-serif; background: #12081a; color: #eee; padding: 24px; max-width: 480px; margin: 0 auto; }
+    h1 { font-size: 1.3rem; margin-bottom: 8px; text-align: center; color: #ff5e9a; }
+    label { display: block; margin-top: 12px; font-size: 13px; font-weight: 600; opacity: 0.9; }
+    input, select, button { width: 100%; padding: 11px; margin-top: 6px; border-radius: 8px; border: 1px solid #444; background: #1e1428; color: #fff; box-sizing: border-box; font-size: 14px; }
+    button { cursor: pointer; background: linear-gradient(135deg, #ff3b8d, #7b5cff); border: none; font-weight: 700; margin-top: 10px; transition: transform 0.1s; }
+    button:hover { filter: brightness(1.1); transform: scale(1.01); }
     .row { margin-bottom: 18px; padding-bottom: 18px; border-bottom: 1px solid #2a2035; }
-    #out { margin-top: 16px; font-size: 12px; white-space: pre-wrap; color: #9fa; }
-    .hint { font-size: 11px; opacity: 0.65; margin-top: 8px; }
+    #out { margin-top: 16px; font-size: 12px; white-space: pre-wrap; color: #9fa; background: #0004; padding: 10px; border-radius: 6px; min-height: 24px; }
+    .hint { font-size: 12px; opacity: 0.75; text-align: center; margin-bottom: 20px; color: #bbb; }
   </style>
 </head>
 <body>
-  <h1>Tower Battle - Streamer Panel</h1>
-  <p class="hint">Default token: <code>admindev</code> - use <code>ADMIN_TOKEN</code> environment variable in production.</p>
+  <h1>🎮 Bảng Điều Khiển Streamer</h1>
+  <p class="hint">Đại Chiến Tháp: Đỏ vs Xanh (Kéo Co TikTok Live)</p>
+
+  <!-- Token kết nối máy chủ - tự động điền sẵn admindev -->
+  <input type="hidden" id="token" value="admindev" />
 
   <div class="row">
-    <label>Admin token</label>
-    <input type="password" id="token" placeholder="admindev" autocomplete="off" />
+    <label>⏱️ Cộng thêm thời gian trận đấu (giây)</label>
+    <input type="number" id="extendMs" value="60" min="10" step="10" />
+    <button type="button" id="btnExtend">➕ Gia Hạn Trận Đấu</button>
   </div>
 
   <div class="row">
-    <label>Extend match (extra time, ms)</label>
-    <input type="number" id="extendMs" value="60000" min="10000" step="1000" />
-    <button type="button" id="btnExtend">Extend time</button>
-  </div>
-
-  <div class="row">
-    <label>Bot soldier (team)</label>
-    <select id="botTeam" style="width:100%;padding:10px;margin-top:6px;border-radius:8px;background:#1e1428;color:#fff;border:1px solid #444;">
-      <option value="red">Red</option>
-      <option value="blue">Blue</option>
+    <label>🤖 Thả Lính Hỗ Trợ (Bot Soldier)</label>
+    <select id="botTeam">
+      <option value="red">🔴 Phe Đỏ</option>
+      <option value="blue">🔵 Phe Xanh</option>
     </select>
-    <input type="text" id="botName" placeholder="Name (optional)" maxlength="24" />
-    <button type="button" id="btnBot">Send bot</button>
+    <input type="text" id="botName" placeholder="Tên Bot (tuỳ chọn)" maxlength="24" />
+    <button type="button" id="btnBot">🚀 Thả Lính Hỗ Trợ</button>
   </div>
 
   <div class="row">
-    <label>Power mode duration (ms)</label>
-    <input type="number" id="powerModeMs" value="60000" min="5000" step="1000" />
-    <button type="button" id="btnPowerMode">Start power mode</button>
+    <label>⚡ Kích hoạt Chế độ Cuồng Nộ (Power Mode - giây)</label>
+    <input type="number" id="powerModeMs" value="60" min="5" step="5" />
+    <button type="button" id="btnPowerMode">🔥 Bật Cuồng Nộ (x2 Sát Thương)</button>
   </div>
 
   <div class="row">
-    <button type="button" id="btnSudden">Final round (high impact) - manual</button>
+    <label>💀 Vòng Đấu Sinh Tử (Đột tử)</label>
+    <button type="button" id="btnSudden" style="background: linear-gradient(135deg, #ff4757, #ff6b81);">⚔️ Kích Hoạt Vòng Sinh Tử Ngay</button>
   </div>
 
-  <div id="out"></div>
+  <div id="out">Trạng thái: Sẵn sàng</div>
 
   <script>
     const out = document.getElementById('out');
@@ -59,24 +58,33 @@
       return document.getElementById('token').value.trim() || 'admindev';
     }
     async function api(body) {
-      const r = await fetch('/admin/api', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + token() },
-        body: JSON.stringify({ ...body, token: token() }),
-      });
-      const j = await r.json().catch(() => ({}));
-      out.textContent = JSON.stringify(j, null, 2);
+      try {
+        out.textContent = 'Đang gửi lệnh...';
+        const r = await fetch('/admin/api', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + token() },
+          body: JSON.stringify({ ...body, token: token() }),
+        });
+        const j = await r.json().catch(() => ({}));
+        out.textContent = 'Phản hồi: ' + JSON.stringify(j);
+      } catch (err) {
+        out.textContent = 'Lỗi kết nối: ' + err.message;
+      }
     }
-    document.getElementById('btnExtend').onclick = () =>
-      api({ action: 'extendMatch', ms: Number(document.getElementById('extendMs').value) || 60000 });
+    document.getElementById('btnExtend').onclick = () => {
+      const sec = Number(document.getElementById('extendMs').value) || 60;
+      api({ action: 'extendMatch', ms: sec * 1000 });
+    };
     document.getElementById('btnBot').onclick = () =>
       api({
         action: 'spawnBot',
         team: document.getElementById('botTeam').value,
-        name: document.getElementById('botName').value || 'Destek Bot',
+        name: document.getElementById('botName').value || 'Chiến Binh Bot',
       });
-    document.getElementById('btnPowerMode').onclick = () =>
-      api({ action: 'powerMode', ms: Number(document.getElementById('powerModeMs').value) || 60000 });
+    document.getElementById('btnPowerMode').onclick = () => {
+      const sec = Number(document.getElementById('powerModeMs').value) || 60;
+      api({ action: 'powerMode', ms: sec * 1000 });
+    };
     document.getElementById('btnSudden').onclick = () => api({ action: 'suddenDeath' });
   </script>
 </body>
