@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Đại Chiến Đỏ vs Xanh — TikTok Live Game Tương Tác</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <div id="viewport">
+    <div id="stage">
+      <canvas id="gameCanvas" aria-hidden="true"></canvas>
+      <div id="critFlash" aria-hidden="true"></div>
+      <div id="powerOverlay"></div>
+      <div id="suddenDeathOverlay" aria-hidden="true"></div>
+      <div id="bonusPoolCelebration" aria-hidden="true">
+        <div id="bonusPoolCelebrationInner"></div>
+      </div>
+      <div id="vipBanner" aria-hidden="true"></div>
+      <div id="leaderboardPanel" aria-hidden="true">
+        <div id="leaderboardTitle">🏆 BẢNG VÀNG HÔM NAY</div>
+        <ol id="leaderboardList"></ol>
+      </div>
+
+      <div id="killFeed" aria-live="polite" aria-label="Nhật ký chiến trường"></div>
+
+      <div id="topHud" aria-label="Bảng thông tin">
+        <div id="topHudRow">
+          <div id="hintPanel">
+            <div class="hint-line">👍 <strong>Thả tim</strong> để sạc thanh Nộ; đầy thanh kích hoạt <strong>x2 Sức Mạnh</strong>.</div>
+            <div class="hint-line">💬 Gõ <span class="kbd">1</span> vào <strong>ĐỘI ĐỎ</strong>, gõ <span class="kbd">2</span> vào <strong>ĐỘI XANH</strong>.</div>
+            <div class="hint-line hint-sub">🎁 <strong>Tặng quà:</strong> Triệu hồi Siêu Chiến Binh, ném bom & dội sát thương khủng lên tháp đối thủ!</div>
+            <p class="legal-disclaimer">Trò chơi tương tác giải trí trực tiếp; quà tặng ảo TikTok chỉ mang tính chất trò chơi vui nhộn.</p>
+          </div>
+          <div id="topHudMeta">
+            <div id="matchTimer" aria-live="polite">05:00</div>
+            <div id="viewerBadge" style="display: none"></div>
+          </div>
+        </div>
+
+        <div id="bars">
+          <div class="bar-block bar-block-team" data-team="red">
+            <div class="bar-head">
+              <span class="bar-label">ĐỘI ĐỎ</span>
+              <div id="captainChipRed" class="captain-chip" title="Thủ lĩnh đội Đỏ"></div>
+            </div>
+            <div class="hp-bar"><div id="hpRed" class="hp-fill red" style="transform: scaleX(1)"></div></div>
+            <div class="mini-team-head"><span>TOP 3 ĐÓNG GÓP</span></div>
+            <ol class="mini-team-top" id="teamTopRed" title="Top đóng góp hiệp này"></ol>
+            <div class="team-total-row" id="teamTotalRed" aria-label="Tổng điểm đội Đỏ"></div>
+          </div>
+          <div class="bar-block bar-block-team" data-team="blue">
+            <div class="bar-head">
+              <span class="bar-label">ĐỘI XANH</span>
+              <div id="captainChipBlue" class="captain-chip" title="Thủ lĩnh đội Xanh"></div>
+            </div>
+            <div class="hp-bar"><div id="hpBlue" class="hp-fill blue" style="transform: scaleX(1)"></div></div>
+            <div class="mini-team-head"><span>TOP 3 ĐÓNG GÓP</span></div>
+            <ol class="mini-team-top" id="teamTopBlue" title="Top đóng góp hiệp này"></ol>
+            <div class="team-total-row" id="teamTotalBlue" aria-label="Tổng điểm đội Xanh"></div>
+          </div>
+          <div id="powerRow">
+            <div id="powerBar"><div id="powerFill"></div></div>
+            <div id="powerLabel">⚡ THANH NỘ — THẢ TIM ĐỂ KÍCH HOẠT X2 SỨC MẠNH</div>
+          </div>
+          <div class="stats-strip">
+            <div id="bonusPoolRow" class="stat-cell stat-cell-pool">
+              <div class="mini-label"><span class="pool-icon" aria-hidden="true">🏆</span> THƯỞNG CHIẾN THẮNG</div>
+              <div id="bonusPoolAmount" class="stat-value">0</div>
+              <div class="pool-hint">Vinh danh các dũng sĩ đóng góp nhiều nhất khi hết trận</div>
+            </div>
+            <div id="comboRow" class="stat-cell">
+              <div class="mini-label">CHUỖI COMBO</div>
+              <div id="comboBar"><div id="comboFill"></div></div>
+              <div id="comboLabel">0 / 5</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="giftOverlay">
+        <canvas id="giftDropCanvas"></canvas>
+        <div id="giftCaption"></div>
+      </div>
+
+      <div id="welcomeOverlay">
+        <img id="welcomeAvatar" alt="" />
+        <div id="welcomeTitle"></div>
+      </div>
+
+      <div id="spiker"></div>
+
+      <div id="mvp">
+        <img id="mvpAvatar" alt="" />
+        <div id="mvpTitle"></div>
+      </div>
+
+      <div id="captainRow">
+        <div id="capRed" class="cap red" style="opacity: 0"></div>
+        <div id="capBlue" class="cap blue" style="opacity: 0"></div>
+      </div>
+      <div id="status"></div>
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/game.js"></script>
+</body>
+</html>
