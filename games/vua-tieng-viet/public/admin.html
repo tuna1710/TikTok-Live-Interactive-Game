@@ -128,6 +128,14 @@
   <!-- Kết Nối Kênh TikTok -->
   <div class="card">
     <div class="card-title">📡 Kênh TikTok Đang Kết Nối</div>
+    <div class="stat-row">
+      <span class="stat-label">Trạng thái Live:</span>
+      <span class="stat-val" id="tiktokStatusText" style="font-size:12px;color:#ffd700;">Đang kiểm tra...</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-label">Số bình luận đã nhận:</span>
+      <span class="stat-val gold" id="totalCommentsCount">0</span>
+    </div>
     <input type="text" id="channelInput" placeholder="@username_tiktok" value="@2166541467" />
     <button class="btn-green" onclick="changeChannel()">🔗 Đổi Kênh TikTok</button>
   </div>
@@ -185,6 +193,15 @@
           document.getElementById('currentCategory').textContent = json.state.category || '-';
           document.getElementById('currentHint').textContent = json.state.hint || '-';
           document.getElementById('currentTime').textContent = json.state.timeLeft + ' giây';
+          const statText = document.getElementById('tiktokStatusText');
+          if (statText) {
+            statText.textContent = json.state.tiktokStatusMsg || (json.state.tiktokConnected ? '🟢 Đã kết nối' : '🔴 Chưa kết nối');
+            statText.style.color = json.state.tiktokConnected ? '#00e676' : (json.state.tiktokConnecting ? '#ffd700' : '#ef4444');
+          }
+          const cntText = document.getElementById('totalCommentsCount');
+          if (cntText) {
+            cntText.textContent = json.state.totalCommentsReceived || 0;
+          }
         }
       } catch (e) {}
     }

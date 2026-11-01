@@ -469,8 +469,8 @@
       <div class="game-title">👑 Vua Tiếng Việt</div>
       <div style="display:flex;align-items:center;gap:6px;">
         <button id="btnSoundToggle" style="background:rgba(255,215,0,0.15);border:1px solid rgba(255,215,0,0.3);color:#ffd700;padding:4px 8px;border-radius:12px;font-size:11px;cursor:pointer;font-weight:700;">🔊 Âm thanh</button>
-        <div class="channel-badge">
-          <div class="pulse-dot"></div>
+        <div class="channel-badge" id="channelBadge">
+          <div class="pulse-dot" id="channelDot"></div>
           <span id="channelName">@2166541467</span>
         </div>
       </div>
@@ -768,6 +768,34 @@
       }
     }
 
+    function updateTiktokBadge(status) {
+      const channelBadge = document.getElementById('channelBadge');
+      const channelDot = document.getElementById('channelDot');
+      const channelName = document.getElementById('channelName');
+
+      if (status.channel) channelName.textContent = status.channel;
+
+      if (status.connected) {
+        channelBadge.style.background = 'rgba(0, 230, 118, 0.2)';
+        channelBadge.style.borderColor = 'rgba(0, 230, 118, 0.5)';
+        channelBadge.style.color = '#00e676';
+        if (channelDot) channelDot.style.background = '#00e676';
+        channelBadge.title = status.msg || 'Đã kết nối trực tiếp phòng Live';
+      } else if (status.connecting) {
+        channelBadge.style.background = 'rgba(255, 215, 0, 0.2)';
+        channelBadge.style.borderColor = 'rgba(255, 215, 0, 0.5)';
+        channelBadge.style.color = '#ffd700';
+        if (channelDot) channelDot.style.background = '#ffd700';
+        channelBadge.title = status.msg || 'Đang kết nối...';
+      } else {
+        channelBadge.style.background = 'rgba(239, 68, 68, 0.2)';
+        channelBadge.style.borderColor = 'rgba(239, 68, 68, 0.5)';
+        channelBadge.style.color = '#ef4444';
+        if (channelDot) channelDot.style.background = '#ef4444';
+        channelBadge.title = status.msg || 'Chưa lên sóng Live (Đang tự động thử lại)';
+      }
+    }
+
     // Socket Events
     socket.on('gameState', state => {
       roundNumber.textContent = state.round || 1;
@@ -778,6 +806,17 @@
       renderScramble(state.scrambledLetters || []);
       renderTargetSlots(state.targetPattern || []);
       updateLeaderboard(state.leaderboard || []);
+      updateTiktokBadge({
+        connected: state.tiktokConnected,
+        connecting: state.tiktokConnecting,
+        channel: state.connectedChannel,
+        msg: state.tiktokStatusMsg
+      });
+
+      if (state.recentGuesses && state.recentGuesses.length > 0) {
+        chatList.innerHTML = '';
+        state.recentGuesses.slice().reverse().forEach(addGuess);
+      }
     });
 
     socket.on('roundStart', state => {
@@ -850,7 +889,7 @@
     });
 
     socket.on('tiktokStatus', status => {
-      channelName.textContent = status.channel;
+      updateTiktokBadge(status);
     });
   </script>
 </body>

@@ -31,11 +31,15 @@ let gameState = {
   roundState: 'WAITING',   // 'PLAYING' | 'WON' | 'TIMEOUT'
   lastWinner: null,
   totalLikes: 0,
-  connectedChannel: TIKTOK_USERNAME,
+  connectedChannel: TIKTOK_USERNAME.startsWith('@') ? TIKTOK_USERNAME : '@' + TIKTOK_USERNAME,
   tiktokConnected: false,
+  tiktokConnecting: false,
+  tiktokStatusMsg: 'Đang khởi động...',
+  totalCommentsReceived: 0,
 };
 
 let timerInterval = null;
+let reconnectTimer = null;
 const leaderboard = new Map(); // uniqueId -> { uniqueId, nickname, avatar, score, wins }
 let recentGuesses = [];        // last 15 guesses
 
@@ -71,7 +75,7 @@ function pickNextWord() {
   const pool = available.length > 0 ? available : wordsData;
   const picked = pool[Math.floor(Math.random() * pool.length)];
   recentWordIds.push(picked.id);
-  if (recentWordIds.length > 20) recentWordIds.shift();
+  if (recentWordIds.length > 25) recentWordIds.shift();
   return picked;
 }
 
@@ -100,6 +104,8 @@ function startNewRound() {
   gameState.timeLeft = ROUND_TIME_DEFAULT;
   gameState.roundState = 'PLAYING';
 
+  console.log(`\n[Vòng ${gameState.round}] Từ cần đoán: "${wordObj.word}" (Chủ đề: ${wordObj.category})`);
+
   io.emit('roundStart', getClientGameState());
 
   timerInterval = setInterval(() => {
@@ -118,7 +124,7 @@ function handleTimeout() {
   gameState.roundState = 'TIMEOUT';
   if (timerInterval) clearInterval(timerInterval);
 
-  // Reveal all letters
+  console.log(`[Hết giờ] Đáp án là: "${gameState.currentWord?.word}"`);
   gameState.revealedMask = gameState.currentWord.word.split('').map(() => true);
 
   io.emit('roundTimeout', {
@@ -138,6 +144,9 @@ function getLeaderboardList() {
 }
 
 function checkGuess(user, text) {
+  if (!text) return;
+  gameState.totalCommentsReceived++;
+
   if (gameState.roundState !== 'PLAYING' || !gameState.currentWord) return;
 
   const target = gameState.currentWord.word;
@@ -147,11 +156,19 @@ function checkGuess(user, text) {
   const rawTargetStrip = stripVietnameseAccents(normTarget);
   const rawGuessStrip = stripVietnameseAccents(normGuess);
 
+  // 1. So khớp chính xác tuyệt đối (có dấu hoặc không dấu)
   const isExact = (normGuess === normTarget);
-  const isUnaccentedMatch = (rawGuessStrip === rawTargetStrip && rawGuessStrip.length >= 2);
-  const isCorrect = isExact || isUnaccentedMatch;
+  const isUnaccentedExact = (rawGuessStrip === rawTargetStrip && rawGuessStrip.length >= 2);
 
-  // Add to recent guesses for live chat display
+  // 2. So khớp linh hoạt (khi khán giả gõ thêm chữ: "đáp án là hoa hồng", "hoa hồng nhé", "em đoán hoa hong")
+  const isContainedAccented = normTarget.length >= 3 && normGuess.includes(normTarget);
+  const isContainedUnaccented = rawTargetStrip.length >= 3 && rawGuessStrip.includes(rawTargetStrip);
+
+  const isCorrect = isExact || isUnaccentedExact || isContainedAccented || isContainedUnaccented;
+
+  console.log(`[Bình luận] ${user.nickname} (@${user.uniqueId}): "${text}" => ${isCorrect ? '🎯 ĐÚNG!' : 'Chưa đúng'}`);
+
+  // Thêm vào danh sách bình luận gần đây
   const guessItem = {
     uniqueId: user.uniqueId,
     nickname: user.nickname || user.uniqueId,
@@ -168,10 +185,10 @@ function checkGuess(user, text) {
     gameState.roundState = 'WON';
     if (timerInterval) clearInterval(timerInterval);
 
-    // Reveal entire word
+    // Mở toàn bộ chữ
     gameState.revealedMask = target.split('').map(() => true);
 
-    // Update Leaderboard
+    // Cộng điểm Leaderboard
     const key = user.uniqueId;
     const existing = leaderboard.get(key) || {
       uniqueId: user.uniqueId,
@@ -191,6 +208,8 @@ function checkGuess(user, text) {
       points: 100,
       word: target,
     };
+
+    console.log(`🏆 NGƯỜI CHIẾN THẮNG: ${existing.nickname} (+100 điểm, Tổng: ${existing.score}đ)`);
 
     io.emit('roundWon', {
       winner: gameState.lastWinner,
@@ -258,45 +277,101 @@ function getClientGameState() {
     leaderboard: getLeaderboardList(),
     recentGuesses: recentGuesses.slice(0, 8),
     tiktokConnected: gameState.tiktokConnected,
+    tiktokConnecting: gameState.tiktokConnecting,
+    tiktokStatusMsg: gameState.tiktokStatusMsg,
     connectedChannel: gameState.connectedChannel,
+    totalCommentsReceived: gameState.totalCommentsReceived,
   };
 }
 
 // -------------------------------------------------------------
-// TikTok Live Connector Relay
+// TikTok Live Connector Relay Với Vòng Lặp Auto-Reconnect Tự Động
 // -------------------------------------------------------------
 let tiktokLiveConnection = null;
 
+function scheduleReconnect(delay = 5000) {
+  if (reconnectTimer) clearTimeout(reconnectTimer);
+  reconnectTimer = setTimeout(() => {
+    connectTikTok(gameState.connectedChannel);
+  }, delay);
+}
+
 function connectTikTok(channelName) {
-  const username = (channelName || TIKTOK_USERNAME).replace(/^@/, '');
+  if (reconnectTimer) {
+    clearTimeout(reconnectTimer);
+    reconnectTimer = null;
+  }
+
+  const rawUser = (channelName || TIKTOK_USERNAME || '').trim();
+  const username = rawUser.replace(/^@/, '').trim();
+  if (!username) {
+    console.warn('[TikTok] Username trống! Hãy cập nhật kênh TikTok trong trang Admin.');
+    gameState.tiktokStatusMsg = 'Chưa thiết lập kênh TikTok';
+    io.emit('tiktokStatus', { connected: false, connecting: false, channel: '', msg: gameState.tiktokStatusMsg });
+    return;
+  }
+
   gameState.connectedChannel = '@' + username;
+  gameState.tiktokConnecting = true;
+  gameState.tiktokStatusMsg = `Đang kết nối tới @${username}...`;
 
   if (tiktokLiveConnection) {
     try { tiktokLiveConnection.disconnect(); } catch (e) {}
+    tiktokLiveConnection = null;
   }
+
+  io.emit('tiktokStatus', {
+    connected: false,
+    connecting: true,
+    channel: gameState.connectedChannel,
+    msg: gameState.tiktokStatusMsg,
+  });
+
+  console.log(`[TikTok] Đang kết nối tới phòng Live @${username}...`);
 
   tiktokLiveConnection = new WebcastPushConnection(username, {
     enableExtendedGiftInfo: true,
+    enableWebsocketUpgrade: true,
+    requestPollingIntervalMs: 1000,
   });
 
   tiktokLiveConnection.connect()
     .then(state => {
       gameState.tiktokConnected = true;
-      console.log(`[TikTok] Kết nối thành công tới phòng Live @${username} (Room ID: ${state.roomId})`);
-      io.emit('tiktokStatus', { connected: true, channel: gameState.connectedChannel });
+      gameState.tiktokConnecting = false;
+      gameState.tiktokStatusMsg = `Đã kết nối Live @${username} (Room ID: ${state.roomId})`;
+      console.log(`[TikTok] ✅ KẾT NỐI THÀNH CÔNG phòng Live @${username} (Room ID: ${state.roomId})! Đang lắng nghe bình luận.`);
+      io.emit('tiktokStatus', {
+        connected: true,
+        connecting: false,
+        channel: gameState.connectedChannel,
+        roomId: state.roomId,
+        msg: gameState.tiktokStatusMsg,
+      });
     })
     .catch(err => {
       gameState.tiktokConnected = false;
-      console.warn(`[TikTok] Chưa kết nối phòng Live @${username}:`, err.message || err);
-      io.emit('tiktokStatus', { connected: false, channel: gameState.connectedChannel, error: err.message });
+      gameState.tiktokConnecting = false;
+      const errMsg = err.message || String(err);
+      gameState.tiktokStatusMsg = `Chưa lên sóng Live @${username} (${errMsg}). Tự động dò tìm lại sau 5s...`;
+      console.warn(`[TikTok] ⚠️ @${username}: ${errMsg}. Tự động thử lại sau 5 giây...`);
+      io.emit('tiktokStatus', {
+        connected: false,
+        connecting: false,
+        channel: gameState.connectedChannel,
+        error: errMsg,
+        msg: gameState.tiktokStatusMsg,
+      });
+      // Tự động thử lại sau 5 giây để ngay khi streamer bấm Live là tự bắt comment ngay!
+      scheduleReconnect(5000);
     });
 
   tiktokLiveConnection.on('chat', data => {
     checkGuess(
       {
         uniqueId: data.uniqueId,
-        nickname: data.nickname,
-        avatar: data.profilePictureUrl,
+        nickname: data.nickname || data.uniqueId,
+        avatar: data.profilePictureUrl || '',
       },
       data.comment
     );
@@ -305,14 +380,13 @@ function connectTikTok(channelName) {
   tiktokLiveConnection.on('gift', data => {
     const giftName = data.giftName || 'Quà';
     const diamondCount = (data.diamondCount || 0) * (data.repeatCount || 1);
+    console.log(`[Quà tặng] ${data.nickname} gửi ${giftName} (${diamondCount} xu)`);
 
-    // Any gift or Rose unlocks a hint letter
     revealOneHint(
       { uniqueId: data.uniqueId, nickname: data.nickname, avatar: data.profilePictureUrl },
       giftName
     );
 
-    // If gift >= 10 diamonds, also add bonus time!
     if (diamondCount >= 10) {
       addTime(30, `${data.nickname} tặng ${giftName} (+30s)`);
     }
@@ -323,15 +397,31 @@ function connectTikTok(channelName) {
     gameState.totalLikes += count;
     io.emit('likeUpdate', { totalLikes: gameState.totalLikes });
 
-    // Every 50 likes gives +10 seconds
     if (gameState.totalLikes % 50 === 0) {
       addTime(10, 'Cộng đồng thả 50 tim (+10s)');
     }
   });
 
-  tiktokLiveConnection.on('disconnected', () => {
+  tiktokLiveConnection.on('streamEnd', () => {
+    console.log(`[TikTok] Phòng Live đã kết thúc. Tiếp tục đợi phiên phát tiếp theo...`);
     gameState.tiktokConnected = false;
-    io.emit('tiktokStatus', { connected: false, channel: gameState.connectedChannel });
+    gameState.tiktokConnecting = false;
+    gameState.tiktokStatusMsg = 'Phòng Live đã kết thúc. Chờ phiên mới...';
+    io.emit('tiktokStatus', { connected: false, connecting: false, channel: gameState.connectedChannel, msg: gameState.tiktokStatusMsg });
+    scheduleReconnect(8000);
+  });
+
+  tiktokLiveConnection.on('disconnected', () => {
+    console.log(`[TikTok] Mất kết nối tới máy chủ TikTok. Đang tự động kết nối lại...`);
+    gameState.tiktokConnected = false;
+    gameState.tiktokConnecting = false;
+    gameState.tiktokStatusMsg = 'Mất kết nối TikTok. Đang thử lại...';
+    io.emit('tiktokStatus', { connected: false, connecting: false, channel: gameState.connectedChannel, msg: gameState.tiktokStatusMsg });
+    scheduleReconnect(5000);
+  });
+
+  tiktokLiveConnection.on('error', err => {
+    console.warn(`[TikTok Lỗi]`, err.message || err);
   });
 }
 
@@ -368,16 +458,16 @@ app.post('/admin/api', (req, res) => {
   if (action === 'simulateChat') {
     const testUser = {
       uniqueId: user || 'viewer_test',
-      nickname: user || 'Khán Giả Demo',
+      nickname: user || 'Khán Giả Test',
       avatar: 'https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/default-avatar.jpeg',
     };
     checkGuess(testUser, text || '');
-    return res.json({ ok: true, message: 'Đã gửi comment giả lập' });
+    return res.json({ ok: true, message: `Đã gửi comment: "${text}"` });
   }
 
   if (action === 'simulateGift') {
     revealOneHint({ nickname: 'Người Hâm Mộ' }, 'Hoa Hồng Demo');
-    return res.json({ ok: true, message: 'Đã kích hoạt gợi ý qua quà tặng' });
+    return res.json({ ok: true, message: 'Đã kích hoạt mở gợi ý qua quà tặng' });
   }
 
   if (action === 'resetLeaderboard') {
@@ -388,8 +478,9 @@ app.post('/admin/api', (req, res) => {
 
   if (action === 'setChannel') {
     if (channel) {
-      connectTikTok(channel);
-      return res.json({ ok: true, channel: gameState.connectedChannel });
+      TIKTOK_USERNAME = channel.trim();
+      connectTikTok(TIKTOK_USERNAME);
+      return res.json({ ok: true, channel: gameState.connectedChannel, message: `Đang chuyển sang kênh ${gameState.connectedChannel}` });
     }
   }
 
