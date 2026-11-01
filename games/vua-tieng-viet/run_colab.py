@@ -25,13 +25,11 @@ if not os.path.exists(cloudflared_bin):
     subprocess.run(["mv", "/tmp/cloudflared", cloudflared_bin])
 
 # 2. Cài đặt dependencies cho game
-print("📦 Đang kiểm tra thư viện Node.js và Python cho Game Vua Tiếng Việt...")
+print("📦 Đang kiểm tra thư viện Node.js cho Game Vua Tiếng Việt...")
 subprocess.run(["npm", "install", "--silent"], cwd=GAME_DIR, check=True)
-subprocess.run([sys.executable, "-m", "pip", "install", "--quiet", "TikTokLive", "httpx"], check=False)
 
 # 3. Dọn dẹp tiến trình cũ
 subprocess.run(["pkill", "-9", "-f", "games/vua-tieng-viet/server.js"], stderr=subprocess.DEVNULL)
-subprocess.run(["pkill", "-9", "-f", "games/vua-tieng-viet/tiktok_relay.py"], stderr=subprocess.DEVNULL)
 subprocess.run(["pkill", "-9", "-f", "cloudflared.*3002"], stderr=subprocess.DEVNULL)
 time.sleep(1)
 
