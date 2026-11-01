@@ -1,167 +1,99 @@
-# TikTok Live Interactive Game - Chùa Online (Virtual Buddhist Temple)
+# 🪷 TikTok Live Interactive Game — Chùa Online (Chánh Điện 9:16)
 
 <div align="center">
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/tuna1710/TikTok-Live-Interactive-Game/blob/main/Chua_Online_TikTok_Live.ipynb)
-![TikTok Live Interactive Game](https://img.shields.io/badge/Platform-TikTok%20Live-fe2c55?style=for-the-badge&logo=tiktok&logoColor=white)
-![Engine](https://img.shields.io/badge/Engine-Unity%20%2F%20WebGL-black?style=for-the-badge&logo=unity&logoColor=white)
-![Node.js](https://img.shields.io/badge/Bridge-Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![Platform](https://img.shields.io/badge/Platform-TikTok%20Live-fe2c55?style=for-the-badge&logo=tiktok&logoColor=white)
+![Node.js](https://img.shields.io/badge/Runtime-Node.js%20%7C%20Bun-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![Python](https://img.shields.io/badge/AI%20Voice-ZeroTTS%20%7C%20Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)
 
-**Ứng dụng livestream tương tác thời gian thực 3D trên nền tảng TikTok Live.**  
-Biến các tương tác từ người xem (Bình luận, Thả tim, Tặng quà/Coin, Follow, Share) thành các hành động dâng hương, lễ Phật, cúng dường hoa sen sống động trong không gian chánh điện trang nghiêm.
+**Hệ thống phát trực tiếp tương tác Chùa Online chuẩn khung dọc 9:16 (`1080×1920`) dành cho TikTok LIVE Studio & OBS Studio.**  
+Tự động chuyển hóa các tương tác thật từ phòng Live (Thả tim, Bình luận, Tặng quà/Xu, Follow, Share) thành các nghi thức dâng hương, lạy tam bái, gõ mõ tích công đức và vinh danh lên bảng vàng.
 
 </div>
 
 ---
 
-## 📌 Giới thiệu Tổng quan (Overview)
+## 🌟 Điểm Nổi Bật & Tính Năng Tương Tác
 
-**TikTok Live Interactive Game - Chùa Online** là một hệ thống phát sóng tương tác tự động được thiết kế riêng cho các buổi livestream trên TikTok. Dựa trên luồng sự kiện thời gian thực từ phòng live (WebSocket Webcast Protocol), ứng dụng tự động phân tích và phản hồi trực tiếp các hành động của người xem vào không gian 3D:
-
-- **1 Coin (Hoa hồng / Rose):** Nhân vật phật tử tiến lên bàn thờ, thắp nhang vào bát hương đồng, khói trầm bốc nghi ngút và cột sáng nối dài lên tượng Phật.
-- **5 Coins:** Kích hoạt nhân vật tiến vào bồ đoàn quỳ lạy trang nghiêm (Lễ Phật).
-- **10+ Coins:** Kích hoạt hiệu ứng đài sen nở rộ, hào quang chói lọi và tiếng chuông ngân vang.
-- **Bình luận ("Mô phật", "Nam mô...", lời cầu an):** Hiển thị bong bóng thoại và ghi danh người xem vào hai hàng thẻ phật tử trong đạo tràng.
-- **Bảng vinh danh "TẤM LÒNG THÀNH":** Tự động thống kê và xếp hạng top người cúng dường/donate theo thời gian thực.
-- **Tụng kinh & Gõ mõ tự động:** Hệ thống phụ đề kinh Phật chạy liên tục kết hợp âm thanh gõ mõ và nhạc thiền thanh tịnh.
-
----
-
-## 🌟 Tính năng Cốt lõi (Key Features)
-
-### 1. Không gian Chánh điện 3D Tôn nghiêm
-- Tượng Phật dát vàng uy nghiêm, hào quang chuyển động mượt mà.
-- Bàn thờ trang nghiêm với lư hương đồng, hoa sen, mâm quả, nến đỏ lung linh.
-- Hệ thống chiếu sáng thời gian thực kết hợp hiệu ứng hậu kỳ (Bloom, Volumetric Light, Fog).
-
-### 2. Cơ chế Quà tặng Thời gian thực (Gift-to-Action)
-- Bắt trọn vẹn các sự kiện Gift từ TikTok Live mà không bị trễ (Low latency).
-- Hỗ trợ xử lý Combo Gift (x2, x5, x10...) với hiệu ứng dồn dập, tăng dần cấp độ.
-- Hệ thống hàng đợi (Queue Manager) đảm bảo các lượt dâng hương và lễ Phật của từng người dùng được diễn ra tuần tự, không bị đè hành động.
-
-### 3. Tương tác Cộng đồng & Tấm Lòng Thành (Social & Gamification)
-- **Bảng xếp hạng Tấm Lòng Thành:** Cập nhật liên tục Top 1, Top 2, Top 3 kèm số coin đã cúng dường.
-- **Tường danh sách Phật tử:** Mỗi người xem để lại bình luận hoặc tương tác sẽ có một thẻ huy hiệu (Badge) mang tên và avatar xuất hiện trên lối đi hai bên chánh điện.
-- **Dải băng cảm ơn:** Chạy thông báo vinh danh người vừa tặng quà hoặc theo dõi kênh theo thời gian thực.
-
-### 4. Hệ thống Âm thanh & Niệm Phật (Audio & Chants Engine)
-- Nhạc nền thiền tịnh và giọng tụng kinh A Di Đà êm dịu, du dương.
-- Tiếng mõ gõ nhịp đều đặn tạo cảm giác tĩnh tâm.
-- Tiếng chuông gia trì ngân vang mỗi khi có phật tử dâng hương hoặc lạy Phật.
+- 🔥 **Thắp hương & Đảnh lễ Tam Bái**: Khán giả comment `thắp hương`, `cầu an`, `nam mô`, nhân vật áo lam sẽ bước lên thảm đỏ dâng nhang vào lư hương đồng và thực hiện 3 lạy trước Đức Phật A Di Đà.
+- 🪵 **Gõ Mõ & Tích Lũy Công Đức**: Mỗi lượt khán giả thả tim, hệ thống tự động gõ mõ tích điểm công đức và kích hoạt làn sóng vái lạy.
+- 🔔 **Thỉnh Đại Hồng Chung**: Chia sẻ / Follow hoặc tặng quà sẽ thỉnh chuông đồng ngân vang 3 hồi với hiệu ứng sóng âm lan tỏa.
+- 🎋 **Xin Xăm / Gieo Quẻ Đồng Bộ**: Người xem bình luận `xin xăm` sẽ tự động lắc ống xăm và mở tờ giải quẻ (Thượng Thượng Cát, Đại Cát...).
+- 🪷 **Tặng Quà & Hoa Sen Vàng Nở**: Khán giả tặng quà xu sẽ kích hoạt mưa cánh sen hồng rơi khắp chùa, đài sen vàng phát sáng rực rỡ và giọng đọc AI xướng tên cảm ơn.
+- 📜 **Bảng Vàng Công Đức (`TẤM LÒNG THÀNH`)**: Tự động xếp hạng top người cúng dường nhiều nhất theo thời gian thực và bố trí 6 đệm quỳ VIP trước bàn thờ.
+- ⚡ **Siêu nhẹ GPU / CPU**: Đã tối ưu hóa sprite 2.5D và canvas particles ở 30 FPS, không gây lag giật hay sụt khung hình (drop frame) khi phát live.
 
 ---
 
-## 🏗 Kiến trúc Hệ thống (System Architecture)
+## 🚀 Hướng Dẫn Khởi Chạy
 
-```text
-               TIKTOK LIVE STREAM
-                        │
-                        │ (WebSocket Protobuf: Gifts, Chats, Likes, Follows)
-                        ▼
-      ┌────────────────────────────────────┐
-      │     TIKTOK LIVE CONNECTOR          │
-      │     (Node.js / Python Service)     │
-      │  - Event Filter & Rate Limiter     │
-      │  - User & Coin Aggregator          │
-      └─────────────────┬──────────────────┘
-                        │
-                        │ (Local IPC / WebSocket: ws://localhost:8080)
-                        ▼
-      ┌────────────────────────────────────┐
-      │       3D RENDERER & LOGIC          │
-      │    (Unity Engine / Three.js)       │
-      │  - 3D Character & Altar Scene      │
-      │  - Action Queue & Animation State  │
-      │  - Leaderboard & Subtitle HUD      │
-      └─────────────────┬──────────────────┘
-                        │
-                        │ (Capture 1080x1920 - 9:16 @ 60 FPS)
-                        ▼
-      ┌────────────────────────────────────┐
-      │     OBS / TIKTOK LIVE STUDIO       │
-      └─────────────────┬──────────────────┘
-                        │
-                        │ (RTMP Streaming)
-                        ▼
-            TIKTOK LIVE BROADCAST FEED
-```
+### Cách 1: Chạy Trực Tiếp Trên Google Colab (Tiện lợi nhất)
+Bạn có thể chạy toàn bộ hệ thống trên Google Colab mà không cần cài đặt gì vào máy tính cá nhân:
+1. Nhấp vào huy hiệu **[Open in Colab](https://colab.research.google.com/github/tuna1710/TikTok-Live-Interactive-Game/blob/main/Chua_Online_TikTok_Live.ipynb)** ở trên.
+2. Chạy **Bước 1** để tải mã nguồn và khởi động hệ thống.
+3. Colab sẽ tự động tạo đường link công khai dạng `https://xxxx.trycloudflare.com`.
+   * **Link kiểm tra & điều khiển:** `https://xxxx.trycloudflare.com`
+   * **Link màn hình Live sạch cho OBS:** `https://xxxx.trycloudflare.com/?obs=1`
+4. Dán link sạch vào **TikTok LIVE Studio** mà không bị hỏi đăng nhập hay lỗi màn hình đen!
 
 ---
 
-## 📁 Cấu trúc Thư mục Dự kiến (Project Structure)
+### Cách 2: Chạy Trên Máy Tính Cá Nhân (Local PC) hoặc GitHub Codespaces
 
-```text
-TikTok-Live-Interactive-Game/
-├── README.md                      # Tài liệu tổng quan dự án
-├── connector/                     # Dịch vụ trung gian kết nối TikTok Live
-│   ├── package.json
-│   ├── src/
-│   │   ├── index.js               # Điểm khởi chạy kết nối WebSocket
-│   │   ├── tiktokService.js       # Bắt sự kiện TikTok (Gift, Chat, Like)
-│   │   ├── queueManager.js        # Điều phối hàng đợi quà tặng
-│   │   └── config.js              # Cấu hình tài khoản & cổng kết nối
-│   └── .env.example
-├── client-3d/                     # Mã nguồn ứng dụng 3D (Unity / Web 3D)
-│   ├── Assets/
-│   │   ├── Models/                # Tượng Phật, Chánh điện, Bồ đoàn, Avatar
-│   │   ├── Animations/            # Dâng hương, Lễ Phật, Chắp tay niệm Phật
-│   │   ├── Materials & Shaders/   # Hào quang dát vàng, khói hương
-│   │   ├── Sounds/                # Tiếng chuông, tiếng mõ, kinh tụng
-│   │   └── Scripts/               # C# logic xử lý tương tác thời gian thực
-│   └── ProjectSettings/
-└── docs/                          # Hướng dẫn setup OBS, phím tắt & vận hành
-    ├── SETUP_GUIDE.md
-    └── OBS_STREAM_CONFIG.md
-```
+#### 1. Yêu cầu hệ thống
+- **Node.js** (`>= 18`) hoặc **Bun.js** (`>= 1.1`)
+- **Python 3.10+** (nếu muốn dùng giọng đọc AI ZeroTTS)
 
----
-
-## ⚡ Hướng dẫn Chạy Nhanh (Quick Start)
-
-Chỉ cần 3 bước đơn giản để khởi chạy toàn bộ hệ thống (bao gồm cả Server Bridge và Màn hình Chùa Online 3D):
-
+#### 2. Cài đặt và khởi động
 ```bash
-# 1. Di chuyển vào thư mục connector và cài đặt thư viện
-cd connector
+# 1. Cài đặt các gói phụ thuộc Web
 npm install
+# (hoặc: bun install)
 
-# 2. Khởi chạy thử nghiệm ở chế độ Giả lập (Mock Mode)
-npm run mock
+# 2. Cài đặt thư viện AI đọc tiếng Việt (tùy chọn)
+pip install zerotts pillow
 
-# 3. Mở trình duyệt để trải nghiệm:
-# - Bảng điều khiển quản trị: http://localhost:3000
-# - Màn hình 3D Chùa Online (Tỉ lệ 9:16): http://localhost:3000/client
+# 3. Khởi chạy Server
+node server.js
+# (hoặc: bun start)
 ```
 
-> **Để phát sóng lên TikTok qua OBS Studio:**  
-> Thêm một nguồn **Browser Source** trong OBS, đặt URL là `http://localhost:3000/client`, kích thước **Width: 1080**, **Height: 1920**, 60 FPS.
+Server sẽ chạy tại cổng `3000`:
+- **Giao diện Chánh Điện + Bảng Điều Khiển Nhanh:** `http://localhost:3000`
+- **Màn hình OBS Browser Source Sạch 9:16:** `http://localhost:3000/?obs=1`
+- **Bảng Điều Khiển Quản Trị JSON-RPC:** `http://localhost:3000/admin`
 
 ---
 
-## 🚀 Kế hoạch Triển khai (Roadmap)
+## 📺 Cài Đặt Vào TikTok LIVE Studio & OBS Studio
 
-- [x] **Phân tích yêu cầu & Thiết kế kiến trúc hệ thống.**
-- [x] **Khởi tạo kho lưu trữ GitHub và tài liệu kỹ thuật README.md.**
-- [x] **Giai đoạn 1:** Xây dựng module kết nối TikTok Live (`connector/`) bắt sự kiện quà tặng, bình luận, like theo thời gian thực.
-- [x] **Giai đoạn 2:** Dựng cảnh Chánh điện 3D, gắn xương (Rigging) và Animation cho nhân vật áo lam (Dâng hương, Lễ Phật, Dâng hoa sen).
-- [x] **Giai đoạn 3:** Hoàn thiện giao diện HUD: Bảng xếp hạng Tấm Lòng Thành, bong bóng chat, danh sách thẻ tên phật tử và chữ chạy kinh Phật.
-- [x] **Giai đoạn 4:** Kết nối hoàn chỉnh giữa Connector và Client 3D qua WebSocket, xử lý hàng đợi và chống spam.
-- [ ] **Giai đoạn 5:** Hướng dẫn kết nối TikTok Live Studio thực tế và kịch bản vận hành 24/7.
-
----
-
-## 🛠 Yêu cầu Môi trường (Prerequisites)
-
-- **Hệ điều hành:** Windows 10/11 hoặc macOS
-- **Node.js:** v18.0.0 trở lên
-- **Game Engine:** Unity 2022.3 LTS (hoặc WebGL / Three.js)
-- **Phần mềm phát sóng:** OBS Studio hoặc TikTok Live Studio
-- **Yêu cầu kênh TikTok:** Kênh đã được cấp quyền phát Live Studio hoặc có RTMP Stream Key
+1. Trong **TikTok LIVE Studio**, bấm **Thêm nguồn** $\rightarrow$ chọn **"Liên kết"** (biểu tượng quả cầu 🌐).
+2. Cấu hình nguồn liên kết:
+   * **URL:** `http://localhost:3000/?obs=1` *(hoặc link `https://xxxx.trycloudflare.com/?obs=1` nếu chạy từ Colab)*.
+   * **Độ phân giải:** `1080 x 1920` (chuẩn khung dọc 9:16).
+   * **Âm thanh:** Tích chọn bật âm thanh để truyền tiếng chuông mõ lên live.
+3. Mở trang quản trị `http://localhost:3000` (hoặc `/admin`), nhập `@username_tiktok` của bạn và bấm **Kết Nối** khi đang phát sóng.
 
 ---
 
-## 📄 Bản quyền & Tuyên bố Miễn trừ (Disclaimer & License)
+## 🎮 Bảng Quy Tắc Tương Tác
 
-- Dự án phục vụ mục đích học tập, nghiên cứu công nghệ tương tác trực tiếp trên livestream và tạo không gian tu tập, thư giãn tâm linh trang nghiêm, tích cực.
-- Phân phối theo giấy phép [MIT License](LICENSE).
+| Sự kiện TikTok Live | Điều kiện / Từ khóa | Nghi thức trên Chánh Điện | Điểm Công Đức |
+| :--- | :--- | :--- | :---: |
+| **Thả tim (Like)** | Mỗi đợt thả tim | Gõ mõ tụng kinh + Phật tử vái lạy | `+1` / tim |
+| **Bình luận Thắp hương** | `thắp hương`, `dâng hương`, `lạy phật`, `bái phật` | Phật tử áo lam bước lên thảm đỏ, lạy tam bái trước Tam Bảo | `+15` |
+| **Bình luận Cầu an** | `cầu ...`, `nam mô`, `a di đà phật`, `bình an` | Thả đèn hoa đăng bay lên trời mang theo lời khấn | `+10` |
+| **Bình luận Xin xăm** | `xin xăm`, `gieo quẻ`, `rút quẻ` | Lắc ống xăm và mở tờ giải quẻ cát tường | `+10` |
+| **Follow / Share** | Người xem follow hoặc chia sẻ | Thỉnh Đại Hồng Chung ngân vang + Sóng âm vàng | `+10` |
+| **Tặng quà nhỏ (1–4 xu)** | Hoa hồng, Heart Me... | Dâng Đài Sen Vàng + Thắp hương | `+20` / xu |
+| **Tặng quà lớn (≥ 100 xu)** | Quà tặng VIP | **Đại Lễ Kim Long Chầu Phật**: Mưa hoa sen, Chuông ngân, Vinh danh Top 1 | `+50` / xu |
+
+---
+
+## ⚖️ Tuyên Bố Miễn Trừ Trách Nhiệm (Disclaimer)
+Ứng dụng được thiết kế nhằm mục đích **giải trí, chiêm bái tâm linh trực tuyến và nuôi dưỡng thiện tâm**. Quà tặng trên livestream là tương tác trò chơi ảo trên nền tảng TikTok, không phải tiền cúng dường tôn giáo ngoài đời thật. Vui lòng giữ không gian phòng Live trang nghiêm, thanh tịnh.
+
+---
+**Giấy phép:** MIT License. Tác giả: [@tuna1710](https://github.com/tuna1710).
