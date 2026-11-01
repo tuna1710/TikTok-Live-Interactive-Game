@@ -137,7 +137,8 @@
       <span class="stat-val gold" id="totalCommentsCount">0</span>
     </div>
     <input type="text" id="channelInput" placeholder="@username_tiktok" value="@2166541467" />
-    <button class="btn-green" onclick="changeChannel()">🔗 Đổi Kênh TikTok</button>
+    <input type="text" id="sessionIdInput" placeholder="TikTok Session ID (tùy chọn - để vượt qua lỗi 403)" style="margin-top:8px;font-size:12px;" />
+    <button class="btn-green" style="margin-top:8px;" onclick="changeChannel()">🔗 Kết Nối Kênh TikTok</button>
   </div>
 
   <!-- Thử Nghiệm Giả Lập (Không cần đang Live thật) -->
@@ -208,8 +209,9 @@
 
     function changeChannel() {
       const channel = document.getElementById('channelInput').value.trim();
+      const sessionId = (document.getElementById('sessionIdInput')?.value || '').trim();
       if (!channel) return alert('Vui lòng nhập username');
-      sendAction('setChannel', { channel });
+      sendAction('setChannel', { channel, sessionId });
     }
 
     function testComment() {

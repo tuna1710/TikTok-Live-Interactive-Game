@@ -1,12 +1,16 @@
+require('dotenv').config();
 const path = require('path');
 const http = require('http');
 const express = require('express');
 const cors = require('cors');
 const { Server } = require('socket.io');
-const { WebcastPushConnection } = require('tiktok-live-connector');
+const { spawn } = require('child_process');
 
 const PORT = Number(process.env.PORT) || 3002;
+const CONTROL_PORT = Number(process.env.CONTROL_PORT) || 3003;
 let TIKTOK_USERNAME = process.env.TIKTOK_USERNAME || '@2166541467';
+let TIKTOK_SESSION_ID = process.env.TIKTOK_SESSION_ID || '';
+let relayProc = null;
 const ROUND_TIME_DEFAULT = 60;
 
 const app = express();
@@ -34,6 +38,7 @@ let gameState = {
   connectedChannel: TIKTOK_USERNAME.startsWith('@') ? TIKTOK_USERNAME : '@' + TIKTOK_USERNAME,
   tiktokConnected: false,
   tiktokConnecting: false,
+  tiktokStatusType: 'init',
   tiktokStatusMsg: 'Đang khởi động...',
   totalCommentsReceived: 0,
 };
@@ -278,6 +283,7 @@ function getClientGameState() {
     recentGuesses: recentGuesses.slice(0, 8),
     tiktokConnected: gameState.tiktokConnected,
     tiktokConnecting: gameState.tiktokConnecting,
+    tiktokStatusType: gameState.tiktokStatusType || 'init',
     tiktokStatusMsg: gameState.tiktokStatusMsg,
     connectedChannel: gameState.connectedChannel,
     totalCommentsReceived: gameState.totalCommentsReceived,
@@ -285,145 +291,124 @@ function getClientGameState() {
 }
 
 // -------------------------------------------------------------
-// TikTok Live Connector Relay Với Vòng Lặp Auto-Reconnect Tự Động
+// TikTok Live Event Ingest Endpoint & Python Relay Bridge
 // -------------------------------------------------------------
-let tiktokLiveConnection = null;
-
-function scheduleReconnect(delay = 5000) {
-  if (reconnectTimer) clearTimeout(reconnectTimer);
-  reconnectTimer = setTimeout(() => {
-    connectTikTok(gameState.connectedChannel);
-  }, delay);
+function notifyRelaySwitchChannel(channelName) {
+  const postData = JSON.stringify({ channel: channelName });
+  const req = http.request({
+    hostname: '127.0.0.1',
+    port: CONTROL_PORT,
+    path: '/switch_channel',
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Content-Length': Buffer.byteLength(postData),
+    },
+    timeout: 2000,
+  }, res => {
+    // response ok
+  });
+  req.on('error', err => {
+    console.debug('[Relay Control] Chưa gửi được lệnh switch_channel tới relay:', err.message);
+  });
+  req.write(postData);
+  req.end();
 }
 
-function connectTikTok(channelName) {
-  if (reconnectTimer) {
-    clearTimeout(reconnectTimer);
-    reconnectTimer = null;
-  }
+function startTikTokRelayWorker() {
+  if (relayProc) return;
 
-  const rawUser = (channelName || TIKTOK_USERNAME || '').trim();
-  const username = rawUser.replace(/^@/, '').trim();
-  if (!username) {
-    console.warn('[TikTok] Username trống! Hãy cập nhật kênh TikTok trong trang Admin.');
-    gameState.tiktokStatusMsg = 'Chưa thiết lập kênh TikTok';
-    io.emit('tiktokStatus', { connected: false, connecting: false, channel: '', msg: gameState.tiktokStatusMsg });
-    return;
-  }
+  const scriptPath = path.join(__dirname, 'tiktok_relay.py');
+  console.log(`[TikTok Relay] Đang khởi chạy worker Python: ${scriptPath}...`);
 
-  gameState.connectedChannel = '@' + username;
-  gameState.tiktokConnecting = true;
-  gameState.tiktokStatusMsg = `Đang kết nối tới @${username}...`;
+  const relayEnv = {
+    ...process.env,
+    PORT: String(PORT),
+    TARGET_PORT: String(PORT),
+    CONTROL_PORT: String(CONTROL_PORT),
+    TIKTOK_USERNAME: gameState.connectedChannel,
+  };
 
-  if (tiktokLiveConnection) {
-    try { tiktokLiveConnection.disconnect(); } catch (e) {}
-    tiktokLiveConnection = null;
-  }
-
-  io.emit('tiktokStatus', {
-    connected: false,
-    connecting: true,
-    channel: gameState.connectedChannel,
-    msg: gameState.tiktokStatusMsg,
+  relayProc = spawn('python3', [scriptPath], {
+    cwd: __dirname,
+    env: relayEnv,
+    stdio: ['ignore', 'inherit', 'inherit'],
   });
 
-  console.log(`[TikTok] Đang kết nối tới phòng Live @${username}...`);
-
-  tiktokLiveConnection = new WebcastPushConnection(username, {
-    enableExtendedGiftInfo: true,
-    enableWebsocketUpgrade: true,
-    requestPollingIntervalMs: 1000,
+  relayProc.on('error', err => {
+    console.error(`[TikTok Relay] ❌ Lỗi khởi chạy Python tiktok_relay.py:`, err.message);
   });
 
-  tiktokLiveConnection.connect()
-    .then(state => {
-      gameState.tiktokConnected = true;
-      gameState.tiktokConnecting = false;
-      gameState.tiktokStatusMsg = `Đã kết nối Live @${username} (Room ID: ${state.roomId})`;
-      console.log(`[TikTok] ✅ KẾT NỐI THÀNH CÔNG phòng Live @${username} (Room ID: ${state.roomId})! Đang lắng nghe bình luận.`);
-      io.emit('tiktokStatus', {
-        connected: true,
-        connecting: false,
-        channel: gameState.connectedChannel,
-        roomId: state.roomId,
-        msg: gameState.tiktokStatusMsg,
-      });
-    })
-    .catch(err => {
-      gameState.tiktokConnected = false;
-      gameState.tiktokConnecting = false;
-      const errMsg = err.message || String(err);
-      gameState.tiktokStatusMsg = `Chưa lên sóng Live @${username} (${errMsg}). Tự động dò tìm lại sau 5s...`;
-      console.warn(`[TikTok] ⚠️ @${username}: ${errMsg}. Tự động thử lại sau 5 giây...`);
-      io.emit('tiktokStatus', {
-        connected: false,
-        connecting: false,
-        channel: gameState.connectedChannel,
-        error: errMsg,
-        msg: gameState.tiktokStatusMsg,
-      });
-      // Tự động thử lại sau 5 giây để ngay khi streamer bấm Live là tự bắt comment ngay!
-      scheduleReconnect(5000);
+  relayProc.on('exit', (code, signal) => {
+    console.warn(`[TikTok Relay] ⚠️ Python tiktok_relay.py đã thoát (code: ${code}, signal: ${signal}). Tự khởi động lại sau 3s...`);
+    relayProc = null;
+    setTimeout(() => {
+      startTikTokRelayWorker();
+    }, 3000);
+  });
+}
+
+// Ingest events pushed by tiktok_relay.py
+app.post('/api/tiktok-event', (req, res) => {
+  const { type, ...payload } = req.body || {};
+
+  if (type === 'status') {
+    gameState.tiktokConnected = Boolean(payload.connected);
+    gameState.tiktokConnecting = Boolean(payload.connecting);
+    if (payload.channel) gameState.connectedChannel = payload.channel;
+    if (payload.msg) gameState.tiktokStatusMsg = payload.msg;
+
+    let statusType = 'offline';
+    if (gameState.tiktokConnected) statusType = 'connected';
+    else if (gameState.tiktokConnecting) statusType = 'connecting';
+    else if (/lỗi|error|không tìm thấy/i.test(gameState.tiktokStatusMsg)) statusType = 'error';
+    gameState.tiktokStatusType = statusType;
+
+    io.emit('tiktokStatus', {
+      connected: gameState.tiktokConnected,
+      connecting: gameState.tiktokConnecting,
+      statusType,
+      channel: gameState.connectedChannel,
+      roomId: payload.roomId,
+      msg: gameState.tiktokStatusMsg,
+      error: payload.error,
     });
+    return res.json({ ok: true });
+  }
 
-  tiktokLiveConnection.on('chat', data => {
-    checkGuess(
-      {
-        uniqueId: data.uniqueId,
-        nickname: data.nickname || data.uniqueId,
-        avatar: data.profilePictureUrl || '',
-      },
-      data.comment
-    );
-  });
+  if (type === 'chat') {
+    const user = payload.user || { uniqueId: 'anon', nickname: 'Khán giả', avatar: '' };
+    const comment = payload.comment || '';
+    checkGuess(user, comment);
+    return res.json({ ok: true });
+  }
 
-  tiktokLiveConnection.on('gift', data => {
-    const giftName = data.giftName || 'Quà';
-    const diamondCount = (data.diamondCount || 0) * (data.repeatCount || 1);
-    console.log(`[Quà tặng] ${data.nickname} gửi ${giftName} (${diamondCount} xu)`);
+  if (type === 'gift') {
+    const user = payload.user || { uniqueId: 'fan', nickname: 'Người xem', avatar: '' };
+    const giftName = payload.giftName || 'Quà';
+    const diamondCount = Number(payload.diamondCount) || 1;
 
-    revealOneHint(
-      { uniqueId: data.uniqueId, nickname: data.nickname, avatar: data.profilePictureUrl },
-      giftName
-    );
+    revealOneHint(user, giftName);
 
     if (diamondCount >= 10) {
-      addTime(30, `${data.nickname} tặng ${giftName} (+30s)`);
+      addTime(30, `${user.nickname} tặng ${giftName} (+30s)`);
     }
-  });
+    return res.json({ ok: true });
+  }
 
-  tiktokLiveConnection.on('like', data => {
-    const count = data.likeCount || 1;
+  if (type === 'like') {
+    const count = Number(payload.count) || 1;
     gameState.totalLikes += count;
     io.emit('likeUpdate', { totalLikes: gameState.totalLikes });
 
     if (gameState.totalLikes % 50 === 0) {
       addTime(10, 'Cộng đồng thả 50 tim (+10s)');
     }
-  });
+    return res.json({ ok: true });
+  }
 
-  tiktokLiveConnection.on('streamEnd', () => {
-    console.log(`[TikTok] Phòng Live đã kết thúc. Tiếp tục đợi phiên phát tiếp theo...`);
-    gameState.tiktokConnected = false;
-    gameState.tiktokConnecting = false;
-    gameState.tiktokStatusMsg = 'Phòng Live đã kết thúc. Chờ phiên mới...';
-    io.emit('tiktokStatus', { connected: false, connecting: false, channel: gameState.connectedChannel, msg: gameState.tiktokStatusMsg });
-    scheduleReconnect(8000);
-  });
-
-  tiktokLiveConnection.on('disconnected', () => {
-    console.log(`[TikTok] Mất kết nối tới máy chủ TikTok. Đang tự động kết nối lại...`);
-    gameState.tiktokConnected = false;
-    gameState.tiktokConnecting = false;
-    gameState.tiktokStatusMsg = 'Mất kết nối TikTok. Đang thử lại...';
-    io.emit('tiktokStatus', { connected: false, connecting: false, channel: gameState.connectedChannel, msg: gameState.tiktokStatusMsg });
-    scheduleReconnect(5000);
-  });
-
-  tiktokLiveConnection.on('error', err => {
-    console.warn(`[TikTok Lỗi]`, err.message || err);
-  });
-}
+  return res.status(400).json({ ok: false, error: 'Unknown event type' });
+});
 
 // -------------------------------------------------------------
 // Admin & Control Endpoints
@@ -479,7 +464,19 @@ app.post('/admin/api', (req, res) => {
   if (action === 'setChannel') {
     if (channel) {
       TIKTOK_USERNAME = channel.trim();
-      connectTikTok(TIKTOK_USERNAME);
+      gameState.connectedChannel = TIKTOK_USERNAME.startsWith('@') ? TIKTOK_USERNAME : '@' + TIKTOK_USERNAME;
+      gameState.tiktokConnecting = true;
+      gameState.tiktokConnected = false;
+      gameState.tiktokStatusType = 'connecting';
+      gameState.tiktokStatusMsg = `Đang chuyển sang kênh ${gameState.connectedChannel}...`;
+      io.emit('tiktokStatus', {
+        connected: false,
+        connecting: true,
+        statusType: 'connecting',
+        channel: gameState.connectedChannel,
+        msg: gameState.tiktokStatusMsg,
+      });
+      notifyRelaySwitchChannel(gameState.connectedChannel);
       return res.json({ ok: true, channel: gameState.connectedChannel, message: `Đang chuyển sang kênh ${gameState.connectedChannel}` });
     }
   }
@@ -496,6 +493,18 @@ io.on('connection', socket => {
   });
 });
 
+// Process Clean Up
+function cleanupProcess() {
+  if (relayProc) {
+    try {
+      relayProc.kill('SIGINT');
+    } catch (e) {}
+  }
+  process.exit(0);
+}
+process.on('SIGINT', cleanupProcess);
+process.on('SIGTERM', cleanupProcess);
+
 // Start Server & Initial Round
 server.listen(PORT, '0.0.0.0', () => {
   console.log(`====================================================`);
@@ -506,5 +515,5 @@ server.listen(PORT, '0.0.0.0', () => {
   console.log(`====================================================`);
 
   startNewRound();
-  connectTikTok(TIKTOK_USERNAME);
+  startTikTokRelayWorker();
 });

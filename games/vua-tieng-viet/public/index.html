@@ -787,6 +787,18 @@
         channelBadge.style.color = '#ffd700';
         if (channelDot) channelDot.style.background = '#ffd700';
         channelBadge.title = status.msg || 'Đang kết nối...';
+      } else if (status.statusType === 'auth_error') {
+        channelBadge.style.background = 'rgba(249, 115, 22, 0.2)';
+        channelBadge.style.borderColor = 'rgba(249, 115, 22, 0.6)';
+        channelBadge.style.color = '#f97316';
+        if (channelDot) channelDot.style.background = '#f97316';
+        channelBadge.title = status.msg || 'Kênh đang Live nhưng gặp lỗi chữ ký/bảo mật (403)';
+      } else if (status.statusType === 'network_error') {
+        channelBadge.style.background = 'rgba(234, 179, 8, 0.2)';
+        channelBadge.style.borderColor = 'rgba(234, 179, 8, 0.6)';
+        channelBadge.style.color = '#eab308';
+        if (channelDot) channelDot.style.background = '#eab308';
+        channelBadge.title = status.msg || 'Lỗi kết nối mạng';
       } else {
         channelBadge.style.background = 'rgba(239, 68, 68, 0.2)';
         channelBadge.style.borderColor = 'rgba(239, 68, 68, 0.5)';
@@ -809,6 +821,7 @@
       updateTiktokBadge({
         connected: state.tiktokConnected,
         connecting: state.tiktokConnecting,
+        statusType: state.tiktokStatusType,
         channel: state.connectedChannel,
         msg: state.tiktokStatusMsg
       });
