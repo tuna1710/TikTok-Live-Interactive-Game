@@ -141,6 +141,17 @@
     <button class="btn-red" onclick="sendAction('resetLeaderboard')">🗑️ Reset Bảng Xếp Hạng</button>
   </div>
 
+  <!-- Thử nghiệm âm thanh -->
+  <div class="card">
+    <div class="card-title">🔊 Kiểm Thử Âm Thanh Loa Máy Tính</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+      <button class="btn-gold" style="padding:8px;font-size:12px;" onclick="testSound('reveal')">🔔 Tiếng Mở Chữ</button>
+      <button class="btn-pink" style="padding:8px;font-size:12px;" onclick="testSound('tick')">⏱️ Tiếng Đếm Ngược</button>
+      <button class="btn-green" style="padding:8px;font-size:12px;" onclick="testSound('win')">🎺 Kèn Thắng Cuộc</button>
+      <button class="btn-red" style="padding:8px;font-size:12px;" onclick="testSound('timeout')">⌛ Tiếng Hết Giờ</button>
+    </div>
+  </div>
+
   <div class="card">
     <div class="card-title">📋 Nhật Ký Hoạt Động</div>
     <div id="log">Sẵn sàng</div>
@@ -189,6 +200,44 @@
       if (!text) return alert('Vui lòng nhập nội dung comment');
       sendAction('simulateChat', { text, user: 'StreamerTest' });
       document.getElementById('testComment').value = '';
+    }
+
+    // Audio Engine cho trang Admin
+    let adminAudioCtx = null;
+    function getAdminAudio() {
+      if (!adminAudioCtx) adminAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      if (adminAudioCtx.state === 'suspended') adminAudioCtx.resume();
+      return adminAudioCtx;
+    }
+    function playAdminTone(freq, type = 'sine', dur = 0.15) {
+      try {
+        const ctx = getAdminAudio();
+        const osc = ctx.createOscillator();
+        const g = ctx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, ctx.currentTime);
+        g.gain.setValueAtTime(0.2, ctx.currentTime);
+        g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + dur);
+        osc.connect(g); g.connect(ctx.destination);
+        osc.start(); osc.stop(ctx.currentTime + dur);
+      } catch (e) {}
+    }
+    function testSound(type) {
+      if (type === 'reveal') {
+        playAdminTone(659.25, 'triangle', 0.12);
+        setTimeout(() => playAdminTone(880, 'triangle', 0.15), 80);
+        setTimeout(() => playAdminTone(1318.51, 'sine', 0.3), 160);
+      } else if (type === 'tick') {
+        playAdminTone(880, 'triangle', 0.06);
+      } else if (type === 'win') {
+        playAdminTone(523.25, 'triangle', 0.12);
+        setTimeout(() => playAdminTone(659.25, 'triangle', 0.12), 100);
+        setTimeout(() => playAdminTone(783.99, 'triangle', 0.15), 200);
+        setTimeout(() => playAdminTone(1046.50, 'triangle', 0.4), 320);
+      } else if (type === 'timeout') {
+        playAdminTone(220, 'sawtooth', 0.25);
+        setTimeout(() => playAdminTone(164.81, 'sawtooth', 0.4), 200);
+      }
     }
 
     setInterval(loadCurrentState, 2000);

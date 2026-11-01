@@ -467,9 +467,12 @@
     <!-- Header -->
     <div class="header">
       <div class="game-title">👑 Vua Tiếng Việt</div>
-      <div class="channel-badge">
-        <div class="pulse-dot"></div>
-        <span id="channelName">@2166541467</span>
+      <div style="display:flex;align-items:center;gap:6px;">
+        <button id="btnSoundToggle" style="background:rgba(255,215,0,0.15);border:1px solid rgba(255,215,0,0.3);color:#ffd700;padding:4px 8px;border-radius:12px;font-size:11px;cursor:pointer;font-weight:700;">🔊 Âm thanh</button>
+        <div class="channel-badge">
+          <div class="pulse-dot"></div>
+          <span id="channelName">@2166541467</span>
+        </div>
       </div>
     </div>
 
@@ -557,43 +560,118 @@
 
   <script>
     // ---------------------------------------------------------
-    // Âm thanh Web Audio API (Tự tạo, không sợ lỗi file 404)
+    // Hệ thống Âm Thanh Web Audio API Đa Tầng (Tự tạo, siêu nhẹ, không phụ thuộc file ngoài)
     // ---------------------------------------------------------
-    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    const AudioCtxClass = window.AudioContext || window.webkitAudioContext;
     let audioCtx = null;
+    let soundEnabled = true;
 
-    function initAudio() {
-      if (!audioCtx) audioCtx = new AudioContext();
-      if (audioCtx.state === 'suspended') audioCtx.resume();
+    function getAudioContext() {
+      if (!audioCtx) {
+        audioCtx = new AudioCtxClass();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume().catch(() => {});
+      }
+      return audioCtx;
     }
-    window.addEventListener('click', initAudio, { once: true });
 
-    function playTone(freq, type, duration) {
+    function ensureAudioUnlocked() {
+      const ctx = getAudioContext();
+      if (ctx && ctx.state === 'suspended') {
+        ctx.resume();
+      }
+    }
+    ['click', 'touchstart', 'pointerdown', 'keydown'].forEach(evt => {
+      window.addEventListener(evt, ensureAudioUnlocked, { once: true });
+    });
+
+    function playTone(freq, type = 'sine', duration = 0.15, vol = 0.25) {
+      if (!soundEnabled) return;
       try {
-        if (!audioCtx) audioCtx = new AudioContext();
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-        osc.type = type || 'sine';
-        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-        gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+        const ctx = getAudioContext();
+        if (!ctx) return;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, ctx.currentTime);
+        gain.gain.setValueAtTime(vol, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration);
         osc.connect(gain);
-        gain.connect(audioCtx.destination);
+        gain.connect(ctx.destination);
         osc.start();
-        osc.stop(audioCtx.currentTime + duration);
+        osc.stop(ctx.currentTime + duration);
       } catch (e) {}
     }
 
-    function soundReveal() {
-      playTone(587.33, 'triangle', 0.15); // D5
-      setTimeout(() => playTone(880, 'triangle', 0.25), 100); // A5
+    // 1. Tiếng tích tắc đếm ngược gay cấn (10s cuối)
+    function soundTick(isUrgent = false) {
+      if (!soundEnabled) return;
+      try {
+        const ctx = getAudioContext();
+        if (!ctx) return;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(isUrgent ? 880 : 660, ctx.currentTime);
+        gain.gain.setValueAtTime(0.18, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.06);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.06);
+      } catch (e) {}
     }
 
+    // 2. Tiếng leng keng khi mở chữ cái gợi ý (Ting Ting)
+    function soundReveal() {
+      if (!soundEnabled) return;
+      playTone(659.25, 'triangle', 0.12, 0.25); // E5
+      setTimeout(() => playTone(880, 'triangle', 0.15, 0.3), 80); // A5
+      setTimeout(() => playTone(1318.51, 'sine', 0.3, 0.35), 160); // E6
+    }
+
+    // 3. Tiếng kèn vinh danh chiến thắng + tiếng vỗ tay rộn rã
     function soundWin() {
-      playTone(523.25, 'sine', 0.15); // C5
-      setTimeout(() => playTone(659.25, 'sine', 0.15), 120); // E5
-      setTimeout(() => playTone(783.99, 'sine', 0.15), 240); // G5
-      setTimeout(() => playTone(1046.50, 'sine', 0.45), 360); // C6
+      if (!soundEnabled) return;
+      // Khúc quân hành chiến thắng
+      playTone(523.25, 'triangle', 0.15, 0.3); // C5
+      setTimeout(() => playTone(659.25, 'triangle', 0.15, 0.3), 120); // E5
+      setTimeout(() => playTone(783.99, 'triangle', 0.18, 0.35), 240); // G5
+      setTimeout(() => playTone(1046.50, 'triangle', 0.45, 0.4), 380); // C6
+      setTimeout(() => playTone(1318.51, 'sine', 0.6, 0.35), 500); // E6
+
+      // Hiệu ứng tiếng vỗ tay tán thưởng (Synthesized applause burst)
+      try {
+        const ctx = getAudioContext();
+        if (!ctx) return;
+        const bufferSize = ctx.sampleRate * 1.5;
+        const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+        const data = buffer.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) {
+          data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (ctx.sampleRate * 0.7));
+        }
+        const noise = ctx.createBufferSource();
+        noise.buffer = buffer;
+        const filter = ctx.createBiquadFilter();
+        filter.type = 'bandpass';
+        filter.frequency.value = 1200;
+        filter.Q.value = 1.5;
+        const gain = ctx.createGain();
+        gain.gain.setValueAtTime(0.18, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 1.5);
+        noise.connect(filter);
+        filter.connect(gain);
+        gain.connect(ctx.destination);
+        noise.start(ctx.currentTime + 0.3);
+      } catch (e) {}
+    }
+
+    // 4. Tiếng còi buzzer báo hết giờ
+    function soundTimeout() {
+      if (!soundEnabled) return;
+      playTone(220, 'sawtooth', 0.25, 0.25);
+      setTimeout(() => playTone(164.81, 'sawtooth', 0.4, 0.3), 200);
     }
 
     // ---------------------------------------------------------
@@ -615,6 +693,18 @@
     const winnerName = document.getElementById('winnerName');
     const winnerAnswer = document.getElementById('winnerAnswer');
     const toastNotice = document.getElementById('toastNotice');
+    const btnSoundToggle = document.getElementById('btnSoundToggle');
+
+    if (btnSoundToggle) {
+      btnSoundToggle.onclick = () => {
+        ensureAudioUnlocked();
+        soundEnabled = !soundEnabled;
+        btnSoundToggle.textContent = soundEnabled ? '🔊 Âm thanh' : '🔇 Tắt tiếng';
+        btnSoundToggle.style.color = soundEnabled ? '#ffd700' : '#888';
+        btnSoundToggle.style.borderColor = soundEnabled ? 'rgba(255,215,0,0.3)' : '#555';
+        if (soundEnabled) soundReveal();
+      };
+    }
 
     function showToast(msg) {
       toastNotice.textContent = msg;
@@ -703,8 +793,9 @@
 
     socket.on('timerTick', data => {
       timerSec.textContent = data.timeLeft;
-      if (data.timeLeft <= 10) {
+      if (data.timeLeft <= 10 && data.timeLeft > 0) {
         timerCircle.classList.add('urgent');
+        soundTick(data.timeLeft <= 3);
       } else {
         timerCircle.classList.remove('urgent');
       }
@@ -745,6 +836,7 @@
     });
 
     socket.on('roundTimeout', data => {
+      soundTimeout();
       showToast(`⌛ Hết giờ! Đáp án là: ${data.word}`);
       // Lật toàn bộ chữ
       const slots = targetSlots.querySelectorAll('.slot-tile');
