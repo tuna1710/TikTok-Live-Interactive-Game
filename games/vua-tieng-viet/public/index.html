@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Vua Tiếng Việt - TikTok Live Interactive Game</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #0a071a;
+      color: #fff;
+      font-family: 'Be Vietnam Pro', system-ui, -apple-system, sans-serif;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    /* Khung dọc tỉ lệ 9:16 tiêu chuẩn Livestream TikTok */
+    .game-container {
+      width: 100vw;
+      max-width: 480px;
+      height: 100vh;
+      max-height: 853px;
+      background: radial-gradient(circle at 50% 20%, #1e133d 0%, #0d0822 65%, #05030f 100%);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 0 40px rgba(138, 43, 226, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    /* Header */
+    .header {
+      padding: 14px 16px 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(10, 7, 26, 0.6);
+      backdrop-filter: blur(8px);
+    }
+    .game-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1.15rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, #ffd700, #ff8c00, #ff3366);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .channel-badge {
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      background: rgba(0, 230, 118, 0.15);
+      color: #00e676;
+      border: 1px solid rgba(0, 230, 118, 0.3);
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .pulse-dot {
+      width: 7px;
+      height: 7px;
+      background: #00e676;
+      border-radius: 50%;
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(0.9); opacity: 0.7; }
+      50% { transform: scale(1.3); opacity: 1; }
+      100% { transform: scale(0.9); opacity: 0.7; }
+    }
+
+    /* Vòng & Chủ Đề */
+    .info-bar {
+      padding: 10px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .category-tag {
+      background: linear-gradient(135deg, #7928ca, #ff0080);
+      color: #fff;
+      padding: 5px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      box-shadow: 0 2px 10px rgba(255, 0, 128, 0.3);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .round-tag {
+      font-size: 12px;
+      font-weight: 700;
+      color: #ffd700;
+      background: rgba(255, 215, 0, 0.12);
+      border: 1px solid rgba(255, 215, 0, 0.25);
+      padding: 4px 10px;
+      border-radius: 8px;
+    }
+
+    /* Đồng hồ đếm ngược */
+    .timer-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 4px 0 10px;
+    }
+    .timer-circle {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #25184d, #140d2e);
+      border: 3px solid #ff007f;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 20px rgba(255, 0, 127, 0.5);
+      transition: all 0.3s;
+    }
+    .timer-circle.urgent {
+      border-color: #ff1744;
+      box-shadow: 0 0 25px rgba(255, 23, 68, 0.8);
+      animation: urgentPulse 0.6s infinite alternate;
+    }
+    @keyframes urgentPulse {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.08); }
+    }
+    .timer-sec {
+      font-size: 26px;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1;
+    }
+    .timer-lbl {
+      font-size: 9px;
+      text-transform: uppercase;
+      color: #aaa;
+      letter-spacing: 1px;
+    }
+
+    /* Khu vực Chữ Bị Đảo Lộn */
+    .scramble-section {
+      padding: 10px 16px;
+      text-align: center;
+    }
+    .scramble-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #a78bfa;
+      margin-bottom: 8px;
+    }
+    .scramble-tiles {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 7px;
+      min-height: 52px;
+    }
+    .letter-tile {
+      width: 44px;
+      height: 48px;
+      background: linear-gradient(145deg, #ffd700, #f59e0b);
+      color: #1a0b2e;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      font-weight: 900;
+      box-shadow: 0 4px 10px rgba(245, 158, 11, 0.4), inset 0 2px 2px rgba(255, 255, 255, 0.5);
+      animation: tileBounce 2s infinite ease-in-out;
+      transform-origin: center;
+    }
+    @keyframes tileBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+
+    /* Ô Chữ Mục Tiêu Cần Đoán */
+    .target-section {
+      padding: 12px 14px;
+      margin: 4px 14px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px dashed rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+      text-align: center;
+    }
+    .target-title {
+      font-size: 10px;
+      color: #9ca3af;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .target-slots {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 6px;
+    }
+    .slot-tile {
+      width: 36px;
+      height: 42px;
+      background: #191233;
+      border: 2px solid #5b21b6;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 800;
+      color: #ffd700;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+      transition: all 0.3s;
+    }
+    .slot-tile.revealed {
+      background: linear-gradient(135deg, #059669, #10b981);
+      border-color: #34d399;
+      color: #fff;
+      transform: scale(1.05);
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.6);
+    }
+    .slot-space {
+      width: 14px;
+      height: 42px;
+    }
+
+    /* Gợi ý Clue */
+    .clue-box {
+      margin: 8px 16px 4px;
+      padding: 8px 12px;
+      background: rgba(124, 58, 237, 0.12);
+      border-left: 3px solid #8b5cf6;
+      border-radius: 0 8px 8px 0;
+      font-size: 11px;
+      color: #ddd6fe;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Call To Action Banner */
+    .cta-banner {
+      margin: 6px 14px;
+      padding: 6px 10px;
+      background: linear-gradient(90deg, rgba(236, 72, 153, 0.15), rgba(99, 102, 241, 0.15));
+      border: 1px solid rgba(236, 72, 153, 0.3);
+      border-radius: 8px;
+      font-size: 10px;
+      text-align: center;
+      color: #fbcfe8;
+      display: flex;
+      justify-content: space-around;
+      font-weight: 600;
+    }
+    .cta-item { display: flex; align-items: center; gap: 4px; }
+
+    /* Vùng tương tác phía dưới: Chia 2 cột (Chat live + Bảng xếp hạng) */
+    .bottom-grid {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      padding: 6px 14px 14px;
+      min-height: 0;
+    }
+
+    .panel-box {
+      background: rgba(15, 10, 35, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .panel-header {
+      font-size: 11px;
+      font-weight: 700;
+      color: #fcd34d;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding-bottom: 4px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    /* Danh sách bình luận đoán từ */
+    .chat-list {
+      flex: 1;
+      overflow-y: hidden;
+      display: flex;
+      flex-direction: column-reverse;
+      gap: 5px;
+    }
+    .chat-item {
+      font-size: 10px;
+      padding: 4px 6px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.04);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      animation: fadeIn 0.25s ease-out;
+    }
+    .chat-user {
+      font-weight: 700;
+      color: #93c5fd;
+      max-width: 60px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .chat-text {
+      color: #f3f4f6;
+      flex: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .chat-item.correct {
+      background: rgba(16, 185, 129, 0.25);
+      border: 1px solid #10b981;
+      font-weight: 700;
+    }
+
+    /* Bảng xếp hạng */
+    .rank-list {
+      flex: 1;
+      overflow-y: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .rank-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 6px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.03);
+      font-size: 10px;
+    }
+    .rank-item:nth-child(1) { background: rgba(255, 215, 0, 0.15); border: 1px solid rgba(255, 215, 0, 0.4); }
+    .rank-item:nth-child(2) { background: rgba(192, 192, 192, 0.15); }
+    .rank-item:nth-child(3) { background: rgba(205, 127, 50, 0.15); }
+    .rank-medal { font-weight: 800; min-width: 14px; text-align: center; }
+    .rank-name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 600; }
+    .rank-score { font-weight: 800; color: #ffd700; }
+
+    /* Modal Người Chiến Thắng */
+    .winner-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(8, 4, 20, 0.88);
+      backdrop-filter: blur(10px);
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      animation: zoomIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .winner-overlay.show { display: flex; }
+    .winner-box {
+      width: 85%;
+      background: linear-gradient(135deg, #2b1055, #7597de);
+      padding: 24px 20px;
+      border-radius: 16px;
+      text-align: center;
+      border: 2px solid #ffd700;
+      box-shadow: 0 0 35px rgba(255, 215, 0, 0.6);
+      position: relative;
+    }
+    .winner-crown { font-size: 40px; margin-bottom: 6px; animation: crownWiggle 1s infinite; }
+    @keyframes crownWiggle {
+      0%, 100% { transform: rotate(-5deg); }
+      50% { transform: rotate(5deg); }
+    }
+    .winner-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: #ffd700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .winner-name {
+      font-size: 22px;
+      font-weight: 900;
+      color: #fff;
+      margin: 8px 0;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    }
+    .winner-answer {
+      font-size: 18px;
+      font-weight: 800;
+      color: #a7f3d0;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 6px 14px;
+      border-radius: 8px;
+      display: inline-block;
+      margin-top: 6px;
+    }
+    .winner-pts {
+      font-size: 12px;
+      color: #fde047;
+      margin-top: 10px;
+      font-weight: 700;
+    }
+
+    /* Thông báo nổi (Toast khi mở gợi ý hoặc cộng giờ) */
+    .toast-notice {
+      position: absolute;
+      top: 65px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, #ec4899, #8b5cf6);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 800;
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(236, 72, 153, 0.5);
+      z-index: 50;
+      display: none;
+      white-space: nowrap;
+      animation: dropDown 0.3s ease-out;
+    }
+    @keyframes dropDown {
+      0% { transform: translate(-50%, -15px); opacity: 0; }
+      100% { transform: translate(-50%, 0); opacity: 1; }
+    }
+    @keyframes zoomIn {
+      0% { transform: scale(0.7); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(4px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="game-container">
+    <!-- Header -->
+    <div class="header">
+      <div class="game-title">👑 Vua Tiếng Việt</div>
+      <div class="channel-badge">
+        <div class="pulse-dot"></div>
+        <span id="channelName">@2166541467</span>
+      </div>
+    </div>
+
+    <!-- Thông tin Vòng & Chủ Đề -->
+    <div class="info-bar">
+      <div class="category-tag">
+        <span>🏷️</span>
+        <span id="categoryLabel">Đang tải...</span>
+      </div>
+      <div class="round-tag">
+        VÒNG <span id="roundNumber">1</span>
+      </div>
+    </div>
+
+    <!-- Đồng hồ đếm ngược -->
+    <div class="timer-wrap">
+      <div class="timer-circle" id="timerCircle">
+        <div class="timer-sec" id="timerSec">60</div>
+        <div class="timer-lbl">GIÂY</div>
+      </div>
+    </div>
+
+    <!-- Ô Chữ Bị Đảo Lộn -->
+    <div class="scramble-section">
+      <div class="scramble-title">🔀 CÁC CHỮ CÁI BỊ ĐẢO LỘN:</div>
+      <div class="scramble-tiles" id="scrambleTiles"></div>
+    </div>
+
+    <!-- Ô Chữ Cần Đoán (Target Slots) -->
+    <div class="target-section">
+      <div class="target-title">🎯 ĐIỀN ĐÁP ÁN ĐÚNG:</div>
+      <div class="target-slots" id="targetSlots"></div>
+    </div>
+
+    <!-- Gợi ý câu hỏi -->
+    <div class="clue-box">
+      <span>💡</span>
+      <span id="clueText">Gợi ý đang tải...</span>
+    </div>
+
+    <!-- Hướng dẫn tương tác -->
+    <div class="cta-banner">
+      <div class="cta-item">💬 <b>Bình luận đáp án</b></div>
+      <div class="cta-item">🌹 <b>Hoa Hồng = Mở 1 Chữ</b></div>
+      <div class="cta-item">❤️ <b>50 Tim = +10s</b></div>
+    </div>
+
+    <!-- Khu vực tương tác: Chat guesses & Leaderboard -->
+    <div class="bottom-grid">
+      <!-- Bình luận gần đây -->
+      <div class="panel-box">
+        <div class="panel-header">
+          <span>💬</span>
+          <span>Bình Luận Trực Tiếp</span>
+        </div>
+        <div class="chat-list" id="chatList"></div>
+      </div>
+
+      <!-- Bảng xếp hạng -->
+      <div class="panel-box">
+        <div class="panel-header">
+          <span>🏆</span>
+          <span>Bảng Xếp Hạng</span>
+        </div>
+        <div class="rank-list" id="rankList">
+          <div style="font-size:10px;color:#888;text-align:center;margin-top:15px;">Chưa có điểm</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast thông báo nổi -->
+    <div class="toast-notice" id="toastNotice">Gợi ý mở chữ!</div>
+
+    <!-- Modal vinh danh người thắng -->
+    <div class="winner-overlay" id="winnerOverlay">
+      <div class="winner-box">
+        <div class="winner-crown">👑</div>
+        <div class="winner-title">XUẤT SẮC ĐOÁN ĐÚNG!</div>
+        <div class="winner-name" id="winnerName">Tên Khán Giả</div>
+        <div class="winner-answer" id="winnerAnswer">ĐÁP ÁN</div>
+        <div class="winner-pts">+100 ĐIỂM CHIẾN THẮNG 🎯</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ---------------------------------------------------------
+    // Âm thanh Web Audio API (Tự tạo, không sợ lỗi file 404)
+    // ---------------------------------------------------------
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    let audioCtx = null;
+
+    function initAudio() {
+      if (!audioCtx) audioCtx = new AudioContext();
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+    }
+    window.addEventListener('click', initAudio, { once: true });
+
+    function playTone(freq, type, duration) {
+      try {
+        if (!audioCtx) audioCtx = new AudioContext();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = type || 'sine';
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+      } catch (e) {}
+    }
+
+    function soundReveal() {
+      playTone(587.33, 'triangle', 0.15); // D5
+      setTimeout(() => playTone(880, 'triangle', 0.25), 100); // A5
+    }
+
+    function soundWin() {
+      playTone(523.25, 'sine', 0.15); // C5
+      setTimeout(() => playTone(659.25, 'sine', 0.15), 120); // E5
+      setTimeout(() => playTone(783.99, 'sine', 0.15), 240); // G5
+      setTimeout(() => playTone(1046.50, 'sine', 0.45), 360); // C6
+    }
+
+    // ---------------------------------------------------------
+    // Socket.io & Game Logic
+    // ---------------------------------------------------------
+    const socket = io();
+
+    const categoryLabel = document.getElementById('categoryLabel');
+    const roundNumber = document.getElementById('roundNumber');
+    const timerCircle = document.getElementById('timerCircle');
+    const timerSec = document.getElementById('timerSec');
+    const scrambleTiles = document.getElementById('scrambleTiles');
+    const targetSlots = document.getElementById('targetSlots');
+    const clueText = document.getElementById('clueText');
+    const channelName = document.getElementById('channelName');
+    const chatList = document.getElementById('chatList');
+    const rankList = document.getElementById('rankList');
+    const winnerOverlay = document.getElementById('winnerOverlay');
+    const winnerName = document.getElementById('winnerName');
+    const winnerAnswer = document.getElementById('winnerAnswer');
+    const toastNotice = document.getElementById('toastNotice');
+
+    function showToast(msg) {
+      toastNotice.textContent = msg;
+      toastNotice.style.display = 'block';
+      setTimeout(() => { toastNotice.style.display = 'none'; }, 2500);
+    }
+
+    function renderScramble(letters) {
+      scrambleTiles.innerHTML = '';
+      letters.forEach((l, i) => {
+        const div = document.createElement('div');
+        div.className = 'letter-tile';
+        div.textContent = l;
+        div.style.animationDelay = `${(i * 0.15).toFixed(2)}s`;
+        scrambleTiles.appendChild(div);
+      });
+    }
+
+    function renderTargetSlots(pattern) {
+      targetSlots.innerHTML = '';
+      pattern.forEach(ch => {
+        if (ch === ' ') {
+          const sp = document.createElement('div');
+          sp.className = 'slot-space';
+          targetSlots.appendChild(sp);
+        } else {
+          const slot = document.createElement('div');
+          slot.className = 'slot-tile' + (ch !== '_' ? ' revealed' : '');
+          slot.textContent = ch !== '_' ? ch : '';
+          targetSlots.appendChild(slot);
+        }
+      });
+    }
+
+    function updateLeaderboard(list) {
+      if (!list || list.length === 0) {
+        rankList.innerHTML = '<div style="font-size:10px;color:#888;text-align:center;margin-top:15px;">Chưa có điểm</div>';
+        return;
+      }
+      const medals = ['🥇', '🥈', '🥉', '4', '5', '6', '7', '8', '9', '10'];
+      rankList.innerHTML = list.slice(0, 7).map((u, idx) => `
+        <div class="rank-item">
+          <div class="rank-medal">${medals[idx]}</div>
+          <div class="rank-name">${u.nickname || u.uniqueId}</div>
+          <div class="rank-score">${u.score}đ</div>
+        </div>
+      `).join('');
+    }
+
+    function addGuess(guess) {
+      const item = document.createElement('div');
+      item.className = 'chat-item' + (guess.isCorrect ? ' correct' : '');
+      item.innerHTML = `
+        <span class="chat-user">${guess.nickname}:</span>
+        <span class="chat-text">${guess.comment}</span>
+        ${guess.isCorrect ? '<span>✅</span>' : ''}
+      `;
+      chatList.prepend(item);
+      while (chatList.children.length > 8) {
+        chatList.removeChild(chatList.lastChild);
+      }
+    }
+
+    // Socket Events
+    socket.on('gameState', state => {
+      roundNumber.textContent = state.round || 1;
+      categoryLabel.textContent = state.category || 'Đố Vui';
+      clueText.textContent = state.hint || 'Hãy nhìn kỹ các chữ cái bị xáo trộn và bình luận!';
+      timerSec.textContent = state.timeLeft;
+      channelName.textContent = state.connectedChannel || '@2166541467';
+      renderScramble(state.scrambledLetters || []);
+      renderTargetSlots(state.targetPattern || []);
+      updateLeaderboard(state.leaderboard || []);
+    });
+
+    socket.on('roundStart', state => {
+      winnerOverlay.classList.remove('show');
+      roundNumber.textContent = state.round;
+      categoryLabel.textContent = state.category;
+      clueText.textContent = state.hint;
+      timerSec.textContent = state.timeLeft;
+      timerCircle.classList.remove('urgent');
+      renderScramble(state.scrambledLetters);
+      renderTargetSlots(state.targetPattern);
+    });
+
+    socket.on('timerTick', data => {
+      timerSec.textContent = data.timeLeft;
+      if (data.timeLeft <= 10) {
+        timerCircle.classList.add('urgent');
+      } else {
+        timerCircle.classList.remove('urgent');
+      }
+    });
+
+    socket.on('hintRevealed', data => {
+      soundReveal();
+      const slots = targetSlots.querySelectorAll('.slot-tile');
+      // Update slots display
+      if (slots[data.index]) {
+        slots[data.index].textContent = data.letter;
+        slots[data.index].classList.add('revealed');
+      }
+      if (data.donor) {
+        showToast(`🌹 ${data.donor} mở chữ: "${data.letter}"`);
+      } else {
+        showToast(`💡 Gợi ý đã mở: "${data.letter}"`);
+      }
+    });
+
+    socket.on('timeAdded', data => {
+      showToast(`⏱️ ${data.reason || '+Thời gian'}`);
+    });
+
+    socket.on('newGuess', guess => {
+      addGuess(guess);
+    });
+
+    socket.on('roundWon', data => {
+      soundWin();
+      if (window.confetti) {
+        confetti({ particleCount: 80, spread: 70, origin: { y: 0.6 } });
+      }
+      winnerName.textContent = data.winner.nickname || data.winner.uniqueId;
+      winnerAnswer.textContent = data.word;
+      winnerOverlay.classList.add('show');
+      updateLeaderboard(data.leaderboard);
+    });
+
+    socket.on('roundTimeout', data => {
+      showToast(`⌛ Hết giờ! Đáp án là: ${data.word}`);
+      // Lật toàn bộ chữ
+      const slots = targetSlots.querySelectorAll('.slot-tile');
+      const chars = data.word.replace(/\s+/g, '').split('');
+      slots.forEach((s, i) => {
+        if (chars[i]) {
+          s.textContent = chars[i];
+          s.classList.add('revealed');
+        }
+      });
+    });
+
+    socket.on('tiktokStatus', status => {
+      channelName.textContent = status.channel;
+    });
+  </script>
+</body>
+</html>

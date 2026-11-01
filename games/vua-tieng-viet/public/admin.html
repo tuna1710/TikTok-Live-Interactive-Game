@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bảng Quản Trị MC - Vua Tiếng Việt</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: #0f0a1e;
+      color: #eee;
+      padding: 20px;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 1.25rem;
+      text-align: center;
+      color: #ffd700;
+      margin-bottom: 6px;
+    }
+    .sub {
+      text-align: center;
+      font-size: 12px;
+      color: #a78bfa;
+      margin-bottom: 20px;
+    }
+    .card {
+      background: #1b1233;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      padding: 14px;
+      margin-bottom: 14px;
+    }
+    .card-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #f472b6;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      font-size: 13px;
+    }
+    .stat-label { color: #9ca3af; }
+    .stat-val { font-weight: 700; color: #fff; }
+    .stat-val.gold { color: #ffd700; font-size: 16px; }
+
+    button {
+      width: 100%;
+      padding: 11px;
+      margin-top: 8px;
+      border-radius: 8px;
+      border: none;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      transition: filter 0.2s, transform 0.1s;
+    }
+    button:active { transform: scale(0.98); }
+    .btn-gold { background: linear-gradient(135deg, #f59e0b, #d97706); color: #fff; }
+    .btn-purple { background: linear-gradient(135deg, #8b5cf6, #6d28d9); color: #fff; }
+    .btn-pink { background: linear-gradient(135deg, #ec4899, #be185d); color: #fff; }
+    .btn-green { background: linear-gradient(135deg, #10b981, #047857); color: #fff; }
+    .btn-red { background: linear-gradient(135deg, #ef4444, #b91c1c); color: #fff; }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #444;
+      background: #120926;
+      color: #fff;
+      box-sizing: border-box;
+      margin-top: 6px;
+      font-size: 13px;
+    }
+
+    #log {
+      background: #080411;
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 12px;
+      color: #34d399;
+      min-height: 24px;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <h1>👑 Bảng Điều Khiển Streamer</h1>
+  <div class="sub">Game "Vua Tiếng Việt" - TikTok Live Interactive</div>
+
+  <!-- Thông tin câu hiện tại -->
+  <div class="card">
+    <div class="card-title">🎯 Câu Đố Hiện Tại (MC Xem Trước)</div>
+    <div class="stat-row">
+      <span class="stat-label">Đáp án đúng:</span>
+      <span class="stat-val gold" id="currentAnswer">Đang tải...</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-label">Chủ đề:</span>
+      <span class="stat-val" id="currentCategory">-</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-label">Gợi ý:</span>
+      <span class="stat-val" id="currentHint">-</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-label">Thời gian còn lại:</span>
+      <span class="stat-val" id="currentTime">-</span>
+    </div>
+  </div>
+
+  <!-- Nút Thao Tác Nhanh -->
+  <div class="card">
+    <div class="card-title">⚡ Thao Tác Trận Đấu</div>
+    <button class="btn-gold" onclick="sendAction('skip')">⏭️ Đổi Sang Câu Đố Khác Ngay</button>
+    <button class="btn-purple" onclick="sendAction('reveal')">💡 Mở Ngay 1 Chữ Cái Gợi Ý</button>
+    <button class="btn-pink" onclick="sendAction('addTime', { seconds: 30 })">⏱️ Cộng Thêm 30 Giây</button>
+  </div>
+
+  <!-- Kết Nối Kênh TikTok -->
+  <div class="card">
+    <div class="card-title">📡 Kênh TikTok Đang Kết Nối</div>
+    <input type="text" id="channelInput" placeholder="@username_tiktok" value="@2166541467" />
+    <button class="btn-green" onclick="changeChannel()">🔗 Đổi Kênh TikTok</button>
+  </div>
+
+  <!-- Thử Nghiệm Giả Lập (Không cần đang Live thật) -->
+  <div class="card">
+    <div class="card-title">🧪 Kiểm Thử Game (Không cần mở Live thật)</div>
+    <input type="text" id="testComment" placeholder="Nhập comment thử (vd: hoa hong)" />
+    <button class="btn-purple" onclick="testComment()">💬 Thử Gửi Comment Đoán</button>
+    <button class="btn-pink" onclick="sendAction('simulateGift')">🌹 Giả Lập Tặng Hoa Hồng (Mở chữ)</button>
+    <button class="btn-red" onclick="sendAction('resetLeaderboard')">🗑️ Reset Bảng Xếp Hạng</button>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📋 Nhật Ký Hoạt Động</div>
+    <div id="log">Sẵn sàng</div>
+  </div>
+
+  <script>
+    const log = document.getElementById('log');
+
+    async function sendAction(action, data = {}) {
+      try {
+        log.textContent = 'Đang gửi lệnh: ' + action + '...';
+        const res = await fetch('/admin/api', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action, ...data })
+        });
+        const json = await res.json();
+        log.textContent = 'Phản hồi: ' + JSON.stringify(json, null, 2);
+        loadCurrentState();
+      } catch (e) {
+        log.textContent = 'Lỗi: ' + e.message;
+      }
+    }
+
+    async function loadCurrentState() {
+      try {
+        const res = await fetch('/api/state');
+        const json = await res.json();
+        if (json.ok && json.state) {
+          document.getElementById('currentAnswer').textContent = json.actualWord || '-';
+          document.getElementById('currentCategory').textContent = json.state.category || '-';
+          document.getElementById('currentHint').textContent = json.state.hint || '-';
+          document.getElementById('currentTime').textContent = json.state.timeLeft + ' giây';
+        }
+      } catch (e) {}
+    }
+
+    function changeChannel() {
+      const channel = document.getElementById('channelInput').value.trim();
+      if (!channel) return alert('Vui lòng nhập username');
+      sendAction('setChannel', { channel });
+    }
+
+    function testComment() {
+      const text = document.getElementById('testComment').value.trim();
+      if (!text) return alert('Vui lòng nhập nội dung comment');
+      sendAction('simulateChat', { text, user: 'StreamerTest' });
+      document.getElementById('testComment').value = '';
+    }
+
+    setInterval(loadCurrentState, 2000);
+    loadCurrentState();
+  </script>
+</body>
+</html>

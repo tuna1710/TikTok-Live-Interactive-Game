@@ -40,6 +40,17 @@ Tự động chuyển hóa bình luận, lượt thả tim và quà tặng của
 
 ---
 
+### 3. 👑 Vua Tiếng Việt (Word Scramble - Đảo Chữ Đoán Từ)
+* **Chủ đề:** Game trí tuệ đoán từ tương tác tạo bão bình luận (comment velocity) cực mạnh đẩy kênh lên xu hướng.
+* **Tương tác:**
+  * **Bình luận:** Gõ đáp án (hỗ trợ cả có dấu và không dấu). Ai đoán đúng đầu tiên được vinh danh và cộng 100 điểm.
+  * **Tặng Hoa Hồng (1 xu):** Tự động lật mở 1 chữ cái gợi ý đúng vị trí.
+  * **Tặng Quà lớn ($\ge 10$ xu):** Mở thêm chữ cái hoặc cộng thêm thời gian thi đấu.
+  * **Thả tim (Likes):** Tích lũy 50 tim cộng thêm 10 giây thời gian suy nghĩ.
+* **Thư mục:** `games/vua-tieng-viet/`
+
+---
+
 ## 🚀 Hướng Dẫn Khởi Chạy (1-Click Trên Google Colab)
 
 Tất cả các game đều đã được tích hợp sẵn đường truyền **Cloudflare Tunnel công khai** (Không bao giờ bị lỗi hỏi đăng nhập GitHub, không lo lỗi màn hình đen):
@@ -48,6 +59,7 @@ Tất cả các game đều đã được tích hợp sẵn đường truyền *
 2. Chọn game bạn muốn phát:
    * **Muốn live Chùa Online:** Bấm chạy **BƯỚC 1**.
    * **Muốn live Đại Chiến Đỏ vs Xanh:** Bấm chạy **BƯỚC 1B**.
+   * **Muốn live Vua Tiếng Việt:** Bấm chạy **BƯỚC 1C**.
 3. Hệ thống sẽ cấp link `https://xxxx.trycloudflare.com`.
 
 ---
