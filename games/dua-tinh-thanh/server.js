@@ -559,10 +559,19 @@ function connectTikTok() {
   });
 
   const cleanUser = TIKTOK_USERNAME.replace(/^@/, '');
-  tiktokConn = new TikTokLiveConnection(cleanUser, {
-    enableExtendedGiftInfo: true,
-    sessionId: TIKTOK_SESSION_ID || undefined
-  });
+  const connectionOptions = {
+    processInitialData: true,
+    fetchRoomInfoOnConnect: false,
+    enableExtendedGiftInfo: false,
+  };
+  if (TIKTOK_SESSION_ID) {
+    connectionOptions.sessionId = TIKTOK_SESSION_ID;
+  }
+  if (process.env.EULER_API_KEY) {
+    connectionOptions.signApiKey = process.env.EULER_API_KEY;
+  }
+
+  tiktokConn = new TikTokLiveConnection(cleanUser, connectionOptions);
 
   tiktokConn.connect()
     .then(state => {
@@ -581,8 +590,16 @@ function connectTikTok() {
     .catch(err => {
       gameState.tiktokConnecting = false;
       gameState.tiktokConnected = false;
-      gameState.tiktokStatusMsg = `Lỗi kết nối: ${err.message}. Thử lại sau 10s...`;
-      console.error(`[TikTok Live] ❌ Thất bại: ${err.message}`);
+      const errMsg = err?.message || String(err);
+
+      if (/Business plan|euler/i.test(errMsg)) {
+        gameState.tiktokStatusMsg = `Kênh @${cleanUser} chưa lên sóng Live (hoặc EulerStream đang giới hạn). Hãy bấm BẮT ĐẦU PHÁT LIVE trên TikTok để kết nối.`;
+      } else if (/isn't online|offline/i.test(errMsg)) {
+        gameState.tiktokStatusMsg = `Kênh @${cleanUser} hiện chưa phát Live. Tự động kết nối lại sau 10s...`;
+      } else {
+        gameState.tiktokStatusMsg = `Lỗi kết nối: ${errMsg}. Thử lại sau 10s...`;
+      }
+      console.warn(`[TikTok Live] ⚠️ ${gameState.tiktokStatusMsg}`);
 
       io.emit('tiktokStatus', {
         connected: false,
