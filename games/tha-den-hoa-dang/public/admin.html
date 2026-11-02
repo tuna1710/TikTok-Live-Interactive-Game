@@ -185,19 +185,24 @@
 
     <div style="margin-bottom: 14px;">
       <span style="font-size: 12px; font-weight: 700; color: #fef08a;">💬 Thử Nghiệm Khán Giả Bình Luận Cầu An:</span>
+      <div class="input-group" style="margin-top: 8px;">
+        <input type="text" id="customUser" placeholder="Tên khán giả (ví dụ: Thanh Tâm)" style="max-width: 180px;" />
+        <input type="text" id="customWish" placeholder="Nhập lời ước (ví dụ: Cầu gia đình luôn bình an và mạnh khỏe)" />
+        <button onclick="simCustomWish()">Thả Đèn Lời Ước</button>
+      </div>
       <div class="btn-row">
-        <button class="test-btn" onclick="simWish('Cầu gia đạo bình an, vạn sự cát tường')">🪷 Lời ước 1: Cầu bình an</button>
-        <button class="test-btn" onclick="simWish('Cầu công việc thuận buồm xuôi gió, đắc tài đắc lộc')">💰 Lời ước 2: Cầu tài lộc</button>
-        <button class="test-btn" onclick="simWish('Cầu cha mẹ sống lâu trăm tuổi, sức khỏe dồi dào')">❤️ Lời ước 3: Cầu sức khỏe</button>
+        <button class="test-btn" onclick="simWish('Cầu gia đạo bình an, vạn sự cát tường')">🪷 Mẫu 1: Cầu bình an</button>
+        <button class="test-btn" onclick="simWish('Cầu công việc thuận buồm xuôi gió, đắc tài đắc lộc')">💰 Mẫu 2: Cầu tài lộc</button>
+        <button class="test-btn" onclick="simWish('Cầu cha mẹ sống lâu trăm tuổi, sức khỏe dồi dào')">❤️ Mẫu 3: Cầu sức khỏe</button>
       </div>
     </div>
 
     <div style="margin-bottom: 14px;">
-      <span style="font-size: 12px; font-weight: 700; color: #ffd700;">🎁 Thử Nghiệm Quà Tặng Nạp Xu:</span>
+      <span style="font-size: 12px; font-weight: 700; color: #ffd700;">🎁 Thử Nghiệm Quà Tặng & Bảng Cảm Ơn:</span>
       <div class="btn-row">
-        <button class="test-btn" onclick="simGift('gold_gift')">🌹 Tặng Hoa Hồng (Đèn Sen Vàng Đại Lộc)</button>
-        <button class="test-btn" onclick="simGift('royal_gift')">👑 Tặng Vương Miện (Đèn Sen Thất Bảo)</button>
-        <button class="test-btn" onclick="simGift('sky_gift')">🎆 Tặng Quà Lớn (Đèn Lồng Khổng Minh Bay Lên Trời)</button>
+        <button class="test-btn" onclick="simGift('gold_gift')">🌹 Tặng Hoa Hồng (Đèn Sen Vàng + Cảm Ơn)</button>
+        <button class="test-btn" onclick="simGift('royal_gift')">👑 Tặng Vương Miện (Đèn Sen Thất Bảo + Cảm Ơn)</button>
+        <button class="test-btn" onclick="simGift('sky_gift')">🎆 Tặng Quà Lớn (Đèn Khổng Minh Bay + Cảm Ơn)</button>
       </div>
     </div>
 
@@ -265,6 +270,17 @@
   function clearAll() {
     log('Đã gửi lệnh dọn sạch đèn trên sông');
     fetch('/api/admin/clear', { method: 'POST' });
+  }
+
+  function simCustomWish() {
+    const user = document.getElementById('customUser').value.trim() || 'Thanh Tâm';
+    const wish = document.getElementById('customWish').value.trim() || 'Cầu gia đạo bình an, vạn sự hanh thông';
+    log(`Thử nghiệm: [${user}] - "${wish}"`);
+    fetch('/api/admin/simulate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ type: 'comment', nickname: user, wish: wish })
+    });
   }
 
   function simWish(wishText) {

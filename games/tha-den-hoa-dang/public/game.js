@@ -1,6 +1,10 @@
 /**
  * game.js
  * Canvas 2D Engine: Dòng Sông Ánh Trăng, Đèn Hoa Đăng & Đèn Trời Khổng Minh (60 FPS)
+ * Tích hợp:
+ * - Hiển thị tên + lời ước trên từng ngọn đèn và Thẻ Ước Nguyện bay lên
+ * - Bảng Tri Ân Tấm Lòng Vàng khi có người tặng quà
+ * - Giọng đọc AI tiếng Việt (TTS) tự động đọc lời chúc và cảm ơn
  */
 
 (() => {
@@ -19,6 +23,12 @@
   const wishTickerText = document.getElementById('wishTickerText');
   const wishTickerAvatar = document.getElementById('wishTickerAvatar');
   const audioUnlockBtn = document.getElementById('audioUnlockBtn');
+  const ttsToggleBtn = document.getElementById('ttsToggleBtn');
+  const wishPopupContainer = document.getElementById('wishPopupContainer');
+  const thankyouModal = document.getElementById('thankyouModal');
+  const thankyouAvatar = document.getElementById('thankyouAvatar');
+  const thankyouName = document.getElementById('thankyouName');
+  const thankyouGift = document.getElementById('thankyouGift');
 
   // Kích thước canvas
   function resize() {
@@ -30,7 +40,7 @@
   window.addEventListener('resize', resize);
   setTimeout(resize, 100);
 
-  // Mở khóa âm thanh khi bấm
+  // Mở khóa âm thanh suối & chuông
   if (audioUnlockBtn) {
     audioUnlockBtn.addEventListener('click', () => {
       window.zenAudio?.startWaterAmbience();
@@ -41,6 +51,21 @@
     window.zenAudio?.startWaterAmbience();
     if (audioUnlockBtn) audioUnlockBtn.style.display = 'none';
   }, { once: true });
+
+  // Nút Bật/Tắt Giọng Đọc AI
+  if (ttsToggleBtn) {
+    ttsToggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      window.zenAudio.ttsEnabled = !window.zenAudio.ttsEnabled;
+      if (window.zenAudio.ttsEnabled) {
+        ttsToggleBtn.className = 'tts-toggle-btn';
+        ttsToggleBtn.textContent = '🔊 Giọng Đọc: BẬT';
+      } else {
+        ttsToggleBtn.className = 'tts-toggle-btn off';
+        ttsToggleBtn.textContent = '🔇 Giọng Đọc: TẮT';
+      }
+    });
+  }
 
   // Danh sách thực thể
   let lanterns = [];
@@ -53,7 +78,7 @@
   for (let i = 0; i < 70; i++) {
     stars.push({
       x: Math.random(),
-      y: Math.random() * 0.45, // nửa trên bầu trời
+      y: Math.random() * 0.45,
       size: Math.random() * 1.5 + 0.5,
       alpha: Math.random() * 0.8 + 0.2,
       twinkleSpeed: Math.random() * 0.03 + 0.01
@@ -106,7 +131,6 @@
   function drawSkyAndMoon(ctx, W, H) {
     const skyHeight = H * 0.42;
 
-    // Nền bầu trời đêm tím thẫm
     const skyGrad = ctx.createLinearGradient(0, 0, 0, skyHeight);
     skyGrad.addColorStop(0, '#04020f');
     skyGrad.addColorStop(0.6, '#0f0a28');
@@ -114,7 +138,7 @@
     ctx.fillStyle = skyGrad;
     ctx.fillRect(0, 0, W, skyHeight);
 
-    // Vẽ các vì sao lấp lánh
+    // Các vì sao lấp lánh
     stars.forEach(s => {
       s.alpha += Math.sin(animTick * 3 + s.x * 100) * s.twinkleSpeed;
       const clampedAlpha = Math.max(0.1, Math.min(1, s.alpha));
@@ -124,12 +148,11 @@
       ctx.fill();
     });
 
-    // Mặt Trăng Rằm Dát Vàng (góc trên bên phải)
+    // Mặt Trăng Rằm Dát Vàng
     const moonX = W * 0.78;
     const moonY = H * 0.14;
     const moonR = 34;
 
-    // Quầng sáng vạn trượng của Trăng
     const haloGrad = ctx.createRadialGradient(moonX, moonY, moonR * 0.8, moonX, moonY, moonR * 3.5);
     haloGrad.addColorStop(0, 'rgba(254, 240, 138, 0.45)');
     haloGrad.addColorStop(0.5, 'rgba(251, 191, 36, 0.15)');
@@ -139,7 +162,6 @@
     ctx.arc(moonX, moonY, moonR * 3.5, 0, Math.PI * 2);
     ctx.fill();
 
-    // Thân Mặt Trăng
     const moonGrad = ctx.createRadialGradient(moonX - 8, moonY - 8, 4, moonX, moonY, moonR);
     moonGrad.addColorStop(0, '#ffffff');
     moonGrad.addColorStop(0.7, '#fef08a');
@@ -149,7 +171,7 @@
     ctx.arc(moonX, moonY, moonR, 0, Math.PI * 2);
     ctx.fill();
 
-    // Dãy núi xa mờ sương (Đường chân trời)
+    // Dãy núi xa mờ sương
     ctx.fillStyle = '#0a061c';
     ctx.beginPath();
     ctx.moveTo(0, skyHeight);
@@ -165,7 +187,6 @@
     const riverTop = H * 0.38;
     const riverHeight = H - riverTop;
 
-    // Mặt nước sâu thẳm phản chiếu bóng đêm
     const riverGrad = ctx.createLinearGradient(0, riverTop, 0, H);
     riverGrad.addColorStop(0, '#0d0a26');
     riverGrad.addColorStop(0.35, '#08061a');
@@ -189,7 +210,7 @@
     ctx.closePath();
     ctx.fill();
 
-    // Gợn sóng lăn tăn nhấp nhô
+    // Gợn sóng nhấp nhô
     ctx.strokeStyle = 'rgba(254, 240, 138, 0.06)';
     ctx.lineWidth = 1;
     for (let i = 0; i < 9; i++) {
@@ -204,28 +225,20 @@
 
   // 3. Vẽ Đèn Hoa Đăng
   function drawLanterns(ctx, W, H) {
-    const riverTop = H * 0.38;
-
-    // Cập nhật vị trí & trôi
     lanterns.forEach(l => {
       l.x += l.speedX + Math.sin(animTick + l.y * 10) * 0.0001;
       l.y += l.speedY;
 
-      // Giới hạn biên màn hình
       if (l.x < 0.08) l.speedX = Math.abs(l.speedX);
       if (l.x > 0.92) l.speedX = -Math.abs(l.speedX);
     });
 
-    // Lọc bỏ đèn trôi quá xa xuống hạ lưu (y > 1.05)
     lanterns = lanterns.filter(l => l.y < 1.05);
-
-    // Sắp xếp đèn theo trục Y để đèn ở gần (Y lớn) vẽ đè lên đèn ở xa
     const sorted = [...lanterns].sort((a, b) => a.y - b.y);
 
     sorted.forEach(l => {
       const x = l.x * W;
       const y = l.y * H;
-      // Kích thước phối cảnh: Càng về hạ lưu (Y gần đáy) càng to hơn
       const perspective = 0.6 + (l.y - 0.38) * 0.8;
       const scale = (l.scale || 1.0) * perspective;
 
@@ -233,7 +246,6 @@
     });
   }
 
-  // Chi tiết từng bông hoa sen đèn nến
   function drawSingleLotusLantern(ctx, x, y, l, scale) {
     const bobbing = Math.sin(animTick * 2.5 + l.x * 20) * (2 * scale);
     const posY = y + bobbing;
@@ -251,7 +263,7 @@
     ctx.ellipse(0, 6 * scale, glowR, glowR * 0.4, 0, 0, Math.PI * 2);
     ctx.fill();
 
-    // 2. Các cánh hoa sen xếp tầng
+    // 2. Cánh hoa sen xếp tầng
     const petalCount = 8;
     for (let i = 0; i < petalCount; i++) {
       const angle = (i / petalCount) * Math.PI * 2;
@@ -263,7 +275,6 @@
       ctx.ellipse(px, py, 9 * scale, 5 * scale, angle, 0, Math.PI * 2);
       ctx.fill();
 
-      // Cánh trong
       ctx.fillStyle = l.color.inner;
       ctx.beginPath();
       ctx.ellipse(px * 0.6, py * 0.6, 5 * scale, 3 * scale, angle, 0, Math.PI * 2);
@@ -280,7 +291,6 @@
     const flicker = Math.sin(animTick * 12 + l.x * 50) * 1.5;
     const flameHeight = (10 + flicker) * scale;
 
-    // Ánh lửa cam vàng
     const flameGrad = ctx.createRadialGradient(0, -flameHeight * 0.5, 1, 0, -flameHeight * 0.5, 8 * scale);
     flameGrad.addColorStop(0, '#ffffff');
     flameGrad.addColorStop(0.4, '#fef08a');
@@ -295,40 +305,52 @@
     ctx.closePath();
     ctx.fill();
 
-    // 5. Thẻ tên người ước nguyện (Nhãn nổi)
-    if (scale > 0.7) {
+    // 5. Thẻ tên & Lời ước hiển thị trực quan trên đèn
+    if (scale > 0.65) {
       drawLanternLabel(ctx, l, scale);
     }
 
     ctx.restore();
   }
 
-  // Nhãn tên + điều ước treo bên cạnh đèn
+  // Nhãn hiển thị cả TÊN và LỜI ƯỚC rõ ràng trên mỗi đèn
   function drawLanternLabel(ctx, l, scale) {
-    const textY = -18 * scale;
     const name = l.nickname || 'Phật Tử';
-    const wish = l.wishText || 'Cầu bình an';
+    const wish = l.wishText ? `"${l.wishText}"` : '"Cầu bình an"';
 
-    ctx.font = `bold ${Math.round(9 * scale)}px "Be Vietnam Pro", sans-serif`;
-    ctx.textAlign = 'center';
+    const fontSizeName = Math.max(9, Math.round(9.5 * scale));
+    const fontSizeWish = Math.max(8, Math.round(8 * scale));
 
-    // Đo độ dài tên
-    const metrics = ctx.measureText(name);
-    const boxW = Math.max(60 * scale, metrics.width + 16 * scale);
-    const boxH = 14 * scale;
+    ctx.font = `bold ${fontSizeName}px "Be Vietnam Pro", sans-serif`;
+    const mName = ctx.measureText(name);
 
-    // Nền nhãn mờ sang trọng
-    ctx.fillStyle = 'rgba(6, 4, 20, 0.75)';
-    ctx.strokeStyle = l.color.petal;
-    ctx.lineWidth = 1;
+    ctx.font = `500 ${fontSizeWish}px "Be Vietnam Pro", sans-serif`;
+    const mWish = ctx.measureText(wish);
+
+    const maxW = Math.max(mName.width, mWish.width);
+    const boxW = Math.max(70 * scale, maxW + 18 * scale);
+    const boxH = (fontSizeName + fontSizeWish + 10);
+    const textY = -18 * scale;
+
+    // Nền thẻ bài mờ sang trọng với viền màu hoa đăng
+    ctx.fillStyle = 'rgba(7, 4, 22, 0.85)';
+    ctx.strokeStyle = l.color.petal || '#ffd700';
+    ctx.lineWidth = 1.2;
     ctx.beginPath();
     ctx.roundRect(-boxW / 2, textY - boxH, boxW, boxH, 6);
     ctx.fill();
     ctx.stroke();
 
-    // Chữ tên
-    ctx.fillStyle = '#fef08a';
-    ctx.fillText(name, 0, textY - 3.5 * scale);
+    // Dòng 1: Tên người ước (Vàng kim)
+    ctx.font = `bold ${fontSizeName}px "Be Vietnam Pro", sans-serif`;
+    ctx.textAlign = 'center';
+    ctx.fillStyle = '#ffd700';
+    ctx.fillText(name, 0, textY - boxH + fontSizeName + 2);
+
+    // Dòng 2: Lời ước nguyện (Trắng sáng)
+    ctx.font = `500 ${fontSizeWish}px "Be Vietnam Pro", sans-serif`;
+    ctx.fillStyle = '#ffffff';
+    ctx.fillText(wish, 0, textY - 4);
   }
 
   // 4. Vẽ Đèn Trời Khổng Minh
@@ -338,7 +360,6 @@
       sky.x += sky.speedX;
     });
 
-    // Lọc bỏ đèn đã bay qua đỉnh màn hình
     skyLanterns = skyLanterns.filter(sky => sky.y > -0.15);
 
     skyLanterns.forEach(sky => {
@@ -349,7 +370,6 @@
       ctx.save();
       ctx.translate(x, y);
 
-      // Quầng sáng vàng đỏ xung quanh đèn trời
       const r = 24 * scale;
       const glow = ctx.createRadialGradient(0, 0, r * 0.3, 0, 0, r * 2.5);
       glow.addColorStop(0, 'rgba(251, 191, 36, 0.7)');
@@ -360,7 +380,6 @@
       ctx.arc(0, 0, r * 2.5, 0, Math.PI * 2);
       ctx.fill();
 
-      // Thân đèn lồng Khổng Minh hình thang bo tròn
       const lanternGrad = ctx.createLinearGradient(0, -r, 0, r);
       lanternGrad.addColorStop(0, '#fef08a');
       lanternGrad.addColorStop(0.4, '#f59e0b');
@@ -375,13 +394,11 @@
       ctx.closePath();
       ctx.fill();
 
-      // Tim lửa đỏ sáng đáy đèn
       ctx.fillStyle = '#ffffff';
       ctx.beginPath();
       ctx.arc(0, 10 * scale, 3 * scale, 0, Math.PI * 2);
       ctx.fill();
 
-      // Nhãn tên Đại gia hảo tâm
       ctx.font = `800 ${Math.round(10 * scale)}px sans-serif`;
       ctx.fillStyle = '#ffd700';
       ctx.textAlign = 'center';
@@ -413,7 +430,6 @@
       ctx.shadowBlur = 0;
     });
 
-    // Vẽ và cập nhật sparkles (khi thả tim)
     for (let i = sparkles.length - 1; i >= 0; i--) {
       const sp = sparkles[i];
       sp.alpha -= sp.decay;
@@ -432,6 +448,47 @@
   }
 
   // ==========================================
+  // HIỂN THỊ THẺ ƯỚC NGUYỆN & POPUP CẢM ƠN
+  // ==========================================
+
+  // Thẻ ước nguyện bay lên nổi bật khi có bình luận
+  function showWishPopup(lantern) {
+    if (!wishPopupContainer) return;
+
+    const card = document.createElement('div');
+    card.className = 'wish-popup-card';
+    card.innerHTML = `
+      <img class="wish-popup-avatar" src="${lantern.avatar || 'https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/default-avatar.jpeg'}" alt="avt" />
+      <div class="wish-popup-info">
+        <span class="wish-popup-name">${lantern.nickname} vừa thả đèn:</span>
+        <span class="wish-popup-text">"${lantern.wishText}"</span>
+      </div>
+    `;
+
+    wishPopupContainer.appendChild(card);
+    setTimeout(() => {
+      card.remove();
+    }, 4800);
+  }
+
+  // Bảng Tri Ân Tấm Lòng Vàng khi có người tặng quà
+  let thankYouTimer = null;
+  function showThankYouPopup(data) {
+    if (!thankyouModal) return;
+
+    if (thankyouAvatar) thankyouAvatar.src = data.avatar || 'https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/default-avatar.jpeg';
+    if (thankyouName) thankyouName.textContent = data.nickname || 'Phật Tử Hảo Tâm';
+    if (thankyouGift) thankyouGift.textContent = `🎁 Đã gửi tặng ${data.repeatCount || 1}x ${data.giftName} (${data.totalCoins || 1} xu)`;
+
+    thankyouModal.classList.add('show');
+
+    if (thankYouTimer) clearTimeout(thankYouTimer);
+    thankYouTimer = setTimeout(() => {
+      thankyouModal.classList.remove('show');
+    }, 5000);
+  }
+
+  // ==========================================
   // XỬ LÝ SOCKET SỰ KIỆN TỪ SERVER
   // ==========================================
 
@@ -446,7 +503,7 @@
   socket.on('newLantern', lantern => {
     lanterns.push(lantern);
 
-    // Cập nhật dòng ticker
+    // 1. Cập nhật dòng ticker dưới chân màn hình
     if (wishTickerUser && wishTickerText) {
       wishTickerUser.textContent = `${lantern.nickname}:`;
       wishTickerText.textContent = `"${lantern.wishText}"`;
@@ -455,12 +512,26 @@
       }
     }
 
-    // Âm thanh
+    // 2. Hiện thẻ ước nguyện bay lên
+    showWishPopup(lantern);
+
+    // 3. Âm thanh chuông gió
     if (lantern.type === 'normal') {
       window.zenAudio?.playChime();
     } else {
       window.zenAudio?.playSingingBowl();
     }
+
+    // 4. Giọng đọc AI đọc lời ước
+    window.zenAudio?.speakWish(lantern.nickname, lantern.wishText);
+  });
+
+  socket.on('giftThankYou', data => {
+    // 1. Hiện Bảng Tri Ân Tấm Lòng Vàng giữa màn hình
+    showThankYouPopup(data);
+
+    // 2. Giọng đọc AI nói lời cảm ơn và chúc phúc
+    window.zenAudio?.speakThankYou(data.nickname, data.giftName, data.repeatCount);
   });
 
   socket.on('newSkyLantern', sky => {

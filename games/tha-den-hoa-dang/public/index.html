@@ -32,14 +32,31 @@
       <div class="stat-chip" style="color: #f43f5e;">❤️ <span id="totalLikes">0</span> tim</div>
     </div>
 
-    <!-- Nút mở khóa âm thanh suối & chuông gió -->
-    <button class="audio-unlock-btn" id="audioUnlockBtn">
-      🔔 Bật Âm Thanh Suối & Chuông Gió
+    <!-- Nút Bật/Tắt Giọng Đọc AI & Nút Mở Khóa Âm Thanh -->
+    <button class="tts-toggle-btn" id="ttsToggleBtn">🔊 Giọng Đọc: BẬT</button>
+    <button class="audio-unlock-btn" id="audioUnlockBtn" style="display: none;">
+      🔔 Bật Âm Thanh Suối
     </button>
+
+    <!-- Khu vực hiển thị Thẻ Ước Nguyện bay lên khi bình luận -->
+    <div class="wish-popup-container" id="wishPopupContainer"></div>
 
     <!-- Canvas Dòng Sông Ánh Trăng 9:16 -->
     <div class="canvas-wrapper">
       <canvas id="riverCanvas"></canvas>
+    </div>
+
+    <!-- Bảng Tri Ân Tấm Lòng Vàng (Khi Khán Giả Tặng Quà) -->
+    <div class="thankyou-modal" id="thankyouModal">
+      <div class="thankyou-card">
+        <div class="thankyou-badge">👑 TRI ÂN TẤM LÒNG VÀNG</div>
+        <img class="thankyou-avatar" id="thankyouAvatar" src="https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/default-avatar.jpeg" alt="avatar" />
+        <div class="thankyou-name" id="thankyouName">Phật Tử</div>
+        <div class="thankyou-gift" id="thankyouGift">🎁 Đã gửi tặng Hoa Hồng</div>
+        <div class="thankyou-wish" id="thankyouWish">
+          "Nguyện cầu chư thiên gia hộ cho bạn và gia đình vạn sự hanh thông, thân tâm an lạc, phúc lộc trường tồn!"
+        </div>
+      </div>
     </div>
 
     <!-- Footer Hướng dẫn tương tác cho khán giả -->

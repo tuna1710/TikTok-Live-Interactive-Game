@@ -268,6 +268,16 @@ function connectTikTok() {
 
     console.log(`[Quà Tặng] ${user.nickname} gửi ${giftName} (${totalCoins} xu)`);
 
+    // Phát sự kiện Cảm Ơn Quà Tặng lên màn hình Stream & Giọng đọc AI
+    io.emit('giftThankYou', {
+      uniqueId: user.uniqueId,
+      nickname: user.nickname,
+      avatar: user.avatar,
+      giftName,
+      repeatCount,
+      totalCoins
+    });
+
     if (totalCoins >= 99) {
       // Quà lớn: Thả Đèn Lồng Khổng Minh bay lên bầu trời sao
       createSkyLantern(user, giftName, '🏮', totalCoins);
@@ -349,10 +359,13 @@ app.post('/api/admin/simulate', (req, res) => {
   if (type === 'comment') {
     createLantern(user, wish || 'Cầu gia đình vạn sự an khang, tấn tài tấn lộc', 'normal');
   } else if (type === 'gold_gift') {
+    io.emit('giftThankYou', { uniqueId: user.uniqueId, nickname: user.nickname, avatar: user.avatar, giftName: 'Hoa Hồng', repeatCount: 1, totalCoins: 1 });
     createLantern(user, 'Kính tặng Hoa Hồng cầu bình an', 'gold_gift', { giftName: 'Hoa Hồng', giftEmoji: '🌹' });
   } else if (type === 'royal_gift') {
+    io.emit('giftThankYou', { uniqueId: user.uniqueId, nickname: user.nickname, avatar: user.avatar, giftName: 'Vương Miện', repeatCount: 1, totalCoins: 10 });
     createLantern(user, 'Kính tặng Vương Miện cầu công danh', 'royal_gift', { giftName: 'Vương Miện', giftEmoji: '👑' });
   } else if (type === 'sky_gift') {
+    io.emit('giftThankYou', { uniqueId: user.uniqueId, nickname: user.nickname, avatar: user.avatar, giftName: 'Pháo Hoa Khổng Minh', repeatCount: 1, totalCoins: 100 });
     createSkyLantern(user, 'Pháo Hoa Khổng Minh', '🎆', 100);
   } else if (type === 'like') {
     gameState.totalLikes += 50;
