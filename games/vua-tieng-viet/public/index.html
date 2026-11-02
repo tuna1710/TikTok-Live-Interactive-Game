@@ -760,7 +760,7 @@
 
     function renderTargetSlots(pattern) {
       targetSlots.innerHTML = '';
-      pattern.forEach(ch => {
+      pattern.forEach((ch, idx) => {
         if (ch === ' ') {
           const sp = document.createElement('div');
           sp.className = 'slot-space';
@@ -768,6 +768,7 @@
         } else {
           const slot = document.createElement('div');
           slot.className = 'slot-tile' + (ch !== '_' ? ' revealed' : '');
+          slot.dataset.index = idx;
           slot.textContent = ch !== '_' ? ch : '';
           targetSlots.appendChild(slot);
         }
@@ -890,11 +891,10 @@
 
     socket.on('hintRevealed', data => {
       soundReveal();
-      const slots = targetSlots.querySelectorAll('.slot-tile');
-      // Update slots display
-      if (slots[data.index]) {
-        slots[data.index].textContent = data.letter;
-        slots[data.index].classList.add('revealed');
+      const targetSlot = targetSlots.querySelector(`.slot-tile[data-index="${data.index}"]`);
+      if (targetSlot) {
+        targetSlot.textContent = data.letter;
+        targetSlot.classList.add('revealed');
       }
       if (data.donor) {
         showToast(`🌹 ${data.donor} mở chữ: "${data.letter}"`);
