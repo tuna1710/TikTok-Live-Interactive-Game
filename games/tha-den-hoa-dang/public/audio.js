@@ -179,17 +179,23 @@ class ZenAudioEngine {
   // 5. HÀNG ĐỢI GIỌNG ĐỌC AI TIẾNG VIỆT (TTS)
   // ==========================================
 
-  speak(text) {
+  speak(text, priority = false) {
     if (!this.ttsEnabled || !text) return;
     // Giới hạn độ dài câu nói
     const clean = text.replace(/[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu, '').trim();
     if (!clean) return;
 
-    // Không để hàng đợi quá 5 câu để tránh dồn ứ âm thanh
-    if (this.ttsQueue.length > 4) {
-      this.ttsQueue.splice(1, 1);
+    const item = clean.slice(0, 140);
+    if (priority) {
+      // Ưu tiên đọc lời cảm ơn tặng quà ngay lập tức
+      this.ttsQueue.unshift(item);
+    } else {
+      // Giữ hàng đợi lời ước tối đa 3 câu để tránh bị nghẽn chậm trễ
+      if (this.ttsQueue.length >= 3) {
+        return;
+      }
+      this.ttsQueue.push(item);
     }
-    this.ttsQueue.push(clean.slice(0, 140));
     this.processTtsQueue();
   }
 
@@ -200,57 +206,79 @@ class ZenAudioEngine {
     const textToSpeak = this.ttsQueue.shift();
     this.duckWaterVolume();
 
-    // 1. Thử phát bằng Google Translate TTS Engine trực tiếp
-    const url = 'https://translate.google.com/translate_tts?ie=UTF-8&tl=vi&client=tw-ob&q=' + encodeURIComponent(textToSpeak);
+    // 1. Phát qua proxy /api/tts trên server (tránh bị Google chặn 404 / CORS)
+    const url = '/api/tts?text=' + encodeURIComponent(textToSpeak);
     const audio = new Audio(url);
     this.currentAudio = audio;
 
+    let finished = false;
     const onFinish = () => {
+      if (finished) return;
+      finished = true;
       this.ttsPlaying = false;
       this.currentAudio = null;
       this.restoreWaterVolume();
-      setTimeout(() => this.processTtsQueue(), 300);
+      setTimeout(() => this.processTtsQueue(), 350);
     };
 
     audio.onended = onFinish;
-    audio.onerror = () => {
-      // 2. Dự phòng: Sử dụng Web Speech API của trình duyệt
-      if ('speechSynthesis' in window) {
+    audio.onerror = (e) => {
+      console.warn('[TTS Proxy] Không thể tải audio, dùng Web Speech API dự phòng:', e);
+      this.fallbackSpeechSynthesis(textToSpeak, onFinish);
+    };
+
+    const playPromise = audio.play();
+    if (playPromise !== undefined) {
+      playPromise.catch((err) => {
+        console.warn('[Audio TTS] Autoplay bị chặn hoặc chưa bấm mở khóa:', err);
+        this.fallbackSpeechSynthesis(textToSpeak, onFinish);
+      });
+    }
+
+    // Safety timeout nếu audio mạng bị treo quá 15s
+    setTimeout(() => {
+      if (!finished && this.ttsPlaying) {
+        console.warn('[Audio TTS] Hết thời gian chờ 15s, tự động phát câu tiếp');
+        onFinish();
+      }
+    }, 15000);
+  }
+
+  fallbackSpeechSynthesis(textToSpeak, onFinish) {
+    if ('speechSynthesis' in window) {
+      try {
+        window.speechSynthesis.cancel();
         const utterance = new SpeechSynthesisUtterance(textToSpeak);
         utterance.lang = 'vi-VN';
         utterance.rate = 0.95;
         utterance.onend = onFinish;
         utterance.onerror = onFinish;
         window.speechSynthesis.speak(utterance);
-      } else {
-        onFinish();
+        return;
+      } catch (err) {
+        console.warn('SpeechSynthesis error:', err);
       }
-    };
-
-    const playPromise = audio.play();
-    if (playPromise !== undefined) {
-      playPromise.catch(() => {
-        // Nếu trình duyệt chặn autoplay
-        onFinish();
-      });
     }
+    onFinish();
   }
 
   // Đọc lời cảm ơn khi tặng quà
   speakThankYou(nickname, giftName, count = 1) {
+    const safeName = nickname || 'Bạn';
     const thankTexts = [
-      `Cảm ơn ${nickname} đã gửi tặng ${giftName}. Chúc bạn và gia đình vạn sự bình an, phúc lộc dồi dào!`,
-      `Tri ân tấm lòng vàng của ${nickname} đã ủng hộ ${giftName}. Chúc bạn thân tâm an lạc, vạn sự hanh thông!`,
-      `Xin cảm ơn ${nickname} đã thắp sáng ${giftName}. Chúc gia đạo luôn êm ấm, đắc tài đắc lộc!`
+      `Cảm ơn ${safeName} đã gửi tặng ${giftName}. Chúc bạn và gia đình vạn sự bình an, phúc lộc dồi dào!`,
+      `Tri ân tấm lòng vàng của ${safeName} đã ủng hộ ${giftName}. Chúc bạn thân tâm an lạc, vạn sự hanh thông!`,
+      `Xin cảm ơn ${safeName} đã thắp sáng ${giftName}. Chúc gia đạo luôn êm ấm, đắc tài đắc lộc!`
     ];
     const picked = thankTexts[Math.floor(Math.random() * thankTexts.length)];
-    this.speak(picked);
+    this.speak(picked, true); // Ưu tiên phát ngay
   }
 
   // Đọc lời ước khi thả đèn
   speakWish(nickname, wishText) {
     if (wishText && wishText.length > 2) {
-      this.speak(`${nickname} ước nguyện: ${wishText}`);
+      const safeName = nickname || 'Khán giả';
+      this.speak(`${safeName} ước nguyện: ${wishText}`, false);
     }
   }
 }

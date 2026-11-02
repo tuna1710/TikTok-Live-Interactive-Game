@@ -1,6 +1,7 @@
 require('dotenv').config();
 const path = require('path');
 const http = require('http');
+const https = require('https');
 const express = require('express');
 const cors = require('cors');
 const { Server } = require('socket.io');
@@ -65,6 +66,20 @@ const LOTUS_COLORS = [
   { name: 'Lam Ngọc An Lành', petal: '#38bdf8', inner: '#bae6fd', glow: 'rgba(56, 189, 248, 0.6)' }
 ];
 
+function extractUserFromEvent(data) {
+  const u = data?.user || data?.userDetails || data || {};
+  const uniqueId = u.uniqueId || u.displayId || data?.uniqueId || '';
+  const nickname = u.nickname || uniqueId || data?.nickname || 'Khán Giả';
+  const avatar =
+    u.profilePictureUrl ||
+    u.avatarLarge?.urlList?.[0] ||
+    u.avatarThumb?.urlList?.[0] ||
+    u.avatarMedium?.urlList?.[0] ||
+    data?.profilePictureUrl ||
+    '';
+  return { nickname, uniqueId, avatar };
+}
+
 function createLantern(user, wishText, type = 'normal', giftInfo = null) {
   gameState.totalWishes++;
 
@@ -80,12 +95,13 @@ function createLantern(user, wishText, type = 'normal', giftInfo = null) {
     sizeScale = 1.5;
   }
 
+  const cleanWish = (wishText || '').toString().trim() || 'Cầu bình an & vạn sự như ý';
   const lantern = {
     id: 'lan_' + Date.now() + '_' + Math.random().toString(36).substring(2, 6),
     uniqueId: user.uniqueId,
-    nickname: user.nickname || 'Phúc Tử',
+    nickname: user.nickname || user.uniqueId || 'Khán Giả',
     avatar: user.avatar || '',
-    wishText: wishText || 'Cầu bình an & vạn sự như ý',
+    wishText: cleanWish,
     type,
     giftName: giftInfo?.giftName || null,
     giftEmoji: giftInfo?.giftEmoji || null,
@@ -245,48 +261,44 @@ function connectTikTok() {
 
   // Khán giả bình luận -> Tự động thả đèn hoa đăng mang lời ước
   tiktokConn.on(WebcastEvent.CHAT, data => {
-    const user = {
-      uniqueId: data.uniqueId,
-      nickname: data.nickname || data.uniqueId,
-      avatar: data.profilePictureUrl || ''
-    };
-    const wish = (data.comment || '').trim();
-    createLantern(user, wish, 'normal');
+    const { nickname, uniqueId, avatar } = extractUserFromEvent(data);
+    const rawWish = (data?.content || data?.comment || '').toString().trim();
+    const wish = rawWish || 'Cầu bình an & vạn sự như ý';
+    console.log(`[Bình luận / Lời ước] ${nickname} (${uniqueId}): "${wish}"`);
+    createLantern({ uniqueId, nickname, avatar }, wish, 'normal');
   });
 
   // Khán giả tặng quà -> Thả Đèn Sen Vàng Hoàng Kim hoặc Đèn Khổng Minh
   tiktokConn.on(WebcastEvent.GIFT, data => {
-    const user = {
-      uniqueId: data.uniqueId,
-      nickname: data.nickname || data.uniqueId,
-      avatar: data.profilePictureUrl || ''
-    };
-    const diamondCount = data.diamondCount || (data.gift?.diamond_count) || 1;
-    const repeatCount = Math.max(1, Number(data.repeatCount || 1));
+    const { nickname, uniqueId, avatar } = extractUserFromEvent(data);
+    const giftObj = data?.gift || data?.giftDetails || {};
+    const giftName = giftObj?.name || data?.giftName || data?.describe || 'Hoa Hồng';
+    const diamondCount = Number(giftObj?.diamondCount || giftObj?.diamond_count || data?.diamondCount || 1);
+    const repeatCount = Math.max(1, Number(data?.repeatCount || data?.comboCount || 1));
     const totalCoins = diamondCount * repeatCount;
-    const giftName = data.giftName || data.gift?.name || 'Hoa Hồng';
 
-    console.log(`[Quà Tặng] ${user.nickname} gửi ${giftName} (${totalCoins} xu)`);
+    console.log(`[Quà Tặng] ${nickname} gửi ${giftName} x${repeatCount} (${totalCoins} xu)`);
 
     // Phát sự kiện Cảm Ơn Quà Tặng lên màn hình Stream & Giọng đọc AI
     io.emit('giftThankYou', {
-      uniqueId: user.uniqueId,
-      nickname: user.nickname,
-      avatar: user.avatar,
+      uniqueId,
+      nickname,
+      avatar,
       giftName,
       repeatCount,
       totalCoins
     });
 
+    const userObj = { uniqueId, nickname, avatar };
     if (totalCoins >= 99) {
       // Quà lớn: Thả Đèn Lồng Khổng Minh bay lên bầu trời sao
-      createSkyLantern(user, giftName, '🏮', totalCoins);
+      createSkyLantern(userObj, giftName, '🏮', totalCoins);
     } else if (totalCoins >= 10) {
       // Quà trung: Đèn Hoa Sen Thất Bảo rực rỡ
-      createLantern(user, `Kính cúng dường ${giftName} (${totalCoins} xu)`, 'royal_gift', { giftName, giftEmoji: '✨' });
+      createLantern(userObj, `Kính cúng dường ${giftName} (${totalCoins} xu)`, 'royal_gift', { giftName, giftEmoji: '✨' });
     } else {
       // Quà 1-9 xu: Đèn Hoa Sen Hoàng Kim đại lộc
-      createLantern(user, `Kính tặng ${giftName} cầu tài lộc`, 'gold_gift', { giftName, giftEmoji: '🌹' });
+      createLantern(userObj, `Kính tặng ${giftName} cầu tài lộc`, 'gold_gift', { giftName, giftEmoji: '🌹' });
     }
   });
 
@@ -322,6 +334,51 @@ function connectTikTok() {
 // ==========================================
 // REST API & ADMIN CONTROLS
 // ==========================================
+
+// Endpoint Proxy TTS (Google Translate TTS tiếng Việt)
+// Loại bỏ lỗi CORS và 404 do Referer header từ trình duyệt
+app.get('/api/tts', (req, res) => {
+  const text = (req.query.text || '').toString().trim();
+  if (!text) {
+    return res.status(400).send('Missing text parameter');
+  }
+
+  const cleanText = text
+    .replace(/[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu, '')
+    .slice(0, 180)
+    .trim();
+
+  if (!cleanText) {
+    return res.status(400).send('Empty clean text');
+  }
+
+  const googleTtsUrl = `https://translate.google.com/translate_tts?ie=UTF-8&tl=vi&client=tw-ob&q=${encodeURIComponent(cleanText)}`;
+
+  const reqOptions = {
+    headers: {
+      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+    }
+  };
+
+  https.get(googleTtsUrl, reqOptions, (gRes) => {
+    if (gRes.statusCode !== 200) {
+      console.warn(`[TTS Proxy] Google Translate trả mã ${gRes.statusCode} cho: "${cleanText}"`);
+      return res.status(gRes.statusCode).send('TTS service unavailable');
+    }
+
+    res.writeHead(200, {
+      'Content-Type': 'audio/mpeg',
+      'Cache-Control': 'public, max-age=86400',
+      'Access-Control-Allow-Origin': '*'
+    });
+    gRes.pipe(res);
+  }).on('error', (err) => {
+    console.error('[TTS Proxy Error]', err.message);
+    if (!res.headersSent) {
+      res.status(500).send('TTS proxy request failed');
+    }
+  });
+});
 
 app.get('/api/state', (req, res) => {
   res.json(getClientState());

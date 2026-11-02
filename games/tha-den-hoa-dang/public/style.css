@@ -228,7 +228,7 @@ body {
 .audio-unlock-btn {
   position: absolute;
   top: 50px;
-  right: 14px;
+  left: 14px;
   background: rgba(251, 191, 36, 0.2);
   border: 1px solid rgba(251, 191, 36, 0.4);
   color: #fef08a;
