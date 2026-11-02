@@ -173,12 +173,16 @@ function addActivityFeed(text, className = '') {
 
 // Cập nhật DOM HUD
 function updateHUD() {
-  // Cập nhật minigame đoán chữ
-  if (gameState.wordGame) {
-    document.getElementById('wordgame-display').innerText = gameState.wordGame.display || 'T _ A   _ A   V _ A   H _';
+  // Cập nhật minigame đoán chữ (nếu có trên giao diện)
+  const wgDisplay = document.getElementById('wordgame-display');
+  const wgTimer = document.getElementById('wordgame-timer');
+  if (wgDisplay && gameState.wordGame) {
+    wgDisplay.innerText = gameState.wordGame.display || '';
+  }
+  if (wgTimer && gameState.wordGame) {
     const m = Math.floor(gameState.wordGame.timeRemaining / 60);
     const s = gameState.wordGame.timeRemaining % 60;
-    document.getElementById('wordgame-timer').innerText = `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+    wgTimer.innerText = `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
   }
 
   // Cập nhật danh sách khách sộp
