@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - Đua Tỉnh Thành TikTok Live</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #0f172a;
+      color: #f8fafc;
+      font-family: 'Be Vietnam Pro', system-ui, sans-serif;
+      padding: 24px;
+      line-height: 1.5;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #334155;
+    }
+    h1 {
+      font-size: 20px;
+      font-weight: 800;
+      color: #38bdf8;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+    .card {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 18px;
+    }
+    .card h2 {
+      font-size: 15px;
+      font-weight: 700;
+      color: #94a3b8;
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .input-group {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    input, select {
+      flex: 1;
+      background: #0f172a;
+      border: 1px solid #475569;
+      color: #fff;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 14px;
+      outline: none;
+    }
+    input:focus, select:focus {
+      border-color: #38bdf8;
+    }
+    button {
+      background: #0284c7;
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 13px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button:hover {
+      background: #0369a1;
+    }
+    button.btn-danger {
+      background: #dc2626;
+    }
+    button.btn-danger:hover {
+      background: #b91c1c;
+    }
+    button.btn-success {
+      background: #16a34a;
+    }
+    button.btn-success:hover {
+      background: #15803d;
+    }
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      background: rgba(22, 163, 74, 0.2);
+      color: #4ade80;
+      border: 1px solid rgba(74, 222, 128, 0.3);
+    }
+    .status-badge.error {
+      background: rgba(220, 38, 38, 0.2);
+      color: #f87171;
+      border-color: rgba(248, 113, 113, 0.3);
+    }
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .test-btn {
+      background: #334155;
+      font-size: 12px;
+      padding: 6px 12px;
+    }
+    .test-btn:hover {
+      background: #475569;
+    }
+    .provinces-stat {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 10px;
+      background: #0f172a;
+      border-radius: 8px;
+      font-size: 13px;
+    }
+    .log-box {
+      background: #020617;
+      border: 1px solid #1e293b;
+      border-radius: 8px;
+      padding: 12px;
+      font-family: monospace;
+      font-size: 12px;
+      height: 140px;
+      overflow-y: auto;
+      color: #94a3b8;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <h1>🏇 BẢNG ĐIỀU KHIỂN STREAMER - ĐUA TỈNH THÀNH</h1>
+    <a href="/" target="_blank" style="color: #38bdf8; text-decoration: none; font-size: 13px; font-weight: 700;">
+      📺 Mở Màn Hình Live (OBS Overlay) ↗
+    </a>
+  </header>
+
+  <div class="grid">
+    <!-- Thẻ 1: Kết nối TikTok Live -->
+    <div class="card">
+      <h2>📡 Kết Nối TikTok Live</h2>
+      <div class="input-group">
+        <input type="text" id="tiktokUser" placeholder="Nhập @username TikTok Live" />
+        <button onclick="updateTikTokUser()">Kết Nối</button>
+      </div>
+      <div style="margin-top: 8px;">
+        <span class="status-badge" id="connStatus">Đang kiểm tra...</span>
+      </div>
+      <p id="connMsg" style="font-size: 12px; color: #94a3b8; margin-top: 8px;"></p>
+    </div>
+
+    <!-- Thẻ 2: Điều Khiển Vòng Đua -->
+    <div class="card">
+      <h2>⏱️ Điều Khiển Trận Đấu</h2>
+      <div class="btn-row">
+        <button class="btn-success" onclick="forceStart()">▶ Xuất Phát Ngay</button>
+        <button class="btn-danger" onclick="resetRace()">↺ Reset Cuộc Đua</button>
+      </div>
+
+      <div style="margin-top: 14px;">
+        <label style="font-size: 12px; color: #94a3b8; display: block; margin-bottom: 4px;">Độ Dài Chặng Đua (Quãng đường):</label>
+        <div class="input-group">
+          <select id="distanceSelect" onchange="updateDistance()">
+            <option value="500">Chặng Ngắn (500m - Tốc chiến)</option>
+            <option value="1000" selected>Chặng Tiêu Chuẩn (1000m - Khuyên dùng)</option>
+            <option value="2000">Chặng Dài (2000m - Kịch tính kéo dài)</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Thẻ 3: Test Giả Lập Sự Kiện Khán Giả -->
+  <div class="card" style="margin-bottom: 24px;">
+    <h2>🧪 Giả Lập Test Sự Kiện (Dành cho Streamer Test Offline)</h2>
+    <p style="font-size: 12px; color: #94a3b8; margin-bottom: 12px;">
+      Bấm các nút dưới đây để thử nghiệm hiệu ứng quà tặng, âm thanh và tăng tốc trước khi lên sóng trực tiếp:
+    </p>
+
+    <div style="margin-bottom: 12px;">
+      <span style="font-size: 12px; font-weight: 700; color: #fde047;">🎁 Test Tặng Quà 1 Xu (Đua tốc):</span>
+      <div class="btn-row">
+        <button class="test-btn" onclick="simGift('rose')">🌹 Hà Nội (Hoa Hồng)</button>
+        <button class="test-btn" onclick="simGift('icecream')">🍦 Sài Gòn (Cây Kem)</button>
+        <button class="test-btn" onclick="simGift('heart')">🫰 Đà Nẵng (Bắn Tim)</button>
+        <button class="test-btn" onclick="simGift('donut')">🍩 Hải Phòng (Bánh Rán)</button>
+        <button class="test-btn" onclick="simGift('tiktok')">🎵 Cần Thơ (TikTok)</button>
+      </div>
+    </div>
+
+    <div style="margin-bottom: 12px;">
+      <span style="font-size: 12px; font-weight: 700; color: #f97316;">⚡ Test Quà Khủng & Nitro Siêu Cấp:</span>
+      <div class="btn-row">
+        <button class="test-btn" onclick="simGift('crown', 5)">👑 Vương Miện (5 Xu Nitro)</button>
+        <button class="test-btn" onclick="simGift('rocket', 100)">🎆 Pháo Hoa / Tên Lửa (100 Xu Super Boost)</button>
+        <button class="test-btn" onclick="simLike()">❤️ Thả 50 Tim</button>
+      </div>
+    </div>
+
+    <div>
+      <span style="font-size: 12px; font-weight: 700; color: #38bdf8;">💬 Test Bình Luận Cổ Vũ:</span>
+      <div class="btn-row">
+        <button class="test-btn" onclick="simComment(0)">Gõ: 1 (Hà Nội)</button>
+        <button class="test-btn" onclick="simComment(1)">Gõ: 2 (Sài Gòn)</button>
+        <button class="test-btn" onclick="simComment(2)">Gõ: 3 (Đà Nẵng)</button>
+        <button class="test-btn" onclick="simComment(3)">Gõ: 4 (Hải Phòng)</button>
+        <button class="test-btn" onclick="simComment(4)">Gõ: 5 (Cần Thơ)</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Thẻ 4: Thống Kê & Nhật Ký -->
+  <div class="grid">
+    <div class="card">
+      <h2>🏆 Thống Kê Vô Địch Các Tỉnh</h2>
+      <div class="provinces-stat" id="statList">
+        <div class="stat-row"><span>🇻🇳 Hà Nội:</span><b id="win-0">0 vòng</b></div>
+        <div class="stat-row"><span>🏙️ Sài Gòn:</span><b id="win-1">0 vòng</b></div>
+        <div class="stat-row"><span>🌊 Đà Nẵng:</span><b id="win-2">0 vòng</b></div>
+        <div class="stat-row"><span>⚓ Hải Phòng:</span><b id="win-3">0 vòng</b></div>
+        <div class="stat-row"><span>🌾 Cần Thơ:</span><b id="win-4">0 vòng</b></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>📜 Nhật Ký Hoạt Động Server</h2>
+      <div class="log-box" id="logBox">
+        [Hệ thống] Đang khởi động trang quản trị...
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function log(msg) {
+    const box = document.getElementById('logBox');
+    const time = new Date().toLocaleTimeString();
+    box.innerHTML = `[${time}] ${msg}<br>` + box.innerHTML;
+  }
+
+  function fetchState() {
+    fetch('/api/state')
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('tiktokUser').value = data.connectedChannel || '';
+        const badge = document.getElementById('connStatus');
+        const msg = document.getElementById('connMsg');
+
+        if (data.tiktokConnected) {
+          badge.className = 'status-badge';
+          badge.textContent = '🟢 Đã kết nối';
+        } else if (data.tiktokConnecting) {
+          badge.className = 'status-badge';
+          badge.textContent = '🟡 Đang kết nối...';
+        } else {
+          badge.className = 'status-badge error';
+          badge.textContent = '🔴 Chưa kết nối';
+        }
+        msg.textContent = data.tiktokStatusMsg || '';
+
+        // Cập nhật số vòng thắng
+        if (data.provinceWins) {
+          for (let i = 0; i < 5; i++) {
+            const el = document.getElementById(`win-${i}`);
+            if (el) el.textContent = `${data.provinceWins[i] || 0} lần`;
+          }
+        }
+      })
+      .catch(err => console.error(err));
+  }
+
+  function updateTikTokUser() {
+    const user = document.getElementById('tiktokUser').value.trim();
+    if (!user) return alert('Vui lòng nhập TikTok username!');
+    log(`Đang gửi yêu cầu kết nối tới: ${user}...`);
+    fetch('/api/admin/connect', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username: user })
+    }).then(res => res.json()).then(data => {
+      log(`Đã gửi yêu cầu kết nối!`);
+      setTimeout(fetchState, 1500);
+    });
+  }
+
+  function forceStart() {
+    log('Bắt đầu chặng đua mới!');
+    fetch('/api/admin/start', { method: 'POST' });
+  }
+
+  function resetRace() {
+    log('Đã reset toàn bộ chặng đua về vạch xuất phát!');
+    fetch('/api/admin/reset', { method: 'POST' });
+  }
+
+  function updateDistance() {
+    const dist = document.getElementById('distanceSelect').value;
+    log(`Đổi độ dài đường đua thành ${dist}m`);
+    fetch('/api/admin/config', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ finishDistance: dist })
+    });
+  }
+
+  function simGift(giftName, count = 1) {
+    log(`Test tặng quà: ${giftName} (Số lượng: ${count})`);
+    fetch('/api/admin/simulate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ type: 'gift', giftName, count })
+    });
+  }
+
+  function simComment(laneId) {
+    const names = ['Hà Nội', 'Sài Gòn', 'Đà Nẵng', 'Hải Phòng', 'Cần Thơ'];
+    log(`Test comment chọn: ${names[laneId]}`);
+    fetch('/api/admin/simulate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ type: 'comment', laneId: String(laneId), comment: String(laneId + 1) })
+    });
+  }
+
+  function simLike() {
+    log('Test thả 50 tim!');
+    fetch('/api/admin/simulate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ type: 'like', count: 50 })
+    });
+  }
+
+  fetchState();
+  setInterval(fetchState, 4000);
+</script>
+</body>
+</html>

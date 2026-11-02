@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Đua Tỉnh Thành - TikTok Live Interactive Game</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+
+  <div class="game-container">
+    <!-- Header Thông tin Stream -->
+    <div class="header">
+      <div class="brand">
+        <div class="game-title">
+          <span>🏇</span> Đua Tỉnh Thành
+        </div>
+        <div class="race-badge" id="raceNumber">Chặng 1</div>
+      </div>
+      <div class="channel-status" id="channelStatus">
+        <span class="pulse-dot"></span>
+        <span id="channelName">@live</span>
+      </div>
+    </div>
+
+    <!-- Phase & Countdown Banner -->
+    <div class="phase-banner">
+      <div class="phase-text" id="phaseText">
+        🏇 Chờ bình luận/tặng quà để xuất phát...
+      </div>
+      <div class="phase-timer" id="phaseTimer" style="display: none;"></div>
+    </div>
+
+    <!-- Khung Canvas Đường Đua 5 Tỉnh Thành -->
+    <div class="track-wrapper">
+      <canvas id="raceCanvas"></canvas>
+    </div>
+
+    <!-- Bảng Hướng Dẫn Tặng Quà & Lệnh Bình Luận -->
+    <div class="instruction-box">
+      <div class="instruction-title">
+        <span>🎁 TẶNG QUÀ / GÕ SỐ ĐỂ TĂNG TỐC CHO ĐỘI NHÀ:</span>
+        <span style="color: #f43f5e;">❤️ <span id="totalLikesCount">0</span> TIM</span>
+      </div>
+
+      <div class="gift-legend-grid">
+        <!-- Hà Nội -->
+        <div class="legend-card" style="border-top: 2px solid #EF4444;">
+          <div class="legend-flag">🇻🇳 🐉</div>
+          <div class="legend-name" style="color: #EF4444;">Hà Nội</div>
+          <div class="legend-gift">🌹</div>
+          <div class="legend-cmd">Gõ: 1 / hn</div>
+        </div>
+
+        <!-- Sài Gòn -->
+        <div class="legend-card" style="border-top: 2px solid #F97316;">
+          <div class="legend-flag">🏙️ 🐯</div>
+          <div class="legend-name" style="color: #F97316;">Sài Gòn</div>
+          <div class="legend-gift">🍦</div>
+          <div class="legend-cmd">Gõ: 2 / sg</div>
+        </div>
+
+        <!-- Đà Nẵng -->
+        <div class="legend-card" style="border-top: 2px solid #00B4D8;">
+          <div class="legend-flag">🌊 🐬</div>
+          <div class="legend-name" style="color: #00B4D8;">Đà Nẵng</div>
+          <div class="legend-gift">🫰</div>
+          <div class="legend-cmd">Gõ: 3 / dn</div>
+        </div>
+
+        <!-- Hải Phòng -->
+        <div class="legend-card" style="border-top: 2px solid #EC4899;">
+          <div class="legend-flag">⚓ 🦅</div>
+          <div class="legend-name" style="color: #EC4899;">Hải Phòng</div>
+          <div class="legend-gift">🍩</div>
+          <div class="legend-cmd">Gõ: 4 / hp</div>
+        </div>
+
+        <!-- Cần Thơ -->
+        <div class="legend-card" style="border-top: 2px solid #10B981;">
+          <div class="legend-flag">🌾 🐊</div>
+          <div class="legend-name" style="color: #10B981;">Cần Thơ</div>
+          <div class="legend-gift">🎵</div>
+          <div class="legend-cmd">Gõ: 5 / ct</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dòng Tin Tức / Lịch Sử Tương Tác Trực Tiếp -->
+    <div class="event-feed" id="eventFeed">
+      <div class="feed-item vote">💬 Khán giả bình luận số 1-5 hoặc tặng quà để đưa đội nhà về đích!</div>
+    </div>
+
+    <!-- Màn Hình Chúc Mừng Chiến Thắng (Winner Modal) -->
+    <div class="winner-overlay" id="winnerOverlay">
+      <div class="winner-trophy">🏆</div>
+      <div class="winner-title">TỈNH THÀNH CHIẾN THẮNG</div>
+      <div class="winner-flag" id="winnerFlag" style="font-size: 32px; margin-top: 6px;"></div>
+      <div class="winner-name" id="winnerName">HÀ NỘI VÔ ĐỊCH!</div>
+
+      <div class="winner-supporters-box">
+        <div class="supporters-title">🌟 TOP ĐẠI GIA ĐỒNG HÀNH</div>
+        <div id="winnerSupportersList">
+          <!-- Danh sách Top 3 supporters render động -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="audio.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
