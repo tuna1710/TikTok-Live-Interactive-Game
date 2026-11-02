@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Thả Đèn Hoa Đăng Cầu Nguyện — TikTok Live 9:16</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+
+  <div class="game-container">
+    <!-- Header thông tin kênh -->
+    <header class="header">
+      <div class="brand">
+        <div class="game-title">
+          <span>🏮</span> Thả Đèn Hoa Đăng
+        </div>
+      </div>
+      <div class="channel-status" id="channelStatus">
+        <span class="pulse-dot"></span>
+        <span id="channelName">@live</span>
+      </div>
+    </header>
+
+    <!-- Thống kê nhỏ -->
+    <div class="top-stats">
+      <div class="stat-chip">✨ <span id="totalWishes">0</span> lời ước</div>
+      <div class="stat-chip" style="color: #f43f5e;">❤️ <span id="totalLikes">0</span> tim</div>
+    </div>
+
+    <!-- Nút mở khóa âm thanh suối & chuông gió -->
+    <button class="audio-unlock-btn" id="audioUnlockBtn">
+      🔔 Bật Âm Thanh Suối & Chuông Gió
+    </button>
+
+    <!-- Canvas Dòng Sông Ánh Trăng 9:16 -->
+    <div class="canvas-wrapper">
+      <canvas id="riverCanvas"></canvas>
+    </div>
+
+    <!-- Footer Hướng dẫn tương tác cho khán giả -->
+    <footer class="footer-overlay">
+      <div class="instructions-card">
+        <div class="instruction-row">
+          <span>💬</span>
+          <span><b>Bình luận điều ước:</b> Tự động thắp sáng 1 ngọn đèn hoa đăng trôi trên sông.</span>
+        </div>
+        <div class="instruction-row sub">
+          <span>🎁</span>
+          <span><b>Tặng quà:</b> Thắp <span class="highlight">Đèn Sen Vàng</span> hoặc thả <span class="highlight">Đèn Lồng Khổng Minh</span> bay lên bầu trời!</span>
+        </div>
+      </div>
+
+      <!-- Ticker lời ước mới nhất của khán giả -->
+      <div class="recent-wish-ticker">
+        <img class="wish-avatar" id="wishTickerAvatar" src="https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/default-avatar.jpeg" alt="avatar" />
+        <div class="wish-content">
+          <span class="wish-user" id="wishTickerUser">Chúc phúc:</span>
+          <span class="wish-text" id="wishTickerText">"Chúc quý vị khán giả vạn sự an khang, thân tâm an lạc!"</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="audio.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>

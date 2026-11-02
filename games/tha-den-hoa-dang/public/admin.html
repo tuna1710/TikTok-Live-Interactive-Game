@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard — Thả Đèn Hoa Đăng TikTok Live</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #090618;
+      color: #f8fafc;
+      font-family: 'Be Vietnam Pro', system-ui, sans-serif;
+      padding: 24px;
+      line-height: 1.5;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #1e1b4b;
+    }
+    h1 {
+      font-size: 20px;
+      font-weight: 800;
+      color: #fbbf24;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+    .card {
+      background: #130f2c;
+      border: 1px solid #2e266d;
+      border-radius: 12px;
+      padding: 18px;
+    }
+    .card h2 {
+      font-size: 15px;
+      font-weight: 700;
+      color: #fbbf24;
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .input-group {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    input {
+      flex: 1;
+      background: #090618;
+      border: 1px solid #3b328a;
+      color: #fff;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 14px;
+      outline: none;
+    }
+    input:focus {
+      border-color: #fbbf24;
+    }
+    button {
+      background: #d97706;
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 13px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button:hover {
+      background: #b45309;
+    }
+    button.btn-danger {
+      background: #dc2626;
+    }
+    button.btn-danger:hover {
+      background: #b91c1c;
+    }
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      background: rgba(16, 185, 129, 0.2);
+      color: #34d399;
+      border: 1px solid rgba(52, 211, 153, 0.3);
+    }
+    .status-badge.error {
+      background: rgba(220, 38, 38, 0.2);
+      color: #f87171;
+      border-color: rgba(248, 113, 113, 0.3);
+    }
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .test-btn {
+      background: #251d52;
+      border: 1px solid #3b328a;
+      font-size: 12px;
+      padding: 8px 14px;
+    }
+    .test-btn:hover {
+      background: #3b328a;
+    }
+    .log-box {
+      background: #050312;
+      border: 1px solid #1e1b4b;
+      border-radius: 8px;
+      padding: 12px;
+      font-family: monospace;
+      font-size: 12px;
+      height: 140px;
+      overflow-y: auto;
+      color: #94a3b8;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <h1>🏮 BẢNG ĐIỀU KHIỂN — THẢ ĐÈN HOA ĐĂNG</h1>
+    <a href="/" target="_blank" style="color: #fbbf24; text-decoration: none; font-size: 13px; font-weight: 700;">
+      📺 Mở Màn Hình Live (OBS Overlay) ↗
+    </a>
+  </header>
+
+  <div class="grid">
+    <!-- Thẻ 1: Kết nối TikTok Live -->
+    <div class="card">
+      <h2>📡 Kết Nối TikTok Live</h2>
+      <div class="input-group">
+        <input type="text" id="tiktokUser" placeholder="Nhập @username TikTok Live" />
+        <button onclick="updateTikTokUser()">Kết Nối</button>
+      </div>
+      <div style="margin-top: 8px;">
+        <span class="status-badge" id="connStatus">Đang kiểm tra...</span>
+      </div>
+      <p id="connMsg" style="font-size: 12px; color: #94a3b8; margin-top: 8px;"></p>
+    </div>
+
+    <!-- Thẻ 2: Quản Lý Màn Hình Sông -->
+    <div class="card">
+      <h2>🌊 Quản Lý Màn Hình</h2>
+      <p style="font-size: 13px; color: #cbd5e1; margin-bottom: 12px;">
+        Đèn sẽ tự động trôi êm ả theo dòng nước và tan dần theo thời gian. Bạn có thể bấm dọn dẹp nếu muốn làm sạch lòng sông:
+      </p>
+      <button class="btn-danger" onclick="clearAll()">🧹 Dọn Sạch Đèn Trên Sông</button>
+    </div>
+  </div>
+
+  <!-- Thẻ 3: Test Giả Lập Khán Giả Tương Tác -->
+  <div class="card" style="margin-bottom: 24px;">
+    <h2>🧪 Giả Lập Thử Nghiệm (Dành Cho Streamer Test Offline)</h2>
+    <p style="font-size: 12px; color: #94a3b8; margin-bottom: 12px;">
+      Bấm các nút dưới đây để kiểm tra hiệu ứng đèn hoa đăng, đèn Khổng Minh và tiếng chuông gió:
+    </p>
+
+    <div style="margin-bottom: 14px;">
+      <span style="font-size: 12px; font-weight: 700; color: #fef08a;">💬 Thử Nghiệm Khán Giả Bình Luận Cầu An:</span>
+      <div class="btn-row">
+        <button class="test-btn" onclick="simWish('Cầu gia đạo bình an, vạn sự cát tường')">🪷 Lời ước 1: Cầu bình an</button>
+        <button class="test-btn" onclick="simWish('Cầu công việc thuận buồm xuôi gió, đắc tài đắc lộc')">💰 Lời ước 2: Cầu tài lộc</button>
+        <button class="test-btn" onclick="simWish('Cầu cha mẹ sống lâu trăm tuổi, sức khỏe dồi dào')">❤️ Lời ước 3: Cầu sức khỏe</button>
+      </div>
+    </div>
+
+    <div style="margin-bottom: 14px;">
+      <span style="font-size: 12px; font-weight: 700; color: #ffd700;">🎁 Thử Nghiệm Quà Tặng Nạp Xu:</span>
+      <div class="btn-row">
+        <button class="test-btn" onclick="simGift('gold_gift')">🌹 Tặng Hoa Hồng (Đèn Sen Vàng Đại Lộc)</button>
+        <button class="test-btn" onclick="simGift('royal_gift')">👑 Tặng Vương Miện (Đèn Sen Thất Bảo)</button>
+        <button class="test-btn" onclick="simGift('sky_gift')">🎆 Tặng Quà Lớn (Đèn Lồng Khổng Minh Bay Lên Trời)</button>
+      </div>
+    </div>
+
+    <div>
+      <span style="font-size: 12px; font-weight: 700; color: #f43f5e;">❤️ Thả Tim Tiếp Năng Lượng:</span>
+      <div class="btn-row">
+        <button class="test-btn" onclick="simLike()">✨ Thả 50 Tim (Gợn sóng lấp lánh)</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Thẻ 4: Nhật Ký Hoạt Động -->
+  <div class="card">
+    <h2>📜 Nhật Ký Hoạt Động Hệ Thống</h2>
+    <div class="log-box" id="logBox">
+      [Hệ thống] Đang tải giao diện quản trị...
+    </div>
+  </div>
+</div>
+
+<script>
+  function log(msg) {
+    const box = document.getElementById('logBox');
+    const time = new Date().toLocaleTimeString();
+    box.innerHTML = `[${time}] ${msg}<br>` + box.innerHTML;
+  }
+
+  function fetchState() {
+    fetch('/api/state')
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('tiktokUser').value = data.connectedChannel || '';
+        const badge = document.getElementById('connStatus');
+        const msg = document.getElementById('connMsg');
+
+        if (data.tiktokConnected) {
+          badge.className = 'status-badge';
+          badge.textContent = '🟢 Đã kết nối';
+        } else if (data.tiktokConnecting) {
+          badge.className = 'status-badge';
+          badge.textContent = '🟡 Đang kết nối...';
+        } else {
+          badge.className = 'status-badge error';
+          badge.textContent = '🔴 Chưa kết nối';
+        }
+        msg.textContent = data.tiktokStatusMsg || '';
+      })
+      .catch(err => console.error(err));
+  }
+
+  function updateTikTokUser() {
+    const user = document.getElementById('tiktokUser').value.trim();
+    if (!user) return alert('Vui lòng nhập TikTok username!');
+    log(`Đang gửi yêu cầu kết nối tới: ${user}...`);
+    fetch('/api/admin/connect', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username: user })
+    }).then(res => res.json()).then(data => {
+      log(`Đã gửi yêu cầu kết nối!`);
+      setTimeout(fetchState, 1500);
+    });
+  }
+
+  function clearAll() {
+    log('Đã gửi lệnh dọn sạch đèn trên sông');
+    fetch('/api/admin/clear', { method: 'POST' });
+  }
+
+  function simWish(wishText) {
+    log(`Thử nghiệm bình luận: "${wishText}"`);
+    fetch('/api/admin/simulate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ type: 'comment', wish: wishText })
+    });
+  }
+
+  function simGift(giftType) {
+    log(`Thử nghiệm tặng quà: ${giftType}`);
+    fetch('/api/admin/simulate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ type: giftType })
+    });
+  }
+
+  function simLike() {
+    log('Thử nghiệm thả 50 tim!');
+    fetch('/api/admin/simulate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ type: 'like' })
+    });
+  }
+
+  fetchState();
+  setInterval(fetchState, 4000);
+</script>
+</body>
+</html>
