@@ -1,102 +1,6002 @@
 [
-  { "id": 1, "word": "HOA HỒNG", "category": "Thực Vật", "hint": "Loài hoa biểu tượng cho tình yêu và sắc đẹp" },
-  { "id": 2, "word": "BÁNH MÌ", "category": "Ẩm Thực", "hint": "Món ăn đường phố trứ danh của Việt Nam vươn tầm thế giới" },
-  { "id": 3, "word": "PHỞ BÒ", "category": "Ẩm Thực", "hint": "Món nước truyền thống đậm đà hương vị Hà Nội" },
-  { "id": 4, "word": "CÀ PHÊ SỮA", "category": "Ẩm Thực", "hint": "Thức uống sáng quen thuộc của người Việt" },
-  { "id": 5, "word": "BÌNH MINH", "category": "Thiên Nhiên", "hint": "Khoảnh khắc mặt trời bắt đầu mọc lúc rạng sáng" },
-  { "id": 6, "word": "HOÀNG HÔN", "category": "Thiên Nhiên", "hint": "Khoảnh khắc mặt trời lặn cuối ngày" },
-  { "id": 7, "word": "HẠNH PHÚC", "category": "Đời Sống", "hint": "Cảm giác vui sướng, mãn nguyện trọn vẹn trong tâm hồn" },
-  { "id": 8, "word": "THÀNH CÔNG", "category": "Đời Sống", "hint": "Đạt được mục tiêu và kết quả như mong đợi" },
-  { "id": 9, "word": "ĐOÀN KẾT", "category": "Đời Sống", "hint": "Sự gắn bó, chung sức đồng lòng giữa mọi người" },
-  { "id": 10, "word": "CẦU VỒNG", "category": "Thiên Nhiên", "hint": "Dải ánh sáng 7 sắc màu xuất hiện sau cơn mưa" },
-  { "id": 11, "word": "CÁ HEO", "category": "Động Vật", "hint": "Loài thú biển thông minh và thân thiện với con người" },
-  { "id": 12, "word": "ĐẠI BÀNG", "category": "Động Vật", "hint": "Chúa tể bầu trời với đôi cánh uy dũng" },
-  { "id": 13, "word": "HƯƠU CAO CỔ", "category": "Động Vật", "hint": "Loài động vật có chiếc cổ dài nhất thế giới" },
-  { "id": 14, "word": "CHIM CÁNH CỤT", "category": "Động Vật", "hint": "Loài chim không biết bay sống ở vùng băng giá Nam Cực" },
-  { "id": 15, "word": "BÁNH CHƯNG", "category": "Ẩm Thực", "hint": "Món bánh truyền thống hình vuông không thể thiếu ngày Tết" },
-  { "id": 16, "word": "BÁNH TÉP", "category": "Ẩm Thực", "hint": "Bánh giòn rụm rán cùng tép tươi" },
-  { "id": 17, "word": "BÚN ĐẬU MẮM TÔM", "category": "Ẩm Thực", "hint": "Món ăn đặc sản kèm chả cốm, nem rán và mắm tôm thơm nồng" },
-  { "id": 18, "word": "CƠM TẤM", "category": "Ẩm Thực", "hint": "Đặc sản Sài Gòn ăn kèm sườn nướng, bì, chả và mỡ hành" },
-  { "id": 19, "word": "TRÀ SỮA", "category": "Ẩm Thực", "hint": "Thức uống quốc dân của giới trẻ kèm trân châu giòn dai" },
-  { "id": 20, "word": "VỊNH HẠ LONG", "category": "Địa Danh", "hint": "Di sản thiên nhiên thế giới nổi tiếng của tỉnh Quảng Ninh" },
-  { "id": 21, "word": "ĐẢO PHÚ QUỐC", "category": "Địa Danh", "hint": "Hòn đảo ngọc du lịch lớn nhất Việt Nam tại Kiên Giang" },
-  { "id": 22, "word": "HỒ HOÀN KIẾM", "category": "Địa Danh", "hint": "Trái tim của thủ đô Hà Nội gắn liền với truyền thuyết trả gươm" },
-  { "id": 23, "word": "CHỢ BẾN THÀNH", "category": "Địa Danh", "hint": "Biểu tượng lịch sử và mua sắm sầm uất tại trung tâm TP.HCM" },
-  { "id": 24, "word": "CẦU RỒNG", "category": "Địa Danh", "hint": "Cây cầu độc đáo có khả năng phun lửa và phun nước tại Đà Nẵng" },
-  { "id": 25, "word": "PHỐ CỔ HỘI AN", "category": "Địa Danh", "hint": "Đô thị cổ lung linh đèn lồng tại Quảng Nam" },
-  { "id": 26, "word": "CÂU CÁ", "category": "Giải Trí", "hint": "Thú vui tiêu khiển thư giãn bên sông hồ đòi hỏi sự kiên nhẫn" },
-  { "id": 27, "word": "THẢ DIỀU", "category": "Trò Chơi Dân Gian", "hint": "Trò chơi mùa hè lộng gió trên những cánh đồng quê" },
-  { "id": 28, "word": "Ô ĂN QUAN", "category": "Trò Chơi Dân Gian", "hint": "Trò chơi trí tuệ dân gian với các viên sỏi trên bàn cờ đất" },
-  { "id": 29, "word": "KÉO CO", "category": "Trò Chơi Dân Gian", "hint": "Trò chơi thể thao tinh thần đồng đội dùng sợi dây thừng" },
-  { "id": 30, "word": "NHẢY DÂY", "category": "Trò Chơi Dân Gian", "hint": "Trò chơi vận động rèn luyện đôi chân dẻo dai của tuổi thơ" },
-  { "id": 31, "word": "CHUỒN CHUỒN", "category": "Động Vật", "hint": "Loài côn trùng cánh mỏng bay thấp thì mưa, bay cao thì nắng" },
-  { "id": 32, "word": "CON SÓC", "category": "Động Vật", "hint": "Loài gặm nhấm đuôi xù nhanh thoăn thoắt thích ăn hạt dẻ" },
-  { "id": 33, "word": "HẢI ĐĂNG", "category": "Công Trình", "hint": "Ngọn tháp chiếu ánh sáng dẫn đường cho tàu thuyền trên biển" },
-  { "id": 34, "word": "KÍNH THIÊN VĂN", "category": "Khoa Học", "hint": "Thiết bị quang học giúp quan sát các vì sao trong vũ trụ" },
-  { "id": 35, "word": "HOA HƯỚNG DƯƠNG", "category": "Thực Vật", "hint": "Loài hoa luôn ngẩng cao đầu hướng về phía mặt trời" },
-  { "id": 36, "word": "HOA SEN", "category": "Thực Vật", "hint": "Quốc hoa Việt Nam: Gần bùn mà chẳng hôi tanh mùi bùn" },
-  { "id": 37, "word": "HOA MAI", "category": "Thực Vật", "hint": "Loài hoa sắc vàng tươi báo hiệu mùa xuân phương Nam" },
-  { "id": 38, "word": "HOA ĐÀO", "category": "Thực Vật", "hint": "Loài hoa sắc hồng rực rỡ đón Tết xứ Bắc" },
-  { "id": 39, "word": "HOA LAN", "category": "Thực Vật", "hint": "Loài hoa quý phái biểu tượng cho sự thanh cao vương giả" },
-  { "id": 40, "word": "CÂY TRE", "category": "Thực Vật", "hint": "Loài cây thân đốt kiên cường gắn liền với làng quê Việt Nam" },
-  { "id": 41, "word": "LÁ LÀNH ĐÙM LÁ RÁCH", "category": "Thành Ngữ", "hint": "Truyền thống tương thân tương ái, giúp đỡ người hoạn nạn" },
-  { "id": 42, "word": "UỐNG NƯỚC NHỚ NGUỒN", "category": "Thành Ngữ", "hint": "Đạo lý ghi nhớ công ơn những người đi trước" },
-  { "id": 43, "word": "CÓ CÔNG MÀI SẮT", "category": "Thành Ngữ", "hint": "Kiên trì nỗ lực ắt có ngày nên kim" },
-  { "id": 44, "word": "ĂN QUẢ NHỚ KẺ TRỒNG CÂY", "category": "Thành Ngữ", "hint": "Lòng biết ơn đối với người đã đem lại thành quả cho mình" },
-  { "id": 45, "word": "TỐT GỖ HƠN TỐT NƯỚC SƠN", "category": "Thành Ngữ", "hint": "Phẩm chất bên trong quan trọng hơn vẻ bề ngoài" },
-  { "id": 46, "word": "HỌC TẬP", "category": "Hành Động", "hint": "Quá trình tiếp thu kiến thức và kỹ năng mới mỗi ngày" },
-  { "id": 47, "word": "SÁNG TẠO", "category": "Tư Duy", "hint": "Tạo ra những ý tưởng mới mẻ và độc đáo chưa từng có" },
-  { "id": 48, "word": "KIÊN TRÌ", "category": "Phẩm Chất", "hint": "Không nản lòng trước khó khăn thử thách" },
-  { "id": 49, "word": "LƯƠNG THIỆN", "category": "Phẩm Chất", "hint": "Tấm lòng trong sáng, luôn làm điều tốt lành cho người khác" },
-  { "id": 50, "word": "KHIÊM TỐN", "category": "Phẩm Chất", "hint": "Đức tính không tự kiêu, luôn nhún nhường và biết học hỏi" },
-  { "id": 51, "word": "BÁC SĨ", "category": "Nghề Nghiệp", "hint": "Người mặc áo blouse trắng chữa bệnh cứu người" },
-  { "id": 52, "word": "GIÁO VIÊN", "category": "Nghề Nghiệp", "hint": "Người lái đò cần mẫn truyền dạy tri thức cho học sinh" },
-  { "id": 53, "word": "KỸ SƯ", "category": "Nghề Nghiệp", "hint": "Người thiết kế, chế tạo công trình và máy móc kỹ thuật" },
-  { "id": 54, "word": "PHI CÔNG", "category": "Nghề Nghiệp", "hint": "Người điều khiển những chuyến bay trên bầu trời" },
-  { "id": 55, "word": "HOẠ SĨ", "category": "Nghề Nghiệp", "hint": "Người thổi hồn vào những bức tranh nghệ thuật đầy màu sắc" },
-  { "id": 56, "word": "NHÀ THƠ", "category": "Nghề Nghiệp", "hint": "Người sáng tác nên những vần điệu trữ tình du dương" },
-  { "id": 57, "word": "LÍNH CỨU HỎA", "category": "Nghề Nghiệp", "hint": "Những người lính dũng cảm xông pha dập tắt biển lửa" },
-  { "id": 58, "word": "CẢNH SÁT", "category": "Nghề Nghiệp", "hint": "Người gìn giữ trật tự an ninh và bảo vệ cuộc sống bình yên" },
-  { "id": 59, "word": "ĐẦU BẾP", "category": "Nghề Nghiệp", "hint": "Người sáng tạo nên những món ăn thơm ngon hấp dẫn" },
-  { "id": 60, "word": "NÔNG DÂN", "category": "Nghề Nghiệp", "hint": "Người dãi nắng dầm mưa cày cấy làm ra hạt gạo trắng trong" },
-  { "id": 61, "word": "MÁY TÍNH", "category": "Công Nghệ", "hint": "Thiết bị điện tử xử lý dữ liệu phục vụ học tập và làm việc" },
-  { "id": 62, "word": "ĐIỆN THOẠI", "category": "Công Nghệ", "hint": "Vật bất ly thân dùng để liên lạc, lướt mạng xã hội mỗi ngày" },
-  { "id": 63, "word": "ROBOT", "category": "Công Nghệ", "hint": "Cỗ máy tự động thông minh hỗ trợ con người trong sản xuất" },
-  { "id": 64, "word": "INTERNET", "category": "Công Nghệ", "hint": "Mạng lưới thông tin toàn cầu kết nối cả nhân loại" },
-  { "id": 65, "word": "TRÍ TUỆ NHÂN TẠO", "category": "Công Nghệ", "hint": "Công nghệ máy móc mô phỏng khả năng tư duy của con người" },
-  { "id": 66, "word": "XE ĐẠP", "category": "Phương Tiện", "hint": "Phương tiện hai bánh thân thiện môi trường rèn luyện sức khoẻ" },
-  { "id": 67, "word": "TÀU HỎA", "category": "Phương Tiện", "hint": "Đoàn tàu dài chạy trên đường ray sắt xình xịch" },
-  { "id": 68, "word": "MÁY BAY", "category": "Phương Tiện", "hint": "Phương tiện vận tải hàng không di chuyển xuyên lục địa" },
-  { "id": 69, "word": "THUYỀN BUỒM", "category": "Phương Tiện", "hint": "Con thuyền lướt sóng nhờ sức đẩy của gió căng buồm" },
-  { "id": 70, "word": "KHINH KHÍ CẦU", "category": "Phương Tiện", "hint": "Quả cầu khổng lồ bay trên không trung nhờ khí nóng" },
-  { "id": 71, "word": "SA MẠC", "category": "Địa Hình", "hint": "Vùng đất mênh mông bạt ngàn cát nóng và khô hạn" },
-  { "id": 72, "word": "THÁC NƯỚC", "category": "Địa Hình", "hint": "Dòng sông đổ từ trên vách núi cao xuống tung bọt trắng xóa" },
-  { "id": 73, "word": "NÚI LỬA", "category": "Địa Hình", "hint": "Ngọn núi có miệng phun trào dòng nham thạch rực đỏ" },
-  { "id": 74, "word": "RỪNG RẬM", "category": "Địa Hình", "hint": "Hệ sinh thái bạt ngàn cây cối xanh tốt và đa dạng muông thú" },
-  { "id": 75, "word": "HANG ĐỘNG", "category": "Địa Hình", "hint": "Khoảng trống tự nhiên kỳ vĩ ẩn sâu trong lòng núi đá vôi" },
-  { "id": 76, "word": "MẶT TRĂNG", "category": "Vũ Trụ", "hint": "Vệ tinh tự nhiên quay quanh Trái Đất tỏa sáng dịu hiền về đêm" },
-  { "id": 77, "word": "MẶT TRỜI", "category": "Vũ Trụ", "hint": "Ngôi sao trung tâm mang lại ánh sáng và sự sống cho Trái Đất" },
-  { "id": 78, "word": "SAO BĂNG", "category": "Vũ Trụ", "hint": "Vệt sáng xẹt qua bầu trời đêm khi thiên thạch bốc cháy" },
-  { "id": 79, "word": "DẢI NGÂN HÀ", "category": "Vũ Trụ", "hint": "Hệ thống chứa hàng trăm tỷ ngôi sao lung linh trong vũ trụ" },
-  { "id": 80, "word": "TRÁI ĐẤT", "category": "Vũ Trụ", "hint": "Hành tinh xanh xinh đẹp, ngôi nhà chung của nhân loại" },
-  { "id": 81, "word": "BÓNG ĐÁ", "category": "Thể Thao", "hint": "Môn thể thao vua thu hút hàng tỷ người hâm mộ cuồng nhiệt" },
-  { "id": 82, "word": "BƠI LỘI", "category": "Thể Thao", "hint": "Môn thể thao vận động toàn thân dưới làn nước mát" },
-  { "id": 83, "word": "CẦU LÔNG", "category": "Thể Thao", "hint": "Môn thể thao đánh quả cầu qua lưới bằng chiếc vợt nhỏ" },
-  { "id": 84, "word": "BÓNG BÀN", "category": "Thể Thao", "hint": "Môn thể thao dùng vợt gỗ đánh quả bóng nhựa nhỏ trên bàn" },
-  { "id": 85, "word": "CỜ VUA", "category": "Trí Tuệ", "hint": "Môn đấu trí cân não trên bàn cờ 64 ô đen trắng" },
-  { "id": 86, "word": "CHÈ THÁI", "category": "Ẩm Thực", "hint": "Món chè ngọt mát thơm ngát sầu riêng và thạch sắc màu" },
-  { "id": 87, "word": "BÁNH BỘT LỌC", "category": "Ẩm Thực", "hint": "Món bánh trong suốt nhân tôm thịt đặc sản xứ Huế" },
-  { "id": 88, "word": "GỎI CUỐN", "category": "Ẩm Thực", "hint": "Món cuốn bánh tráng tôm thịt chấm tương đen đậu phộng bùi bùi" },
-  { "id": 89, "word": "NEM RÁN", "category": "Ẩm Thực", "hint": "Món chả giò chiên vàng rộm giòn tan chấm nước mắm chua ngọt" },
-  { "id": 90, "word": "XÔI GẤC", "category": "Ẩm Thực", "hint": "Món xôi màu đỏ thắm mang lại may mắn trong dịp cưới hỏi, lễ Tết" },
-  { "id": 91, "word": "TIẾNG VIỆT", "category": "Ngôn Ngữ", "hint": "Tiếng mẹ đẻ giàu đẹp và thanh âm trong trẻo của dân tộc ta" },
-  { "id": 92, "word": "ÁO DÀI", "category": "Trang Phục", "hint": "Quốc phục truyền thống tôn vinh nét duyên dáng người phụ nữ Việt" },
-  { "id": 93, "word": "NÓN LÁ", "category": "Trang Phục", "hint": "Vật dụng che mưa che nắng mộc mạc đậm chất hồn quê Việt Nam" },
-  { "id": 94, "word": "ĐÀN BẦU", "category": "Âm Nhạc", "hint": "Nhạc cụ cổ truyền độc đáo chỉ có một dây rung lên khúc nhạc lòng" },
-  { "id": 95, "word": "TRỐNG ĐỒNG", "category": "Văn Hóa", "hint": "Báu vật khảo cổ biểu tượng cho nền văn minh Đông Sơn cổ xưa" },
-  { "id": 96, "word": "HOA QUẢ DẦM", "category": "Ẩm Thực", "hint": "Món tráng miệng trộn nhiều loại trái cây với sữa đặc và đá bào" },
-  { "id": 97, "word": "CON CÔNG", "category": "Động Vật", "hint": "Loài chim có chiếc đuôi xoè rộng rực rỡ như chiếc quạt hoa" },
-  { "id": 98, "word": "CHIM BỒ CÂU", "category": "Động Vật", "hint": "Biểu tượng hòa bình mang thông điệp yêu thương khắp thế giới" },
-  { "id": 99, "word": "LỬA TRẠI", "category": "Hoạt Động", "hint": "Ngọn lửa bập bùng thắp sáng đêm liên hoan dã ngoại ấm cúng" },
-  { "id": 100, "word": "NGÔI SAO", "category": "Vũ Trụ", "hint": "Thiên thể lấp lánh tỏa sáng trên bầu trời đêm sâu thẳm" }
+  {
+    "id": 1,
+    "word": "HOA HỒNG",
+    "category": "Thực Vật",
+    "hint": "Loài hoa biểu tượng cho tình yêu và sắc đẹp"
+  },
+  {
+    "id": 2,
+    "word": "BÁNH MÌ",
+    "category": "Ẩm Thực",
+    "hint": "Món ăn đường phố trứ danh của Việt Nam vươn tầm thế giới"
+  },
+  {
+    "id": 3,
+    "word": "PHỞ BÒ",
+    "category": "Ẩm Thực",
+    "hint": "Món nước truyền thống đậm đà hương vị Hà Nội"
+  },
+  {
+    "id": 4,
+    "word": "CÀ PHÊ SỮA",
+    "category": "Ẩm Thực",
+    "hint": "Thức uống sáng quen thuộc của người Việt"
+  },
+  {
+    "id": 5,
+    "word": "BÌNH MINH",
+    "category": "Thiên Nhiên",
+    "hint": "Khoảnh khắc mặt trời bắt đầu mọc lúc rạng sáng"
+  },
+  {
+    "id": 6,
+    "word": "HOÀNG HÔN",
+    "category": "Thiên Nhiên",
+    "hint": "Khoảnh khắc mặt trời lặn cuối ngày"
+  },
+  {
+    "id": 7,
+    "word": "HẠNH PHÚC",
+    "category": "Đời Sống",
+    "hint": "Cảm giác vui sướng, mãn nguyện trọn vẹn trong tâm hồn"
+  },
+  {
+    "id": 8,
+    "word": "THÀNH CÔNG",
+    "category": "Đời Sống",
+    "hint": "Đạt được mục tiêu và kết quả như mong đợi"
+  },
+  {
+    "id": 9,
+    "word": "ĐOÀN KẾT",
+    "category": "Đời Sống",
+    "hint": "Sự gắn bó, chung sức đồng lòng giữa mọi người"
+  },
+  {
+    "id": 10,
+    "word": "CẦU VỒNG",
+    "category": "Thiên Nhiên",
+    "hint": "Dải ánh sáng 7 sắc màu xuất hiện sau cơn mưa"
+  },
+  {
+    "id": 11,
+    "word": "CÁ HEO",
+    "category": "Động Vật",
+    "hint": "Loài thú biển thông minh và thân thiện với con người"
+  },
+  {
+    "id": 12,
+    "word": "ĐẠI BÀNG",
+    "category": "Động Vật",
+    "hint": "Chúa tể bầu trời với đôi cánh uy dũng"
+  },
+  {
+    "id": 13,
+    "word": "HƯƠU CAO CỔ",
+    "category": "Động Vật",
+    "hint": "Loài động vật có chiếc cổ dài nhất thế giới"
+  },
+  {
+    "id": 14,
+    "word": "CHIM CÁNH CỤT",
+    "category": "Động Vật",
+    "hint": "Loài chim không biết bay sống ở vùng băng giá Nam Cực"
+  },
+  {
+    "id": 15,
+    "word": "BÁNH CHƯNG",
+    "category": "Ẩm Thực",
+    "hint": "Món bánh truyền thống hình vuông không thể thiếu ngày Tết"
+  },
+  {
+    "id": 16,
+    "word": "BÁNH TÉP",
+    "category": "Ẩm Thực",
+    "hint": "Bánh giòn rụm rán cùng tép tươi"
+  },
+  {
+    "id": 17,
+    "word": "BÚN ĐẬU MẮM TÔM",
+    "category": "Ẩm Thực",
+    "hint": "Món ăn đặc sản kèm chả cốm, nem rán và mắm tôm thơm nồng"
+  },
+  {
+    "id": 18,
+    "word": "CƠM TẤM",
+    "category": "Ẩm Thực",
+    "hint": "Đặc sản Sài Gòn ăn kèm sườn nướng, bì, chả và mỡ hành"
+  },
+  {
+    "id": 19,
+    "word": "TRÀ SỮA",
+    "category": "Ẩm Thực",
+    "hint": "Thức uống quốc dân của giới trẻ kèm trân châu giòn dai"
+  },
+  {
+    "id": 20,
+    "word": "VỊNH HẠ LONG",
+    "category": "Địa Danh",
+    "hint": "Di sản thiên nhiên thế giới nổi tiếng của tỉnh Quảng Ninh"
+  },
+  {
+    "id": 21,
+    "word": "ĐẢO PHÚ QUỐC",
+    "category": "Địa Danh",
+    "hint": "Hòn đảo ngọc du lịch lớn nhất Việt Nam tại Kiên Giang"
+  },
+  {
+    "id": 22,
+    "word": "HỒ HOÀN KIẾM",
+    "category": "Địa Danh",
+    "hint": "Trái tim của thủ đô Hà Nội gắn liền với truyền thuyết trả gươm"
+  },
+  {
+    "id": 23,
+    "word": "CHỢ BẾN THÀNH",
+    "category": "Địa Danh",
+    "hint": "Biểu tượng lịch sử và mua sắm sầm uất tại trung tâm TP.HCM"
+  },
+  {
+    "id": 24,
+    "word": "CẦU RỒNG",
+    "category": "Địa Danh",
+    "hint": "Cây cầu độc đáo có khả năng phun lửa và phun nước tại Đà Nẵng"
+  },
+  {
+    "id": 25,
+    "word": "PHỐ CỔ HỘI AN",
+    "category": "Địa Danh",
+    "hint": "Đô thị cổ lung linh đèn lồng tại Quảng Nam"
+  },
+  {
+    "id": 26,
+    "word": "CÂU CÁ",
+    "category": "Giải Trí",
+    "hint": "Thú vui tiêu khiển thư giãn bên sông hồ đòi hỏi sự kiên nhẫn"
+  },
+  {
+    "id": 27,
+    "word": "THẢ DIỀU",
+    "category": "Trò Chơi Dân Gian",
+    "hint": "Trò chơi mùa hè lộng gió trên những cánh đồng quê"
+  },
+  {
+    "id": 28,
+    "word": "Ô ĂN QUAN",
+    "category": "Trò Chơi Dân Gian",
+    "hint": "Trò chơi trí tuệ dân gian với các viên sỏi trên bàn cờ đất"
+  },
+  {
+    "id": 29,
+    "word": "KÉO CO",
+    "category": "Trò Chơi Dân Gian",
+    "hint": "Trò chơi thể thao tinh thần đồng đội dùng sợi dây thừng"
+  },
+  {
+    "id": 30,
+    "word": "NHẢY DÂY",
+    "category": "Trò Chơi Dân Gian",
+    "hint": "Trò chơi vận động rèn luyện đôi chân dẻo dai của tuổi thơ"
+  },
+  {
+    "id": 31,
+    "word": "CHUỒN CHUỒN",
+    "category": "Động Vật",
+    "hint": "Loài côn trùng cánh mỏng bay thấp thì mưa, bay cao thì nắng"
+  },
+  {
+    "id": 32,
+    "word": "CON SÓC",
+    "category": "Động Vật",
+    "hint": "Loài gặm nhấm đuôi xù nhanh thoăn thoắt thích ăn hạt dẻ"
+  },
+  {
+    "id": 33,
+    "word": "HẢI ĐĂNG",
+    "category": "Công Trình",
+    "hint": "Ngọn tháp chiếu ánh sáng dẫn đường cho tàu thuyền trên biển"
+  },
+  {
+    "id": 34,
+    "word": "KÍNH THIÊN VĂN",
+    "category": "Khoa Học",
+    "hint": "Thiết bị quang học giúp quan sát các vì sao trong vũ trụ"
+  },
+  {
+    "id": 35,
+    "word": "HOA HƯỚNG DƯƠNG",
+    "category": "Thực Vật",
+    "hint": "Loài hoa luôn ngẩng cao đầu hướng về phía mặt trời"
+  },
+  {
+    "id": 36,
+    "word": "HOA SEN",
+    "category": "Thực Vật",
+    "hint": "Quốc hoa Việt Nam: Gần bùn mà chẳng hôi tanh mùi bùn"
+  },
+  {
+    "id": 37,
+    "word": "HOA MAI",
+    "category": "Thực Vật",
+    "hint": "Loài hoa sắc vàng tươi báo hiệu mùa xuân phương Nam"
+  },
+  {
+    "id": 38,
+    "word": "HOA ĐÀO",
+    "category": "Thực Vật",
+    "hint": "Loài hoa sắc hồng rực rỡ đón Tết xứ Bắc"
+  },
+  {
+    "id": 39,
+    "word": "HOA LAN",
+    "category": "Thực Vật",
+    "hint": "Loài hoa quý phái biểu tượng cho sự thanh cao vương giả"
+  },
+  {
+    "id": 40,
+    "word": "CÂY TRE",
+    "category": "Thực Vật",
+    "hint": "Loài cây thân đốt kiên cường gắn liền với làng quê Việt Nam"
+  },
+  {
+    "id": 41,
+    "word": "LÁ LÀNH ĐÙM LÁ RÁCH",
+    "category": "Thành Ngữ",
+    "hint": "Truyền thống tương thân tương ái, giúp đỡ người hoạn nạn"
+  },
+  {
+    "id": 42,
+    "word": "UỐNG NƯỚC NHỚ NGUỒN",
+    "category": "Thành Ngữ",
+    "hint": "Đạo lý ghi nhớ công ơn những người đi trước"
+  },
+  {
+    "id": 43,
+    "word": "CÓ CÔNG MÀI SẮT",
+    "category": "Thành Ngữ",
+    "hint": "Kiên trì nỗ lực ắt có ngày nên kim"
+  },
+  {
+    "id": 44,
+    "word": "ĂN QUẢ NHỚ KẺ TRỒNG CÂY",
+    "category": "Thành Ngữ",
+    "hint": "Lòng biết ơn đối với người đã đem lại thành quả cho mình"
+  },
+  {
+    "id": 45,
+    "word": "TỐT GỖ HƠN TỐT NƯỚC SƠN",
+    "category": "Thành Ngữ",
+    "hint": "Phẩm chất bên trong quan trọng hơn vẻ bề ngoài"
+  },
+  {
+    "id": 46,
+    "word": "HỌC TẬP",
+    "category": "Hành Động",
+    "hint": "Quá trình tiếp thu kiến thức và kỹ năng mới mỗi ngày"
+  },
+  {
+    "id": 47,
+    "word": "SÁNG TẠO",
+    "category": "Tư Duy",
+    "hint": "Tạo ra những ý tưởng mới mẻ và độc đáo chưa từng có"
+  },
+  {
+    "id": 48,
+    "word": "KIÊN TRÌ",
+    "category": "Phẩm Chất",
+    "hint": "Không nản lòng trước khó khăn thử thách"
+  },
+  {
+    "id": 49,
+    "word": "LƯƠNG THIỆN",
+    "category": "Phẩm Chất",
+    "hint": "Tấm lòng trong sáng, luôn làm điều tốt lành cho người khác"
+  },
+  {
+    "id": 50,
+    "word": "KHIÊM TỐN",
+    "category": "Phẩm Chất",
+    "hint": "Đức tính không tự kiêu, luôn nhún nhường và biết học hỏi"
+  },
+  {
+    "id": 51,
+    "word": "BÁC SĨ",
+    "category": "Nghề Nghiệp",
+    "hint": "Người mặc áo blouse trắng chữa bệnh cứu người"
+  },
+  {
+    "id": 52,
+    "word": "GIÁO VIÊN",
+    "category": "Nghề Nghiệp",
+    "hint": "Người lái đò cần mẫn truyền dạy tri thức cho học sinh"
+  },
+  {
+    "id": 53,
+    "word": "KỸ SƯ",
+    "category": "Nghề Nghiệp",
+    "hint": "Người thiết kế, chế tạo công trình và máy móc kỹ thuật"
+  },
+  {
+    "id": 54,
+    "word": "PHI CÔNG",
+    "category": "Nghề Nghiệp",
+    "hint": "Người điều khiển những chuyến bay trên bầu trời"
+  },
+  {
+    "id": 55,
+    "word": "HOẠ SĨ",
+    "category": "Nghề Nghiệp",
+    "hint": "Người thổi hồn vào những bức tranh nghệ thuật đầy màu sắc"
+  },
+  {
+    "id": 56,
+    "word": "NHÀ THƠ",
+    "category": "Nghề Nghiệp",
+    "hint": "Người sáng tác nên những vần điệu trữ tình du dương"
+  },
+  {
+    "id": 57,
+    "word": "LÍNH CỨU HỎA",
+    "category": "Nghề Nghiệp",
+    "hint": "Những người lính dũng cảm xông pha dập tắt biển lửa"
+  },
+  {
+    "id": 58,
+    "word": "CẢNH SÁT",
+    "category": "Nghề Nghiệp",
+    "hint": "Người gìn giữ trật tự an ninh và bảo vệ cuộc sống bình yên"
+  },
+  {
+    "id": 59,
+    "word": "ĐẦU BẾP",
+    "category": "Nghề Nghiệp",
+    "hint": "Người sáng tạo nên những món ăn thơm ngon hấp dẫn"
+  },
+  {
+    "id": 60,
+    "word": "NÔNG DÂN",
+    "category": "Nghề Nghiệp",
+    "hint": "Người dãi nắng dầm mưa cày cấy làm ra hạt gạo trắng trong"
+  },
+  {
+    "id": 61,
+    "word": "MÁY TÍNH",
+    "category": "Công Nghệ",
+    "hint": "Thiết bị điện tử xử lý dữ liệu phục vụ học tập và làm việc"
+  },
+  {
+    "id": 62,
+    "word": "ĐIỆN THOẠI",
+    "category": "Công Nghệ",
+    "hint": "Vật bất ly thân dùng để liên lạc, lướt mạng xã hội mỗi ngày"
+  },
+  {
+    "id": 63,
+    "word": "ROBOT",
+    "category": "Công Nghệ",
+    "hint": "Cỗ máy tự động thông minh hỗ trợ con người trong sản xuất"
+  },
+  {
+    "id": 64,
+    "word": "INTERNET",
+    "category": "Công Nghệ",
+    "hint": "Mạng lưới thông tin toàn cầu kết nối cả nhân loại"
+  },
+  {
+    "id": 65,
+    "word": "TRÍ TUỆ NHÂN TẠO",
+    "category": "Công Nghệ",
+    "hint": "Công nghệ máy móc mô phỏng khả năng tư duy của con người"
+  },
+  {
+    "id": 66,
+    "word": "XE ĐẠP",
+    "category": "Phương Tiện",
+    "hint": "Phương tiện hai bánh thân thiện môi trường rèn luyện sức khoẻ"
+  },
+  {
+    "id": 67,
+    "word": "TÀU HỎA",
+    "category": "Phương Tiện",
+    "hint": "Đoàn tàu dài chạy trên đường ray sắt xình xịch"
+  },
+  {
+    "id": 68,
+    "word": "MÁY BAY",
+    "category": "Phương Tiện",
+    "hint": "Phương tiện vận tải hàng không di chuyển xuyên lục địa"
+  },
+  {
+    "id": 69,
+    "word": "THUYỀN BUỒM",
+    "category": "Phương Tiện",
+    "hint": "Con thuyền lướt sóng nhờ sức đẩy của gió căng buồm"
+  },
+  {
+    "id": 70,
+    "word": "KHINH KHÍ CẦU",
+    "category": "Phương Tiện",
+    "hint": "Quả cầu khổng lồ bay trên không trung nhờ khí nóng"
+  },
+  {
+    "id": 71,
+    "word": "SA MẠC",
+    "category": "Địa Hình",
+    "hint": "Vùng đất mênh mông bạt ngàn cát nóng và khô hạn"
+  },
+  {
+    "id": 72,
+    "word": "THÁC NƯỚC",
+    "category": "Địa Hình",
+    "hint": "Dòng sông đổ từ trên vách núi cao xuống tung bọt trắng xóa"
+  },
+  {
+    "id": 73,
+    "word": "NÚI LỬA",
+    "category": "Địa Hình",
+    "hint": "Ngọn núi có miệng phun trào dòng nham thạch rực đỏ"
+  },
+  {
+    "id": 74,
+    "word": "RỪNG RẬM",
+    "category": "Địa Hình",
+    "hint": "Hệ sinh thái bạt ngàn cây cối xanh tốt và đa dạng muông thú"
+  },
+  {
+    "id": 75,
+    "word": "HANG ĐỘNG",
+    "category": "Địa Hình",
+    "hint": "Khoảng trống tự nhiên kỳ vĩ ẩn sâu trong lòng núi đá vôi"
+  },
+  {
+    "id": 76,
+    "word": "MẶT TRĂNG",
+    "category": "Vũ Trụ",
+    "hint": "Vệ tinh tự nhiên quay quanh Trái Đất tỏa sáng dịu hiền về đêm"
+  },
+  {
+    "id": 77,
+    "word": "MẶT TRỜI",
+    "category": "Vũ Trụ",
+    "hint": "Ngôi sao trung tâm mang lại ánh sáng và sự sống cho Trái Đất"
+  },
+  {
+    "id": 78,
+    "word": "SAO BĂNG",
+    "category": "Vũ Trụ",
+    "hint": "Vệt sáng xẹt qua bầu trời đêm khi thiên thạch bốc cháy"
+  },
+  {
+    "id": 79,
+    "word": "DẢI NGÂN HÀ",
+    "category": "Vũ Trụ",
+    "hint": "Hệ thống chứa hàng trăm tỷ ngôi sao lung linh trong vũ trụ"
+  },
+  {
+    "id": 80,
+    "word": "TRÁI ĐẤT",
+    "category": "Vũ Trụ",
+    "hint": "Hành tinh xanh xinh đẹp, ngôi nhà chung của nhân loại"
+  },
+  {
+    "id": 81,
+    "word": "BÓNG ĐÁ",
+    "category": "Thể Thao",
+    "hint": "Môn thể thao vua thu hút hàng tỷ người hâm mộ cuồng nhiệt"
+  },
+  {
+    "id": 82,
+    "word": "BƠI LỘI",
+    "category": "Thể Thao",
+    "hint": "Môn thể thao vận động toàn thân dưới làn nước mát"
+  },
+  {
+    "id": 83,
+    "word": "CẦU LÔNG",
+    "category": "Thể Thao",
+    "hint": "Môn thể thao đánh quả cầu qua lưới bằng chiếc vợt nhỏ"
+  },
+  {
+    "id": 84,
+    "word": "BÓNG BÀN",
+    "category": "Thể Thao",
+    "hint": "Môn thể thao dùng vợt gỗ đánh quả bóng nhựa nhỏ trên bàn"
+  },
+  {
+    "id": 85,
+    "word": "CỜ VUA",
+    "category": "Trí Tuệ",
+    "hint": "Môn đấu trí cân não trên bàn cờ 64 ô đen trắng"
+  },
+  {
+    "id": 86,
+    "word": "CHÈ THÁI",
+    "category": "Ẩm Thực",
+    "hint": "Món chè ngọt mát thơm ngát sầu riêng và thạch sắc màu"
+  },
+  {
+    "id": 87,
+    "word": "BÁNH BỘT LỌC",
+    "category": "Ẩm Thực",
+    "hint": "Món bánh trong suốt nhân tôm thịt đặc sản xứ Huế"
+  },
+  {
+    "id": 88,
+    "word": "GỎI CUỐN",
+    "category": "Ẩm Thực",
+    "hint": "Món cuốn bánh tráng tôm thịt chấm tương đen đậu phộng bùi bùi"
+  },
+  {
+    "id": 89,
+    "word": "NEM RÁN",
+    "category": "Ẩm Thực",
+    "hint": "Món chả giò chiên vàng rộm giòn tan chấm nước mắm chua ngọt"
+  },
+  {
+    "id": 90,
+    "word": "XÔI GẤC",
+    "category": "Ẩm Thực",
+    "hint": "Món xôi màu đỏ thắm mang lại may mắn trong dịp cưới hỏi, lễ Tết"
+  },
+  {
+    "id": 91,
+    "word": "TIẾNG VIỆT",
+    "category": "Ngôn Ngữ",
+    "hint": "Tiếng mẹ đẻ giàu đẹp và thanh âm trong trẻo của dân tộc ta"
+  },
+  {
+    "id": 92,
+    "word": "ÁO DÀI",
+    "category": "Trang Phục",
+    "hint": "Quốc phục truyền thống tôn vinh nét duyên dáng người phụ nữ Việt"
+  },
+  {
+    "id": 93,
+    "word": "NÓN LÁ",
+    "category": "Trang Phục",
+    "hint": "Vật dụng che mưa che nắng mộc mạc đậm chất hồn quê Việt Nam"
+  },
+  {
+    "id": 94,
+    "word": "ĐÀN BẦU",
+    "category": "Âm Nhạc",
+    "hint": "Nhạc cụ cổ truyền độc đáo chỉ có một dây rung lên khúc nhạc lòng"
+  },
+  {
+    "id": 95,
+    "word": "TRỐNG ĐỒNG",
+    "category": "Văn Hóa",
+    "hint": "Báu vật khảo cổ biểu tượng cho nền văn minh Đông Sơn cổ xưa"
+  },
+  {
+    "id": 96,
+    "word": "HOA QUẢ DẦM",
+    "category": "Ẩm Thực",
+    "hint": "Món tráng miệng trộn nhiều loại trái cây với sữa đặc và đá bào"
+  },
+  {
+    "id": 97,
+    "word": "CON CÔNG",
+    "category": "Động Vật",
+    "hint": "Loài chim có chiếc đuôi xoè rộng rực rỡ như chiếc quạt hoa"
+  },
+  {
+    "id": 98,
+    "word": "CHIM BỒ CÂU",
+    "category": "Động Vật",
+    "hint": "Biểu tượng hòa bình mang thông điệp yêu thương khắp thế giới"
+  },
+  {
+    "id": 99,
+    "word": "LỬA TRẠI",
+    "category": "Hoạt Động",
+    "hint": "Ngọn lửa bập bùng thắp sáng đêm liên hoan dã ngoại ấm cúng"
+  },
+  {
+    "id": 100,
+    "word": "NGÔI SAO",
+    "category": "Vũ Trụ",
+    "hint": "Thiên thể lấp lánh tỏa sáng trên bầu trời đêm sâu thẳm"
+  },
+  {
+    "id": 101,
+    "word": "BÚN BÒ HUẾ",
+    "category": "Ẩm Thực",
+    "hint": "Món bún đậm đà hương mắm ruốc và sả đặc trưng xứ Huế"
+  },
+  {
+    "id": 102,
+    "word": "BÚN CHẢ",
+    "category": "Ẩm Thực",
+    "hint": "Món ăn Hà Nội gồm thịt nướng than hoa ăn cùng bún và nước mắm chua ngọt"
+  },
+  {
+    "id": 103,
+    "word": "BÁNH XÈO",
+    "category": "Ẩm Thực",
+    "hint": "Bánh giòn rụm màu vàng nghệ đúc kèm tôm, thịt và giá đỗ"
+  },
+  {
+    "id": 104,
+    "word": "BÁNH CUỐN",
+    "category": "Ẩm Thực",
+    "hint": "Bánh tráng bột gạo mỏng cuộn mộc nhĩ thịt băm rắc hành phi"
+  },
+  {
+    "id": 105,
+    "word": "HỦ TIẾU NAM VANG",
+    "category": "Ẩm Thực",
+    "hint": "Món hủ tiếu trứ danh với tôm, thịt nạc, gan và trứng cút"
+  },
+  {
+    "id": 106,
+    "word": "CHẢ CÁ LÃ VỌNG",
+    "category": "Ẩm Thực",
+    "hint": "Đặc sản cá lăng nướng ăn kèm thì là, hành hoa và mắm tôm"
+  },
+  {
+    "id": 107,
+    "word": "BÁNH BÈO",
+    "category": "Ẩm Thực",
+    "hint": "Bánh nhỏ đựng trong chén rắc tôm chấy và da heo chiên giòn"
+  },
+  {
+    "id": 108,
+    "word": "BÁNH KHỌT",
+    "category": "Ẩm Thực",
+    "hint": "Bánh tròn nhỏ giòn rụm đặc sản nổi tiếng của Vũng Tàu"
+  },
+  {
+    "id": 109,
+    "word": "CANH CHUA CÁ LÓC",
+    "category": "Ẩm Thực",
+    "hint": "Món canh thanh mát nấu cùng dứa, bạc hà, cà chua và me chua"
+  },
+  {
+    "id": 110,
+    "word": "THỊT KHO HỘT VỊT",
+    "category": "Ẩm Thực",
+    "hint": "Món ăn truyền thống ngày Tết miền Nam nấu với nước dừa xiêm"
+  },
+  {
+    "id": 111,
+    "word": "CÁ KHO TỘ",
+    "category": "Ẩm Thực",
+    "hint": "Món cá kho đậm đà thơm lừng mùi tiêu trong nồi đất"
+  },
+  {
+    "id": 112,
+    "word": "GÀ NƯỚNG CƠM LAM",
+    "category": "Ẩm Thực",
+    "hint": "Đặc sản Tây Nguyên gà nướng ăn cùng cơm nếp nướng trong ống tre"
+  },
+  {
+    "id": 113,
+    "word": "BÁNH TRÁNG TRỘN",
+    "category": "Ẩm Thực",
+    "hint": "Món ăn vặt đường phố nổi tiếng với bò khô, trứng cút, xoài xanh"
+  },
+  {
+    "id": 114,
+    "word": "BÁNH TRÁNG NƯỚNG",
+    "category": "Ẩm Thực",
+    "hint": "Món ăn được ví như pizza Việt Nam nướng trên than hồng tại Đà Lạt"
+  },
+  {
+    "id": 115,
+    "word": "CHÈ THẬP CẨM",
+    "category": "Ẩm Thực",
+    "hint": "Món chè nhiều màu sắc gồm đậu đỏ, trân châu, rau câu và nước cốt dừa"
+  },
+  {
+    "id": 116,
+    "word": "CHÈ BƯỞI",
+    "category": "Ẩm Thực",
+    "hint": "Món chè nấu từ cùi bưởi sơ chế giòn ngọt kết hợp đậu xanh"
+  },
+  {
+    "id": 117,
+    "word": "CHÈ HẠT SEN",
+    "category": "Ẩm Thực",
+    "hint": "Món chè thanh tao bổ dưỡng thơm hương sen dịu ngọt"
+  },
+  {
+    "id": 118,
+    "word": "TÀO PHỚ",
+    "category": "Ẩm Thực",
+    "hint": "Món tráng miệng làm từ đậu nành mềm mịn chan nước đường hoa nhài"
+  },
+  {
+    "id": 119,
+    "word": "BÁNH DA LỢN",
+    "category": "Ẩm Thực",
+    "hint": "Bánh ngọt dẻo nhiều tầng màu xanh lá dứa và vàng đậu xanh"
+  },
+  {
+    "id": 120,
+    "word": "BÁNH GAI",
+    "category": "Ẩm Thực",
+    "hint": "Món bánh màu đen thơm mùi lá gai nhân đậu xanh thịt mỡ đặc sản Hải Dương"
+  },
+  {
+    "id": 121,
+    "word": "BÁNH ĐẬU XANH",
+    "category": "Ẩm Thực",
+    "hint": "Đặc sản bánh ngọt tan mịn trong miệng thường thưởng thức cùng trà xanh"
+  },
+  {
+    "id": 122,
+    "word": "BÁNH TÉT",
+    "category": "Ẩm Thực",
+    "hint": "Đòn bánh nếp hình trụ dài truyền thống ngày Tết phương Nam"
+  },
+  {
+    "id": 123,
+    "word": "BÁNH PHU THÊ",
+    "category": "Ẩm Thực",
+    "hint": "Bánh xu sê biểu tượng cho tình nghĩa vợ chồng son sắt"
+  },
+  {
+    "id": 124,
+    "word": "MÌ QUẢNG",
+    "category": "Ẩm Thực",
+    "hint": "Món mì sợi dẹt màu vàng nghệ ăn kèm bánh tráng mè nướng đặc sản xứ Quảng"
+  },
+  {
+    "id": 125,
+    "word": "CAO LẦU",
+    "category": "Ẩm Thực",
+    "hint": "Món ăn đặc sản nức tiếng của phố cổ Hội An sợi mì dai giòn"
+  },
+  {
+    "id": 126,
+    "word": "BÁNH CANH CUA",
+    "category": "Ẩm Thực",
+    "hint": "Món bánh canh sợi to mềm chan nước dùng sền sệt ngọt đậm thịt cua"
+  },
+  {
+    "id": 127,
+    "word": "BÁNH CĂN",
+    "category": "Ẩm Thực",
+    "hint": "Bánh nướng trong khuôn đất nung giòn đáy chấm nước mắm xíu mại"
+  },
+  {
+    "id": 128,
+    "word": "NEM NƯỚNG",
+    "category": "Ẩm Thực",
+    "hint": "Món thịt nướng xiên thơm phức cuốn bánh tráng đặc sản Nha Trang"
+  },
+  {
+    "id": 129,
+    "word": "GỎI CÁ TRÍCH",
+    "category": "Ẩm Thực",
+    "hint": "Đặc sản đảo ngọc Phú Quốc cá trích tươi trộn dừa nạo và rau rừng"
+  },
+  {
+    "id": 130,
+    "word": "LẨU THÁI",
+    "category": "Ẩm Thực",
+    "hint": "Món lẩu chua cay nồng nàn hương sả và lá chanh"
+  },
+  {
+    "id": 131,
+    "word": "LẨU MẮM",
+    "category": "Ẩm Thực",
+    "hint": "Món lẩu đậm đà miền Tây Nam Bộ nấu từ mắm cá linh, cá sặc"
+  },
+  {
+    "id": 132,
+    "word": "BÁNH MÌ XÍU MẠI",
+    "category": "Ẩm Thực",
+    "hint": "Món ăn sáng ấm nóng nổi tiếng xứ ngàn hoa Đà Lạt"
+  },
+  {
+    "id": 133,
+    "word": "BÁNH BÒ THỐT NỐT",
+    "category": "Ẩm Thực",
+    "hint": "Bánh xốp mềm rễ tre màu vàng óng ngọt thanh đường thốt nốt"
+  },
+  {
+    "id": 134,
+    "word": "XÔI VÒ",
+    "category": "Ẩm Thực",
+    "hint": "Món xôi dẻo bùi bọc từng hạt đậu xanh nghiền mịn"
+  },
+  {
+    "id": 135,
+    "word": "XÔI MẶN",
+    "category": "Ẩm Thực",
+    "hint": "Món xôi dẻo thơm ăn kèm lạp xưởng, chà bông và mỡ hành"
+  },
+  {
+    "id": 136,
+    "word": "CHÁO LÒNG",
+    "category": "Ẩm Thực",
+    "hint": "Món cháo truyền thống thơm mùi gừng, tiêu ăn kèm dồi trường"
+  },
+  {
+    "id": 137,
+    "word": "CHÁO SƯỜN",
+    "category": "Ẩm Thực",
+    "hint": "Món cháo bột gạo xay sánh mịn ăn cùng sườn sụn và quẩy giòn"
+  },
+  {
+    "id": 138,
+    "word": "BÒ NÉ",
+    "category": "Ẩm Thực",
+    "hint": "Thịt bò bít tết kiểu Việt Nam nóng xèo xèo trên chảo gang cùng trứng ốp la"
+  },
+  {
+    "id": 139,
+    "word": "VỊT QUAY BẮC KINH",
+    "category": "Ẩm Thực",
+    "hint": "Món vịt quay da giòn bóng bẩy nổi tiếng ẩm thực Trung Hoa"
+  },
+  {
+    "id": 140,
+    "word": "SUSHI",
+    "category": "Ẩm Thực",
+    "hint": "Món cơm trộn giấm cuộn rong biển và hải sản tươi sống của Nhật Bản"
+  },
+  {
+    "id": 141,
+    "word": "SASHIMI",
+    "category": "Ẩm Thực",
+    "hint": "Món hải sản tươi sống thái lát mỏng chấm mù tạt wasabi"
+  },
+  {
+    "id": 142,
+    "word": "KIM CHI",
+    "category": "Ẩm Thực",
+    "hint": "Món cải thảo muối chua cay đặc trưng của xứ sở Hàn Quốc"
+  },
+  {
+    "id": 143,
+    "word": "BÁNH PIZZA",
+    "category": "Ẩm Thực",
+    "hint": "Món bánh nướng tròn phủ sốt cà chua, phô mai mozzarella của Ý"
+  },
+  {
+    "id": 144,
+    "word": "MÌ Ý",
+    "category": "Ẩm Thực",
+    "hint": "Món spaghetti sợi dài sốt bò băm thơm lừng phô mai"
+  },
+  {
+    "id": 145,
+    "word": "HAMBURGER",
+    "category": "Ẩm Thực",
+    "hint": "Bánh mì kẹp thịt bò xay tròn, phô mai và rau xà lách"
+  },
+  {
+    "id": 146,
+    "word": "KHOAI TÂY CHIÊN",
+    "category": "Ẩm Thực",
+    "hint": "Món ăn vặt chiên vàng giòn rụm chấm tương cà"
+  },
+  {
+    "id": 147,
+    "word": "GÀ RÁN",
+    "category": "Ẩm Thực",
+    "hint": "Món thịt gà lăn bột chiên xù giòn tan béo ngậy"
+  },
+  {
+    "id": 148,
+    "word": "TRÀ SEN",
+    "category": "Ẩm Thực",
+    "hint": "Trà ướp gạo sen Tây Hồ mang hương thơm thanh nhã quý phái"
+  },
+  {
+    "id": 149,
+    "word": "TRÀ HOA CÚC",
+    "category": "Ẩm Thực",
+    "hint": "Thức trà thảo mộc giúp an thần, ngủ ngon và thanh lọc cơ thể"
+  },
+  {
+    "id": 150,
+    "word": "NƯỚC MÍA",
+    "category": "Ẩm Thực",
+    "hint": "Thức uống giải khát mát lạnh vắt từ cây mía thêm chút quất"
+  },
+  {
+    "id": 151,
+    "word": "RÂU CÂU",
+    "category": "Ẩm Thực",
+    "hint": "Món tráng miệng thạch giòn dai thơm mùi dừa lá dứa"
+  },
+  {
+    "id": 152,
+    "word": "BÁNH TRUNG THU",
+    "category": "Ẩm Thực",
+    "hint": "Bánh nướng bánh dẻo truyền thống sum vầy rằm tháng Tám"
+  },
+  {
+    "id": 153,
+    "word": "BÁNH ĐÚC NÓNG",
+    "category": "Ẩm Thực",
+    "hint": "Bánh đúc dẻo mềm chan nước mắm mặn ngọt thịt băm mộc nhĩ"
+  },
+  {
+    "id": 154,
+    "word": "BÁNH GỐI",
+    "category": "Ẩm Thực",
+    "hint": "Bánh chiên hình bán nguyệt viền xoắn nhân miến thịt trứng cút"
+  },
+  {
+    "id": 155,
+    "word": "ỐC HƯƠNG XÀO ME",
+    "category": "Ẩm Thực",
+    "hint": "Ốc biển thơm vị chua ngọt quyến rũ chấm bánh mì giòn"
+  },
+  {
+    "id": 156,
+    "word": "CÀ PHÊ TRỨNG",
+    "category": "Ẩm Thực",
+    "hint": "Cà phê đen phủ lớp kem trứng đánh bông béo ngậy nức tiếng Hà Nội"
+  },
+  {
+    "id": 157,
+    "word": "CÀ PHÊ MUỐI",
+    "category": "Ẩm Thực",
+    "hint": "Thức uống độc đáo kết hợp vị đắng của cà phê và vị mặn mà của kem muối"
+  },
+  {
+    "id": 158,
+    "word": "CÀ PHÊ ĐEN ĐÁ",
+    "category": "Ẩm Thực",
+    "hint": "Ly cà phê phin đậm đặc phong cách thưởng thức mộc mạc của người Việt"
+  },
+  {
+    "id": 159,
+    "word": "BÁNH MÌ CHẢO",
+    "category": "Ẩm Thực",
+    "hint": "Món ăn gồm pate, trứng ốp la, xúc xích sốt nóng hổi trên chảo"
+  },
+  {
+    "id": 160,
+    "word": "SÚP CUA",
+    "category": "Ẩm Thực",
+    "hint": "Món súp sánh đặc thịt cua, trứng bắc thảo và nấm đông cô"
+  },
+  {
+    "id": 161,
+    "word": "GỎI NGÓ SEN",
+    "category": "Ẩm Thực",
+    "hint": "Món gỏi giòn chua ngọt kết hợp tôm thịt và ngó sen tươi"
+  },
+  {
+    "id": 162,
+    "word": "BÁNH RÁN ĐƯỜNG",
+    "category": "Ẩm Thực",
+    "hint": "Bánh nếp chiên phồng bọc một lớp đường trắng giòn ngọt lịm"
+  },
+  {
+    "id": 163,
+    "word": "CƠM CHÁY CHÀ BÔNG",
+    "category": "Ẩm Thực",
+    "hint": "Cơm cháy giòn rụm rưới mỡ hành và chà bông thơm cay"
+  },
+  {
+    "id": 164,
+    "word": "BÁNH TIÊU",
+    "category": "Ẩm Thực",
+    "hint": "Bánh bột mì chiên phồng rắc hạt mè thơm lừng"
+  },
+  {
+    "id": 165,
+    "word": "BÁNH QUẨY",
+    "category": "Ẩm Thực",
+    "hint": "Thanh bột chiên giòn vàng ruộm thường ăn kèm phở và cháo"
+  },
+  {
+    "id": 166,
+    "word": "LẨU BÒ",
+    "category": "Ẩm Thực",
+    "hint": "Nồi lẩu thơm lừng thảo mộc với thịt nạm bò, gân bò và rau xanh"
+  },
+  {
+    "id": 167,
+    "word": "LẨU GÀ LÁ É",
+    "category": "Ẩm Thực",
+    "hint": "Đặc sản lẩu gà thơm nồng vị lá é tươi cay ấm tại Đà Lạt"
+  },
+  {
+    "id": 168,
+    "word": "BÁNH MÌ HEO QUAY",
+    "category": "Ẩm Thực",
+    "hint": "Bánh mì kẹp thịt ba chỉ quay da giòn rụm rưới nước sốt đậm đà"
+  },
+  {
+    "id": 169,
+    "word": "CHÈ ĐẬU ĐỎ",
+    "category": "Ẩm Thực",
+    "hint": "Món chè may mắn thường được giới trẻ ăn vào ngày lễ Thất Tịch"
+  },
+  {
+    "id": 170,
+    "word": "CHÈ KHÚC BẠCH",
+    "category": "Ẩm Thực",
+    "hint": "Món chè giải nhiệt với từng viên khúc bạch sữa béo ngậy và nhãn tươi"
+  },
+  {
+    "id": 171,
+    "word": "TRÀ ĐÀO CAM SẢ",
+    "category": "Ẩm Thực",
+    "hint": "Thức uống thanh mát kết hợp vị đào giòn ngọt và hương sả thơm lừng"
+  },
+  {
+    "id": 172,
+    "word": "SINH TỐ BƠ",
+    "category": "Ẩm Thực",
+    "hint": "Ly sinh tố sánh mịn béo ngậy từ những quả bơ sáp Đắk Lắk"
+  },
+  {
+    "id": 173,
+    "word": "CHẢ LỤA",
+    "category": "Ẩm Thực",
+    "hint": "Đòn giò lụa làm từ thịt nạc quết nhuyễn gói lá chuối luộc chín"
+  },
+  {
+    "id": 174,
+    "word": "CHẢ CỐM",
+    "category": "Ẩm Thực",
+    "hint": "Chả thịt băm trộn hạt cốm non chiên vàng thơm mùi lúa mới"
+  },
+  {
+    "id": 175,
+    "word": "NEM CHUA",
+    "category": "Ẩm Thực",
+    "hint": "Đặc sản Thanh Hóa thịt lợn lên men chua cay cuộn lá đinh lăng"
+  },
+  {
+    "id": 176,
+    "word": "DỒI SỤN CHIÊN",
+    "category": "Ẩm Thực",
+    "hint": "Món nhậu khoái khẩu giòn sần sật nướng thơm phức"
+  },
+  {
+    "id": 177,
+    "word": "THỊT TRÂU GÁC BẾP",
+    "category": "Ẩm Thực",
+    "hint": "Đặc sản vùng cao Tây Bắc thịt trâu sấy khô bằng khói củi"
+  },
+  {
+    "id": 178,
+    "word": "BÁNH CỐM",
+    "category": "Ẩm Thực",
+    "hint": "Món bánh cưới hỏi truyền thống màu xanh cốm nhân đậu xanh ngọt lịm"
+  },
+  {
+    "id": 179,
+    "word": "KẸO DỪA BẾN TRE",
+    "category": "Ẩm Thực",
+    "hint": "Kẹo ngọt béo đặc sản xứ dừa miền Tây"
+  },
+  {
+    "id": 180,
+    "word": "KẸO CU ĐƠ",
+    "category": "Ẩm Thực",
+    "hint": "Kẹo mật mía nấu lạc kẹp giữa hai miếng bánh tráng nướng Hà Tĩnh"
+  },
+  {
+    "id": 181,
+    "word": "BÁNH PÍA SÓC TRĂNG",
+    "category": "Ẩm Thực",
+    "hint": "Bánh lột da nhiều lớp nhân sầu riêng đậu xanh và trứng muối"
+  },
+  {
+    "id": 182,
+    "word": "MỰC MỘT NẮNG",
+    "category": "Ẩm Thực",
+    "hint": "Mực ống tươi phơi qua một nắng nướng than hoa ngọt đậm đà"
+  },
+  {
+    "id": 183,
+    "word": "TÔM KHÔ",
+    "category": "Ẩm Thực",
+    "hint": "Đặc sản biển Cà Mau tôm phơi khô màu đỏ cam nấu canh cực ngọt"
+  },
+  {
+    "id": 184,
+    "word": "CANH KHỔ QUA",
+    "category": "Ẩm Thực",
+    "hint": "Món canh mướp đắng nhồi thịt mong mọi nỗi khổ qua đi đầu năm mới"
+  },
+  {
+    "id": 185,
+    "word": "CÁ CHÉP OM DƯA",
+    "category": "Ẩm Thực",
+    "hint": "Món cá om cùng dưa chua thanh dịu ăn kèm bún tươi"
+  },
+  {
+    "id": 186,
+    "word": "HỔ ĐÔNG DƯƠNG",
+    "category": "Động Vật",
+    "hint": "Chúa sơn lâm dũng mãnh của rừng rậm nhiệt đới"
+  },
+  {
+    "id": 187,
+    "word": "SƯ TỬ CHÂU PHI",
+    "category": "Động Vật",
+    "hint": "Vua đồng cỏ với bờm rậm uy nghi"
+  },
+  {
+    "id": 188,
+    "word": "BÁO HOA MAI",
+    "category": "Động Vật",
+    "hint": "Loài dã thú săn mồi với bộ lông đốm hoa mai và tốc độ leo trèo cực đỉnh"
+  },
+  {
+    "id": 189,
+    "word": "BÁO GẤM",
+    "category": "Động Vật",
+    "hint": "Loài mèo rừng quý hiếm với những mảng hoa văn vân mây tuyệt đẹp"
+  },
+  {
+    "id": 190,
+    "word": "GẤU TRÚC",
+    "category": "Động Vật",
+    "hint": "Quốc bảo của Trung Quốc với hai khoang mắt đen tròn thích ăn tre trúc"
+  },
+  {
+    "id": 191,
+    "word": "GẤU BẮC CỰC",
+    "category": "Động Vật",
+    "hint": "Loài thú săn mồi lông trắng muốt to lớn sống trên băng tuyết cực bắc"
+  },
+  {
+    "id": 192,
+    "word": "GẤU NGỰA",
+    "category": "Động Vật",
+    "hint": "Loài gấu có khoang lông hình chữ V màu trắng trước ngực"
+  },
+  {
+    "id": 193,
+    "word": "HÀ MÃ",
+    "category": "Động Vật",
+    "hint": "Loài thú ăn cỏ khổng lồ có bộ hàm cực khỏe sống nửa dưới nước"
+  },
+  {
+    "id": 194,
+    "word": "TÊ GIÁC",
+    "category": "Động Vật",
+    "hint": "Loài thú móng guốc da dày với chiếc sừng cứng cáp trên chóp mũi"
+  },
+  {
+    "id": 195,
+    "word": "VOI CHÂU Á",
+    "category": "Động Vật",
+    "hint": "Loài động vật có chiếc vòi dài khéo léo và ngà cong"
+  },
+  {
+    "id": 196,
+    "word": "CÁ VOI XANH",
+    "category": "Động Vật",
+    "hint": "Sinh vật lớn nhất từng tồn tại trên Trái Đất bơi lội giữa đại dương"
+  },
+  {
+    "id": 197,
+    "word": "CÁ MẬP TRẮNG",
+    "category": "Động Vật",
+    "hint": "Kẻ săn mồi đỉnh cao của biển cả với hàm răng sắc nhọn"
+  },
+  {
+    "id": 198,
+    "word": "CÁ HEO MŨI CHAI",
+    "category": "Động Vật",
+    "hint": "Loài động vật biển thông minh thường làm xiếc và cứu người"
+  },
+  {
+    "id": 199,
+    "word": "CÁ VOI SÁT THỦ",
+    "category": "Động Vật",
+    "hint": "Kẻ săn mồi có hai khoang màu đen trắng bơi theo bầy đàn"
+  },
+  {
+    "id": 200,
+    "word": "RÙA BIỂN",
+    "category": "Động Vật",
+    "hint": "Loài bò sát có mai cứng vượt hàng ngàn dặm về bờ cát đẻ trứng"
+  },
+  {
+    "id": 201,
+    "word": "HẢI CẨU",
+    "category": "Động Vật",
+    "hint": "Loài động vật chân màng tròn trĩnh sống ở biển lạnh"
+  },
+  {
+    "id": 202,
+    "word": "SƯ TỬ BIỂN",
+    "category": "Động Vật",
+    "hint": "Loài thú biển có tai nhỏ biết đi bằng bốn vây trên cạn"
+  },
+  {
+    "id": 203,
+    "word": "CHIM BÓI CÁ",
+    "category": "Động Vật",
+    "hint": "Loài chim có bộ lông xanh biếc và chiếc mỏ dài lao thẳng xuống nước bắt cá"
+  },
+  {
+    "id": 204,
+    "word": "CHIM CÔNG",
+    "category": "Động Vật",
+    "hint": "Loài chim quý phái với chiếc đuôi xòe rộng như quạt gấm rực rỡ"
+  },
+  {
+    "id": 205,
+    "word": "CHIM HẢI ÂU",
+    "category": "Động Vật",
+    "hint": "Loài chim biển sải cánh dài chao liệng giữa sóng gió trùng khơi"
+  },
+  {
+    "id": 206,
+    "word": "CHIM GÕ KIẾN",
+    "category": "Động Vật",
+    "hint": "Bác sĩ của rừng xanh chuyên dùng mỏ gõ thân cây bắt sâu"
+  },
+  {
+    "id": 207,
+    "word": "CHIM SƠN CA",
+    "category": "Động Vật",
+    "hint": "Loài chim nhỏ bé cất tiếng hót véo von giữa trời xanh"
+  },
+  {
+    "id": 208,
+    "word": "CHIM VÀNG ANH",
+    "category": "Động Vật",
+    "hint": "Loài chim gắn liền với truyện Tấm Cám mang bộ lông vàng tươi"
+  },
+  {
+    "id": 209,
+    "word": "CÚ MÈO",
+    "category": "Động Vật",
+    "hint": "Loài chim săn mồi ban đêm với đôi mắt tròn xoe sáng quắc"
+  },
+  {
+    "id": 210,
+    "word": "ĐẠI BÀNG BIỂN",
+    "category": "Động Vật",
+    "hint": "Chúa tể bầu trời bờ biển với đôi mắt tinh anh quắp cá thoăn thoắt"
+  },
+  {
+    "id": 211,
+    "word": "DIỀU HÂU",
+    "category": "Động Vật",
+    "hint": "Loài chim săn mồi hung dữ bay lượn trên đồng ruộng"
+  },
+  {
+    "id": 212,
+    "word": "VOỌC CHÀ VÁ CHÂN NÂU",
+    "category": "Động Vật",
+    "hint": "Nữ hoàng linh trưởng của bán đảo Sơn Trà với bộ lông 5 màu kỳ ảo"
+  },
+  {
+    "id": 213,
+    "word": "SAO LA",
+    "category": "Động Vật",
+    "hint": "Kỳ lân châu Á loài thú quý hiếm phát hiện tại dãy Trường Sơn"
+  },
+  {
+    "id": 214,
+    "word": "HƯƠU SAO",
+    "category": "Động Vật",
+    "hint": "Loài thú hiền lành có những đốm trắng tròn như sao trên lưng"
+  },
+  {
+    "id": 215,
+    "word": "NAI RỪNG",
+    "category": "Động Vật",
+    "hint": "Loài động vật móng guốc nhút nhát với cặp sừng nhiều nhánh"
+  },
+  {
+    "id": 216,
+    "word": "SÓC BAY",
+    "category": "Động Vật",
+    "hint": "Loài gặm nhấm có màng da nối giữa các chi giúp lượn từ cây này sang cây khác"
+  },
+  {
+    "id": 217,
+    "word": "CHUỘT TÚI",
+    "category": "Động Vật",
+    "hint": "Biểu tượng nước Úc di chuyển bằng cách nhảy hai chân sau có túi nuôi con"
+  },
+  {
+    "id": 218,
+    "word": "GẤU KOALA",
+    "category": "Động Vật",
+    "hint": "Loài thú có túi dễ thương suốt ngày ôm thân cây bạch đàn ngủ"
+  },
+  {
+    "id": 219,
+    "word": "KỲ ĐÀ",
+    "category": "Động Vật",
+    "hint": "Loài thằn lằn kích thước lớn da sần sùi bơi lội giỏi"
+  },
+  {
+    "id": 220,
+    "word": "TẮC KÈ HOA",
+    "category": "Động Vật",
+    "hint": "Loài bò sát có khả năng đổi màu da ngụy trang và lưỡi bắn mồi siêu tốc"
+  },
+  {
+    "id": 221,
+    "word": "CÁ SẤU XIÊM",
+    "category": "Động Vật",
+    "hint": "Loài bò sát thủy sinh cổ xưa với bộ hàm răng cưa nguy hiểm"
+  },
+  {
+    "id": 222,
+    "word": "RẮN HỔ MANG",
+    "category": "Động Vật",
+    "hint": "Loài rắn độc bạnh cổ đe dọa kẻ thù"
+  },
+  {
+    "id": 223,
+    "word": "BỌ NGỰA",
+    "category": "Động Vật",
+    "hint": "Võ sĩ của thế giới côn trùng với cặp càng gai sắc lẹm"
+  },
+  {
+    "id": 224,
+    "word": "CHUỒN CHUỒN KIM",
+    "category": "Động Vật",
+    "hint": "Loài chuồn chuồn mảnh mai đậu trên ngọn cỏ ven ao"
+  },
+  {
+    "id": 225,
+    "word": "BƯỚM PHƯỢNG",
+    "category": "Động Vật",
+    "hint": "Loài bướm có đôi cánh rực rỡ đuôi dài như đuôi phượng"
+  },
+  {
+    "id": 226,
+    "word": "CON ĐOM ĐÓM",
+    "category": "Động Vật",
+    "hint": "Loài côn trùng phát ra ánh sáng lung linh lập lòe trong đêm hè"
+  },
+  {
+    "id": 227,
+    "word": "CON DẾ MÈN",
+    "category": "Động Vật",
+    "hint": "Nhân vật hiệp sĩ phiêu lưu nổi tiếng trong văn học Tô Hoài"
+  },
+  {
+    "id": 228,
+    "word": "CON ONG MẬT",
+    "category": "Động Vật",
+    "hint": "Sinh vật chăm chỉ bay khắp vườn hoa hút mật thụ phấn cho cây"
+  },
+  {
+    "id": 229,
+    "word": "KIẾN LỬA",
+    "category": "Động Vật",
+    "hint": "Loài côn trùng nhỏ bé sống theo đàn có vết cắn buốt nhức"
+  },
+  {
+    "id": 230,
+    "word": "VE SẦU",
+    "category": "Động Vật",
+    "hint": "Ca sĩ mùa hè cất tiếng râm ran trên những vòm phượng vĩ"
+  },
+  {
+    "id": 231,
+    "word": "BẠCH TUỘC",
+    "category": "Động Vật",
+    "hint": "Sinh vật thân mềm thông minh có 8 xúc tu và khả năng phun mực tẩu thoát"
+  },
+  {
+    "id": 232,
+    "word": "MỰC ỐNG",
+    "category": "Động Vật",
+    "hint": "Hải sản thân mềm hình ống bơi lùi bằng cách phụt nước"
+  },
+  {
+    "id": 233,
+    "word": "TÔM HÙM",
+    "category": "Động Vật",
+    "hint": "Vua giáp xác biển sâu với hai chiếc càng khổng lồ"
+  },
+  {
+    "id": 234,
+    "word": "CUA HOÀNG ĐẾ",
+    "category": "Động Vật",
+    "hint": "Loài cua khổng lồ sống ở vùng biển băng lạnh Alaska"
+  },
+  {
+    "id": 235,
+    "word": "SỨA BIỂN",
+    "category": "Động Vật",
+    "hint": "Sinh vật biển thân trong suốt dập dềnh như chiếc ô dưới nước"
+  },
+  {
+    "id": 236,
+    "word": "CÁ NGỰA",
+    "category": "Động Vật",
+    "hint": "Loài cá kỳ lạ có đầu giống ngựa và do con đực mang thai"
+  },
+  {
+    "id": 237,
+    "word": "CÁ HỀ",
+    "category": "Động Vật",
+    "hint": "Loài cá nhỏ sọc cam trắng sống cộng sinh an toàn giữa các xúc tu hải quỳ"
+  },
+  {
+    "id": 238,
+    "word": "CÁ MÒNG BIỂN",
+    "category": "Động Vật",
+    "hint": "Loài cá biển sắc màu lượn quanh rạn san hô"
+  },
+  {
+    "id": 239,
+    "word": "HẢI SÂM",
+    "category": "Động Vật",
+    "hint": "Món ăn quý của biển cả còn được gọi là nhân sâm đáy biển"
+  },
+  {
+    "id": 240,
+    "word": "SAO BIỂN",
+    "category": "Động Vật",
+    "hint": "Sinh vật biển hình ngôi sao năm cánh bám trên đá ngầm"
+  },
+  {
+    "id": 241,
+    "word": "HOA CÚC HỌA MI",
+    "category": "Thực Vật",
+    "hint": "Loài hoa cánh trắng nhụy vàng báo hiệu mùa đông Hà Nội về"
+  },
+  {
+    "id": 242,
+    "word": "HOA PHƯỢNG VĨ",
+    "category": "Thực Vật",
+    "hint": "Loài hoa đỏ rực rỡ gắn liền với tuổi học trò và mùa thi hè"
+  },
+  {
+    "id": 243,
+    "word": "HOA BẰNG LĂNG",
+    "category": "Thực Vật",
+    "hint": "Loài hoa tím biếc nở rộ khắp các con phố mùa chia tay mái trường"
+  },
+  {
+    "id": 244,
+    "word": "HOA SỮA",
+    "category": "Thực Vật",
+    "hint": "Loài hoa thơm nồng nàn góc phố thủ đô khi trời chuyển sang thu"
+  },
+  {
+    "id": 245,
+    "word": "HOA THẠCH THẢO",
+    "category": "Thực Vật",
+    "hint": "Loài hoa cánh nhỏ li ti sắc tím mộng mơ mang vẻ đẹp dịu dàng"
+  },
+  {
+    "id": 246,
+    "word": "HOA TIGON",
+    "category": "Thực Vật",
+    "hint": "Dây hoa leo hình trái tim vỡ với hai sắc hồng trắng thanh tao"
+  },
+  {
+    "id": 247,
+    "word": "HOA QUỲNH",
+    "category": "Thực Vật",
+    "hint": "Nữ hoàng bóng đêm chỉ hé nụ tỏa hương thơm ngát lúc nửa đêm"
+  },
+  {
+    "id": 248,
+    "word": "HOA LY",
+    "category": "Thực Vật",
+    "hint": "Loài hoa thanh cao có mùi thơm ngát thường cắm ngày Tết"
+  },
+  {
+    "id": 249,
+    "word": "HOA CẨM TÚ CẦU",
+    "category": "Thực Vật",
+    "hint": "Loài hoa nở thành từng chùm tròn xoe đổi màu theo độ pH của đất ở Đà Lạt"
+  },
+  {
+    "id": 250,
+    "word": "HOA DÃ QUỲ",
+    "category": "Thực Vật",
+    "hint": "Loài hoa dại nhuộm vàng rực rỡ các cung đường Tây Nguyên cuối năm"
+  },
+  {
+    "id": 251,
+    "word": "HOA TAM GIÁC MẠCH",
+    "category": "Thực Vật",
+    "hint": "Mùa hoa phớt hồng phủ kín các sườn núi đá tai mèo ở Hà Giang"
+  },
+  {
+    "id": 252,
+    "word": "HOA BAN TRẮNG",
+    "category": "Thực Vật",
+    "hint": "Loài hoa tinh khôi nở trắng núi rừng Tây Bắc vào mùa xuân"
+  },
+  {
+    "id": 253,
+    "word": "HOA ĐỖ QUYÊN",
+    "category": "Thực Vật",
+    "hint": "Loài hoa rực rỡ mọc trên đỉnh núi Hoàng Liên Sơn cao ngút ngàn"
+  },
+  {
+    "id": 254,
+    "word": "HOA MƯỜI GIỜ",
+    "category": "Thực Vật",
+    "hint": "Loài hoa thân mọng nước chỉ nở bung khi mặt trời lên đúng giữa trưa"
+  },
+  {
+    "id": 255,
+    "word": "HOA SÚNG",
+    "category": "Thực Vật",
+    "hint": "Loài hoa thủy sinh nở trên mặt nước sông suối miền Tây mùa nước nổi"
+  },
+  {
+    "id": 256,
+    "word": "HOA NGỌC LAN",
+    "category": "Thực Vật",
+    "hint": "Loài hoa cánh trắng ngà thơm ngát vương trên mái tóc thiếu nữ"
+  },
+  {
+    "id": 257,
+    "word": "SẦU RIÊNG",
+    "category": "Thực Vật",
+    "hint": "Vua của các loại trái cây vỏ đầy gai nhọn nhân vàng ngọt béo nức mũi"
+  },
+  {
+    "id": 258,
+    "word": "MĂNG CỤT",
+    "category": "Thực Vật",
+    "hint": "Nữ hoàng trái cây vỏ tím sẫm múi trắng ngần chua ngọt thanh tao"
+  },
+  {
+    "id": 259,
+    "word": "BƯỞI NĂM ROI",
+    "category": "Thực Vật",
+    "hint": "Đặc sản bưởi tép mọng nước không hạt nổi tiếng Vĩnh Long"
+  },
+  {
+    "id": 260,
+    "word": "BƯỞI DA XANH",
+    "category": "Thực Vật",
+    "hint": "Giống bưởi vỏ xanh ruột hồng ngọt đậm đà xuất xứ Bến Tre"
+  },
+  {
+    "id": 261,
+    "word": "XOÀI CÁT HÒA LỘC",
+    "category": "Thực Vật",
+    "hint": "Giống xoài ngon trứ danh xứ Tiền Giang thơm lừng ngọt sắc"
+  },
+  {
+    "id": 262,
+    "word": "THANH LONG RUỘT ĐỎ",
+    "category": "Thực Vật",
+    "hint": "Trái cây vỏ hồng cánh xanh ruột đỏ tươi giàu dinh dưỡng đặc sản Bình Thuận"
+  },
+  {
+    "id": 263,
+    "word": "CHÔM CHÔM",
+    "category": "Thực Vật",
+    "hint": "Trái cây vỏ đỏ nhiều lông râu cùi giòn ngọt róc hạt"
+  },
+  {
+    "id": 264,
+    "word": "NHÃN LỒNG HƯNG YÊN",
+    "category": "Thực Vật",
+    "hint": "Đặc sản tiến vua cùi dày ráo nước hạt tiêu nhỏ xíu"
+  },
+  {
+    "id": 265,
+    "word": "VẢI THIỀU THANH HÀ",
+    "category": "Thực Vật",
+    "hint": "Trái cây mùa hè vỏ mỏng đỏ au cùi mọng ngọt lịm vùng đất Hải Dương"
+  },
+  {
+    "id": 266,
+    "word": "VÚ SỮA LÒ RÈN",
+    "category": "Thực Vật",
+    "hint": "Trái cây dòng sữa trắng đục ngọt thanh của vùng đất Vĩnh Kim"
+  },
+  {
+    "id": 267,
+    "word": "DƯA HẤU",
+    "category": "Thực Vật",
+    "hint": "Trái cây vỏ xanh ruột đỏ mát lạnh gắn liền tích truyện Mai An Tiêm"
+  },
+  {
+    "id": 268,
+    "word": "DÂU TÂY ĐÀ LẠT",
+    "category": "Thực Vật",
+    "hint": "Quả mọng đỏ mọng nước vị chua ngọt dễ thương xứ lạnh sương mù"
+  },
+  {
+    "id": 269,
+    "word": "MÃNG CẦU XIÊM",
+    "category": "Thực Vật",
+    "hint": "Quả vỏ xanh có gai mềm cùi trắng chua ngọt làm sinh tố tuyệt ngon"
+  },
+  {
+    "id": 270,
+    "word": "HỒNG GIÒN",
+    "category": "Thực Vật",
+    "hint": "Đặc sản mùa thu Đà Lạt ăn giòn rụm ngọt mát không chát"
+  },
+  {
+    "id": 271,
+    "word": "TRÁI KHẾ",
+    "category": "Thực Vật",
+    "hint": "Quả có năm khía hình ngôi sao gắn liền truyện Ăn khế trả vàng"
+  },
+  {
+    "id": 272,
+    "word": "QUẢ ỔI",
+    "category": "Thực Vật",
+    "hint": "Trái cây giàu vitamin C cùi giòn chấm muối ớt cay xè"
+  },
+  {
+    "id": 273,
+    "word": "QUẢ CÓC",
+    "category": "Thực Vật",
+    "hint": "Trái cây chua giòn khoái khẩu của học trò ăn kèm muối tôm"
+  },
+  {
+    "id": 274,
+    "word": "QUẢ XOÀI NON",
+    "category": "Thực Vật",
+    "hint": "Món ăn vặt chấm mắm ruốc hay muối ớt khiến ai nhìn cũng thèm"
+  },
+  {
+    "id": 275,
+    "word": "CÂY BÀNG VUÔNG",
+    "category": "Thực Vật",
+    "hint": "Loài cây kiên cường chắn sóng gió bão bùng trên quần đảo Trường Sa"
+  },
+  {
+    "id": 276,
+    "word": "CÂY PHONG BA",
+    "category": "Thực Vật",
+    "hint": "Loài cây hiên ngang bám rễ nơi hải đảo đầu sóng ngọn gió"
+  },
+  {
+    "id": 277,
+    "word": "CÂY ĐA LÀNG",
+    "category": "Thực Vật",
+    "hint": "Biểu tượng bóng mát cổ kính đầu làng quê Việt Nam"
+  },
+  {
+    "id": 278,
+    "word": "CÂY TRE VIỆT NAM",
+    "category": "Thực Vật",
+    "hint": "Loài cây dẻo dai kiên cường biểu tượng cho tinh thần dân tộc"
+  },
+  {
+    "id": 279,
+    "word": "RỪNG NGẬP MẶN",
+    "category": "Thực Vật",
+    "hint": "Hệ sinh thái cây đước, cây mắm giữ đất bãi bồi ven biển"
+  },
+  {
+    "id": 280,
+    "word": "CÂY NÊU NGÀY TẾT",
+    "category": "Thực Vật",
+    "hint": "Cây tre cao vút dựng trước sân nhà xua đuổi tà ma dịp năm mới"
+  },
+  {
+    "id": 281,
+    "word": "ĐỈNH FANSIPAN",
+    "category": "Địa Danh",
+    "hint": "Nóc nhà Đông Dương cao 3.143 mét quanh năm mây mù bao phủ"
+  },
+  {
+    "id": 282,
+    "word": "CAO NGUYÊN ĐÁ ĐỒNG VĂN",
+    "category": "Địa Danh",
+    "hint": "Công viên địa chất toàn cầu với điệp trùng núi đá xám ở Hà Giang"
+  },
+  {
+    "id": 283,
+    "word": "ĐÈO MÃ PÍ LÈNG",
+    "category": "Địa Danh",
+    "hint": "Một trong tứ đại đỉnh đèo hiểm trở bậc nhất nhìn xuống sông Nho Quế"
+  },
+  {
+    "id": 284,
+    "word": "ĐÈO HẢI VÂN",
+    "category": "Địa Danh",
+    "hint": "Thiên hạ đệ nhất hùng quan nối liền Thừa Thiên Huế và Đà Nẵng"
+  },
+  {
+    "id": 285,
+    "word": "ĐÈO Ô QUY HỒ",
+    "category": "Địa Danh",
+    "hint": "Đèo mây hùng vĩ vượt dãy Hoàng Liên Sơn nối Lào Cai và Lai Châu"
+  },
+  {
+    "id": 286,
+    "word": "HỒ BA BỂ",
+    "category": "Địa Danh",
+    "hint": "Hồ nước ngọt tự nhiên trên núi lớn nhất Việt Nam tại Bắc Kạn"
+  },
+  {
+    "id": 287,
+    "word": "THÁC BẢN GIỐC",
+    "category": "Địa Danh",
+    "hint": "Thác nước tự nhiên hùng vĩ trên đường biên giới tại Cao Bằng"
+  },
+  {
+    "id": 288,
+    "word": "RỪNG TRÀM TRÀ SƯ",
+    "category": "Địa Danh",
+    "hint": "Khu rừng ngập nước xanh mướt bèo cám tại An Giang"
+  },
+  {
+    "id": 289,
+    "word": "CHỢ NỔI CÁI RĂNG",
+    "category": "Địa Danh",
+    "hint": "Nét văn hóa mua bán trên sông đặc sắc của thủ phủ miền Tây Cần Thơ"
+  },
+  {
+    "id": 290,
+    "word": "MŨI CÀ MAU",
+    "category": "Địa Danh",
+    "hint": "Điểm cực Nam của Tổ quốc nơi đất nở ra và rừng biết đi"
+  },
+  {
+    "id": 291,
+    "word": "CỰC BẮC LŨNG CÚ",
+    "category": "Địa Danh",
+    "hint": "Cột cờ thiêng liêng nơi địa đầu Tổ quốc thuộc tỉnh Hà Giang"
+  },
+  {
+    "id": 292,
+    "word": "MŨI ĐÔI",
+    "category": "Địa Danh",
+    "hint": "Điểm cực Đông trên đất liền đón ánh bình minh đầu tiên của Việt Nam tại Khánh Hòa"
+  },
+  {
+    "id": 293,
+    "word": "MŨI ĐIỆN",
+    "category": "Địa Danh",
+    "hint": "Hải đăng Đại Lãnh tuyệt đẹp nhìn ra biển cả bao la ở Phú Yên"
+  },
+  {
+    "id": 294,
+    "word": "QUẦN ĐẢO TRƯỜNG SA",
+    "category": "Địa Danh",
+    "hint": "Quần đảo tiền tiêu thiêng liêng của Tổ quốc Việt Nam"
+  },
+  {
+    "id": 295,
+    "word": "QUẦN ĐẢO HOÀNG SA",
+    "category": "Địa Danh",
+    "hint": "Quần đảo hải cương thuộc chủ quyền bất khả xâm phạm của Việt Nam"
+  },
+  {
+    "id": 296,
+    "word": "BÀ NÀ HILLS",
+    "category": "Địa Danh",
+    "hint": "Khu du lịch trên đỉnh núi Chúa nổi tiếng với Cầu Vàng bàn tay khổng lồ"
+  },
+  {
+    "id": 297,
+    "word": "THUNG LŨNG TÌNH YÊU",
+    "category": "Địa Danh",
+    "hint": "Thắng cảnh thơ mộng hữu tình bậc nhất của xứ sở sương mù Đà Lạt"
+  },
+  {
+    "id": 298,
+    "word": "HỒ TUYỀN LÂM",
+    "category": "Địa Danh",
+    "hint": "Hồ nước ngọt rộng lớn thơ mộng bao quanh bởi rừng thông Đà Lạt"
+  },
+  {
+    "id": 299,
+    "word": "NÚI BÀ ĐEN",
+    "category": "Địa Danh",
+    "hint": "Nóc nhà Nam Bộ cao 986m nơi có tượng Phật Bà bằng đồng uy nghi tại Tây Ninh"
+  },
+  {
+    "id": 300,
+    "word": "CỐ ĐÔ HUẾ",
+    "category": "Địa Danh",
+    "hint": "Di sản văn hóa thế giới với quần thể lăng tẩm hoàng gia triều Nguyễn"
+  },
+  {
+    "id": 301,
+    "word": "CHÙA HƯƠNG",
+    "category": "Địa Danh",
+    "hint": "Quần thể danh thắng tâm linh suối Yến chùa Trình đón hàng triệu phật tử đầu xuân"
+  },
+  {
+    "id": 302,
+    "word": "CHÙA BÁI ĐÍNH",
+    "category": "Địa Danh",
+    "hint": "Quần thể chùa lớn với nhiều kỷ lục châu Á tại Ninh Bình"
+  },
+  {
+    "id": 303,
+    "word": "TRÀNG AN",
+    "category": "Địa Danh",
+    "hint": "Di sản hỗn hợp thế giới đầu tiên của Đông Nam Á với non nước hữu tình"
+  },
+  {
+    "id": 304,
+    "word": "TAM CỐC BÍCH ĐỘNG",
+    "category": "Địa Danh",
+    "hint": "Được mệnh danh là Nam thiên đệ nhị động hay vịnh Hạ Long trên cạn"
+  },
+  {
+    "id": 305,
+    "word": "VƯỜN QUỐC GIA CÚC PHƯƠNG",
+    "category": "Địa Danh",
+    "hint": "Vườn quốc gia đầu tiên của Việt Nam nổi tiếng mùa bướm bay rợp trời"
+  },
+  {
+    "id": 306,
+    "word": "VƯỜN QUỐC GIA BONG NHA KẺ BÀNG",
+    "category": "Địa Danh",
+    "hint": "Vương quốc hang động kỳ vĩ bậc nhất thế giới tại Quảng Bình"
+  },
+  {
+    "id": 307,
+    "word": "HANG SƠN ĐOÒNG",
+    "category": "Địa Danh",
+    "hint": "Hang động tự nhiên lớn nhất hành tinh có thể chứa cả tòa nhà chọc trời"
+  },
+  {
+    "id": 308,
+    "word": "BÃI BIỂN MỸ KHÊ",
+    "category": "Địa Danh",
+    "hint": "Bãi biển cát trắng mịn từng được tạp chí Forbes vinh danh quyến rũ hàng đầu thế giới"
+  },
+  {
+    "id": 309,
+    "word": "CẦU VÀNG",
+    "category": "Địa Danh",
+    "hint": "Cây cầu hình đôi bàn tay khổng lồ nâng đỡ dải lụa vàng giữa trời mây Đà Nẵng"
+  },
+  {
+    "id": 310,
+    "word": "CHỢ ĐỒNG XUÂN",
+    "category": "Địa Danh",
+    "hint": "Khu chợ đầu mối sầm uất và lâu đời bậc nhất phố cổ Hà Nội"
+  },
+  {
+    "id": 311,
+    "word": "NHÀ HÁT LỚN HÀ NỘI",
+    "category": "Địa Danh",
+    "hint": "Công trình kiến trúc mang đậm phong cách tân cổ điển Pháp giữa lòng thủ đô"
+  },
+  {
+    "id": 312,
+    "word": "BẾN NHÀ RỒNG",
+    "category": "Địa Danh",
+    "hint": "Nơi Bác Hồ ra đi tìm đường cứu nước năm 1911 tại TP.HCM"
+  },
+  {
+    "id": 313,
+    "word": "DINH ĐỘC LẬP",
+    "category": "Địa Danh",
+    "hint": "Di tích lịch sử chứng kiến thời khắc trưa ngày 30 tháng 4 năm 1975"
+  },
+  {
+    "id": 314,
+    "word": "CẦU CẦN THƠ",
+    "category": "Địa Danh",
+    "hint": "Cây cầu dây văng có nhịp chính dài nhất khu vực Đông Nam Á bắc qua sông Hậu"
+  },
+  {
+    "id": 315,
+    "word": "HẢI ĐĂNG KÊ GÀ",
+    "category": "Địa Danh",
+    "hint": "Ngọn hải đăng cổ kính bằng đá hoa cương cao nhất Việt Nam tại Bình Thuận"
+  },
+  {
+    "id": 316,
+    "word": "THÁP EIFFEL",
+    "category": "Địa Danh",
+    "hint": "Biểu tượng bằng thép nổi tiếng của thủ đô Paris nước Pháp"
+  },
+  {
+    "id": 317,
+    "word": "TƯỢNG NỮ THẦN TỰ DO",
+    "category": "Địa Danh",
+    "hint": "Bức tượng mang ngọn đuốc soi sáng thế giới tại cảng New York"
+  },
+  {
+    "id": 318,
+    "word": "VẠN LÝ TRƯỜNG THÀNH",
+    "category": "Địa Danh",
+    "hint": "Kỳ quan kiến trúc quân sự cổ đại trải dài hàng ngàn cây số ở Trung Quốc"
+  },
+  {
+    "id": 319,
+    "word": "KIM TỰ THÁP",
+    "category": "Địa Danh",
+    "hint": "Công trình lăng mộ vĩ đại của các Pharaon bên dòng sông Nile Ai Cập"
+  },
+  {
+    "id": 320,
+    "word": "ĐỀN ANGKOR WAT",
+    "category": "Địa Danh",
+    "hint": "Quần thể đền đài tôn giáo lớn nhất thế giới tại Campuchia"
+  },
+  {
+    "id": 321,
+    "word": "CÓ CÔNG MÀI SẮT CÓ NGÀY NÊN KIM",
+    "category": "Thành Ngữ",
+    "hint": "Lời khuyên kiên trì nhẫn nại ắt sẽ gặt hái thành công"
+  },
+  {
+    "id": 322,
+    "word": "NƯỚC CHẢY ĐÁ MÒN",
+    "category": "Thành Ngữ",
+    "hint": "Ý chí bền bỉ vượt qua mọi thử thách theo thời gian"
+  },
+  {
+    "id": 323,
+    "word": "ĐI MỘT NGÀY ĐÀNG HỌC MỘT SÀNG KHÔN",
+    "category": "Thành Ngữ",
+    "hint": "Bước ra thế giới bên ngoài giúp ta mở mang tầm mắt và hiểu biết"
+  },
+  {
+    "id": 324,
+    "word": "CÔNG CHA NHƯ NÚI THÁI SƠN",
+    "category": "Ca Dao",
+    "hint": "Tình cảm công ơn sinh thành của người cha cao lớn vời vợi"
+  },
+  {
+    "id": 325,
+    "word": "NGHĨA MẸ NHƯ NƯỚC TRONG NGUỒN CHẢY RA",
+    "category": "Ca Dao",
+    "hint": "Tình yêu thương bao la vô tận của người mẹ hiền"
+  },
+  {
+    "id": 326,
+    "word": "GẦN MỰC THÌ ĐEN GẦN ĐÈN THÌ SÁNG",
+    "category": "Thành Ngữ",
+    "hint": "Môi trường sống và bạn bè có ảnh hưởng lớn đến nhân cách"
+  },
+  {
+    "id": 327,
+    "word": "CHÂN CỨNG ĐÁ MỀM",
+    "category": "Thành Ngữ",
+    "hint": "Lời chúc vượt qua mọi gian truân thử thách bình an"
+  },
+  {
+    "id": 328,
+    "word": "ĐẦU XUÔI ĐUÔI LỌT",
+    "category": "Thành Ngữ",
+    "hint": "Sự việc khởi đầu thuận buồm xuôi gió thì kết quả cũng êm đẹp"
+  },
+  {
+    "id": 329,
+    "word": "MƯA THUẬN GIÓ HÒA",
+    "category": "Thành Ngữ",
+    "hint": "Thời tiết thuận lợi cho mùa màng tươi tốt bội thu"
+  },
+  {
+    "id": 330,
+    "word": "THUẬN VỢ THUẬN CHỒNG",
+    "category": "Thành Ngữ",
+    "hint": "Gia đình đồng lòng thì tát biển Đông cũng cạn"
+  },
+  {
+    "id": 331,
+    "word": "ĐỒNG TÂM HIỆP LỰC",
+    "category": "Thành Ngữ",
+    "hint": "Cùng chung một lòng đoàn kết sức mạnh để hoàn thành việc lớn"
+  },
+  {
+    "id": 332,
+    "word": "MẸ TRÒN CON VUÔNG",
+    "category": "Thành Ngữ",
+    "hint": "Lời chúc vượt cạn sinh nở bình an khỏe mạnh"
+  },
+  {
+    "id": 333,
+    "word": "VẠN SỰ NHƯ Ý",
+    "category": "Thành Ngữ",
+    "hint": "Lời chúc đầu năm mới mọi việc diễn ra tốt đẹp theo ước nguyện"
+  },
+  {
+    "id": 334,
+    "word": "AN KHANG THỊNH VƯỢNG",
+    "category": "Thành Ngữ",
+    "hint": "Lời chúc năm mới sức khỏe dồi dào tài lộc tấn tới"
+  },
+  {
+    "id": 335,
+    "word": "TIÊN HỌC LỄ HẬU HỌC VĂN",
+    "category": "Thành Ngữ",
+    "hint": "Trước tiên phải học đạo đức lễ phép sau mới học kiến thức"
+  },
+  {
+    "id": 336,
+    "word": "TÔN SƯ TRỌNG ĐẠO",
+    "category": "Thành Ngữ",
+    "hint": "Truyền thống kính trọng thầy cô giáo và coi trọng tri thức"
+  },
+  {
+    "id": 337,
+    "word": "HỌC THẦY KHÔNG TÀY HỌC BẠN",
+    "category": "Thành Ngữ",
+    "hint": "Học hỏi từ bạn bè xung quanh cũng mang lại nhiều bài học quý báu"
+  },
+  {
+    "id": 338,
+    "word": "MỘT CÂY LÀM CHẲNG NÊN NON",
+    "category": "Ca Dao",
+    "hint": "Ba cây chụm lại nên hòn núi cao - tinh thần đoàn kết"
+  },
+  {
+    "id": 339,
+    "word": "BẦU ƠI THƯƠNG LẤY BÍ CÙNG",
+    "category": "Ca Dao",
+    "hint": "Tuy rằng khác giống nhưng chung một giàn - tình nghĩa đồng bào"
+  },
+  {
+    "id": 340,
+    "word": "NHIỄU ĐIỀU PHỦ LẤY GIÁ GƯƠNG",
+    "category": "Ca Dao",
+    "hint": "Người trong một nước phải thương nhau cùng"
+  },
+  {
+    "id": 341,
+    "word": "CÓ CHÍ THÌ NÊN",
+    "category": "Thành Ngữ",
+    "hint": "Người có ý chí quyết tâm chắc chắn sẽ làm nên sự nghiệp"
+  },
+  {
+    "id": 342,
+    "word": "CHỚ THẤY SÓNG CẢ MÀ NGÃ TAY CHÈO",
+    "category": "Thành Ngữ",
+    "hint": "Đừng vì khó khăn trước mắt mà nản lòng thoái chí"
+  },
+  {
+    "id": 343,
+    "word": "THUA KEO NÀY BÀY KEO KHÁC",
+    "category": "Thành Ngữ",
+    "hint": "Thất bại không nản lòng tiếp tục tìm cơ hội mới"
+  },
+  {
+    "id": 344,
+    "word": "VĂN HAY CHỮ TỐT",
+    "category": "Thành Ngữ",
+    "hint": "Người học rộng tài cao chữ viết đẹp như rồng bay phượng múa"
+  },
+  {
+    "id": 345,
+    "word": "HỌC RỘNG TÀI CAO",
+    "category": "Thành Ngữ",
+    "hint": "Người có kiến thức uyên bác và năng lực xuất chúng"
+  },
+  {
+    "id": 346,
+    "word": "GỪNG CÀNG GIÀ CÀNG CAY",
+    "category": "Thành Ngữ",
+    "hint": "Người càng nhiều tuổi càng giàu kinh nghiệm sống"
+  },
+  {
+    "id": 347,
+    "word": "THỨC KHUYA DẬY SỚM",
+    "category": "Thành Ngữ",
+    "hint": "Chỉ sự cần cù chăm chỉ làm lụng vất vả ngày đêm"
+  },
+  {
+    "id": 348,
+    "word": "TÍCH TIỂU THÀNH ĐẠI",
+    "category": "Thành Ngữ",
+    "hint": "Góp nhặt từng việc nhỏ tiền nhỏ sẽ thành việc lớn tài sản lớn"
+  },
+  {
+    "id": 349,
+    "word": "ĂN CHẮC MẶC BỀN",
+    "category": "Thành Ngữ",
+    "hint": "Lối sống tiết kiệm chú trọng sự bền vững thiết thực"
+  },
+  {
+    "id": 350,
+    "word": "KHÉO ĂN THÌ NO KHÉO CO THÌ ẤM",
+    "category": "Thành Ngữ",
+    "hint": "Biết chi tiêu tính toán liệu cơm gắp mắm trong cuộc sống"
+  },
+  {
+    "id": 351,
+    "word": "ĂN TRÔNG NỒI NGỒI TRÔNG HƯỚNG",
+    "category": "Thành Ngữ",
+    "hint": "Phép lịch sự tế nhị trong ăn uống và ứng xử giao tiếp"
+  },
+  {
+    "id": 352,
+    "word": "LỜI NÓI CHẲNG MẤT TIỀN MUA",
+    "category": "Ca Dao",
+    "hint": "Lựa lời mà nói cho vừa lòng nhau"
+  },
+  {
+    "id": 353,
+    "word": "CHIM KHÔN KÊU TIẾNG RẢNH RANG",
+    "category": "Ca Dao",
+    "hint": "Người khôn nói tiếng dịu dàng dễ nghe"
+  },
+  {
+    "id": 354,
+    "word": "THẬT THÀ LÀ CHA QUỶ QUÁI",
+    "category": "Thành Ngữ",
+    "hint": "Tính trung thực luôn chiến thắng sự gian xảo dối trá"
+  },
+  {
+    "id": 355,
+    "word": "ÁO RÁCH THAY VÌ KHÔNG ÁO",
+    "category": "Thành Ngữ",
+    "hint": "Có còn hơn không biết trân trọng những gì đang có"
+  },
+  {
+    "id": 356,
+    "word": "ĐÓI CHO SẠCH RÁCH CHO THƠM",
+    "category": "Thành Ngữ",
+    "hint": "Dù hoàn cảnh nghèo khó vẫn phải giữ gìn nhân phẩm thanh sạch"
+  },
+  {
+    "id": 357,
+    "word": "GIẤY RÁCH PHẢI GIỮ LẤY LỀ",
+    "category": "Thành Ngữ",
+    "hint": "Dù khó khăn sa sút vẫn giữ nếp nhà và đạo đức gia phong"
+  },
+  {
+    "id": 358,
+    "word": "CON CÓ CHA NHƯ NHÀ CÓ NÓC",
+    "category": "Thành Ngữ",
+    "hint": "Vai trò trụ cột chở che vững chãi của người cha trong gia đình"
+  },
+  {
+    "id": 359,
+    "word": "MÁU CHẢY RUỘT MỀM",
+    "category": "Thành Ngữ",
+    "hint": "Tình cảm xót xa đau đớn khi người thân ruột thịt gặp nạn"
+  },
+  {
+    "id": 360,
+    "word": "CHỊ NGÃ EM NÂNG",
+    "category": "Thành Ngữ",
+    "hint": "Tình cảm gắn bó đùm bọc nâng đỡ giữa anh chị em trong nhà"
+  },
+  {
+    "id": 361,
+    "word": "BÁN ANH EM XA MUA LÁNG GIỀNG GẦN",
+    "category": "Thành Ngữ",
+    "hint": "Coi trọng mối quan hệ hòa thuận gắn bó với hàng xóm láng giềng"
+  },
+  {
+    "id": 362,
+    "word": "LỬA THỬ VÀNG GIAN NAN THỬ SỨC",
+    "category": "Thành Ngữ",
+    "hint": "Khó khăn thử thách là thước đo lòng kiên định của con người"
+  },
+  {
+    "id": 363,
+    "word": "HỮU XẠ TỰ NHIÊN HƯƠNG",
+    "category": "Thành Ngữ",
+    "hint": "Người có tài đức thực sự tự khắc được mọi người công nhận"
+  },
+  {
+    "id": 364,
+    "word": "KHỔ TẬN CAM LAI",
+    "category": "Thành Ngữ",
+    "hint": "Hết cơn bĩ cực đến hồi thái lai, qua ngày gian khổ sẽ tới ngày ngọt ngào"
+  },
+  {
+    "id": 365,
+    "word": "QUẢ NGỌT TRÁI THƠM",
+    "category": "Thành Ngữ",
+    "hint": "Thành quả xứng đáng sau bao ngày gieo trồng vun xới chăm bón"
+  },
+  {
+    "id": 366,
+    "word": "CÂY NGAY KHÔNG SỢ CHẾT ĐỨNG",
+    "category": "Thành Ngữ",
+    "hint": "Người sống ngay thẳng đàng hoàng không sợ lời vu khống gièm pha"
+  },
+  {
+    "id": 367,
+    "word": "ĂN NGAY NÓI THẲNG",
+    "category": "Thành Ngữ",
+    "hint": "Tính cách bộc trực trung thực không quanh co gian dối"
+  },
+  {
+    "id": 368,
+    "word": "QUÂN TỬ NHẤT NGÔN",
+    "category": "Thành Ngữ",
+    "hint": "Lời nói của người trượng phu đã hứa là nhất định giữ lời"
+  },
+  {
+    "id": 369,
+    "word": "NÓI ĐI ĐÔI VỚI LÀM",
+    "category": "Thành Ngữ",
+    "hint": "Tác phong chuẩn mực giữa lời nói và hành động thực tế"
+  },
+  {
+    "id": 370,
+    "word": "SỐNG CÓ TRƯỚC CÓ SAU",
+    "category": "Thành Ngữ",
+    "hint": "Lối sống thủy chung trọng tình trọng nghĩa với mọi người"
+  },
+  {
+    "id": 371,
+    "word": "TÌNH SÂU NGHĨA NẶNG",
+    "category": "Thành Ngữ",
+    "hint": "Tình cảm sâu đậm gắn bó keo sơn khó phai mờ"
+  },
+  {
+    "id": 372,
+    "word": "ĐIỆN THOẠI THÔNG MINH",
+    "category": "Công Nghệ",
+    "hint": "Thiết bị cầm tay không thể thiếu kết nối internet toàn cầu"
+  },
+  {
+    "id": 373,
+    "word": "MÁY TÍNH XÁCH TAY",
+    "category": "Công Nghệ",
+    "hint": "Thiết bị làm việc di động gập mở gọn gàng"
+  },
+  {
+    "id": 374,
+    "word": "TAI NGHE KHÔNG DÂY",
+    "category": "Công Nghệ",
+    "hint": "Phụ kiện âm thanh kết nối bluetooth tiện lợi nhỏ gọn"
+  },
+  {
+    "id": 375,
+    "word": "MÁY ẢNH KỸ THUẬT SỐ",
+    "category": "Công Nghệ",
+    "hint": "Thiết bị quang học ghi lại những khoảnh khắc sắc nét"
+  },
+  {
+    "id": 376,
+    "word": "ĐỒNG HỒ THÔNG MINH",
+    "category": "Công Nghệ",
+    "hint": "Thiết bị đeo tay theo dõi sức khỏe và đếm bước chân"
+  },
+  {
+    "id": 377,
+    "word": "PIN SẠC DỰ PHÒNG",
+    "category": "Công Nghệ",
+    "hint": "Cứu tinh nạp năng lượng cho điện thoại khi ra ngoài"
+  },
+  {
+    "id": 378,
+    "word": "TRUYỀN HÌNH THÔNG MINH",
+    "category": "Công Nghệ",
+    "hint": "Màn hình giải trí phòng khách xem phim trực tuyến"
+  },
+  {
+    "id": 379,
+    "word": "MÁY GIẶT TỰ ĐỘNG",
+    "category": "Đồ Dùng",
+    "hint": "Thiết bị gia đình giúp giặt sạch vắt khô quần áo"
+  },
+  {
+    "id": 380,
+    "word": "TỦ LẠNH HAI CÁNH",
+    "category": "Đồ Dùng",
+    "hint": "Thiết bị bảo quản thực phẩm tươi ngon bằng nhiệt độ thấp"
+  },
+  {
+    "id": 381,
+    "word": "LÒ VI SÓNG",
+    "category": "Đồ Dùng",
+    "hint": "Thiết bị hâm nóng và rã đông thức ăn siêu tốc bằng sóng từ"
+  },
+  {
+    "id": 382,
+    "word": "NỒI CHIÊN KHÔNG DẦU",
+    "category": "Đồ Dùng",
+    "hint": "Thiết bị làm chín thực phẩm giòn rụm tốt cho sức khỏe"
+  },
+  {
+    "id": 383,
+    "word": "NỒI CƠM ĐIỆN",
+    "category": "Đồ Dùng",
+    "hint": "Thiết bị quen thuộc nấu chín những bát cơm dẻo thơm mỗi ngày"
+  },
+  {
+    "id": 384,
+    "word": "MÁY HÚT BỤI",
+    "category": "Đồ Dùng",
+    "hint": "Thiết bị dọn dẹp hút sạch bụi bẩn trên sàn nhà và thảm"
+  },
+  {
+    "id": 385,
+    "word": "MÁY LỌC KHÔNG KHÍ",
+    "category": "Đồ Dùng",
+    "hint": "Thiết bị lọc bụi mịn mang lại luồng gió trong lành cho căn phòng"
+  },
+  {
+    "id": 386,
+    "word": "MÁY ĐIỀU HÒA NHIỆT ĐỘ",
+    "category": "Đồ Dùng",
+    "hint": "Thiết bị làm mát xua tan cái nóng oi ả ngày hè"
+  },
+  {
+    "id": 387,
+    "word": "BÀN LÀ HƠI NƯỚC",
+    "category": "Đồ Dùng",
+    "hint": "Dụng cụ ủi phẳng phiu nếp nhăn quần áo bằng hơi nóng"
+  },
+  {
+    "id": 388,
+    "word": "ẤM ĐIỆN SIÊU TỐC",
+    "category": "Đồ Dùng",
+    "hint": "Thiết bị đun sôi nước chỉ trong vài phút"
+  },
+  {
+    "id": 389,
+    "word": "MÁY XAY SINH TỐ",
+    "category": "Đồ Dùng",
+    "hint": "Thiết bị lưỡi dao quay tít xay nhuyễn trái cây tươi"
+  },
+  {
+    "id": 390,
+    "word": "QUẠT TRẦN",
+    "category": "Đồ Dùng",
+    "hint": "Cánh quạt quay tít trên trần nhà tạo làn gió thoang thoảng"
+  },
+  {
+    "id": 391,
+    "word": "ĐÈN BÀN HỌC",
+    "category": "Đồ Dùng",
+    "hint": "Ánh sáng vàng ấm áp soi tỏ trang sách mỗi đêm học bài"
+  },
+  {
+    "id": 392,
+    "word": "XE MÁY ĐIỆN",
+    "category": "Phương Tiện",
+    "hint": "Phương tiện di chuyển xanh thân thiện môi trường không khói bụi"
+  },
+  {
+    "id": 393,
+    "word": "XE ĐẠP ĐỊA HÌNH",
+    "category": "Phương Tiện",
+    "hint": "Chiếc xe hai bánh rèn luyện thể lực vượt cung đường dốc"
+  },
+  {
+    "id": 394,
+    "word": "XE CỨU THƯƠNG",
+    "category": "Phương Tiện",
+    "hint": "Chiếc xe còi hú ưu tiên giành giật sự sống trên đường phố"
+  },
+  {
+    "id": 395,
+    "word": "XE CỨU HỎA",
+    "category": "Phương Tiện",
+    "hint": "Xe bồn nước màu đỏ cùng thang cao sẵn sàng dập tắt hỏa hoạn"
+  },
+  {
+    "id": 396,
+    "word": "XE CẢNH SÁT",
+    "category": "Phương Tiện",
+    "hint": "Phương tiện tuần tra giữ gìn trật tự an ninh phố phường"
+  },
+  {
+    "id": 397,
+    "word": "TÀU ĐIỆN CÁT LINH",
+    "category": "Phương Tiện",
+    "hint": "Tuyến đường sắt đô thị trên cao đầu tiên tại thủ đô Hà Nội"
+  },
+  {
+    "id": 398,
+    "word": "TÀU HỎA THỐNG NHẤT",
+    "category": "Phương Tiện",
+    "hint": "Chuyến tàu Bắc Nam nối liền hai đầu đất nước trên đường ray"
+  },
+  {
+    "id": 399,
+    "word": "TÀU THỦY CHỞ HÀNG",
+    "category": "Phương Tiện",
+    "hint": "Con tàu khổng lồ vượt đại dương chở hàng ngàn container"
+  },
+  {
+    "id": 400,
+    "word": "MÁY BAY THƯƠNG MẠI",
+    "category": "Phương Tiện",
+    "hint": "Phương tiện hàng không đưa hành khách bay qua những tầng mây"
+  },
+  {
+    "id": 401,
+    "word": "MÁY BAY TRỰC THĂNG",
+    "category": "Phương Tiện",
+    "hint": "Máy bay cánh quạt quay trên đỉnh có thể cất cánh thẳng đứng"
+  },
+  {
+    "id": 402,
+    "word": "TÀU NGẦM",
+    "category": "Phương Tiện",
+    "hint": "Con tàu quân sự lặn sâu thám hiểm dưới lòng đại dương bí ẩn"
+  },
+  {
+    "id": 403,
+    "word": "DU THUYỀN HẠNG SANG",
+    "category": "Phương Tiện",
+    "hint": "Khách sạn 5 sao nổi trên mặt biển chu du thế giới"
+  },
+  {
+    "id": 404,
+    "word": "BÁC SĨ PHẪU THUẬT",
+    "category": "Nghề Nghiệp",
+    "hint": "Người thầy thuốc với đôi bàn tay vàng cứu chữa người bệnh trong phòng mổ"
+  },
+  {
+    "id": 405,
+    "word": "Y TÁ ĐIỀU DƯỠNG",
+    "category": "Nghề Nghiệp",
+    "hint": "Người ngày đêm chăm sóc tận tụy bệnh nhân bên giường bệnh"
+  },
+  {
+    "id": 406,
+    "word": "DƯỢC SĨ",
+    "category": "Nghề Nghiệp",
+    "hint": "Chuyên gia am hiểu các loại thuốc chữa bệnh và tư vấn sức khỏe"
+  },
+  {
+    "id": 407,
+    "word": "KỸ SƯ CẦU ĐƯỜNG",
+    "category": "Nghề Nghiệp",
+    "hint": "Người vẽ nên những cây cầu vượt sông và cung đường cao tốc"
+  },
+  {
+    "id": 408,
+    "word": "KIẾN TRÚC SƯ",
+    "category": "Nghề Nghiệp",
+    "hint": "Người sáng tạo thiết kế bản vẽ các tòa nhà và công trình nghệ thuật"
+  },
+  {
+    "id": 409,
+    "word": "LẬP TRÌNH VIÊN",
+    "category": "Nghề Nghiệp",
+    "hint": "Kỹ sư công nghệ viết những dòng mã code tạo nên phần mềm và ứng dụng"
+  },
+  {
+    "id": 410,
+    "word": "GIÁO VIÊN TIỂU HỌC",
+    "category": "Nghề Nghiệp",
+    "hint": "Người gieo con chữ đầu đời và rèn nét chữ nết người cho đàn em thơ"
+  },
+  {
+    "id": 411,
+    "word": "GIẢNG VIÊN ĐẠI HỌC",
+    "category": "Nghề Nghiệp",
+    "hint": "Người truyền thụ tri thức chuyên sâu và hướng dẫn nghiên cứu khoa học"
+  },
+  {
+    "id": 412,
+    "word": "PHI CÔNG DÂN DỤNG",
+    "category": "Nghề Nghiệp",
+    "hint": "Người cầm lái đưa cánh chim sắt cất hạ cánh an toàn trên bầu trời"
+  },
+  {
+    "id": 413,
+    "word": "TIẾP VIÊN HÀNG KHÔNG",
+    "category": "Nghề Nghiệp",
+    "hint": "Người phục vụ nụ cười thân thiện và hướng dẫn an toàn trên máy bay"
+  },
+  {
+    "id": 414,
+    "word": "LUẬT SƯ BÀO CHỮA",
+    "category": "Nghề Nghiệp",
+    "hint": "Người bảo vệ công lý và quyền lợi hợp pháp của thân chủ trước tòa án"
+  },
+  {
+    "id": 415,
+    "word": "THẨM PHÁN",
+    "category": "Nghề Nghiệp",
+    "hint": "Người cầm cán cân công lý đại diện pháp luật xét xử các vụ án"
+  },
+  {
+    "id": 416,
+    "word": "NHÀ BÁO PHÓNG VIÊN",
+    "category": "Nghề Nghiệp",
+    "hint": "Người dấn thân vào hiện trường mang tin tức nóng hổi chân thực đến độc giả"
+  },
+  {
+    "id": 417,
+    "word": "NHIẾP ẢNH GIA",
+    "category": "Nghề Nghiệp",
+    "hint": "Người bắt trọn khoảnh khắc đẹp qua ống kính nghệ thuật"
+  },
+  {
+    "id": 418,
+    "word": "ĐẠO DIỄN ĐIỆN ẢNH",
+    "category": "Nghề Nghiệp",
+    "hint": "Thuyền trưởng chỉ huy đoàn làm phim biến kịch bản thành tác phẩm điện ảnh"
+  },
+  {
+    "id": 419,
+    "word": "DIỄN VIÊN KỊCH NÓI",
+    "category": "Nghề Nghiệp",
+    "hint": "Nghệ sĩ hóa thân vào nhân vật biểu diễn trực tiếp trên sân khấu đèn màu"
+  },
+  {
+    "id": 420,
+    "word": "CA SĨ THANH NHẠC",
+    "category": "Nghề Nghiệp",
+    "hint": "Người mang giọng hát chạm đến trái tim khán giả"
+  },
+  {
+    "id": 421,
+    "word": "NHẠC SĨ SÁNG TÁC",
+    "category": "Nghề Nghiệp",
+    "hint": "Người chắp bút viết nên những giai điệu và ca từ bất hủ"
+  },
+  {
+    "id": 422,
+    "word": "HỌA SĨ TRANH SƠN DẦU",
+    "category": "Nghề Nghiệp",
+    "hint": "Người dùng cọ vẽ và bảng màu thổi hồn vào từng bức tranh"
+  },
+  {
+    "id": 423,
+    "word": "THỢ KIM HOÀN",
+    "category": "Nghề Nghiệp",
+    "hint": "Nghệ nhân khéo léo chế tác vàng bạc đá quý thành trang sức lộng lẫy"
+  },
+  {
+    "id": 424,
+    "word": "ĐẦU BẾP TRƯỞNG",
+    "category": "Nghề Nghiệp",
+    "hint": "Bậc thầy ẩm thực sáng tạo các món ăn ngon mắt ngon miệng"
+  },
+  {
+    "id": 425,
+    "word": "CHUYÊN VIÊN PHA CHẾ",
+    "category": "Nghề Nghiệp",
+    "hint": "Nghệ sĩ pha chế đồ uống tạo nên những ly cocktail hay cà phê thơm ngon"
+  },
+  {
+    "id": 426,
+    "word": "HƯỚNG DẪN VIÊN DU LỊCH",
+    "category": "Nghề Nghiệp",
+    "hint": "Người đồng hành kể những câu chuyện lịch sử văn hóa trên mỗi chuyến đi"
+  },
+  {
+    "id": 427,
+    "word": "CHIẾN SĨ HẢI QUÂN",
+    "category": "Nghề Nghiệp",
+    "hint": "Người lính kiên cường canh giữ biển đảo thiêng liêng nơi đầu sóng"
+  },
+  {
+    "id": 428,
+    "word": "CHIẾN SĨ BIÊN PHÒNG",
+    "category": "Nghề Nghiệp",
+    "hint": "Người lính tuần tra đường biên mốc giới bảo vệ bình yên biên cương"
+  },
+  {
+    "id": 429,
+    "word": "CẢNH SÁT GIAO THÔNG",
+    "category": "Nghề Nghiệp",
+    "hint": "Người điều tiết phân luồng xe cộ thông suốt trên các ngã tư đường"
+  },
+  {
+    "id": 430,
+    "word": "NHÀ DU HÀNH VŨ TRỤ",
+    "category": "Nghề Nghiệp",
+    "hint": "Người dũng cảm bay ra ngoài Trái Đất làm việc trên trạm vũ trụ quốc tế"
+  },
+  {
+    "id": 431,
+    "word": "NHÀ KHÍ TƯỢNG HỌC",
+    "category": "Nghề Nghiệp",
+    "hint": "Chuyên gia theo dõi mây gió dự báo thời tiết và bão lũ"
+  },
+  {
+    "id": 432,
+    "word": "NHÀ KHẢO CỔ HỌC",
+    "category": "Nghề Nghiệp",
+    "hint": "Người lần tìm dấu tích cổ xưa giải mã bí ẩn lịch sử nghìn năm"
+  },
+  {
+    "id": 433,
+    "word": "BÓNG CHUYỀN",
+    "category": "Thể Thao",
+    "hint": "Môn thể thao dùng tay đập bóng qua lưới rèn luyện sức bật"
+  },
+  {
+    "id": 434,
+    "word": "BƠI TỰ DO",
+    "category": "Thể Thao",
+    "hint": "Kiểu bơi nhanh nhất giúp rèn luyện toàn diện thể lực dưới nước"
+  },
+  {
+    "id": 435,
+    "word": "BƠI ẾCH",
+    "category": "Thể Thao",
+    "hint": "Kiểu bơi mô phỏng động tác đạp chân của chú ếch"
+  },
+  {
+    "id": 436,
+    "word": "CHẠY TIẾP SỨC",
+    "category": "Thể Thao",
+    "hint": "Nội dung điền kinh đòi hỏi sự phối hợp trao gậy nhịp nhàng giữa các vận động viên"
+  },
+  {
+    "id": 437,
+    "word": "NHẢY CAO",
+    "category": "Thể Thao",
+    "hint": "Môn điền kinh vượt qua xà ngang đòi hỏi kỹ thuật uốn lưng chuẩn xác"
+  },
+  {
+    "id": 438,
+    "word": "NHẢY XA",
+    "category": "Thể Thao",
+    "hint": "Môn điền kinh lấy đà dậm nhảy tiếp đất trên hố cát mịn"
+  },
+  {
+    "id": 439,
+    "word": "BẮN CUNG",
+    "category": "Thể Thao",
+    "hint": "Môn thể thao đòi hỏi sự tập trung cao độ ngắm bắn hồng tâm"
+  },
+  {
+    "id": 440,
+    "word": "CỬ TẠ",
+    "category": "Thể Thao",
+    "hint": "Môn thể thao nâng đòn tạ sắt thử thách sức mạnh cơ bắp phi thường"
+  },
+  {
+    "id": 441,
+    "word": "VÕ CỔ TRUYỀN",
+    "category": "Thể Thao",
+    "hint": "Môn võ mang bản sắc văn hóa dân tộc rèn đức luyện tài"
+  },
+  {
+    "id": 442,
+    "word": "TAEKWONDO",
+    "category": "Thể Thao",
+    "hint": "Môn võ xứ Hàn nổi tiếng với những đòn đá chân nhanh như chớp"
+  },
+  {
+    "id": 443,
+    "word": "KARATE",
+    "category": "Thể Thao",
+    "hint": "Môn võ truyền thống Nhật Bản với những đòn đấm đánh trực diện"
+  },
+  {
+    "id": 444,
+    "word": "CỜ TƯỚNG",
+    "category": "Thể Thao",
+    "hint": "Trò chơi trí tuệ đối kháng trên bàn cờ gỗ có tướng, sĩ, tượng, xe, pháo, mã"
+  },
+  {
+    "id": 445,
+    "word": "BÓNG RỔ",
+    "category": "Thể Thao",
+    "hint": "Môn thể thao ném quả bóng cam vào rổ treo trên cao"
+  },
+  {
+    "id": 446,
+    "word": "QUẦN VỢT",
+    "category": "Thể Thao",
+    "hint": "Môn thể thao đánh bóng tennis trên sân cỏ, sân đất nện hoặc sân cứng"
+  },
+  {
+    "id": 447,
+    "word": "LEO NÚI NHÂN TẠO",
+    "category": "Thể Thao",
+    "hint": "Môn thể thao mạo hiểm bám vào các mấu đá màu sắc chinh phục đỉnh cao"
+  },
+  {
+    "id": 448,
+    "word": "TRƯỢT BĂNG NGHỆ THUẬT",
+    "category": "Thể Thao",
+    "hint": "Môn thể thao kết hợp vũ đạo uyển chuyển lướt đi trên mặt băng"
+  },
+  {
+    "id": 449,
+    "word": "ĐUA THUYỀN RỒNG",
+    "category": "Trò Chơi Dân Gian",
+    "hint": "Lễ hội sông nước náo nhiệt các tay chèo nhịp nhàng theo tiếng trống"
+  },
+  {
+    "id": 450,
+    "word": "ĐẤU VẬT DÂN GIAN",
+    "category": "Trò Chơi Dân Gian",
+    "hint": "Môn thể thao thượng võ ngày hội xuân thử tài đè ngửa đối phương"
+  },
+  {
+    "id": 451,
+    "word": "CƯỚP CỜ",
+    "category": "Trò Chơi Dân Gian",
+    "hint": "Trò chơi vận động rèn luyện sự nhanh nhẹn cướp được cờ chạy về vạch an toàn"
+  },
+  {
+    "id": 452,
+    "word": "TRỐN TÌM",
+    "category": "Trò Chơi Dân Gian",
+    "hint": "Trò chơi tuổi thơ một người bịt mắt đếm số người khác nấp kỹ"
+  },
+  {
+    "id": 453,
+    "word": "CHƠI Ô ĂN QUAN",
+    "category": "Trò Chơi Dân Gian",
+    "hint": "Trò chơi trí tuệ dân gian với các viên sỏi rải quân trên bàn cờ đất"
+  },
+  {
+    "id": 454,
+    "word": "RỒNG RẮN LÊN MÂY",
+    "category": "Trò Chơi Dân Gian",
+    "hint": "Trò chơi dân gian vừa đi vừa hát hỏi xin thầy thuốc khúc đầu khúc đuôi"
+  },
+  {
+    "id": 455,
+    "word": "CỰC QUANG",
+    "category": "Thiên Nhiên",
+    "hint": "Hiện tượng dải ánh sáng rực rỡ kỳ ảo trên bầu trời đêm vùng cực"
+  },
+  {
+    "id": 456,
+    "word": "NHẬT THỰC TOÀN PHẦN",
+    "category": "Thiên Nhiên",
+    "hint": "Hiện tượng Mặt Trăng che khuất hoàn toàn Mặt Trời giữa ban ngày"
+  },
+  {
+    "id": 457,
+    "word": "NGUYỆT THỰC",
+    "category": "Thiên Nhiên",
+    "hint": "Hiện tượng Mặt Trăng đi vào vùng bóng tối của Trái Đất hóa màu đỏ máu"
+  },
+  {
+    "id": 458,
+    "word": "MƯA SAO BĂNG",
+    "category": "Thiên Nhiên",
+    "hint": "Vệt sáng sao băng rơi rải rác trên bầu trời đêm mang theo điều ước"
+  },
+  {
+    "id": 459,
+    "word": "HỐ ĐEN VŨ TRỤ",
+    "category": "Thiên Nhiên",
+    "hint": "Vùng không thời gian có lực hấp dẫn cực mạnh không vật chất nào thoát ra được"
+  },
+  {
+    "id": 460,
+    "word": "SÓNG THẦN",
+    "category": "Thiên Nhiên",
+    "hint": "Đợt sóng biển khổng lồ sinh ra từ động đất dưới đáy biển tràn vào tàn phá bờ"
+  },
+  {
+    "id": 461,
+    "word": "NÚI LỬA PHUN TRÀO",
+    "category": "Thiên Nhiên",
+    "hint": "Hiện tượng dung nham đỏ rực và tro bụi phun trào từ lòng đất"
+  },
+  {
+    "id": 462,
+    "word": "CƠN LỐC XOÁY",
+    "category": "Thiên Nhiên",
+    "hint": "Cột gió xoáy hình phễu khổng lồ cuốn phăng mọi thứ trên đường đi"
+  },
+  {
+    "id": 463,
+    "word": "SẤM SÉT",
+    "category": "Thiên Nhiên",
+    "hint": "Tia chớp lóe sáng kèm tiếng nổ vang rền giữa cơn giông bão"
+  },
+  {
+    "id": 464,
+    "word": "SƯƠNG MÙ",
+    "category": "Thiên Nhiên",
+    "hint": "Màn hơi nước dày đặc làm mờ ảo cảnh vật trong sớm mùa đông"
+  },
+  {
+    "id": 465,
+    "word": "BĂNG ĐĂNG",
+    "category": "Thiên Nhiên",
+    "hint": "Tác phẩm điêu khắc băng tuyết lung linh dưới ánh đèn đêm đông"
+  },
+  {
+    "id": 466,
+    "word": "THỦY TRIỀU",
+    "category": "Thiên Nhiên",
+    "hint": "Hiện tượng nước biển dâng lên và rút xuống do sức hút của Mặt Trăng"
+  },
+  {
+    "id": 467,
+    "word": "SAN HÔ ĐỔI MÀU",
+    "category": "Thiên Nhiên",
+    "hint": "Hệ sinh thái đá ngầm kỳ vĩ dưới đáy biển nơi cư ngụ của muôn loài cá"
+  },
+  {
+    "id": 468,
+    "word": "RỪNG NGUYÊN SINH",
+    "category": "Thiên Nhiên",
+    "hint": "Khu rừng già tự nhiên hàng trăm năm tuổi chưa bị con người khai phá"
+  },
+  {
+    "id": 469,
+    "word": "TẾT NGUYÊN ĐÁN",
+    "category": "Văn Hóa",
+    "hint": "Tết cổ truyền lớn nhất trong năm của người Việt sum vầy đoàn viên gia đình"
+  },
+  {
+    "id": 470,
+    "word": "ĐÊM GIAO THỪA",
+    "category": "Văn Hóa",
+    "hint": "Thời khắc chuyển giao thiêng liêng giữa năm cũ và năm mới với pháo hoa rực sáng"
+  },
+  {
+    "id": 471,
+    "word": "LỄ HỘI ĐỀN HÙNG",
+    "category": "Văn Hóa",
+    "hint": "Ngày giỗ Tổ mùng mười tháng ba nhớ về cội nguồn dân tộc"
+  },
+  {
+    "id": 472,
+    "word": "HỘI LIM BẮC NINH",
+    "category": "Văn Hóa",
+    "hint": "Lễ hội dân ca quan họ ngân vang câu hát người ơi người ở đừng về"
+  },
+  {
+    "id": 473,
+    "word": "TRANH ĐÔNG HỒ",
+    "category": "Văn Hóa",
+    "hint": "Dòng tranh dân gian in mộc bản trên giấy điệp quét vỏ sò lấp lánh"
+  },
+  {
+    "id": 474,
+    "word": "NHÃ NHẠC CUNG ĐÌNH",
+    "category": "Văn Hóa",
+    "hint": "Âm nhạc bác học triều đình Huế được UNESCO công nhận là di sản văn hóa"
+  },
+  {
+    "id": 475,
+    "word": "CỒNG CHIÊNG TÂY NGUYÊN",
+    "category": "Văn Hóa",
+    "hint": "Không gian văn hóa âm vang hào hùng giữa đại ngàn Tây Nguyên"
+  },
+  {
+    "id": 476,
+    "word": "ÁO DÀI VIỆT NAM",
+    "category": "Văn Hóa",
+    "hint": "Trang phục truyền thống thướt tha tôn vinh vẻ đẹp dịu dàng của người phụ nữ"
+  },
+  {
+    "id": 477,
+    "word": "NÓN LÁ BÀI THƠ",
+    "category": "Văn Hóa",
+    "hint": "Chiếc nón lá soi lên ánh sáng thấy ẩn hiện bài thơ và phong cảnh xứ Huế"
+  },
+  {
+    "id": 478,
+    "word": "PHÁO HOA ĐÊM TẾT",
+    "category": "Văn Hóa",
+    "hint": "Màn trình diễn ánh sáng rực rỡ chào đón năm mới an khang"
+  },
+  {
+    "id": 479,
+    "word": "MÂM NGŨ QUẢ",
+    "category": "Văn Hóa",
+    "hint": "Mâm trái cây năm màu dâng lên bàn thờ gia tiên cầu mong năm mới sung túc"
+  },
+  {
+    "id": 480,
+    "word": "LÌ XÌ ĐẦU NĂM",
+    "category": "Văn Hóa",
+    "hint": "Phong bao đỏ may mắn người lớn tặng trẻ nhỏ cầu chúc chăm ngoan học giỏi"
+  },
+  {
+    "id": 481,
+    "word": "CHỢ HOA XUÂN",
+    "category": "Văn Hóa",
+    "hint": "Khu chợ rực rỡ sắc đào mai đón Tết tràn ngập không khí mùa xuân"
+  },
+  {
+    "id": 482,
+    "word": "MÚA LÂN SƯ RỒNG",
+    "category": "Văn Hóa",
+    "hint": "Điệu múa rộn rã trống chiêng mang lại may mắn thịnh vượng ngày khai trương"
+  },
+  {
+    "id": 483,
+    "word": "ĐÈN ÔNG SAO",
+    "category": "Văn Hóa",
+    "hint": "Chiếc lồng đèn năm cánh rước trăng rằm tháng Tám của trẻ thơ"
+  },
+  {
+    "id": 484,
+    "word": "BÀN THỜ GIA TIÊN",
+    "category": "Văn Hóa",
+    "hint": "Nơi chốn thiêng liêng thể hiện lòng hiếu thảo tưởng nhớ tổ tiên ông bà"
+  },
+  {
+    "id": 485,
+    "word": "CÂU ĐỐI ĐỎ",
+    "category": "Văn Hóa",
+    "hint": "Bức liễn chữ Nho hoặc Quốc ngữ màu đỏ thắm cầu tài lộc may mắn treo dịp Tết"
+  },
+  {
+    "id": 486,
+    "word": "LỄ VU LAN",
+    "category": "Văn Hóa",
+    "hint": "Mùa báo hiếu tháng Bảy âm lịch cài bông hồng đỏ hay trắng nhớ ơn cha mẹ"
+  },
+  {
+    "id": 487,
+    "word": "TỈNH HÀ GIANG",
+    "category": "Địa Danh",
+    "hint": "Mảnh đất địa đầu cực Bắc với cao nguyên đá Đồng Văn hùng vĩ"
+  },
+  {
+    "id": 488,
+    "word": "TỈNH CAO BẰNG",
+    "category": "Địa Danh",
+    "hint": "Vùng đất non nước hữu tình với thác Bản Giốc và hang Pác Bó"
+  },
+  {
+    "id": 489,
+    "word": "TỈNH BẮC KẠN",
+    "category": "Địa Danh",
+    "hint": "Vùng đất hồ Ba Bể xanh biếc giữa núi rừng đại ngàn"
+  },
+  {
+    "id": 490,
+    "word": "TỈNH LẠNG SƠN",
+    "category": "Địa Danh",
+    "hint": "Mảnh đất biên cương cửa khẩu Hữu Nghị và nàng Tô Thị bồng con"
+  },
+  {
+    "id": 491,
+    "word": "TỈNH TUYÊN QUANG",
+    "category": "Địa Danh",
+    "hint": "Thủ đô khu giải phóng với lễ hội Trung thu khổng lồ rực rỡ"
+  },
+  {
+    "id": 492,
+    "word": "TỈNH THÁI NGUYÊN",
+    "category": "Địa Danh",
+    "hint": "Thủ phủ đệ nhất danh trà thơm hương cốm nức tiếng"
+  },
+  {
+    "id": 493,
+    "word": "TỈNH PHÚ THỌ",
+    "category": "Địa Danh",
+    "hint": "Đất Tổ linh thiêng nơi thờ phụng các vua Hùng dựng nước"
+  },
+  {
+    "id": 494,
+    "word": "TỈNH BẮC GIANG",
+    "category": "Địa Danh",
+    "hint": "Vùng đất trù phú với đặc sản vải thiều Lục Ngạn ngọt lịm"
+  },
+  {
+    "id": 495,
+    "word": "TỈNH QUẢNG NINH",
+    "category": "Địa Danh",
+    "hint": "Vùng đất mỏ than và kỳ quan thiên nhiên thế giới vịnh Hạ Long"
+  },
+  {
+    "id": 496,
+    "word": "TỈNH LÀO CAI",
+    "category": "Địa Danh",
+    "hint": "Vùng đất du lịch Sa Pa quanh năm mây phủ và đỉnh Fansipan"
+  },
+  {
+    "id": 497,
+    "word": "TỈNH YÊN BÁI",
+    "category": "Địa Danh",
+    "hint": "Vùng đất danh thắng ruộng bậc thang Mù Cang Chải rực rỡ mùa lúa chín"
+  },
+  {
+    "id": 498,
+    "word": "TỈNH ĐIỆN BIÊN",
+    "category": "Địa Danh",
+    "hint": "Mảnh đất lừng lẫy năm châu chấn động địa cầu với chiến thắng Điện Biên Phủ"
+  },
+  {
+    "id": 499,
+    "word": "TỈNH HÒA BÌNH",
+    "category": "Địa Danh",
+    "hint": "Vùng đất cái nôi văn hóa Mường và nhà máy thủy điện Hòa Bình"
+  },
+  {
+    "id": 500,
+    "word": "TỈNH LAI CHÂU",
+    "category": "Địa Danh",
+    "hint": "Miền sơn cước hiểm trở với đèo Ô Quy Hồ quanh co giữa biển mây"
+  },
+  {
+    "id": 501,
+    "word": "TỈNH SƠN LA",
+    "category": "Địa Danh",
+    "hint": "Vùng đất cao nguyên Mộc Châu ngát xanh đồi chè và mùa mận chín"
+  },
+  {
+    "id": 502,
+    "word": "THỦ ĐÔ HÀ NỘI",
+    "category": "Địa Danh",
+    "hint": "Trái tim ngàn năm văn hiến của đất nước Việt Nam thân yêu"
+  },
+  {
+    "id": 503,
+    "word": "TỈNH BẮC NINH",
+    "category": "Địa Danh",
+    "hint": "Vùng đất kinh bắc đậm đà làn điệu dân ca quan họ"
+  },
+  {
+    "id": 504,
+    "word": "TỈNH HÀ NAM",
+    "category": "Địa Danh",
+    "hint": "Vùng đất danh thắng chùa Tam Chúc ngôi chùa lớn thanh tịnh"
+  },
+  {
+    "id": 505,
+    "word": "TỈNH HẢI DƯƠNG",
+    "category": "Địa Danh",
+    "hint": "Xứ sở bánh đậu xanh tan mịn và vải thiều Thanh Hà"
+  },
+  {
+    "id": 506,
+    "word": "THÀNH PHỐ HẢI PHÒNG",
+    "category": "Địa Danh",
+    "hint": "Thành phố cảng hoa phượng đỏ rực rỡ và quần đảo Cát Bà"
+  },
+  {
+    "id": 507,
+    "word": "TỈNH HƯNG YÊN",
+    "category": "Địa Danh",
+    "hint": "Thứ nhất Kinh Kỳ thứ nhì Phố Hiến đặc sản nhãn lồng tiến vua"
+  },
+  {
+    "id": 508,
+    "word": "TỈNH NAM ĐỊNH",
+    "category": "Địa Danh",
+    "hint": "Quê hương của các vị vua triều Trần và phở bò gia truyền"
+  },
+  {
+    "id": 509,
+    "word": "TỈNH NINH BÌNH",
+    "category": "Địa Danh",
+    "hint": "Cố đô Hoa Lư với quần thể di sản thế giới Tràng An Bái Đính"
+  },
+  {
+    "id": 510,
+    "word": "TỈNH THÁI BÌNH",
+    "category": "Địa Danh",
+    "hint": "Quê hương năm tấn với những cánh đồng lúa thẳng cánh cò bay"
+  },
+  {
+    "id": 511,
+    "word": "TỈNH VĨNH PHÚC",
+    "category": "Địa Danh",
+    "hint": "Vùng đất du lịch Tam Đảo bồng bềnh mây gió mát mẻ"
+  },
+  {
+    "id": 512,
+    "word": "TỈNH THANH HÓA",
+    "category": "Địa Danh",
+    "hint": "Vùng đất địa linh nhân kiệt với di sản Thành nhà Hồ và nem chua"
+  },
+  {
+    "id": 513,
+    "word": "TỈNH NGHỆ AN",
+    "category": "Địa Danh",
+    "hint": "Quê hương xứ Sen nơi sinh thành Chủ tịch Hồ Chí Minh vĩ đại"
+  },
+  {
+    "id": 514,
+    "word": "TỈNH HÀ TĨNH",
+    "category": "Địa Danh",
+    "hint": "Vùng đất ngã ba Đồng Lộc anh hùng và kẹo cu đơ giòn ngọt"
+  },
+  {
+    "id": 515,
+    "word": "TỈNH QUẢNG BÌNH",
+    "category": "Địa Danh",
+    "hint": "Vương quốc hang động kỳ vĩ với hang Sơn Đoòng lớn nhất hành tinh"
+  },
+  {
+    "id": 516,
+    "word": "TỈNH QUẢNG TRỊ",
+    "category": "Địa Danh",
+    "hint": "Mảnh đất lịch sử với dòng sông Bến Hải, cầu Hiền Lương và Thành cổ"
+  },
+  {
+    "id": 517,
+    "word": "TỈNH THỪA THIÊN HUẾ",
+    "category": "Địa Danh",
+    "hint": "Mảnh đất cố đô thơ mộng bên dòng sông Hương và núi Ngự"
+  },
+  {
+    "id": 518,
+    "word": "THÀNH PHỐ ĐÀ NẴNG",
+    "category": "Địa Danh",
+    "hint": "Thành phố đáng sống bên sông Hàn lung linh ánh cầu rồng"
+  },
+  {
+    "id": 519,
+    "word": "TỈNH QUẢNG NAM",
+    "category": "Địa Danh",
+    "hint": "Mảnh đất hai di sản văn hóa: phố cổ Hội An và thánh địa Mỹ Sơn"
+  },
+  {
+    "id": 520,
+    "word": "TỈNH QUẢNG NGÃI",
+    "category": "Địa Danh",
+    "hint": "Quê hương tỏi Lý Sơn thơm nồng và núi Ấn sông Trà"
+  },
+  {
+    "id": 521,
+    "word": "TỈNH BÌNH ĐỊNH",
+    "category": "Địa Danh",
+    "hint": "Vùng đất võ trời văn quê hương anh hùng áo vải Quang Trung"
+  },
+  {
+    "id": 522,
+    "word": "TỈNH PHÚ YÊN",
+    "category": "Địa Danh",
+    "hint": "Xứ sở hoa vàng trên cỏ xanh với danh thắng Gành Đá Đĩa kỳ thú"
+  },
+  {
+    "id": 523,
+    "word": "TỈNH KHÁNH HÒA",
+    "category": "Địa Danh",
+    "hint": "Xứ trầm biển yến với vịnh Nha Trang biển xanh cát trắng"
+  },
+  {
+    "id": 524,
+    "word": "TỈNH NINH THUẬN",
+    "category": "Địa Danh",
+    "hint": "Vùng đất nắng gió với những tháp Chàm cổ và vườn nho trĩu quả"
+  },
+  {
+    "id": 525,
+    "word": "TỈNH BÌNH THUẬN",
+    "category": "Địa Danh",
+    "hint": "Thủ phủ thanh long ruột trắng ruột đỏ và đồi cát bay Mũi Né"
+  },
+  {
+    "id": 526,
+    "word": "TỈNH KON TUM",
+    "category": "Địa Danh",
+    "hint": "Vùng đất ngã ba Đông Dương một tiếng gà gáy ba nước cùng nghe"
+  },
+  {
+    "id": 527,
+    "word": "TỈNH GIA LAI",
+    "category": "Địa Danh",
+    "hint": "Đôi mắt Pleiku Biển Hồ đầy nước trong xanh ngát"
+  },
+  {
+    "id": 528,
+    "word": "TỈNH ĐẮK LẮK",
+    "category": "Địa Danh",
+    "hint": "Thủ phủ cà phê Buôn Ma Thuột rộn ràng tiếng cồng chiêng voi rừng"
+  },
+  {
+    "id": 529,
+    "word": "TỈNH ĐẮK NÔNG",
+    "category": "Địa Danh",
+    "hint": "Vùng đất công viên địa chất toàn cầu với hệ thống hang động núi lửa"
+  },
+  {
+    "id": 530,
+    "word": "TỈNH LÂM ĐỒNG",
+    "category": "Địa Danh",
+    "hint": "Xứ sở ngàn hoa Đà Lạt với rừng thông reo và sương mù lãng đãng"
+  },
+  {
+    "id": 531,
+    "word": "TỈNH BÌNH PHƯỚC",
+    "category": "Địa Danh",
+    "hint": "Thủ phủ bạt ngàn vườn điều hạt mẩy và cao su rụng lá mùa đông"
+  },
+  {
+    "id": 532,
+    "word": "TỈNH TÂY NINH",
+    "category": "Địa Danh",
+    "hint": "Vùng đất thánh tòa thánh Cao Đài và ngọn núi Bà Đen hùng vĩ"
+  },
+  {
+    "id": 533,
+    "word": "TỈNH BÌNH DƯƠNG",
+    "category": "Địa Danh",
+    "hint": "Thủ phủ công nghiệp phát triển năng động với gốm sứ Lái Thiêu"
+  },
+  {
+    "id": 534,
+    "word": "TỈNH ĐỒNG NAI",
+    "category": "Địa Danh",
+    "hint": "Vùng đất công nghiệp và vườn quốc gia Nam Cát Tiên trù phú"
+  },
+  {
+    "id": 535,
+    "word": "TỈNH BÀ RỊA VŨNG TÀU",
+    "category": "Địa Danh",
+    "hint": "Thành phố biển du lịch nhộn nhịp với tượng Chúa Kito giang tay"
+  },
+  {
+    "id": 536,
+    "word": "THÀNH PHỐ HỒ CHÍ MINH",
+    "category": "Địa Danh",
+    "hint": "Trung tâm kinh tế tài chính sầm uất và năng động bậc nhất cả nước"
+  },
+  {
+    "id": 537,
+    "word": "TỈNH LONG AN",
+    "category": "Địa Danh",
+    "hint": "Cửa ngõ miền Tây với gạo nàng thơm Chợ Đào và dưa hấu Long Trì"
+  },
+  {
+    "id": 538,
+    "word": "TỈNH TIỀN GIANG",
+    "category": "Địa Danh",
+    "hint": "Vựa trái cây trù phú bên bờ sông Tiền với chợ nổi Cái Bè"
+  },
+  {
+    "id": 539,
+    "word": "TỈNH BẾN TRE",
+    "category": "Địa Danh",
+    "hint": "Xứ dừa đồng khởi với những rặng dừa xanh soi bóng dòng kênh"
+  },
+  {
+    "id": 540,
+    "word": "TỈNH TRÀ VINH",
+    "category": "Địa Danh",
+    "hint": "Vùng đất giao thoa văn hóa Kinh, Khmer, Hoa với nhiều ngôi chùa cổ kính"
+  },
+  {
+    "id": 541,
+    "word": "TỈNH VĨNH LONG",
+    "category": "Địa Danh",
+    "hint": "Mảnh đất cù lao trù phú bốn mùa hoa trái ngọt lành sông Tiền"
+  },
+  {
+    "id": 542,
+    "word": "TỈNH ĐỒNG THÁP",
+    "category": "Địa Danh",
+    "hint": "Xứ sở sen hồng Tháp Mười đẹp nhất bông sen"
+  },
+  {
+    "id": 543,
+    "word": "TỈNH AN GIANG",
+    "category": "Địa Danh",
+    "hint": "Vùng đất Thất Sơn huyền bí với lễ hội vía Bà Chúa Xứ núi Sam"
+  },
+  {
+    "id": 544,
+    "word": "TỈNH KIÊN GIANG",
+    "category": "Địa Danh",
+    "hint": "Mảnh đất biển đảo trù phú với đảo ngọc Phú Quốc thiên đường du lịch"
+  },
+  {
+    "id": 545,
+    "word": "THÀNH PHỐ CẦN THƠ",
+    "category": "Địa Danh",
+    "hint": "Tây Đô gạo trắng nước trong ai đi đến đó lòng không muốn về"
+  },
+  {
+    "id": 546,
+    "word": "TỈNH HẬU GIANG",
+    "category": "Địa Danh",
+    "hint": "Vùng đất nông nghiệp trù phú với chợ nổi Ngã Bảy rộn ràng"
+  },
+  {
+    "id": 547,
+    "word": "TỈNH SÓC TRĂNG",
+    "category": "Địa Danh",
+    "hint": "Xứ sở bánh pía thơm lừng và lễ hội đua ghe Ngo rộn rã"
+  },
+  {
+    "id": 548,
+    "word": "TỈNH BẠC LIÊU",
+    "category": "Địa Danh",
+    "hint": "Quê hương bản Dạ cổ hoài lang và giai thoại Công tử Bạc Liêu"
+  },
+  {
+    "id": 549,
+    "word": "TỈNH CÀ MAU",
+    "category": "Địa Danh",
+    "hint": "Vùng đất mũi tận cùng phương Nam với rừng ngập mặn bao la"
+  },
+  {
+    "id": 550,
+    "word": "CÁ HỒI NA UY",
+    "category": "Động Vật",
+    "hint": "Loài cá biển di cư ngược dòng sông đẻ trứng thịt cam béo ngậy"
+  },
+  {
+    "id": 551,
+    "word": "CÁ CHÉP GIÒN",
+    "category": "Động Vật",
+    "hint": "Đặc sản cá nuôi bằng hạt đậu tằm thịt giòn sần sật"
+  },
+  {
+    "id": 552,
+    "word": "CÁ TRẮM ĐEN",
+    "category": "Động Vật",
+    "hint": "Loài cá nước ngọt kích thước lớn thịt chắc nịch kho tương cực ngon"
+  },
+  {
+    "id": 553,
+    "word": "CÁ RÔ PHI",
+    "category": "Động Vật",
+    "hint": "Loài cá nước ngọt phổ biến thích nghi tốt thịt ngọt trắng"
+  },
+  {
+    "id": 554,
+    "word": "CÁ DIÊU HỒNG",
+    "category": "Động Vật",
+    "hint": "Loài cá màu hồng cam tươi tắn thường hấp xì dầu hoặc chiên xù"
+  },
+  {
+    "id": 555,
+    "word": "CÁ BA SA",
+    "category": "Động Vật",
+    "hint": "Đặc sản cá da trơn xuất khẩu tỉ đô của vùng đồng bằng sông Cửu Long"
+  },
+  {
+    "id": 556,
+    "word": "CÁ LĂNG",
+    "category": "Động Vật",
+    "hint": "Loài cá da trơn nước ngọt sống ở ghềnh thác thịt thơm không xương dăm"
+  },
+  {
+    "id": 557,
+    "word": "CHIM YẾN",
+    "category": "Động Vật",
+    "hint": "Loài chim làm tổ bằng nước bọt trên vách đá tạo ra món yến sào quý giá"
+  },
+  {
+    "id": 558,
+    "word": "CHIM BỒ NÔNG",
+    "category": "Động Vật",
+    "hint": "Loài chim nước có túi cổ họng lớn xúc cá như chiếc vợt"
+  },
+  {
+    "id": 559,
+    "word": "CHIM THIÊN NGA",
+    "category": "Động Vật",
+    "hint": "Biểu tượng của tình yêu thủy chung son sắt bơi lội quý phái trên hồ"
+  },
+  {
+    "id": 560,
+    "word": "ĐẠI BÀNG ĐẦU TRẮNG",
+    "category": "Động Vật",
+    "hint": "Biểu tượng quốc gia của nước Mỹ với mỏ vàng và đầu lông trắng muốt"
+  },
+  {
+    "id": 561,
+    "word": "CHIM ƯNG",
+    "category": "Động Vật",
+    "hint": "Sát thủ săn mồi trên không trung lao xuống bắt mồi tốc độ chóng mặt"
+  },
+  {
+    "id": 562,
+    "word": "CHIM VẸT",
+    "category": "Động Vật",
+    "hint": "Loài chim thông minh có bộ lông sặc sỡ và tài bắt chước tiếng người"
+  },
+  {
+    "id": 563,
+    "word": "CHIM TRĨ",
+    "category": "Động Vật",
+    "hint": "Loài chim rừng quý có chiếc đuôi dài hoa văn tuyệt đẹp"
+  },
+  {
+    "id": 564,
+    "word": "GÀ TÂY",
+    "category": "Động Vật",
+    "hint": "Món ăn truyền thống không thể thiếu trong ngày lễ Tạ Ơn ở phương Tây"
+  },
+  {
+    "id": 565,
+    "word": "ĐÀ ĐIỂU SA MẠC",
+    "category": "Động Vật",
+    "hint": "Loài chim lớn nhất hành tinh chạy cực nhanh nhưng không biết bay"
+  },
+  {
+    "id": 566,
+    "word": "NGỰA VẰN",
+    "category": "Động Vật",
+    "hint": "Loài thú ăn cỏ châu Phi với bộ lông kẻ sọc đen trắng đặc trưng"
+  },
+  {
+    "id": 567,
+    "word": "LẠC ĐÀ HAI BƯỚU",
+    "category": "Động Vật",
+    "hint": "Tàu thuyền của sa mạc có thể nhịn khát đi hàng tuần trên cát cháy"
+  },
+  {
+    "id": 568,
+    "word": "CỪU MERINO",
+    "category": "Động Vật",
+    "hint": "Giống cừu cung cấp những bộ lông len mềm mịn ấm áp nhất thế giới"
+  },
+  {
+    "id": 569,
+    "word": "DÊ NÚI NINH BÌNH",
+    "category": "Động Vật",
+    "hint": "Loài dê chạy nhảy trên núi đá vôi ăn lá thảo mộc thịt săn chắc"
+  },
+  {
+    "id": 570,
+    "word": "CHỒN HƯƠNG",
+    "category": "Động Vật",
+    "hint": "Loài thú nhỏ sản sinh ra thức cà phê chồn đắt đỏ bậc nhất"
+  },
+  {
+    "id": 571,
+    "word": "NHÍM GAI",
+    "category": "Động Vật",
+    "hint": "Loài động vật tự vệ bằng hàng ngàn chiếc lông gai sắc nhọn trên lưng"
+  },
+  {
+    "id": 572,
+    "word": "TÊ TÊ",
+    "category": "Động Vật",
+    "hint": "Loài thú cuộn tròn như quả bóng bảo vệ lớp vảy cứng chuyên ăn kiến"
+  },
+  {
+    "id": 573,
+    "word": "RÁI CÁ",
+    "category": "Động Vật",
+    "hint": "Loài động vật lông mượt bơi lội uyển chuyển chuyên bắt cá dưới sông"
+  },
+  {
+    "id": 574,
+    "word": "LỢN RỪNG",
+    "category": "Động Vật",
+    "hint": "Loài dã thú lông cứng có cặp nanh sắc nhọn sống trong rừng sâu"
+  },
+  {
+    "id": 575,
+    "word": "KỲ NHÔNG CÁT",
+    "category": "Động Vật",
+    "hint": "Loài bò sát đào hang chạy thoăn thoắt trên các cồn cát ven biển"
+  },
+  {
+    "id": 576,
+    "word": "ẾCH CÂY",
+    "category": "Động Vật",
+    "hint": "Chú ếch xanh bám dính trên lá cây bằng các giác hút ở đầu ngón chân"
+  },
+  {
+    "id": 577,
+    "word": "CÁ NÓC",
+    "category": "Động Vật",
+    "hint": "Loài cá có thể phồng tròn như quả bóng đầy gai khi gặp nguy hiểm"
+  },
+  {
+    "id": 578,
+    "word": "MỰC NANG",
+    "category": "Động Vật",
+    "hint": "Loài mực thân to dày có mai xốp bên trong chuyên làm chả mực"
+  },
+  {
+    "id": 579,
+    "word": "ỐC MÓNG TAY",
+    "category": "Động Vật",
+    "hint": "Hải sản thân thon dài như ngón tay vùi sâu dưới cát biển"
+  },
+  {
+    "id": 580,
+    "word": "CUA BIỂN CÀ MAU",
+    "category": "Động Vật",
+    "hint": "Cua biển thơm ngon nức tiếng với gạch son béo ngậy và thịt chắc"
+  },
+  {
+    "id": 581,
+    "word": "CÁ CHUỒN",
+    "category": "Động Vật",
+    "hint": "Loài cá có vây ngực xòe rộng bay lượn lướt trên mặt sóng biển"
+  },
+  {
+    "id": 582,
+    "word": "CÁ ĐUỐI",
+    "category": "Động Vật",
+    "hint": "Loài cá dẹp như chiếc cánh quạt bơi lượn sát đáy biển"
+  },
+  {
+    "id": 583,
+    "word": "CÁ TẦM",
+    "category": "Động Vật",
+    "hint": "Loài cá sụn cổ xưa nuôi lấy món trứng cá muối đen trứng cá tầm xa xỉ"
+  },
+  {
+    "id": 584,
+    "word": "BƯỚM ĐÊM",
+    "category": "Động Vật",
+    "hint": "Loài côn trùng cánh phấn bay quanh bóng đèn ban đêm"
+  },
+  {
+    "id": 585,
+    "word": "CHUỘT HÀM",
+    "category": "Động Vật",
+    "hint": "Thú cưng nhỏ nhắn đáng yêu thích nhét thức ăn đầy hai má"
+  },
+  {
+    "id": 586,
+    "word": "CHÓ H'MÔNG CỘC ĐUÔI",
+    "category": "Động Vật",
+    "hint": "Một trong tứ đại quốc khuyển của Việt Nam trung thành săn thú giỏi"
+  },
+  {
+    "id": 587,
+    "word": "CHÓ PHÚ QUỐC",
+    "category": "Động Vật",
+    "hint": "Giống chó bản địa thông minh bơi lặn giỏi có xoáy lông trên sống lưng"
+  },
+  {
+    "id": 588,
+    "word": "QUẢ DỪA XIÊM",
+    "category": "Thực Vật",
+    "hint": "Trái ngọt lành chứa dòng nước dừa mát lịm ngọt lịm thanh nhiệt"
+  },
+  {
+    "id": 589,
+    "word": "QUẢ CHUỐI TIÊU",
+    "category": "Thực Vật",
+    "hint": "Loại trái cây chín vàng thơm lừng giàu kali tốt cho sức khỏe"
+  },
+  {
+    "id": 590,
+    "word": "ĐU ĐỦ CHÍN CÂY",
+    "category": "Thực Vật",
+    "hint": "Trái cây ruột đỏ cam ngọt mềm nhiều vitamin A"
+  },
+  {
+    "id": 591,
+    "word": "QUẢ NA DAI",
+    "category": "Thực Vật",
+    "hint": "Trái cây mắt to múi dai ngọt thơm nức đặc sản Đồng Bành Lạng Sơn"
+  },
+  {
+    "id": 592,
+    "word": "QUẢ MÍT MẬT",
+    "category": "Thực Vật",
+    "hint": "Trái cây múi vàng óng ngập mật ngọt thơm lừng cả gian nhà"
+  },
+  {
+    "id": 593,
+    "word": "QUẢ CHANH LEO",
+    "category": "Thực Vật",
+    "hint": "Trái cây chua dịu ruột vàng pha nước uống giải nhiệt ngày hè"
+  },
+  {
+    "id": 594,
+    "word": "QUẢ LỰU ĐỎ",
+    "category": "Thực Vật",
+    "hint": "Trái cây chứa hàng trăm hạt ngọc đỏ mọng nước ngọt thanh"
+  },
+  {
+    "id": 595,
+    "word": "QUẢ NHO NINH THUẬN",
+    "category": "Thực Vật",
+    "hint": "Những chùm nho mọng nước tắm mình trong nắng gió miền cát"
+  },
+  {
+    "id": 596,
+    "word": "QUẢ MẬN HẬU",
+    "category": "Thực Vật",
+    "hint": "Trái mận giòn chua ngọt phủ lớp phấn trắng đặc sản Mộc Châu"
+  },
+  {
+    "id": 597,
+    "word": "QUẢ SẤU HÀ NỘI",
+    "category": "Thực Vật",
+    "hint": "Trái chua thanh ngâm đường gừng tạo nên thức uống mùa hè thủ đô"
+  },
+  {
+    "id": 598,
+    "word": "CỦ CÀ RỐT",
+    "category": "Thực Vật",
+    "hint": "Củ màu cam rực rỡ giàu vitamin bổ mắt là thức ăn khoái khẩu của thỏ"
+  },
+  {
+    "id": 599,
+    "word": "CỦ KHOAI LANG",
+    "category": "Thực Vật",
+    "hint": "Củ nướng thơm lùi tro bếp ấm áp giữa mùa đông lạnh giá"
+  },
+  {
+    "id": 600,
+    "word": "CỦ KHOAI TÂY",
+    "category": "Thực Vật",
+    "hint": "Loại củ tinh bột phổ biến toàn cầu làm nên món khoai tây chiên giòn"
+  },
+  {
+    "id": 601,
+    "word": "BẮP NGÔ NGỌT",
+    "category": "Thực Vật",
+    "hint": "Bắp ngô vàng óng luộc thơm ngát hương vị đồng quê"
+  },
+  {
+    "id": 602,
+    "word": "CỦ DỀN ĐỎ",
+    "category": "Thực Vật",
+    "hint": "Củ màu đỏ tím đậm đà nấu canh thanh mát bổ máu"
+  },
+  {
+    "id": 603,
+    "word": "RAU MUỐNG LUỘC",
+    "category": "Thực Vật",
+    "hint": "Món rau quốc dân ăn kèm bát nước canh vắt chanh và cà pháo"
+  },
+  {
+    "id": 604,
+    "word": "RAU MỒNG TƠI",
+    "category": "Thực Vật",
+    "hint": "Rau nấu canh cua đồng mát ruột trong bữa cơm trưa hè"
+  },
+  {
+    "id": 605,
+    "word": "HOA CẨM CHƯỚNG",
+    "category": "Thực Vật",
+    "hint": "Loài hoa nhiều cánh xoăn biểu tượng cho tình yêu thương của người mẹ"
+  },
+  {
+    "id": 606,
+    "word": "HOA MẪU ĐƠN",
+    "category": "Thực Vật",
+    "hint": "Nữ hoàng của muôn hoa biểu tượng cho sự vương giả và phú quý"
+  },
+  {
+    "id": 607,
+    "word": "HOA TỬ ĐẰNG",
+    "category": "Thực Vật",
+    "hint": "Dàn hoa tím rủ xuống từng chuỗi dài như thác hoa mộng ảo"
+  },
+  {
+    "id": 608,
+    "word": "HOA SEN ĐÁ",
+    "category": "Thực Vật",
+    "hint": "Cây cảnh nhỏ nhắn có lá mọng nước xếp tròn như bông hoa sen bất tử"
+  },
+  {
+    "id": 609,
+    "word": "CÂY XƯƠNG RỒNG",
+    "category": "Thực Vật",
+    "hint": "Loài cây kiên cường sống sót giữa sa mạc khô hạn không một giọt nước"
+  },
+  {
+    "id": 610,
+    "word": "CÂY HOA ANH ĐÀO",
+    "category": "Thực Vật",
+    "hint": "Loài hoa sắc hồng mong manh nở rộ báo hiệu mùa xuân ở xứ mặt trời mọc"
+  },
+  {
+    "id": 611,
+    "word": "CÂY LÚA NƯỚC",
+    "category": "Thực Vật",
+    "hint": "Cây lương thực nuôi sống bao thế hệ người dân Việt Nam"
+  },
+  {
+    "id": 612,
+    "word": "CÂY CÀ PHÊ",
+    "category": "Thực Vật",
+    "hint": "Cây công nghiệp trồng bạt ngàn Tây Nguyên cho ra những hạt cà phê hảo hạng"
+  },
+  {
+    "id": 613,
+    "word": "CÂY HỒ TIÊU",
+    "category": "Thực Vật",
+    "hint": "Cây dây leo cho những chùm tiêu cay nồng đặc sản Phú Quốc"
+  },
+  {
+    "id": 614,
+    "word": "CÁ LỚN NUỐT CÁ BÉ",
+    "category": "Thành Ngữ",
+    "hint": "Quy luật kẻ mạnh ức hiếp thôn tính kẻ yếu trong xã hội xưa"
+  },
+  {
+    "id": 615,
+    "word": "CHUỘT SA CHĨNH GẠO",
+    "category": "Thành Ngữ",
+    "hint": "Rơi vào hoàn cảnh đầy đủ sung túc may mắn bất ngờ"
+  },
+  {
+    "id": 616,
+    "word": "CƯỠI NGỰA XEM HOA",
+    "category": "Thành Ngữ",
+    "hint": "Làm việc qua loa đại khái chỉ nhìn ngắm bề ngoài"
+  },
+  {
+    "id": 617,
+    "word": "ẾCH NGỒI ĐÁY GIẾNG",
+    "category": "Thành Ngữ",
+    "hint": "Kẻ có tầm nhìn hạn hẹp nông cạn nhưng lại hay tự cao tự đại"
+  },
+  {
+    "id": 618,
+    "word": "GẬY ÔNG ĐẬP LƯNG ÔNG",
+    "category": "Thành Ngữ",
+    "hint": "Mưu kế thâm độc quay ngược lại làm hại chính kẻ nghĩ ra nó"
+  },
+  {
+    "id": 619,
+    "word": "HỔ DỮ KHÔNG ĂN THỊT CON",
+    "category": "Thành Ngữ",
+    "hint": "Tình phụ tử mẫu tử thiêng liêng kẻ độc ác cũng khó lòng tàn nhẫn với con mình"
+  },
+  {
+    "id": 620,
+    "word": "KHẨU PHẬT TÂM XÀ",
+    "category": "Thành Ngữ",
+    "hint": "Miệng nam mô bụng một bồ dao găm nói lời tử tế nhưng lòng độc ác"
+  },
+  {
+    "id": 621,
+    "word": "MÈO KHEN MÈO DÀI ĐUÔI",
+    "category": "Thành Ngữ",
+    "hint": "Tự khen ngợi tâng bốc bản thân một cách lố bịch"
+  },
+  {
+    "id": 622,
+    "word": "NÉM ĐÁ GIẤU TAY",
+    "category": "Thành Ngữ",
+    "hint": "Kẻ lén lút làm việc xấu hại người rồi giả vờ vô can"
+  },
+  {
+    "id": 623,
+    "word": "NUÔI ONG TAY ÁO",
+    "category": "Thành Ngữ",
+    "hint": "Cưu mang giúp đỡ kẻ phản trắc để rồi bị quay lại cắn"
+  },
+  {
+    "id": 624,
+    "word": "VẮT CHANH BỎ VỎ",
+    "category": "Thành Ngữ",
+    "hint": "Lợi dụng người khác khi hết giá trị thì vứt bỏ phũ phàng"
+  },
+  {
+    "id": 625,
+    "word": "VUỐT MẶT NỂ MŨI",
+    "category": "Thành Ngữ",
+    "hint": "Kiêng nể thể diện của người thân thích mà bỏ qua cho kẻ có lỗi"
+  },
+  {
+    "id": 626,
+    "word": "YÊU NHAU LẮM CẮN NHAU ĐAU",
+    "category": "Thành Ngữ",
+    "hint": "Càng yêu quý gắn bó thì đôi khi lại càng làm tổn thương nhau"
+  },
+  {
+    "id": 627,
+    "word": "NÓI CÓ SÁCH MÁCH CÓ CHỨNG",
+    "category": "Thành Ngữ",
+    "hint": "Lời nói đưa ra phải có bằng chứng xác thực rõ ràng"
+  },
+  {
+    "id": 628,
+    "word": "LỜI CHÀO CAO HƠN MÂM CỖ",
+    "category": "Thành Ngữ",
+    "hint": "Thái độ tôn trọng lễ phép quý giá hơn của cải vật chất đãi đằng"
+  },
+  {
+    "id": 629,
+    "word": "MẬT NGỌT CHẾT RUỒI",
+    "category": "Thành Ngữ",
+    "hint": "Những lời đường mật nịnh hót dễ khiến người ta mất cảnh giác sa bẫy"
+  },
+  {
+    "id": 630,
+    "word": "MỘT MẶT NGƯỜI BẰNG MƯỜI MẶT CỦA",
+    "category": "Thành Ngữ",
+    "hint": "Con người là vốn quý nhất của cải vật chất không thể sánh bằng"
+  },
+  {
+    "id": 631,
+    "word": "NGƯỜI ĐẸP VÌ LỤA",
+    "category": "Thành Ngữ",
+    "hint": "Trang phục phù hợp làm tôn thêm vẻ đẹp duyên dáng của con người"
+  },
+  {
+    "id": 632,
+    "word": "PHÒNG BỆNH HƠN CHỮA BỆNH",
+    "category": "Thành Ngữ",
+    "hint": "Chủ động đề phòng ngăn ngừa rủi ro trước khi hậu quả xảy ra"
+  },
+  {
+    "id": 633,
+    "word": "RÚT DÂY ĐỘNG RỪNG",
+    "category": "Thành Ngữ",
+    "hint": "Hành động thiếu cẩn trọng ở một chỗ làm lộ tẩy toàn bộ sự việc"
+  },
+  {
+    "id": 634,
+    "word": "TIỀN MẤT TẬT MANG",
+    "category": "Thành Ngữ",
+    "hint": "Tốn kém tiền của vô ích mà bệnh tật khó khăn vẫn không khỏi"
+  },
+  {
+    "id": 635,
+    "word": "TRỐNG ĐÁNH XUÔI KÈN THỔI NGƯỢC",
+    "category": "Thành Ngữ",
+    "hint": "Mỗi người làm một phách không ai chịu phối hợp ăn ý"
+  },
+  {
+    "id": 636,
+    "word": "VỎ QUÝT DÀY CÓ MÓNG TAY NHỌN",
+    "category": "Thành Ngữ",
+    "hint": "Kẻ gian xảo hiểm hóc ắt sẽ có người tài giỏi hơn trị lại"
+  },
+  {
+    "id": 637,
+    "word": "XA MẶT CÁCH LÒNG",
+    "category": "Thành Ngữ",
+    "hint": "Khoảng cách địa lý xa xôi dễ làm tình cảm phai nhạt dần"
+  },
+  {
+    "id": 638,
+    "word": "TRĂM NGHE KHÔNG BẰNG MỘT THẤY",
+    "category": "Thành Ngữ",
+    "hint": "Nghe người khác kể lại không bằng chính mắt mình chứng kiến"
+  },
+  {
+    "id": 639,
+    "word": "ĂN CHỌN NƠI CHƠI CHỌN BẠN",
+    "category": "Thành Ngữ",
+    "hint": "Khuyên nên chọn lọc bạn bè tốt để giao du học hỏi"
+  },
+  {
+    "id": 640,
+    "word": "BÚT SA GÀ CHẾT",
+    "category": "Thành Ngữ",
+    "hint": "Một khi đã đặt bút ký kết văn bản thì phải chịu trách nhiệm hoàn toàn"
+  },
+  {
+    "id": 641,
+    "word": "CHÁY NHÀ RA MẶT CHUỘT",
+    "category": "Thành Ngữ",
+    "hint": "Gặp cơn biến cố hoạn nạn mới bộc lộ rõ chân tướng kẻ xấu"
+  },
+  {
+    "id": 642,
+    "word": "ĐỨC NĂNG THẮNG SỐ",
+    "category": "Thành Ngữ",
+    "hint": "Tu tâm dưỡng tính tích đức làm việc thiện có thể cải biến số mệnh"
+  },
+  {
+    "id": 643,
+    "word": "HỌC ĐI ĐÔI VỚI HÀNH",
+    "category": "Thành Ngữ",
+    "hint": "Lý thuyết phải luôn gắn liền với thực hành trải nghiệm thực tế"
+  },
+  {
+    "id": 644,
+    "word": "KHÔNG CÓ LỬA LÀM SAO CÓ KHÓI",
+    "category": "Thành Ngữ",
+    "hint": "Mọi sự việc xảy ra trên đời đều có nguồn cơn lý do của nó"
+  },
+  {
+    "id": 645,
+    "word": "TAY LÀM HÀM NHAI",
+    "category": "Thành Ngữ",
+    "hint": "Có chăm chỉ lao động thì mới có cái ăn cái mặc ấm no"
+  },
+  {
+    "id": 646,
+    "word": "CÓ KIÊNG CÓ LÀNH",
+    "category": "Thành Ngữ",
+    "hint": "Biết cẩn trọng kiêng cữ những điều xấu sẽ tránh được tai họa"
+  },
+  {
+    "id": 647,
+    "word": "BUÔN CÓ BẠN BÁN CÓ PHƯỜNG",
+    "category": "Thành Ngữ",
+    "hint": "Làm ăn kinh doanh cần có hội đồng đoàn kết hỗ trợ lẫn nhau"
+  },
+  {
+    "id": 648,
+    "word": "VẠN SỰ KHỞI ĐẦU NAN",
+    "category": "Thành Ngữ",
+    "hint": "Mọi công việc khi mới bắt tay vào làm đều gặp muôn vàn khó khăn"
+  },
+  {
+    "id": 649,
+    "word": "ÁO BÀ BA",
+    "category": "Trang Phục",
+    "hint": "Trang phục mộc mạc duyên dáng đặc trưng của người dân Nam Bộ"
+  },
+  {
+    "id": 650,
+    "word": "ÁO TỨ THÂN",
+    "category": "Trang Phục",
+    "hint": "Trang phục truyền thống bốn vạt của các liền chị quan họ miền Bắc"
+  },
+  {
+    "id": 651,
+    "word": "KHĂN RẰN NAM BỘ",
+    "category": "Trang Phục",
+    "hint": "Chiếc khăn kẻ ô đen trắng quàng cổ thân thương của người miền Tây"
+  },
+  {
+    "id": 652,
+    "word": "NÓN BA TẦM",
+    "category": "Trang Phục",
+    "hint": "Chiếc nón quai thao tròn rộng che nắng che mưa của phụ nữ xưa"
+  },
+  {
+    "id": 653,
+    "word": "GUỐC MỘC",
+    "category": "Trang Phục",
+    "hint": "Đôi guốc gỗ gõ lách cách thân thương trên đường làng ngõ xóm"
+  },
+  {
+    "id": 654,
+    "word": "QUẠT NAN TRE",
+    "category": "Đồ Dùng",
+    "hint": "Chiếc quạt đan bằng tre phe phẩy làn gió ru con giấc trưa"
+  },
+  {
+    "id": 655,
+    "word": "CHIẾU CÓI NGA SƠN",
+    "category": "Đồ Dùng",
+    "hint": "Chiếc chiếu đan từ sợi cói thơm mát bền đẹp nổi tiếng Thanh Hóa"
+  },
+  {
+    "id": 656,
+    "word": "CHÕNG TRE",
+    "category": "Đồ Dùng",
+    "hint": "Vật dụng bằng tre đặt trước hiên nhà ngồi hóng mát uống trà"
+  },
+  {
+    "id": 657,
+    "word": "ẤM TÍCH PHA CHÈ",
+    "category": "Đồ Dùng",
+    "hint": "Chiếc ấm ủ trong bao giành giữ ấm nước chè xanh cả ngày"
+  },
+  {
+    "id": 658,
+    "word": "GÁO DỪA",
+    "category": "Đồ Dùng",
+    "hint": "Dụng cụ múc nước giếng khơi làm từ nửa vỏ quả dừa khô"
+  },
+  {
+    "id": 659,
+    "word": "CỐI XAY ĐÁ",
+    "category": "Đồ Dùng",
+    "hint": "Dụng cụ xay bột gạo làm bánh thủ công bằng hai thớt đá nặng"
+  },
+  {
+    "id": 660,
+    "word": "CHÀY GIÃ CUA",
+    "category": "Đồ Dùng",
+    "hint": "Dụng cụ giã nhuyễn cua đồng nấu canh mồng tơi ngọt mát"
+  },
+  {
+    "id": 661,
+    "word": "BẾP CỦI",
+    "category": "Đồ Dùng",
+    "hint": "Bếp lửa hồng đượm khói lam chiều nấu những bữa cơm gia đình đầm ấm"
+  },
+  {
+    "id": 662,
+    "word": "KIỀNG BA CHÂN",
+    "category": "Đồ Dùng",
+    "hint": "Thế đứng vững chãi không bao giờ ngã gục của chiếc kiềng sắt bếp lửa"
+  },
+  {
+    "id": 663,
+    "word": "ĐÈN DẦU HỎA",
+    "category": "Đồ Dùng",
+    "hint": "Ngọn đèn thắp bằng bấc dầu thắp sáng gian nhà tranh ngày xưa"
+  },
+  {
+    "id": 664,
+    "word": "BÌNH GIỮ NHIỆT",
+    "category": "Đồ Dùng",
+    "hint": "Bình inox giữ nước nóng hoặc lạnh suốt cả ngày làm việc"
+  },
+  {
+    "id": 665,
+    "word": "KÍNH RÂM THỜI TRANG",
+    "category": "Đồ Dùng",
+    "hint": "Phụ kiện bảo vệ mắt khỏi tia cực tím và nắng chói chang"
+  },
+  {
+    "id": 666,
+    "word": "Ô DÙ ĐI MƯA",
+    "category": "Đồ Dùng",
+    "hint": "Chiếc dù che chở cho người đi bộ qua những cơn mưa rào bất chợt"
+  },
+  {
+    "id": 667,
+    "word": "MŨ BẢO HIỂM",
+    "category": "Đồ Dùng",
+    "hint": "Vật dụng bắt buộc bảo vệ an toàn vùng đầu khi tham gia giao thông"
+  },
+  {
+    "id": 668,
+    "word": "GIÀY THỂ THAO",
+    "category": "Đồ Dùng",
+    "hint": "Đôi giày êm ái nâng niu bàn chân trên từng bước chạy bộ"
+  },
+  {
+    "id": 669,
+    "word": "BA LÔ HỌC SINH",
+    "category": "Đồ Dùng",
+    "hint": "Chiếc cặp sách đồng hành cùng em nhỏ đến trường mỗi buổi sớm"
+  },
+  {
+    "id": 670,
+    "word": "BÚT MÁY NGÒI MÀI",
+    "category": "Đồ Dùng",
+    "hint": "Cây bút luyện nét chữ nết người viết nên những trang vở sạch đẹp"
+  },
+  {
+    "id": 671,
+    "word": "ĐỒNG HỒ BÁO THỨC",
+    "category": "Đồ Dùng",
+    "hint": "Chiếc đồng hồ reo vang đánh thức chúng ta dậy đón ngày mới"
+  },
+  {
+    "id": 672,
+    "word": "GỐI ÔM CHỮ U",
+    "category": "Đồ Dùng",
+    "hint": "Chiếc gối mềm mại êm ái hỗ trợ giấc ngủ sâu thoải mái"
+  },
+  {
+    "id": 673,
+    "word": "CHĂN BÔNG MÙA ĐÔNG",
+    "category": "Đồ Dùng",
+    "hint": "Chiếc chăn ấm áp xua tan cái lạnh cắt da cắt thịt ngày giá rét"
+  },
+  {
+    "id": 674,
+    "word": "THỢ CẮT TÓC",
+    "category": "Nghề Nghiệp",
+    "hint": "Người thợ khéo léo tỉa tót tạo nên những kiểu tóc đẹp mắt"
+  },
+  {
+    "id": 675,
+    "word": "CHUYÊN VIÊN TRANG ĐIỂM",
+    "category": "Nghề Nghiệp",
+    "hint": "Phù thủy làm đẹp giúp khuôn mặt rạng rỡ nổi bật trong ngày trọng đại"
+  },
+  {
+    "id": 676,
+    "word": "THỢ MAY ÂU PHỤC",
+    "category": "Nghề Nghiệp",
+    "hint": "Người đo may cẩn thận từng đường kim mũi chỉ cho bộ vest lịch lãm"
+  },
+  {
+    "id": 677,
+    "word": "THỢ SỬA KHÓA",
+    "category": "Nghề Nghiệp",
+    "hint": "Cứu tinh giải nguy mỗi khi chủ nhà vô tình để quên chìa khóa"
+  },
+  {
+    "id": 678,
+    "word": "THỢ MỘC MỸ NGHỆ",
+    "category": "Nghề Nghiệp",
+    "hint": "Nghệ nhân đục đẽo gỗ thành bàn ghế, tủ chè tinh xảo"
+  },
+  {
+    "id": 679,
+    "word": "THỢ HÀN ĐIỆN",
+    "category": "Nghề Nghiệp",
+    "hint": "Người thợ với mặt nạ đen nối ghép các thanh sắt thép bằng tia lửa hoa"
+  },
+  {
+    "id": 680,
+    "word": "THỢ LẶN BIỂN SÂU",
+    "category": "Nghề Nghiệp",
+    "hint": "Người mang bình dưỡng khí thám hiểm sửa chữa công trình dưới đáy biển"
+  },
+  {
+    "id": 681,
+    "word": "CỨU HỘ BÃI BIỂN",
+    "category": "Nghề Nghiệp",
+    "hint": "Người luôn túc trực quan sát sóng nước kịp thời cứu người đuối nước"
+  },
+  {
+    "id": 682,
+    "word": "TRỌNG TÀI BÓNG ĐÁ",
+    "category": "Nghề Nghiệp",
+    "hint": "Người cầm còi công tâm giữ gìn luật lệ thi đấu trên sân cỏ"
+  },
+  {
+    "id": 683,
+    "word": "BÌNH LUẬN VIÊN THỂ THAO",
+    "category": "Nghề Nghiệp",
+    "hint": "Người truyền lửa sôi động tiếp thêm cảm xúc cho trận cầu đỉnh cao"
+  },
+  {
+    "id": 684,
+    "word": "CHUYÊN GIA DINH DƯỠNG",
+    "category": "Nghề Nghiệp",
+    "hint": "Bác sĩ tư vấn thực đơn khoa học cho sức khỏe và vóc dáng"
+  },
+  {
+    "id": 685,
+    "word": "NHÂN VIÊN THU NGÂN",
+    "category": "Nghề Nghiệp",
+    "hint": "Người phụ trách tính tiền in hóa đơn nhanh chóng tại quầy siêu thị"
+  },
+  {
+    "id": 686,
+    "word": "NHÂN VIÊN GIAO HÀNG",
+    "category": "Nghề Nghiệp",
+    "hint": "Các chú shipper dầm mưa dãi nắng giao từng gói hàng đến tận tay"
+  },
+  {
+    "id": 687,
+    "word": "BẢO VỆ TÒA NHÀ",
+    "category": "Nghề Nghiệp",
+    "hint": "Người ngày đêm canh giữ an ninh trật tự cho khu chung cư văn phòng"
+  },
+  {
+    "id": 688,
+    "word": "LÁI XE CÔNG NGHỆ",
+    "category": "Nghề Nghiệp",
+    "hint": "Các bác tài đón trả khách qua ứng dụng trên điện thoại thông minh"
+  },
+  {
+    "id": 689,
+    "word": "CÔ LAO CÔNG",
+    "category": "Nghề Nghiệp",
+    "hint": "Người thức khuya dậy sớm quét sạch rác giữ gìn đường phố xanh sạch đẹp"
+  },
+  {
+    "id": 690,
+    "word": "THỢ LÀM GỐM SỨ",
+    "category": "Nghề Nghiệp",
+    "hint": "Nghệ nhân vuốt đất sét trên bàn xoay tạo nên những bình gốm Bát Tràng tuyệt mỹ"
+  },
+  {
+    "id": 691,
+    "word": "THỢ THÊU TRANH",
+    "category": "Nghề Nghiệp",
+    "hint": "Người dùng từng đường kim sợi chỉ tạo nên bức tranh thêu lụa sống động"
+  },
+  {
+    "id": 692,
+    "word": "BÁNH CÁY THÁI BÌNH",
+    "category": "Ẩm Thực",
+    "hint": "Bánh đặc sản màu sắc óng ánh thơm cay mùi gừng dẻo thơm nếp cái"
+  },
+  {
+    "id": 693,
+    "word": "BÁNH ĐÚC LẠC",
+    "category": "Ẩm Thực",
+    "hint": "Bánh đúc trắng giòn sần sật hạt lạc chấm tương bần thơm nồng"
+  },
+  {
+    "id": 694,
+    "word": "BÁNH TAI HEO",
+    "category": "Ẩm Thực",
+    "hint": "Bánh quy giòn rụm hình xoắn ốc giống tai heo ăn vặt vui miệng"
+  },
+  {
+    "id": 695,
+    "word": "BÁNH MÈ XỬNG HUẾ",
+    "category": "Ẩm Thực",
+    "hint": "Kẹo mạch nha dẻo ngọt ngào phủ kín hạt mè rang thơm phức"
+  },
+  {
+    "id": 696,
+    "word": "BÁNH CUỐN TÂY SƠN",
+    "category": "Ẩm Thực",
+    "hint": "Món cuốn khổng lồ Bình Định với nem, chả, trứng và chả ram giòn rụm chấm nước sốt đậu"
+  },
+  {
+    "id": 697,
+    "word": "BÁNH HỎI LÒNG HEO",
+    "category": "Ẩm Thực",
+    "hint": "Đặc sản bánh hỏi sợi mảnh thoa mỡ hành ăn cùng lòng heo luộc chấm mắm tỏi"
+  },
+  {
+    "id": 698,
+    "word": "BÚN CÁ RÔ ĐỒNG",
+    "category": "Ẩm Thực",
+    "hint": "Món bún thanh ngọt nước dùng nấu cùng cá rô đồng rán giòn đặc sản Hải Dương"
+  },
+  {
+    "id": 699,
+    "word": "BÚN RIÊU CUA",
+    "category": "Ẩm Thực",
+    "hint": "Bát bún nước dùng cà chua đỏ au thơm lừng gạch cua và đậu phụ rán"
+  },
+  {
+    "id": 700,
+    "word": "BÚN MỌC DỌC MÙNG",
+    "category": "Ẩm Thực",
+    "hint": "Bát bún nước trong thanh ngọt với những viên mọc nấm hương và dọc mùng giòn sần sật"
+  },
+  {
+    "id": 701,
+    "word": "BÚN MẮM NÊM",
+    "category": "Ẩm Thực",
+    "hint": "Tô bún trộn thịt heo quay, tai heo, nem chua và mắm nêm đậm đà miền Trung"
+  },
+  {
+    "id": 702,
+    "word": "BÚN SỨA NHA TRANG",
+    "category": "Ẩm Thực",
+    "hint": "Món bún thanh mát với từng miếng sứa giòn sần sật chả cá biển"
+  },
+  {
+    "id": 703,
+    "word": "HỦ TIẾU SA ĐÉC",
+    "category": "Ẩm Thực",
+    "hint": "Sợi hủ tiếu bột lọc dai mềm trứ danh vùng đất sen hồng Đồng Tháp"
+  },
+  {
+    "id": 704,
+    "word": "MIẾN LƯƠN NGHỆ AN",
+    "category": "Ẩm Thực",
+    "hint": "Miến xào hoặc miến nước nấu cùng lươn đồng xào nghệ sả cay nồng"
+  },
+  {
+    "id": 705,
+    "word": "CHÁO CÓC",
+    "category": "Ẩm Thực",
+    "hint": "Món cháo dinh dưỡng dân gian giàu đạm giúp trẻ biếng ăn còi xương"
+  },
+  {
+    "id": 706,
+    "word": "LẨU CÁ KÈO",
+    "category": "Ẩm Thực",
+    "hint": "Món lẩu miền Tây nấu lá giang chua dịu với những con cá kèo tươi roi rói"
+  },
+  {
+    "id": 707,
+    "word": "ẾCH XÀO LĂN",
+    "category": "Ẩm Thực",
+    "hint": "Đặc sản thịt ếch xào thơm nức mùi bột cà ri sả ớt và nước cốt dừa"
+  },
+  {
+    "id": 708,
+    "word": "SƯỜN XÀO CHUA NGỌT",
+    "category": "Ẩm Thực",
+    "hint": "Món ăn đưa cơm với những miếng sườn rán vàng sốt me cà chua đậm vị"
+  },
+  {
+    "id": 709,
+    "word": "MỰC XÀO SA TẾ",
+    "category": "Ẩm Thực",
+    "hint": "Mực ống tươi giòn xào cùng sa tế cay nồng đánh thức vị giác"
+  },
+  {
+    "id": 710,
+    "word": "TÔM RIM MẶN NGỌT",
+    "category": "Ẩm Thực",
+    "hint": "Tôm đồng rim nước mắm đường đỏ au giòn vỏ ăn cùng cơm trắng"
+  },
+  {
+    "id": 711,
+    "word": "BẮP XÀO BƠ TÉP",
+    "category": "Ẩm Thực",
+    "hint": "Món ăn vặt thơm lừng góc phố bắp ngô xào bơ béo ngậy và tép khô"
+  },
+  {
+    "id": 712,
+    "word": "TRÀ CHANH GIÃ TAY",
+    "category": "Ẩm Thực",
+    "hint": "Thức uống gây sốt làm từ chanh tươi Quảng Đông giã dập tỏa tinh dầu thơm ngát"
+  },
+  {
+    "id": 713,
+    "word": "TRÀ SỮA TRÂN CHÂU",
+    "category": "Ẩm Thực",
+    "hint": "Thức uống quốc dân với những viên trân châu đen dai giòn ngọt ngào"
+  },
+  {
+    "id": 714,
+    "word": "ĐẤT NƯỚC HOA ANH ĐÀO",
+    "category": "Địa Danh",
+    "hint": "Tên gọi thiêng liêng và thơ mộng của xứ sở Phù Tang Nhật Bản"
+  },
+  {
+    "id": 715,
+    "word": "XỨ SỞ KIM CHI",
+    "category": "Địa Danh",
+    "hint": "Tên gọi thân thương quen thuộc của đất nước Hàn Quốc"
+  },
+  {
+    "id": 716,
+    "word": "XỨ SỞ CHÙA VÀNG",
+    "category": "Địa Danh",
+    "hint": "Tên gọi du lịch nổi tiếng của vương quốc Thái Lan"
+  },
+  {
+    "id": 717,
+    "word": "ĐẤT NƯỚC HÌNH CHIẾC ỦNG",
+    "category": "Địa Danh",
+    "hint": "Hình dáng bản đồ độc đáo trên biển Địa Trung Hải của nước Ý"
+  },
+  {
+    "id": 718,
+    "word": "XỨ SỞ CỐI XAY GIÓ",
+    "category": "Địa Danh",
+    "hint": "Vương quốc hoa tulip và những chiếc cối xay gió khổng lồ Hà Lan"
+  },
+  {
+    "id": 719,
+    "word": "ĐẤT NƯỚC CHÙA THÁP",
+    "category": "Địa Danh",
+    "hint": "Tên gọi văn hóa của đất nước láng giềng Campuchia"
+  },
+  {
+    "id": 720,
+    "word": "ĐẤT NƯỚC TRIỆU VOI",
+    "category": "Địa Danh",
+    "hint": "Tên gọi cổ xưa Vạn Tượng của nước Cộng hòa Dân chủ Nhân dân Lào"
+  },
+  {
+    "id": 721,
+    "word": "XỨ SỞ KANGAROO",
+    "category": "Địa Danh",
+    "hint": "Biệt danh của châu lục hoang dã và đất nước chuột túi nước Úc"
+  },
+  {
+    "id": 722,
+    "word": "XỨ SỞ BĂNG TUYẾT",
+    "category": "Địa Danh",
+    "hint": "Vùng đất cực Bắc quanh năm phủ màu trắng xóa của băng hà"
+  },
+  {
+    "id": 723,
+    "word": "THỦ ĐÔ TOKYO",
+    "category": "Địa Danh",
+    "hint": "Đại đô thị hiện đại và sầm uất bậc nhất thế giới của Nhật Bản"
+  },
+  {
+    "id": 724,
+    "word": "THỦ ĐÔ SEOUL",
+    "category": "Địa Danh",
+    "hint": "Thành phố sôi động bên dòng sông Hàn trái tim của Hàn Quốc"
+  },
+  {
+    "id": 725,
+    "word": "THỦ ĐÔ BANGKOK",
+    "category": "Địa Danh",
+    "hint": "Thành phố thiên thần với những ngôi chùa dát vàng lộng lẫy tại Thái Lan"
+  },
+  {
+    "id": 726,
+    "word": "THỦ ĐÔ BẮC KINH",
+    "category": "Địa Danh",
+    "hint": "Thủ đô cổ kính với Tử Cấm Thành nguy nga của Trung Quốc"
+  },
+  {
+    "id": 727,
+    "word": "THỦ ĐÔ LUÂN ĐÔN",
+    "category": "Địa Danh",
+    "hint": "Thành phố sương mù cổ kính bên bờ sông Thames với tháp đồng hồ Big Ben"
+  },
+  {
+    "id": 728,
+    "word": "THỦ ĐÔ PARIS",
+    "category": "Địa Danh",
+    "hint": "Kinh đô ánh sáng và kinh đô thời trang lãng mạn của nước Pháp"
+  },
+  {
+    "id": 729,
+    "word": "THỦ ĐÔ MATXCOVA",
+    "category": "Địa Danh",
+    "hint": "Trái tim nước Nga với Quảng trường Đỏ và điện Kremlin tráng lệ"
+  },
+  {
+    "id": 730,
+    "word": "THỦ ĐÔ WASHINGTON",
+    "category": "Địa Danh",
+    "hint": "Trung tâm đầu não chính trị của Hợp chủng quốc Hoa Kỳ với Nhà Trắng"
+  },
+  {
+    "id": 731,
+    "word": "ĐÀN BẦU VIỆT NAM",
+    "category": "Nhạc Cụ",
+    "hint": "Cung thanh là tiếng mẹ cung trầm là giọng cha nhạc cụ độc đáo chỉ có một dây"
+  },
+  {
+    "id": 732,
+    "word": "ĐÀN TRANH",
+    "category": "Nhạc Cụ",
+    "hint": "Nhạc cụ dây gảy cổ truyền có 16 đến 19 dây âm sắc trong trẻo thánh thót"
+  },
+  {
+    "id": 733,
+    "word": "ĐÀN T'RƯNG",
+    "category": "Nhạc Cụ",
+    "hint": "Nhạc cụ gõ bằng các ống nứa ống tre vang vọng giữa đại ngàn Tây Nguyên"
+  },
+  {
+    "id": 734,
+    "word": "ĐÀN ĐÁ",
+    "category": "Nhạc Cụ",
+    "hint": "Nhạc cụ gõ cổ xưa nhất làm bằng những thanh đá có cao độ trầm bổng"
+  },
+  {
+    "id": 735,
+    "word": "ĐÀN NGUYỆT",
+    "category": "Nhạc Cụ",
+    "hint": "Cây đàn thùng tròn như vầng trăng rằm chuyên dùng trong hát chầu văn"
+  },
+  {
+    "id": 736,
+    "word": "ĐÀN NHỊ",
+    "category": "Nhạc Cụ",
+    "hint": "Cây đàn hai dây dùng cung vĩ kéo nỉ non da diết"
+  },
+  {
+    "id": 737,
+    "word": "SÁO TRÚC",
+    "category": "Nhạc Cụ",
+    "hint": "Cây sáo thổi hơi du dương ngân nga trên lưng trâu đồng quê"
+  },
+  {
+    "id": 738,
+    "word": "TRỐNG ĐỒNG ĐÔNG SƠN",
+    "category": "Văn Hóa",
+    "hint": "Bảo vật quốc gia biểu tượng đỉnh cao của nền văn minh lúa nước sông Hồng"
+  },
+  {
+    "id": 739,
+    "word": "TRỐNG CƠM",
+    "category": "Nhạc Cụ",
+    "hint": "Nhạc cụ gõ hai đầu bịt da thường thấy trong câu hát tình bằng có cái trống cơm"
+  },
+  {
+    "id": 740,
+    "word": "MÕ GỖ",
+    "category": "Đồ Dùng",
+    "hint": "Vật dụng gõ nhịp tụng kinh thanh tịnh chốn thiền môn thanh tịnh"
+  },
+  {
+    "id": 741,
+    "word": "CHUÔNG CHÙA",
+    "category": "Đồ Dùng",
+    "hint": "Tiếng đại hồng chung ngân vang xua tan mọi muộn phiền nhân gian"
+  },
+  {
+    "id": 742,
+    "word": "LƯ HƯƠNG ĐỒNG",
+    "category": "Đồ Dùng",
+    "hint": "Vật thờ cúng tôn nghiêm đặt trên bàn thờ gia tiên để thắp hương"
+  },
+  {
+    "id": 743,
+    "word": "CÂY CHỔI RƠM",
+    "category": "Đồ Dùng",
+    "hint": "Chiếc chổi bện từ rơm nếp vàng óng quét sạch góc sân"
+  },
+  {
+    "id": 744,
+    "word": "CÁI LỒNG BÀN",
+    "category": "Đồ Dùng",
+    "hint": "Vật dụng đan bằng tre hoặc nhựa đậy kín mâm cơm tránh ruồi muỗi"
+  },
+  {
+    "id": 745,
+    "word": "CÁI PHÍCH NƯỚC",
+    "category": "Đồ Dùng",
+    "hint": "Vật dụng giữ nước sôi nóng bỏng hiệu Rạng Đông quen thuộc trong mọi gia đình"
+  },
+  {
+    "id": 746,
+    "word": "CÁI THỚT NGHIẾN",
+    "category": "Đồ Dùng",
+    "hint": "Chiếc thớt gỗ nghiến tròn dày chắc nịch chặt thịt băm xương không vỡ"
+  },
+  {
+    "id": 747,
+    "word": "BÀN CỜ TƯỚNG",
+    "category": "Giải Trí",
+    "hint": "Bàn cờ 64 ô với dòng sông Sở Hà Hán Giới ngăn đôi hai chiến tuyến"
+  },
+  {
+    "id": 748,
+    "word": "ĐÔI CÀ KHEO",
+    "category": "Trò Chơi Dân Gian",
+    "hint": "Trò chơi biểu diễn đi trên hai cây tre cao nghều đòi hỏi thăng bằng tuyệt đỉnh"
+  },
+  {
+    "id": 749,
+    "word": "CHIẾC DIỀU SÁO",
+    "category": "Trò Chơi Dân Gian",
+    "hint": "Cánh diều mang ống sáo vi vu ngân vang giữa bầu trời quê hương"
+  },
+  {
+    "id": 750,
+    "word": "NƯỚC MẮM NHĨ",
+    "category": "Ẩm Thực",
+    "hint": "Nước mắm cốt nguyên chất nhỏ giọt thơm ngon hảo hạng từ cá cơm tươi"
+  },
+  {
+    "id": 751,
+    "word": "TƯƠNG BẦN HƯNG YÊN",
+    "category": "Ẩm Thực",
+    "hint": "Đặc sản tương đậu tương nếp cái thơm bùi chấm rau muống luộc"
+  },
+  {
+    "id": 752,
+    "word": "MẮM TÔM THANH HÓA",
+    "category": "Ẩm Thực",
+    "hint": "Mắm tôm đậm đà hương vị ăn kèm bún đậu hay chả cá"
+  },
+  {
+    "id": 753,
+    "word": "CỐM LÀNG VÒNG",
+    "category": "Ẩm Thực",
+    "hint": "Hạt ngọc xanh dẻo thơm gói trong lá sen tươi ngát hương thu Hà Nội"
+  },
+  {
+    "id": 754,
+    "word": "BÁNH CHÈ LAM",
+    "category": "Ẩm Thực",
+    "hint": "Bánh ngọt thơm cay mùi gừng và dẻo bùi hạt lạc nhâm nhi cùng trà nóng"
+  },
+  {
+    "id": 755,
+    "word": "BÁNH ĐA CUA",
+    "category": "Ẩm Thực",
+    "hint": "Món bánh đa sợi đỏ chan nước riêu cua đồng thơm béo nức tiếng Hải Phòng"
+  },
+  {
+    "id": 756,
+    "word": "CHẢ MỰC HẠ LONG",
+    "category": "Ẩm Thực",
+    "hint": "Đặc sản mực tươi giã tay chiên giòn sần sật vàng ruộm"
+  },
+  {
+    "id": 757,
+    "word": "BÁNH TRÔI NƯỚC",
+    "category": "Ẩm Thực",
+    "hint": "Bánh trắng tròn nhân đường phèn gắn liền bài thơ bất hủ của bà chúa thơ Nôm"
+  },
+  {
+    "id": 758,
+    "word": "BÁNH CHAY",
+    "category": "Ẩm Thực",
+    "hint": "Bánh nếp mềm chan nước chè đậu xanh sánh mịn rắc mè rang thơm lừng"
+  },
+  {
+    "id": 759,
+    "word": "CHÈ TRÔI NƯỚC",
+    "category": "Ẩm Thực",
+    "hint": "Những viên chè nếp nhân đậu xanh bơi trong nước đường gừng ấm nóng"
+  },
+  {
+    "id": 760,
+    "word": "KEM TRÀNG TIỀN",
+    "category": "Ẩm Thực",
+    "hint": "Món kem gắn liền ký ức bao thế hệ người Hà Nội bên hồ Gươm"
+  },
+  {
+    "id": 761,
+    "word": "SỮA CHUA NẾP CẨM",
+    "category": "Ẩm Thực",
+    "hint": "Sự kết hợp hoàn hảo giữa sữa chua chua thanh và hạt nếp cẩm dẻo bùi"
+  },
+  {
+    "id": 762,
+    "word": "BÁNH CAM BÁNH CÒNG",
+    "category": "Ẩm Thực",
+    "hint": "Món bánh chiên đường thốt nốt ngọt ngào giòn rụm của tuổi thơ miền Tây"
+  },
+  {
+    "id": 763,
+    "word": "SỮA ĐẬU NÀNH NÓNG",
+    "category": "Ẩm Thực",
+    "hint": "Ly sữa đậu nành bốc khói nghi ngút ấm lòng đêm lạnh Đà Lạt"
+  },
+  {
+    "id": 764,
+    "word": "NƯỚC RAU MÁ",
+    "category": "Ẩm Thực",
+    "hint": "Thức uống thanh nhiệt màu xanh tươi mát xay cùng đậu xanh béo bùi"
+  },
+  {
+    "id": 765,
+    "word": "CÁ TAI TƯỢNG",
+    "category": "Động Vật",
+    "hint": "Loài cá nước ngọt to bản thường chiên xù xòe vảy cuốn bánh tráng"
+  },
+  {
+    "id": 766,
+    "word": "CÁ KÈO",
+    "category": "Động Vật",
+    "hint": "Loài cá nhỏ sống ở bãi bồi bùn nước lợ nấu lẩu lá giang cực ngon"
+  },
+  {
+    "id": 767,
+    "word": "CÁ CƠM",
+    "category": "Động Vật",
+    "hint": "Loài cá biển nhỏ bé giàu canxi là nguyên liệu làm nên nước mắm truyền thống"
+  },
+  {
+    "id": 768,
+    "word": "CÁ THU",
+    "category": "Động Vật",
+    "hint": "Loài cá biển da trơn thịt săn chắc béo ngậy thường sốt cà chua"
+  },
+  {
+    "id": 769,
+    "word": "CÁ NGỪ ĐẠI DƯƠNG",
+    "category": "Động Vật",
+    "hint": "Mắt cá ngừ tiềm thuốc bắc đặc sản trứ danh đất Phú Yên"
+  },
+  {
+    "id": 770,
+    "word": "CON TẰM ĂN DÂU",
+    "category": "Động Vật",
+    "hint": "Sinh vật nhả tơ dệt nên những tấm lụa Hà Đông mềm óng ả"
+  },
+  {
+    "id": 771,
+    "word": "BỌ RÙA CHẤM ĐỎ",
+    "category": "Động Vật",
+    "hint": "Loài côn trùng có cánh cứng màu đỏ chấm đen là bạn của nhà nông"
+  },
+  {
+    "id": 772,
+    "word": "SÒ HUYẾT Ô LOAN",
+    "category": "Động Vật",
+    "hint": "Đặc sản đầm Ô Loan sò huyết tươi nướng mỡ hành ngọt đậm đà"
+  },
+  {
+    "id": 773,
+    "word": "HÀU NƯỚNG MỠ HÀNH",
+    "category": "Ẩm Thực",
+    "hint": "Hàu sữa béo ngậy nướng trên than hồng thơm nức mũi đậu phộng"
+  },
+  {
+    "id": 774,
+    "word": "NGHÊU HẤP SẢ",
+    "category": "Ẩm Thực",
+    "hint": "Nghêu tươi hấp sả ớt nước ngọt lịm cay nồng ấm bụng"
+  },
+  {
+    "id": 775,
+    "word": "SÒ ĐIỆP NƯỚNG PHÔ MAI",
+    "category": "Ẩm Thực",
+    "hint": "Món hải sản phủ phô mai kéo sợi thơm ngậy giòn ngọt"
+  },
+  {
+    "id": 776,
+    "word": "BÀO NGƯ",
+    "category": "Ẩm Thực",
+    "hint": "Món ăn cao lương mỹ vị quý giá bổ dưỡng từ biển sâu"
+  },
+  {
+    "id": 777,
+    "word": "CẦU GAI",
+    "category": "Động Vật",
+    "hint": "Nhím biển đen đầy gai nhọn nướng mỡ hành béo như lòng đỏ trứng"
+  },
+  {
+    "id": 778,
+    "word": "CÁ CHIM TRẮNG",
+    "category": "Động Vật",
+    "hint": "Loài cá biển thân dẹp tròn thịt mềm ngọt thơm lành"
+  },
+  {
+    "id": 779,
+    "word": "CÁ MÚ ĐỎ",
+    "category": "Động Vật",
+    "hint": "Loài cá biển sống ở rạn san hô thịt trắng ngọt dai thượng hạng"
+  },
+  {
+    "id": 780,
+    "word": "LÒNG NHÂN ÁI",
+    "category": "Phẩm Chất",
+    "hint": "Tình yêu thương con người và sẵn sàng chia sẻ nâng đỡ kẻ khó"
+  },
+  {
+    "id": 781,
+    "word": "LÒNG BAO DUNG",
+    "category": "Phẩm Chất",
+    "hint": "Tấm lòng độ lượng tha thứ cho lỗi lầm của người khác"
+  },
+  {
+    "id": 782,
+    "word": "LÒNG TỰ TRỌNG",
+    "category": "Phẩm Chất",
+    "hint": "Ý thức coi trọng và giữ gìn phẩm cách danh dự của bản thân"
+  },
+  {
+    "id": 783,
+    "word": "TINH THẦN ĐOÀN KẾT",
+    "category": "Phẩm Chất",
+    "hint": "Sức mạnh tập thể chung sức đồng lòng vượt qua mọi thử thách"
+  },
+  {
+    "id": 784,
+    "word": "Ý CHÍ KIÊN CƯỜNG",
+    "category": "Phẩm Chất",
+    "hint": "Nghị lực sắt đá không bao giờ khuất phục trước gian nan"
+  },
+  {
+    "id": 785,
+    "word": "LÒNG BIẾT ƠN",
+    "category": "Phẩm Chất",
+    "hint": "Ghi nhớ và đền đáp công lao giúp đỡ của cha mẹ thầy cô và mọi người"
+  },
+  {
+    "id": 786,
+    "word": "TÍNH TRUNG THỰC",
+    "category": "Phẩm Chất",
+    "hint": "Phẩm chất cao quý luôn nói sự thật và không gian dối vụ lợi"
+  },
+  {
+    "id": 787,
+    "word": "SỰ KHIÊM TỐN",
+    "category": "Phẩm Chất",
+    "hint": "Không tự cao tự đại luôn lắng nghe và học hỏi điều hay"
+  },
+  {
+    "id": 788,
+    "word": "TÌNH YÊU QUÊ HƯƠNG",
+    "category": "Tình Cảm",
+    "hint": "Tình cảm thiêng liêng gắn bó với mảnh đất chôn rau cắt rốn"
+  },
+  {
+    "id": 789,
+    "word": "TÌNH NGHĨA THẦY TRÒ",
+    "category": "Tình Cảm",
+    "hint": "Đạo nghĩa thầy trò thiêng liêng sâu đậm khắc ghi công ơn dạy dỗ"
+  },
+  {
+    "id": 790,
+    "word": "TÌNH LÀNG NGHĨA XÓM",
+    "category": "Tình Cảm",
+    "hint": "Mối quan hệ hòa thuận tối lửa tắt đèn có nhau nơi thôn xóm"
+  },
+  {
+    "id": 791,
+    "word": "TÌNH CẢM GIA ĐÌNH",
+    "category": "Tình Cảm",
+    "hint": "Tổ ấm thiêng liêng nơi tràn ngập yêu thương và là điểm tựa bình yên"
+  },
+  {
+    "id": 792,
+    "word": "LỜI RU CỦA MẸ",
+    "category": "Tình Cảm",
+    "hint": "Điệu ca êm dịu ngọt ngào đưa con vào giấc ngủ tuổi thơ"
+  },
+  {
+    "id": 793,
+    "word": "CÁNH ĐỒNG LÚA CHÍN",
+    "category": "Thiên Nhiên",
+    "hint": "Biển vàng nhấp nhô hương lúa thơm ngát báo hiệu mùa màng bội thu"
+  },
+  {
+    "id": 794,
+    "word": "DÒNG SÔNG QUÊ HƯƠNG",
+    "category": "Thiên Nhiên",
+    "hint": "Con sông êm đềm bồi đắp phù sa gắn liền bao kỷ niệm ấu thơ"
+  },
+  {
+    "id": 795,
+    "word": "LŨY TRE XANH",
+    "category": "Thiên Nhiên",
+    "hint": "Hàng rào tre râm mát bao bọc làng quê kiên cường trước bão táp"
+  },
+  {
+    "id": 796,
+    "word": "CÂY CẦU KHỈ",
+    "category": "Văn Hóa",
+    "hint": "Cây cầu tre lắc lẻo bắc qua con rạch nhỏ đặc trưng sông nước Nam Bộ"
+  },
+  {
+    "id": 797,
+    "word": "BÓNG MÁT CÂY ĐA",
+    "category": "Văn Hóa",
+    "hint": "Chốn dừng chân nghỉ ngơi của người nông dân trưa hè oi ả"
+  },
+  {
+    "id": 798,
+    "word": "GIẾNG NƯỚC ĐẦU LÀNG",
+    "category": "Văn Hóa",
+    "hint": "Nơi sinh hoạt tắm mát gánh nước trong veo của người dân quê xưa"
+  },
+  {
+    "id": 799,
+    "word": "SÂN ĐÌNH LÀNG CỔ",
+    "category": "Văn Hóa",
+    "hint": "Không gian lễ hội họp làng linh thiêng dưới bóng cây đa cổ thụ"
+  },
+  {
+    "id": 800,
+    "word": "TIẾNG TRỐNG TRƯỜNG",
+    "category": "Đời Sống",
+    "hint": "Âm thanh tùng tùng tùng giục giã bước chân em tới lớp"
+  },
+  {
+    "id": 801,
+    "word": "NGÀY KHAI TRƯỜNG",
+    "category": "Đời Sống",
+    "hint": "Ngày hội mùa thu rộn rã cờ hoa đón chào năm học mới"
+  },
+  {
+    "id": 802,
+    "word": "CƠN MƯA RÀO MÙA HẠ",
+    "category": "Thiên Nhiên",
+    "hint": "Cơn mưa xối xả bất chợt xua tan cái nóng gay gắt trưa hè"
+  },
+  {
+    "id": 803,
+    "word": "CƠN GIÓ HEO MAY",
+    "category": "Thiên Nhiên",
+    "hint": "Làn gió thu se lạnh thoang thoảng mùi hoa sữa đầu đông"
+  },
+  {
+    "id": 804,
+    "word": "MÙA XUÂN TƯƠI MỚI",
+    "category": "Thiên Nhiên",
+    "hint": "Mùa trăm hoa đua nở cây cối đâm chồi nảy lộc sức sống tràn trề"
+  },
+  {
+    "id": 805,
+    "word": "BÌNH YÊN HẠNH PHÚC",
+    "category": "Đời Sống",
+    "hint": "Cuộc sống an lành thanh thản không âu lo muộn phiền"
+  },
+  {
+    "id": 806,
+    "word": "ĂN ỐC NÓI MÒ",
+    "category": "Thành Ngữ",
+    "hint": "Nói năng võ đoán không có căn cứ xác thực"
+  },
+  {
+    "id": 807,
+    "word": "BẮT CÁ HAI TAY",
+    "category": "Thành Ngữ",
+    "hint": "Cùng lúc theo đuổi hai mục tiêu hay tình cảm để rồi mất cả hai"
+  },
+  {
+    "id": 808,
+    "word": "BÈO DẠT MÂY TRÔI",
+    "category": "Thành Ngữ",
+    "hint": "Số phận phiêu bạt bấp bênh nay đây mai đó theo dòng đời"
+  },
+  {
+    "id": 809,
+    "word": "BÌNH CHÂN NHƯ VẠI",
+    "category": "Thành Ngữ",
+    "hint": "Thản nhiên coi như không có chuyện gì xảy ra dù nước sôi lửa bỏng"
+  },
+  {
+    "id": 810,
+    "word": "DÃ TRÀNG XE CÁT",
+    "category": "Thành Ngữ",
+    "hint": "Công sức bỏ ra vô ích như dã tràng xe cát biển Đông nhọc nhằn"
+  },
+  {
+    "id": 811,
+    "word": "ĐÀN GẢY TAI TRÂU",
+    "category": "Thành Ngữ",
+    "hint": "Nói lời hay lẽ phải cho kẻ ngu muội không chịu tiếp thu"
+  },
+  {
+    "id": 812,
+    "word": "ĐÁNH TRỐNG BỎ DÙI",
+    "category": "Thành Ngữ",
+    "hint": "Bày vẽ công việc ra rồi bỏ dở nửa chừng không chịu làm đến nơi đến chốn"
+  },
+  {
+    "id": 813,
+    "word": "ĐỨNG NÚI NÀY TRÔNG NÚI NỌ",
+    "category": "Thành Ngữ",
+    "hint": "Không yên tâm bằng lòng với vị trí hiện tại mà luôn dòm ngó chỗ khác"
+  },
+  {
+    "id": 814,
+    "word": "GIẬU ĐỔ BÌM LEO",
+    "category": "Thành Ngữ",
+    "hint": "Thấy người khác sa cơ thất thế thì nhảy vào chèn ép lấn lướt"
+  },
+  {
+    "id": 815,
+    "word": "LỰC BẤT TÒNG TÂM",
+    "category": "Thành Ngữ",
+    "hint": "Rất muốn làm một việc gì đó nhưng sức lực điều kiện không cho phép"
+  },
+  {
+    "id": 816,
+    "word": "MANG CHUÔNG ĐI ĐÁNH XỨ NGƯỜI",
+    "category": "Thành Ngữ",
+    "hint": "Đem tài năng đại diện cho quê hương đất nước ra thi đấu quốc tế"
+  },
+  {
+    "id": 817,
+    "word": "NGẬM ĐẮNG NUỐT CAY",
+    "category": "Thành Ngữ",
+    "hint": "Âm thầm chịu đựng mọi nỗi tủi nhục đau đớn không dám than vãn"
+  },
+  {
+    "id": 818,
+    "word": "NGỰA NON HÁU ĐÁ",
+    "category": "Thành Ngữ",
+    "hint": "Tuổi trẻ bồng bột hiếu thắng thích thể hiện nhưng thiếu kinh nghiệm"
+  },
+  {
+    "id": 819,
+    "word": "NƯỚC ĐẾN CHÂN MỚI NHẢY",
+    "category": "Thành Ngữ",
+    "hint": "Để công việc dồn ứ đến phút chót mới cuống cuồng bắt tay vào làm"
+  },
+  {
+    "id": 820,
+    "word": "OAN GIA NGÕ HẸP",
+    "category": "Thành Ngữ",
+    "hint": "Những người thù oán ghét nhau lại tình cờ chạm mặt trong tình thế éo le"
+  },
+  {
+    "id": 821,
+    "word": "TÌM KIM ĐÁY BỂ",
+    "category": "Thành Ngữ",
+    "hint": "Tìm kiếm một điều gì đó vô cùng khó khăn và hy vọng mong manh"
+  },
+  {
+    "id": 822,
+    "word": "TRE GIÀ MĂNG MỌC",
+    "category": "Thành Ngữ",
+    "hint": "Quy luật kế thừa lớp trẻ tiếp bước thế hệ đi trước xây dựng tương lai"
+  },
+  {
+    "id": 823,
+    "word": "VÕNG ĐIỀU NGHỈ MÁT",
+    "category": "Đời Sống",
+    "hint": "Chiếc võng đung đưa dưới bóng râm mang lại giấc ngủ trưa êm ái"
+  },
+  {
+    "id": 824,
+    "word": "HÁT ĐỐI ĐÁP",
+    "category": "Văn Hóa",
+    "hint": "Hình thức ca hát trao duyên dân gian giữa nam thanh nữ tú"
+  },
+  {
+    "id": 825,
+    "word": "MÚA SẠP",
+    "category": "Văn Hóa",
+    "hint": "Điệu múa gõ thanh tre rộn ràng của đồng bào dân tộc Tây Bắc"
+  },
+  {
+    "id": 826,
+    "word": "MÚA XÒE HOA",
+    "category": "Văn Hóa",
+    "hint": "Điệu múa xòe tay nắm tay uyển chuyển của các cô gái Thái đón khách quý"
+  },
+  {
+    "id": 827,
+    "word": "RƯỢU CẦN TÂY NGUYÊN",
+    "category": "Văn Hóa",
+    "hint": "Thức rượu men lá thơm nồng uống chung bằng cần trúc bên bếp lửa nhà rông"
+  },
+  {
+    "id": 828,
+    "word": "NHÀ RÔNG TÂY NGUYÊN",
+    "category": "Văn Hóa",
+    "hint": "Ngôi nhà sàn mái nhọn vút cao sừng sững trái tim văn hóa của buôn làng"
+  },
+  {
+    "id": 829,
+    "word": "CÀ PHÊ PHIN",
+    "category": "Ẩm Thực",
+    "hint": "Từng giọt cà phê chầm chậm rơi qua phin nhôm đậm chất hoài niệm"
+  },
+  {
+    "id": 830,
+    "word": "KẸO LẠC",
+    "category": "Ẩm Thực",
+    "hint": "Kẹo ngọt giòn thơm lừng hạt đậu phộng thưởng thức cùng trà xanh"
+  },
+  {
+    "id": 831,
+    "word": "KẸO MÈ XỬNG",
+    "category": "Ẩm Thực",
+    "hint": "Đặc sản kẹo dẻo ngọt thanh bùi thơm hạt mè trắng xứ Huế"
+  },
+  {
+    "id": 832,
+    "word": "BÁNH ĐẬU XANH NƯỚNG",
+    "category": "Ẩm Thực",
+    "hint": "Bánh đậu xanh thơm nức giòn thơm ngọt ngào đặc sản Quảng Nam"
+  },
+  {
+    "id": 833,
+    "word": "RƯỢU VANG ĐÀ LẠT",
+    "category": "Ẩm Thực",
+    "hint": "Thức rượu vang lên men từ những trái dâu tằm thơm ngon xứ ngàn hoa"
+  },
+  {
+    "id": 834,
+    "word": "BÚN NƯỚC LÈO",
+    "category": "Ẩm Thực",
+    "hint": "Món bún đậm đà nước dùng nấu từ mắm cá bò hóc và ngải bún Sóc Trăng"
+  },
+  {
+    "id": 835,
+    "word": "BÁNH CỐNG",
+    "category": "Ẩm Thực",
+    "hint": "Bánh chiên trong cống sâu lòng giòn rụm bên trên có con tôm tươi roi rói"
+  },
+  {
+    "id": 836,
+    "word": "CHẢ ĐÙM",
+    "category": "Ẩm Thực",
+    "hint": "Món thịt bò thịt heo băm viên bọc mỡ chài hấp chín rắc đậu phộng thơm phức"
+  },
+  {
+    "id": 837,
+    "word": "CHẢ PHƯỢNG",
+    "category": "Ẩm Thực",
+    "hint": "Món chả tạo hình chim phượng hoàng lộng lẫy trong mâm cỗ cung đình"
+  },
+  {
+    "id": 838,
+    "word": "NEM CÔNG",
+    "category": "Ẩm Thực",
+    "hint": "Món ăn cung đình xưa biểu tượng cho sự quý phái sang trọng"
+  },
+  {
+    "id": 839,
+    "word": "BÁNH LÁ LIỄU",
+    "category": "Ẩm Thực",
+    "hint": "Bánh màu hồng phấn hình lá liễu dẻo thơm truyền thống người Hoa"
+  },
+  {
+    "id": 840,
+    "word": "BÁNH TỔ",
+    "category": "Ẩm Thực",
+    "hint": "Món bánh ngọt dẻo màu nâu làm từ bột nếp và đường bát ngày Tết xứ Quảng"
+  },
+  {
+    "id": 841,
+    "word": "BÁNH ÍT LÁ GAI",
+    "category": "Ẩm Thực",
+    "hint": "Bánh màu đen nhánh thơm bùi nhân dừa đậu xanh đặc sản Bình Định"
+  },
+  {
+    "id": 842,
+    "word": "BÁNH GẠO TOKPOKKI",
+    "category": "Ẩm Thực",
+    "hint": "Món bánh gạo dẻo sốt tương ớt đỏ cay nồng Hàn Quốc"
+  },
+  {
+    "id": 843,
+    "word": "BÁNH MÌ PHÔ MAI BƠ TỎI",
+    "category": "Ẩm Thực",
+    "hint": "Bánh mì nướng thơm lừng sốt bơ tỏi và ngập tràn kem phô mai béo ngậy"
+  },
+  {
+    "id": 844,
+    "word": "TRÀ SỮA MATCHA",
+    "category": "Ẩm Thực",
+    "hint": "Thức uống màu xanh ngọc bích thơm mát hương trà xanh Nhật Bản"
+  },
+  {
+    "id": 845,
+    "word": "KEM DỪA",
+    "category": "Ẩm Thực",
+    "hint": "Viên kem mát lạnh béo ngậy đặt trong gáo dừa nạo sợi giòn tan"
+  },
+  {
+    "id": 846,
+    "word": "BÁNH NƯỚNG NHÂN THẬP CẨM",
+    "category": "Ẩm Thực",
+    "hint": "Chiếc bánh Trung thu truyền thống với lạp xưởng, mứt bí, vừng mè"
+  },
+  {
+    "id": 847,
+    "word": "BÁNH DẺO NHÂN ĐẬU XANH",
+    "category": "Ẩm Thực",
+    "hint": "Chiếc bánh Trung thu vỏ bột nếp trắng tinh thơm hương hoa bưởi"
+  },
+  {
+    "id": 848,
+    "word": "CẦU THÊ HÚC",
+    "category": "Địa Danh",
+    "hint": "Cây cầu màu đỏ son cong cong như con tôm dẫn vào đền Ngọc Sơn"
+  },
+  {
+    "id": 849,
+    "word": "THÁP RÙA HỒ GƯƠM",
+    "category": "Địa Danh",
+    "hint": "Ngọn tháp cổ kính soi bóng lung linh giữa mặt hồ Hoàn Kiếm linh thiêng"
+  },
+  {
+    "id": 850,
+    "word": "CỘT CỜ HÀ NỘI",
+    "category": "Địa Danh",
+    "hint": "Di tích kỳ đài lịch sử sừng sững bên đường Điện Biên Phủ"
+  },
+  {
+    "id": 851,
+    "word": "Ô QUAN CHƯỞNG",
+    "category": "Địa Danh",
+    "hint": "Cửa ô duy nhất còn nguyên vẹn rêu phong cổ kính của thành Thăng Long"
+  },
+  {
+    "id": 852,
+    "word": "CẦU LONG BIÊN",
+    "category": "Địa Danh",
+    "hint": "Chứng nhân lịch sử bắc qua sông Hồng biểu tượng kiên cường của thủ đô"
+  },
+  {
+    "id": 853,
+    "word": "CHỢ BÌNH TÂY",
+    "category": "Địa Danh",
+    "hint": "Khu chợ Chợ Lớn sầm uất kiến trúc phương Đông cổ kính tại TP.HCM"
+  },
+  {
+    "id": 854,
+    "word": "BƯU ĐIỆN TRUNG TÂM SÀI GÒN",
+    "category": "Địa Danh",
+    "hint": "Tòa nhà bưu điện kiến trúc Gothic Pháp tuyệt đẹp bên hông nhà thờ Đức Bà"
+  },
+  {
+    "id": 855,
+    "word": "NHÀ THỜ ĐỨC BÀ",
+    "category": "Địa Danh",
+    "hint": "Biểu tượng kiến trúc tôn giáo độc đáo bằng gạch đỏ Marseille tại TP.HCM"
+  },
+  {
+    "id": 856,
+    "word": "HỒ CON RÙA",
+    "category": "Địa Danh",
+    "hint": "Điểm hẹn hò ăn vặt quen thuộc của giới trẻ Sài Gòn"
+  },
+  {
+    "id": 857,
+    "word": "PHỐ ĐI BỘ NGUYỄN HUỆ",
+    "category": "Địa Danh",
+    "hint": "Quảng trường đi bộ hiện đại nhộn nhịp bậc nhất trung tâm thành phố mang tên Bác"
+  },
+  {
+    "id": 858,
+    "word": "PHỐ TÂY BÙI VIỆN",
+    "category": "Địa Danh",
+    "hint": "Khu phố không ngủ rực rỡ ánh đèn âm nhạc của khách du lịch"
+  },
+  {
+    "id": 859,
+    "word": "BÁN ĐẢO SƠN TRÀ",
+    "category": "Địa Danh",
+    "hint": "Lá phổi xanh che chở cho thành phố biển Đà Nẵng"
+  },
+  {
+    "id": 860,
+    "word": "CÙ LAO CHÀM",
+    "category": "Địa Danh",
+    "hint": "Khu dự trữ sinh quyển thế giới hoang sơ với rạn san hô lộng lẫy"
+  },
+  {
+    "id": 861,
+    "word": "ĐẢO LÝ SƠN",
+    "category": "Địa Danh",
+    "hint": "Vương quốc tỏi hình thành từ miệng núi lửa cổ giữa biển Đông"
+  },
+  {
+    "id": 862,
+    "word": "GÀNH ĐÁ ĐĨA",
+    "category": "Địa Danh",
+    "hint": "Kỳ quan địa chất hàng ngàn cột đá bazan hình lục giác xếp lớp kỳ ảo tại Phú Yên"
+  },
+  {
+    "id": 863,
+    "word": "BÃI MÔN",
+    "category": "Địa Danh",
+    "hint": "Bãi biển hoang sơ tuyệt đẹp nằm nép mình dưới chân ngọn hải đăng Đại Lãnh"
+  },
+  {
+    "id": 864,
+    "word": "HỒ LẮK",
+    "category": "Địa Danh",
+    "hint": "Hồ nước ngọt tự nhiên lớn thứ hai Việt Nam gắn liền với văn hóa voi Tây Nguyên"
+  },
+  {
+    "id": 865,
+    "word": "THÁC DRAY NUR",
+    "category": "Địa Danh",
+    "hint": "Ngọn thác hùng vĩ bọt tung trắng xóa như mái tóc bạc giữa rừng già Đắk Lắk"
+  },
+  {
+    "id": 866,
+    "word": "ĐỒI CHÈ CẦU ĐẤT",
+    "category": "Địa Danh",
+    "hint": "Đồi chè xanh mướt ngút ngàn điểm săn mây lý tưởng buổi sớm mai Đà Lạt"
+  },
+  {
+    "id": 867,
+    "word": "THÁC PRENN",
+    "category": "Địa Danh",
+    "hint": "Cổng chào thiên nhiên chào đón du khách bước vào thành phố ngàn hoa"
+  },
+  {
+    "id": 868,
+    "word": "HỒ XUÂN HƯƠNG",
+    "category": "Địa Danh",
+    "hint": "Trái tim xanh thơ mộng uốn lượn giữa trung tâm thành phố Đà Lạt"
+  },
+  {
+    "id": 869,
+    "word": "MŨI NÉ",
+    "category": "Địa Danh",
+    "hint": "Thủ phủ resort nghỉ dưỡng với đồi cát hồng cát trắng bay rực rỡ"
+  },
+  {
+    "id": 870,
+    "word": "CÔN ĐẢO",
+    "category": "Địa Danh",
+    "hint": "Vùng đất thiêng liêng hào hùng và thiên đường biển đảo bình yên hoang sơ"
+  },
+  {
+    "id": 871,
+    "word": "HÒN KHOAI",
+    "category": "Địa Danh",
+    "hint": "Hòn đảo xanh ngát nhìn ra biển Tây Nam nơi địa đầu biển đảo Cà Mau"
+  },
+  {
+    "id": 872,
+    "word": "THÁNH GIÓNG",
+    "category": "Cổ Tích",
+    "hint": "Vị anh hùng làng Gióng cưỡi ngựa sắt nhổ tre đánh đuổi giặc Ân"
+  },
+  {
+    "id": 873,
+    "word": "SƠN TINH THỦY TINH",
+    "category": "Cổ Tích",
+    "hint": "Truyền thuyết giải thích hiện tượng bão lũ dâng nước hàng năm"
+  },
+  {
+    "id": 874,
+    "word": "CHỬ ĐỒNG TỬ",
+    "category": "Cổ Tích",
+    "hint": "Một trong tứ bất tử nên duyên cùng công chúa Tiên Dung trên bãi cát"
+  },
+  {
+    "id": 875,
+    "word": "SỰ TÍCH HỒ GƯƠM",
+    "category": "Truyền Thuyết",
+    "hint": "Vua Lê Lợi hoàn trả gươm thần Thuận Thiên cho rùa vàng"
+  },
+  {
+    "id": 876,
+    "word": "SỰ TÍCH TRẦU CAU",
+    "category": "Cổ Tích",
+    "hint": "Câu chuyện cảm động về tình anh em tình nghĩa vợ chồng son sắt"
+  },
+  {
+    "id": 877,
+    "word": "SỰ TÍCH CON RỒNG CHÁU TIÊN",
+    "category": "Truyền Thuyết",
+    "hint": "Cha Lạc Long Quân mẹ Âu Cơ sinh bọc trăm trứng cội nguồn dân tộc"
+  },
+  {
+    "id": 878,
+    "word": "THẠCH SANH",
+    "category": "Cổ Tích",
+    "hint": "Chàng dũng sĩ diệt chằn tinh bắn đại bàng cứu công chúa"
+  },
+  {
+    "id": 879,
+    "word": "CÂY KHẾ",
+    "category": "Cổ Tích",
+    "hint": "Truyện cổ tích ăn một quả trả một cục vàng may túi ba gang"
+  },
+  {
+    "id": 880,
+    "word": "TẤM CÁM",
+    "category": "Cổ Tích",
+    "hint": "Truyện cổ tích cô gái hiền lành trải qua bao kiếp hóa thân đoàn tụ cùng vua"
+  },
+  {
+    "id": 881,
+    "word": "CÂY TRE TRĂM ĐỐT",
+    "category": "Cổ Tích",
+    "hint": "Câu thần chú khắc nhập khắc xuất trừng trị phú ông tham lam"
+  },
+  {
+    "id": 882,
+    "word": "ÔNG LÃO ĐÁNH CÁ VÀ CON CÁ VÀNG",
+    "category": "Cổ Tích",
+    "hint": "Bài học về lòng tham không đáy trở về với cái máng lợn sứt mẻ"
+  },
+  {
+    "id": 883,
+    "word": "CÔ BÉ BÁN DIÊM",
+    "category": "Cổ Tích",
+    "hint": "Câu chuyện đêm đông tuyết rơi quẹt từng que diêm mơ ước ấm no"
+  },
+  {
+    "id": 884,
+    "word": "HOÀNG TỬ ẾCH",
+    "category": "Cổ Tích",
+    "hint": "Nụ hôn của nàng công chúa hóa giải lời nguyền cho chàng hoàng tử"
+  },
+  {
+    "id": 885,
+    "word": "BẠCH TUYẾT VÀ BẢY CHÚ LÙN",
+    "category": "Cổ Tích",
+    "hint": "Nàng công chúa da trắng như tuyết môi đỏ như son ngủ trong rừng"
+  },
+  {
+    "id": 886,
+    "word": "CÔ BÉ QUÀNG KHĂN ĐỎ",
+    "category": "Cổ Tích",
+    "hint": "Cô bé mang bánh qua rừng thăm bà ngoại gặp phải sói gian ác"
+  },
+  {
+    "id": 887,
+    "word": "CỌP VÀ TRÍ KHÔN",
+    "category": "Cổ Tích",
+    "hint": "Truyện ngụ ngôn giải thích vì sao cọp có những vằn đen trên da"
+  },
+  {
+    "id": 888,
+    "word": "THẦY BÓI XEM VOI",
+    "category": "Ngụ Ngôn",
+    "hint": "Năm ông thầy bói mỗi người sờ một bộ phận rồi cãi nhau nảy lửa"
+  },
+  {
+    "id": 889,
+    "word": "RÙA VÀ THỎ",
+    "category": "Ngụ Ngôn",
+    "hint": "Bài học chớ kiêu ngạo chủ quan của thỏ trước sự kiên trì của rùa"
+  },
+  {
+    "id": 890,
+    "word": "CON CÁO VÀ CHÙM NHO",
+    "category": "Ngụ Ngôn",
+    "hint": "Không với tới chùm nho chín mọng liền chê nho còn xanh lắm"
+  },
+  {
+    "id": 891,
+    "word": "ĐẼO CÀY GIỮA ĐƯỜNG",
+    "category": "Ngụ Ngôn",
+    "hint": "Người không có chính kiến ai nói gì cũng nghe theo để rồi hỏng việc"
+  },
+  {
+    "id": 892,
+    "word": "NHẪN KIM CƯƠNG",
+    "category": "Trang Sức",
+    "hint": "Món trang sức lấp lánh đắt đỏ biểu tượng cho tình yêu vĩnh cửu"
+  },
+  {
+    "id": 893,
+    "word": "VÒNG NGỌC BÍCH",
+    "category": "Trang Sức",
+    "hint": "Chiếc vòng tay ngọc xanh biếc mang lại may mắn bình an theo phong thủy"
+  },
+  {
+    "id": 894,
+    "word": "DÂY CHUYỀN VÀNG",
+    "category": "Trang Sức",
+    "hint": "Món trang sức kim loại quý sáng lấp lánh đeo trên cổ"
+  },
+  {
+    "id": 895,
+    "word": "HOA TAI BẠC",
+    "category": "Trang Sức",
+    "hint": "Đôi khuyên tai xinh xắn điểm xuyết nét duyên cho phái đẹp"
+  },
+  {
+    "id": 896,
+    "word": "CHUỖI NGỌC TRAI",
+    "category": "Trang Sức",
+    "hint": "Báu vật từ lòng biển sâu tôn vinh vẻ đẹp quý phái thanh lịch"
+  },
+  {
+    "id": 897,
+    "word": "TRÂM CÀI TÓC",
+    "category": "Trang Sức",
+    "hint": "Vật dụng búi tóc điểm xuyết hoa văn tinh xảo của phụ nữ xưa"
+  },
+  {
+    "id": 898,
+    "word": "VƯƠNG MIỆN HOA HẬU",
+    "category": "Trang Sức",
+    "hint": "Biểu tượng danh giá dành cho người chiến thắng cuộc thi sắc đẹp"
+  },
+  {
+    "id": 899,
+    "word": "LẮC CHÂN BẠC",
+    "category": "Trang Sức",
+    "hint": "Chiếc lắc nhỏ gắn lục lạc leng keng đáng yêu cho em bé"
+  },
+  {
+    "id": 900,
+    "word": "CÀ VẠT LỤA",
+    "category": "Phụ Kiện",
+    "hint": "Phụ kiện trang phục không thể thiếu tôn lên vẻ lịch lãm của quý ông"
+  },
+  {
+    "id": 901,
+    "word": "KẸP CÀ VẠT",
+    "category": "Phụ Kiện",
+    "hint": "Thanh kim loại nhỏ tinh tế giữ nếp cà vạt trên áo sơ mi"
+  },
+  {
+    "id": 902,
+    "word": "KHĂN CHOÀNG CỔ LEN",
+    "category": "Phụ Kiện",
+    "hint": "Chiếc khăn ấm áp giữ ấm cổ trong những ngày đông gió rét"
+  },
+  {
+    "id": 903,
+    "word": "GĂNG TAY DA",
+    "category": "Phụ Kiện",
+    "hint": "Đôi găng tay giữ ấm và tăng vẻ sang trọng khi đi xe trời lạnh"
+  },
+  {
+    "id": 904,
+    "word": "VÍ TIỀN DA BÒ",
+    "category": "Phụ Kiện",
+    "hint": "Chiếc bóp đựng tiền và thẻ ngân hàng nhỏ gọn mang theo bên mình"
+  },
+  {
+    "id": 905,
+    "word": "THẮT LƯNG DA",
+    "category": "Phụ Kiện",
+    "hint": "Phụ kiện giữ phom quần chuẩn mực cho trang phục thường ngày"
+  },
+  {
+    "id": 906,
+    "word": "ĐỒNG HỒ QUẢ LẮC",
+    "category": "Đồ Dùng",
+    "hint": "Chiếc đồng hồ gỗ cổ kính ngân vang từng hồi chuông tròn giờ"
+  },
+  {
+    "id": 907,
+    "word": "BIA ĐÁ CŨNG MÒN",
+    "category": "Thành Ngữ",
+    "hint": "Thời gian có thể làm hao mòn bia đá nhưng danh thơm đạo nghĩa còn mãi"
+  },
+  {
+    "id": 908,
+    "word": "CÂY CAO BÓNG CẢ",
+    "category": "Thành Ngữ",
+    "hint": "Người cao tuổi uy tín đức độ là chỗ dựa vững chắc cho con cháu"
+  },
+  {
+    "id": 909,
+    "word": "CHÂN LĨNH TAY BÙN",
+    "category": "Thành Ngữ",
+    "hint": "Hình ảnh lam lũ vất vả dãi nắng dầm mưa của người nông dân"
+  },
+  {
+    "id": 910,
+    "word": "CON ĐÀN CHÁU ĐỐNG",
+    "category": "Thành Ngữ",
+    "hint": "Gia đình đông vui hòa thuận nhiều thế hệ sum vầy phúc lộc"
+  },
+  {
+    "id": 911,
+    "word": "DƯ THỪA TÀI LỘC",
+    "category": "Thành Ngữ",
+    "hint": "Cuộc sống sung túc giàu có không lo thiếu thốn vật chất"
+  },
+  {
+    "id": 912,
+    "word": "GIA ĐÌNH ĐẦM ẤM",
+    "category": "Đời Sống",
+    "hint": "Tổ ấm chan chứa tiếng cười và sự yêu thương thấu hiểu"
+  },
+  {
+    "id": 913,
+    "word": "HẠNH PHÚC NGẬP TRÀN",
+    "category": "Đời Sống",
+    "hint": "Cảm xúc hân hoan vui sướng ngập tràn khắp tâm hồn"
+  },
+  {
+    "id": 914,
+    "word": "HOAN HỶ VUI TƯƠI",
+    "category": "Đời Sống",
+    "hint": "Nét mặt rạng rỡ đón nhận những điều may mắn tốt lành"
+  },
+  {
+    "id": 915,
+    "word": "KHỎE NHƯ VOI",
+    "category": "Thành Ngữ",
+    "hint": "Sức khỏe dồi dào sung mãn tràn đầy sinh lực"
+  },
+  {
+    "id": 916,
+    "word": "LẠC QUAN YÊU ĐỜI",
+    "category": "Phẩm Chất",
+    "hint": "Luôn nhìn vào mặt tích cực tươi sáng của cuộc sống"
+  },
+  {
+    "id": 917,
+    "word": "NHẤT CỬ LƯỠNG TIỆN",
+    "category": "Thành Ngữ",
+    "hint": "Một hành động mang lại hai kết quả thuận lợi cùng lúc"
+  },
+  {
+    "id": 918,
+    "word": "NHẤT TÂM BẤT LOẠN",
+    "category": "Phẩm Chất",
+    "hint": "Tâm trí kiên định tập trung cao độ không bị dao động"
+  },
+  {
+    "id": 919,
+    "word": "PHÁT TÀI PHÁT LỘC",
+    "category": "Thành Ngữ",
+    "hint": "Lời chúc kinh doanh buôn bán thuận lợi tiền bạc dồi dào"
+  },
+  {
+    "id": 920,
+    "word": "PHÚ QUÝ VINH HOA",
+    "category": "Thành Ngữ",
+    "hint": "Cuộc sống giàu sang quyền quý ngập tràn nhung lụa"
+  },
+  {
+    "id": 921,
+    "word": "SỨC KHỎE DỒI DÀO",
+    "category": "Thành Ngữ",
+    "hint": "Lời chúc thân thể tráng kiện dẻo dai không bệnh tật"
+  },
+  {
+    "id": 922,
+    "word": "TÂM ĐẦU Ý HỢP",
+    "category": "Thành Ngữ",
+    "hint": "Hai người hiểu nhau sâu sắc có cùng suy nghĩ và sở thích"
+  },
+  {
+    "id": 923,
+    "word": "TÂM TRONG SÁNG",
+    "category": "Phẩm Chất",
+    "hint": "Tâm hồn thanh tịnh hướng thiện không vướng bận toan tính"
+  },
+  {
+    "id": 924,
+    "word": "THẢO HIẾU MẸ CHA",
+    "category": "Phẩm Chất",
+    "hint": "Bổn phận tròn đạo làm con kính yêu và chăm sóc cha mẹ già"
+  },
+  {
+    "id": 925,
+    "word": "THUẬN BUỒM XUÔI GIÓ",
+    "category": "Thành Ngữ",
+    "hint": "Mọi việc hanh thông trôi chảy suôn sẻ như cánh buồm căng gió"
+  },
+  {
+    "id": 926,
+    "word": "TINH HOA ĐẤT TRỜI",
+    "category": "Thành Ngữ",
+    "hint": "Những gì tinh túy quý giá nhất hội tụ giữa đất và trời"
+  },
+  {
+    "id": 927,
+    "word": "TRỌNG NGHĨA KHINH TÀI",
+    "category": "Phẩm Chất",
+    "hint": "Coi trọng nghĩa khí tình cảm hơn của cải tiền bạc vật chất"
+  },
+  {
+    "id": 928,
+    "word": "TƯƠNG THÂN TƯƠNG ÁI",
+    "category": "Phẩm Chất",
+    "hint": "Tình thương yêu gắn kết giúp đỡ lẫn nhau trong cộng đồng"
+  },
+  {
+    "id": 929,
+    "word": "VẠN THỌ VÔ CƯƠNG",
+    "category": "Thành Ngữ",
+    "hint": "Lời chúc thọ bách niên trường thọ sống lâu trăm tuổi"
+  },
+  {
+    "id": 930,
+    "word": "VUI NHƯ TẾT",
+    "category": "Thành Ngữ",
+    "hint": "Không khí rộn rã tưng bừng tràn ngập niềm vui hoan hỉ"
+  },
+  {
+    "id": 931,
+    "word": "VỮNG NHƯ BÀN THẠCH",
+    "category": "Thành Ngữ",
+    "hint": "Thế trận vững chãi kiên cố không gì có thể lay chuyển"
+  },
+  {
+    "id": 932,
+    "word": "XUÔI CHÈO MÁT MÁI",
+    "category": "Thành Ngữ",
+    "hint": "Hành trình thuận lợi êm đẹp không gặp phải sóng gió"
+  },
+  {
+    "id": 933,
+    "word": "Ý HỢP TÂM ĐẦU",
+    "category": "Thành Ngữ",
+    "hint": "Sự đồng điệu sâu sắc trong tâm hồn và quan điểm sống"
+  },
+  {
+    "id": 934,
+    "word": "YÊN VUI BÌNH AN",
+    "category": "Đời Sống",
+    "hint": "Cuộc sống an lành không biến cố hoạn nạn âu lo"
+  },
+  {
+    "id": 935,
+    "word": "ẤM NO HẠNH PHÚC",
+    "category": "Đời Sống",
+    "hint": "Đời sống đủ đầy cơm ăn áo mặc và ngập tràn tình yêu thương"
+  },
+  {
+    "id": 936,
+    "word": "ĐỒNG BÒNG ĐỒNG SỨC",
+    "category": "Thành Ngữ",
+    "hint": "Mọi người chung một chí hướng và dồn toàn lực hoàn thành mục tiêu"
+  },
+  {
+    "id": 937,
+    "word": "HAI BÀ TRƯNG",
+    "category": "Lịch Sử",
+    "hint": "Hai nữ anh hùng cưỡi voi phất cờ khởi nghĩa đánh đuổi quân Nam Hán"
+  },
+  {
+    "id": 938,
+    "word": "BÀ TRIỆU",
+    "category": "Lịch Sử",
+    "hint": "Nữ tướng cưỡi voi đánh cồng tuyên bố đạp luồng sóng dữ chém cá kình"
+  },
+  {
+    "id": 939,
+    "word": "TRẦN HƯNG ĐẠO",
+    "category": "Lịch Sử",
+    "hint": "Đức Thánh Trần ba lần lãnh đạo quân dân Đại Việt đánh tan quân Nguyên Mông"
+  },
+  {
+    "id": 940,
+    "word": "QUANG TRUNG NGUYỄN HUỆ",
+    "category": "Lịch Sử",
+    "hint": "Vị hoàng đế áo vải cờ đào hành quân thần tốc đại phá 29 vạn quân Thanh"
+  },
+  {
+    "id": 941,
+    "word": "NGÔ QUYỀN",
+    "category": "Lịch Sử",
+    "hint": "Vị vua cắm cọc gỗ bịt sắt trên sông Bạch Đằng chấm dứt nghìn năm Bắc thuộc"
+  },
+  {
+    "id": 942,
+    "word": "LÝ THƯỜNG KIỆT",
+    "category": "Lịch Sử",
+    "hint": "Vị tướng với bản tuyên ngôn độc lập đầu tiên Nam quốc sơn hà"
+  },
+  {
+    "id": 943,
+    "word": "NGUYỄN TRÃI",
+    "category": "Lịch Sử",
+    "hint": "Danh nhân văn hóa thế giới tác giả kiệt tác Bình Ngô đại cáo"
+  },
+  {
+    "id": 944,
+    "word": "VÕ NGUYÊN GIÁP",
+    "category": "Lịch Sử",
+    "hint": "Đại tướng huyền thoại chỉ huy chiến dịch Điện Biên Phủ vang dội năm châu"
+  },
+  {
+    "id": 945,
+    "word": "TRẠNG QUỲNH",
+    "category": "Văn Học",
+    "hint": "Nhân vật dân gian thông minh hóm hỉnh chuyên châm biếm quan lại phong kiến"
+  },
+  {
+    "id": 946,
+    "word": "LÃO HẠC",
+    "category": "Văn Học",
+    "hint": "Người nông dân nghèo giàu lòng tự trọng gắn liền với chú chó Vàng"
+  },
+  {
+    "id": 947,
+    "word": "CHÍ PHÈO",
+    "category": "Văn Học",
+    "hint": "Nhân vật văn học nổi tiếng với bát cháo hành và khát khao làm người lương thiện"
+  },
+  {
+    "id": 948,
+    "word": "THỊ NỞ",
+    "category": "Văn Học",
+    "hint": "Nhân vật mang lại hơi ấm tình thương và bát cháo hành thức tỉnh lương tri"
+  },
+  {
+    "id": 949,
+    "word": "CHỊ DẬU",
+    "category": "Văn Học",
+    "hint": "Hình tượng người phụ nữ nông dân kiên cường vùng lên chống sưu thuế bất công"
+  },
+  {
+    "id": 950,
+    "word": "DẾ MÈN PHIÊU LƯU KÝ",
+    "category": "Văn Học",
+    "hint": "Tác phẩm kinh điển của nhà văn Tô Hoài về bài học đường đời đầu tiên"
+  },
+  {
+    "id": 951,
+    "word": "HOÀNG TỬ BÉ",
+    "category": "Văn Học",
+    "hint": "Tác phẩm văn học Pháp kinh điển về bông hồng và những chuyến du hành vũ trụ"
+  },
+  {
+    "id": 952,
+    "word": "ROBINSON CRUSOE",
+    "category": "Văn Học",
+    "hint": "Chàng thủy thủ kiên cường sinh tồn một mình suốt 28 năm trên hoang đảo"
+  },
+  {
+    "id": 953,
+    "word": "ĐÔ-RÊ-MON",
+    "category": "Văn Hóa",
+    "hint": "Chú mèo máy thông minh đến từ tương lai với chiếc túi thần kỳ"
+  },
+  {
+    "id": 954,
+    "word": "TÔN NGỘ KHÔNG",
+    "category": "Văn Hóa",
+    "hint": "Tề Thiên Đại Thánh thần thông quảng đại phò tá Đường Tăng đi thỉnh kinh"
+  },
+  {
+    "id": 955,
+    "word": "TRƯ BÁT GIỚI",
+    "category": "Văn Hóa",
+    "hint": "Thiên Bồng Nguyên Soái tính tình ham ăn ngủ nhưng trọng nghĩa tình"
+  },
+  {
+    "id": 956,
+    "word": "SA TĂNG",
+    "category": "Văn Hóa",
+    "hint": "Quyển Liêm Đại Tướng cần cù chất phác gánh hành lý trên đường sang Tây Trúc"
+  },
+  {
+    "id": 957,
+    "word": "ĐẤT NƯỚC MẶT TRỜI MỌC",
+    "category": "Địa Danh",
+    "hint": "Tên gọi thiêng liêng của xứ sở hoa anh đao Nhật Bản"
+  },
+  {
+    "id": 958,
+    "word": "ĐẤT NƯỚC RỒNG VÀNG",
+    "category": "Địa Danh",
+    "hint": "Tên gọi giàu ý nghĩa lịch sử văn hóa của đất nước Bhutan"
+  },
+  {
+    "id": 959,
+    "word": "DÒNG SÔNG MÊ KÔNG",
+    "category": "Địa Danh",
+    "hint": "Dòng sông mẹ nuôi dưỡng đồng bằng Nam Bộ màu mỡ phù sa"
+  },
+  {
+    "id": 960,
+    "word": "DÒNG SÔNG HỒNG",
+    "category": "Địa Danh",
+    "hint": "Con sông bồi đắp nên châu thổ trù phú nghìn năm của miền Bắc"
+  },
+  {
+    "id": 961,
+    "word": "DÒNG SÔNG HƯƠNG",
+    "category": "Địa Danh",
+    "hint": "Dòng sông thơ mộng chảy qua lòng thành phố Huế cổ kính"
+  },
+  {
+    "id": 962,
+    "word": "DÒNG SÔNG HÀN",
+    "category": "Địa Danh",
+    "hint": "Dòng sông bắc qua những cây cầu hiện đại lung linh của Đà Nẵng"
+  },
+  {
+    "id": 963,
+    "word": "DÒNG SÔNG SÀI GÒN",
+    "category": "Địa Danh",
+    "hint": "Con sông uốn lượn ôm trọn trung tâm kinh tế năng động bậc nhất"
+  },
+  {
+    "id": 964,
+    "word": "DÒNG SÔNG LAM",
+    "category": "Địa Danh",
+    "hint": "Con sông quê hương xứ Nghệ gắn liền với núi Hồng Lĩnh hùng vĩ"
+  },
+  {
+    "id": 965,
+    "word": "NÚI HỒNG LĨNH",
+    "category": "Địa Danh",
+    "hint": "Dãy núi 99 ngọn biểu tượng cho khí phách con người Hà Tĩnh"
+  },
+  {
+    "id": 966,
+    "word": "NÚI YÊN TỬ",
+    "category": "Địa Danh",
+    "hint": "Kinh đô Phật giáo cội nguồn của Thiền phái Trúc Lâm Đại Việt"
+  },
+  {
+    "id": 967,
+    "word": "NÚI CHÚA",
+    "category": "Địa Danh",
+    "hint": "Vườn quốc gia khô hạn độc đáo bên bờ biển Ninh Thuận"
+  },
+  {
+    "id": 968,
+    "word": "HỒ TƠ NƯNG",
+    "category": "Địa Danh",
+    "hint": "Biển Hồ Pleiku đôi mắt ngọc ngà của cao nguyên Gia Lai"
+  },
+  {
+    "id": 969,
+    "word": "THÁC PONGOUR",
+    "category": "Địa Danh",
+    "hint": "Thác bảy tầng hùng vĩ bậc nhất vùng đất Nam Tây Nguyên"
+  },
+  {
+    "id": 970,
+    "word": "VỊNH VĨNH HY",
+    "category": "Địa Danh",
+    "hint": "Một trong những vịnh biển nguyên sơ đẹp nhất Việt Nam"
+  },
+  {
+    "id": 971,
+    "word": "VỊNH LAN HẠ",
+    "category": "Địa Danh",
+    "hint": "Vịnh biển đẹp tựa tiên cảnh nằm phía nam vịnh Hạ Long"
+  },
+  {
+    "id": 972,
+    "word": "VỊNH XUÂN ĐÀI",
+    "category": "Địa Danh",
+    "hint": "Vịnh biển thanh bình xanh ngắt bạt ngàn dừa nước tại Phú Yên"
+  },
+  {
+    "id": 973,
+    "word": "BÁNH ĐA ĐÔ LƯƠNG",
+    "category": "Ẩm Thực",
+    "hint": "Bánh đa mè đen nướng giòn rụm cay nồng vị tiêu tỏi Nghệ An"
+  },
+  {
+    "id": 974,
+    "word": "BÁNH RẾ PHAN THIẾT",
+    "category": "Ẩm Thực",
+    "hint": "Bánh ngọt chiên giòn từ khoai lang bào sợi bọc mật đường óng ánh"
+  },
+  {
+    "id": 975,
+    "word": "NƯỚC SÂM DỨA",
+    "category": "Ẩm Thực",
+    "hint": "Thức uống giải khát mát rượi thoang thoảng hương lá dứa thơm lừng"
+  },
+  {
+    "id": 976,
+    "word": "SỮA BẮP NÓN",
+    "category": "Ẩm Thực",
+    "hint": "Ly sữa ngô non vàng óng sánh mịn béo ngọt tự nhiên"
+  },
+  {
+    "id": 977,
+    "word": "CHÈ KHO NAM ĐỊNH",
+    "category": "Ẩm Thực",
+    "hint": "Món chè đậu xanh nấu đường đậm đà rắc vừng thơm ngày lễ Tết"
+  },
+  {
+    "id": 978,
+    "word": "BÁNH THUẪN",
+    "category": "Ẩm Thực",
+    "hint": "Bánh bông lan nướng trong khuôn gang hình bông mai ngày Tết miền Trung"
+  },
+  {
+    "id": 979,
+    "word": "BÁNH TRÁNG XOÀI",
+    "category": "Ẩm Thực",
+    "hint": "Đặc sản bánh dẻo ngọt chua thanh làm từ thịt xoài chín Cam Ranh"
+  },
+  {
+    "id": 980,
+    "word": "CHẢ RAM TÔM ĐẤT",
+    "category": "Ẩm Thực",
+    "hint": "Cuốn chả ram giòn rụm bên trong là con tôm đất đỏ tươi Bình Định"
+  },
+  {
+    "id": 981,
+    "word": "LẨU THẢ MŨI NÉ",
+    "category": "Ẩm Thực",
+    "hint": "Món lẩu xếp nguyên liệu trên các bẹ hoa chuối đỏ rực rỡ đặc sản Bình Thuận"
+  },
+  {
+    "id": 982,
+    "word": "NÚI NGỰ BÌNH",
+    "category": "Địa Danh",
+    "hint": "Ngọn núi bình phong che chắn phía trước kinh thành Huế thơ mộng"
+  },
+  {
+    "id": 983,
+    "word": "RỪNG DỪA BẢY MẪU",
+    "category": "Địa Danh",
+    "hint": "Khu rừng dừa nước bạt ngàn trải nghiệm chèo thuyền thúng tại Hội An"
+  },
+  {
+    "id": 984,
+    "word": "THÁC GIANG ĐIỀN",
+    "category": "Địa Danh",
+    "hint": "Thác nước sinh thái trong lành điểm dã ngoại cuối tuần tại Đồng Nai"
+  },
+  {
+    "id": 985,
+    "word": "BÃI BIỂN SẦM SƠN",
+    "category": "Địa Danh",
+    "hint": "Bãi biển nghỉ mát nổi tiếng từ thời Pháp thuộc tại Thanh Hóa"
+  },
+  {
+    "id": 986,
+    "word": "BÃI BIỂN CỬA LÒ",
+    "category": "Địa Danh",
+    "hint": "Bãi biển cát mịn thoai thoải sóng êm nổi tiếng xứ Nghệ"
+  },
+  {
+    "id": 987,
+    "word": "ĂN CƠM CÓ CANH",
+    "category": "Thành Ngữ",
+    "hint": "Bữa ăn đầy đủ hài hòa giữa món mặn và món canh thanh mát"
+  },
+  {
+    "id": 988,
+    "word": "TẤC ĐẤT TẤC VÀNG",
+    "category": "Thành Ngữ",
+    "hint": "Đất đai là tài sản vô giá không một tấc nào được bỏ hoang lãng phí"
+  },
+  {
+    "id": 989,
+    "word": "KHOAI ĐẤT LẠ MẠ ĐẤT QUEN",
+    "category": "Tục Ngữ",
+    "hint": "Kinh nghiệm canh tác nông nghiệp trồng trọt bao đời của ông cha"
+  },
+  {
+    "id": 990,
+    "word": "RĂNG VỚI TÓC LÀ GÓC CON NGƯỜI",
+    "category": "Tục Ngữ",
+    "hint": "Ngoại hình hàm răng mái tóc thể hiện tính nết nếp sống của con người"
+  },
+  {
+    "id": 991,
+    "word": "MỘT GIỌT MÁU ĐÀO HƠN AO NƯỚC LÃ",
+    "category": "Tục Ngữ",
+    "hint": "Coi trọng tình cảm huyết thống ruột thịt hơn người dưng nước lã"
+  },
+  {
+    "id": 992,
+    "word": "AN CƯ LẠC NGHIỆP",
+    "category": "Thành Ngữ",
+    "hint": "Có nơi ăn chốn ở ổn định vững chãi thì mới yên tâm phát triển sự nghiệp"
+  },
+  {
+    "id": 993,
+    "word": "TÀI LỘC DỒI DÀO",
+    "category": "Thành Ngữ",
+    "hint": "Lời chúc tiền tài phúc lộc tuôn chảy không ngừng như nước nguồn"
+  },
+  {
+    "id": 994,
+    "word": "GIA ĐÌNH BÌNH AN",
+    "category": "Đời Sống",
+    "hint": "Ước nguyện lớn nhất của mỗi con người là tổ ấm luôn an lành hạnh phúc"
+  },
+  {
+    "id": 995,
+    "word": "THĂNG QUAN TIẾN CHỨC",
+    "category": "Thành Ngữ",
+    "hint": "Lời chúc sự nghiệp công danh ngày càng phát triển thăng tiến"
+  },
+  {
+    "id": 996,
+    "word": "CÁT TƯỜNG NHƯ Ý",
+    "category": "Thành Ngữ",
+    "hint": "Mọi sự tốt lành như ý nguyện luôn đồng hành trong cuộc sống"
+  },
+  {
+    "id": 997,
+    "word": "VẠN ĐIỀU MAY MẮN",
+    "category": "Thành Ngữ",
+    "hint": "Ngập tràn những điều kỳ diệu và cơ hội tốt đẹp bất ngờ"
+  },
+  {
+    "id": 998,
+    "word": "TRĂM NĂM HẠNH PHÚC",
+    "category": "Thành Ngữ",
+    "hint": "Lời chúc lứa đôi răng long đầu bạc bên nhau trọn đời"
+  },
+  {
+    "id": 999,
+    "word": "THẦN TÀI GÕ CỬA",
+    "category": "Thành Ngữ",
+    "hint": "Vận may tài lộc bất ngờ mang lại cuộc sống sung túc giàu sang"
+  },
+  {
+    "id": 1000,
+    "word": "CÔNG THÀNH DANH TOẠI",
+    "category": "Thành Ngữ",
+    "hint": "Gặt hái vinh quang sự nghiệp vẻ vang rạng danh dòng họ"
+  }
 ]

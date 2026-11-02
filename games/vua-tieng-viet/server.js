@@ -79,7 +79,7 @@ function pickNextWord() {
   const pool = available.length > 0 ? available : wordsData;
   const picked = pool[Math.floor(Math.random() * pool.length)];
   recentWordIds.push(picked.id);
-  if (recentWordIds.length > 25) recentWordIds.shift();
+  if (recentWordIds.length > 100) recentWordIds.shift();
   return picked;
 }
 
