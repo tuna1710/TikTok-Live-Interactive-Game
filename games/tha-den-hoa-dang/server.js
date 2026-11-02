@@ -5,13 +5,26 @@ const https = require('https');
 const express = require('express');
 const cors = require('cors');
 const { Server } = require('socket.io');
-const { TikTokLiveConnection, WebcastEvent } = require('tiktok-live-connector');
+const { TikTokLiveConnection, WebcastEvent, ControlEvent } = require('tiktok-live-connector');
 
 const PORT = Number(process.env.PORT) || 3004;
 let TIKTOK_USERNAME = process.env.TIKTOK_USERNAME || '@2166541467';
 let TIKTOK_SESSION_ID = process.env.TIKTOK_SESSION_ID || '';
 let tiktokConn = null;
 let reconnectTimer = null;
+
+// Bộ nhớ chống trùng lặp tin nhắn cũ khi kết nối / reconnect
+const seenMessageIds = new Set();
+function isDuplicateMessage(msgId) {
+  if (!msgId) return false;
+  if (seenMessageIds.has(msgId)) return true;
+  seenMessageIds.add(msgId);
+  if (seenMessageIds.size > 1200) {
+    const firstKey = seenMessageIds.values().next().value;
+    seenMessageIds.delete(firstKey);
+  }
+  return false;
+}
 
 const app = express();
 app.use(cors());
@@ -190,8 +203,15 @@ setInterval(() => {
 // ==========================================
 
 function connectTikTok() {
+  if (reconnectTimer) {
+    clearTimeout(reconnectTimer);
+    reconnectTimer = null;
+  }
   if (tiktokConn) {
-    try { tiktokConn.disconnect(); } catch (_) {}
+    try {
+      tiktokConn.removeAllListeners();
+      tiktokConn.disconnect();
+    } catch (_) {}
     tiktokConn = null;
   }
 
@@ -220,13 +240,48 @@ function connectTikTok() {
 
   tiktokConn = new TikTokLiveConnection(cleanUser, connectionOptions);
 
+  tiktokConn.on(ControlEvent.CONNECTED, state => {
+    gameState.tiktokConnecting = false;
+    gameState.tiktokConnected = true;
+    const roomId = state?.roomId || tiktokConn?.roomId || '';
+    gameState.tiktokStatusMsg = `Đã kết nối thành công phòng Live: ${cleanUser} (Room ID: ${roomId})`;
+    console.log(`[Thả Đèn Hoa Đăng] ✅ ${gameState.tiktokStatusMsg}`);
+
+    io.emit('tiktokStatus', {
+      connected: true,
+      connecting: false,
+      channel: gameState.connectedChannel,
+      msg: gameState.tiktokStatusMsg
+    });
+  });
+
+  tiktokConn.on(ControlEvent.DISCONNECTED, reason => {
+    gameState.tiktokConnecting = true;
+    gameState.tiktokConnected = false;
+    gameState.tiktokStatusMsg = `Mất kết nối TikTok (@${cleanUser}). Đang tự động kết nối lại...`;
+    console.warn(`[Thả Đèn Hoa Đăng] ⚠️ Mất kết nối phòng @${cleanUser}:`, reason?.reason || reason || '');
+
+    io.emit('tiktokStatus', {
+      connected: false,
+      connecting: true,
+      channel: gameState.connectedChannel,
+      msg: gameState.tiktokStatusMsg
+    });
+
+    if (reconnectTimer) clearTimeout(reconnectTimer);
+    reconnectTimer = setTimeout(connectTikTok, 5000);
+  });
+
+  tiktokConn.on(ControlEvent.ERROR, err => {
+    const errMsg = err?.message || String(err);
+    console.warn(`[Thả Đèn Hoa Đăng] ⚠️ Lỗi Socket TikTok:`, errMsg);
+  });
+
   tiktokConn.connect()
     .then(state => {
       gameState.tiktokConnecting = false;
       gameState.tiktokConnected = true;
       gameState.tiktokStatusMsg = `Đã kết nối thành công phòng Live: ${cleanUser}`;
-      console.log(`[Thả Đèn Hoa Đăng] ✅ Đã kết nối phòng: ${cleanUser} (Room ID: ${state.roomId})`);
-
       io.emit('tiktokStatus', {
         connected: true,
         connecting: false,
@@ -264,6 +319,13 @@ function connectTikTok() {
     const { nickname, uniqueId, avatar } = extractUserFromEvent(data);
     const rawWish = (data?.content || data?.comment || '').toString().trim();
     const wish = rawWish || 'Cầu bình an & vạn sự như ý';
+
+    // Bỏ qua tin nhắn trùng lặp khi vừa kết nối / reconnect
+    const msgId = data?.msgId || (uniqueId + '_' + wish);
+    if (isDuplicateMessage(msgId)) {
+      return;
+    }
+
     console.log(`[Bình luận / Lời ước] ${nickname} (${uniqueId}): "${wish}"`);
     createLantern({ uniqueId, nickname, avatar }, wish, 'normal');
   });
@@ -276,6 +338,11 @@ function connectTikTok() {
     const diamondCount = Number(giftObj?.diamondCount || giftObj?.diamond_count || data?.diamondCount || 1);
     const repeatCount = Math.max(1, Number(data?.repeatCount || data?.comboCount || 1));
     const totalCoins = diamondCount * repeatCount;
+
+    const giftMsgId = data?.msgId || (uniqueId + '_' + giftName + '_' + repeatCount);
+    if (isDuplicateMessage(giftMsgId)) {
+      return;
+    }
 
     console.log(`[Quà Tặng] ${nickname} gửi ${giftName} x${repeatCount} (${totalCoins} xu)`);
 
@@ -315,19 +382,6 @@ function connectTikTok() {
       totalLikes: gameState.totalLikes,
       totalGifts: gameState.totalGifts
     });
-  });
-
-  tiktokConn.on(WebcastEvent.DISCONNECTED, () => {
-    gameState.tiktokConnected = false;
-    gameState.tiktokStatusMsg = 'Mất kết nối TikTok. Đang tự động kết nối lại...';
-    io.emit('tiktokStatus', {
-      connected: false,
-      connecting: true,
-      channel: gameState.connectedChannel,
-      msg: gameState.tiktokStatusMsg
-    });
-    if (reconnectTimer) clearTimeout(reconnectTimer);
-    reconnectTimer = setTimeout(connectTikTok, 8000);
   });
 }
 
