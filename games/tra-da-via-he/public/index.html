@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Trà Đá Vỉa Hè Hà Nội — TikTok LIVE Interactive 9:16</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+  <!-- Container tỷ lệ 9:16 (1080x1920) -->
+  <div id="game-container">
+    <!-- Top HUD Header -->
+    <header class="hud-top">
+      <div class="shop-sign">
+        <div class="sign-inner">
+          <span class="sign-sub">QUÁN NƯỚC ĐƯỜNG PHỐ</span>
+          <h1 id="shop-title">TRÀ ĐÁ VỈA HÈ HÀ NỘI</h1>
+          <div class="sign-tagline">Đặc sản Trà Đá • Kẹo Lạc • Thuốc Lào • Bốc Đầu Xe</div>
+        </div>
+      </div>
+
+      <!-- Khung Quy Định Ghế Ngồi -->
+      <div class="seat-rules-bar">
+        <div class="rule-badge rule-vip1">
+          <span class="rule-icon">👑</span>
+          <div class="rule-text">
+            <strong>THẢ 100 TIM</strong>
+            <span>GHẾ VIP 1 (3 ghế)</span>
+          </div>
+        </div>
+        <div class="rule-badge rule-vip2">
+          <span class="rule-icon">🌟</span>
+          <div class="rule-text">
+            <strong>BẤM FOLLOW</strong>
+            <span>GHẾ VIP 2 (4 ghế)</span>
+          </div>
+        </div>
+        <div class="rule-badge rule-push">
+          <span class="rule-icon">⚡</span>
+          <div class="rule-text">
+            <strong>QUY ĐỊNH</strong>
+            <span>Người sau đẩy người trước!</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Minigame Đoán Chữ & Khách Sộp -->
+      <div class="hud-sub-bar">
+        <div class="minigame-box" id="wordgame-box">
+          <div class="minigame-header">
+            <span class="game-badge">🎲 ĐOÁN CHỮ</span>
+            <span class="countdown" id="wordgame-timer">07:00</span>
+          </div>
+          <div class="word-mask" id="wordgame-display">T _ A   _ A   V _ A   H _</div>
+          <div class="word-hint" id="wordgame-hint">Gõ đúng từ để nhận +50 điểm!</div>
+        </div>
+
+        <div class="top-sponsors-box">
+          <div class="box-title">🏆 KHÁCH SỘP VỈA HÈ</div>
+          <div class="sponsor-list" id="sponsor-list">
+            <div class="empty-sponsor">Chưa có đại gia tài trợ</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bảng hướng dẫn lệnh Chat -->
+      <div class="commands-hud">
+        <div class="cmd-title">💬 BÌNH LUẬN ĐỂ CHƠI:</div>
+        <div class="cmd-tags">
+          <span class="cmd-tag highlight">bocdau</span>
+          <span class="cmd-tag highlight">chomxe</span>
+          <span class="cmd-tag">laixe</span>
+          <span class="cmd-tag">goicongan</span>
+          <span class="cmd-tag">chomcoho</span>
+          <span class="cmd-tag">batcoc</span>
+          <span class="cmd-tag">quayxom</span>
+          <span class="cmd-tag">choichai</span>
+          <span class="cmd-tag">ngoi</span>
+          <span class="cmd-tag">dungday</span>
+          <span class="cmd-tag">nhay</span>
+          <span class="cmd-tag">chaotoidi</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Canvas Game Chính -->
+    <main class="canvas-wrapper">
+      <canvas id="streetCanvas" width="1080" height="1350"></canvas>
+      
+      <!-- Thông báo hiệu ứng chữ khổng lồ khi Bốc Đầu / Chôm Xe -->
+      <div id="big-event-overlay" class="hidden">
+        <div class="big-event-title" id="big-event-text">BỐC ĐẦU!!!</div>
+        <div class="big-event-sub" id="big-event-sub"></div>
+      </div>
+
+      <!-- Thông báo Toast sự kiện góc dưới -->
+      <div id="activity-feed" class="activity-feed"></div>
+    </main>
+
+    <!-- Bottom HUD Footer: Lời nhắc & Trạng thái -->
+    <footer class="hud-bottom">
+      <div class="live-stream-status">
+        <span class="status-dot green"></span>
+        <span id="channel-name">🔴 LIVE: @tra_da_via_he_hn</span>
+        <span class="viewer-count" id="seat-status">🪑 VIP1: 0/3 | VIP2: 0/4</span>
+      </div>
+      <div class="sub-credit">Trà Đá Vỉa Hè Hà Nội 9:16 • Phát triển cho TikTok LIVE & Google Colab</div>
+    </footer>
+  </div>
+
+  <script src="audio.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>

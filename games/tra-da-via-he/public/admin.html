@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bảng Quản Trị & Test — Trà Đá Vỉa Hè Hà Nội</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0f172a;
+      color: #f8fafc;
+      margin: 0;
+      padding: 24px;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    h1 {
+      color: #ffd700;
+      border-bottom: 2px solid #334155;
+      padding-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+    .card {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      padding: 16px;
+    }
+    .card h3 {
+      margin-top: 0;
+      color: #38bdf8;
+      font-size: 16px;
+      border-bottom: 1px solid #334155;
+      padding-bottom: 8px;
+    }
+    button {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 9px 14px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      margin: 4px;
+      transition: all 0.2s;
+    }
+    button:hover {
+      background: #1d4ed8;
+      transform: translateY(-1px);
+    }
+    button.vip1-btn {
+      background: #d97706;
+    }
+    button.vip1-btn:hover { background: #b45309; }
+    button.vip2-btn {
+      background: #0284c7;
+    }
+    button.vip2-btn:hover { background: #0369a1; }
+    button.action-btn {
+      background: #dc2626;
+    }
+    button.action-btn:hover { background: #b91c1c; }
+    button.reset-btn {
+      background: #475569;
+    }
+    input, select {
+      background: #0f172a;
+      border: 1px solid #475569;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 6px;
+      width: 100%;
+      box-sizing: border-box;
+      margin-bottom: 8px;
+    }
+    .seat-status-box {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .seat-badge {
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: bold;
+    }
+    .seat-vip1 { background: #78350f; color: #fde68a; border: 1px solid #d97706; }
+    .seat-vip2 { background: #0c4a6e; color: #bae6fd; border: 1px solid #0284c7; }
+    .seat-reg { background: #334155; color: #e2e8f0; }
+    pre {
+      background: #020617;
+      padding: 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      overflow-x: auto;
+      max-height: 200px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>
+      <span>🍵 Quản Trị: Trà Đá Vỉa Hè Hà Nội</span>
+      <a href="index.html" target="_blank" style="font-size:14px;color:#38bdf8;text-decoration:none;">📺 Mở Màn Hình Game 9:16 ↗</a>
+    </h1>
+
+    <div class="card" style="margin-top:16px;">
+      <h3>🔗 Kết Nối Kênh TikTok LIVE Thật</h3>
+      <div style="display:flex;gap:8px;">
+        <input type="text" id="tt-username" placeholder="@ten_kenh_tiktok" value="@tra_da_via_he_hn">
+        <button onclick="connectTikTok()" style="white-space:nowrap;">Kết Nối Live</button>
+      </div>
+      <div id="conn-status" style="font-size:13px;color:#94a3b8;margin-top:6px;">Trạng thái: Đang kết nối...</div>
+    </div>
+
+    <div class="grid">
+      <!-- 1. Test Ghế Ngồi & Đẩy Người -->
+      <div class="card">
+        <h3>🪑 Test Ghế Ngồi (Quy Định Đẩy Người)</h3>
+        <input type="text" id="user-name" placeholder="Tên người xem (ví dụ: TuanAnh_HN)" value="TuanAnh_HN">
+        
+        <button class="vip1-btn" onclick="simVip1()">👑 Thả 100 Tim ➔ Ghế VIP 1 (Max 3)</button>
+        <button class="vip2-btn" onclick="simVip2()">🌟 Bấm Follow ➔ Ghế VIP 2 (Max 4)</button>
+        <button onclick="simChatIn()">💬 Chat Bất Kỳ ➔ Ghế Thường</button>
+        
+        <div style="margin-top:8px;font-size:12px;color:#cbd5e1;">
+          <em>* Khi quá 3 người VIP 1 hoặc 4 người VIP 2, người mới sẽ tự động đẩy người cũ xuống ghế thường!</em>
+        </div>
+      </div>
+
+      <!-- 2. Test Hành Động Đường Phố -->
+      <div class="card">
+        <h3>🏍️ Test Lệnh Chat Đường Phố</h3>
+        <button class="action-btn" onclick="simAction('bocdau')">🔥 Bốc Đầu Xe Máy (bocdau)</button>
+        <button class="action-btn" onclick="simAction('chomxe')">🚨 Chôm Xe Máy (chomxe)</button>
+        <button onclick="simAction('goicongan')">🚓 Gọi Công An (goicongan)</button>
+        <button onclick="simAction('chomcoho')">🐕 Chôm Cờ Hó (chomcoho)</button>
+        <button onclick="simAction('quayxom')">💥 Quậy Xóm (quayxom)</button>
+        <button onclick="simAction('choichai')">🍾 Ném Chai Nhựa (choichai)</button>
+        <button onclick="simAction('chaotoidi')">👋 Chào Tôi Đi (chaotoidi)</button>
+      </div>
+
+      <!-- 3. Test Quà Tặng (Gift) & Khách Sộp -->
+      <div class="card">
+        <h3>🎁 Test Tặng Quà TikTok</h3>
+        <select id="gift-select">
+          <option value="Hoa Hồng|1">🌹 Hoa Hồng (1 xu)</option>
+          <option value="Trà Đá|10">🍵 Trà Đá Thượng Hạng (10 xu)</option>
+          <option value="Mũ Phù Thủy|99">🧙 Mũ Phù Thủy (99 xu - KHÁCH SỘP)</option>
+          <option value="Vũ Trụ TikTok|999">🚀 Vũ Trụ TikTok (999 xu - ĐẠI GIA)</option>
+        </select>
+        <button onclick="simGift()" style="background:#db2777;width:100%;margin:4px 0;">Gửi Quà Tặng Tương Tác</button>
+        <button class="reset-btn" onclick="simReset()" style="width:100%;margin:4px 0;">🔄 Reset Toàn Bộ Ghế Ngồi</button>
+      </div>
+
+      <!-- 4. Trạng Thái Hiện Tại -->
+      <div class="card">
+        <h3>📊 Trạng Thái Ghế Real-time</h3>
+        <div class="seat-status-box">
+          <div class="seat-badge seat-vip1" id="badge-vip1">VIP 1: 0/3</div>
+          <div class="seat-badge seat-vip2" id="badge-vip2">VIP 2: 0/4</div>
+          <div class="seat-badge seat-reg" id="badge-reg">Ghế Thường: 0/14</div>
+        </div>
+        <pre id="state-dump">Đang tải dữ liệu...</pre>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    async function apiPost(endpoint, body) {
+      const res = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      });
+      return res.json();
+    }
+
+    function getUser() {
+      const el = document.getElementById('user-name');
+      return el.value.trim() || 'Khach_' + Math.floor(Math.random() * 999);
+    }
+
+    async function simVip1() {
+      const u = getUser();
+      await apiPost('/api/admin/simulate', { action: 'like100', username: u });
+      // Đổi tên ngẫu nhiên cho lần bấm sau
+      document.getElementById('user-name').value = 'VIP1_User_' + Math.floor(Math.random() * 100);
+      refreshState();
+    }
+
+    async function simVip2() {
+      const u = getUser();
+      await apiPost('/api/admin/simulate', { action: 'follow', username: u });
+      document.getElementById('user-name').value = 'VIP2_User_' + Math.floor(Math.random() * 100);
+      refreshState();
+    }
+
+    async function simChatIn() {
+      const u = getUser();
+      await apiPost('/api/admin/simulate', { action: 'chat', username: u, comment: 'Cho 1 ly trà đá!' });
+      document.getElementById('user-name').value = 'Khach_' + Math.floor(Math.random() * 100);
+      refreshState();
+    }
+
+    async function simAction(act) {
+      const u = getUser();
+      await apiPost('/api/admin/simulate', { action: act, username: u });
+      refreshState();
+    }
+
+    async function simGift() {
+      const u = getUser();
+      const val = document.getElementById('gift-select').value.split('|');
+      await apiPost('/api/admin/simulate', {
+        action: 'gift',
+        username: u,
+        giftName: val[0],
+        diamondCount: parseInt(val[1])
+      });
+      refreshState();
+    }
+
+    async function simReset() {
+      await apiPost('/api/admin/simulate', { action: 'reset' });
+      refreshState();
+    }
+
+    async function connectTikTok() {
+      const uname = document.getElementById('tt-username').value.trim();
+      const res = await apiPost('/api/connect', { username: uname });
+      document.getElementById('conn-status').innerText = 'Đã gửi yêu cầu kết nối tới: ' + uname;
+    }
+
+    async function refreshState() {
+      try {
+        const res = await fetch('/api/state');
+        const data = await res.json();
+
+        const v1 = data.vip1Seats.filter(s => s !== null).length;
+        const v2 = data.vip2Seats.filter(s => s !== null).length;
+        const rg = data.regularSeats.filter(s => s !== null).length;
+
+        document.getElementById('badge-vip1').innerText = `VIP 1: ${v1}/3 (${data.vip1Seats.filter(Boolean).join(', ') || 'Trống'})`;
+        document.getElementById('badge-vip2').innerText = `VIP 2: ${v2}/4 (${data.vip2Seats.filter(Boolean).join(', ') || 'Trống'})`;
+        document.getElementById('badge-reg').innerText = `Ghế Thường: ${rg}/14`;
+
+        document.getElementById('state-dump').innerText = JSON.stringify({
+          vip1Seats: data.vip1Seats,
+          vip2Seats: data.vip2Seats,
+          motorcycle: data.motorcycle,
+          police: data.police,
+          wordGame: data.wordGame
+        }, null, 2);
+      } catch (e) {}
+    }
+
+    setInterval(refreshState, 2000);
+    refreshState();
+  </script>
+</body>
+</html>

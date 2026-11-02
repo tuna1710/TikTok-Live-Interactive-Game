@@ -1,0 +1,412 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+body {
+  background-color: #0b0f19;
+  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* Khung hình chuẩn 9:16 dọc */
+#game-container {
+  width: 1080px;
+  height: 1920px;
+  max-height: 100vh;
+  max-width: 56.25vh; /* 9:16 aspect ratio */
+  position: relative;
+  background: #1e2430;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+  overflow: hidden;
+}
+
+/* =========================================
+   TOP HUD HEADER
+========================================= */
+.hud-top {
+  background: linear-gradient(180deg, rgba(20, 24, 33, 0.98) 0%, rgba(20, 24, 33, 0.92) 100%);
+  border-bottom: 3px solid #ffcc00;
+  padding: 12px 16px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 10;
+}
+
+/* Biển hiệu quán */
+.shop-sign {
+  background: linear-gradient(135deg, #d32f2f, #b71c1c);
+  border: 3px solid #ffd54f;
+  border-radius: 12px;
+  padding: 8px 14px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(211, 47, 47, 0.5), inset 0 0 10px rgba(255, 213, 79, 0.4);
+}
+
+.sign-sub {
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: #fff9c4;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.shop-sign h1 {
+  font-size: 32px;
+  font-weight: 900;
+  color: #ffffff;
+  text-shadow: 2px 2px 0px #000, 0 0 12px #ffeb3b;
+  margin: 2px 0;
+  letter-spacing: 1px;
+}
+
+.sign-tagline {
+  font-size: 13px;
+  color: #ffe082;
+  font-weight: 600;
+}
+
+/* Quy định ghế ngồi */
+.seat-rules-bar {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+}
+
+.rule-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.rule-vip1 {
+  background: linear-gradient(135deg, #f57f17, #e65100);
+  border: 2px solid #fff59d;
+}
+
+.rule-vip2 {
+  background: linear-gradient(135deg, #0288d1, #01579b);
+  border: 2px solid #81d4fa;
+}
+
+.rule-push {
+  background: linear-gradient(135deg, #7b1fa2, #4a148c);
+  border: 2px solid #ce93d8;
+}
+
+.rule-icon {
+  font-size: 22px;
+}
+
+.rule-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.rule-text strong {
+  font-size: 12px;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+.rule-text span {
+  font-size: 11px;
+  color: #fff9c4;
+  font-weight: 600;
+}
+
+/* Minigame Đoán chữ & Khách sộp */
+.hud-sub-bar {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 8px;
+}
+
+.minigame-box {
+  background: rgba(0, 0, 0, 0.45);
+  border: 2px solid #4caf50;
+  border-radius: 8px;
+  padding: 6px 10px;
+}
+
+.minigame-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.game-badge {
+  font-size: 12px;
+  font-weight: bold;
+  color: #81c784;
+}
+
+.countdown {
+  font-size: 13px;
+  font-weight: 900;
+  color: #ffeb3b;
+  background: #2e7d32;
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+
+.word-mask {
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: 3px;
+  color: #fff;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 4px;
+  border-radius: 4px;
+  margin-bottom: 2px;
+}
+
+.word-hint {
+  font-size: 11px;
+  color: #b0bec5;
+  text-align: center;
+}
+
+/* Khách sộp */
+.top-sponsors-box {
+  background: rgba(0, 0, 0, 0.45);
+  border: 2px solid #ffd700;
+  border-radius: 8px;
+  padding: 6px 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.box-title {
+  font-size: 11px;
+  font-weight: bold;
+  color: #ffd700;
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+.sponsor-list {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 11px;
+}
+
+.sponsor-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 215, 0, 0.15);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.empty-sponsor {
+  text-align: center;
+  color: #78909c;
+  font-style: italic;
+  font-size: 11px;
+}
+
+/* Bảng lệnh bình luận */
+.commands-hud {
+  background: rgba(0, 0, 0, 0.55);
+  border-radius: 8px;
+  padding: 6px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.cmd-title {
+  font-size: 12px;
+  font-weight: 800;
+  color: #ffeb3b;
+  margin-bottom: 4px;
+}
+
+.cmd-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.cmd-tag {
+  background: #37474f;
+  color: #eceff1;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 4px;
+  border: 1px solid #546e7a;
+}
+
+.cmd-tag.highlight {
+  background: #d84315;
+  color: #fff;
+  border-color: #ff7043;
+  animation: pulseTag 1.5s infinite;
+}
+
+@keyframes pulseTag {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* =========================================
+   CANVAS GAME CHÍNH
+========================================= */
+.canvas-wrapper {
+  flex: 1;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #2b303c;
+  overflow: hidden;
+}
+
+#streetCanvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Big Event Overlay (BỐC ĐẦU!!!) */
+#big-event-overlay {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  text-align: center;
+  pointer-events: none;
+  z-index: 50;
+  transition: opacity 0.3s ease;
+}
+
+#big-event-overlay.hidden {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.5);
+}
+
+.big-event-title {
+  font-size: 72px;
+  font-weight: 900;
+  color: #ffeb3b;
+  text-shadow: 0 0 20px #ff1744, 4px 4px 0 #d50000, -4px -4px 0 #000;
+  letter-spacing: 4px;
+  animation: shakeEvent 0.25s infinite alternate;
+}
+
+.big-event-sub {
+  font-size: 26px;
+  font-weight: bold;
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.75);
+  padding: 6px 16px;
+  border-radius: 30px;
+  border: 2px solid #ffeb3b;
+  margin-top: 10px;
+}
+
+@keyframes shakeEvent {
+  0% { transform: rotate(-3deg) scale(1.05); }
+  100% { transform: rotate(3deg) scale(1.15); }
+}
+
+/* Activity Feed */
+.activity-feed {
+  position: absolute;
+  bottom: 12px;
+  left: 14px;
+  right: 14px;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 6px;
+  pointer-events: none;
+  z-index: 20;
+}
+
+.feed-item {
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(4px);
+  border-left: 4px solid #ffcc00;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  animation: slideIn 0.3s ease;
+}
+
+.feed-item.feed-vip1 {
+  border-left-color: #ffd700;
+  background: rgba(245, 127, 23, 0.85);
+}
+
+.feed-item.feed-vip2 {
+  border-left-color: #29b6f6;
+  background: rgba(2, 136, 209, 0.85);
+}
+
+.feed-item.feed-gift {
+  border-left-color: #ff4081;
+  background: rgba(194, 24, 91, 0.85);
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================================
+   BOTTOM HUD FOOTER
+========================================= */
+.hud-bottom {
+  background: #11151e;
+  border-top: 2px solid #374151;
+  padding: 8px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  z-index: 10;
+}
+
+.live-stream-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.status-dot.green {
+  background: #00e676;
+  box-shadow: 0 0 8px #00e676;
+}
+
+.sub-credit {
+  font-size: 11px;
+  color: #94a3b8;
+  text-align: center;
+}
