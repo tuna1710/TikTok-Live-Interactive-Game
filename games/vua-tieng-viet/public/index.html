@@ -370,6 +370,127 @@
     .rank-name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 600; }
     .rank-score { font-weight: 800; color: #ffd700; }
 
+    /* Header Tabs cho Panel bên phải */
+    .panel-tabs {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 6px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 4px;
+    }
+    .panel-tab {
+      flex: 1;
+      text-align: center;
+      padding: 4px 6px;
+      font-size: 10px;
+      font-weight: 700;
+      color: #9ca3af;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 6px;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.2s;
+    }
+    .panel-tab.active {
+      color: #ffd700;
+      background: rgba(255, 215, 0, 0.15);
+      border-color: rgba(255, 215, 0, 0.35);
+      box-shadow: 0 0 8px rgba(255, 215, 0, 0.2);
+    }
+    .panel-tab.donor-tab.active {
+      color: #f472b6;
+      background: rgba(236, 72, 153, 0.18);
+      border-color: rgba(236, 72, 153, 0.4);
+      box-shadow: 0 0 8px rgba(236, 72, 153, 0.25);
+    }
+
+    /* Bảng Vinh Danh Tặng Quà (Donors) */
+    .donor-list {
+      flex: 1;
+      overflow-y: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .donor-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 6px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.03);
+      font-size: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      animation: fadeIn 0.25s ease-out;
+    }
+    .donor-item:nth-child(1) {
+      background: linear-gradient(90deg, rgba(255, 215, 0, 0.22), rgba(245, 158, 11, 0.1));
+      border: 1px solid rgba(255, 215, 0, 0.5);
+    }
+    .donor-item:nth-child(2) {
+      background: linear-gradient(90deg, rgba(236, 72, 153, 0.2), rgba(168, 85, 247, 0.08));
+      border: 1px solid rgba(236, 72, 153, 0.35);
+    }
+    .donor-item:nth-child(3) {
+      background: linear-gradient(90deg, rgba(168, 85, 247, 0.18), rgba(59, 130, 246, 0.08));
+      border: 1px solid rgba(168, 85, 247, 0.3);
+    }
+    .donor-avatar {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 1px solid #ffd700;
+      object-fit: cover;
+      background: #2b1055;
+    }
+    .donor-name {
+      flex: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-weight: 700;
+      color: #fce7f3;
+    }
+    .donor-diamonds {
+      font-weight: 800;
+      color: #f472b6;
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+
+    /* VIP Floating Gift Banner */
+    .vip-gift-banner {
+      position: absolute;
+      top: 86px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, rgba(30, 10, 60, 0.95), rgba(88, 28, 135, 0.95));
+      border: 1.5px solid #f472b6;
+      border-radius: 25px;
+      padding: 6px 16px;
+      font-size: 11px;
+      font-weight: 800;
+      color: #fff;
+      box-shadow: 0 0 25px rgba(236, 72, 153, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+      z-index: 95;
+      display: none;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+      animation: dropDown 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .vip-gift-banner.show {
+      display: flex;
+    }
+    .vip-gift-avatar {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      border: 2px solid #ffd700;
+      object-fit: cover;
+    }
+
     /* Modal Người Chiến Thắng */
     .winner-overlay {
       position: absolute;
@@ -460,6 +581,69 @@
       0% { opacity: 0; transform: translateY(4px); }
       100% { opacity: 1; transform: translateY(0); }
     }
+
+    /* TTS Controls & Indicator */
+    .btn-tts-toggle {
+      background: rgba(168, 85, 247, 0.15);
+      border: 1px solid rgba(168, 85, 247, 0.4);
+      color: #d8b4fe;
+      padding: 4px 8px;
+      border-radius: 12px;
+      font-size: 11px;
+      cursor: pointer;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.2s;
+    }
+    .btn-tts-toggle.off {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.15);
+      color: #888;
+    }
+    .tts-indicator {
+      position: absolute;
+      top: 50px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(15, 10, 35, 0.94);
+      border: 1px solid #c084fc;
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #f3e8ff;
+      display: none;
+      align-items: center;
+      gap: 7px;
+      z-index: 85;
+      box-shadow: 0 0 18px rgba(192, 132, 252, 0.55);
+      animation: dropDown 0.25s ease-out;
+    }
+    .tts-indicator.active {
+      display: flex;
+    }
+    .tts-wave {
+      display: flex;
+      align-items: center;
+      gap: 2.5px;
+      height: 12px;
+    }
+    .tts-wave span {
+      display: block;
+      width: 2.5px;
+      height: 100%;
+      background: #c084fc;
+      border-radius: 2px;
+      animation: waveBar 0.8s infinite ease-in-out alternate;
+    }
+    .tts-wave span:nth-child(2) { animation-delay: 0.2s; }
+    .tts-wave span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes waveBar {
+      0% { height: 3px; }
+      100% { height: 12px; }
+    }
   </style>
 </head>
 <body>
@@ -469,12 +653,22 @@
       <div class="game-title">👑 Vua Tiếng Việt</div>
       <div style="display:flex;align-items:center;gap:6px;">
         <button id="btnSoundToggle" style="background:rgba(255,215,0,0.15);border:1px solid rgba(255,215,0,0.3);color:#ffd700;padding:4px 8px;border-radius:12px;font-size:11px;cursor:pointer;font-weight:700;">🔊 Âm thanh</button>
+        <button id="btnTtsToggle" class="btn-tts-toggle">🎙️ Giọng đọc: BẬT</button>
         <div class="channel-badge" id="channelBadge">
           <div class="pulse-dot" id="channelDot"></div>
           <span id="channelName">@2166541467</span>
         </div>
       </div>
     </div>
+
+    <!-- TTS Speaking Indicator -->
+    <div id="ttsIndicator" class="tts-indicator">
+      <div class="tts-wave">
+        <span></span><span></span><span></span>
+      </div>
+      <span id="ttsIndicatorText">🎙️ Đang đọc gợi ý...</span>
+    </div>
+
     <div id="audioUnlockBanner" onclick="unlockAudioDirectly()" style="display:none;position:fixed;bottom:14px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg, #ffd700, #ff9800);color:#000;padding:8px 18px;border-radius:24px;font-size:12px;font-weight:800;cursor:pointer;z-index:9999;box-shadow:0 6px 20px rgba(0,0,0,0.6);text-align:center;">
       🔊 Nhấp vào màn hình để BẬT ÂM THANH GAME
     </div>
@@ -534,15 +728,29 @@
         <div class="chat-list" id="chatList"></div>
       </div>
 
-      <!-- Bảng xếp hạng -->
+      <!-- Bảng xếp hạng & Vinh danh Tặng Quà (Tabs) -->
       <div class="panel-box">
-        <div class="panel-header">
-          <span>🏆</span>
-          <span>Bảng Xếp Hạng</span>
+        <div class="panel-tabs">
+          <div class="panel-tab active" id="tabGuessBtn" onclick="switchRightTab('guess')">🏆 Top Điểm</div>
+          <div class="panel-tab donor-tab" id="tabDonorBtn" onclick="switchRightTab('donor')">💖 Tấm Lòng Vàng</div>
         </div>
+        <!-- Tab 1: Top Đoán Đúng -->
         <div class="rank-list" id="rankList">
           <div style="font-size:10px;color:#888;text-align:center;margin-top:15px;">Chưa có điểm</div>
         </div>
+        <!-- Tab 2: Top Người Tặng Quà -->
+        <div class="donor-list" id="donorList" style="display:none;">
+          <div style="font-size:10px;color:#888;text-align:center;margin-top:15px;">Chưa có nhà hảo tâm</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIP Gift Floating Banner -->
+    <div id="vipGiftBanner" class="vip-gift-banner">
+      <img id="vipGiftAvatar" class="vip-gift-avatar" src="https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/default-avatar.jpeg" alt="avatar" />
+      <div>
+        <div style="font-size:11px;font-weight:900;color:#ffd700;" id="vipGiftDonor">Tên Khán Giả</div>
+        <div style="font-size:9.5px;color:#fbcfe8;" id="vipGiftDetails">Đã gửi 1 Hoa Hồng (💎 1 xu)</div>
       </div>
     </div>
 
@@ -587,6 +795,11 @@
           updateAudioUI(true);
         }
       }
+      // Khởi động trước audio cho trình duyệt mở quyền phát TTS
+      try {
+        const dummyAudio = new Audio('data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=');
+        dummyAudio.play().catch(() => {});
+      } catch (_) {}
     }
 
     function updateAudioUI(unlocked) {
@@ -703,6 +916,189 @@
     }
 
     // ---------------------------------------------------------
+    // Bộ Quản Lý Giọng Đọc AI (TTS Manager)
+    // Ưu tiên Audio Proxy /api/tts + Fallback Web Speech API
+    // ---------------------------------------------------------
+    class TtsManager {
+      constructor() {
+        this.enabled = localStorage.getItem('vtv_tts_enabled') !== 'false';
+        this.queue = [];
+        this.isPlaying = false;
+        this.currentAudio = null;
+        this.indicatorEl = document.getElementById('ttsIndicator');
+        this.indicatorTextEl = document.getElementById('ttsIndicatorText');
+        this.toggleBtn = document.getElementById('btnTtsToggle');
+
+        this.updateBtnUI();
+
+        if (this.toggleBtn) {
+          this.toggleBtn.onclick = (e) => {
+            e.stopPropagation();
+            this.toggle();
+          };
+        }
+
+        // Tự động tìm giọng tiếng Việt cho Web Speech API fallback
+        this.viVoice = null;
+        if ('speechSynthesis' in window) {
+          const loadVoices = () => {
+            const voices = window.speechSynthesis.getVoices();
+            this.viVoice = voices.find(v => v.lang.includes('vi') || v.lang.includes('VI')) || null;
+          };
+          loadVoices();
+          window.speechSynthesis.onvoiceschanged = loadVoices;
+        }
+      }
+
+      toggle(forceState) {
+        this.enabled = forceState !== undefined ? forceState : !this.enabled;
+        localStorage.setItem('vtv_tts_enabled', String(this.enabled));
+        this.updateBtnUI();
+        if (!this.enabled) {
+          this.stop();
+        }
+      }
+
+      updateBtnUI() {
+        if (!this.toggleBtn) return;
+        if (this.enabled) {
+          this.toggleBtn.className = 'btn-tts-toggle';
+          this.toggleBtn.textContent = '🎙️ Giọng đọc: BẬT';
+        } else {
+          this.toggleBtn.className = 'btn-tts-toggle off';
+          this.toggleBtn.textContent = '🔇 Giọng đọc: TẮT';
+        }
+      }
+
+      showIndicator(text) {
+        if (!this.indicatorEl) return;
+        if (this.indicatorTextEl) {
+          const shortText = text.length > 30 ? text.slice(0, 30) + '...' : text;
+          this.indicatorTextEl.textContent = `🎙️ ${shortText}`;
+        }
+        this.indicatorEl.classList.add('active');
+      }
+
+      hideIndicator() {
+        if (!this.indicatorEl) return;
+        this.indicatorEl.classList.remove('active');
+      }
+
+      stop() {
+        this.queue = [];
+        if (this.currentAudio) {
+          try {
+            this.currentAudio.pause();
+            this.currentAudio.currentTime = 0;
+          } catch (_) {}
+          this.currentAudio = null;
+        }
+        if ('speechSynthesis' in window) {
+          try {
+            window.speechSynthesis.cancel();
+          } catch (_) {}
+        }
+        this.isPlaying = false;
+        this.hideIndicator();
+      }
+
+      speak(text, priority = false) {
+        if (!this.enabled || !text) return;
+
+        // Xóa emoji và khoảng trắng thừa
+        const clean = text
+          .replace(/[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu, '')
+          .replace(/\s+/g, ' ')
+          .trim();
+        if (!clean) return;
+
+        if (priority) {
+          this.stop();
+        }
+
+        // Tối đa 3 câu trong hàng đợi
+        if (this.queue.length >= 3) {
+          this.queue.shift();
+        }
+
+        this.queue.push(clean);
+        this.processQueue();
+      }
+
+      processQueue() {
+        if (this.isPlaying || this.queue.length === 0 || !this.enabled) return;
+
+        const nextText = this.queue.shift();
+        this.isPlaying = true;
+        this.showIndicator(nextText);
+
+        const onFinish = () => {
+          this.isPlaying = false;
+          this.currentAudio = null;
+          this.hideIndicator();
+          setTimeout(() => this.processQueue(), 250);
+        };
+
+        // 1. Phát qua proxy /api/tts của Server
+        const ttsUrl = '/api/tts?text=' + encodeURIComponent(nextText);
+        const audio = new Audio(ttsUrl);
+        this.currentAudio = audio;
+
+        let fallbackTriggered = false;
+        const triggerFallback = () => {
+          if (fallbackTriggered) return;
+          fallbackTriggered = true;
+          this.speakWithSpeechSynthesis(nextText, onFinish);
+        };
+
+        audio.onended = onFinish;
+        audio.onerror = () => {
+          triggerFallback();
+        };
+
+        const loadTimeout = setTimeout(() => {
+          if (this.isPlaying && this.currentAudio === audio && audio.readyState < 2) {
+            audio.pause();
+            triggerFallback();
+          }
+        }, 4000);
+
+        audio.oncanplay = () => {
+          clearTimeout(loadTimeout);
+        };
+
+        const playPromise = audio.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {
+            clearTimeout(loadTimeout);
+            triggerFallback();
+          });
+        }
+      }
+
+      speakWithSpeechSynthesis(text, callback) {
+        if (!('speechSynthesis' in window)) {
+          callback();
+          return;
+        }
+        try {
+          window.speechSynthesis.cancel();
+          const utter = new SpeechSynthesisUtterance(text);
+          utter.lang = 'vi-VN';
+          utter.rate = 1.05;
+          if (this.viVoice) utter.voice = this.viVoice;
+          utter.onend = callback;
+          utter.onerror = callback;
+          window.speechSynthesis.speak(utter);
+        } catch (_) {
+          callback();
+        }
+      }
+    }
+
+    const ttsManager = new TtsManager();
+
+    // ---------------------------------------------------------
     // Socket.io & Game Logic
     // ---------------------------------------------------------
     const socket = io();
@@ -717,11 +1113,92 @@
     const channelName = document.getElementById('channelName');
     const chatList = document.getElementById('chatList');
     const rankList = document.getElementById('rankList');
+    const donorList = document.getElementById('donorList');
+    const tabGuessBtn = document.getElementById('tabGuessBtn');
+    const tabDonorBtn = document.getElementById('tabDonorBtn');
+    const vipGiftBanner = document.getElementById('vipGiftBanner');
+    const vipGiftAvatar = document.getElementById('vipGiftAvatar');
+    const vipGiftDonor = document.getElementById('vipGiftDonor');
+    const vipGiftDetails = document.getElementById('vipGiftDetails');
     const winnerOverlay = document.getElementById('winnerOverlay');
     const winnerName = document.getElementById('winnerName');
     const winnerAnswer = document.getElementById('winnerAnswer');
     const toastNotice = document.getElementById('toastNotice');
     const btnSoundToggle = document.getElementById('btnSoundToggle');
+
+    let currentRightTab = 'guess';
+    let autoRotateTimer = null;
+
+    function switchRightTab(tab, manual = false) {
+      currentRightTab = tab;
+      if (tab === 'donor') {
+        if (tabGuessBtn) tabGuessBtn.classList.remove('active');
+        if (tabDonorBtn) tabDonorBtn.classList.add('active');
+        if (rankList) rankList.style.display = 'none';
+        if (donorList) donorList.style.display = 'flex';
+      } else {
+        if (tabDonorBtn) tabDonorBtn.classList.remove('active');
+        if (tabGuessBtn) tabGuessBtn.classList.add('active');
+        if (donorList) donorList.style.display = 'none';
+        if (rankList) rankList.style.display = 'flex';
+      }
+      if (manual) {
+        resetAutoRotateTimer();
+      }
+    }
+
+    function resetAutoRotateTimer() {
+      if (autoRotateTimer) clearInterval(autoRotateTimer);
+      autoRotateTimer = setInterval(() => {
+        switchRightTab(currentRightTab === 'guess' ? 'donor' : 'guess', false);
+      }, 10000);
+    }
+    resetAutoRotateTimer();
+
+    function updateDonorLeaderboard(list) {
+      if (!donorList) return;
+      if (!list || list.length === 0) {
+        donorList.innerHTML = '<div style="font-size:10px;color:#888;text-align:center;margin-top:15px;">Chưa có nhà hảo tâm</div>';
+        return;
+      }
+      const donorBadges = ['👑', '💎', '⭐', '4', '5', '6', '7', '8', '9', '10'];
+      donorList.innerHTML = list.slice(0, 7).map((u, idx) => {
+        const fallbackAvt = `https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(u.uniqueId || 'donor')}`;
+        const avtSrc = u.avatar || fallbackAvt;
+        return `
+          <div class="donor-item">
+            <span class="rank-medal">${donorBadges[idx]}</span>
+            <img class="donor-avatar" src="${avtSrc}" onerror="this.src='${fallbackAvt}'" alt="avt" />
+            <span class="donor-name">${u.nickname || u.uniqueId}</span>
+            <span class="donor-diamonds">💎 ${u.diamonds}</span>
+          </div>
+        `;
+      }).join('');
+    }
+
+    let vipGiftTimer = null;
+    function showVipGiftBanner(data) {
+      if (!vipGiftBanner) return;
+      const donor = data?.donor || {};
+      const giftName = data?.giftName || 'Hoa Hồng';
+      const diamonds = data?.diamonds || 1;
+      const repeats = data?.repeatCount || 1;
+
+      vipGiftDonor.textContent = donor.nickname || donor.uniqueId || 'Nhà Hảo Tâm';
+      vipGiftDetails.textContent = `Tặng ${repeats > 1 ? repeats + ' ' : ''}${giftName} (💎 +${diamonds} xu)`;
+      const fallbackAvt = `https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(donor.uniqueId || 'donor')}`;
+      vipGiftAvatar.src = donor.avatar || fallbackAvt;
+      vipGiftAvatar.onerror = () => { vipGiftAvatar.src = fallbackAvt; };
+
+      vipGiftBanner.classList.add('show');
+      if (vipGiftTimer) clearTimeout(vipGiftTimer);
+      vipGiftTimer = setTimeout(() => {
+        vipGiftBanner.classList.remove('show');
+      }, 4000);
+
+      // Chuyển sang tab donor để vinh danh ngay
+      switchRightTab('donor', true);
+    }
 
     if (btnSoundToggle) {
       btnSoundToggle.onclick = (e) => {
@@ -862,10 +1339,31 @@
         msg: state.tiktokStatusMsg
       });
 
+      if (state.ttsEnabled !== undefined) {
+        ttsManager.toggle(state.ttsEnabled);
+      }
+
+      updateDonorLeaderboard(state.donorLeaderboard || []);
+
       if (state.recentGuesses && state.recentGuesses.length > 0) {
         chatList.innerHTML = '';
         state.recentGuesses.slice().reverse().forEach(addGuess);
       }
+    });
+
+    socket.on('donorUpdate', data => {
+      showVipGiftBanner(data);
+      if (data.donorLeaderboard) {
+        updateDonorLeaderboard(data.donorLeaderboard);
+      }
+    });
+
+    socket.on('donorReset', () => {
+      updateDonorLeaderboard([]);
+    });
+
+    socket.on('leaderboardReset', () => {
+      updateLeaderboard([]);
     });
 
     socket.on('roundStart', state => {
@@ -877,6 +1375,10 @@
       timerCircle.classList.remove('urgent');
       renderScramble(state.scrambledLetters);
       renderTargetSlots(state.targetPattern);
+
+      if (state.ttsText) {
+        ttsManager.speak(state.ttsText, true);
+      }
     });
 
     socket.on('timerTick', data => {
@@ -901,6 +1403,9 @@
       } else {
         showToast(`💡 Gợi ý đã mở: "${data.letter}"`);
       }
+      if (data.ttsText) {
+        ttsManager.speak(data.ttsText, false);
+      }
     });
 
     socket.on('timeAdded', data => {
@@ -920,6 +1425,10 @@
       winnerAnswer.textContent = data.word;
       winnerOverlay.classList.add('show');
       updateLeaderboard(data.leaderboard);
+
+      if (data.ttsText) {
+        ttsManager.speak(data.ttsText, true);
+      }
     });
 
     socket.on('roundTimeout', data => {
@@ -934,6 +1443,22 @@
           s.classList.add('revealed');
         }
       });
+
+      if (data.ttsText) {
+        ttsManager.speak(data.ttsText, true);
+      }
+    });
+
+    socket.on('ttsCustom', data => {
+      if (data.ttsText) {
+        ttsManager.speak(data.ttsText, true);
+      }
+    });
+
+    socket.on('ttsConfig', config => {
+      if (config.ttsEnabled !== undefined) {
+        ttsManager.toggle(config.ttsEnabled);
+      }
     });
 
     socket.on('tiktokStatus', status => {

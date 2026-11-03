@@ -1,4 +1,7 @@
 require('dotenv').config();
+const https = require('https');
+const fs = require('fs');
+const crypto = require('crypto');
 const path = require('path');
 const http = require('http');
 const express = require('express');
@@ -12,10 +15,69 @@ let TIKTOK_SESSION_ID = process.env.TIKTOK_SESSION_ID || '';
 let tiktokConn = null;
 const ROUND_TIME_DEFAULT = 60;
 
+const TTS_CACHE_DIR = path.join(__dirname, 'data', 'tts-cache');
+if (!fs.existsSync(TTS_CACHE_DIR)) {
+  fs.mkdirSync(TTS_CACHE_DIR, { recursive: true });
+}
+
 const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Endpoint Proxy TTS (Google Translate TTS tiếng Việt có MD5 disk-cache)
+app.get('/api/tts', (req, res) => {
+  const text = (req.query.text || '').toString().trim();
+  if (!text) {
+    return res.status(400).send('Missing text parameter');
+  }
+
+  const cleanText = text
+    .replace(/[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu, '')
+    .slice(0, 180)
+    .trim();
+
+  if (!cleanText) {
+    return res.status(400).send('Empty clean text');
+  }
+
+  const hash = crypto.createHash('md5').update(cleanText).digest('hex');
+  const cacheFile = path.join(TTS_CACHE_DIR, `${hash}.mp3`);
+
+  if (fs.existsSync(cacheFile)) {
+    res.setHeader('Content-Type', 'audio/mpeg');
+    res.setHeader('Cache-Control', 'public, max-age=604800');
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    return fs.createReadStream(cacheFile).pipe(res);
+  }
+
+  const googleTtsUrl = `https://translate.google.com/translate_tts?ie=UTF-8&tl=vi&client=tw-ob&q=${encodeURIComponent(cleanText)}`;
+  const reqOptions = {
+    headers: {
+      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+    }
+  };
+
+  https.get(googleTtsUrl, reqOptions, (gRes) => {
+    if (gRes.statusCode !== 200) {
+      console.warn(`[TTS Proxy] Google Translate trả mã ${gRes.statusCode} cho: "${cleanText}"`);
+      return res.status(gRes.statusCode).send('TTS service unavailable');
+    }
+
+    res.writeHead(200, {
+      'Content-Type': 'audio/mpeg',
+      'Cache-Control': 'public, max-age=604800',
+      'Access-Control-Allow-Origin': '*'
+    });
+
+    const fileStream = fs.createWriteStream(cacheFile);
+    gRes.pipe(fileStream);
+    gRes.pipe(res);
+  }).on('error', (err) => {
+    console.error('[TTS Proxy Error]', err.message);
+    res.status(500).send('TTS error: ' + err.message);
+  });
+});
 
 const server = http.createServer(app);
 const io = new Server(server, { cors: { origin: '*' } });
@@ -40,12 +102,67 @@ let gameState = {
   tiktokStatusType: 'init',
   tiktokStatusMsg: 'Đang khởi động...',
   totalCommentsReceived: 0,
+  ttsEnabled: true,
 };
 
 let timerInterval = null;
 let reconnectTimer = null;
-const leaderboard = new Map(); // uniqueId -> { uniqueId, nickname, avatar, score, wins }
-let recentGuesses = [];        // last 15 guesses
+const leaderboard = new Map();      // uniqueId -> { uniqueId, nickname, avatar, score, wins }
+const donorLeaderboard = new Map(); // uniqueId -> { uniqueId, nickname, avatar, diamonds, giftsCount, lastGiftName, lastGiftTime }
+let recentGuesses = [];             // last 15 guesses
+
+function getLeaderboardList() {
+  return Array.from(leaderboard.values())
+    .sort((a, b) => b.score - a.score || b.wins - a.wins)
+    .slice(0, 10);
+}
+
+function getDonorLeaderboardList() {
+  return Array.from(donorLeaderboard.values())
+    .sort((a, b) => b.diamonds - a.diamonds || b.giftsCount - a.giftsCount)
+    .slice(0, 10);
+}
+
+function recordGiftDonation(user, giftName, diamonds = 1, repeatCount = 1) {
+  const count = Math.max(1, Number(repeatCount) || 1);
+  const singleValue = Math.max(1, Number(diamonds) || 1);
+  const totalDiamonds = singleValue * count;
+
+  const key = user.uniqueId || user.nickname || 'donor_' + Date.now();
+  const existing = donorLeaderboard.get(key) || {
+    uniqueId: user.uniqueId || key,
+    nickname: user.nickname || user.user || 'Nhà Hảo Tâm',
+    avatar: user.avatar || '',
+    diamonds: 0,
+    giftsCount: 0,
+    lastGiftName: giftName,
+    lastGiftTime: Date.now()
+  };
+
+  existing.diamonds += totalDiamonds;
+  existing.giftsCount += count;
+  existing.lastGiftName = giftName;
+  existing.lastGiftTime = Date.now();
+  if (user.avatar && !existing.avatar) existing.avatar = user.avatar;
+  if (user.nickname && user.nickname !== existing.nickname) existing.nickname = user.nickname;
+  donorLeaderboard.set(key, existing);
+
+  const payload = {
+    donor: {
+      uniqueId: existing.uniqueId,
+      nickname: existing.nickname,
+      avatar: existing.avatar
+    },
+    giftName,
+    diamonds: totalDiamonds,
+    repeatCount: count,
+    totalDiamonds: existing.diamonds,
+    donorLeaderboard: getDonorLeaderboardList(),
+  };
+
+  io.emit('donorUpdate', payload);
+  return payload;
+}
 
 function stripVietnameseAccents(str) {
   if (!str) return '';
@@ -110,7 +227,13 @@ function startNewRound() {
 
   console.log(`\n[Vòng ${gameState.round}] Từ cần đoán: "${wordObj.word}" (Chủ đề: ${wordObj.category})`);
 
-  io.emit('roundStart', getClientGameState());
+  const ttsText = `Vòng ${gameState.round}. Chủ đề ${wordObj.category}. Gợi ý: ${wordObj.hint}`;
+  const roundPayload = {
+    ...getClientGameState(),
+    ttsText,
+  };
+
+  io.emit('roundStart', roundPayload);
 
   timerInterval = setInterval(() => {
     if (gameState.roundState !== 'PLAYING') return;
@@ -131,20 +254,17 @@ function handleTimeout() {
   console.log(`[Hết giờ] Đáp án là: "${gameState.currentWord?.word}"`);
   gameState.revealedMask = gameState.currentWord.word.split('').map(() => true);
 
+  const ttsText = `Hết giờ! Đáp án chính xác là: ${gameState.currentWord?.word}.`;
+
   io.emit('roundTimeout', {
     word: gameState.currentWord.word,
     hint: gameState.currentWord.hint,
+    ttsText,
   });
 
   setTimeout(() => {
     startNewRound();
   }, 5000);
-}
-
-function getLeaderboardList() {
-  return Array.from(leaderboard.values())
-    .sort((a, b) => b.score - a.score || b.wins - a.wins)
-    .slice(0, 10);
 }
 
 function checkGuess(user, text) {
@@ -215,10 +335,14 @@ function checkGuess(user, text) {
 
     console.log(`🏆 NGƯỜI CHIẾN THẮNG: ${existing.nickname} (+100 điểm, Tổng: ${existing.score}đ)`);
 
+    const winnerName = user.nickname || user.uniqueId;
+    const ttsText = `Chúc mừng ${winnerName} đã xuất sắc đoán đúng đáp án: ${target}!`;
+
     io.emit('roundWon', {
       winner: gameState.lastWinner,
       word: target,
       leaderboard: getLeaderboardList(),
+      ttsText,
     });
 
     setTimeout(() => {
@@ -245,12 +369,18 @@ function revealOneHint(donor = null, giftName = '') {
   const pickIdx = unrevealedIndices[Math.floor(Math.random() * unrevealedIndices.length)];
   gameState.revealedMask[pickIdx] = true;
 
+  let ttsText = '';
+  if (donor && (donor.nickname || donor.uniqueId)) {
+    ttsText = `Cảm ơn ${donor.nickname || donor.uniqueId} đã mở chữ ${rawChars[pickIdx]}!`;
+  }
+
   const payload = {
     index: pickIdx,
     letter: rawChars[pickIdx],
     revealedMask: gameState.revealedMask,
     donor: donor ? (donor.nickname || donor.uniqueId) : null,
     giftName,
+    ttsText,
   };
 
   io.emit('hintRevealed', payload);
@@ -279,6 +409,7 @@ function getClientGameState() {
     lastWinner: gameState.lastWinner,
     totalLikes: gameState.totalLikes,
     leaderboard: getLeaderboardList(),
+    donorLeaderboard: getDonorLeaderboardList(),
     recentGuesses: recentGuesses.slice(0, 8),
     tiktokConnected: gameState.tiktokConnected,
     tiktokConnecting: gameState.tiktokConnecting,
@@ -286,6 +417,7 @@ function getClientGameState() {
     tiktokStatusMsg: gameState.tiktokStatusMsg,
     connectedChannel: gameState.connectedChannel,
     totalCommentsReceived: gameState.totalCommentsReceived,
+    ttsEnabled: gameState.ttsEnabled,
   };
 }
 
@@ -426,6 +558,7 @@ async function connectTikTokLive(usernameOrUrl) {
     const totalDiamonds = diamondCount * repeatCount;
 
     console.log(`[Quà tặng] ${user} gửi ${giftName} (${totalDiamonds} xu)`);
+    recordGiftDonation({ uniqueId, nickname: user, avatar }, giftName, diamondCount, repeatCount);
     revealOneHint({ uniqueId, nickname: user, avatar }, giftName);
 
     if (totalDiamonds >= 10) {
@@ -529,14 +662,33 @@ app.post('/admin/api', (req, res) => {
   }
 
   if (action === 'simulateGift') {
-    revealOneHint({ nickname: 'Người Hâm Mộ' }, 'Hoa Hồng Demo');
-    return res.json({ ok: true, message: 'Đã kích hoạt mở gợi ý qua quà tặng' });
+    const giftUser = {
+      uniqueId: user || 'donor_demo_' + Math.floor(100 + Math.random() * 900),
+      nickname: user || 'Đại Gia Hảo Tâm',
+      avatar: 'https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/default-avatar.jpeg',
+    };
+    const giftName = req.body.giftName || 'Hoa Hồng';
+    const diamonds = Number(req.body.diamonds) || (giftName === 'Hoa Hồng' ? 1 : 10);
+    const repeatCount = Number(req.body.repeatCount) || 1;
+
+    recordGiftDonation(giftUser, giftName, diamonds, repeatCount);
+    revealOneHint(giftUser, giftName);
+    if (diamonds * repeatCount >= 10) {
+      addTime(30, `${giftUser.nickname} tặng ${giftName} (+30s)`);
+    }
+    return res.json({ ok: true, message: `Đã kích hoạt quà tặng: ${giftUser.nickname} gửi ${giftName} (${diamonds * repeatCount} xu)` });
   }
 
   if (action === 'resetLeaderboard') {
     leaderboard.clear();
     io.emit('leaderboardReset', []);
-    return res.json({ ok: true, message: 'Đã làm mới bảng xếp hạng' });
+    return res.json({ ok: true, message: 'Đã làm mới bảng xếp hạng điểm' });
+  }
+
+  if (action === 'resetDonorLeaderboard') {
+    donorLeaderboard.clear();
+    io.emit('donorReset', []);
+    return res.json({ ok: true, message: 'Đã làm mới bảng vinh danh người tặng quà' });
   }
 
   if (action === 'setChannel') {
@@ -548,6 +700,21 @@ app.post('/admin/api', (req, res) => {
       connectTikTokLive(TIKTOK_USERNAME);
       return res.json({ ok: true, channel: gameState.connectedChannel, message: `Đang kết nối sang kênh ${gameState.connectedChannel}` });
     }
+  }
+
+  if (action === 'speak' || action === 'tts') {
+    const ttsText = String(text || '').trim();
+    if (ttsText) {
+      io.emit('ttsCustom', { ttsText });
+      return res.json({ ok: true, message: `Đang phát giọng đọc: "${ttsText}"` });
+    }
+    return res.status(400).json({ ok: false, error: 'Văn bản đọc trống' });
+  }
+
+  if (action === 'toggleTts') {
+    gameState.ttsEnabled = (req.body.ttsEnabled !== undefined) ? !!req.body.ttsEnabled : !gameState.ttsEnabled;
+    io.emit('ttsConfig', { ttsEnabled: gameState.ttsEnabled });
+    return res.json({ ok: true, ttsEnabled: gameState.ttsEnabled, message: `Giọng đọc đã ${gameState.ttsEnabled ? 'BẬT' : 'TẮT'}` });
   }
 
   return res.status(400).json({ ok: false, error: 'Unknown action' });

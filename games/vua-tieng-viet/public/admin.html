@@ -146,8 +146,36 @@
     <div class="card-title">🧪 Kiểm Thử Game (Không cần mở Live thật)</div>
     <input type="text" id="testComment" placeholder="Nhập comment thử (vd: hoa hong)" />
     <button class="btn-purple" onclick="testComment()">💬 Thử Gửi Comment Đoán</button>
-    <button class="btn-pink" onclick="sendAction('simulateGift')">🌹 Giả Lập Tặng Hoa Hồng (Mở chữ)</button>
-    <button class="btn-red" onclick="sendAction('resetLeaderboard')">🗑️ Reset Bảng Xếp Hạng</button>
+
+    <div style="margin-top:12px;padding-top:10px;border-top:1px dashed rgba(255,255,255,0.15);">
+      <div style="font-size:12px;color:#f472b6;font-weight:700;margin-bottom:6px;">🎁 Giả Lập Tặng Quà & Bảng Vinh Danh:</div>
+      <input type="text" id="donorNameInput" placeholder="Tên người tặng (vd: Đại Gia Tuấn)" style="margin-top:0;" />
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px;">
+        <button class="btn-pink" style="margin-top:0;padding:8px;font-size:12px;" onclick="simulateCustomGift('Hoa Hồng', 1)">🌹 Hoa Hồng (1 xu)</button>
+        <button class="btn-purple" style="margin-top:0;padding:8px;font-size:12px;" onclick="simulateCustomGift('Nước Hoa', 10)">💖 Nước Hoa (10 xu)</button>
+        <button class="btn-gold" style="margin-top:0;padding:8px;font-size:12px;" onclick="simulateCustomGift('Tên Lửa', 100)">🚀 Tên Lửa (100 xu)</button>
+        <button class="btn-green" style="margin-top:0;padding:8px;font-size:12px;" onclick="simulateCustomGift('Sư Tử VIP', 500)">🦁 Sư Tử (500 xu)</button>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:12px;">
+      <button class="btn-red" style="margin-top:0;padding:8px;font-size:12px;" onclick="sendAction('resetLeaderboard')">🗑️ Reset Bảng Điểm</button>
+      <button class="btn-red" style="margin-top:0;padding:8px;font-size:12px;" onclick="sendAction('resetDonorLeaderboard')">🗑️ Reset Bảng Quà</button>
+    </div>
+  </div>
+
+  <!-- Điều Khiển Giọng Đọc AI (TTS) -->
+  <div class="card">
+    <div class="card-title">🎙️ Giọng Đọc AI (Text-To-Speech)</div>
+    <div class="stat-row">
+      <span class="stat-label">Trạng thái phát tự động:</span>
+      <span class="stat-val" id="ttsStatusVal" style="color:#00e676;">ĐANG BẬT</span>
+    </div>
+    <button class="btn-purple" id="btnToggleTts" onclick="toggleTtsSetting()">🔊 Bật / Tắt Giọng Đọc Game</button>
+    <div style="margin-top:10px;">
+      <input type="text" id="customTtsInput" placeholder="Nhập câu MC muốn đọc (vd: Chào mừng các bạn vào xem live!)" />
+      <button class="btn-pink" style="margin-top:8px;" onclick="sendCustomTts()">📢 Phát Giọng Đọc Này Ngay</button>
+    </div>
   </div>
 
   <!-- Thử nghiệm âm thanh -->
@@ -203,8 +231,30 @@
           if (cntText) {
             cntText.textContent = json.state.totalCommentsReceived || 0;
           }
+          if (json.state.ttsEnabled !== undefined) {
+            const ttsVal = document.getElementById('ttsStatusVal');
+            if (ttsVal) {
+              ttsVal.textContent = json.state.ttsEnabled ? 'ĐANG BẬT' : 'ĐÃ TẮT';
+              ttsVal.style.color = json.state.ttsEnabled ? '#00e676' : '#ef4444';
+            }
+            const btnTts = document.getElementById('btnToggleTts');
+            if (btnTts) {
+              btnTts.textContent = json.state.ttsEnabled ? '🔇 Tắt Giọng Đọc Game' : '🔊 Bật Giọng Đọc Game';
+            }
+          }
         }
       } catch (e) {}
+    }
+
+    function toggleTtsSetting() {
+      sendAction('toggleTts');
+    }
+
+    function sendCustomTts() {
+      const text = document.getElementById('customTtsInput').value.trim();
+      if (!text) return alert('Vui lòng nhập nội dung muốn đọc');
+      sendAction('speak', { text });
+      document.getElementById('customTtsInput').value = '';
     }
 
     function changeChannel() {
@@ -219,6 +269,11 @@
       if (!text) return alert('Vui lòng nhập nội dung comment');
       sendAction('simulateChat', { text, user: 'StreamerTest' });
       document.getElementById('testComment').value = '';
+    }
+
+    function simulateCustomGift(giftName, diamonds) {
+      const user = document.getElementById('donorNameInput').value.trim() || 'Khán Giả VIP';
+      sendAction('simulateGift', { user, giftName, diamonds, repeatCount: 1 });
     }
 
     // Audio Engine cho trang Admin
