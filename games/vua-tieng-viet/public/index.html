@@ -245,6 +245,11 @@
       width: 14px;
       height: 42px;
     }
+    .word-group {
+      display: inline-flex;
+      gap: 5px;
+      margin: 2px 4px;
+    }
 
     /* Gợi ý Clue */
     .clue-box {
@@ -1237,19 +1242,28 @@
 
     function renderTargetSlots(pattern) {
       targetSlots.innerHTML = '';
+      let currentWordGroup = document.createElement('div');
+      currentWordGroup.className = 'word-group';
+
       pattern.forEach((ch, idx) => {
         if (ch === ' ') {
-          const sp = document.createElement('div');
-          sp.className = 'slot-space';
-          targetSlots.appendChild(sp);
+          if (currentWordGroup.children.length > 0) {
+            targetSlots.appendChild(currentWordGroup);
+            currentWordGroup = document.createElement('div');
+            currentWordGroup.className = 'word-group';
+          }
         } else {
           const slot = document.createElement('div');
           slot.className = 'slot-tile' + (ch !== '_' ? ' revealed' : '');
           slot.dataset.index = idx;
           slot.textContent = ch !== '_' ? ch : '';
-          targetSlots.appendChild(slot);
+          currentWordGroup.appendChild(slot);
         }
       });
+
+      if (currentWordGroup.children.length > 0) {
+        targetSlots.appendChild(currentWordGroup);
+      }
     }
 
     function updateLeaderboard(list) {
