@@ -167,15 +167,25 @@ def main():
 
     print(f"🌐 Mở giao diện game bằng {chrome_bin} trên màn hình ảo...")
     chrome_env = os.environ.copy()
-    chrome_env["DISPLAY"] = ":99"
+    # Tạo profile sạch và tắt hộp thoại First Run
+    profile_dir = "/tmp/chrome_live_profile"
+    os.makedirs(profile_dir, exist_ok=True)
+    open(os.path.join(profile_dir, "First Run"), "w").close()
+
     chrome_cmd = [
         chrome_bin,
         "--no-sandbox",
         "--disable-gpu",
         "--disable-dev-shm-usage",
+        "--no-first-run",
+        "--no-default-browser-check",
+        "--disable-search-engine-choice-screen",
+        "--disable-features=Translate,OptimizationHints",
+        f"--user-data-dir={profile_dir}",
         f"--window-size={w},{h}",
         "--window-position=0,0",
         "--kiosk",
+        "--start-fullscreen",
         "--autoplay-policy=no-user-gesture-required",
         "http://localhost:3002"
     ]
