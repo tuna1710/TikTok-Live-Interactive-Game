@@ -23,20 +23,19 @@
       min-height: 100vh;
     }
 
-    /* Khung dọc tỉ lệ 9:16 tiêu chuẩn Livestream TikTok */
+    /* Khung dọc tỉ lệ 9:16 tiêu chuẩn Livestream TikTok / YouTube */
     .game-container {
-      width: 100vw;
-      max-width: 480px;
-      height: 100vh;
-      max-height: 853px;
+      width: 480px;
+      height: 853.33px;
       background: radial-gradient(circle at 50% 20%, #1e133d 0%, #0d0822 65%, #05030f 100%);
       display: flex;
       flex-direction: column;
       position: relative;
-      border-radius: 12px;
+      border-radius: 0;
       overflow: hidden;
-      box-shadow: 0 0 40px rgba(138, 43, 226, 0.35);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: none;
+      border: none;
+      flex-shrink: 0;
     }
 
     /* Header */
@@ -1486,6 +1485,18 @@
     socket.on('tiktokStatus', status => {
       updateTiktokBadge(status);
     });
+
+    // Tự động căn chỉnh full 100% màn hình
+    function fitScreen() {
+      const container = document.querySelector('.game-container');
+      if (!container) return;
+      const scale = Math.min(window.innerWidth / 480, window.innerHeight / 853.33);
+      container.style.transform = `scale(${scale})`;
+      container.style.transformOrigin = 'center center';
+    }
+    window.addEventListener('resize', fitScreen);
+    window.addEventListener('DOMContentLoaded', fitScreen);
+    fitScreen();
   </script>
 </body>
 </html>
