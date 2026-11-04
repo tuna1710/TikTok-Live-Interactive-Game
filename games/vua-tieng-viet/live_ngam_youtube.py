@@ -183,6 +183,9 @@ def main():
         "--disable-search-engine-choice-screen",
         "--disable-features=Translate,OptimizationHints",
         "--disable-translate",
+        "--disable-background-timer-throttling",
+        "--disable-backgrounding-occluded-windows",
+        "--disable-renderer-backgrounding",
         "--lang=vi",
         f"--user-data-dir={profile_dir}",
         f"--window-size={w},{h}",
@@ -196,13 +199,15 @@ def main():
     chrome_proc = subprocess.Popen(chrome_cmd, env=chrome_env, stdout=chrome_log, stderr=subprocess.STDOUT)
     time.sleep(5)
 
-    # 5. Khởi chạy FFmpeg đẩy luồng RTMP lên YouTube
+    # 5. Khởi chạy FFmpeg đẩy luồng RTMP lên YouTube (Tối ưu mượt mà không giật lag)
     rtmp_url = f"rtmp://a.rtmp.youtube.com/live2/{stream_key}"
-    print(f"📡 [6/6] Khởi động FFmpeg truyền luồng RTMP lên YouTube...")
+    print(f"📡 [6/6] Khởi động FFmpeg truyền luồng RTMP lên YouTube (Tối ưu 25fps ultrafast)...")
 
     ffmpeg_cmd = [
         "ffmpeg",
         "-loglevel", "warning",
+        "-framerate", "25",
+        "-thread_queue_size", "1024",
         "-f", "x11grab",
         "-video_size", f"{w}x{h}",
         "-draw_mouse", "0",
@@ -210,19 +215,21 @@ def main():
     ]
 
     if has_pulse:
-        ffmpeg_cmd += ["-f", "pulse", "-i", "virtual_sink.monitor"]
+        ffmpeg_cmd += ["-thread_queue_size", "1024", "-f", "pulse", "-i", "virtual_sink.monitor"]
     else:
         ffmpeg_cmd += ["-f", "lavfi", "-i", "anullsrc=channel_layout=stereo:sample_rate=44100"]
 
     ffmpeg_cmd += [
         "-c:v", "libx264",
-        "-preset", "veryfast",
+        "-preset", "ultrafast",
         "-tune", "zerolatency",
-        "-b:v", "3000k",
-        "-maxrate", "3500k",
-        "-bufsize", "6000k",
+        "-threads", "2",
+        "-r", "25",
+        "-g", "50",
+        "-b:v", "2200k",
+        "-maxrate", "2500k",
+        "-bufsize", "4500k",
         "-pix_fmt", "yuv420p",
-        "-g", "60",
         "-c:a", "aac",
         "-b:a", "128k",
         "-ar", "44100",
