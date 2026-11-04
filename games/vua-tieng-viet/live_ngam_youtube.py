@@ -20,9 +20,14 @@ def parse_args():
     parser.add_argument("--height", type=int, default=1920, help="Chiều cao màn hình (mặc định: 1920)")
     return parser.parse_args()
 
+def find_chrome():
+    for cmd in ["google-chrome", "google-chrome-stable", "chromium-browser", "chromium", "/usr/bin/google-chrome", "/usr/bin/google-chrome-stable", "/usr/bin/chromium-browser", "/usr/bin/chromium"]:
+        if subprocess.call(["which", cmd], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL) == 0:
+            return cmd
+    return None
+
 def check_and_install_dependencies():
     print("📦 [1/6] Kiểm tra môi trường hệ thống...")
-    # Kiểm tra Xvfb và FFmpeg
     need_apt = []
     if subprocess.call(["which", "Xvfb"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL) != 0:
         need_apt.append("xvfb")
@@ -38,6 +43,20 @@ def check_and_install_dependencies():
             subprocess.run(["apt-get", "install", "-y", "-qq"] + need_apt, check=True)
         except Exception as e:
             print(f"⚠️ Cảnh báo apt-get: {e}")
+
+    # Kiểm tra và tự động cài đặt Google Chrome
+    if not find_chrome():
+        print("📥 Đang tải và cài đặt Google Chrome...")
+        try:
+            chrome_deb = "/tmp/google-chrome-stable_current_amd64.deb"
+            urllib.request.urlretrieve("https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb", chrome_deb)
+            subprocess.run(["apt-get", "update", "-qq"], check=False)
+            subprocess.run(["apt-get", "install", "-y", "-qq", chrome_deb], check=True)
+            if os.path.exists(chrome_deb):
+                os.remove(chrome_deb)
+        except Exception as e:
+            print(f"⚠️ Cài đặt Chrome deb lỗi ({e}), thử cài chromium-browser...")
+            subprocess.run(["apt-get", "install", "-y", "-qq", "chromium-browser"], check=False)
 
     # Cloudflared
     cf_bin = "/usr/local/bin/cloudflared"
@@ -140,12 +159,17 @@ def main():
                     public_url = match.group(0)
                     break
 
-    # 4. Mở Google Chrome toàn màn hình trên Display :99
-    print(f"🌐 Mở giao diện game trên màn hình ảo...")
+    # 4. Mở Google Chrome/Chromium toàn màn hình trên Display :99
+    chrome_bin = find_chrome()
+    if not chrome_bin:
+        print("❌ LỖI: Không tìm thấy Google Chrome hoặc Chromium trên hệ thống!")
+        sys.exit(1)
+
+    print(f"🌐 Mở giao diện game bằng {chrome_bin} trên màn hình ảo...")
     chrome_env = os.environ.copy()
     chrome_env["DISPLAY"] = ":99"
     chrome_cmd = [
-        "google-chrome",
+        chrome_bin,
         "--no-sandbox",
         "--disable-gpu",
         "--disable-dev-shm-usage",
