@@ -93,11 +93,12 @@ def main():
 
     # Dọn dẹp tiến trình cũ
     print("🧹 [2/6] Dọn dẹp tiến trình cũ...")
-    subprocess.run(["pkill", "-9", "-f", "Xvfb :99"], stderr=subprocess.DEVNULL)
+    subprocess.run(["pkill", "-9", "-f", "Xvfb"], stderr=subprocess.DEVNULL)
     subprocess.run(["pkill", "-9", "-f", "server-youtube.js"], stderr=subprocess.DEVNULL)
-    subprocess.run(["pkill", "-9", "-f", "chrome.*3002"], stderr=subprocess.DEVNULL)
-    subprocess.run(["pkill", "-9", "-f", "ffmpeg.*rtmp"], stderr=subprocess.DEVNULL)
-    subprocess.run(["pkill", "-9", "-f", "cloudflared.*3002"], stderr=subprocess.DEVNULL)
+    subprocess.run(["pkill", "-9", "-f", "chrome"], stderr=subprocess.DEVNULL)
+    subprocess.run(["pkill", "-9", "-f", "ffmpeg"], stderr=subprocess.DEVNULL)
+    subprocess.run(["pkill", "-9", "-f", "cloudflared"], stderr=subprocess.DEVNULL)
+    subprocess.run(["rm", "-f", "/tmp/.X99-lock", "/tmp/.X11-unix/X99"], stderr=subprocess.DEVNULL)
     time.sleep(1)
 
     # Cài npm nếu cần
@@ -165,8 +166,8 @@ def main():
         print("❌ LỖI: Không tìm thấy Google Chrome hoặc Chromium trên hệ thống!")
         sys.exit(1)
 
-    print(f"🌐 Mở giao diện game bằng {chrome_bin} trên màn hình ảo...")
     chrome_env = os.environ.copy()
+    chrome_env["DISPLAY"] = ":99"
     # Tạo profile sạch và tắt hộp thoại First Run
     profile_dir = "/tmp/chrome_live_profile"
     os.makedirs(profile_dir, exist_ok=True)
@@ -191,8 +192,9 @@ def main():
         "--autoplay-policy=no-user-gesture-required",
         "http://localhost:3002"
     ]
-    chrome_proc = subprocess.Popen(chrome_cmd, env=chrome_env, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-    time.sleep(4)
+    chrome_log = open("/tmp/chrome_out.log", "w")
+    chrome_proc = subprocess.Popen(chrome_cmd, env=chrome_env, stdout=chrome_log, stderr=subprocess.STDOUT)
+    time.sleep(5)
 
     # 5. Khởi chạy FFmpeg đẩy luồng RTMP lên YouTube
     rtmp_url = f"rtmp://a.rtmp.youtube.com/live2/{stream_key}"
