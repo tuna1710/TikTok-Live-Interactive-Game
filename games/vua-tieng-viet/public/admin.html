@@ -125,9 +125,9 @@
     <button class="btn-pink" onclick="sendAction('addTime', { seconds: 30 })">⏱️ Cộng Thêm 30 Giây</button>
   </div>
 
-  <!-- Kết Nối Kênh TikTok -->
+  <!-- Kết Nối Kênh YouTube Live -->
   <div class="card">
-    <div class="card-title">📡 Kênh TikTok Đang Kết Nối</div>
+    <div class="card-title">📡 Kênh YouTube Live Đang Kết Nối</div>
     <div class="stat-row">
       <span class="stat-label">Trạng thái Live:</span>
       <span class="stat-val" id="tiktokStatusText" style="font-size:12px;color:#ffd700;">Đang kiểm tra...</span>
@@ -136,9 +136,8 @@
       <span class="stat-label">Số bình luận đã nhận:</span>
       <span class="stat-val gold" id="totalCommentsCount">0</span>
     </div>
-    <input type="text" id="channelInput" placeholder="@username_tiktok" value="@2166541467" />
-    <input type="text" id="sessionIdInput" placeholder="TikTok Session ID (tùy chọn - để vượt qua lỗi 403)" style="margin-top:8px;font-size:12px;" />
-    <button class="btn-green" style="margin-top:8px;" onclick="changeChannel()">🔗 Kết Nối Kênh TikTok</button>
+    <input type="text" id="channelInput" placeholder="Dán YouTube Live ID hoặc Link (vd: TuH8JlNLlxI)" value="TuH8JlNLlxI" />
+    <button class="btn-green" style="margin-top:8px;" onclick="changeChannel()">🔗 Kết Nối YouTube Live</button>
   </div>
 
   <!-- Thử Nghiệm Giả Lập (Không cần đang Live thật) -->
