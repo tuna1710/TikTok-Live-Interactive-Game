@@ -100,6 +100,8 @@ let gameState = {
   ttsEnabled: true,
 };
 
+const serverStartTime = Date.now();
+const seenMessageIds = new Set();
 let timerInterval = null;
 let reconnectTimer = null;
 const leaderboard = new Map();
@@ -215,6 +217,7 @@ function startNewRound() {
   gameState.revealedMask = mask;
   gameState.timeLeft = ROUND_TIME_DEFAULT;
   gameState.roundState = 'PLAYING';
+  gameState.roundStartTime = Date.now();
 
   console.log(`\n[Vòng ${gameState.round}] Từ cần đoán: "${wordObj.word}" (Chủ đề: ${wordObj.category})`);
 
@@ -258,11 +261,16 @@ function handleTimeout() {
   }, 5000);
 }
 
-function checkGuess(user, text) {
+function checkGuess(user, text, msgTime = null) {
   if (!text) return;
   gameState.totalCommentsReceived++;
 
   if (gameState.roundState !== 'PLAYING' || !gameState.currentWord) return;
+
+  // Nếu bình luận là của vòng cũ (gửi trước khi vòng này bắt đầu > 2s) thì bỏ qua không chấm điểm
+  if (msgTime && gameState.roundStartTime && (msgTime < gameState.roundStartTime - 2000)) {
+    return;
+  }
 
   const target = gameState.currentWord.word;
   const normTarget = normalizeAnswer(target);
@@ -482,16 +490,34 @@ async function connectYouTubeLive(rawInput) {
     });
 
     liveChat.on('chat', (chatItem) => {
+      const messageText = (chatItem.message || []).map(m => m.text || '').join('').trim();
+      if (!messageText) return;
+
+      const msgTime = chatItem.timestamp ? chatItem.timestamp.getTime() : Date.now();
+      const msgId = chatItem.id || `${chatItem.author?.channelId}_${msgTime}_${messageText}`;
+
+      // 1. Chống trùng lặp tin nhắn (YouTube Live API thường trả lại danh sách tin gần đây mỗi lần poll)
+      if (seenMessageIds.has(msgId)) {
+        return;
+      }
+      seenMessageIds.add(msgId);
+      if (seenMessageIds.size > 2000) {
+        const oldest = seenMessageIds.values().next().value;
+        seenMessageIds.delete(oldest);
+      }
+
+      // 2. Bỏ qua tin nhắn lịch sử gửi từ trước khi kết nối bot > 10 giây
+      if (msgTime < serverStartTime - 10000) {
+        return;
+      }
+
       const user = {
         uniqueId: chatItem.author?.channelId || 'yt_' + Date.now(),
         nickname: chatItem.author?.name || 'Khán Giả YouTube',
         avatar: chatItem.author?.thumbnail?.url || 'https://www.gstatic.com/youtube/img/creator/avatar/default_avatar.svg',
       };
 
-      const messageText = (chatItem.message || []).map(m => m.text || '').join('').trim();
-      if (messageText) {
-        checkGuess(user, messageText);
-      }
+      checkGuess(user, messageText, msgTime);
 
       if (chatItem.superchat) {
         const amount = chatItem.superchat.amount || 'SuperChat';
