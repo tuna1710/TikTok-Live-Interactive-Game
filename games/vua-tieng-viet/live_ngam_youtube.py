@@ -181,6 +181,8 @@ def main():
         "--no-default-browser-check",
         "--disable-search-engine-choice-screen",
         "--disable-features=Translate,OptimizationHints",
+        "--disable-translate",
+        "--lang=vi",
         f"--user-data-dir={profile_dir}",
         f"--window-size={w},{h}",
         "--window-position=0,0",
