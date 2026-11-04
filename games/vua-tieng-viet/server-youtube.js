@@ -386,11 +386,10 @@ function getClientGameState() {
     category: gameState.currentWord?.category || '',
     hint: gameState.currentWord?.hint || '',
     wordLength: gameState.currentWord?.word ? gameState.currentWord.word.length : 0,
-    targetPattern: (gameState.currentWord?.word || '').split('').map((ch, idx) => ({
-      char: gameState.revealedMask[idx] ? ch : '',
-      isSpace: ch === ' ',
-      isRevealed: !!gameState.revealedMask[idx],
-    })),
+    targetPattern: (gameState.currentWord?.word || '').split('').map((c, i) => {
+      if (c === ' ') return ' ';
+      return gameState.revealedMask[i] ? c : '_';
+    }),
     scrambledLetters: gameState.scrambledLetters,
     timeLeft: gameState.timeLeft,
     roundState: gameState.roundState,

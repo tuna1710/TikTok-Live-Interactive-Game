@@ -1245,18 +1245,26 @@
       let currentWordGroup = document.createElement('div');
       currentWordGroup.className = 'word-group';
 
-      pattern.forEach((ch, idx) => {
-        if (ch === ' ') {
+      (pattern || []).forEach((item, idx) => {
+        const isSpace = item === ' ' || item?.isSpace || item?.char === ' ';
+        if (isSpace) {
           if (currentWordGroup.children.length > 0) {
             targetSlots.appendChild(currentWordGroup);
             currentWordGroup = document.createElement('div');
             currentWordGroup.className = 'word-group';
           }
         } else {
+          let charVal = '_';
+          if (typeof item === 'string') {
+            charVal = item;
+          } else if (item && typeof item === 'object') {
+            charVal = item.isRevealed ? (item.char || '_') : (item.char || '_');
+          }
+          const isRevealed = charVal !== '_' && charVal !== '';
           const slot = document.createElement('div');
-          slot.className = 'slot-tile' + (ch !== '_' ? ' revealed' : '');
+          slot.className = 'slot-tile' + (isRevealed ? ' revealed' : '');
           slot.dataset.index = idx;
-          slot.textContent = ch !== '_' ? ch : '';
+          slot.textContent = isRevealed ? charVal : '';
           currentWordGroup.appendChild(slot);
         }
       });
