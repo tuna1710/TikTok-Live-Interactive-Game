@@ -1641,6 +1641,10 @@
         chatList.innerHTML = '';
         state.recentGuesses.slice().reverse().forEach(addGuess);
       }
+
+      if (state.activeMilestone && state.isCelebratingMilestone) {
+        showMilestoneCelebration(state.activeMilestone);
+      }
     });
 
     socket.on('donorUpdate', data => {
@@ -1690,7 +1694,8 @@
       }
     });
 
-    socket.on('milestoneCelebration', data => {
+    function showMilestoneCelebration(data) {
+      if (!data || !data.user) return;
       winnerOverlay.classList.remove('show');
 
       const overlay = document.getElementById('milestoneOverlay');
@@ -1711,7 +1716,7 @@
       mWins.textContent = `${data.user.wins || 20}+`;
       if (data.title) mTitle.textContent = data.title;
 
-      let remaining = data.duration || 60;
+      let remaining = Math.max(1, data.duration || 60);
       mCountdown.textContent = `${remaining}s`;
 
       const mTop5List = document.getElementById('milestoneTop5List');
@@ -1769,6 +1774,10 @@
       if (data.ttsText) {
         ttsManager.speak(data.ttsText, true);
       }
+    }
+
+    socket.on('milestoneCelebration', data => {
+      showMilestoneCelebration(data);
     });
 
     socket.on('milestoneEnd', () => {

@@ -18,4 +18,6 @@ Thumbs.db
 __pycache__/
 # TTS Cache
 **/tts-cache/
+**/played_words.json
+**/test_*.png
 

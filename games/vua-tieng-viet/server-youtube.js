@@ -108,6 +108,7 @@ let timerInterval = null;
 let reconnectTimer = null;
 let nextRoundTimer = null;
 let isCelebratingMilestone = false;
+let activeMilestone = null;
 const MILESTONE_SCORE = Number(process.env.MILESTONE_SCORE) || 2000;
 const MILESTONE_DURATION = Number(process.env.MILESTONE_DURATION) || 60;
 const leaderboard = new Map();
@@ -120,6 +121,7 @@ function endMilestoneAndResetLeaderboard() {
     nextRoundTimer = null;
   }
   isCelebratingMilestone = false;
+  activeMilestone = null;
   console.log('🔄 [Vinh Danh Hoàn Tất] Reset bảng top điểm (giữ nguyên bảng tấm lòng vàng)! Bắt đầu chặng đua mới.');
 
   leaderboard.clear();
@@ -142,7 +144,7 @@ function triggerMilestoneCelebration(user, score = MILESTONE_SCORE, duration = M
   console.log(`🌟 ĐẠI VINH DANH CÁN MỐC: ${user.nickname} đạt ${score} điểm! (${duration}s)`);
   console.log(`📢 BẢNG VÀNG TOP 5:\n` + top5List.map((p, i) => `   Top ${i + 1}: ${p.nickname} (${p.score}đ)`).join('\n'));
 
-  io.emit('milestoneCelebration', {
+  activeMilestone = {
     user: {
       uniqueId: user.uniqueId,
       nickname: user.nickname,
@@ -154,8 +156,11 @@ function triggerMilestoneCelebration(user, score = MILESTONE_SCORE, duration = M
     milestone: score,
     title: 'ĐẠI KIỆN TƯỚNG TIẾNG VIỆT',
     duration: duration,
+    startedAt: Date.now(),
     ttsText: ttsText,
-  });
+  };
+
+  io.emit('milestoneCelebration', activeMilestone);
 
   if (nextRoundTimer) clearTimeout(nextRoundTimer);
   nextRoundTimer = setTimeout(() => {
@@ -537,6 +542,11 @@ function getClientGameState() {
     playedWordsCount: playedWordIds.size,
     totalWordsCount: wordsData.length,
     remainingInDeck: wordDeck.length,
+    isCelebratingMilestone,
+    activeMilestone: activeMilestone ? {
+      ...activeMilestone,
+      duration: Math.max(1, Math.round(activeMilestone.duration - (Date.now() - activeMilestone.startedAt) / 1000)),
+    } : null,
   };
 }
 
