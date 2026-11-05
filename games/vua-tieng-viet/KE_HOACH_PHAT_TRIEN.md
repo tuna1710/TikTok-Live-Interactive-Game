@@ -157,7 +157,7 @@ GIAI ĐOẠN 2 (Tạo Cao Trào & Quản Trị Nội Dung):
   └── [ ] Bước 4: Mục 4 - Quản lý ngân hàng câu đố từ Admin (Question CMS)
 
 GIAI ĐOẠN 3 (Cơ Chế Đám Đông & Giữ Chân Tối Đa):
-  ├── [ ] Bước 5: Mục 6 - Rương Kho Báu & Mốc Tim Thả Like (Like Chest)
+  ├── [x] Bước 5: Mục 6 - Rương Kho Báu & Mốc Tim Thả Like (Like Chest) - ĐÃ HOÀN THÀNH
   └── [ ] Bước 6: Mục 5 - Chế độ Chia Phe Đối Kháng (Team Red vs Team Blue)
 ```
 

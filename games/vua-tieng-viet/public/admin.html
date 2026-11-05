@@ -127,6 +127,10 @@
       <span class="stat-label">Chuỗi thắng liên tiếp:</span>
       <span class="stat-val gold" id="currentStreakStat">Chưa có chuỗi</span>
     </div>
+    <div class="stat-row">
+      <span class="stat-label">Rương Kho Báu Tim:</span>
+      <span class="stat-val gold" id="likeChestStat">-</span>
+    </div>
   </div>
 
   <!-- Nút Thao Tác Nhanh -->
@@ -225,6 +229,43 @@
       <button class="btn-red" style="margin-top:0;padding:8px;font-size:12px;" onclick="sendAction('resetDonorLeaderboard')">🗑️ Reset Bảng Quà</button>
     </div>
     <button class="btn-red" style="margin-top:6px;padding:8px;font-size:12px;" onclick="if(confirm('Bạn có chắc muốn xóa lịch sử câu đã chơi và xáo lại toàn bộ kho câu hỏi?')) sendAction('resetPlayedWords')">🔄 Reset Lịch Sử Câu Đố (Chơi lại từ đầu)</button>
+  </div>
+
+  <!-- Rương Kho Báu & Mốc Thả Tim (Mục 6) -->
+  <div class="card">
+    <div class="card-title">🎁 Rương Kho Báu & Mốc Thả Tim (Mục 6)</div>
+    <div class="stat-row">
+      <span class="stat-label">Tổng số tim đã nhận:</span>
+      <span class="stat-val gold" id="totalLikesDisplay">0</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-label">Tiến độ rương hiện tại:</span>
+      <span class="stat-val gold" id="chestProgressDisplay">0 / 200 tim (0%)</span>
+    </div>
+    <div class="stat-row">
+      <span class="stat-label">Số rương đã mở:</span>
+      <span class="stat-val gold" id="chestsOpenedDisplay">0 rương</span>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px;">
+      <button class="btn-pink" style="margin-top:0;padding:8px;font-size:12px;" onclick="simulateLikeTest(20)">❤️ Thả +20 Tim</button>
+      <button class="btn-purple" style="margin-top:0;padding:8px;font-size:12px;" onclick="simulateLikeTest(50)">💖 Thả +50 Tim</button>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px;">
+      <button class="btn-gold" style="margin-top:0;padding:8px;font-size:12px;" onclick="simulateLikeTest(200)">🔥 Thả +200 Tim (Mở Rương)</button>
+      <button class="btn-green" style="margin-top:0;padding:8px;font-size:12px;" onclick="sendAction('triggerLikeChest')">🎁 Ép Mở Rương Ngay</button>
+    </div>
+
+    <div style="margin-top:8px;display:flex;gap:6px;align-items:center;">
+      <select id="chestStepSelect" style="margin-top:0;padding:8px;font-size:12px;" onchange="changeChestStep()">
+        <option value="50">Mốc 50 Tim / rương (Rất nhanh)</option>
+        <option value="100">Mốc 100 Tim / rương (Nhanh)</option>
+        <option value="200" selected>Mốc 200 Tim / rương (Khuyên dùng)</option>
+        <option value="500">Mốc 500 Tim / rương (Đông khán giả)</option>
+        <option value="1000">Mốc 1.000 Tim / rương</option>
+      </select>
+      <button class="btn-red" style="margin-top:0;padding:8px;font-size:12px;white-space:nowrap;width:auto;" onclick="sendAction('resetLikeChest')">🔄 Reset Tim</button>
+    </div>
   </div>
 
   <!-- Điều Khiển Giọng Đọc AI (TTS) -->
@@ -329,8 +370,28 @@
               streakStat.style.color = '#94a3b8';
             }
           }
+          if (json.state.likeChest) {
+            const lc = json.state.likeChest;
+            const cs = document.getElementById('likeChestStat');
+            if (cs) cs.textContent = `${lc.chestLikes}/${lc.milestoneStep} tim (${lc.percent}%) - Đã mở ${lc.chestsOpened} rương`;
+            const tl = document.getElementById('totalLikesDisplay');
+            if (tl) tl.textContent = lc.currentLikes || 0;
+            const cp = document.getElementById('chestProgressDisplay');
+            if (cp) cp.textContent = `${lc.chestLikes} / ${lc.milestoneStep} tim (${lc.percent}%)`;
+            const co = document.getElementById('chestsOpenedDisplay');
+            if (co) co.textContent = `${lc.chestsOpened} rương`;
+          }
         }
       } catch (e) {}
+    }
+
+    function simulateLikeTest(count = 20) {
+      sendAction('simulateLike', { count, nickname: 'Khán Giả Thả Tim' });
+    }
+
+    function changeChestStep() {
+      const milestoneStep = Number(document.getElementById('chestStepSelect').value) || 200;
+      sendAction('updateChestConfig', { milestoneStep });
     }
 
     function simulateStreakTest(count = 2) {

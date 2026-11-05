@@ -129,6 +129,130 @@ let lastFollowEvent = null;
 // Quản lý Chuỗi Thắng Liên Tiếp (Combo Win Streak & Flame - Mục 2)
 let currentStreakWinner = null; // { uniqueId, nickname, avatar, count, multiplier, basePoints, bonusPoints, totalPoints, streakBadge, streakTitle, flameLevel }
 
+// Quản lý Rương Kho Báu & Mốc Thả Tim (Like Milestone Chest - Mục 6)
+const likeChestConfig = {
+  milestoneStep: Number(process.env.LIKE_CHEST_STEP) || 200, // Mặc định mỗi 200 tim thì mở 1 rương
+  autoReward: true,
+};
+
+let likeChestState = {
+  currentLikes: 0,
+  chestLikes: 0,
+  milestoneStep: likeChestConfig.milestoneStep,
+  targetLikes: likeChestConfig.milestoneStep,
+  chestsOpened: 0,
+  lastChestOpened: null,
+};
+
+let isCelebratingChest = false;
+let chestCelebrationTimer = null;
+let activeChestCelebration = null;
+const CHEST_CELEBRATION_DURATION = 8;
+
+function getLikeChestClientState() {
+  const currentInChest = likeChestState.chestLikes % likeChestState.milestoneStep;
+  const percent = Math.min(100, Math.floor((currentInChest / likeChestState.milestoneStep) * 100));
+  return {
+    currentLikes: likeChestState.currentLikes,
+    chestLikes: currentInChest,
+    milestoneStep: likeChestState.milestoneStep,
+    targetLikes: (likeChestState.chestsOpened + 1) * likeChestState.milestoneStep,
+    chestsOpened: likeChestState.chestsOpened,
+    percent,
+    lastChest: likeChestState.lastChestOpened,
+  };
+}
+
+function triggerLikeChestOpen(luckyUser = null) {
+  likeChestState.chestsOpened++;
+  likeChestState.targetLikes = (likeChestState.chestsOpened + 1) * likeChestState.milestoneStep;
+
+  console.log(`🎁 [RƯƠNG KHO BÁU] ĐẠT MỐC ${likeChestState.milestoneStep} TIM -> MỞ RƯƠNG THỨ #${likeChestState.chestsOpened}!`);
+
+  // 1. Phần thưởng 1: Tự động mở chữ cái gợi ý (trợ giúp phòng live)
+  const lettersRevealed = [];
+  if (gameState.roundState === 'PLAYING' && gameState.currentWord) {
+    const r1 = revealOneHint({ nickname: 'Rương Kho Báu 🎁', avatar: '', diamonds: 0 }, 'Rương Tim Mở', true);
+    if (r1 && r1.letter) lettersRevealed.push(r1.letter);
+
+    // Nếu từ còn nhiều chữ ẩn (>= 2 chữ), mở thêm 1 chữ thứ 2 cho hào sảng
+    if (getHiddenLettersCount() >= 2) {
+      const r2 = revealOneHint({ nickname: 'Rương Kho Báu 🎁', avatar: '', diamonds: 0 }, 'Rương Tim Mở', true);
+      if (r2 && r2.letter) lettersRevealed.push(r2.letter);
+    }
+  }
+
+  // 2. Phần thưởng 2: Cộng thêm 30 giây suy nghĩ
+  addTime(30, `🎁 Rương Kho Báu #${likeChestState.chestsOpened} nổ tung (+30s)`);
+
+  // 3. Phần thưởng 3: Chọn ngẫu nhiên 1 người may mắn nhận điểm thưởng
+  let luckyReward = null;
+  if (luckyUser && luckyUser.nickname) {
+    luckyReward = { nickname: luckyUser.nickname, avatar: luckyUser.avatar || '', bonus: 100 };
+  } else if (leaderboard.size > 0) {
+    const list = Array.from(leaderboard.values());
+    const picked = list[Math.floor(Math.random() * list.length)];
+    picked.score += 100;
+    luckyReward = { nickname: picked.nickname, avatar: picked.avatar || '', bonus: 100 };
+    io.emit('leaderboardReset', getLeaderboardList());
+  }
+
+  let letterDesc = '';
+  if (lettersRevealed.length > 0) {
+    letterDesc = ` Mở chữ cái: ${lettersRevealed.join(', ')}!`;
+  }
+
+  const ttsText = `Rương kho báu thứ ${likeChestState.chestsOpened} đã mở tung! Cả phòng được cộng thêm 30 giây suy nghĩ!${letterDesc} Cảm ơn mọi người đã cùng nhau thả tim!`;
+
+  const payload = {
+    chestNumber: likeChestState.chestsOpened,
+    milestone: likeChestState.milestoneStep,
+    totalLikes: likeChestState.currentLikes,
+    lettersRevealed,
+    addedSeconds: 30,
+    luckyReward,
+    ttsText,
+    chestState: getLikeChestClientState(),
+    openedAt: Date.now(),
+  };
+  likeChestState.lastChestOpened = payload;
+  isCelebratingChest = true;
+  activeChestCelebration = {
+    ...payload,
+    duration: CHEST_CELEBRATION_DURATION,
+    startedAt: Date.now(),
+  };
+
+  if (chestCelebrationTimer) clearTimeout(chestCelebrationTimer);
+  chestCelebrationTimer = setTimeout(() => {
+    isCelebratingChest = false;
+    activeChestCelebration = null;
+    io.emit('likeChestClose');
+  }, CHEST_CELEBRATION_DURATION * 1000);
+
+  io.emit('likeChestOpened', payload);
+  return payload;
+}
+
+function onLikeReceived(count = 1, user = null) {
+  const inc = Math.max(1, Number(count) || 1);
+  likeChestState.currentLikes += inc;
+  likeChestState.chestLikes += inc;
+  gameState.totalLikes = likeChestState.currentLikes;
+
+  while (likeChestState.chestLikes >= likeChestState.milestoneStep) {
+    likeChestState.chestLikes -= likeChestState.milestoneStep;
+    triggerLikeChestOpen(user);
+  }
+
+  io.emit('likeUpdate', {
+    totalLikes: likeChestState.currentLikes,
+    addedLikes: inc,
+    user: user ? { nickname: user.nickname || user.user, avatar: user.avatar } : null,
+    chestState: getLikeChestClientState(),
+  });
+}
+
 function onUserFollow(user) {
   const uniqueId = user.uniqueId || user.nickname || 'user_' + Date.now();
   const nickname = user.nickname || user.user || uniqueId;
@@ -824,6 +948,12 @@ function getClientGameState() {
     remainingHiddenLetters: hiddenCount,
     canRevealMore: hiddenCount > giftHintConfig.keepLastLettersSecret,
     currentStreak: currentStreakWinner,
+    likeChest: getLikeChestClientState(),
+    isCelebratingChest,
+    activeChestCelebration: activeChestCelebration ? {
+      ...activeChestCelebration,
+      duration: Math.max(1, Math.round(activeChestCelebration.duration - (Date.now() - activeChestCelebration.startedAt) / 1000)),
+    } : null,
   };
 }
 
@@ -977,12 +1107,8 @@ async function connectTikTokLive(usernameOrUrl) {
 
   tiktokConn.on(WebcastEvent.LIKE, (data) => {
     const count = Number(data?.count || data?.likeCount || 1);
-    gameState.totalLikes += count;
-    io.emit('likeUpdate', { totalLikes: gameState.totalLikes });
-
-    if (gameState.totalLikes % 50 === 0) {
-      addTime(10, 'Cộng đồng thả 50 tim (+10s)');
-    }
+    const user = extractUserFromEvent(data);
+    onLikeReceived(count, user);
   });
 
   const handleFollowEvent = (data) => {
@@ -1313,6 +1439,53 @@ app.post('/admin/api', (req, res) => {
     io.emit('streakUpdate', null);
     io.emit('leaderboardReset', getLeaderboardList());
     return res.json({ ok: true, message: 'Đã ngắt / reset chuỗi thắng liên tiếp về 0' });
+  }
+
+  if (action === 'simulateLike') {
+    const count = Number(req.body.count || req.body.likes) || 10;
+    const likeUser = {
+      uniqueId: req.body.uniqueId || user || 'liker_' + Math.floor(100 + Math.random() * 900),
+      nickname: req.body.nickname || user || 'Khán Giả Thả Tim',
+      avatar: req.body.avatar || 'https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/default-avatar.jpeg',
+    };
+    onLikeReceived(count, likeUser);
+    return res.json({
+      ok: true,
+      message: `Đã thả thêm +${count} tim từ ${likeUser.nickname}! (Tổng: ${likeChestState.currentLikes} tim)`,
+      chestState: getLikeChestClientState(),
+    });
+  }
+
+  if (action === 'triggerLikeChest') {
+    const payload = triggerLikeChestOpen();
+    return res.json({ ok: true, message: `Đã ép mở Rương Kho Báu #${payload.chestNumber}!`, payload });
+  }
+
+  if (action === 'updateChestConfig') {
+    const newStep = Number(req.body.milestoneStep);
+    if (newStep >= 10) {
+      likeChestState.milestoneStep = newStep;
+      likeChestConfig.milestoneStep = newStep;
+      likeChestState.targetLikes = (likeChestState.chestsOpened + 1) * newStep;
+    }
+    io.emit('likeUpdate', {
+      totalLikes: likeChestState.currentLikes,
+      chestState: getLikeChestClientState(),
+    });
+    return res.json({ ok: true, message: `Đã cập nhật mốc mở rương: mỗi ${likeChestState.milestoneStep} tim`, chestState: getLikeChestClientState() });
+  }
+
+  if (action === 'resetLikeChest') {
+    likeChestState.currentLikes = 0;
+    likeChestState.chestLikes = 0;
+    likeChestState.chestsOpened = 0;
+    likeChestState.lastChestOpened = null;
+    gameState.totalLikes = 0;
+    io.emit('likeUpdate', {
+      totalLikes: 0,
+      chestState: getLikeChestClientState(),
+    });
+    return res.json({ ok: true, message: 'Đã reset toàn bộ tiến độ Rương Kho Báu về 0 tim' });
   }
 
   if (action === 'resetLeaderboard') {

@@ -1484,6 +1484,284 @@
       0% { height: 3px; }
       100% { height: 12px; }
     }
+
+    /* ========================================================
+       MỤC 6: RƯƠNG KHO BÁU & MỐC THẢ TIM (LIKE MILESTONE CHEST)
+       ======================================================== */
+    .like-chest-bar {
+      margin: 4px 0 6px;
+      padding: 6px 10px;
+      background: linear-gradient(135deg, rgba(30, 10, 48, 0.95), rgba(58, 12, 54, 0.92));
+      border: 1.5px solid rgba(255, 215, 0, 0.45);
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(255, 20, 147, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .like-chest-bar:active {
+      transform: scale(0.98);
+    }
+    .lcb-chest-icon-wrap {
+      position: relative;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .lcb-chest-icon {
+      font-size: 26px;
+      animation: chestWiggle 2.4s infinite ease-in-out;
+      filter: drop-shadow(0 2px 6px rgba(255, 215, 0, 0.7));
+      display: inline-block;
+    }
+    @keyframes chestWiggle {
+      0%, 80%, 100% { transform: scale(1) rotate(0deg); }
+      85% { transform: scale(1.15) rotate(-10deg); }
+      90% { transform: scale(1.18) rotate(10deg); }
+      95% { transform: scale(1.15) rotate(-6deg); }
+    }
+    .lcb-chest-icon.pulse {
+      animation: chestBouncePop 0.6s ease-out;
+    }
+    @keyframes chestBouncePop {
+      0% { transform: scale(1); }
+      40% { transform: scale(1.4) rotate(12deg); }
+      70% { transform: scale(0.9) rotate(-6deg); }
+      100% { transform: scale(1); }
+    }
+    .lcb-chest-badge {
+      position: absolute;
+      bottom: -3px;
+      right: -4px;
+      background: linear-gradient(135deg, #ffd700, #ff8c00);
+      color: #000;
+      font-size: 8.5px;
+      font-weight: 900;
+      padding: 1px 4px;
+      border-radius: 6px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.5);
+    }
+    .lcb-content {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .lcb-top-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11px;
+    }
+    .lcb-title {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-weight: 800;
+      color: #ff70a6;
+      letter-spacing: 0.3px;
+    }
+    .lcb-heart-pulse {
+      font-size: 12px;
+      animation: heartBeat 1.2s infinite ease-in-out;
+      display: inline-block;
+    }
+    @keyframes heartBeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.25); }
+    }
+    .lcb-stats {
+      font-weight: 800;
+      color: #ffd700;
+      font-size: 11px;
+    }
+    .lcb-progress-track {
+      width: 100%;
+      height: 9px;
+      background: rgba(0, 0, 0, 0.45);
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      position: relative;
+    }
+    .lcb-progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #ff2a85 0%, #ff70a6 50%, #ffd700 100%);
+      border-radius: 8px;
+      transition: width 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+      box-shadow: 0 0 10px rgba(255, 42, 133, 0.8);
+      position: relative;
+    }
+    .lcb-count-badge {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 215, 0, 0.3);
+      padding: 3px 7px;
+      border-radius: 8px;
+      font-size: 9.5px;
+      font-weight: 900;
+      color: #ffd700;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+
+    /* Container Tim Bay */
+    .floating-hearts-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 999;
+      overflow: hidden;
+    }
+    .floating-heart-item {
+      position: absolute;
+      font-size: 20px;
+      will-change: transform, opacity;
+      animation: floatHeartAnimation 2.2s forwards cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      filter: drop-shadow(0 2px 5px rgba(255, 42, 133, 0.7));
+    }
+    @keyframes floatHeartAnimation {
+      0% {
+        transform: translate(0, 0) scale(0.6) rotate(0deg);
+        opacity: 0.95;
+      }
+      50% {
+        transform: translate(var(--dx), -140px) scale(1.2) rotate(var(--rot));
+        opacity: 0.9;
+      }
+      100% {
+        transform: translate(calc(var(--dx) * 1.5), -280px) scale(1.4) rotate(calc(var(--rot) * 2));
+        opacity: 0;
+      }
+    }
+
+    /* Modal Mở Rương Kho Báu Hoành Tráng */
+    .chest-open-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(9, 3, 20, 0.88);
+      backdrop-filter: blur(10px);
+      z-index: 99999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      animation: fadeIn 0.3s ease-out;
+    }
+    .chest-open-overlay.show {
+      display: flex;
+    }
+    .chest-open-card {
+      width: 100%;
+      max-width: 400px;
+      background: radial-gradient(circle at 50% 20%, #4a0d44 0%, #1a0425 80%);
+      border: 2.5px solid #ffd700;
+      border-radius: 20px;
+      padding: 20px 16px 18px;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 0 50px rgba(255, 42, 133, 0.6), 0 0 25px rgba(255, 215, 0, 0.4);
+      animation: zoomIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      overflow: hidden;
+    }
+    .chest-rays {
+      position: absolute;
+      top: -100px;
+      left: 50%;
+      width: 500px;
+      height: 500px;
+      transform: translateX(-50%);
+      background: radial-gradient(circle, rgba(255, 215, 0, 0.18) 0%, transparent 70%);
+      pointer-events: none;
+      animation: rotateRays 20s linear infinite;
+    }
+    @keyframes rotateRays {
+      0% { transform: translateX(-50%) rotate(0deg); }
+      100% { transform: translateX(-50%) rotate(360deg); }
+    }
+    .chest-emoji-large {
+      font-size: 64px;
+      display: inline-block;
+      margin: 4px 0 8px;
+      animation: chestPopHero 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      filter: drop-shadow(0 6px 18px rgba(255, 215, 0, 0.9));
+    }
+    @keyframes chestPopHero {
+      0% { transform: scale(0.2) rotate(-20deg); opacity: 0; }
+      60% { transform: scale(1.3) rotate(10deg); opacity: 1; }
+      100% { transform: scale(1) rotate(0deg); }
+    }
+    .chest-congrats-title {
+      font-size: 18px;
+      font-weight: 900;
+      color: #ffd700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      text-shadow: 0 0 12px rgba(255, 215, 0, 0.8);
+      margin-bottom: 4px;
+    }
+    .chest-sub-desc {
+      font-size: 12px;
+      color: #fbcfe8;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .chest-rewards-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 215, 0, 0.3);
+      border-radius: 12px;
+      padding: 10px;
+      margin-bottom: 12px;
+      text-align: left;
+    }
+    .chest-reward-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #fff;
+      padding: 4px 6px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 6px;
+    }
+    .chest-reward-icon {
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+    .chest-reward-val {
+      color: #ffd700;
+      font-weight: 800;
+    }
+    .chest-close-btn {
+      background: linear-gradient(135deg, #ffd700, #ff8c00);
+      color: #000;
+      border: none;
+      padding: 8px 24px;
+      border-radius: 20px;
+      font-weight: 900;
+      font-size: 12px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(255, 140, 0, 0.5);
+    }
   </style>
 </head>
 <body>
@@ -1555,6 +1833,34 @@
       <span id="stbIcon">🔥</span>
       <span id="stbText">Chuỗi thắng liên tiếp</span>
     </div>
+
+    <!-- Thanh Tiến Trình Rương Kho Báu / Mốc Tim Thả Like (Mục 6) -->
+    <div class="like-chest-bar" id="likeChestBar" onclick="spawnFloatingHearts(4)">
+      <div class="lcb-chest-icon-wrap" id="lcbChestIconWrap">
+        <span class="lcb-chest-icon" id="lcbChestIcon">🎁</span>
+        <span class="lcb-chest-badge" id="lcbChestBadge">Lv.1</span>
+      </div>
+      <div class="lcb-content">
+        <div class="lcb-top-row">
+          <div class="lcb-title">
+            <span class="lcb-heart-pulse">❤️</span>
+            <span>RƯƠNG KHO BÁU TIM</span>
+          </div>
+          <div class="lcb-stats" id="lcbStatsText">
+            <span id="lcbCurrentLikes">0</span> / <span id="lcbTargetLikes">200</span> tim
+          </div>
+        </div>
+        <div class="lcb-progress-track">
+          <div class="lcb-progress-fill" id="lcbProgressFill" style="width: 0%;"></div>
+        </div>
+      </div>
+      <div class="lcb-count-badge" id="lcbCountBadge" title="Số rương đã mở trong phiên">
+        🏆 <span id="lcbChestsOpenedCount">0</span>
+      </div>
+    </div>
+
+    <!-- Container Tim Bay Khi Thả Like -->
+    <div id="floatingHeartsContainer" class="floating-hearts-container"></div>
 
     <!-- Thông tin Vòng & Chủ Đề -->
     <div class="info-bar">
@@ -1754,6 +2060,22 @@
             <div class="cta-sub">Thời gian lưu lại: <span id="donorHonorCountdown" class="countdown-highlight">20s</span></div>
           </div>
         </div>
+      </div>
+    </div>
+
+    <!-- Modal Hoạt Ảnh Mở Rương Kho Báu Hoành Tráng (Mục 6) -->
+    <div id="chestOpenOverlay" class="chest-open-overlay" onclick="closeChestOverlay()">
+      <div class="chest-open-card" onclick="event.stopPropagation()">
+        <div class="chest-rays"></div>
+        <div class="chest-emoji-large" id="chestEmojiLarge">🎁</div>
+        <div class="chest-congrats-title">🎉 MỞ RƯƠNG KHO BÁU THÀNH CÔNG! 🎉</div>
+        <div class="chest-sub-desc">
+          Cả phòng đã chung sức thả đủ <span style="color:#ffd700;font-weight:900;" id="chestLikesThreshold">200</span> Tim!
+        </div>
+        <div class="chest-rewards-grid" id="chestRewardsGrid">
+          <!-- Render danh sách phần thưởng mở rương -->
+        </div>
+        <button class="chest-close-btn" onclick="closeChestOverlay()">❤️ TIẾP TỤC THẢ TIM</button>
       </div>
     </div>
   </div>
@@ -1962,6 +2284,18 @@
         setTimeout(() => playTone(783.99, 'triangle', 0.25, 0.35), 150); // G5
         setTimeout(() => playTone(1046.50, 'sine', 0.35, 0.45), 225); // C6
       }
+    }
+
+    // 9. Tiếng Rương Kho Báu Mở Tung (Treasure Chest Open Fanfare - Mục 6)
+    function soundChestOpen() {
+      if (!soundEnabled) return;
+      playTone(440, 'triangle', 0.12, 0.25); // A4
+      setTimeout(() => playTone(554.37, 'triangle', 0.14, 0.28), 70); // C#5
+      setTimeout(() => playTone(659.25, 'triangle', 0.16, 0.32), 140); // E5
+      setTimeout(() => playTone(880, 'sine', 0.25, 0.38), 210); // A5
+      setTimeout(() => playTone(1108.73, 'sine', 0.35, 0.42), 290); // C#6
+      setTimeout(() => playTone(1318.51, 'sine', 0.5, 0.48), 380); // E6
+      setTimeout(() => playTone(1760, 'sine', 0.65, 0.55), 480); // A6
     }
 
     // ---------------------------------------------------------
@@ -2499,6 +2833,10 @@
 
       updateGiftHintBadge(state.canRevealMore, state.remainingHiddenLetters);
       updateStreakTicker(state.currentStreak);
+      if (state.likeChest) updateLikeChestBar(state.likeChest);
+      if (state.activeChestCelebration && state.isCelebratingChest) {
+        showChestOpenCelebration(state.activeChestCelebration);
+      }
     });
 
     // Cập nhật huy hiệu gợi ý quà tặng
@@ -3075,6 +3413,151 @@
 
     socket.on('tiktokStatus', status => {
       updateTiktokBadge(status);
+    });
+
+    // ========================================================
+    // Logic Rương Kho Báu & Mốc Thả Tim (Mục 6)
+    // ========================================================
+    function updateLikeChestBar(data) {
+      if (!data) return;
+      const curLikes = document.getElementById('lcbCurrentLikes');
+      const tarLikes = document.getElementById('lcbTargetLikes');
+      const fill = document.getElementById('lcbProgressFill');
+      const count = document.getElementById('lcbChestsOpenedCount');
+      const badge = document.getElementById('lcbChestBadge');
+
+      const currentVal = data.chestLikes !== undefined ? data.chestLikes : (data.currentLikes || 0);
+      const targetVal = data.milestoneStep || 200;
+
+      if (curLikes) curLikes.textContent = currentVal;
+      if (tarLikes) tarLikes.textContent = targetVal;
+      if (count) count.textContent = data.chestsOpened || 0;
+      if (badge) badge.textContent = `Lv.${(data.chestsOpened || 0) + 1}`;
+
+      const pct = data.percent !== undefined
+        ? data.percent
+        : Math.min(100, Math.floor((currentVal / Math.max(1, targetVal)) * 100));
+      if (fill) fill.style.width = `${pct}%`;
+    }
+
+    function spawnFloatingHearts(count = 3) {
+      const container = document.getElementById('floatingHeartsContainer');
+      if (!container) return;
+      const icons = ['❤️', '💖', '💝', '💕', '🔥', '✨'];
+      const bar = document.getElementById('likeChestBar');
+      let startX = window.innerWidth * 0.5;
+      let startY = 120;
+      if (bar) {
+        const rect = bar.getBoundingClientRect();
+        startX = rect.left + rect.width * 0.5;
+        startY = rect.bottom;
+      }
+      const spawnCount = Math.min(8, Math.max(1, count));
+      for (let i = 0; i < spawnCount; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'floating-heart-item';
+        heart.textContent = icons[Math.floor(Math.random() * icons.length)];
+        const offsetX = (Math.random() - 0.5) * 80;
+        heart.style.left = `${startX + offsetX}px`;
+        heart.style.top = `${startY}px`;
+        const dx = (Math.random() - 0.5) * 90;
+        const rot = (Math.random() - 0.5) * 60;
+        heart.style.setProperty('--dx', `${dx}px`);
+        heart.style.setProperty('--rot', `${rot}deg`);
+        container.appendChild(heart);
+        setTimeout(() => heart.remove(), 2200);
+      }
+
+      const icon = document.getElementById('lcbChestIcon');
+      if (icon) {
+        icon.classList.remove('pulse');
+        void icon.offsetWidth;
+        icon.classList.add('pulse');
+      }
+    }
+
+    let chestOverlayTimer = null;
+    function showChestOpenCelebration(data) {
+      if (!data) return;
+      const overlay = document.getElementById('chestOpenOverlay');
+      if (!overlay) return;
+
+      const threshold = document.getElementById('chestLikesThreshold');
+      const grid = document.getElementById('chestRewardsGrid');
+      if (threshold) threshold.textContent = data.milestone || 200;
+
+      if (grid) {
+        let itemsHtml = '';
+        if (data.lettersRevealed && data.lettersRevealed.length > 0) {
+          itemsHtml += `
+            <div class="chest-reward-item">
+              <span class="chest-reward-icon">💡</span>
+              <span>Trợ giúp mở chữ: <span class="chest-reward-val">${data.lettersRevealed.map(c => `[ ${c} ]`).join(' ')}</span></span>
+            </div>
+          `;
+        }
+        if (data.addedSeconds) {
+          itemsHtml += `
+            <div class="chest-reward-item">
+              <span class="chest-reward-icon">⏱️</span>
+              <span>Cộng thêm thời gian: <span class="chest-reward-val">+${data.addedSeconds} Giây</span></span>
+            </div>
+          `;
+        }
+        if (data.luckyReward) {
+          itemsHtml += `
+            <div class="chest-reward-item">
+              <span class="chest-reward-icon">🌟</span>
+              <span>Khán giả may mắn: <span class="chest-reward-val">${data.luckyReward.nickname} (+${data.luckyReward.bonus}đ)</span></span>
+            </div>
+          `;
+        }
+        grid.innerHTML = itemsHtml || `
+          <div class="chest-reward-item">
+            <span class="chest-reward-icon">🎁</span>
+            <span>Cả phòng nhận lời tri ân đặc biệt từ Streamer!</span>
+          </div>
+        `;
+      }
+
+      overlay.classList.add('show');
+      soundChestOpen();
+
+      if (window.confetti) {
+        confetti({ particleCount: 90, spread: 75, origin: { y: 0.5 } });
+      }
+
+      if (data.ttsText) {
+        ttsManager.speak(data.ttsText, true);
+      }
+
+      if (chestOverlayTimer) clearTimeout(chestOverlayTimer);
+      chestOverlayTimer = setTimeout(() => {
+        closeChestOverlay();
+      }, 7500);
+    }
+
+    function closeChestOverlay() {
+      if (chestOverlayTimer) {
+        clearTimeout(chestOverlayTimer);
+        chestOverlayTimer = null;
+      }
+      const overlay = document.getElementById('chestOpenOverlay');
+      if (overlay) overlay.classList.remove('show');
+    }
+
+    socket.on('likeUpdate', data => {
+      if (data.chestState) {
+        updateLikeChestBar(data.chestState);
+      }
+      spawnFloatingHearts(data.addedLikes || 2);
+    });
+
+    socket.on('likeChestOpened', data => {
+      if (data.chestState) {
+        updateLikeChestBar(data.chestState);
+      }
+      showChestOpenCelebration(data);
     });
 
     // Tự động căn chỉnh full 100% màn hình

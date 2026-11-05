@@ -306,6 +306,37 @@ async function main() {
     const stateReset = await (await fetch('http://127.0.0.1:3005/api/state')).json();
     console.log(`❄️ [NGẮT CHUỖI THẮNG THÀNH CÔNG] Trạng thái chuỗi: ${stateReset.state.currentStreak ? 'Còn' : 'Đã về 0'}`);
 
+    // 10. Kiểm thử Mục 6 - Rương Kho Báu & Mốc Thả Tim (Like Milestone Chest)
+    console.log('\n--- BƯỚC 10: KIỂM THỬ MỤC 6 - RƯƠNG KHO BÁU & MỐC THẢ TIM (LIKE CHEST) ---');
+    // Thả 50 tim
+    const resLike50 = await (await fetch('http://127.0.0.1:3005/admin/api', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'simulateLike', count: 50, nickname: 'Bé Thảo 🌸' })
+    })).json();
+    console.log(`💖 Đã thả 50 tim: Tiến độ rương ${resLike50.chestState?.chestLikes}/${resLike50.chestState?.milestoneStep} (${resLike50.chestState?.percent}%)`);
+
+    // Thả tiếp 150 tim để kích hoạt Mở Rương Vàng (Đạt mốc 200 tim)
+    console.log('⚡ Thả thêm 150 tim để cán mốc 200 tim kích hoạt Mở Rương Kho Báu...');
+    const resLike200 = await (await fetch('http://127.0.0.1:3005/admin/api', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'simulateLike', count: 150, nickname: 'Đại Gia Thả Tim' })
+    })).json();
+    console.log(`🎁 [RƯƠNG VÀNG NỔ TUNG] Đã mở thành công Rương #${resLike200.chestState?.chestsOpened}!`);
+    console.log(`   - Tổng số tim tích lũy: ${resLike200.chestState?.currentLikes}`);
+    console.log(`   - Mốc rương tiếp theo: ${resLike200.chestState?.targetLikes} tim`);
+
+    await sleep(1000);
+    const shot8 = path.join(__dirname, 'public', 'test_8_like_chest.png');
+    execSync(`timeout 10 google-chrome --headless --no-sandbox --disable-gpu --window-size=480,854 --screenshot="${shot8}" "http://127.0.0.1:3005"`, { stdio: 'ignore' });
+    console.log(`📸 Đã chụp ảnh màn hình Hoạt Ảnh Rương Kho Báu: test_8_like_chest.png (${fs.statSync(shot8).size} bytes)`);
+
+    // Chụp lại bảng Admin để kiểm tra thống kê rương
+    const shot9 = path.join(__dirname, 'public', 'test_9_admin_chest.png');
+    execSync(`timeout 10 google-chrome --headless --no-sandbox --disable-gpu --window-size=520,800 --screenshot="${shot9}" "http://127.0.0.1:3005/admin.html"`, { stdio: 'ignore' });
+    console.log(`📸 Đã chụp ảnh Bảng Admin với thống kê Rương Kho Báu: test_9_admin_chest.png (${fs.statSync(shot9).size} bytes)`);
+
     console.log('\n========================================================================');
     console.log('🎉 TẤT CẢ CÁC TÍNH NĂNG ĐÃ ĐƯỢC TEST THÀNH CÔNG VÀ SẴN SÀNG ĐƯA VÀO LIVE!');
     console.log('========================================================================');
