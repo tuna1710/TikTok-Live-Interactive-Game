@@ -135,6 +135,97 @@ async function main() {
       console.log(`   - Nhà hảo tâm dẫn đầu: ${finalState.state.donorLeaderboard[0].nickname} - ${finalState.state.donorLeaderboard[0].diamonds} xu`);
     }
 
+    await fetch('http://127.0.0.1:3005/admin/api', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'skipDonorHonor' })
+    });
+    await sleep(500);
+
+    // 7. Kiểm thử Cảm Ơn Người Follow
+    console.log('\n--- BƯỚC 6: KIỂM THỬ CẢM ƠN NGƯỜI FOLLOW ---');
+    await fetch('http://127.0.0.1:3005/admin/api', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'simulateFollow', nickname: 'Bé Linh Cute' })
+    });
+    console.log('✅ Đã kích hoạt giả lập Follow cho: Bé Linh Cute');
+    await sleep(800);
+
+    const shot4 = path.join(__dirname, 'public', 'test_4_follow_thankyou.png');
+    execSync(`timeout 10 google-chrome --headless --no-sandbox --disable-gpu --window-size=480,854 --screenshot="${shot4}" "http://127.0.0.1:3005"`, { stdio: 'ignore' });
+    console.log(`📸 Đã chụp ảnh màn hình thông báo cảm ơn Follow: test_4_follow_thankyou.png (${fs.statSync(shot4).size} bytes)`);
+
+    // 8. Kiểm thử Siêu Vinh Danh Nhà Hảo Tâm (Top Donors)
+    console.log('\n--- BƯỚC 7: KIỂM THỬ SIÊU VINH DANH NHÀ HẢO TÂM TẶNG QUÀ NHIỀU ---');
+    await fetch('http://127.0.0.1:3005/admin/api', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'simulateDonorHonor', nickname: 'Đại Gia Trâm Anh', diamonds: 999, duration: 20 })
+    });
+    console.log('✅ Đã kích hoạt Siêu Vinh Danh Nhà Hảo Tâm: Đại Gia Trâm Anh (999 xu)');
+    await sleep(1500);
+
+    const shot5 = path.join(__dirname, 'public', 'test_5_donor_honor.png');
+    execSync(`timeout 10 google-chrome --headless --no-sandbox --disable-gpu --window-size=480,854 --screenshot="${shot5}" "http://127.0.0.1:3005"`, { stdio: 'ignore' });
+    console.log(`📸 Đã chụp ảnh màn hình Siêu Vinh Danh Nhà Hảo Tâm: test_5_donor_honor.png (${fs.statSync(shot5).size} bytes)`);
+
+    // Đóng vinh danh
+    await fetch('http://127.0.0.1:3005/admin/api', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'skipDonorHonor' })
+    });
+    await sleep(500);
+
+    // 9. Kiểm thử Mục 1: Tặng Quà Mở Chữ Cái (Interactive Gift Hint)
+    console.log('\n--- BƯỚC 8: KIỂM THỬ MỤC 1 - TẶNG QUÀ MỞ CHỮ CÁI GỢI Ý ---');
+    // Chuyển sang vòng câu đố mới
+    await fetch('http://127.0.0.1:3005/admin/api', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'skip' })
+    });
+    await sleep(600);
+
+    const roundBefore = await (await fetch('http://127.0.0.1:3005/api/state')).json();
+    const hiddenBefore = roundBefore.state.remainingHiddenLetters;
+    console.log(`📌 Câu đố hiện tại: "${roundBefore.actualWord}" (Có ${hiddenBefore} chữ ẩn)`);
+
+    // Giả lập Bé Mai tặng 1 Hoa Hồng
+    const hintRes = await (await fetch('http://127.0.0.1:3005/admin/api', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'simulateGiftHint', nickname: 'Bé Mai 🌸', giftName: 'Hoa Hồng', diamonds: 1 })
+    })).json();
+
+    console.log(`🎁 Kết quả tặng quà mở chữ: ${hintRes.message}`);
+    console.log(`   - Chữ cái được mở: "${hintRes.result?.letter}" tại vị trí ${hintRes.result?.index}`);
+    console.log(`   - Số chữ ẩn còn lại: ${hintRes.result?.remainingHidden}`);
+
+    await sleep(1000);
+    const shot6 = path.join(__dirname, 'public', 'test_6_gift_hint_unlocked.png');
+    execSync(`timeout 10 google-chrome --headless --no-sandbox --disable-gpu --window-size=480,854 --screenshot="${shot6}" "http://127.0.0.1:3005"`, { stdio: 'ignore' });
+    console.log(`📸 Đã chụp ảnh màn hình Tặng Quà Mở Chữ: test_6_gift_hint_unlocked.png (${fs.statSync(shot6).size} bytes)`);
+
+    // Kiểm tra giới hạn giữ lại 1 chữ cái cuối cùng
+    console.log('🧪 Thử nghiệm mở tiếp các chữ cái cho tới khi chạm giới hạn bí mật:');
+    for (let i = 0; i < 10; i++) {
+      const loopRes = await (await fetch('http://127.0.0.1:3005/admin/api', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'simulateGiftHint', nickname: 'Khán Giả ' + (i + 1), giftName: 'Hoa Hồng', diamonds: 1 })
+      })).json();
+
+      if (loopRes.result?.limitReached) {
+        console.log(`🔒 [GIỚI HẠN AN TOÀN ĐÃ KÍCH HOẠT THÀNH CÔNG] ${loopRes.result.message}`);
+        break;
+      } else {
+        console.log(`   + Mở thêm chữ: "${loopRes.result?.letter}" (Còn ${loopRes.result?.remainingHidden} chữ ẩn)`);
+      }
+      await sleep(200);
+    }
+
     console.log('\n========================================================================');
     console.log('🎉 TẤT CẢ CÁC TÍNH NĂNG ĐÃ ĐƯỢC TEST THÀNH CÔNG VÀ SẴN SÀNG ĐƯA VÀO LIVE!');
     console.log('========================================================================');

@@ -115,6 +115,97 @@ const leaderboard = new Map();
 const donorLeaderboard = new Map();
 let recentGuesses = [];
 
+// Quản lý Follow & Vinh Danh Nhà Hảo Tâm
+let isCelebratingDonorHonor = false;
+let donorHonorTimer = null;
+let activeDonorHonor = null;
+const DONOR_HONOR_DURATION = Number(process.env.DONOR_HONOR_DURATION) || 20;
+const recentFollowers = new Map();
+let lastFollowEvent = null;
+
+function onUserFollow(user) {
+  const uniqueId = user.uniqueId || user.nickname || 'user_' + Date.now();
+  const nickname = user.nickname || user.user || uniqueId;
+  const avatar = user.avatar || 'https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/default-avatar.jpeg';
+
+  const now = Date.now();
+  const lastFollow = recentFollowers.get(uniqueId) || 0;
+  if (now - lastFollow < 20000) {
+    return null;
+  }
+  recentFollowers.set(uniqueId, now);
+  if (recentFollowers.size > 300) {
+    const firstKey = recentFollowers.keys().next().value;
+    recentFollowers.delete(firstKey);
+  }
+
+  const ttsText = `Cảm ơn bạn ${nickname} đã follow kênh! Chúc bạn chơi game vui vẻ!`;
+  const payload = {
+    user: { uniqueId, nickname, avatar },
+    ttsText,
+    timestamp: now
+  };
+
+  lastFollowEvent = payload;
+  console.log(`💖 [Follow] Cảm ơn ${nickname} (@${uniqueId}) đã follow kênh!`);
+  io.emit('userFollow', payload);
+  return payload;
+}
+
+function triggerDonorHonorCelebration(donor = null, duration = DONOR_HONOR_DURATION) {
+  const donorList = getDonorLeaderboardList();
+  const top1 = donorList[0] || donor;
+  const targetDonor = donor || top1;
+  if (!targetDonor) return null;
+
+  isCelebratingDonorHonor = true;
+  const top5Donors = donorList.slice(0, 5);
+
+  let top5Tts = '';
+  if (top5Donors.length > 0) {
+    const listDesc = top5Donors.map((d, i) => `Top ${i + 1}: ${d.nickname} ${d.diamonds} xu`).join(', ');
+    top5Tts = ` Cùng bảng vàng Top 5 nhà hảo tâm: ${listDesc}.`;
+  }
+
+  const ttsText = `Nhiệt liệt tri ân và vinh danh nhà hảo tâm ${targetDonor.nickname} đã ủng hộ ${targetDonor.diamonds} xu cho kênh!${top5Tts} Chân thành cảm ơn tấm lòng vàng của bạn!`;
+
+  activeDonorHonor = {
+    donor: {
+      uniqueId: targetDonor.uniqueId,
+      nickname: targetDonor.nickname,
+      avatar: targetDonor.avatar || 'https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/default-avatar.jpeg',
+      diamonds: targetDonor.diamonds,
+      giftsCount: targetDonor.giftsCount || 1,
+      lastGiftName: targetDonor.lastGiftName || 'Quà VIP',
+    },
+    top5: top5Donors,
+    title: 'ĐỆ NHẤT PHÚ HỘ - BẢNG VÀNG TRI ÂN',
+    duration: duration,
+    startedAt: Date.now(),
+    ttsText: ttsText,
+  };
+
+  console.log(`🌟 [VINH DANH NHÀ HẢO TÂM] ${targetDonor.nickname} với ${targetDonor.diamonds} xu! (${duration}s)`);
+  io.emit('donorHonorCelebration', activeDonorHonor);
+
+  if (donorHonorTimer) clearTimeout(donorHonorTimer);
+  donorHonorTimer = setTimeout(() => {
+    endDonorHonor();
+  }, duration * 1000);
+
+  return activeDonorHonor;
+}
+
+function endDonorHonor() {
+  if (donorHonorTimer) {
+    clearTimeout(donorHonorTimer);
+    donorHonorTimer = null;
+  }
+  isCelebratingDonorHonor = false;
+  activeDonorHonor = null;
+  io.emit('donorHonorEnd');
+}
+
 function endMilestoneAndResetLeaderboard() {
   if (nextRoundTimer) {
     clearTimeout(nextRoundTimer);
@@ -196,6 +287,9 @@ function recordGiftDonation(user, giftName, diamonds = 1, repeatCount = 1) {
     lastGiftTime: Date.now()
   };
 
+  const oldTopDonor = getDonorLeaderboardList()[0];
+  const oldTop1Id = oldTopDonor?.uniqueId;
+
   existing.diamonds += totalDiamonds;
   existing.giftsCount += count;
   existing.lastGiftName = giftName;
@@ -203,6 +297,9 @@ function recordGiftDonation(user, giftName, diamonds = 1, repeatCount = 1) {
   if (user.avatar && !existing.avatar) existing.avatar = user.avatar;
   if (user.nickname && user.nickname !== existing.nickname) existing.nickname = user.nickname;
   donorLeaderboard.set(key, existing);
+
+  const donorList = getDonorLeaderboardList();
+  const newTopDonor = donorList[0];
 
   const payload = {
     donor: {
@@ -214,10 +311,18 @@ function recordGiftDonation(user, giftName, diamonds = 1, repeatCount = 1) {
     diamonds: totalDiamonds,
     repeatCount: count,
     totalDiamonds: existing.diamonds,
-    donorLeaderboard: getDonorLeaderboardList(),
+    donorLeaderboard: donorList,
+    topDonor: newTopDonor || null,
   };
 
   io.emit('donorUpdate', payload);
+
+  if (!isCelebratingMilestone) {
+    if (totalDiamonds >= 50 || (oldTop1Id !== existing.uniqueId && newTopDonor?.uniqueId === existing.uniqueId && existing.diamonds >= 20)) {
+      triggerDonorHonorCelebration(existing, DONOR_HONOR_DURATION);
+    }
+  }
+
   return payload;
 }
 
@@ -473,7 +578,27 @@ function checkGuess(user, text, msgTime = null) {
   }
 }
 
-function revealOneHint(donor = null, giftName = '') {
+// Cấu hình tính năng Tặng quà mở chữ cái gợi ý (Interactive Gift Hint)
+const giftHintConfig = {
+  enabled: true,             // Bật/tắt mở chữ bằng quà
+  minDiamonds: 1,            // Tối thiểu 1 xu (ví dụ: Hoa Hồng 🌹)
+  keepLastLettersSecret: 1,  // Luôn giữ bí mật ít nhất 1 chữ cái cuối cùng
+};
+let lastGiftHintEvent = null;
+
+function getHiddenLettersCount() {
+  if (!gameState.currentWord || !gameState.revealedMask) return 0;
+  const rawChars = gameState.currentWord.word.split('');
+  let count = 0;
+  rawChars.forEach((ch, idx) => {
+    if (ch !== ' ' && !gameState.revealedMask[idx]) {
+      count++;
+    }
+  });
+  return count;
+}
+
+function revealOneHint(donor = null, giftName = '', force = false) {
   if (gameState.roundState !== 'PLAYING' || !gameState.currentWord) return null;
 
   const rawChars = gameState.currentWord.word.split('');
@@ -487,23 +612,57 @@ function revealOneHint(donor = null, giftName = '') {
 
   if (unrevealedIndices.length === 0) return null;
 
+  if (!force && unrevealedIndices.length <= giftHintConfig.keepLastLettersSecret) {
+    const notifyPayload = {
+      message: `Đã mở tối đa gợi ý! Chỉ còn ${unrevealedIndices.length} chữ cái bí mật, hãy nhanh tay đoán từ khóa!`,
+      donor: donor ? (donor.nickname || donor.user || donor.uniqueId) : null,
+      giftName: giftName || 'Quà Tặng',
+      remainingHidden: unrevealedIndices.length,
+      limitReached: true,
+      ttsText: 'Đã mở tối đa gợi ý! Chỉ còn đúng một chữ cái bí mật cuối cùng, ai sẽ là Vua Tiếng Việt?'
+    };
+    console.log(`⚠️ [GIFT HINT] Đã chạm giới hạn giữ chữ bí mật (${unrevealedIndices.length} chữ còn lại)`);
+    io.emit('giftHintLimitReached', notifyPayload);
+    return notifyPayload;
+  }
+
   const pickIdx = unrevealedIndices[Math.floor(Math.random() * unrevealedIndices.length)];
   gameState.revealedMask[pickIdx] = true;
 
+  const remainingHidden = unrevealedIndices.length - 1;
+  const canRevealMore = remainingHidden > giftHintConfig.keepLastLettersSecret;
+
+  const donorInfo = donor ? {
+    uniqueId: donor.uniqueId || 'donor_' + Date.now(),
+    nickname: donor.nickname || donor.user || 'Khán Giả',
+    avatar: donor.avatar || 'https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/default-avatar.jpeg',
+    giftName: giftName || 'Hoa Hồng',
+    diamonds: donor.diamonds || 1,
+  } : null;
+
   let ttsText = '';
-  if (donor && (donor.nickname || donor.uniqueId)) {
-    ttsText = `Cảm ơn ${donor.nickname || donor.uniqueId} đã mở chữ ${rawChars[pickIdx]}!`;
+  if (donorInfo && donorInfo.nickname !== 'Streamer') {
+    ttsText = `Cảm ơn ${donorInfo.nickname} đã tặng ${donorInfo.giftName} mở chữ cái ${rawChars[pickIdx]}!`;
   }
 
   const payload = {
     index: pickIdx,
     letter: rawChars[pickIdx],
     revealedMask: gameState.revealedMask,
-    donor: donor ? (donor.nickname || donor.uniqueId) : null,
-    giftName,
+    donor: donorInfo,
+    isGiftTriggered: !!donorInfo && donorInfo.nickname !== 'Streamer',
+    giftName: giftName || (donorInfo ? donorInfo.giftName : ''),
+    remainingHidden,
+    canRevealMore,
     ttsText,
+    timestamp: Date.now(),
   };
 
+  if (payload.isGiftTriggered) {
+    lastGiftHintEvent = payload;
+  }
+
+  console.log(`💡 [MỞ CHỮ GỢI Ý] Vị trí ${pickIdx}: "${rawChars[pickIdx]}" bởi ${donorInfo?.nickname || 'MC'} (Còn ${remainingHidden} chữ ẩn)`);
   io.emit('hintRevealed', payload);
   return payload;
 }
@@ -515,6 +674,7 @@ function addTime(seconds, reason = '') {
 }
 
 function getClientGameState() {
+  const hiddenCount = getHiddenLettersCount();
   return {
     round: gameState.round,
     category: gameState.currentWord?.category || '',
@@ -536,6 +696,7 @@ function getClientGameState() {
     totalCommentsReceived: gameState.totalCommentsReceived,
     leaderboard: getLeaderboardList(),
     donorLeaderboard: getDonorLeaderboardList(),
+    topDonor: getDonorLeaderboardList()[0] || null,
     recentGuesses,
     lastWinner: gameState.lastWinner,
     ttsEnabled: gameState.ttsEnabled,
@@ -547,6 +708,16 @@ function getClientGameState() {
       ...activeMilestone,
       duration: Math.max(1, Math.round(activeMilestone.duration - (Date.now() - activeMilestone.startedAt) / 1000)),
     } : null,
+    isCelebratingDonorHonor,
+    activeDonorHonor: activeDonorHonor ? {
+      ...activeDonorHonor,
+      duration: Math.max(1, Math.round(activeDonorHonor.duration - (Date.now() - activeDonorHonor.startedAt) / 1000)),
+    } : null,
+    lastFollow: (lastFollowEvent && (Date.now() - lastFollowEvent.timestamp < 7000)) ? lastFollowEvent : null,
+    lastGiftHint: (lastGiftHintEvent && (Date.now() - lastGiftHintEvent.timestamp < 6000)) ? lastGiftHintEvent : null,
+    giftHintConfig: { ...giftHintConfig },
+    remainingHiddenLetters: hiddenCount,
+    canRevealMore: hiddenCount > giftHintConfig.keepLastLettersSecret,
   };
 }
 
@@ -777,7 +948,7 @@ app.post('/admin/api', (req, res) => {
   }
 
   if (action === 'reveal') {
-    const revealed = revealOneHint({ nickname: 'Streamer' }, 'Gợi ý MC');
+    const revealed = revealOneHint({ nickname: 'Streamer' }, 'Gợi ý MC', true);
     return res.json({ ok: true, revealed });
   }
 
@@ -798,19 +969,104 @@ app.post('/admin/api', (req, res) => {
   }
 
   if (action === 'simulateGift') {
+    const diamonds = Number(req.body.diamonds) || 1;
+    const repeatCount = Number(req.body.repeatCount) || 1;
+    const giftName = req.body.giftName || (diamonds >= 100 ? 'Tên Lửa' : (diamonds >= 10 ? 'Nước Hoa' : 'Hoa Hồng'));
+    const totalDiamonds = diamonds * repeatCount;
     const giftUser = {
       uniqueId: user || 'donor_demo_' + Math.floor(100 + Math.random() * 900),
-      nickname: user || 'Đại Gia Hảo Tâm',
-      avatar: 'https://www.gstatic.com/youtube/img/creator/avatar/default_avatar.svg',
+      nickname: user || req.body.nickname || 'Đại Gia Hảo Tâm',
+      avatar: req.body.avatar || 'https://www.gstatic.com/youtube/img/creator/avatar/default_avatar.svg',
+      diamonds: totalDiamonds,
     };
-    const giftName = req.body.giftName || 'Super Chat';
-    const diamonds = Number(req.body.diamonds) || 10;
-    const repeatCount = Number(req.body.repeatCount) || 1;
 
     recordGiftDonation(giftUser, giftName, diamonds, repeatCount);
-    revealOneHint(giftUser, giftName);
-    addTime(30, `${giftUser.nickname} tặng ${giftName} (+30s)`);
-    return res.json({ ok: true, message: `Đã kích hoạt quà tặng: ${giftUser.nickname} gửi ${giftName}` });
+    if (giftHintConfig.enabled && totalDiamonds >= giftHintConfig.minDiamonds) {
+      revealOneHint(giftUser, giftName, false);
+    }
+    if (totalDiamonds >= 10) {
+      addTime(30, `${giftUser.nickname} tặng ${giftName} (+30s)`);
+    }
+    return res.json({ ok: true, message: `Đã kích hoạt quà tặng: ${giftUser.nickname} gửi ${giftName} (${totalDiamonds} xu)` });
+  }
+
+  if (action === 'simulateGiftHint') {
+    const diamonds = Number(req.body.diamonds) || 1;
+    const giftName = req.body.giftName || 'Hoa Hồng';
+    const giftUser = {
+      uniqueId: req.body.uniqueId || user || 'donor_hint_' + Math.floor(100 + Math.random() * 900),
+      nickname: req.body.nickname || user || 'Bé Mai 🌸',
+      avatar: req.body.avatar || 'https://www.gstatic.com/youtube/img/creator/avatar/default_avatar.svg',
+      diamonds,
+    };
+
+    recordGiftDonation(giftUser, giftName, diamonds, 1);
+    const result = revealOneHint(giftUser, giftName, false);
+    return res.json({
+      ok: true,
+      result,
+      message: result?.limitReached
+        ? `Đã tặng ${giftName}! ${result.message}`
+        : `Đã kích hoạt quà tặng ${giftName} từ ${giftUser.nickname} mở chữ: "${result?.letter}"`
+    });
+  }
+
+  if (action === 'updateGiftHintConfig') {
+    if (typeof req.body.enabled === 'boolean') giftHintConfig.enabled = req.body.enabled;
+    if (Number(req.body.minDiamonds) >= 1) giftHintConfig.minDiamonds = Number(req.body.minDiamonds);
+    if (Number(req.body.keepLastLettersSecret) >= 0) giftHintConfig.keepLastLettersSecret = Number(req.body.keepLastLettersSecret);
+
+    io.emit('giftHintConfigUpdate', {
+      giftHintConfig,
+      remainingHiddenLetters: getHiddenLettersCount(),
+      canRevealMore: getHiddenLettersCount() > giftHintConfig.keepLastLettersSecret,
+    });
+    return res.json({ ok: true, giftHintConfig, message: 'Đã cập nhật cấu hình Tặng quà mở chữ cái' });
+  }
+
+  if (action === 'simulateFollow') {
+    const followUser = {
+      uniqueId: req.body.uniqueId || user || 'follower_' + Math.floor(100 + Math.random() * 900),
+      nickname: req.body.nickname || user || 'Khán Giả Mới',
+      avatar: req.body.avatar || 'https://www.gstatic.com/youtube/img/creator/avatar/default_avatar.svg',
+    };
+    const resPayload = onUserFollow(followUser);
+    return res.json({ ok: true, message: `Đã kích hoạt giả lập cảm ơn Follow cho ${followUser.nickname}`, payload: resPayload });
+  }
+
+  if (action === 'simulateDonorHonor' || action === 'triggerDonorHonor') {
+    const donorNick = req.body.nickname || user || 'Mạnh Thường Quân Tuấn';
+    const donorDiamonds = Number(req.body.diamonds) || 500;
+    const dur = Number(req.body.duration) || DONOR_HONOR_DURATION;
+
+    let target = donorLeaderboard.get(donorNick) || Array.from(donorLeaderboard.values())[0];
+    if (!target) {
+      target = {
+        uniqueId: 'donor_vip_demo',
+        nickname: donorNick,
+        avatar: req.body.avatar || 'https://www.gstatic.com/youtube/img/creator/avatar/default_avatar.svg',
+        diamonds: donorDiamonds,
+        giftsCount: 5,
+        lastGiftName: 'Tên Lửa VIP',
+        lastGiftTime: Date.now()
+      };
+      donorLeaderboard.set(target.uniqueId, target);
+      if (donorLeaderboard.size < 3) {
+        donorLeaderboard.set('donor_top2', { uniqueId: 'donor_top2', nickname: 'Anh Ba Kim Cương', avatar: '', diamonds: 350, giftsCount: 3, lastGiftName: 'Du Thuyền' });
+        donorLeaderboard.set('donor_top3', { uniqueId: 'donor_top3', nickname: 'Chị Tư Sài Gòn', avatar: '', diamonds: 200, giftsCount: 2, lastGiftName: 'Xe Thể Thao' });
+      }
+      io.emit('donorUpdate', {
+        donorLeaderboard: getDonorLeaderboardList(),
+        topDonor: target
+      });
+    }
+    triggerDonorHonorCelebration(target, dur);
+    return res.json({ ok: true, message: `Đã kích hoạt Siêu Vinh Danh Nhà Hảo Tâm cho ${target.nickname} (${dur}s)` });
+  }
+
+  if (action === 'skipDonorHonor') {
+    endDonorHonor();
+    return res.json({ ok: true, message: 'Đã hoàn tất / bỏ qua vinh danh nhà hảo tâm' });
   }
 
   if (action === 'resetLeaderboard') {

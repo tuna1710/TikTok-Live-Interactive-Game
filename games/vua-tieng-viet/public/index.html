@@ -239,6 +239,29 @@
       transform: scale(1.05);
       box-shadow: 0 0 12px rgba(16, 185, 129, 0.6);
     }
+    .slot-tile.gift-unlocked {
+      animation: flipGiftReveal 0.65s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+      background: linear-gradient(135deg, #d97706, #fbbf24) !important;
+      border-color: #ffd700 !important;
+      color: #ffffff !important;
+      box-shadow: 0 0 22px rgba(251, 191, 36, 0.95), inset 0 0 10px rgba(255, 255, 255, 0.6) !important;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.85);
+    }
+    @keyframes flipGiftReveal {
+      0% {
+        transform: perspective(400px) rotateY(0deg) scale(0.85);
+        background: #191233;
+      }
+      50% {
+        transform: perspective(400px) rotateY(90deg) scale(1.25);
+        background: #ffd700;
+        box-shadow: 0 0 30px rgba(255, 215, 0, 1);
+      }
+      100% {
+        transform: perspective(400px) rotateY(0deg) scale(1.08);
+        background: linear-gradient(135deg, #d97706, #fbbf24);
+      }
+    }
     .slot-space {
       width: 14px;
       height: 42px;
@@ -492,6 +515,478 @@
       border-radius: 50%;
       border: 2px solid #ffd700;
       object-fit: cover;
+    }
+
+    /* Thanh Ticker Vinh Danh Top 1 Tặng Quà */
+    .top-donor-ticker {
+      margin: 4px 16px 0;
+      padding: 4px 10px;
+      background: linear-gradient(90deg, rgba(35, 12, 55, 0.95), rgba(75, 15, 65, 0.95));
+      border: 1px solid rgba(255, 215, 0, 0.4);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11px;
+      box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .top-donor-ticker:hover {
+      border-color: #ffd700;
+      box-shadow: 0 0 15px rgba(255, 215, 0, 0.45);
+    }
+    .ticker-left {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      overflow: hidden;
+    }
+    .ticker-badge {
+      font-weight: 900;
+      color: #ffd700;
+      white-space: nowrap;
+      font-size: 10px;
+      letter-spacing: 0.3px;
+    }
+    .top-donor-ticker-avt {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 1.5px solid #ffd700;
+      object-fit: cover;
+      background: #2b1055;
+    }
+    .top-donor-ticker-name {
+      font-weight: 700;
+      color: #fff;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      max-width: 140px;
+    }
+    .top-donor-ticker-val {
+      font-weight: 900;
+      color: #f472b6;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      font-size: 11px;
+    }
+
+    /* Popup Quà Tặng Mở Chữ Cái (Interactive Gift Hint) */
+    .gift-hint-card {
+      position: absolute;
+      top: 104px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-22px) scale(0.92);
+      background: linear-gradient(135deg, rgba(38, 12, 58, 0.98), rgba(70, 20, 18, 0.98));
+      border: 2px solid #ffd700;
+      border-radius: 20px;
+      padding: 7px 16px 7px 10px;
+      display: none;
+      align-items: center;
+      gap: 10px;
+      z-index: 116;
+      box-shadow: 0 0 35px rgba(255, 215, 0, 0.85), 0 0 16px rgba(244, 114, 182, 0.5);
+      white-space: nowrap;
+      pointer-events: none;
+      opacity: 0;
+      transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .gift-hint-card.show {
+      display: flex;
+      opacity: 1;
+      transform: translateX(-50%) translateY(0) scale(1);
+    }
+    .gh-avatar-wrap {
+      position: relative;
+      width: 42px;
+      height: 42px;
+      flex-shrink: 0;
+    }
+    .gh-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 2px solid #ffd700;
+      object-fit: cover;
+      background: #2b1055;
+    }
+    .gh-gift-badge {
+      position: absolute;
+      bottom: -3px;
+      right: -3px;
+      font-size: 15px;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8));
+      animation: heartBeat 0.7s infinite alternate;
+    }
+    .gh-info {
+      display: flex;
+      flex-direction: column;
+    }
+    .gh-tag {
+      font-size: 9.5px;
+      font-weight: 900;
+      color: #ffd700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+    .gh-donor {
+      font-size: 12.5px;
+      font-weight: 800;
+      color: #fff;
+      max-width: 210px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .gh-unlocked {
+      font-size: 11px;
+      font-weight: 800;
+      color: #fbcfe8;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 2px;
+    }
+    .gh-letter-glow {
+      font-size: 18px;
+      font-weight: 900;
+      color: #fff;
+      background: linear-gradient(135deg, #f59e0b, #ef4444);
+      padding: 0 8px;
+      border-radius: 6px;
+      border: 1.5px solid #ffd700;
+      box-shadow: 0 0 12px rgba(255, 215, 0, 0.9);
+      animation: pulseGlow 0.8s infinite alternate;
+      display: inline-block;
+    }
+    .gh-remain-badge {
+      font-size: 9.5px;
+      color: #fde047;
+      background: rgba(0,0,0,0.45);
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+    }
+
+    .cta-item.highlight-gift {
+      border: 1px solid rgba(255, 215, 0, 0.5);
+      background: linear-gradient(90deg, rgba(255, 215, 0, 0.15), rgba(244, 114, 182, 0.15));
+      animation: pulseBorder 1.5s infinite alternate;
+    }
+    @keyframes pulseBorder {
+      0% { box-shadow: 0 0 4px rgba(255, 215, 0, 0.2); }
+      100% { box-shadow: 0 0 12px rgba(255, 215, 0, 0.6); }
+    }
+    .hint-remain-pill {
+      background: rgba(255, 215, 0, 0.25);
+      color: #ffd700;
+      border: 1px solid rgba(255, 215, 0, 0.6);
+      font-size: 9px;
+      padding: 1px 5px;
+      border-radius: 8px;
+      font-weight: 800;
+      margin-left: 3px;
+    }
+    .hint-remain-pill.limit {
+      background: rgba(239, 68, 68, 0.3);
+      color: #fca5a5;
+      border-color: #ef4444;
+    }
+
+    /* Popup Cảm Ơn Follow Kênh */
+    .follow-notice-card {
+      position: absolute;
+      top: 60px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-20px);
+      background: linear-gradient(135deg, rgba(28, 10, 48, 0.98), rgba(65, 15, 80, 0.98));
+      border: 2px solid #ff2d55;
+      border-radius: 28px;
+      padding: 6px 16px 6px 8px;
+      display: none;
+      align-items: center;
+      gap: 8px;
+      z-index: 110;
+      box-shadow: 0 0 28px rgba(255, 45, 85, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+      white-space: nowrap;
+      pointer-events: none;
+      transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      opacity: 0;
+    }
+    .follow-notice-card.show {
+      display: flex;
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+    .follow-icon-bubble {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, #ff2d55, #ff007f);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 17px;
+      box-shadow: 0 0 12px rgba(255, 45, 85, 0.6);
+      animation: heartBeat 0.8s infinite alternate;
+    }
+    @keyframes heartBeat {
+      0% { transform: scale(0.95); }
+      100% { transform: scale(1.15); }
+    }
+    .follow-user-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 2px solid #00f2fe;
+      object-fit: cover;
+      background: #111;
+    }
+    .follow-content {
+      display: flex;
+      flex-direction: column;
+    }
+    .follow-badge-header {
+      font-size: 9.5px;
+      font-weight: 900;
+      color: #00f2fe;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .follow-username {
+      font-size: 13px;
+      font-weight: 900;
+      color: #fff;
+      max-width: 210px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .follow-sub-text {
+      font-size: 10px;
+      font-weight: 700;
+      color: #fbcfe8;
+    }
+    .chat-item.follow-chat {
+      background: linear-gradient(90deg, rgba(255, 45, 85, 0.22), rgba(0, 242, 254, 0.08));
+      border-left: 3px solid #ff2d55;
+      color: #ffe4e6;
+    }
+    .chat-badge-follow {
+      background: #ff2d55;
+      color: #fff;
+      font-size: 8.5px;
+      font-weight: 900;
+      padding: 1px 4px;
+      border-radius: 4px;
+      margin-right: 4px;
+    }
+
+    /* Siêu Vinh Danh Nhà Hảo Tâm (Donor Honor Overlay) */
+    .donor-honor-overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(45, 12, 50, 0.98), rgba(10, 4, 22, 0.99));
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 125;
+      animation: zoomIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      padding: 14px;
+    }
+    .donor-honor-overlay.show { display: flex; }
+    .donor-honor-card {
+      width: 90%;
+      max-width: 420px;
+      background: linear-gradient(155deg, #3d1445 0%, #1a082b 50%, #4a1352 100%);
+      padding: 22px 18px 20px;
+      border-radius: 20px;
+      text-align: center;
+      border: 3px solid #f472b6;
+      box-shadow: 0 0 45px rgba(244, 114, 182, 0.7), inset 0 0 25px rgba(255, 215, 0, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+    .donor-honor-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(60deg, transparent 40%, rgba(244, 114, 182, 0.2) 50%, transparent 60%);
+      transform: rotate(25deg);
+      animation: goldSheen 4s infinite linear;
+      pointer-events: none;
+    }
+    .donor-badge-top {
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      color: #f472b6;
+      background: rgba(0, 0, 0, 0.45);
+      padding: 5px 14px;
+      border-radius: 12px;
+      display: inline-block;
+      margin-bottom: 6px;
+      border: 1px solid rgba(244, 114, 182, 0.4);
+    }
+    .donor-trophy {
+      font-size: 46px;
+      margin: 4px 0 2px;
+      animation: trophyPulse 1.2s infinite alternate ease-in-out;
+    }
+    .donor-honor-title {
+      font-size: 16px;
+      font-weight: 900;
+      color: #ffd700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+      margin-bottom: 8px;
+    }
+    .donor-avatar-wrap {
+      position: relative;
+      display: inline-block;
+      margin: 4px auto;
+    }
+    .donor-honor-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 3.5px solid #f472b6;
+      box-shadow: 0 0 25px rgba(244, 114, 182, 0.9);
+      object-fit: cover;
+      background: #111;
+      display: block;
+    }
+    .donor-crown-aura {
+      position: absolute;
+      top: -16px;
+      right: -8px;
+      font-size: 26px;
+      animation: crownWiggle 1s infinite;
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.8));
+    }
+    .donor-user-name {
+      font-size: 22px;
+      font-weight: 900;
+      color: #fff;
+      margin-top: 8px;
+      letter-spacing: 0.5px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+      word-break: break-word;
+    }
+    .donor-unique-id {
+      font-size: 12px;
+      font-weight: 700;
+      color: #fbcfe8;
+      margin-bottom: 12px;
+    }
+    .donor-stats-box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(244, 114, 182, 0.3);
+      border-radius: 12px;
+      padding: 10px 14px;
+      margin: 10px 0;
+      gap: 16px;
+    }
+    .dstat-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .dstat-val {
+      font-size: 20px;
+      font-weight: 900;
+      color: #f472b6;
+      text-shadow: 0 0 8px rgba(244, 114, 182, 0.6);
+    }
+    .dstat-lbl {
+      font-size: 9.5px;
+      font-weight: 800;
+      color: #fce7f3;
+      margin-top: 2px;
+    }
+    .dstat-divider {
+      width: 1px;
+      height: 28px;
+      background: rgba(255, 255, 255, 0.15);
+    }
+    .donor-top5-card {
+      margin-top: 10px;
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(244, 114, 182, 0.25);
+      border-radius: 10px;
+      padding: 8px 10px;
+    }
+    .dtop5-header {
+      font-size: 11px;
+      font-weight: 900;
+      color: #ffd700;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+    .dtop5-list {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .dtop5-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 3px 6px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.03);
+      font-size: 11px;
+    }
+    .dtop5-row.rank-0 {
+      background: linear-gradient(90deg, rgba(255, 215, 0, 0.25), rgba(245, 158, 11, 0.1));
+      border: 1px solid rgba(255, 215, 0, 0.45);
+      font-weight: 800;
+    }
+    .dtop5-left {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      overflow: hidden;
+    }
+    .dtop5-medal { font-size: 12px; }
+    .dtop5-name {
+      color: #fff;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      max-width: 170px;
+    }
+    .dtop5-score {
+      font-weight: 900;
+      color: #f472b6;
+      white-space: nowrap;
+    }
+    .donor-congrats-text {
+      font-size: 11px;
+      font-weight: 700;
+      color: #fce7f3;
+      margin: 10px 0 6px;
+    }
+    .donor-screenshot-cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: linear-gradient(135deg, rgba(244, 114, 182, 0.2), rgba(168, 85, 247, 0.15));
+      border: 1px dashed rgba(244, 114, 182, 0.5);
+      border-radius: 10px;
+      padding: 7px 12px;
+      margin-top: 8px;
     }
 
     /* Modal Người Chiến Thắng */
@@ -887,6 +1382,43 @@
       <span id="ttsIndicatorText">🎙️ Đang đọc gợi ý...</span>
     </div>
 
+    <!-- Thanh vinh danh Top 1 Nhà Hảo Tâm -->
+    <div class="top-donor-ticker" id="topDonorTicker" onclick="switchRightTab('donor', true)">
+      <div class="ticker-left">
+        <span class="ticker-badge">👑 TOP 1 QUÀ:</span>
+        <img id="topDonorTickerAvt" class="top-donor-ticker-avt" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'><circle cx='32' cy='32' r='32' fill='%236366f1'/><circle cx='32' cy='24' r='12' fill='%23fbbf24'/><path d='M14 54 C14 42, 50 42, 50 54 Z' fill='%23fbbf24'/></svg>" alt="" />
+        <span id="topDonorTickerName" class="top-donor-ticker-name">Chưa có nhà hảo tâm</span>
+      </div>
+      <div id="topDonorTickerVal" class="top-donor-ticker-val">💎 0 xu</div>
+    </div>
+
+    <!-- Popup Cảm Ơn Follow -->
+    <div id="followNoticeCard" class="follow-notice-card">
+      <div class="follow-icon-bubble">💖</div>
+      <img id="followUserAvatar" class="follow-user-avatar" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'><circle cx='32' cy='32' r='32' fill='%23ec4899'/><circle cx='32' cy='24' r='12' fill='%23fef08a'/><path d='M14 54 C14 42, 50 42, 50 54 Z' fill='%23fef08a'/></svg>" alt="" />
+      <div class="follow-content">
+        <div class="follow-badge-header">✨ FOLLOWER MỚI ✨</div>
+        <div class="follow-username" id="followUserName">Khán Giả</div>
+        <div class="follow-sub-text">Cảm ơn bạn đã bấm Follow kênh! ❤️</div>
+      </div>
+    </div>
+
+    <!-- Popup Quà Tặng Mở Chữ Cái (Interactive Gift Hint) -->
+    <div id="giftHintCard" class="gift-hint-card">
+      <div class="gh-avatar-wrap">
+        <img id="ghAvatar" class="gh-avatar" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'><circle cx='32' cy='32' r='32' fill='%23f59e0b'/><circle cx='32' cy='24' r='12' fill='%23ffffff'/><path d='M14 54 C14 42, 50 42, 50 54 Z' fill='%23ffffff'/></svg>" alt="" />
+        <div class="gh-gift-badge" id="ghGiftBadge">🌹</div>
+      </div>
+      <div class="gh-info">
+        <div class="gh-tag">🎁 QUÀ TẶNG MỞ CHỮ GỢI Ý!</div>
+        <div class="gh-donor"><span id="ghDonorName">Khán Giả</span> vừa tặng <span id="ghGiftName" style="color:#ffd700;">Hoa Hồng</span></div>
+        <div class="gh-unlocked">
+          Đã mở chữ: <span id="ghLetter" class="gh-letter-glow">A</span>
+          <span id="ghRemain" class="gh-remain-badge">(Còn 2 chữ)</span>
+        </div>
+      </div>
+    </div>
+
     <div id="audioUnlockBanner" onclick="unlockAudioDirectly()" style="display:none;position:fixed;bottom:14px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg, #ffd700, #ff9800);color:#000;padding:8px 18px;border-radius:24px;font-size:12px;font-weight:800;cursor:pointer;z-index:9999;box-shadow:0 6px 20px rgba(0,0,0,0.6);text-align:center;">
       🔊 Nhấp vào màn hình để BẬT ÂM THANH GAME
     </div>
@@ -931,7 +1463,7 @@
     <!-- Hướng dẫn tương tác -->
     <div class="cta-banner">
       <div class="cta-item">💬 <b>Bình luận đáp án</b></div>
-      <div class="cta-item">🌹 <b>Hoa Hồng = Mở 1 Chữ</b></div>
+      <div class="cta-item highlight-gift">🌹 <b>Hoa Hồng = Mở 1 Chữ</b> <span id="giftHintCtaBadge" class="hint-remain-pill">Sẵn sàng</span></div>
       <div class="cta-item">❤️ <b>50 Tim = +10s</b></div>
     </div>
 
@@ -1030,6 +1562,55 @@
           <div class="cta-text-group">
             <div class="cta-title">HÃY CHỤP MÀN HÌNH ĐỂ KHOE NGAY!</div>
             <div class="cta-sub">Thời gian lưu lại: <span id="milestoneCountdown" class="countdown-highlight">60s</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Siêu Vinh Danh Nhà Hảo Tâm Tặng Quà Nhiều (Bảng Vàng Tri Ân) -->
+    <div class="donor-honor-overlay" id="donorHonorOverlay">
+      <div class="donor-honor-card">
+        <div class="donor-badge-top">💎 BẢNG VÀNG TRI ÂN NHÀ HẢO TÂM 💎</div>
+        <div class="donor-trophy">👑</div>
+        <div class="donor-honor-title" id="donorHonorTitle">ĐỆ NHẤT PHÚ HỘ</div>
+
+        <div class="donor-avatar-wrap">
+          <img id="donorHonorAvatar" class="donor-honor-avatar" src="https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/default-avatar.jpeg" alt="avatar" />
+          <div class="donor-crown-aura">💖</div>
+        </div>
+
+        <div class="donor-user-name" id="donorHonorName">Tên Khán Giả</div>
+        <div class="donor-unique-id" id="donorHonorUniqueId">@uniqueId</div>
+
+        <div class="donor-stats-box">
+          <div class="dstat-item">
+            <div class="dstat-val" id="donorHonorDiamonds">500</div>
+            <div class="dstat-lbl">XU ỦNG HỘ 💎</div>
+          </div>
+          <div class="dstat-divider"></div>
+          <div class="dstat-item">
+            <div class="dstat-val" id="donorHonorGiftCount">5+</div>
+            <div class="dstat-lbl">LƯỢT TẶNG QUÀ 🎁</div>
+          </div>
+        </div>
+
+        <!-- Bảng Vàng Top 5 Nhà Hảo Tâm Tặng Quà Nhiều Nhất -->
+        <div class="donor-top5-card">
+          <div class="dtop5-header">💖 TOP 5 NHÀ HẢO TÂM HÀNG ĐẦU 💖</div>
+          <div class="dtop5-list" id="donorTop5List">
+            <!-- Render động danh sách top 5 donors -->
+          </div>
+        </div>
+
+        <div class="donor-congrats-text">
+          ✨ Tri ân tấm lòng vàng của các nhà hảo tâm đã ủng hộ kênh! ✨
+        </div>
+
+        <div class="donor-screenshot-cta">
+          <div class="camera-icon-anim">📸</div>
+          <div class="cta-text-group">
+            <div class="cta-title">HÃY CHỤP MÀN HÌNH ĐỂ LƯU KỶ NIỆM!</div>
+            <div class="cta-sub">Thời gian lưu lại: <span id="donorHonorCountdown" class="countdown-highlight">20s</span></div>
           </div>
         </div>
       </div>
@@ -1188,6 +1769,33 @@
       if (!soundEnabled) return;
       playTone(220, 'sawtooth', 0.25, 0.25);
       setTimeout(() => playTone(164.81, 'sawtooth', 0.4, 0.3), 200);
+    }
+
+    // 5. Tiếng chuông vui tươi cảm ơn Follow
+    function soundFollow() {
+      if (!soundEnabled) return;
+      playTone(523.25, 'triangle', 0.1, 0.25); // C5
+      setTimeout(() => playTone(659.25, 'triangle', 0.12, 0.28), 70); // E5
+      setTimeout(() => playTone(783.99, 'triangle', 0.15, 0.3), 140); // G5
+      setTimeout(() => playTone(1046.50, 'sine', 0.35, 0.35), 210); // C6
+    }
+
+    // 6. Tiếng leng keng quà tặng
+    function soundGift() {
+      if (!soundEnabled) return;
+      playTone(587.33, 'triangle', 0.1, 0.25); // D5
+      setTimeout(() => playTone(880, 'triangle', 0.15, 0.3), 80); // A5
+      setTimeout(() => playTone(1174.66, 'sine', 0.25, 0.35), 160); // D6
+    }
+
+    // 7. Tiếng kỳ diệu mở chữ cái bằng quà tặng (Interactive Magic Hint Unlock)
+    function soundGiftHint() {
+      if (!soundEnabled) return;
+      playTone(523.25, 'triangle', 0.12, 0.3); // C5
+      setTimeout(() => playTone(659.25, 'triangle', 0.14, 0.32), 65); // E5
+      setTimeout(() => playTone(783.99, 'triangle', 0.16, 0.36), 130); // G5
+      setTimeout(() => playTone(1046.50, 'sine', 0.35, 0.4), 195); // C6
+      setTimeout(() => playTone(1318.51, 'sine', 0.4, 0.45), 260); // E6
     }
 
     // ---------------------------------------------------------
@@ -1430,12 +2038,35 @@
     }
     resetAutoRotateTimer();
 
+    function updateTopDonorTicker(topDonor) {
+      const avt = document.getElementById('topDonorTickerAvt');
+      const name = document.getElementById('topDonorTickerName');
+      const val = document.getElementById('topDonorTickerVal');
+      if (!name || !val) return;
+
+      if (!topDonor || !topDonor.nickname || topDonor.diamonds <= 0) {
+        name.textContent = 'Chưa có nhà hảo tâm';
+        val.textContent = '💎 0 xu';
+        return;
+      }
+
+      name.textContent = topDonor.nickname || topDonor.uniqueId;
+      val.textContent = `💎 ${(topDonor.diamonds || 0).toLocaleString('vi-VN')} xu`;
+      const fallbackAvt = `https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(topDonor.uniqueId || 'donor')}`;
+      if (avt) {
+        avt.src = topDonor.avatar || fallbackAvt;
+        avt.onerror = () => { avt.src = fallbackAvt; };
+      }
+    }
+
     function updateDonorLeaderboard(list) {
       if (!donorList) return;
       if (!list || list.length === 0) {
         donorList.innerHTML = '<div style="font-size:10px;color:#888;text-align:center;margin-top:15px;">Chưa có nhà hảo tâm</div>';
+        updateTopDonorTicker(null);
         return;
       }
+      updateTopDonorTicker(list[0]);
       const donorBadges = ['👑', '💎', '⭐', '4', '5', '6', '7', '8', '9', '10'];
       donorList.innerHTML = list.slice(0, 7).map((u, idx) => {
         const fallbackAvt = `https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(u.uniqueId || 'donor')}`;
@@ -1445,7 +2076,7 @@
             <span class="rank-medal">${donorBadges[idx]}</span>
             <img class="donor-avatar" src="${avtSrc}" onerror="this.src='${fallbackAvt}'" alt="avt" />
             <span class="donor-name">${u.nickname || u.uniqueId}</span>
-            <span class="donor-diamonds">💎 ${u.diamonds}</span>
+            <span class="donor-diamonds">💎 ${(u.diamonds || 0).toLocaleString('vi-VN')}</span>
           </div>
         `;
       }).join('');
@@ -1466,6 +2097,17 @@
       vipGiftAvatar.onerror = () => { vipGiftAvatar.src = fallbackAvt; };
 
       vipGiftBanner.classList.add('show');
+      soundGift();
+
+      if (diamonds >= 10 && window.confetti) {
+        confetti({
+          particleCount: 30,
+          spread: 60,
+          origin: { x: 0.5, y: 0.2 },
+          colors: ['#f472b6', '#ffd700', '#ffffff']
+        });
+      }
+
       if (vipGiftTimer) clearTimeout(vipGiftTimer);
       vipGiftTimer = setTimeout(() => {
         vipGiftBanner.classList.remove('show');
@@ -1636,6 +2278,9 @@
       }
 
       updateDonorLeaderboard(state.donorLeaderboard || []);
+      if (state.topDonor) {
+        updateTopDonorTicker(state.topDonor);
+      }
 
       if (state.recentGuesses && state.recentGuesses.length > 0) {
         chatList.innerHTML = '';
@@ -1645,6 +2290,289 @@
       if (state.activeMilestone && state.isCelebratingMilestone) {
         showMilestoneCelebration(state.activeMilestone);
       }
+
+      if (state.activeDonorHonor && state.isCelebratingDonorHonor) {
+        showDonorHonorCelebration(state.activeDonorHonor);
+      }
+
+      if (state.lastFollow && (!window._lastFollowSeen || window._lastFollowSeen < state.lastFollow.timestamp)) {
+        window._lastFollowSeen = state.lastFollow.timestamp;
+        enqueueFollow(state.lastFollow);
+      }
+
+      if (state.lastGiftHint && (!window._lastGiftHintSeen || window._lastGiftHintSeen < state.lastGiftHint.timestamp)) {
+        window._lastGiftHintSeen = state.lastGiftHint.timestamp;
+        enqueueGiftHint(state.lastGiftHint);
+      }
+
+      updateGiftHintBadge(state.canRevealMore, state.remainingHiddenLetters);
+    });
+
+    // Cập nhật huy hiệu gợi ý quà tặng
+    function updateGiftHintBadge(canRevealMore, remainingHidden) {
+      const badge = document.getElementById('giftHintCtaBadge');
+      if (!badge) return;
+      if (canRevealMore === false || (remainingHidden !== undefined && remainingHidden <= 1)) {
+        badge.textContent = 'Đã mở tối đa!';
+        badge.classList.add('limit');
+      } else if (remainingHidden !== undefined && remainingHidden > 1) {
+        badge.textContent = `Còn ${remainingHidden - 1} chữ`;
+        badge.classList.remove('limit');
+      } else {
+        badge.textContent = 'Sẵn sàng';
+        badge.classList.remove('limit');
+      }
+    }
+
+    // Quản lý thông báo Quà Tặng Mở Chữ Cái (Interactive Gift Hint Queue)
+    const giftHintQueue = [];
+    let isShowingGiftHint = false;
+
+    function enqueueGiftHint(data) {
+      giftHintQueue.push(data);
+      processGiftHintQueue();
+    }
+
+    function processGiftHintQueue() {
+      if (isShowingGiftHint || giftHintQueue.length === 0) return;
+      isShowingGiftHint = true;
+      const data = giftHintQueue.shift();
+
+      const card = document.getElementById('giftHintCard');
+      const avt = document.getElementById('ghAvatar');
+      const donorName = document.getElementById('ghDonorName');
+      const giftName = document.getElementById('ghGiftName');
+      const letter = document.getElementById('ghLetter');
+      const remain = document.getElementById('ghRemain');
+      const giftBadge = document.getElementById('ghGiftBadge');
+
+      if (!card) {
+        isShowingGiftHint = false;
+        return;
+      }
+
+      const donor = data.donor || {};
+      donorName.textContent = donor.nickname || donor.user || donor.uniqueId || 'Khán Giả';
+      const fallbackAvt = `https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(donor.uniqueId || 'donor')}`;
+      avt.src = donor.avatar || fallbackAvt;
+      avt.onerror = () => { avt.src = fallbackAvt; };
+
+      const gName = data.giftName || donor.giftName || 'Hoa Hồng';
+      giftName.textContent = gName;
+      if (giftBadge) {
+        giftBadge.textContent = gName.includes('Tên Lửa') ? '🚀' : (gName.includes('Sư Tử') ? '🦁' : (gName.includes('Nước Hoa') ? '💖' : '🌹'));
+      }
+
+      letter.textContent = data.letter || '?';
+      if (data.canRevealMore && data.remainingHidden > 1) {
+        remain.textContent = `(Còn ${data.remainingHidden - 1} chữ)`;
+      } else {
+        remain.textContent = '(Đã mở tối đa!)';
+      }
+
+      card.classList.add('show');
+      soundGiftHint();
+
+      if (window.confetti) {
+        confetti({
+          particleCount: 45,
+          spread: 75,
+          origin: { x: 0.5, y: 0.22 },
+          colors: ['#ffd700', '#f59e0b', '#fbbf24', '#f472b6', '#ffffff']
+        });
+      }
+
+      if (data.ttsText) {
+        ttsManager.speak(data.ttsText, false);
+      }
+
+      setTimeout(() => {
+        card.classList.remove('show');
+        setTimeout(() => {
+          isShowingGiftHint = false;
+          processGiftHintQueue();
+        }, 350);
+      }, 3500);
+    }
+
+    // Quản lý thông báo Follow (Hàng đợi)
+    const followQueue = [];
+    let isShowingFollow = false;
+
+    function enqueueFollow(data) {
+      followQueue.push(data);
+      processFollowQueue();
+    }
+
+    function processFollowQueue() {
+      if (isShowingFollow || followQueue.length === 0) return;
+      isShowingFollow = true;
+      const data = followQueue.shift();
+
+      const card = document.getElementById('followNoticeCard');
+      const avt = document.getElementById('followUserAvatar');
+      const name = document.getElementById('followUserName');
+      if (!card) {
+        isShowingFollow = false;
+        return;
+      }
+
+      name.textContent = data.user?.nickname || data.user?.uniqueId || 'Khán Giả';
+      const fallbackAvt = `https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(data.user?.uniqueId || 'follower')}`;
+      avt.src = data.user?.avatar || fallbackAvt;
+      avt.onerror = () => { avt.src = fallbackAvt; };
+
+      card.classList.add('show');
+      soundFollow();
+
+      if (window.confetti) {
+        confetti({
+          particleCount: 35,
+          spread: 60,
+          origin: { x: 0.5, y: 0.12 },
+          colors: ['#ff2d55', '#00f2fe', '#ffd700', '#ffffff']
+        });
+      }
+
+      addFollowChatNotice(data.user);
+
+      if (data.ttsText) {
+        ttsManager.speak(data.ttsText, false);
+      }
+
+      setTimeout(() => {
+        card.classList.remove('show');
+        setTimeout(() => {
+          isShowingFollow = false;
+          processFollowQueue();
+        }, 350);
+      }, 3500);
+    }
+
+    function addFollowChatNotice(user) {
+      if (!chatList) return;
+      const item = document.createElement('div');
+      item.className = 'chat-item follow-chat';
+      const nick = user?.nickname || user?.uniqueId || 'Khán giả';
+      item.innerHTML = `<span class="chat-badge-follow">💖 FOLLOW</span> <span class="chat-user">${nick}</span> vừa theo dõi kênh!`;
+      chatList.prepend(item);
+      while (chatList.children.length > 8) {
+        chatList.removeChild(chatList.lastChild);
+      }
+    }
+
+    socket.on('userFollow', data => {
+      enqueueFollow(data);
+    });
+
+    // Quản lý Siêu Vinh Danh Nhà Hảo Tâm
+    let donorHonorTimer = null;
+    let donorHonorConfettiInterval = null;
+
+    function closeDonorHonorOverlay() {
+      if (donorHonorTimer) {
+        clearInterval(donorHonorTimer);
+        donorHonorTimer = null;
+      }
+      if (donorHonorConfettiInterval) {
+        clearInterval(donorHonorConfettiInterval);
+        donorHonorConfettiInterval = null;
+      }
+      const overlay = document.getElementById('donorHonorOverlay');
+      if (overlay) overlay.classList.remove('show');
+    }
+
+    function showDonorHonorCelebration(data) {
+      if (!data || !data.donor) return;
+      winnerOverlay.classList.remove('show');
+
+      const overlay = document.getElementById('donorHonorOverlay');
+      const dAvatar = document.getElementById('donorHonorAvatar');
+      const dName = document.getElementById('donorHonorName');
+      const dUniqueId = document.getElementById('donorHonorUniqueId');
+      const dDiamonds = document.getElementById('donorHonorDiamonds');
+      const dGiftCount = document.getElementById('donorHonorGiftCount');
+      const dCountdown = document.getElementById('donorHonorCountdown');
+      const dTitle = document.getElementById('donorHonorTitle');
+
+      if (!overlay) return;
+
+      dName.textContent = data.donor.nickname || data.donor.uniqueId;
+      dUniqueId.textContent = data.donor.uniqueId ? `@${data.donor.uniqueId.replace(/^@/, '')}` : '';
+      const fallbackAvt = `https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(data.donor.uniqueId || 'donor')}`;
+      dAvatar.src = data.donor.avatar || fallbackAvt;
+      dAvatar.onerror = () => { dAvatar.src = fallbackAvt; };
+      dDiamonds.textContent = (data.donor.diamonds || 0).toLocaleString('vi-VN');
+      dGiftCount.textContent = `${data.donor.giftsCount || 1}+`;
+      if (data.title) dTitle.textContent = data.title;
+
+      let remaining = Math.max(1, data.duration || 20);
+      dCountdown.textContent = `${remaining}s`;
+
+      const dTop5List = document.getElementById('donorTop5List');
+      if (dTop5List) {
+        dTop5List.innerHTML = '';
+        const medals = ['🥇', '🥈', '🥉', '4️⃣', '5️⃣'];
+        const list = data.top5 || [];
+        if (list.length > 0) {
+          dTop5List.innerHTML = list.map((p, idx) => `
+            <div class="dtop5-row rank-${idx}">
+              <div class="dtop5-left">
+                <span class="dtop5-medal">${medals[idx] || (idx + 1)}</span>
+                <span class="dtop5-name">${p.nickname || p.uniqueId}</span>
+              </div>
+              <div class="dtop5-score">💎 ${(p.diamonds || 0).toLocaleString('vi-VN')} xu</div>
+            </div>
+          `).join('');
+        } else {
+          dTop5List.innerHTML = '<div style="font-size:10px;color:#fce7f3;text-align:center;padding:4px;">Chưa có dữ liệu nhà hảo tâm</div>';
+        }
+      }
+
+      overlay.classList.add('show');
+      soundGrandFanfare();
+
+      if (window.confetti) {
+        confetti({ particleCount: 90, spread: 80, origin: { y: 0.5 }, colors: ['#f472b6', '#ffd700', '#a855f7', '#ffffff'] });
+      }
+
+      if (donorHonorConfettiInterval) clearInterval(donorHonorConfettiInterval);
+      donorHonorConfettiInterval = setInterval(() => {
+        if (!overlay.classList.contains('show')) {
+          clearInterval(donorHonorConfettiInterval);
+          return;
+        }
+        if (window.confetti) {
+          confetti({
+            particleCount: 45,
+            spread: 70,
+            origin: { x: Math.random() > 0.5 ? 0.25 : 0.75, y: 0.45 },
+            colors: ['#f472b6', '#ffd700', '#38bdf8']
+          });
+        }
+      }, 3000);
+
+      if (donorHonorTimer) clearInterval(donorHonorTimer);
+      donorHonorTimer = setInterval(() => {
+        remaining--;
+        if (remaining <= 0) {
+          closeDonorHonorOverlay();
+        } else {
+          dCountdown.textContent = `${remaining}s`;
+        }
+      }, 1000);
+
+      if (data.ttsText) {
+        ttsManager.speak(data.ttsText, true);
+      }
+    }
+
+    socket.on('donorHonorCelebration', data => {
+      showDonorHonorCelebration(data);
+    });
+
+    socket.on('donorHonorEnd', () => {
+      closeDonorHonorOverlay();
     });
 
     socket.on('donorUpdate', data => {
@@ -1652,10 +2580,14 @@
       if (data.donorLeaderboard) {
         updateDonorLeaderboard(data.donorLeaderboard);
       }
+      if (data.topDonor) {
+        updateTopDonorTicker(data.topDonor);
+      }
     });
 
     socket.on('donorReset', () => {
       updateDonorLeaderboard([]);
+      updateTopDonorTicker(null);
     });
 
     socket.on('leaderboardReset', () => {
@@ -1681,6 +2613,7 @@
     socket.on('roundStart', state => {
       winnerOverlay.classList.remove('show');
       closeMilestoneOverlay();
+      closeDonorHonorOverlay();
       roundNumber.textContent = state.round;
       categoryLabel.textContent = state.category;
       clueText.textContent = state.hint;
@@ -1688,6 +2621,7 @@
       timerCircle.classList.remove('urgent');
       renderScramble(state.scrambledLetters);
       renderTargetSlots(state.targetPattern);
+      updateGiftHintBadge(state.canRevealMore, state.remainingHiddenLetters);
 
       if (state.ttsText) {
         ttsManager.speak(state.ttsText, true);
@@ -1795,20 +2729,44 @@
     });
 
     socket.on('hintRevealed', data => {
-      soundReveal();
       const targetSlot = targetSlots.querySelector(`.slot-tile[data-index="${data.index}"]`);
       if (targetSlot) {
         targetSlot.textContent = data.letter;
         targetSlot.classList.add('revealed');
+        if (data.isGiftTriggered) {
+          targetSlot.classList.add('gift-unlocked');
+        }
       }
-      if (data.donor) {
-        showToast(`🌹 ${data.donor} mở chữ: "${data.letter}"`);
+
+      updateGiftHintBadge(data.canRevealMore, data.remainingHidden);
+
+      if (data.isGiftTriggered && data.donor) {
+        enqueueGiftHint(data);
       } else {
-        showToast(`💡 Gợi ý đã mở: "${data.letter}"`);
+        soundReveal();
+        const donorNick = data.donor ? (data.donor.nickname || data.donor) : null;
+        if (donorNick) {
+          showToast(`🌹 ${donorNick} mở chữ: "${data.letter}"`);
+        } else {
+          showToast(`💡 Gợi ý đã mở: "${data.letter}"`);
+        }
+        if (data.ttsText) {
+          ttsManager.speak(data.ttsText, false);
+        }
       }
+    });
+
+    socket.on('giftHintLimitReached', data => {
+      soundTimeout();
+      showToast(data.message || 'Đã mở tối đa gợi ý!');
+      updateGiftHintBadge(false, data.remainingHidden || 1);
       if (data.ttsText) {
         ttsManager.speak(data.ttsText, false);
       }
+    });
+
+    socket.on('giftHintConfigUpdate', data => {
+      updateGiftHintBadge(data.canRevealMore, data.remainingHiddenLetters);
     });
 
     socket.on('timeAdded', data => {
