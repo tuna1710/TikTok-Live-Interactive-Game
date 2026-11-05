@@ -82,9 +82,11 @@ app.get('/api/tts', (req, res) => {
 const server = http.createServer(app);
 const io = new Server(server, { cors: { origin: '*' } });
 
-// Load Words
+// Load Words & Quản lý Deck Shuffle (Tránh lặp câu)
 const wordsData = require('./data/words.json');
-let recentWordIds = [];
+const PLAYED_WORDS_FILE = path.join(__dirname, 'data', 'played_words.json');
+let playedWordIds = new Set();
+let wordDeck = [];
 
 // Game State
 let gameState = {
@@ -191,14 +193,62 @@ function shuffle(array) {
   return arr;
 }
 
+function loadPlayedWords() {
+  try {
+    if (fs.existsSync(PLAYED_WORDS_FILE)) {
+      const data = JSON.parse(fs.readFileSync(PLAYED_WORDS_FILE, 'utf-8'));
+      if (Array.isArray(data)) {
+        playedWordIds = new Set(data);
+        console.log(`[Deck] Đã nạp ${playedWordIds.size}/${wordsData.length} câu đã chơi từ ${PLAYED_WORDS_FILE}`);
+      }
+    }
+  } catch (err) {
+    console.error('[Deck] Lỗi đọc file played_words.json:', err.message);
+    playedWordIds = new Set();
+  }
+}
+
+function savePlayedWords() {
+  try {
+    fs.writeFileSync(PLAYED_WORDS_FILE, JSON.stringify(Array.from(playedWordIds), null, 2), 'utf-8');
+  } catch (err) {
+    console.error('[Deck] Lỗi lưu file played_words.json:', err.message);
+  }
+}
+
+function buildDeck() {
+  let unplayed = wordsData.filter(w => !playedWordIds.has(w.id));
+
+  // Nếu đã chơi hết sạch toàn bộ kho câu -> Tự động xáo lại từ đầu
+  if (unplayed.length === 0) {
+    console.log(`[Deck] 🎉 ĐÃ CHƠI HẾT TOÀN BỘ ${wordsData.length} CÂU HỎI! Đang làm mới bộ bài...`);
+    playedWordIds.clear();
+    savePlayedWords();
+    unplayed = [...wordsData];
+  }
+
+  // Fisher-Yates Shuffle
+  wordDeck = shuffle(unplayed);
+  console.log(`[Deck] Đã xáo bộ bài mới: ${wordDeck.length} câu sẵn sàng (Đã chơi: ${playedWordIds.size}/${wordsData.length})`);
+}
+
+// Khởi tạo deck ban đầu
+loadPlayedWords();
+buildDeck();
+
 function pickNextWord() {
-  const available = wordsData.filter(w => !recentWordIds.includes(w.id));
-  const pool = available.length > 0 ? available : wordsData;
-  const picked = pool[Math.floor(Math.random() * pool.length)];
-  recentWordIds.push(picked.id);
-  if (recentWordIds.length > 100) recentWordIds.shift();
+  if (wordDeck.length === 0) {
+    buildDeck();
+  }
+
+  const picked = wordDeck.pop();
+  playedWordIds.add(picked.id);
+  savePlayedWords();
+
+  console.log(`[Deck] Rút câu id=${picked.id}: "${picked.word}" (Còn lại trong bộ bài: ${wordDeck.length}/${wordsData.length} câu)`);
   return picked;
 }
+
 
 function startNewRound() {
   if (timerInterval) clearInterval(timerInterval);
@@ -418,6 +468,9 @@ function getClientGameState() {
     connectedChannel: gameState.connectedChannel,
     totalCommentsReceived: gameState.totalCommentsReceived,
     ttsEnabled: gameState.ttsEnabled,
+    playedWordsCount: playedWordIds.size,
+    totalWordsCount: wordsData.length,
+    remainingInDeck: wordDeck.length,
   };
 }
 
@@ -689,6 +742,16 @@ app.post('/admin/api', (req, res) => {
     donorLeaderboard.clear();
     io.emit('donorReset', []);
     return res.json({ ok: true, message: 'Đã làm mới bảng vinh danh người tặng quà' });
+  }
+
+  if (action === 'resetPlayedWords') {
+    playedWordIds.clear();
+    savePlayedWords();
+    buildDeck();
+    return res.json({
+      ok: true,
+      message: `Đã làm mới toàn bộ kho câu hỏi (${wordsData.length} câu sẵn sàng)`
+    });
   }
 
   if (action === 'setChannel') {

@@ -115,6 +115,10 @@
       <span class="stat-label">Thời gian còn lại:</span>
       <span class="stat-val" id="currentTime">-</span>
     </div>
+    <div class="stat-row">
+      <span class="stat-label">Tiến độ bộ câu hỏi:</span>
+      <span class="stat-val gold" id="deckProgress">-</span>
+    </div>
   </div>
 
   <!-- Nút Thao Tác Nhanh -->
@@ -161,6 +165,7 @@
       <button class="btn-red" style="margin-top:0;padding:8px;font-size:12px;" onclick="sendAction('resetLeaderboard')">🗑️ Reset Bảng Điểm</button>
       <button class="btn-red" style="margin-top:0;padding:8px;font-size:12px;" onclick="sendAction('resetDonorLeaderboard')">🗑️ Reset Bảng Quà</button>
     </div>
+    <button class="btn-red" style="margin-top:6px;padding:8px;font-size:12px;" onclick="if(confirm('Bạn có chắc muốn xóa lịch sử câu đã chơi và xáo lại toàn bộ kho câu hỏi?')) sendAction('resetPlayedWords')">🔄 Reset Lịch Sử Câu Đố (Chơi lại từ đầu)</button>
   </div>
 
   <!-- Điều Khiển Giọng Đọc AI (TTS) -->
@@ -221,6 +226,12 @@
           document.getElementById('currentCategory').textContent = json.state.category || '-';
           document.getElementById('currentHint').textContent = json.state.hint || '-';
           document.getElementById('currentTime').textContent = json.state.timeLeft + ' giây';
+          if (json.state.totalWordsCount !== undefined) {
+            const dp = document.getElementById('deckProgress');
+            if (dp) {
+              dp.textContent = `Đã ra ${json.state.playedWordsCount || 0}/${json.state.totalWordsCount} câu (còn ${json.state.remainingInDeck || 0} câu)`;
+            }
+          }
           const statText = document.getElementById('tiktokStatusText');
           if (statText) {
             statText.textContent = json.state.tiktokStatusMsg || (json.state.tiktokConnected ? '🟢 Đã kết nối' : '🔴 Chưa kết nối');
