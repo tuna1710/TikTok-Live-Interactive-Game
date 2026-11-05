@@ -295,6 +295,7 @@
           if (statText) {
             statText.textContent = json.state.tiktokStatusMsg || (json.state.tiktokConnected ? '🟢 Đã kết nối' : '🔴 Chưa kết nối');
             statText.style.color = json.state.tiktokConnected ? '#00e676' : (json.state.tiktokConnecting ? '#ffd700' : '#ef4444');
+          }
           const hintStat = document.getElementById('hintCanRevealStat');
           if (hintStat && json.state.remainingHiddenLetters !== undefined) {
             const remain = json.state.remainingHiddenLetters;
