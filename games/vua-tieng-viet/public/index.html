@@ -553,6 +553,222 @@
       font-weight: 700;
     }
 
+    /* Siêu Vinh Danh 2.000 Điểm (Hall of Fame Screenshot Certificate) */
+    .milestone-overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(35, 12, 60, 0.98), rgba(8, 4, 20, 0.99));
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 120;
+      animation: zoomIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      padding: 14px;
+    }
+    .milestone-overlay.show { display: flex; }
+    .milestone-card {
+      width: 90%;
+      max-width: 420px;
+      background: linear-gradient(155deg, #2a114f 0%, #170932 50%, #351354 100%);
+      padding: 22px 18px 20px;
+      border-radius: 20px;
+      text-align: center;
+      border: 3px solid #ffd700;
+      box-shadow: 0 0 45px rgba(255, 215, 0, 0.7), inset 0 0 25px rgba(255, 215, 0, 0.25);
+      position: relative;
+      overflow: hidden;
+    }
+    .milestone-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(60deg, transparent 40%, rgba(255, 215, 0, 0.15) 50%, transparent 60%);
+      transform: rotate(25deg);
+      animation: goldSheen 4s infinite linear;
+      pointer-events: none;
+    }
+    @keyframes goldSheen {
+      0% { transform: translateX(-100%) rotate(25deg); }
+      100% { transform: translateX(100%) rotate(25deg); }
+    }
+    .milestone-badge-top {
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: #ffd700;
+      background: rgba(0, 0, 0, 0.45);
+      padding: 5px 14px;
+      border-radius: 12px;
+      display: inline-block;
+      margin-bottom: 6px;
+      border: 1px solid rgba(255, 215, 0, 0.4);
+    }
+    .milestone-trophy {
+      font-size: 46px;
+      margin: 4px 0 2px;
+      animation: trophyPulse 1.2s infinite alternate ease-in-out;
+    }
+    @keyframes trophyPulse {
+      0% { transform: scale(1) rotate(-3deg); }
+      100% { transform: scale(1.15) rotate(3deg); }
+    }
+    .milestone-honor-title {
+      font-size: 16px;
+      font-weight: 900;
+      color: #ffd700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+      margin-bottom: 8px;
+    }
+    .milestone-avatar-wrap {
+      position: relative;
+      display: inline-block;
+      margin: 4px auto;
+    }
+    .milestone-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 3.5px solid #ffd700;
+      box-shadow: 0 0 25px rgba(255, 215, 0, 0.9);
+      object-fit: cover;
+      background: #111;
+      display: block;
+    }
+    .milestone-crown-aura {
+      position: absolute;
+      top: -16px;
+      right: -8px;
+      font-size: 26px;
+      animation: crownWiggle 1s infinite;
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.8));
+    }
+    .milestone-user-name {
+      font-size: 22px;
+      font-weight: 900;
+      color: #fff;
+      margin-top: 8px;
+      letter-spacing: 0.5px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+      word-break: break-word;
+    }
+    .milestone-unique-id {
+      font-size: 11px;
+      color: #fbcfe8;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .milestone-stats-box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.45);
+      border-radius: 12px;
+      padding: 10px 16px;
+      margin: 8px 10px;
+      border: 1px solid rgba(255, 215, 0, 0.25);
+    }
+    .mstat-item { flex: 1; text-align: center; }
+    .mstat-val { font-size: 18px; font-weight: 900; color: #ffd700; }
+    .mstat-lbl { font-size: 9px; color: #cbd5e1; font-weight: 700; letter-spacing: 0.5px; margin-top: 2px; }
+    .mstat-divider { width: 1px; height: 28px; background: rgba(255, 255, 255, 0.15); margin: 0 10px; }
+    .milestone-congrats-text {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #6ee7b7;
+      margin: 10px 0 12px;
+      line-height: 1.4;
+    }
+    .milestone-screenshot-cta {
+      background: linear-gradient(135deg, #ec4899, #8b5cf6);
+      border-radius: 12px;
+      padding: 9px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 4px 18px rgba(236, 72, 153, 0.5);
+      animation: ctaPulse 1.5s infinite alternate ease-in-out;
+    }
+    @keyframes ctaPulse {
+      0% { transform: scale(0.98); }
+      100% { transform: scale(1.02); box-shadow: 0 6px 24px rgba(236, 72, 153, 0.8); }
+    }
+    .camera-icon-anim { font-size: 26px; }
+    .cta-text-group { text-align: left; }
+    .cta-title { font-size: 11px; font-weight: 900; color: #fff; letter-spacing: 0.5px; }
+    .cta-sub { font-size: 10px; color: #fdf2f8; font-weight: 600; margin-top: 2px; }
+    .countdown-highlight { font-weight: 900; color: #ffd700; font-size: 13px; }
+
+    /* Bảng Vàng Top 5 Trong Modal Vinh Danh */
+    .milestone-top5-card {
+      background: rgba(12, 6, 26, 0.65);
+      border: 1px solid rgba(255, 215, 0, 0.35);
+      border-radius: 12px;
+      padding: 7px 10px;
+      margin: 6px 0 9px;
+      text-align: left;
+    }
+    .mtop5-header {
+      font-size: 10.5px;
+      font-weight: 900;
+      color: #ffd700;
+      text-align: center;
+      letter-spacing: 0.5px;
+      margin-bottom: 5px;
+      text-transform: uppercase;
+    }
+    .mtop5-list {
+      display: flex;
+      flex-direction: column;
+      gap: 3.5px;
+    }
+    .mtop5-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 3.5px 8px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.05);
+      font-size: 11px;
+    }
+    .mtop5-row.rank-0 {
+      background: linear-gradient(90deg, rgba(255, 215, 0, 0.22), rgba(255, 255, 255, 0.04));
+      border-left: 3px solid #ffd700;
+    }
+    .mtop5-row.rank-1 {
+      border-left: 3px solid #cbd5e1;
+    }
+    .mtop5-row.rank-2 {
+      border-left: 3px solid #f97316;
+    }
+    .mtop5-left {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      min-width: 0;
+    }
+    .mtop5-medal { font-size: 12px; flex-shrink: 0; }
+    .mtop5-name {
+      font-weight: 700;
+      color: #fff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 200px;
+    }
+    .mtop5-score {
+      font-weight: 900;
+      color: #ffd700;
+      flex-shrink: 0;
+      font-size: 11px;
+    }
+
     /* Thông báo nổi (Toast khi mở gợi ý hoặc cộng giờ) */
     .toast-notice {
       position: absolute;
@@ -769,6 +985,55 @@
         <div class="winner-pts">+100 ĐIỂM CHIẾN THẮNG 🎯</div>
       </div>
     </div>
+
+    <!-- Siêu Vinh Danh Cán Mốc 2000 Điểm (Khoảng 1 phút để chụp màn hình khoe) -->
+    <div class="milestone-overlay" id="milestoneOverlay">
+      <div class="milestone-card">
+        <div class="milestone-badge-top">🎖️ BẢNG VÀNG DANH DỰ 🎖️</div>
+        <div class="milestone-trophy">🏆</div>
+        <div class="milestone-honor-title" id="milestoneTitle">ĐẠI KIỆN TƯỚNG TIẾNG VIỆT</div>
+
+        <div class="milestone-avatar-wrap">
+          <img id="milestoneAvatar" class="milestone-avatar" src="https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/default-avatar.jpeg" alt="avatar" />
+          <div class="milestone-crown-aura">👑</div>
+        </div>
+
+        <div class="milestone-user-name" id="milestoneName">Tên Khán Giả</div>
+        <div class="milestone-unique-id" id="milestoneUniqueId">@uniqueId</div>
+
+        <div class="milestone-stats-box">
+          <div class="mstat-item">
+            <div class="mstat-val" id="milestoneScore">2.000</div>
+            <div class="mstat-lbl">ĐIỂM CÁN MỐC</div>
+          </div>
+          <div class="mstat-divider"></div>
+          <div class="mstat-item">
+            <div class="mstat-val" id="milestoneWins">20+</div>
+            <div class="mstat-lbl">CHIẾN THẮNG</div>
+          </div>
+        </div>
+
+        <!-- Bảng Vàng Top 5 Cao Thủ Đứng Đầu -->
+        <div class="milestone-top5-card">
+          <div class="mtop5-header">👑 BẢNG VÀNG TOP 5 CAO THỦ 👑</div>
+          <div class="mtop5-list" id="milestoneTop5List">
+            <!-- Render động danh sách top 5 -->
+          </div>
+        </div>
+
+        <div class="milestone-congrats-text">
+          🌟 Vinh danh Top 5 cao thủ! Bảng điểm sẽ làm mới sau đếm ngược 🌟
+        </div>
+
+        <div class="milestone-screenshot-cta">
+          <div class="camera-icon-anim">📸</div>
+          <div class="cta-text-group">
+            <div class="cta-title">HÃY CHỤP MÀN HÌNH ĐỂ KHOE NGAY!</div>
+            <div class="cta-sub">Thời gian lưu lại: <span id="milestoneCountdown" class="countdown-highlight">60s</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <script>
@@ -908,6 +1173,14 @@
         gain.connect(ctx.destination);
         noise.start(ctx.currentTime + 0.3);
       } catch (e) {}
+    }
+
+    // Tiếng kèn đại chiến thắng vinh danh mốc 2000đ (Grand Fanfare)
+    function soundGrandFanfare() {
+      if (!soundEnabled) return;
+      soundWin();
+      setTimeout(() => soundWin(), 1400);
+      setTimeout(() => soundWin(), 2800);
     }
 
     // 4. Tiếng còi buzzer báo hết giờ
@@ -1385,8 +1658,25 @@
       updateLeaderboard([]);
     });
 
+    let milestoneTimer = null;
+    let milestoneConfettiInterval = null;
+
+    function closeMilestoneOverlay() {
+      if (milestoneTimer) {
+        clearInterval(milestoneTimer);
+        milestoneTimer = null;
+      }
+      if (milestoneConfettiInterval) {
+        clearInterval(milestoneConfettiInterval);
+        milestoneConfettiInterval = null;
+      }
+      const overlay = document.getElementById('milestoneOverlay');
+      if (overlay) overlay.classList.remove('show');
+    }
+
     socket.on('roundStart', state => {
       winnerOverlay.classList.remove('show');
+      closeMilestoneOverlay();
       roundNumber.textContent = state.round;
       categoryLabel.textContent = state.category;
       clueText.textContent = state.hint;
@@ -1398,6 +1688,91 @@
       if (state.ttsText) {
         ttsManager.speak(state.ttsText, true);
       }
+    });
+
+    socket.on('milestoneCelebration', data => {
+      winnerOverlay.classList.remove('show');
+
+      const overlay = document.getElementById('milestoneOverlay');
+      const mAvatar = document.getElementById('milestoneAvatar');
+      const mName = document.getElementById('milestoneName');
+      const mUniqueId = document.getElementById('milestoneUniqueId');
+      const mScore = document.getElementById('milestoneScore');
+      const mWins = document.getElementById('milestoneWins');
+      const mCountdown = document.getElementById('milestoneCountdown');
+      const mTitle = document.getElementById('milestoneTitle');
+
+      if (!overlay) return;
+
+      mName.textContent = data.user.nickname || data.user.uniqueId;
+      mUniqueId.textContent = data.user.uniqueId ? `@${data.user.uniqueId.replace(/^@/, '')}` : '';
+      if (data.user.avatar) mAvatar.src = data.user.avatar;
+      mScore.textContent = (data.user.score || data.milestone || 2000).toLocaleString('vi-VN');
+      mWins.textContent = `${data.user.wins || 20}+`;
+      if (data.title) mTitle.textContent = data.title;
+
+      let remaining = data.duration || 60;
+      mCountdown.textContent = `${remaining}s`;
+
+      const mTop5List = document.getElementById('milestoneTop5List');
+      if (mTop5List) {
+        mTop5List.innerHTML = '';
+        const medals = ['🥇', '🥈', '🥉', '4️⃣', '5️⃣'];
+        const list = data.top5 || [];
+        if (list.length > 0) {
+          mTop5List.innerHTML = list.map((p, idx) => `
+            <div class="mtop5-row rank-${idx}">
+              <div class="mtop5-left">
+                <span class="mtop5-medal">${medals[idx] || (idx + 1)}</span>
+                <span class="mtop5-name">${p.nickname || p.uniqueId}</span>
+              </div>
+              <div class="mtop5-score">${(p.score || 0).toLocaleString('vi-VN')}đ</div>
+            </div>
+          `).join('');
+        } else {
+          mTop5List.innerHTML = '<div style="font-size:10px;color:#94a3b8;text-align:center;padding:4px;">Chưa có dữ liệu Top 5</div>';
+        }
+      }
+
+      overlay.classList.add('show');
+      soundGrandFanfare();
+
+      if (window.confetti) {
+        confetti({ particleCount: 110, spread: 80, origin: { y: 0.5 } });
+      }
+
+      if (milestoneConfettiInterval) clearInterval(milestoneConfettiInterval);
+      milestoneConfettiInterval = setInterval(() => {
+        if (!overlay.classList.contains('show')) {
+          clearInterval(milestoneConfettiInterval);
+          return;
+        }
+        if (window.confetti) {
+          confetti({
+            particleCount: 50,
+            spread: 70,
+            origin: { x: Math.random() > 0.5 ? 0.25 : 0.75, y: 0.45 }
+          });
+        }
+      }, 3500);
+
+      if (milestoneTimer) clearInterval(milestoneTimer);
+      milestoneTimer = setInterval(() => {
+        remaining--;
+        if (remaining <= 0) {
+          closeMilestoneOverlay();
+        } else {
+          mCountdown.textContent = `${remaining}s`;
+        }
+      }, 1000);
+
+      if (data.ttsText) {
+        ttsManager.speak(data.ttsText, true);
+      }
+    });
+
+    socket.on('milestoneEnd', () => {
+      closeMilestoneOverlay();
     });
 
     socket.on('timerTick', data => {

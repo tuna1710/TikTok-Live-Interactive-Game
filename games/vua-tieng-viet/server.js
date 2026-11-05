@@ -109,9 +109,63 @@ let gameState = {
 
 let timerInterval = null;
 let reconnectTimer = null;
-const leaderboard = new Map();      // uniqueId -> { uniqueId, nickname, avatar, score, wins }
+let nextRoundTimer = null;
+let isCelebratingMilestone = false;
+const MILESTONE_SCORE = Number(process.env.MILESTONE_SCORE) || 2000;
+const MILESTONE_DURATION = Number(process.env.MILESTONE_DURATION) || 60; // 60 giây vinh danh cho khán giả chụp màn hình
+const leaderboard = new Map();      // uniqueId -> { uniqueId, nickname, avatar, score, wins, milestones }
 const donorLeaderboard = new Map(); // uniqueId -> { uniqueId, nickname, avatar, diamonds, giftsCount, lastGiftName, lastGiftTime }
 let recentGuesses = [];             // last 15 guesses
+
+function endMilestoneAndResetLeaderboard() {
+  if (nextRoundTimer) {
+    clearTimeout(nextRoundTimer);
+    nextRoundTimer = null;
+  }
+  isCelebratingMilestone = false;
+  console.log('🔄 [Vinh Danh Hoàn Tất] Reset bảng top điểm (giữ nguyên bảng tấm lòng vàng)! Bắt đầu chặng đua mới.');
+
+  // Reset bảng điểm (không reset bảng tấm lòng vàng / donorLeaderboard)
+  leaderboard.clear();
+  io.emit('leaderboardReset', []);
+  io.emit('milestoneEnd');
+  startNewRound();
+}
+
+function triggerMilestoneCelebration(user, score = MILESTONE_SCORE, duration = MILESTONE_DURATION) {
+  isCelebratingMilestone = true;
+  const top5List = getLeaderboardList().slice(0, 5);
+
+  let top5Tts = '';
+  if (top5List.length > 0) {
+    const listDescriptions = top5List.map((p, idx) => `Top ${idx + 1}: ${p.nickname} ${p.score} điểm`).join(', ');
+    top5Tts = ` Vinh danh bảng vàng Top 5: ${listDescriptions}.`;
+  }
+
+  const ttsText = `Nhiệt liệt chúc mừng ${user.nickname} đã xuất sắc cán mốc ${score} điểm!${top5Tts} Mời mọi người nhanh tay chụp màn hình kỷ niệm!`;
+  console.log(`🌟 ĐẠI VINH DANH CÁN MỐC: ${user.nickname} đạt ${score} điểm! (${duration}s)`);
+  console.log(`📢 BẢNG VÀNG TOP 5:\n` + top5List.map((p, i) => `   Top ${i + 1}: ${p.nickname} (${p.score}đ)`).join('\n'));
+
+  io.emit('milestoneCelebration', {
+    user: {
+      uniqueId: user.uniqueId,
+      nickname: user.nickname,
+      avatar: user.avatar || 'https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/default-avatar.jpeg',
+      score: score,
+      wins: user.wins || Math.floor(score / 100),
+    },
+    top5: top5List,
+    milestone: score,
+    title: 'ĐẠI KIỆN TƯỚNG TIẾNG VIỆT',
+    duration: duration,
+    ttsText: ttsText,
+  });
+
+  if (nextRoundTimer) clearTimeout(nextRoundTimer);
+  nextRoundTimer = setTimeout(() => {
+    endMilestoneAndResetLeaderboard();
+  }, duration * 1000);
+}
 
 function getLeaderboardList() {
   return Array.from(leaderboard.values())
@@ -252,6 +306,10 @@ function pickNextWord() {
 
 function startNewRound() {
   if (timerInterval) clearInterval(timerInterval);
+  if (nextRoundTimer) {
+    clearTimeout(nextRoundTimer);
+    nextRoundTimer = null;
+  }
 
   const wordObj = pickNextWord();
   const rawChars = wordObj.word.split('');
@@ -312,7 +370,8 @@ function handleTimeout() {
     ttsText,
   });
 
-  setTimeout(() => {
+  if (nextRoundTimer) clearTimeout(nextRoundTimer);
+  nextRoundTimer = setTimeout(() => {
     startNewRound();
   }, 5000);
 }
@@ -370,7 +429,9 @@ function checkGuess(user, text) {
       avatar: user.avatar || '',
       score: 0,
       wins: 0,
+      milestones: [],
     };
+    if (!existing.milestones) existing.milestones = [];
     existing.score += 100;
     existing.wins += 1;
     leaderboard.set(key, existing);
@@ -395,9 +456,22 @@ function checkGuess(user, text) {
       ttsText,
     });
 
-    setTimeout(() => {
-      startNewRound();
-    }, 5000);
+    const reachedMilestone = existing.score >= MILESTONE_SCORE && !existing.milestones.includes(MILESTONE_SCORE);
+    if (reachedMilestone) {
+      existing.milestones.push(MILESTONE_SCORE);
+      console.log(`🎉 [MỐC ĐẶC BIỆT] ${existing.nickname} ĐẠT ${existing.score} ĐIỂM -> BẮT ĐẦU VINH DANH ${MILESTONE_DURATION} GIÂY!`);
+
+      // Sau 3.5 giây thông báo thắng vòng, kích hoạt đại vinh danh 60 giây
+      if (nextRoundTimer) clearTimeout(nextRoundTimer);
+      nextRoundTimer = setTimeout(() => {
+        triggerMilestoneCelebration(existing, MILESTONE_SCORE, MILESTONE_DURATION);
+      }, 3500);
+    } else {
+      if (nextRoundTimer) clearTimeout(nextRoundTimer);
+      nextRoundTimer = setTimeout(() => {
+        startNewRound();
+      }, 5000);
+    }
   }
 }
 
@@ -688,9 +762,61 @@ app.get('/api/state', (req, res) => {
 app.post('/admin/api', (req, res) => {
   const { action, text, user, seconds, channel } = req.body || {};
 
-  if (action === 'skip') {
+  if (action === 'skip' || action === 'skipMilestone') {
+    if (isCelebratingMilestone) {
+      endMilestoneAndResetLeaderboard();
+      return res.json({ ok: true, message: 'Đã hoàn tất vinh danh, reset bảng top điểm và chuyển sang câu tiếp theo' });
+    }
+    if (nextRoundTimer) {
+      clearTimeout(nextRoundTimer);
+      nextRoundTimer = null;
+    }
+    io.emit('milestoneEnd');
     startNewRound();
     return res.json({ ok: true, message: 'Đã chuyển sang câu tiếp theo' });
+  }
+
+  if (action === 'simulateMilestone') {
+    const demoUser = {
+      uniqueId: req.body.uniqueId || 'top1_champion',
+      nickname: req.body.nickname || 'Đại Kiện Tướng Tuấn',
+      avatar: req.body.avatar || 'https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/default-avatar.jpeg',
+      score: Number(req.body.score) || MILESTONE_SCORE,
+      wins: Number(req.body.wins) || 20,
+    };
+    // Nếu bảng điểm chưa có đủ dữ liệu, tự động tạo Top 5 mẫu sinh động để kiểm thử
+    if (leaderboard.size < 2) {
+      leaderboard.set(demoUser.uniqueId, { ...demoUser, score: demoUser.score });
+      leaderboard.set('top2_demo', { uniqueId: 'top2_demo', nickname: 'Anh Ba Miền Tây', avatar: '', score: 1800, wins: 18 });
+      leaderboard.set('top3_demo', { uniqueId: 'top3_demo', nickname: 'Bé Na Chăm Học', avatar: '', score: 1500, wins: 15 });
+      leaderboard.set('top4_demo', { uniqueId: 'top4_demo', nickname: 'Chiến Thần Đố Chữ', avatar: '', score: 1200, wins: 12 });
+      leaderboard.set('top5_demo', { uniqueId: 'top5_demo', nickname: 'Minh Tuấn Vlog', avatar: '', score: 900, wins: 9 });
+      io.emit('leaderboardReset', getLeaderboardList());
+    }
+    const dur = Number(req.body.duration) || MILESTONE_DURATION;
+    triggerMilestoneCelebration(demoUser, demoUser.score, dur);
+    return res.json({ ok: true, message: `Đã kích hoạt thử nghiệm Vinh Danh ${demoUser.score}đ cho ${demoUser.nickname} (${dur}s)` });
+  }
+
+  if (action === 'setUserScore') {
+    const targetId = req.body.uniqueId || 'viewer_test';
+    const targetNick = req.body.nickname || targetId;
+    const targetScore = Number(req.body.score) || 1900;
+    const existing = leaderboard.get(targetId) || {
+      uniqueId: targetId,
+      nickname: targetNick,
+      avatar: req.body.avatar || '',
+      score: 0,
+      wins: 0,
+      milestones: [],
+    };
+    existing.score = targetScore;
+    existing.nickname = targetNick;
+    existing.wins = Number(req.body.wins) || Math.floor(targetScore / 100);
+    existing.milestones = [];
+    leaderboard.set(targetId, existing);
+    io.emit('leaderboardReset', getLeaderboardList());
+    return res.json({ ok: true, message: `Đã đặt điểm cho ${targetNick} thành ${targetScore}đ (${existing.wins} trận thắng)` });
   }
 
   if (action === 'reveal') {

@@ -161,6 +161,17 @@
       </div>
     </div>
 
+    <!-- Khu vực thử nghiệm Vinh Danh 2.000 điểm -->
+    <div style="margin-top:12px;padding-top:10px;border-top:1px dashed rgba(255,255,255,0.15);">
+      <div style="font-size:12px;color:#ffd700;font-weight:700;margin-bottom:6px;">🏆 Vinh Danh Cán Mốc 2.000 Điểm (Khoảng 1 phút):</div>
+      <input type="text" id="milestoneTestName" placeholder="Tên người vinh danh (vd: Đại Kiện Tướng Tuấn)" style="margin-top:0;" />
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px;">
+        <button class="btn-gold" style="margin-top:0;padding:8px;font-size:12px;" onclick="simulateMilestoneTest()">🎖️ Kích Hoạt Vinh Danh 2.000đ</button>
+        <button class="btn-purple" style="margin-top:0;padding:8px;font-size:12px;" onclick="setScore1900()">🎯 Đặt Điểm 1.900đ (Chờ Đoán 1 Câu)</button>
+      </div>
+      <button class="btn-red" style="margin-top:6px;padding:8px;font-size:12px;" onclick="sendAction('skipMilestone')">⏭️ Bỏ Qua Vinh Danh (Chuyển Vòng Ngay)</button>
+    </div>
+
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:12px;">
       <button class="btn-red" style="margin-top:0;padding:8px;font-size:12px;" onclick="sendAction('resetLeaderboard')">🗑️ Reset Bảng Điểm</button>
       <button class="btn-red" style="margin-top:0;padding:8px;font-size:12px;" onclick="sendAction('resetDonorLeaderboard')">🗑️ Reset Bảng Quà</button>
@@ -284,6 +295,27 @@
     function simulateCustomGift(giftName, diamonds) {
       const user = document.getElementById('donorNameInput').value.trim() || 'Khán Giả VIP';
       sendAction('simulateGift', { user, giftName, diamonds, repeatCount: 1 });
+    }
+
+    function simulateMilestoneTest() {
+      const name = document.getElementById('milestoneTestName').value.trim() || 'Đại Kiện Tướng Tuấn';
+      sendAction('simulateMilestone', {
+        nickname: name,
+        uniqueId: name.toLowerCase().replace(/[\s\W]+/g, '_'),
+        score: 2000,
+        wins: 20,
+        duration: 60
+      });
+    }
+
+    function setScore1900() {
+      const name = document.getElementById('milestoneTestName').value.trim() || 'Người Chơi Test';
+      sendAction('setUserScore', {
+        nickname: name,
+        uniqueId: name.toLowerCase().replace(/[\s\W]+/g, '_'),
+        score: 1900,
+        wins: 19
+      });
     }
 
     // Audio Engine cho trang Admin
