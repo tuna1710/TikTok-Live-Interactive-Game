@@ -226,6 +226,86 @@ async function main() {
       await sleep(200);
     }
 
+    // 10. Kiểm thử Mục 2: Chuỗi Thắng Liên Tiếp (Combo Win Streak & Flame)
+    console.log('\n--- BƯỚC 9: KIỂM THỬ MỤC 2 - CHUỖI THẮNG LIÊN TIẾP (COMBO WIN STREAK) ---');
+    // Câu 1: Cao Thủ Bất Bại thắng lần 1
+    await fetch('http://127.0.0.1:3005/admin/api', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'skip' })
+    });
+    await sleep(600);
+    const r1 = await (await fetch('http://127.0.0.1:3005/api/state')).json();
+    console.log(`📌 Vòng 1 Streak - Đáp án: "${r1.actualWord}"`);
+    await fetch('http://127.0.0.1:3005/admin/api', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'simulateChat', user: 'Cao Thủ Bất Bại', text: r1.actualWord })
+    });
+    await sleep(1000);
+
+    // Câu 2: Cao Thủ Bất Bại thắng lần 2 (Streak x2 - x1.2)
+    await fetch('http://127.0.0.1:3005/admin/api', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'skip' })
+    });
+    await sleep(600);
+    const r2 = await (await fetch('http://127.0.0.1:3005/api/state')).json();
+    console.log(`📌 Vòng 2 Streak - Đáp án: "${r2.actualWord}"`);
+    await fetch('http://127.0.0.1:3005/admin/api', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'simulateChat', user: 'Cao Thủ Bất Bại', text: r2.actualWord })
+    });
+    await sleep(1000);
+
+    // Câu 3: Cao Thủ Bất Bại thắng lần 3 (Streak x3 - x1.5 🔥🔥)
+    await fetch('http://127.0.0.1:3005/admin/api', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'skip' })
+    });
+    await sleep(600);
+    const r3 = await (await fetch('http://127.0.0.1:3005/api/state')).json();
+    console.log(`📌 Vòng 3 Streak - Đáp án: "${r3.actualWord}"`);
+    await fetch('http://127.0.0.1:3005/admin/api', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'simulateChat', user: 'Cao Thủ Bất Bại', text: r3.actualWord })
+    });
+    await sleep(1200);
+
+    const stateStreak3 = await (await fetch('http://127.0.0.1:3005/api/state')).json();
+    const streakInfo = stateStreak3.state.currentStreak;
+    console.log(`🔥 [KẾT QUẢ COMBO STREAK x3]`);
+    console.log(`   - Người giữ chuỗi: ${streakInfo?.nickname}`);
+    console.log(`   - Số câu thắng liên tiếp: x${streakInfo?.count} (${streakInfo?.streakTitle})`);
+    console.log(`   - Hệ số điểm: x${streakInfo?.multiplier}`);
+    console.log(`   - Điểm nhận được vòng này: ${streakInfo?.totalPoints}đ (Gốc: ${streakInfo?.basePoints}đ + Thưởng: ${streakInfo?.bonusPoints}đ)`);
+
+    const shot7 = path.join(__dirname, 'public', 'test_7_combo_streak.png');
+    execSync(`timeout 10 google-chrome --headless --no-sandbox --disable-gpu --window-size=480,854 --screenshot="${shot7}" "http://127.0.0.1:3005"`, { stdio: 'ignore' });
+    console.log(`📸 Đã chụp ảnh màn hình Chuỗi Thắng Bốc Lửa: test_7_combo_streak.png (${fs.statSync(shot7).size} bytes)`);
+
+    // Kiểm thử chuỗi Thần Tốc Bất Bại x5 (x2.0 điểm ⚡)
+    await fetch('http://127.0.0.1:3005/admin/api', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'simulateStreak', nickname: 'Cao Thủ Bất Bại', count: 5 })
+    });
+    const stateStreak5 = await (await fetch('http://127.0.0.1:3005/api/state')).json();
+    console.log(`⚡ [THỬ NGHIỆM MỐC CAO NHẤT x5 BẤT BẠI] Hệ số: x${stateStreak5.state.currentStreak?.multiplier} (${stateStreak5.state.currentStreak?.totalPoints} điểm)`);
+
+    // Kiểm thử ngắt chuỗi thắng
+    await fetch('http://127.0.0.1:3005/admin/api', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'resetStreak' })
+    });
+    const stateReset = await (await fetch('http://127.0.0.1:3005/api/state')).json();
+    console.log(`❄️ [NGẮT CHUỖI THẮNG THÀNH CÔNG] Trạng thái chuỗi: ${stateReset.state.currentStreak ? 'Còn' : 'Đã về 0'}`);
+
     console.log('\n========================================================================');
     console.log('🎉 TẤT CẢ CÁC TÍNH NĂNG ĐÃ ĐƯỢC TEST THÀNH CÔNG VÀ SẴN SÀNG ĐƯA VÀO LIVE!');
     console.log('========================================================================');

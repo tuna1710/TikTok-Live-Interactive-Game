@@ -126,6 +126,9 @@ const DONOR_HONOR_DURATION = Number(process.env.DONOR_HONOR_DURATION) || 20; // 
 const recentFollowers = new Map(); // uniqueId -> timestamp (chống spam)
 let lastFollowEvent = null;
 
+// Quản lý Chuỗi Thắng Liên Tiếp (Combo Win Streak & Flame - Mục 2)
+let currentStreakWinner = null; // { uniqueId, nickname, avatar, count, multiplier, basePoints, bonusPoints, totalPoints, streakBadge, streakTitle, flameLevel }
+
 function onUserFollow(user) {
   const uniqueId = user.uniqueId || user.nickname || 'user_' + Date.now();
   const nickname = user.nickname || user.user || uniqueId;
@@ -217,12 +220,14 @@ function endMilestoneAndResetLeaderboard() {
   }
   isCelebratingMilestone = false;
   activeMilestone = null;
+  currentStreakWinner = null;
   console.log('🔄 [Vinh Danh Hoàn Tất] Reset bảng top điểm (giữ nguyên bảng tấm lòng vàng)! Bắt đầu chặng đua mới.');
 
   // Reset bảng điểm (không reset bảng tấm lòng vàng / donorLeaderboard)
   leaderboard.clear();
   io.emit('leaderboardReset', []);
   io.emit('milestoneEnd');
+  io.emit('streakUpdate', null);
   startNewRound();
 }
 
@@ -473,6 +478,15 @@ function handleTimeout() {
   gameState.roundState = 'TIMEOUT';
   if (timerInterval) clearInterval(timerInterval);
 
+  if (currentStreakWinner) {
+    console.log(`❄️ Chuỗi thắng của ${currentStreakWinner.nickname} (${currentStreakWinner.count} câu) đã bị đứt do hết giờ!`);
+    currentStreakWinner = null;
+    for (const u of leaderboard.values()) {
+      u.streak = 0;
+    }
+    io.emit('streakUpdate', null);
+  }
+
   console.log(`[Hết giờ] Đáp án là: "${gameState.currentWord?.word}"`);
   gameState.revealedMask = gameState.currentWord.word.split('').map(() => true);
 
@@ -535,6 +549,45 @@ function checkGuess(user, text) {
     // Mở toàn bộ chữ
     gameState.revealedMask = target.split('').map(() => true);
 
+    // Xử lý Chuỗi Thắng Liên Tiếp (Combo Win Streak & Flame)
+    let streakCount = 1;
+    if (currentStreakWinner && currentStreakWinner.uniqueId === user.uniqueId) {
+      streakCount = currentStreakWinner.count + 1;
+    }
+
+    let basePoints = 100;
+    let multiplier = 1.0;
+    let streakBadge = '';
+    let streakTitle = '';
+    let flameLevel = 'none';
+
+    if (streakCount >= 5) {
+      multiplier = 2.0;
+      streakBadge = '⚡';
+      streakTitle = 'BẤT BẠI';
+      flameLevel = 'godlike';
+    } else if (streakCount >= 3) {
+      multiplier = 1.5;
+      streakBadge = '🔥🔥';
+      streakTitle = 'BỐC CHÁY';
+      flameLevel = 'blazing';
+    } else if (streakCount === 2) {
+      multiplier = 1.2;
+      streakBadge = '🔥';
+      streakTitle = 'CHUỖI NÓNG';
+      flameLevel = 'hot';
+    }
+
+    const totalPoints = Math.round(basePoints * multiplier);
+    const bonusPoints = totalPoints - basePoints;
+
+    // Reset streak của những người chơi khác trên bảng xếp hạng
+    for (const [k, u] of leaderboard.entries()) {
+      if (k !== user.uniqueId) {
+        u.streak = 0;
+      }
+    }
+
     // Cộng điểm Leaderboard
     const key = user.uniqueId;
     const existing = leaderboard.get(key) || {
@@ -543,32 +596,70 @@ function checkGuess(user, text) {
       avatar: user.avatar || '',
       score: 0,
       wins: 0,
+      streak: 0,
+      maxStreak: 0,
       milestones: [],
     };
     if (!existing.milestones) existing.milestones = [];
-    existing.score += 100;
+    existing.score += totalPoints;
     existing.wins += 1;
+    existing.streak = streakCount;
+    existing.maxStreak = Math.max(existing.maxStreak || 0, streakCount);
+    if (user.nickname && user.nickname !== existing.nickname) existing.nickname = user.nickname;
+    if (user.avatar && !existing.avatar) existing.avatar = user.avatar;
     leaderboard.set(key, existing);
+
+    currentStreakWinner = {
+      uniqueId: user.uniqueId,
+      nickname: existing.nickname,
+      avatar: existing.avatar,
+      count: streakCount,
+      multiplier,
+      basePoints,
+      bonusPoints,
+      totalPoints,
+      streakBadge,
+      streakTitle,
+      flameLevel,
+    };
 
     gameState.lastWinner = {
       uniqueId: user.uniqueId,
-      nickname: user.nickname || user.uniqueId,
-      avatar: user.avatar || '',
-      points: 100,
+      nickname: existing.nickname,
+      avatar: existing.avatar,
+      points: totalPoints,
+      basePoints,
+      bonusPoints,
+      multiplier,
+      streakCount,
+      streakBadge,
+      streakTitle,
+      flameLevel,
       word: target,
     };
 
-    console.log(`🏆 NGƯỜI CHIẾN THẮNG: ${existing.nickname} (+100 điểm, Tổng: ${existing.score}đ)`);
+    console.log(`🏆 NGƯỜI CHIẾN THẮNG: ${existing.nickname} (+${totalPoints}đ${streakCount >= 2 ? ` [Combo x${streakCount} ${streakBadge} ${streakTitle}]` : ''}, Tổng: ${existing.score}đ)`);
 
-    const winnerName = user.nickname || user.uniqueId;
-    const ttsText = `Chúc mừng ${winnerName} đã xuất sắc đoán đúng đáp án: ${target}!`;
+    const winnerName = existing.nickname;
+    let ttsText = '';
+    if (streakCount >= 5) {
+      ttsText = `Thần tốc bất bại! ${winnerName} đã lập kỷ lục chuỗi ${streakCount} câu thắng liên tiếp, nhân đôi điểm số lên ${totalPoints} điểm!`;
+    } else if (streakCount >= 3) {
+      ttsText = `Quá bốc lửa! ${winnerName} đạt chuỗi ${streakCount} câu thắng liên tiếp, nhận ${totalPoints} điểm!`;
+    } else if (streakCount === 2) {
+      ttsText = `Tuyệt vời! ${winnerName} mở chuỗi 2 câu thắng liên tiếp, nhận thêm điểm thưởng lên ${totalPoints} điểm!`;
+    } else {
+      ttsText = `Chúc mừng ${winnerName} đã xuất sắc đoán đúng đáp án: ${target}!`;
+    }
 
     io.emit('roundWon', {
       winner: gameState.lastWinner,
       word: target,
       leaderboard: getLeaderboardList(),
       ttsText,
+      streak: currentStreakWinner,
     });
+    io.emit('streakUpdate', currentStreakWinner);
 
     const reachedMilestone = existing.score >= MILESTONE_SCORE && !existing.milestones.includes(MILESTONE_SCORE);
     if (reachedMilestone) {
@@ -732,6 +823,7 @@ function getClientGameState() {
     giftHintConfig: { ...giftHintConfig },
     remainingHiddenLetters: hiddenCount,
     canRevealMore: hiddenCount > giftHintConfig.keepLastLettersSecret,
+    currentStreak: currentStreakWinner,
   };
 }
 
@@ -1145,8 +1237,88 @@ app.post('/admin/api', (req, res) => {
     return res.json({ ok: true, message: 'Đã hoàn tất / bỏ qua vinh danh nhà hảo tâm' });
   }
 
+  if (action === 'simulateStreak') {
+    const targetNick = req.body.nickname || user || 'Cao Thủ Bất Bại';
+    const targetId = req.body.uniqueId || targetNick.toLowerCase().replace(/[\s\W]+/g, '_');
+    const streakCount = Math.max(1, Number(req.body.count || req.body.streakCount) || 2);
+
+    let basePoints = 100;
+    let multiplier = 1.0;
+    let streakBadge = '';
+    let streakTitle = '';
+    let flameLevel = 'none';
+
+    if (streakCount >= 5) {
+      multiplier = 2.0;
+      streakBadge = '⚡';
+      streakTitle = 'BẤT BẠI';
+      flameLevel = 'godlike';
+    } else if (streakCount >= 3) {
+      multiplier = 1.5;
+      streakBadge = '🔥🔥';
+      streakTitle = 'BỐC CHÁY';
+      flameLevel = 'blazing';
+    } else if (streakCount === 2) {
+      multiplier = 1.2;
+      streakBadge = '🔥';
+      streakTitle = 'CHUỖI NÓNG';
+      flameLevel = 'hot';
+    }
+
+    const totalPoints = Math.round(basePoints * multiplier);
+    const bonusPoints = totalPoints - basePoints;
+
+    for (const [k, u] of leaderboard.entries()) {
+      if (k !== targetId) u.streak = 0;
+    }
+
+    const existing = leaderboard.get(targetId) || {
+      uniqueId: targetId,
+      nickname: targetNick,
+      avatar: req.body.avatar || 'https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/default-avatar.jpeg',
+      score: 0,
+      wins: 0,
+      streak: 0,
+      maxStreak: 0,
+      milestones: [],
+    };
+    existing.streak = streakCount;
+    existing.maxStreak = Math.max(existing.maxStreak || 0, streakCount);
+    leaderboard.set(targetId, existing);
+
+    currentStreakWinner = {
+      uniqueId: targetId,
+      nickname: targetNick,
+      avatar: existing.avatar,
+      count: streakCount,
+      multiplier,
+      basePoints,
+      bonusPoints,
+      totalPoints,
+      streakBadge,
+      streakTitle,
+      flameLevel,
+    };
+
+    io.emit('streakUpdate', currentStreakWinner);
+    io.emit('leaderboardReset', getLeaderboardList());
+    return res.json({ ok: true, streak: currentStreakWinner, message: `Đã thiết lập chuỗi thắng cho ${targetNick}: x${streakCount} (${streakTitle})` });
+  }
+
+  if (action === 'resetStreak') {
+    currentStreakWinner = null;
+    for (const u of leaderboard.values()) {
+      u.streak = 0;
+    }
+    io.emit('streakUpdate', null);
+    io.emit('leaderboardReset', getLeaderboardList());
+    return res.json({ ok: true, message: 'Đã ngắt / reset chuỗi thắng liên tiếp về 0' });
+  }
+
   if (action === 'resetLeaderboard') {
     leaderboard.clear();
+    currentStreakWinner = null;
+    io.emit('streakUpdate', null);
     io.emit('leaderboardReset', []);
     return res.json({ ok: true, message: 'Đã làm mới bảng xếp hạng điểm' });
   }

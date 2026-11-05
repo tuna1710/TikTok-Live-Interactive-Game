@@ -1048,6 +1048,133 @@
       font-weight: 700;
     }
 
+    /* Chuỗi Thắng Liên Tiếp (Combo Win Streak & Flame - Mục 2) */
+    .winner-box.streak-hot {
+      border-color: #ff9800;
+      box-shadow: 0 0 45px rgba(255, 152, 0, 0.8), inset 0 0 20px rgba(255, 152, 0, 0.4);
+    }
+    .winner-box.streak-blazing {
+      border-color: #ef4444;
+      box-shadow: 0 0 55px rgba(239, 68, 68, 0.9), 0 0 25px rgba(245, 158, 11, 0.8), inset 0 0 25px rgba(239, 68, 68, 0.5);
+      animation: flameBoxPulse 1s infinite alternate;
+    }
+    .winner-box.streak-godlike {
+      border-color: #ffd700;
+      box-shadow: 0 0 65px rgba(255, 215, 0, 0.95), 0 0 35px rgba(236, 72, 153, 0.85), inset 0 0 30px rgba(255, 215, 0, 0.6);
+      animation: godlikeBoxPulse 0.8s infinite alternate;
+    }
+    @keyframes flameBoxPulse {
+      0% { transform: scale(1); box-shadow: 0 0 40px rgba(239, 68, 68, 0.8); }
+      100% { transform: scale(1.02); box-shadow: 0 0 65px rgba(245, 158, 11, 1); }
+    }
+    @keyframes godlikeBoxPulse {
+      0% { transform: scale(1); box-shadow: 0 0 50px rgba(255, 215, 0, 0.9); }
+      100% { transform: scale(1.03); box-shadow: 0 0 80px rgba(236, 72, 153, 1), 0 0 40px rgba(255, 215, 0, 1); }
+    }
+
+    .winner-streak-card {
+      margin-top: 10px;
+      padding: 7px 14px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(239, 68, 68, 0.4), rgba(245, 158, 11, 0.4));
+      border: 1.5px solid #f59e0b;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      box-shadow: 0 0 20px rgba(245, 158, 11, 0.6);
+      animation: zoomIn 0.3s ease-out;
+    }
+    .winner-streak-card.streak-godlike {
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.45), rgba(236, 72, 153, 0.45));
+      border-color: #ffd700;
+      box-shadow: 0 0 30px rgba(255, 215, 0, 0.85);
+    }
+    .ws-header {
+      font-size: 13px;
+      font-weight: 900;
+      color: #ffd700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      text-shadow: 0 0 8px rgba(255, 215, 0, 0.8);
+    }
+    .ws-mult-badge {
+      background: #ef4444;
+      color: #fff;
+      font-size: 10px;
+      font-weight: 900;
+      padding: 2px 7px;
+      border-radius: 10px;
+      border: 1px solid #ffd700;
+      animation: pulseGlow 0.8s infinite alternate;
+    }
+    .ws-detail {
+      font-size: 10px;
+      color: #fef08a;
+      font-weight: 700;
+    }
+
+    /* Streak Tag in Leaderboard */
+    .streak-tag {
+      font-size: 9px;
+      font-weight: 900;
+      padding: 1px 5px;
+      border-radius: 8px;
+      margin-left: 4px;
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      white-space: nowrap;
+      vertical-align: middle;
+    }
+    .streak-tag.streak-hot {
+      background: linear-gradient(135deg, #f97316, #eab308);
+      color: #000;
+      box-shadow: 0 0 6px rgba(249, 115, 22, 0.7);
+    }
+    .streak-tag.streak-blazing {
+      background: linear-gradient(135deg, #ef4444, #f97316);
+      color: #fff;
+      box-shadow: 0 0 8px rgba(239, 68, 68, 0.8);
+      animation: heartBeat 0.9s infinite alternate;
+    }
+    .streak-tag.streak-godlike {
+      background: linear-gradient(135deg, #ffd700, #ec4899);
+      color: #000;
+      box-shadow: 0 0 12px rgba(255, 215, 0, 0.9);
+      animation: pulseGlow 0.7s infinite alternate;
+      font-weight: 900;
+    }
+
+    /* Thanh Ticker thông báo Chuỗi Thắng Hiện Tại */
+    .streak-ticker-bar {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      background: linear-gradient(90deg, rgba(239, 68, 68, 0.9), rgba(245, 158, 11, 0.9));
+      border: 1.5px solid #ffd700;
+      border-radius: 18px;
+      padding: 3px 12px;
+      font-size: 10.5px;
+      font-weight: 900;
+      color: #fff;
+      margin: 4px auto 2px;
+      width: fit-content;
+      max-width: 90%;
+      box-shadow: 0 0 15px rgba(245, 158, 11, 0.7);
+      animation: pulseBorder 1.2s infinite alternate;
+      z-index: 10;
+    }
+    .streak-ticker-bar.show { display: inline-flex; }
+    .streak-ticker-bar.streak-godlike {
+      background: linear-gradient(90deg, rgba(236, 72, 153, 0.95), rgba(255, 215, 0, 0.95));
+      box-shadow: 0 0 22px rgba(255, 215, 0, 0.9);
+    }
+
     /* Siêu Vinh Danh 2.000 Điểm (Hall of Fame Screenshot Certificate) */
     .milestone-overlay {
       position: absolute;
@@ -1423,6 +1550,12 @@
       🔊 Nhấp vào màn hình để BẬT ÂM THANH GAME
     </div>
 
+    <!-- Banner Chuỗi Thắng Liên Tiếp (Combo Win Streak) -->
+    <div class="streak-ticker-bar" id="streakTickerBar">
+      <span id="stbIcon">🔥</span>
+      <span id="stbText">Chuỗi thắng liên tiếp</span>
+    </div>
+
     <!-- Thông tin Vòng & Chủ Đề -->
     <div class="info-bar">
       <div class="category-tag">
@@ -1509,12 +1642,20 @@
 
     <!-- Modal vinh danh người thắng -->
     <div class="winner-overlay" id="winnerOverlay">
-      <div class="winner-box">
+      <div class="winner-box" id="winnerBox">
         <div class="winner-crown">👑</div>
-        <div class="winner-title">XUẤT SẮC ĐOÁN ĐÚNG!</div>
+        <div class="winner-title" id="winnerTitle">XUẤT SẮC ĐOÁN ĐÚNG!</div>
         <div class="winner-name" id="winnerName">Tên Khán Giả</div>
         <div class="winner-answer" id="winnerAnswer">ĐÁP ÁN</div>
-        <div class="winner-pts">+100 ĐIỂM CHIẾN THẮNG 🎯</div>
+        <div class="winner-pts" id="winnerPts">+100 ĐIỂM CHIẾN THẮNG 🎯</div>
+        <div class="winner-streak-card" id="winnerStreakCard" style="display:none;">
+          <div class="ws-header">
+            <span id="wsBadge">🔥</span>
+            <span id="wsTitle">COMBO THẮNG x2</span>
+            <span class="ws-mult-badge" id="wsMult">x1.2</span>
+          </div>
+          <div class="ws-detail" id="wsDetail">Gốc 100đ + Thưởng chuỗi 20đ</div>
+        </div>
       </div>
     </div>
 
@@ -1796,6 +1937,31 @@
       setTimeout(() => playTone(783.99, 'triangle', 0.16, 0.36), 130); // G5
       setTimeout(() => playTone(1046.50, 'sine', 0.35, 0.4), 195); // C6
       setTimeout(() => playTone(1318.51, 'sine', 0.4, 0.45), 260); // E6
+    }
+
+    // 8. Tiếng Combo Win Streak bốc lửa (Power-Up Chime & Flame Arpeggio - Mục 2)
+    function soundComboStreak(streakCount = 2) {
+      if (!soundEnabled) return;
+      if (streakCount >= 5) {
+        playTone(523.25, 'sawtooth', 0.15, 0.25); // C5
+        setTimeout(() => playTone(659.25, 'triangle', 0.18, 0.28), 55); // E5
+        setTimeout(() => playTone(783.99, 'triangle', 0.2, 0.3), 110); // G5
+        setTimeout(() => playTone(987.77, 'sawtooth', 0.25, 0.35), 165); // B5
+        setTimeout(() => playTone(1046.50, 'sine', 0.35, 0.4), 220); // C6
+        setTimeout(() => playTone(1318.51, 'sine', 0.45, 0.5), 280); // E6
+        setTimeout(() => playTone(1567.98, 'sine', 0.55, 0.6), 350); // G6
+      } else if (streakCount >= 3) {
+        playTone(523.25, 'triangle', 0.15, 0.25); // C5
+        setTimeout(() => playTone(659.25, 'triangle', 0.18, 0.28), 65); // E5
+        setTimeout(() => playTone(783.99, 'triangle', 0.22, 0.32), 130); // G5
+        setTimeout(() => playTone(1046.50, 'sine', 0.35, 0.4), 195); // C6
+        setTimeout(() => playTone(1318.51, 'sine', 0.45, 0.5), 270); // E6
+      } else {
+        playTone(523.25, 'triangle', 0.15, 0.25); // C5
+        setTimeout(() => playTone(659.25, 'triangle', 0.2, 0.3), 75); // E5
+        setTimeout(() => playTone(783.99, 'triangle', 0.25, 0.35), 150); // G5
+        setTimeout(() => playTone(1046.50, 'sine', 0.35, 0.45), 225); // C6
+      }
     }
 
     // ---------------------------------------------------------
@@ -2186,19 +2352,45 @@
       }
     }
 
+    function updateStreakTicker(streak) {
+      const banner = document.getElementById('streakTickerBar');
+      const icon = document.getElementById('stbIcon');
+      const text = document.getElementById('stbText');
+      if (!banner || !icon || !text) return;
+
+      if (!streak || streak.count < 2) {
+        banner.classList.remove('show', 'streak-godlike', 'streak-blazing', 'streak-hot');
+        return;
+      }
+
+      icon.textContent = streak.streakBadge || '🔥';
+      text.textContent = `CHUỖI BẤT BẠI: ${streak.nickname} thắng x${streak.count} liên tiếp! (x${streak.multiplier} điểm)`;
+      banner.className = `streak-ticker-bar show streak-${streak.flameLevel || 'hot'}`;
+    }
+
     function updateLeaderboard(list) {
       if (!list || list.length === 0) {
         rankList.innerHTML = '<div style="font-size:10px;color:#888;text-align:center;margin-top:15px;">Chưa có điểm</div>';
         return;
       }
       const medals = ['🥇', '🥈', '🥉', '4', '5', '6', '7', '8', '9', '10'];
-      rankList.innerHTML = list.slice(0, 7).map((u, idx) => `
-        <div class="rank-item">
-          <div class="rank-medal">${medals[idx]}</div>
-          <div class="rank-name">${u.nickname || u.uniqueId}</div>
-          <div class="rank-score">${u.score}đ</div>
-        </div>
-      `).join('');
+      rankList.innerHTML = list.slice(0, 7).map((u, idx) => {
+        let streakBadgeHtml = '';
+        if (u.streak >= 5) {
+          streakBadgeHtml = `<span class="streak-tag streak-godlike">⚡x${u.streak}</span>`;
+        } else if (u.streak >= 3) {
+          streakBadgeHtml = `<span class="streak-tag streak-blazing">🔥🔥x${u.streak}</span>`;
+        } else if (u.streak >= 2) {
+          streakBadgeHtml = `<span class="streak-tag streak-hot">🔥x${u.streak}</span>`;
+        }
+        return `
+          <div class="rank-item">
+            <div class="rank-medal">${medals[idx]}</div>
+            <div class="rank-name">${u.nickname || u.uniqueId} ${streakBadgeHtml}</div>
+            <div class="rank-score">${(u.score || 0).toLocaleString('vi-VN')}đ</div>
+          </div>
+        `;
+      }).join('');
     }
 
     function addGuess(guess) {
@@ -2306,6 +2498,7 @@
       }
 
       updateGiftHintBadge(state.canRevealMore, state.remainingHiddenLetters);
+      updateStreakTicker(state.currentStreak);
     });
 
     // Cập nhật huy hiệu gợi ý quà tặng
@@ -2778,12 +2971,65 @@
     });
 
     socket.on('roundWon', data => {
-      soundWin();
-      if (window.confetti) {
-        confetti({ particleCount: 80, spread: 70, origin: { y: 0.6 } });
-      }
+      const streak = data.streak || data.winner?.streak;
+      const winnerBox = document.getElementById('winnerBox');
+      const winnerStreakCard = document.getElementById('winnerStreakCard');
+      const winnerPts = document.getElementById('winnerPts');
+      const wsBadge = document.getElementById('wsBadge');
+      const wsTitle = document.getElementById('wsTitle');
+      const wsMult = document.getElementById('wsMult');
+      const wsDetail = document.getElementById('wsDetail');
+
       winnerName.textContent = data.winner.nickname || data.winner.uniqueId;
       winnerAnswer.textContent = data.word;
+
+      if (winnerBox) {
+        winnerBox.classList.remove('streak-hot', 'streak-blazing', 'streak-godlike');
+      }
+
+      if (streak && streak.count >= 2) {
+        soundComboStreak(streak.count);
+        if (winnerBox) {
+          winnerBox.classList.add(`streak-${streak.flameLevel || 'hot'}`);
+        }
+        if (winnerPts) {
+          winnerPts.textContent = `+${streak.totalPoints} ĐIỂM CHIẾN THẮNG 🎯 (Thưởng +${streak.bonusPoints}đ 🔥)`;
+        }
+        if (winnerStreakCard) {
+          winnerStreakCard.style.display = 'inline-flex';
+          winnerStreakCard.className = `winner-streak-card streak-${streak.flameLevel || 'hot'}`;
+          if (wsBadge) wsBadge.textContent = streak.streakBadge || '🔥';
+          if (wsTitle) wsTitle.textContent = `COMBO THẮNG x${streak.count} ${streak.streakTitle || ''}`;
+          if (wsMult) wsMult.textContent = `x${streak.multiplier}`;
+          if (wsDetail) wsDetail.textContent = `Gốc ${streak.basePoints || 100}đ + Thưởng chuỗi ${streak.bonusPoints || 0}đ`;
+        }
+
+        if (window.confetti) {
+          const colors = streak.count >= 5
+            ? ['#ffd700', '#ec4899', '#3b82f6', '#ff0000', '#ffffff']
+            : ['#ff4500', '#ffd700', '#ff0000', '#f97316', '#ffffff'];
+          confetti({
+            particleCount: streak.count >= 5 ? 120 : 85,
+            spread: 80,
+            origin: { y: 0.55 },
+            colors
+          });
+        }
+        updateStreakTicker(streak);
+      } else {
+        soundWin();
+        if (winnerPts) {
+          winnerPts.textContent = `+${data.winner.points || 100} ĐIỂM CHIẾN THẮNG 🎯`;
+        }
+        if (winnerStreakCard) {
+          winnerStreakCard.style.display = 'none';
+        }
+        if (window.confetti) {
+          confetti({ particleCount: 80, spread: 70, origin: { y: 0.6 } });
+        }
+        updateStreakTicker(null);
+      }
+
       winnerOverlay.classList.add('show');
       updateLeaderboard(data.leaderboard);
 
@@ -2792,8 +3038,13 @@
       }
     });
 
+    socket.on('streakUpdate', streak => {
+      updateStreakTicker(streak);
+    });
+
     socket.on('roundTimeout', data => {
       soundTimeout();
+      updateStreakTicker(null);
       showToast(`⌛ Hết giờ! Đáp án là: ${data.word}`);
       // Lật toàn bộ chữ
       const slots = targetSlots.querySelectorAll('.slot-tile');

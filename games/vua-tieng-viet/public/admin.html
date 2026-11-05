@@ -123,6 +123,10 @@
       <span class="stat-label">Gợi ý mở chữ cái:</span>
       <span class="stat-val gold" id="hintCanRevealStat">-</span>
     </div>
+    <div class="stat-row">
+      <span class="stat-label">Chuỗi thắng liên tiếp:</span>
+      <span class="stat-val gold" id="currentStreakStat">Chưa có chuỗi</span>
+    </div>
   </div>
 
   <!-- Nút Thao Tác Nhanh -->
@@ -200,6 +204,20 @@
         <button class="btn-purple" style="margin-top:0;padding:8px;font-size:12px;" onclick="setScore1900()">🎯 Đặt Điểm 1.900đ (Chờ Đoán 1 Câu)</button>
       </div>
       <button class="btn-red" style="margin-top:6px;padding:8px;font-size:12px;" onclick="sendAction('skipMilestone')">⏭️ Bỏ Qua Vinh Danh (Chuyển Vòng Ngay)</button>
+    </div>
+
+    <!-- Khu vực thử nghiệm Chuỗi Thắng Liên Tiếp (Mục 2) -->
+    <div style="margin-top:12px;padding-top:10px;border-top:1px dashed rgba(255,255,255,0.15);">
+      <div style="font-size:12px;color:#f97316;font-weight:700;margin-bottom:6px;">🔥 Thử Nghiệm Chuỗi Thắng Liên Tiếp (Combo Win Streak):</div>
+      <input type="text" id="streakUserName" placeholder="Tên người chơi (vd: Cao Thủ Bất Bại)" value="Cao Thủ Bất Bại" style="margin-top:0;" />
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px;">
+        <button class="btn-gold" style="margin-top:0;padding:8px;font-size:12px;" onclick="simulateStreakTest(2)">🔥 Chuỗi x2 (+120đ, x1.2)</button>
+        <button class="btn-pink" style="margin-top:0;padding:8px;font-size:12px;" onclick="simulateStreakTest(3)">🔥🔥 Chuỗi x3 (+150đ, x1.5)</button>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px;">
+        <button class="btn-purple" style="margin-top:0;padding:8px;font-size:12px;" onclick="simulateStreakTest(5)">⚡ Chuỗi x5 (+200đ, x2.0)</button>
+        <button class="btn-red" style="margin-top:0;padding:8px;font-size:12px;" onclick="sendAction('resetStreak')">❄️ Ngắt Chuỗi Thắng</button>
+      </div>
     </div>
 
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:12px;">
@@ -299,8 +317,24 @@
               btnTts.textContent = json.state.ttsEnabled ? '🔇 Tắt Giọng Đọc Game' : '🔊 Bật Giọng Đọc Game';
             }
           }
+          const streakStat = document.getElementById('currentStreakStat');
+          if (streakStat) {
+            if (json.state.currentStreak && json.state.currentStreak.count >= 2) {
+              const s = json.state.currentStreak;
+              streakStat.textContent = `${s.streakBadge} ${s.nickname} (Chuỗi x${s.count} - x${s.multiplier})`;
+              streakStat.style.color = '#ff9800';
+            } else {
+              streakStat.textContent = 'Chưa có chuỗi';
+              streakStat.style.color = '#94a3b8';
+            }
+          }
         }
       } catch (e) {}
+    }
+
+    function simulateStreakTest(count = 2) {
+      const user = document.getElementById('streakUserName').value.trim() || 'Cao Thủ Bất Bại';
+      sendAction('simulateStreak', { nickname: user, count });
     }
 
     function simulateGiftHintTest(giftName = 'Hoa Hồng', diamonds = 1) {

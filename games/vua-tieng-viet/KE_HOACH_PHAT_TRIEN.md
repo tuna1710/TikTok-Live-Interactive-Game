@@ -150,7 +150,7 @@ Tài liệu này lưu trữ danh sách 6 tính năng nâng cấp tương tác ph
 GIAI ĐOẠN 1 (Tăng Tương Tác Cốt Lõi & Doanh Thu Quà):
   ├── [x] Hoàn thiện tính năng Quà Tặng & Follower Thank You
   ├── [x] Bước 1: Mục 1 - Tặng quà mở chữ cái gợi ý (Interactive Gift Hint) - ĐÃ HOÀN THÀNH
-  └── [ ] Bước 2: Mục 2 - Chuỗi thắng liên tiếp (Combo Win Streak & Flame)
+  └── [x] Bước 2: Mục 2 - Chuỗi thắng liên tiếp (Combo Win Streak & Flame) - ĐÃ HOÀN THÀNH
 
 GIAI ĐOẠN 2 (Tạo Cao Trào & Quản Trị Nội Dung):
   ├── [ ] Bước 3: Mục 3 - Câu Đố Trùm & Giờ Vàng (Boss Round x2)
