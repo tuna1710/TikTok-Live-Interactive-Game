@@ -12,7 +12,7 @@ const { LiveChat } = require('youtube-chat');
 const PORT = Number(process.env.PORT) || 3002;
 let YOUTUBE_LIVE_ID = process.env.YOUTUBE_LIVE_ID || 'TuH8JlNLlxI';
 let liveChat = null;
-const ROUND_TIME_DEFAULT = 60;
+const ROUND_TIME_DEFAULT = Number(process.env.ROUND_TIME) || 300; // 5 phút (300 giây)
 
 const TTS_CACHE_DIR = path.join(__dirname, 'data', 'tts-cache');
 if (!fs.existsSync(TTS_CACHE_DIR)) {
