@@ -9478,5 +9478,305 @@
     "word": "ĐẸP NGHIÊNG NƯỚC NGHIÊNG THÀNH",
     "category": "Thành Ngữ",
     "hint": "Vẻ đẹp tuyệt trần say đắm lòng người làm chấn động cả giang sơn"
+  },
+  {
+    "id": 1581,
+    "word": "KHÚC KHUỶU QUANH CO",
+    "category": "Từ Láy",
+    "hint": "Mô tả đường đi gập ghềnh, ngoằn ngoèo khó đi nơi đồi núi hiểm trở"
+  },
+  {
+    "id": 1582,
+    "word": "BÂNG KHUÂNG XAO XUYẾN",
+    "category": "Từ Láy",
+    "hint": "Cảm giác xao động, man mác mơ hồ khó tả ngập tràn trong lòng"
+  },
+  {
+    "id": 1583,
+    "word": "LÚNG LIẾNG ĐƯA DUYÊN",
+    "category": "Từ Láy",
+    "hint": "Ánh mắt liếc nhìn duyên dáng, tình tứ e thẹn của người thiếu nữ"
+  },
+  {
+    "id": 1584,
+    "word": "RÓC RÁCH SUỐI REO",
+    "category": "Từ Láy",
+    "hint": "Âm thanh nước suối chảy len lỏi qua khe đá rêu phong nghe êm tai"
+  },
+  {
+    "id": 1585,
+    "word": "LẬP LÒE ĐOM ĐÓM",
+    "category": "Từ Láy",
+    "hint": "Ánh sáng đốm lửa le lói lúc ẩn lúc hiện trong màn đêm tĩnh mịch"
+  },
+  {
+    "id": 1586,
+    "word": "CHẬP CHÙNG ĐỒI NÚI",
+    "category": "Từ Láy",
+    "hint": "Cảnh tượng những dãy núi non nối tiếp nhau trập trùng xa tít tắp chân trời"
+  },
+  {
+    "id": 1587,
+    "word": "THOANG THOẢNG HƯƠNG BAY",
+    "category": "Từ Láy",
+    "hint": "Mùi hương hoa dịu nhẹ lan tỏa êm đềm trong không gian thoang thoảng"
+  },
+  {
+    "id": 1588,
+    "word": "LẬP LÒNG LẬP LÈO",
+    "category": "Từ Láy",
+    "hint": "Chỉ thái độ không dứt khoát, mập mờ thiếu minh bạch trong lời nói"
+  },
+  {
+    "id": 1589,
+    "word": "RON RÓN BƯỚC CHÂN",
+    "category": "Từ Láy",
+    "hint": "Hành động đi nhẹ nhàng rón rén từng bước để không gây ra tiếng động"
+  },
+  {
+    "id": 1590,
+    "word": "HUN HÚT ĐÊM SÂU",
+    "category": "Từ Láy",
+    "hint": "Không gian đêm tối sâu thẳm, vắng lặng kéo dài bất tận"
+  },
+  {
+    "id": 1591,
+    "word": "RẦM RÌ SÓNG VỖ",
+    "category": "Từ Láy",
+    "hint": "Âm thanh tiếng sóng vỗ nhẹ đều đặn vào bờ cát biển lúc hoàng hôn"
+  },
+  {
+    "id": 1592,
+    "word": "SỪNG SỮNG NON CAO",
+    "category": "Từ Láy",
+    "hint": "Dáng vẻ to lớn, uy nghi sừng sững giữa đất trời không chuyển lay"
+  },
+  {
+    "id": 1593,
+    "word": "HAY LAM HAY LÀM",
+    "category": "Từ Láy",
+    "hint": "Phẩm chất chăm chỉ, siêng năng làm lụng tháo vát của người phụ nữ"
+  },
+  {
+    "id": 1594,
+    "word": "MÊNH MÔNG BIỂN TRỜI",
+    "category": "Từ Láy",
+    "hint": "Cảnh sắc bao la rộng lớn vô tận của đất trời và biển cả mênh mông"
+  },
+  {
+    "id": 1595,
+    "word": "LẮNG ĐỌNG PHÙ SA",
+    "category": "Thiên Nhiên",
+    "hint": "Quá trình dòng sông bồi đắp chất dinh dưỡng màu mỡ cho đồng ruộng xanh tươi"
+  },
+  {
+    "id": 1596,
+    "word": "CHỚ THẤY SÓNG CẢ MÀ RÃ TAY CHÈO",
+    "category": "Tục Ngữ",
+    "hint": "Khuyên người đời không nên nản lòng lùi bước trước khó khăn thử thách lớn lao"
+  },
+  {
+    "id": 1597,
+    "word": "TRÂU BUỘC GHÉT TRÂU ĂN",
+    "category": "Tục Ngữ",
+    "hint": "Thói đố kỵ, ghen ghét khi thấy người khác may mắn sung sướng hơn mình"
+  },
+  {
+    "id": 1598,
+    "word": "THÙNG RỖNG KÊU TO",
+    "category": "Thành Ngữ",
+    "hint": "Chỉ những kẻ ít hiểu biết, tài năng kém nhưng lại hay huênh hoang khoe khoang"
+  },
+  {
+    "id": 1599,
+    "word": "MÈO MÃ GÀ ĐỒNG",
+    "category": "Thành Ngữ",
+    "hint": "Chỉ những kẻ sống buông tuồng, lăng nhăng ngoài luồng thiếu đứng đắn"
+  },
+  {
+    "id": 1600,
+    "word": "ĐẦU XANH TUỔI TRẺ",
+    "category": "Thành Ngữ",
+    "hint": "Hình ảnh ẩn dụ chỉ lứa tuổi thanh xuân căng tràn nhiệt huyết và hoài bão"
+  },
+  {
+    "id": 1601,
+    "word": "RỪNG VÀNG BIỂN BẠC",
+    "category": "Thành Ngữ",
+    "hint": "Ca ngợi nguồn tài nguyên thiên nhiên trù phú giàu đẹp của quê hương đất nước"
+  },
+  {
+    "id": 1602,
+    "word": "KÍNH LÃO ĐẮC THỌ",
+    "category": "Thành Ngữ",
+    "hint": "Kính trọng người lớn tuổi thì bản thân sẽ được hưởng phúc đức và trường thọ"
+  },
+  {
+    "id": 1603,
+    "word": "ĂN COI NỒI NGỒI COI HƯỚNG",
+    "category": "Tục Ngữ",
+    "hint": "Lời răn dạy về phép lịch sự, ý tứ và chuẩn mực trong cách cư xử hàng ngày"
+  },
+  {
+    "id": 1604,
+    "word": "CHUỒN CHUỒN BAY THẤP THÌ MƯA",
+    "category": "Tục Ngữ",
+    "hint": "Kinh nghiệm dân gian đúc kết dự báo thời tiết qua tập tính bay của côn trùng"
+  },
+  {
+    "id": 1605,
+    "word": "CHỚ ĐỂ NƯỚC ĐẾN CHÂN MỚI NHẢY",
+    "category": "Tục Ngữ",
+    "hint": "Khuyên không nên chần chừ lười biếng để công việc gấp gáp mới vội vàng cuống cuồng làm"
+  },
+  {
+    "id": 1606,
+    "word": "BỊT MẮT BẮT DÊ",
+    "category": "Trò Chơi Dân Gian",
+    "hint": "Trò chơi dân gian một người che mắt tìm quờ quạng bắt người xung quanh"
+  },
+  {
+    "id": 1607,
+    "word": "Ô ĂN QUAN DÂN GIAN",
+    "category": "Trò Chơi Dân Gian",
+    "hint": "Trò chơi trí tuệ truyền thống tính toán rải sỏi qua từng ô vuông bàn cờ đất"
+  },
+  {
+    "id": 1608,
+    "word": "TẬP TẦM VÔNG",
+    "category": "Trò Chơi Dân Gian",
+    "hint": "Bài đồng dao trò chơi quen thuộc của trẻ em đố tay nào có tay nào không"
+  },
+  {
+    "id": 1609,
+    "word": "THẢ ĐÈN TRỜI LỄ HỘI",
+    "category": "Lễ Hội",
+    "hint": "Nghi thức thả chiếc đèn lồng bay lên trời gửi gắm ước nguyện bình an may mắn"
+  },
+  {
+    "id": 1610,
+    "word": "HÁT QUAN HỌ TRÊN THUYỀN",
+    "category": "Văn Hóa",
+    "hint": "Nét sinh hoạt văn hóa ca hát đối đáp dân ca ngọt ngào của người quan họ Bắc Ninh"
+  },
+  {
+    "id": 1611,
+    "word": "ĐUA THUYỀN RỒNG SÔNG HƯƠNG",
+    "category": "Lễ Hội",
+    "hint": "Lễ hội thể thao sông nước rộn rã cờ hoa vào các dịp lễ tết ở cố đô"
+  },
+  {
+    "id": 1612,
+    "word": "MÚA LÂN SƯ RỒNG ĐÓN TẾT",
+    "category": "Lễ Hội",
+    "hint": "Tiết mục biểu diễn nghệ thuật rộn ràng tiếng trống mang lại may mắn thịnh vượng ngày xuân"
+  },
+  {
+    "id": 1613,
+    "word": "CẮM TRẠI BÊN BỜ SUỐI",
+    "category": "Hoạt Động",
+    "hint": "Hoạt động dã ngoại dựng lều hòa mình vào thiên nhiên trong lành bên dòng suối mát"
+  },
+  {
+    "id": 1614,
+    "word": "CƠM HẾN SÔNG HƯƠNG",
+    "category": "Ẩm Thực",
+    "hint": "Món ăn dân dã cay nồng đậm đà vị mắm ruốc của xứ Huế mộng mơ"
+  },
+  {
+    "id": 1615,
+    "word": "CAO LẦU HỘI AN",
+    "category": "Ẩm Thực",
+    "hint": "Món mì trứ danh phố Hội với sợi mì vàng giòn, xá xíu đậm vị và da heo chiên"
+  },
+  {
+    "id": 1616,
+    "word": "BÁNH CANH GHẸ MUỐI ỚT",
+    "category": "Ẩm Thực",
+    "hint": "Món sợi bánh canh dẻo dai hòa quyện thịt ghẹ tươi ngon chấm muối ớt xanh cay nồng"
+  },
+  {
+    "id": 1617,
+    "word": "BÚN ĐẬU MẮM TÔM PHỐ CỔ",
+    "category": "Ẩm Thực",
+    "hint": "Mẹt bún lá ăn kèm chả cốm, nem rán và bát mắm tôm đánh sủi bọt nức tiếng Hà Thành"
+  },
+  {
+    "id": 1618,
+    "word": "BÁNH ƯỚT LÒNG GÀ ĐÀ LẠT",
+    "category": "Ẩm Thực",
+    "hint": "Sự kết hợp độc đáo giữa bánh ướt mềm mướt và lòng gà xé phay chấm nước mắm chua ngọt"
+  },
+  {
+    "id": 1619,
+    "word": "LẨU GÀ LÁ É ĐÀ LẠT",
+    "category": "Ẩm Thực",
+    "hint": "Nồi lẩu thịt gà thơm phức mùi lá é the the cay nồng ấm lòng giữa đêm lạnh phố núi"
+  },
+  {
+    "id": 1620,
+    "word": "CƠM TẤM SƯỜN BÌ CHẢ SÀI GÒN",
+    "category": "Ẩm Thực",
+    "hint": "Đĩa cơm hạt tấm sườn nướng mỡ hành thơm phức món ăn kinh điển đất phương Nam"
+  },
+  {
+    "id": 1621,
+    "word": "BÁNH BỘT LỌC HUẾ",
+    "category": "Ẩm Thực",
+    "hint": "Bánh trong suốt nhân tôm thịt đậm đà gói lá chuối chấm nước mắm ớt cay xé lưỡi"
+  },
+  {
+    "id": 1622,
+    "word": "CHẢ CÁ THÁC LÁC HẬU GIANG",
+    "category": "Ẩm Thực",
+    "hint": "Món chả cá dai ngọt tự nhiên được nạo quết công phu từ cá sông miền Tây"
+  },
+  {
+    "id": 1623,
+    "word": "CƠM LAM THỊT NƯỚNG TÂY NGUYÊN",
+    "category": "Ẩm Thực",
+    "hint": "Hạt gạo nếp dẻo thơm nướng trong ống tre nứa bên bếp than hồng rừng núi"
+  },
+  {
+    "id": 1624,
+    "word": "MẮC KHÉN HẠT DỔI",
+    "category": "Ẩm Thực",
+    "hint": "Cặp gia vị linh hồn của ẩm thực núi rừng Tây Bắc với hương thơm nồng nàn độc nhất vô nhị"
+  },
+  {
+    "id": 1625,
+    "word": "ĐỈNH ĐÈO Ô QUY HỒ",
+    "category": "Địa Danh",
+    "hint": "Một trong tứ đại đỉnh đèo hiểm trở và hùng vĩ bậc nhất vùng Tây Bắc mờ sương"
+  },
+  {
+    "id": 1626,
+    "word": "HỒ BA BỂ BẮC KẠN",
+    "category": "Địa Danh",
+    "hint": "Hồ nước ngọt tự nhiên lớn nhất Việt Nam nằm giữa lưng chừng núi rừng đá vôi"
+  },
+  {
+    "id": 1627,
+    "word": "VƯỜN QUỐC GIA PHONG NHA",
+    "category": "Địa Danh",
+    "hint": "Di sản thiên nhiên thế giới sở hữu hệ thống hang động kỳ vĩ tráng lệ ở Quảng Bình"
+  },
+  {
+    "id": 1628,
+    "word": "THÁC BẢN GIỐC CAO BẰNG",
+    "category": "Địa Danh",
+    "hint": "Thác nước tự nhiên xuyên biên giới đẹp nhất Đông Nam Á hùng vĩ giữa núi rừng non nước"
+  },
+  {
+    "id": 1629,
+    "word": "CỔNG TRỜI QUẢN BẠ",
+    "category": "Địa Danh",
+    "hint": "Cửa ngõ đầu tiên bước lên cao nguyên đá Đồng Văn hùng vĩ bạt ngàn ở Hà Giang"
+  },
+  {
+    "id": 1630,
+    "word": "MŨI ĐÔI CỰC ĐÔNG",
+    "category": "Địa Danh",
+    "hint": "Điểm cực Đông trên đất liền của Tổ quốc nơi đón ánh bình minh đầu tiên của dải đất hình chữ S"
   }
 ]
