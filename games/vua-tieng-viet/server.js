@@ -282,15 +282,35 @@ function onUserFollow(user) {
     recentFollowers.delete(firstKey);
   }
 
-  const ttsText = `Cảm ơn bạn ${nickname} đã follow kênh! Chúc bạn chơi game vui vẻ!`;
+  // Tự động mở 3 ô chữ cái gợi ý cho phòng live
+  const revealedLetters = [];
+  if (gameState.roundState === 'PLAYING' && gameState.currentWord) {
+    for (let i = 0; i < 3; i++) {
+      const res = revealOneHint({ uniqueId, nickname, avatar }, '💖 Follow Kênh', false, true);
+      if (res && res.letter && res.index !== undefined) {
+        revealedLetters.push(res.letter);
+      } else {
+        break; // Hết ô hoặc chạm giới hạn giữ chữ bí mật
+      }
+    }
+  }
+
+  let ttsText = '';
+  if (revealedLetters.length > 0) {
+    ttsText = `Cảm ơn bạn ${nickname} đã follow kênh và mở tặng ${revealedLetters.length} chữ cái gợi ý! Chúc cả nhà đoán đúng!`;
+  } else {
+    ttsText = `Cảm ơn bạn ${nickname} đã follow kênh! Chúc bạn chơi game vui vẻ!`;
+  }
+
   const payload = {
     user: { uniqueId, nickname, avatar },
     ttsText,
+    revealedLetters,
     timestamp: now
   };
 
   lastFollowEvent = payload;
-  console.log(`💖 [TikTok Follow] Cảm ơn ${nickname} (@${uniqueId}) đã follow kênh!`);
+  console.log(`💖 [TikTok Follow] Cảm ơn ${nickname} (@${uniqueId}) đã follow kênh! (Mở ${revealedLetters.length} ô chữ: ${revealedLetters.join(', ')})`);
   io.emit('userFollow', payload);
   return payload;
 }
@@ -971,7 +991,7 @@ function getHiddenLettersCount() {
   return count;
 }
 
-function revealOneHint(donor = null, giftName = '', force = false) {
+function revealOneHint(donor = null, giftName = '', force = false, skipTts = false) {
   if (gameState.roundState !== 'PLAYING' || !gameState.currentWord) return null;
 
   const rawChars = gameState.currentWord.word.split('');
@@ -994,7 +1014,7 @@ function revealOneHint(donor = null, giftName = '', force = false) {
       giftName: giftName || 'Quà Tặng',
       remainingHidden: unrevealedIndices.length,
       limitReached: true,
-      ttsText: 'Đã mở tối đa gợi ý! Chỉ còn đúng một chữ cái bí mật cuối cùng, ai sẽ là Vua Tiếng Việt?'
+      ttsText: skipTts ? '' : 'Đã mở tối đa gợi ý! Chỉ còn đúng một chữ cái bí mật cuối cùng, ai sẽ là Vua Tiếng Việt?'
     };
     console.log(`⚠️ [GIFT HINT] Đã chạm giới hạn giữ chữ bí mật (${unrevealedIndices.length} chữ còn lại)`);
     io.emit('giftHintLimitReached', notifyPayload);
@@ -1017,7 +1037,7 @@ function revealOneHint(donor = null, giftName = '', force = false) {
   } : null;
 
   let ttsText = '';
-  if (donorInfo && donorInfo.nickname !== 'Streamer') {
+  if (!skipTts && donorInfo && donorInfo.nickname !== 'Streamer') {
     ttsText = `Cảm ơn ${donorInfo.nickname} đã tặng ${donorInfo.giftName} mở chữ cái ${rawChars[pickIdx]}!`;
   }
 

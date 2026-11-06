@@ -94,22 +94,22 @@
     .category-tag {
       background: linear-gradient(135deg, #7928ca, #ff0080);
       color: #fff;
-      padding: 5px 12px;
+      padding: 6px 14px;
       border-radius: 8px;
-      font-size: 12px;
-      font-weight: 700;
+      font-size: 14px;
+      font-weight: 800;
       box-shadow: 0 2px 10px rgba(255, 0, 128, 0.3);
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 6px;
     }
     .round-tag {
-      font-size: 12px;
-      font-weight: 700;
+      font-size: 14px;
+      font-weight: 800;
       color: #ffd700;
-      background: rgba(255, 215, 0, 0.12);
-      border: 1px solid rgba(255, 215, 0, 0.25);
-      padding: 4px 10px;
+      background: rgba(255, 215, 0, 0.15);
+      border: 1px solid rgba(255, 215, 0, 0.35);
+      padding: 5px 12px;
       border-radius: 8px;
     }
 
@@ -161,11 +161,11 @@
       text-align: center;
     }
     .scramble-title {
-      font-size: 11px;
-      font-weight: 700;
+      font-size: 13px;
+      font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 1.5px;
-      color: #a78bfa;
+      color: #c4b5fd;
       margin-bottom: 8px;
     }
     .scramble-tiles {
@@ -173,18 +173,18 @@
       flex-wrap: wrap;
       justify-content: center;
       gap: 7px;
-      min-height: 52px;
+      min-height: 54px;
     }
     .letter-tile {
-      width: 44px;
-      height: 48px;
+      width: 48px;
+      height: 52px;
       background: linear-gradient(145deg, #ffd700, #f59e0b);
       color: #1a0b2e;
-      border-radius: 8px;
+      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 22px;
+      font-size: 26px;
       font-weight: 900;
       box-shadow: 0 4px 10px rgba(245, 158, 11, 0.4), inset 0 2px 2px rgba(255, 255, 255, 0.5);
       animation: tileBounce 2s infinite ease-in-out;
@@ -205,8 +205,9 @@
       text-align: center;
     }
     .target-title {
-      font-size: 10px;
-      color: #9ca3af;
+      font-size: 12px;
+      font-weight: 800;
+      color: #cbd5e1;
       text-transform: uppercase;
       letter-spacing: 1px;
       margin-bottom: 8px;
@@ -218,16 +219,16 @@
       gap: 6px;
     }
     .slot-tile {
-      width: 36px;
-      height: 42px;
+      width: 40px;
+      height: 46px;
       background: #191233;
       border: 2px solid #5b21b6;
-      border-radius: 6px;
+      border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 18px;
-      font-weight: 800;
+      font-size: 21px;
+      font-weight: 900;
       color: #ffd700;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
       transition: all 0.3s;
@@ -274,16 +275,31 @@
 
     /* Gợi ý Clue */
     .clue-box {
-      margin: 8px 16px 4px;
-      padding: 8px 12px;
-      background: rgba(124, 58, 237, 0.12);
-      border-left: 3px solid #8b5cf6;
-      border-radius: 0 8px 8px 0;
-      font-size: 11px;
-      color: #ddd6fe;
+      margin: 8px 14px 6px;
+      padding: 10px 14px;
+      background: linear-gradient(135deg, rgba(124, 58, 237, 0.25), rgba(236, 72, 153, 0.18));
+      border: 1px solid rgba(139, 92, 246, 0.45);
+      border-left: 5px solid #a855f7;
+      border-radius: 0 10px 10px 0;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.4;
+      color: #ffffff;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
+      box-shadow: 0 3px 12px rgba(124, 58, 237, 0.25);
+    }
+    .clue-icon {
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+    #clueText {
+      font-size: 16px;
+      font-weight: 800;
+      color: #ffd700;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+      letter-spacing: 0.3px;
     }
 
     /* Call To Action Banner */
@@ -1993,15 +2009,15 @@
 
     <!-- Gợi ý câu hỏi -->
     <div class="clue-box">
-      <span>💡</span>
+      <span class="clue-icon">💡</span>
       <span id="clueText">Gợi ý đang tải...</span>
     </div>
 
     <!-- Hướng dẫn tương tác -->
     <div class="cta-banner">
-      <div class="cta-item">💬 <b>Bình luận đáp án</b></div>
+      <div class="cta-item" style="color:#00f2fe;font-weight:700;">💖 <b>Follow = Mở 3 Ô Chữ</b></div>
       <div class="cta-item highlight-gift">🌹 <b>Hoa Hồng = Mở 1 Chữ</b> <span id="giftHintCtaBadge" class="hint-remain-pill">Sẵn sàng</span></div>
-      <div class="cta-item">❤️ <b>50 Tim = +10s</b></div>
+      <div class="cta-item">💬 <b>Bình luận đoán từ</b></div>
     </div>
 
     <!-- Khu vực tương tác: Chat guesses & Leaderboard -->
@@ -3076,6 +3092,16 @@
       avt.src = data.user?.avatar || fallbackAvt;
       avt.onerror = () => { avt.src = fallbackAvt; };
 
+      const sub = card.querySelector('.follow-sub-text');
+      if (sub) {
+        const count = data.revealedLetters?.length;
+        if (count > 0) {
+          sub.textContent = `Đã mở tặng phòng live ${count} chữ cái gợi ý! 🎁`;
+        } else {
+          sub.textContent = `Cảm ơn bạn đã bấm Follow kênh! ❤️`;
+        }
+      }
+
       card.classList.add('show');
       soundFollow();
 
@@ -3088,7 +3114,7 @@
         });
       }
 
-      addFollowChatNotice(data.user);
+      addFollowChatNotice(data.user, data.revealedLetters?.length || 0);
 
       if (data.ttsText) {
         ttsManager.speak(data.ttsText, false);
@@ -3103,12 +3129,13 @@
       }, 3500);
     }
 
-    function addFollowChatNotice(user) {
+    function addFollowChatNotice(user, revealedCount = 0) {
       if (!chatList) return;
       const item = document.createElement('div');
       item.className = 'chat-item follow-chat';
       const nick = user?.nickname || user?.uniqueId || 'Khán giả';
-      item.innerHTML = `<span class="chat-badge-follow">💖 FOLLOW</span> <span class="chat-user">${nick}</span> vừa theo dõi kênh!`;
+      const hintBonus = revealedCount > 0 ? ` & mở tặng ${revealedCount} ô chữ!` : `!`;
+      item.innerHTML = `<span class="chat-badge-follow">💖 FOLLOW</span> <span class="chat-user">${nick}</span> vừa theo dõi kênh${hintBonus}`;
       chatList.prepend(item);
       while (chatList.children.length > 8) {
         chatList.removeChild(chatList.lastChild);
