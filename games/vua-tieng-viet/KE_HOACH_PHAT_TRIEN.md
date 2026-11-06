@@ -165,6 +165,10 @@ Tài liệu này lưu trữ danh sách các tính năng nâng cấp tương tác
 - **Danh mục 4: 🏞️ Danh Lam Thắng Cảnh & Địa Danh (7 câu: ID 1524 - 1530)**
   - *Hoàng Liên Sơn, Đảo Ngọc Phú Quốc, Cố Đô Hoa Lư, Mũi Né Phan Thiết, Cao Nguyên Mộc Châu, Đầm Thị Nại, Quần Đảo Côn Đảo*.
 
+### 📌 MỤC 11: BỘ CÂU HỎI 50 CÂU TỪ LÓNG GEN Z & MẠNG XÃ HỘI 2024 - 2026 (QUESTION PACK 50)
+> **Trạng thái:**  *Đã hoàn thiện (ID 1531 - 1580)*
+> **Mục tiêu:** Tăng độ hấp dẫn, tạo tiếng cười và kích thích bình luận tương tác cực mạnh từ tệp khán giả trẻ trên TikTok Live với các thuật ngữ viral như *Đỉnh Nóc Kịch Trần, Bay Phấp Phới, Xịt Keo Cứng Ngắc, Mắc Cỡ Quá Hai Ơi, Cột Sống Bất Ổn, Hết Cứu, Trầm Kẽm, Hướng Nội Part Time, Cảm Lạnh, Đúng Nhận Sai Cãi, Anh Trai Say Hi, v.v.*
+
 ---
 
 ## 📅 LỘ TRÌNH THỰC HIỆN TỪNG BƯỚC (ROADMAP)
@@ -172,9 +176,10 @@ Tài liệu này lưu trữ danh sách các tính năng nâng cấp tương tác
 ```text
 GIAI ĐOẠN 1: BỘ CÂU HỎI MỚI (LÀM TỪNG DANH MỤC):
   ├── [x] Bước 1: Danh mục 1 - Giới Trẻ & Hot Trend (8 câu: ID 1501-1508)
-  ├── [ ] Bước 2: Danh mục 2 - Thành Ngữ & Tục Ngữ Mới (8 câu: ID 1509-1516)
-  ├── [ ] Bước 3: Danh mục 3 - Ẩm Thực & Đặc Sản 3 Miền (7 câu: ID 1517-1523)
-  └── [ ] Bước 4: Danh mục 4 - Danh Lam Thắng Cảnh & Địa Danh (7 câu: ID 1524-1530)
+  ├── [x] Bước 2: Danh mục 2 - Thành Ngữ & Tục Ngữ Mới (8 câu: ID 1509-1516)
+  ├── [x] Bước 3: Danh mục 3 - Ẩm Thực & Đặc Sản 3 Miền (7 câu: ID 1517-1523)
+  ├── [x] Bước 4: Danh mục 4 - Danh Lam Thắng Cảnh & Địa Danh (7 câu: ID 1524-1530)
+  └── [x] Bổ sung: Gói 50 câu Từ Lóng Gen Z & Hot Trend Viral 2024-2026 (ID 1531-1580) - XONG
 
 GIAI ĐOẠN 2: TỐI ƯU HÓA DONATE & VINH DANH TRẬN ĐẤU:
   ├── [x] Bước 5: Mục 6 - Nâng mốc điểm kết thúc game lên 3.000 điểm (Milestone 3000) - XONG

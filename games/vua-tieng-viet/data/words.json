@@ -9046,5 +9046,437 @@
     "word": "TIỂU THUYẾT NGÔN TÌNH",
     "category": "Giới Trẻ",
     "hint": "Thể loại truyện tình cảm lãng mạn rất được các bạn trẻ yêu thích"
+  },
+  {
+    "id": 1509,
+    "word": "MƯA DẦM THẤM LÂU",
+    "category": "Tục Ngữ",
+    "hint": "Kiên trì, nhẫn nại tác động dần dần rồi cũng sẽ mang lại kết quả sâu sắc"
+  },
+  {
+    "id": 1510,
+    "word": "ĐI MỘT NGÀY ĐÀNG",
+    "category": "Tục Ngữ",
+    "hint": "Vế đầu của câu tục ngữ khuyên nên đi nhiều để học hỏi mở mang hiểu biết"
+  },
+  {
+    "id": 1511,
+    "word": "ĐỒNG CAM CỘNG KHỔ",
+    "category": "Thành Ngữ",
+    "hint": "Cùng nhau chia sẻ ngọt bùi và gánh vác mọi khó khăn gian nan"
+  },
+  {
+    "id": 1512,
+    "word": "MỘT NẮNG HAI SƯƠNG",
+    "category": "Thành Ngữ",
+    "hint": "Diễn tả nỗi vất vả, dãi dầu sớm hôm của người lao động làm nông"
+  },
+  {
+    "id": 1513,
+    "word": "VỤNG CHÈO KHÉO CHỐNG",
+    "category": "Thành Ngữ",
+    "hint": "Làm việc vụng về nhưng lại khéo léo biện bạch, chống chế cho sai sót"
+  },
+  {
+    "id": 1514,
+    "word": "GẠO CHỢ NƯỚC SÔNG",
+    "category": "Thành Ngữ",
+    "hint": "Chỉ cảnh sống bấp bênh, phụ thuộc vào chợ búa đò giang nơi đất khách"
+  },
+  {
+    "id": 1515,
+    "word": "DỜI NON LẤP BỂ",
+    "category": "Thành Ngữ",
+    "hint": "Ý chí kiên cường và sức mạnh phi thường có thể vượt qua mọi thử thách lớn lao"
+  },
+  {
+    "id": 1516,
+    "word": "ĐƯỜNG DÀI MỚI BIẾT NGỰA HAY",
+    "category": "Tục Ngữ",
+    "hint": "Qua thời gian thử thách gian nan mới nhận rõ tài năng và phẩm chất thực sự"
+  },
+  {
+    "id": 1517,
+    "word": "CƠM CHÁY NINH BÌNH",
+    "category": "Ẩm Thực",
+    "hint": "Món đặc sản giòn rụm chấm nước sốt dê trứ danh đất cố đô"
+  },
+  {
+    "id": 1518,
+    "word": "NƯỚC MÍA TRÂN CHÂU",
+    "category": "Ẩm Thực",
+    "hint": "Thức uống giải khát đường phố ngọt lịm kết hợp trân châu dai giòn được giới trẻ ưa chuộng"
+  },
+  {
+    "id": 1519,
+    "word": "BÚN QUẬY PHÚ QUỐC",
+    "category": "Ẩm Thực",
+    "hint": "Món bún độc đáo ở đảo ngọc khi ăn thực khách tự quậy đều nước chấm hải sản"
+  },
+  {
+    "id": 1520,
+    "word": "MÌ QUẢNG TÔM THỊT",
+    "category": "Ẩm Thực",
+    "hint": "Món ăn đặc trưng xứ Quảng với sợi mì vàng, bánh tráng nướng và nước dùng đậm đà ít nước"
+  },
+  {
+    "id": 1521,
+    "word": "BÁNH TRÁNG PHƠI SƯƠNG",
+    "category": "Ẩm Thực",
+    "hint": "Đặc sản Trảng Bàng Tây Ninh dẻo dai cuốn thịt luộc rau rừng nức tiếng"
+  },
+  {
+    "id": 1522,
+    "word": "BÒ TƠ CỦ CHI",
+    "category": "Ẩm Thực",
+    "hint": "Món thịt bò mềm ngọt, thơm ngon nổi tiếng của vùng đất thép ngoại thành TP.HCM"
+  },
+  {
+    "id": 1523,
+    "word": "CÁ BỚP KHO TỘ",
+    "category": "Ẩm Thực",
+    "hint": "Món cá biển béo ngậy được kho kẹo đậm vị trong ơ đất ăn cùng cơm nóng"
+  },
+  {
+    "id": 1524,
+    "word": "HOÀNG LIÊN SƠN",
+    "category": "Địa Danh",
+    "hint": "Dãy núi hùng vĩ bậc nhất miền Bắc nơi có đỉnh Fansipan nóc nhà Đông Dương"
+  },
+  {
+    "id": 1525,
+    "word": "ĐẢO NGỌC PHÚ QUỐC",
+    "category": "Địa Danh",
+    "hint": "Hòn đảo du lịch lớn nhất Việt Nam nằm trong vịnh Thái Lan"
+  },
+  {
+    "id": 1526,
+    "word": "CỐ ĐÔ HOA LƯ",
+    "category": "Địa Danh",
+    "hint": "Kinh đô đầu tiên của nhà nước phong kiến tập quyền Việt Nam thời Đinh - Tiền Lê"
+  },
+  {
+    "id": 1527,
+    "word": "MŨI NÉ PHAN THIẾT",
+    "category": "Địa Danh",
+    "hint": "Thiên đường nghỉ dưỡng với những đồi cát bay rực rỡ và bờ biển tuyệt đẹp"
+  },
+  {
+    "id": 1528,
+    "word": "CAO NGUYÊN MỘC CHÂU",
+    "category": "Địa Danh",
+    "hint": "Vùng đất nổi tiếng với đồi chè xanh mướt, thung lũng mận và hoa cải trắng ở Sơn La"
+  },
+  {
+    "id": 1529,
+    "word": "ĐẦM THỊ NẠI",
+    "category": "Địa Danh",
+    "hint": "Đầm nước mặn lớn nhất Bình Định với cây cầu vượt biển nổi tiếng"
+  },
+  {
+    "id": 1530,
+    "word": "QUẦN ĐẢO CÔN ĐẢO",
+    "category": "Địa Danh",
+    "hint": "Vùng đất linh thiêng ngoài khơi Bà Rịa - Vũng Tàu với lịch sử hào hùng và thiên nhiên hoang sơ"
+  },
+  {
+    "id": 1531,
+    "word": "ĐỈNH NÓC KỊCH TRẦN",
+    "category": "Giới Trẻ",
+    "hint": "Câu nói viral kinh điển miêu tả sự tuyệt vời xuất sắc vượt mọi giới hạn"
+  },
+  {
+    "id": 1532,
+    "word": "BAY PHẤP PHỚI",
+    "category": "Giới Trẻ",
+    "hint": "Vế đi cùng bộ ba đỉnh nóc kịch trần thể hiện niềm kiêu hãnh thăng hoa"
+  },
+  {
+    "id": 1533,
+    "word": "XỊT KEO CỨNG NGẮC",
+    "category": "Giới Trẻ",
+    "hint": "Trạng thái đứng hình, bối rối không nói nên lời trước tình huống bất ngờ"
+  },
+  {
+    "id": 1534,
+    "word": "MẮC CỠ QUÁ HAI ƠI",
+    "category": "Giới Trẻ",
+    "hint": "Câu nói cửa miệng hài hước khi gặp phải khoảnh khắc ngượng ngùng đỏ mặt"
+  },
+  {
+    "id": 1535,
+    "word": "CỘT SỐNG BẤT ỔN",
+    "category": "Giới Trẻ",
+    "hint": "Chơi chữ dí dỏm về cuộc sống vất vả và căn bệnh đau lưng của dân văn phòng"
+  },
+  {
+    "id": 1536,
+    "word": "HẾT CỨU",
+    "category": "Giới Trẻ",
+    "hint": "Cụm từ than thở bất lực nhưng đầy tính giải trí khi ai đó làm điều ngớ ngẩn"
+  },
+  {
+    "id": 1537,
+    "word": "TRẦM KẼM",
+    "category": "Giới Trẻ",
+    "hint": "Biến âm hài hước của từ trầm cảm trong các cuộc trò chuyện trên mạng"
+  },
+  {
+    "id": 1538,
+    "word": "HƯỚNG NỘI PART TIME",
+    "category": "Giới Trẻ",
+    "hint": "Tính cách lúc thì thích một mình khép kín, lúc lại quậy tưng bừng cùng bạn bè"
+  },
+  {
+    "id": 1539,
+    "word": "CẢM LẠNH",
+    "category": "Giới Trẻ",
+    "hint": "Chơi chữ từ cảm động nhưng tình huống thực tế lại dở khóc dở cười"
+  },
+  {
+    "id": 1540,
+    "word": "ĐÚNG NHẬN SAI CÃI",
+    "category": "Giới Trẻ",
+    "hint": "Câu nói phủ sóng mạng xã hội bắt nguồn từ hiện tượng cô đồng bổ cau"
+  },
+  {
+    "id": 1541,
+    "word": "KIẾP NẠN THỨ TÁM MƯƠI HAI",
+    "category": "Giới Trẻ",
+    "hint": "Lấy cảm hứng từ 81 kiếp nạn Tây Du Ký để chỉ thử thách trớ trêu mới ập đến"
+  },
+  {
+    "id": 1542,
+    "word": "MÃI ĐỈNH",
+    "category": "Giới Trẻ",
+    "hint": "Lời tán dương phong độ xuất sắc, tuyệt vời kéo dài không đổi"
+  },
+  {
+    "id": 1543,
+    "word": "XU CÀ NA",
+    "category": "Giới Trẻ",
+    "hint": "Tiếng lóng miền Nam diễn tả sự xui xẻo, trắc trở liên tiếp không như ý"
+  },
+  {
+    "id": 1544,
+    "word": "VÔ TRI HẾT CHỖ NÓI",
+    "category": "Giới Trẻ",
+    "hint": "Hành động ngây ngô, buồn cười một cách vô tư không suy nghĩ sâu xa"
+  },
+  {
+    "id": 1545,
+    "word": "THẦN THÁI NGÚT TRỜI",
+    "category": "Giới Trẻ",
+    "hint": "Phong thái tự tin, sang chảnh và đầy sức hút áp đảo đám đông"
+  },
+  {
+    "id": 1546,
+    "word": "ANH TRAI SAY HI",
+    "category": "Giới Trẻ",
+    "hint": "Chương trình truyền hình âm nhạc thực tế bùng nổ xu hướng TikTok hè thu 2024"
+  },
+  {
+    "id": 1547,
+    "word": "ANH TRAI VƯỢT NGÀN CHÔNG GAI",
+    "category": "Giới Trẻ",
+    "hint": "Đại nhạc hội quy tụ các nghệ sĩ kỳ cựu tạo nên cơn sốt văn hóa mạng"
+  },
+  {
+    "id": 1548,
+    "word": "HỆ ĐIỀU HÀNH CHẠY BẰNG CƠM",
+    "category": "Giới Trẻ",
+    "hint": "Cách ví von hài hước về con người làm việc thủ công thay vì máy móc"
+  },
+  {
+    "id": 1549,
+    "word": "CHUYỆN TÂM LINH KHÔNG ĐÙA ĐƯỢC ĐÂU",
+    "category": "Giới Trẻ",
+    "hint": "Câu cửa miệng khi gặp những sự trùng hợp kỳ lạ bất ngờ khó giải thích"
+  },
+  {
+    "id": 1550,
+    "word": "TỔNG TÀI BÁ ĐẠO",
+    "category": "Giới Trẻ",
+    "hint": "Hình mẫu nhân vật giàu có, lạnh lùng nhưng si tình trong các video ngắn"
+  },
+  {
+    "id": 1551,
+    "word": "TRÀ SỮA FULL TOPPING",
+    "category": "Ẩm Thực",
+    "hint": "Món thức uống quốc dân với đầy đủ trân châu, pudding và các loại thạch"
+  },
+  {
+    "id": 1552,
+    "word": "ĂN KEM TRƯỚC CỔNG",
+    "category": "Giới Trẻ",
+    "hint": "Chơi chữ biến tấu hài hước từ câu thành ngữ quen thuộc"
+  },
+  {
+    "id": 1553,
+    "word": "TÂM LINH TƯƠNG THÔNG",
+    "category": "Giới Trẻ",
+    "hint": "Khoảnh khắc hai người cùng nghĩ về một điều mà không cần nói thành lời"
+  },
+  {
+    "id": 1554,
+    "word": "BẬT CHẾ ĐỘ BAY LÊN",
+    "category": "Giới Trẻ",
+    "hint": "Tâm trạng phấn chấn, hứng khởi khi nghe một giai điệu sôi động"
+  },
+  {
+    "id": 1555,
+    "word": "CHƠI HẾT MÌNH NGHỈ HẾT BUỒN",
+    "category": "Giới Trẻ",
+    "hint": "Tinh thần sống nhiệt huyết, xả stress trọn vẹn của người trẻ"
+  },
+  {
+    "id": 1556,
+    "word": "TỰ NHIÊN CÁI TUI CƯỜI",
+    "category": "Giới Trẻ",
+    "hint": "Câu nói viral khi gặp phải tình huống vô tri đến mức không nhịn được cười"
+  },
+  {
+    "id": 1557,
+    "word": "BẤT NGỜ CHƯA BÀ GIÀ",
+    "category": "Giới Trẻ",
+    "hint": "Câu thoại kinh điển trên TikTok khi tạo nên cú twist bất ngờ không đỡ nổi"
+  },
+  {
+    "id": 1558,
+    "word": "NGƯỜI CHƠI HỆ HÀI HƯỚC",
+    "category": "Giới Trẻ",
+    "hint": "Chỉ những người luôn tạo ra tiếng cười và không khí vui vẻ cho mọi người"
+  },
+  {
+    "id": 1559,
+    "word": "QUẬY ĐỤC NƯỚC",
+    "category": "Giới Trẻ",
+    "hint": "Vui chơi náo nhiệt hết nấc làm khuấy động cả một vùng không gian"
+  },
+  {
+    "id": 1560,
+    "word": "GIA TỘC HÀI HƯỚC",
+    "category": "Giới Trẻ",
+    "hint": "Nhóm bạn thân thiết luôn cùng nhau tạo nên những trò đùa bất tận"
+  },
+  {
+    "id": 1561,
+    "word": "ÔNG BÀ GIÀ LO HẾT",
+    "category": "Giới Trẻ",
+    "hint": "Cụm từ trêu đùa chỉ những cô chiêu cậu ấm có gia đình hậu thuẫn vững chắc"
+  },
+  {
+    "id": 1562,
+    "word": "TÂM BẤT BIẾN GIỮA DÒNG ĐỜI VẠN BIẾN",
+    "category": "Thành Ngữ",
+    "hint": "Châm ngôn sống giữ vững sự bình tĩnh, tự chủ trước mọi sóng gió cuộc đời"
+  },
+  {
+    "id": 1563,
+    "word": "CHẠY KPI KHÔNG NGỦ",
+    "category": "Đời Sống",
+    "hint": "Tình cảnh thức thâu đêm suốt sáng để kịp tiến độ chỉ tiêu công việc"
+  },
+  {
+    "id": 1564,
+    "word": "GÀO THÉT TRONG TUYỆT VỌNG",
+    "category": "Giới Trẻ",
+    "hint": "Trạng thái bất lực hoàn toàn khi đối mặt bài tập hoặc deadline dồn dập"
+  },
+  {
+    "id": 1565,
+    "word": "CÀ PHÊ MUỐI XỨ HUẾ",
+    "category": "Ẩm Thực",
+    "hint": "Thức uống bùng nổ xu hướng với vị cà phê đậm đà kết hợp lớp kem mặn béo ngậy"
+  },
+  {
+    "id": 1566,
+    "word": "GỎI GÀ MĂNG CỤT",
+    "category": "Ẩm Thực",
+    "hint": "Món gỏi thanh mát chua ngọt từng làm mưa làm gió khắp cõi mạng mùa hè"
+  },
+  {
+    "id": 1567,
+    "word": "BÁNH ĐỒNG XU PHÔ MAI",
+    "category": "Ẩm Thực",
+    "hint": "Món bánh đường phố nướng thơm lừng kéo sợi phô mai dai béo gây sốt giới trẻ"
+  },
+  {
+    "id": 1568,
+    "word": "ĐI ĐU ĐƯA ĐI",
+    "category": "Giới Trẻ",
+    "hint": "Lời rủ rê lên đồ ra phố dạo chơi, tụ tập bạn bè quẩy tưng bừng"
+  },
+  {
+    "id": 1569,
+    "word": "NHẬN TÍN HIỆU TỪ VŨ TRỤ",
+    "category": "Giới Trẻ",
+    "hint": "Khi gặp sự trùng hợp bất ngờ khiến ta tin rằng số phận đang mách bảo"
+  },
+  {
+    "id": 1570,
+    "word": "CHÚA TỂ TẨU HỎA NHẬP MA",
+    "category": "Giới Trẻ",
+    "hint": "Cách gọi người hay suy diễn viển vông quá đà rồi tự làm mình bối rối"
+  },
+  {
+    "id": 1571,
+    "word": "ĂN BƯỞI CẢ VỎ",
+    "category": "Thành Ngữ",
+    "hint": "Thành ngữ chỉ thói chi li, keo kiệt đến mức thái quá không bỏ sót chút gì"
+  },
+  {
+    "id": 1572,
+    "word": "VÀO ĐÂY BẬT QUẠT LÊN",
+    "category": "Giới Trẻ",
+    "hint": "Câu nói đùa viral khi muốn khuyên ai đó hãy hạ nhiệt và bình tĩnh lại"
+  },
+  {
+    "id": 1573,
+    "word": "HỘI CHỨNG SỢ BỎ LỠ",
+    "category": "Giới Trẻ",
+    "hint": "Tâm lý FOMO luôn thấp thỏm lo âu sợ mình bị tụt hậu trước các trào lưu mới"
+  },
+  {
+    "id": 1574,
+    "word": "CÚ LỪA THẾ KỶ",
+    "category": "Đời Sống",
+    "hint": "Sự việc hoặc trò đùa đánh lừa ngoạn mục khiến tất cả mọi người đều tin sái cổ"
+  },
+  {
+    "id": 1575,
+    "word": "CƯỜI TRỪ CHO QUA CHUYỆN",
+    "category": "Đời Sống",
+    "hint": "Nụ cười gượng gạo chữa thẹn khi gặp tình huống éo le khó xử"
+  },
+  {
+    "id": 1576,
+    "word": "LẠC LỐI Ở TRƯỜNG THI",
+    "category": "Giới Trẻ",
+    "hint": "Cảm giác ngơ ngác hoang mang khi đề bài một đằng nhưng lại ôn một nẻo"
+  },
+  {
+    "id": 1577,
+    "word": "BÉO ĐẸP BÉO KHỎE",
+    "category": "Đời Sống",
+    "hint": "Thông điệp yêu thương bản thân, tự tin với vóc dáng đầy đặn giàu năng lượng"
+  },
+  {
+    "id": 1578,
+    "word": "NĂNG LƯỢNG TÍCH CỰC",
+    "category": "Đời Sống",
+    "hint": "Tinh thần lạc quan vui vẻ có khả năng lan tỏa niềm vui đến mọi người xung quanh"
+  },
+  {
+    "id": 1579,
+    "word": "VẠCH ÁO CHO NGƯỜI XEM LƯNG",
+    "category": "Thành Ngữ",
+    "hint": "Hành động dại dột đem chuyện xấu trong nhà phơi bày ra cho thiên hạ chê cười"
+  },
+  {
+    "id": 1580,
+    "word": "ĐẸP NGHIÊNG NƯỚC NGHIÊNG THÀNH",
+    "category": "Thành Ngữ",
+    "hint": "Vẻ đẹp tuyệt trần say đắm lòng người làm chấn động cả giang sơn"
   }
 ]
