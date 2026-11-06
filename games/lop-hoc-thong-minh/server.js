@@ -109,16 +109,43 @@ const BAG_COLORS = ['#3b82f6', '#ec4899', '#10b981', '#f59e0b', '#8b5cf6', '#ef4
 // Quản lý học sinh trên bàn học (Map: username -> Desk Index & Info)
 const studentsMap = new Map();
 
+// Chuẩn hóa thông tin người xem từ TikTok Live Connector (v2.x / v3 proto)
+function extractUser(data) {
+  const u = data?.user || data?.userDetails || data || {};
+  const uniqueId = String(u.uniqueId || u.displayId || data?.uniqueId || u.id || '').trim();
+  const rawNick = u.nickname || data?.nickname || uniqueId || 'Bạn Học';
+  const nickname = String(rawNick).trim();
+  const avatar =
+    u.profilePictureUrl ||
+    u.avatarThumb?.urlList?.[0] ||
+    u.avatarMedium?.urlList?.[0] ||
+    u.avatarLarge?.urlList?.[0] ||
+    data?.profilePictureUrl ||
+    data?.avatar ||
+    `https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(uniqueId || nickname || Math.random())}`;
+
+  const cleanUid = uniqueId || (nickname && nickname !== 'Bạn Học' ? `user_${nickname.toLowerCase().replace(/[^a-z0-9_]/gi, '')}` : `user_${Date.now()}`);
+
+  return {
+    uniqueId: cleanUid,
+    username: cleanUid,
+    nickname: nickname || 'Bạn Học',
+    avatar,
+    profilePictureUrl: avatar
+  };
+}
+
 // Bảng xếp hạng điểm bền vững (Map: username -> Player Info)
 const playerScores = new Map();
 
-function getOrCreatePlayer(user) {
-  const username = user.uniqueId || user.username || `user_${Date.now()}`;
+function getOrCreatePlayer(rawUser) {
+  const user = extractUser(rawUser);
+  const username = user.uniqueId;
   if (!playerScores.has(username)) {
     playerScores.set(username, {
       username,
-      nickname: user.nickname || user.user || username,
-      avatar: user.profilePictureUrl || user.avatar || `https://api.dicebear.com/7.x/bottts/svg?seed=${username}`,
+      nickname: user.nickname,
+      avatar: user.avatar,
       score: 0,
       correctCount: 0,
       streak: 0,
@@ -127,8 +154,12 @@ function getOrCreatePlayer(user) {
     });
   }
   const player = playerScores.get(username);
-  if (user.nickname && user.nickname !== player.nickname) player.nickname = user.nickname;
-  if (user.profilePictureUrl && !player.avatar.includes('tiktokcdn')) player.avatar = user.profilePictureUrl;
+  if (user.nickname && user.nickname !== 'Bạn Học' && player.nickname !== user.nickname) {
+    player.nickname = user.nickname;
+  }
+  if (user.avatar && !player.avatar.includes('tiktokcdn') && user.avatar.includes('tiktokcdn')) {
+    player.avatar = user.avatar;
+  }
   player.lastActive = Date.now();
   return player;
 }
@@ -199,13 +230,14 @@ function emitDeskUpdate(desk) {
 }
 
 // Xếp chỗ ngồi cho người xem
-function seatStudent(user) {
-  const username = user.uniqueId || user.username || `user_${Date.now()}`;
+function seatStudent(rawUser) {
+  const user = extractUser(rawUser);
+  const username = user.uniqueId;
   if (studentsMap.has(username)) {
     const existing = studentsMap.get(username);
     existing.student.lastActive = Date.now();
-    if (user.profilePictureUrl) existing.student.avatar = user.profilePictureUrl;
-    if (user.nickname) existing.student.nickname = user.nickname;
+    if (user.avatar && !user.avatar.includes('dicebear')) existing.student.avatar = user.avatar;
+    if (user.nickname && user.nickname !== 'Bạn Học') existing.student.nickname = user.nickname;
     emitDeskUpdate(existing);
     return existing;
   }
@@ -232,8 +264,8 @@ function seatStudent(user) {
 
   const studentObj = {
     username,
-    nickname: user.nickname || username,
-    avatar: user.profilePictureUrl || user.avatar || player.avatar,
+    nickname: user.nickname,
+    avatar: user.avatar || player.avatar,
     bagColor: BAG_COLORS[targetDesk.id % BAG_COLORS.length],
     score: player.score,
     pointsEarned: 0,
@@ -456,8 +488,9 @@ timerInterval = setInterval(() => {
 // XỬ LÝ SỰ KIỆN TƯƠNG TÁC TIKTOK LIVE
 // ==========================================
 function handleUserComment(data) {
-  const desk = seatStudent(data);
-  const commentText = (data.comment || '').trim();
+  const user = extractUser(data);
+  const desk = seatStudent(user);
+  const commentText = (data.content || data.comment || data.message || '').trim();
   const upper = commentText.toUpperCase();
 
   // Nhận diện đáp án A, B, C, D (hoặc 1, 2, 3, 4)
@@ -492,7 +525,7 @@ function handleUserComment(data) {
       answer: answerChosen,
       stats: answerStats
     });
-  } else {
+  } else if (commentText) {
     // Bình luận giao lưu thông thường -> hiện bong bóng thoại trên đầu học sinh
     desk.student.chatMsg = commentText.slice(0, 40);
     desk.student.chatTime = Date.now();
@@ -510,10 +543,12 @@ function handleUserComment(data) {
 }
 
 function handleUserGift(data) {
-  const desk = seatStudent(data);
-  const giftName = data.giftName || 'Gift';
-  const repeatCount = data.repeatCount || 1;
-  const diamondCount = data.diamondCount || 1;
+  const user = extractUser(data);
+  const desk = seatStudent(user);
+  const giftObj = data.gift || data.giftDetails || {};
+  const giftName = giftObj.name || data.giftName || 'Hoa Hồng';
+  const repeatCount = Math.max(1, Number(data.repeatCount || data.comboCount || giftObj.repeat_count || 1));
+  const diamondCount = Math.max(1, Number(data.diamondCount || giftObj.diamondCount || giftObj.diamond_count || 1));
   const totalCoins = diamondCount * repeatCount;
 
   // Tính thời gian làm lớp trưởng dựa theo quà tặng
@@ -565,10 +600,11 @@ function handleUserGift(data) {
 const recentFollowers = new Map();
 
 function handleUserFollow(data) {
-  const desk = seatStudent(data);
-  const username = data.uniqueId || data.username || `follower_${Date.now()}`;
-  const nickname = data.nickname || (desk && desk.student ? desk.student.nickname : username);
-  const avatar = data.profilePictureUrl || data.avatar || (desk && desk.student ? desk.student.avatar : '');
+  const user = extractUser(data);
+  const desk = seatStudent(user);
+  const username = user.uniqueId;
+  const nickname = user.nickname;
+  const avatar = user.avatar;
 
   const now = Date.now();
   const lastFollow = recentFollowers.get(username) || 0;
@@ -582,7 +618,7 @@ function handleUserFollow(data) {
   }
 
   // Cộng +10 điểm quà nhập học cho tân học sinh
-  const player = getOrCreatePlayer(data);
+  const player = getOrCreatePlayer(user);
   const followPoints = 10;
   player.score += followPoints;
   if (desk && desk.student) {
@@ -615,12 +651,13 @@ function handleUserFollow(data) {
 }
 
 function handleUserLike(data) {
-  const likeCount = data.likeCount || 1;
+  const user = extractUser(data);
+  const likeCount = Number(data.likeCount || data.count || 1);
   totalLikes += likeCount;
   io.emit('likes_update', {
     totalLikes,
     added: likeCount,
-    username: data.uniqueId || data.nickname
+    username: user.nickname || user.uniqueId
   });
 }
 
@@ -695,8 +732,8 @@ function connectTikTokLive(username) {
   tiktokConn.on(WebcastEvent.GIFT, data => handleUserGift(data));
   tiktokConn.on(WebcastEvent.LIKE, data => handleUserLike(data));
   tiktokConn.on(WebcastEvent.MEMBER, data => {
-    const desk = seatStudent(data);
-    if (desk) emitDeskUpdate(desk);
+    const user = extractUser(data);
+    seatStudent(user);
   });
   tiktokConn.on(WebcastEvent.FOLLOW, data => handleUserFollow(data));
   tiktokConn.on(WebcastEvent.SOCIAL, data => {
