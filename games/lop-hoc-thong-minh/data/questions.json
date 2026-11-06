@@ -1,0 +1,452 @@
+[
+  {
+    "id": 1,
+    "subject": "Toán",
+    "grade": "Lớp 3",
+    "question": "Tìm x, biết x × 6 = 54.",
+    "options": {
+      "A": "8",
+      "B": "48",
+      "C": "9",
+      "D": "60"
+    },
+    "correct": "C",
+    "explanation": "✓ x = 54 : 6 = 9",
+    "teacherQuote": "Câu bảng cửu chương này ai trả lời sai là chép phạt 10 lần nhé!"
+  },
+  {
+    "id": 2,
+    "subject": "Khoa học",
+    "grade": "Lớp 5",
+    "question": "Nguyên tố hoá học có kí hiệu Fe là gì?",
+    "options": {
+      "A": "Sắt",
+      "B": "Chì",
+      "C": "Phốt pho",
+      "D": "Flo"
+    },
+    "correct": "A",
+    "explanation": "✓ Fe là kí hiệu hoá học của Sắt (Ferrum)",
+    "teacherQuote": "Câu hỏi khoa học quen thuộc, nhớ kỹ nhé các em!"
+  },
+  {
+    "id": 3,
+    "subject": "Tiếng Việt",
+    "grade": "Lớp 4",
+    "question": "Từ nào sau đây viết ĐÚNG chính tả?",
+    "options": {
+      "A": "Xắp xếp",
+      "B": "Sắp xếp",
+      "C": "Sắp sếp",
+      "D": "Xắp sếp"
+    },
+    "correct": "B",
+    "explanation": "✓ 'Sắp xếp' là từ viết đúng chính tả tiếng Việt",
+    "teacherQuote": "Ai hay viết nhầm từ này thì nhìn lại cho kỹ nào!"
+  },
+  {
+    "id": 4,
+    "subject": "Địa lý",
+    "grade": "Lớp 4",
+    "question": "Đỉnh núi nào được mệnh danh là 'Nóc nhà Đông Dương'?",
+    "options": {
+      "A": "Bà Đen",
+      "B": "Fansipan",
+      "C": "Langbiang",
+      "D": "Bạch Mộc Lương Tử"
+    },
+    "correct": "B",
+    "explanation": "✓ Fansipan cao 3.143m, đỉnh núi cao nhất Việt Nam và Đông Dương",
+    "teacherQuote": "Một niềm tự hào của đất nước Việt Nam chúng ta!"
+  },
+  {
+    "id": 5,
+    "subject": "Toán",
+    "grade": "Lớp 5",
+    "question": "Tính nhẩm: 25% của 200 bằng bao nhiêu?",
+    "options": {
+      "A": "40",
+      "B": "25",
+      "C": "75",
+      "D": "50"
+    },
+    "correct": "D",
+    "explanation": "✓ 25% của 200 = 200 × 25 / 100 = 50 (hoặc lấy 200 : 4 = 50)",
+    "teacherQuote": "Tính nhẩm nhanh trong 3 giây xem ai nhanh nhất lớp!"
+  },
+  {
+    "id": 6,
+    "subject": "Đố mẹo",
+    "grade": "Đố vui",
+    "question": "Con gì đập thì sống, không đập thì chết?",
+    "options": {
+      "A": "Con tim",
+      "B": "Con muỗi",
+      "C": "Con cá",
+      "D": "Con rắn"
+    },
+    "correct": "A",
+    "explanation": "✓ Trái tim (con tim) đập thì sống, ngừng đập là... xong!",
+    "teacherQuote": "Coi chừng bị lừa nha cả lớp ơi!"
+  },
+  {
+    "id": 7,
+    "subject": "Lịch sử",
+    "grade": "Lớp 5",
+    "question": "Bác Hồ đọc Tuyên ngôn Độc lập vào ngày, tháng, năm nào?",
+    "options": {
+      "A": "30/04/1975",
+      "B": "02/09/1945",
+      "C": "19/08/1945",
+      "D": "07/05/1954"
+    },
+    "correct": "B",
+    "explanation": "✓ Ngày 2/9/1945 tại Quảng trường Ba Đình lịch sử",
+    "teacherQuote": "Mốc son chói lọi của dân tộc ta, học sinh ai cũng phải nhớ!"
+  },
+  {
+    "id": 8,
+    "subject": "Toán",
+    "grade": "Lớp 2",
+    "question": "Số chẵn liền sau số 98 là số nào?",
+    "options": {
+      "A": "99",
+      "B": "100",
+      "C": "96",
+      "D": "102"
+    },
+    "correct": "B",
+    "explanation": "✓ Số liền sau 98 là 99 (lẻ), số chẵn liền sau 98 là 100",
+    "teacherQuote": "Đọc kỹ đề nhé: số 'chẵn' liền sau chứ không phải số liền sau!"
+  },
+  {
+    "id": 9,
+    "subject": "Khoa học",
+    "grade": "Lớp 5",
+    "question": "Nước sôi ở nhiệt độ bao nhiêu độ C (ở điều kiện tiêu chuẩn)?",
+    "options": {
+      "A": "80°C",
+      "B": "90°C",
+      "C": "100°C",
+      "D": "120°C"
+    },
+    "correct": "C",
+    "explanation": "✓ Ở áp suất khí quyển tiêu chuẩn, nước nguyên chất sôi ở 100°C",
+    "teacherQuote": "Câu này học từ cấp 1, không được chọn sai nha!"
+  },
+  {
+    "id": 10,
+    "subject": "Tiếng Việt",
+    "grade": "Lớp 3",
+    "question": "Điền vào chỗ trống: 'Học thầy không tày học ...'",
+    "options": {
+      "A": "bạn",
+      "B": "sách",
+      "C": "anh",
+      "D": "mẹ"
+    },
+    "correct": "A",
+    "explanation": "✓ Tục ngữ Việt Nam: 'Học thầy không tày học bạn'",
+    "teacherQuote": "Hãy cùng học hỏi và giúp đỡ bạn cùng lớp nhé!"
+  },
+  {
+    "id": 11,
+    "subject": "Toán",
+    "grade": "Lớp 4",
+    "question": "Một hình vuông có chu vi là 36cm. Diện tích hình vuông đó là:",
+    "options": {
+      "A": "81 cm²",
+      "B": "72 cm²",
+      "C": "36 cm²",
+      "D": "64 cm²"
+    },
+    "correct": "A",
+    "explanation": "✓ Cạnh hình vuông = 36 : 4 = 9cm. Diện tích = 9 × 9 = 81 cm²",
+    "teacherQuote": "Công thức diện tích hình vuông: cạnh nhân cạnh!"
+  },
+  {
+    "id": 12,
+    "subject": "Đố mẹo",
+    "grade": "Đố vui",
+    "question": "Cái gì người mua biết, người bán biết, người dùng không bao giờ biết?",
+    "options": {
+      "A": "Thuốc ngủ",
+      "B": "Quan tài",
+      "C": "Bánh mì",
+      "D": "Vé xem phim"
+    },
+    "correct": "B",
+    "explanation": "✓ Người nằm trong quan tài thì đâu biết gì nữa!",
+    "teacherQuote": "Một câu đố dân gian kinh điển, đố ai đoán trúng!"
+  },
+  {
+    "id": 13,
+    "subject": "Khoa học",
+    "grade": "Lớp 4",
+    "question": "Hành tinh nào gần Mặt Trời nhất trong Hệ Mặt Trời?",
+    "options": {
+      "A": "Sao Kim",
+      "B": "Sao Hoả",
+      "C": "Sao Thuỷ",
+      "D": "Trái Đất"
+    },
+    "correct": "C",
+    "explanation": "✓ Sao Thuỷ (Mercury) là hành tinh gần Mặt Trời nhất",
+    "teacherQuote": "Khám phá vũ trụ bao la nào các em học sinh thân yêu!"
+  },
+  {
+    "id": 14,
+    "subject": "Tiếng Việt",
+    "grade": "Lớp 5",
+    "question": "Cặp từ nào dưới đây là từ ĐỒNG NGHĨA?",
+    "options": {
+      "A": "Bao la - Chật chội",
+      "B": "Mênh mông - Bát ngát",
+      "C": "Chăm chỉ - Lười biếng",
+      "D": "Thật thà - Gian dối"
+    },
+    "correct": "B",
+    "explanation": "✓ Mênh mông và Bát ngát đều chỉ sự rộng lớn bao la",
+    "teacherQuote": "Phân biệt từ đồng nghĩa và từ trái nghĩa nhé!"
+  },
+  {
+    "id": 15,
+    "subject": "Toán",
+    "grade": "Lớp 5",
+    "question": "Một ô tô đi với vận tốc 60 km/h trong 2 giờ 30 phút. Quãng đường ô tô đi được là:",
+    "options": {
+      "A": "120 km",
+      "B": "140 km",
+      "C": "150 km",
+      "D": "160 km"
+    },
+    "correct": "C",
+    "explanation": "✓ 2 giờ 30 phút = 2,5 giờ. Quãng đường = 60 × 2,5 = 150 km",
+    "teacherQuote": "Bài toán chuyển động đều lớp 5, nhớ đổi 30 phút sang 0,5 giờ!"
+  },
+  {
+    "id": 16,
+    "subject": "Địa lý",
+    "grade": "Lớp 4",
+    "question": "Con sông nào dài nhất chảy qua lãnh thổ Việt Nam?",
+    "options": {
+      "A": "Sông Đồng Nai",
+      "B": "Sông Mê Kông",
+      "C": "Sông Hồng",
+      "D": "Sông Hương"
+    },
+    "correct": "B",
+    "explanation": "✓ Sông Mê Kông (dài ~4.350km, đoạn qua VN là sông Cửu Long)",
+    "teacherQuote": "Vùng đồng bằng sông Cửu Long trù phú màu mỡ phù sa!"
+  },
+  {
+    "id": 17,
+    "subject": "Đố mẹo",
+    "grade": "Đố vui",
+    "question": "Có 1 đàn vịt đi qua cầu. 1 con đi trước 2 con, 1 con đi sau 2 con, 1 con đi giữa 2 con. Hỏi có mấy con vịt?",
+    "options": {
+      "A": "3 con",
+      "B": "4 con",
+      "C": "5 con",
+      "D": "6 con"
+    },
+    "correct": "A",
+    "explanation": "✓ Chỉ có 3 con đi thẳng hàng: con đầu trước 2 con, con cuối sau 2 con, con giữa ở giữa!",
+    "teacherQuote": "Đừng vội cộng dồn các số lại nha, tưởng tượng hàng dọc!"
+  },
+  {
+    "id": 18,
+    "subject": "Khoa học",
+    "grade": "Lớp 3",
+    "question": "Động vật nào sau đây đẻ con và nuôi con bằng sữa mẹ?",
+    "options": {
+      "A": "Cá voi",
+      "B": "Cá mập",
+      "C": "Đà điểu",
+      "D": "Cá sấu"
+    },
+    "correct": "A",
+    "explanation": "✓ Cá voi là động vật có vú (thú) sinh sống dưới nước, đẻ con và nuôi con bằng sữa",
+    "teacherQuote": "Dù tên có chữ 'cá' nhưng cá voi là động vật có vú nhé!"
+  },
+  {
+    "id": 19,
+    "subject": "Toán",
+    "grade": "Lớp 4",
+    "question": "Tìm số trung bình cộng của ba số: 15, 25 và 50.",
+    "options": {
+      "A": "25",
+      "B": "30",
+      "C": "35",
+      "D": "40"
+    },
+    "correct": "B",
+    "explanation": "✓ Trung bình cộng = (15 + 25 + 50) : 3 = 90 : 3 = 30",
+    "teacherQuote": "Tổng các số chia cho số lượng các số hạng!"
+  },
+  {
+    "id": 20,
+    "subject": "Tiếng Việt",
+    "grade": "Lớp 4",
+    "question": "Thành ngữ nào dưới đây nói về lòng yêu nước nồng nàn?",
+    "options": {
+      "A": "Chân lấm tay bùn",
+      "B": "Đồng cam cộng khổ",
+      "C": "Uống nước nhớ nguồn",
+      "D": "Kính thầy yêu bạn"
+    },
+    "correct": "C",
+    "explanation": "✓ 'Uống nước nhớ nguồn' là truyền thống nhớ ơn cội nguồn, tổ tiên và đất nước",
+    "teacherQuote": "Truyền thống đạo lý ngàn đời của con người Việt Nam!"
+  },
+  {
+    "id": 21,
+    "subject": "Toán",
+    "grade": "Lớp 5",
+    "question": "Phân số 3/4 viết dưới dạng số thập phân là:",
+    "options": {
+      "A": "0,34",
+      "B": "0,75",
+      "C": "3,4",
+      "D": "0,43"
+    },
+    "correct": "B",
+    "explanation": "✓ 3/4 = 3 : 4 = 0,75",
+    "teacherQuote": "Chuyển đổi phân số sang số thập phân, bài cơ bản lớp 5 nha!"
+  },
+  {
+    "id": 22,
+    "subject": "Lịch sử",
+    "grade": "Lớp 4",
+    "question": "Ai là người lãnh đạo nhân dân đánh tan quân Nam Hán trên sông Bạch Đằng năm 938?",
+    "options": {
+      "A": "Đinh Bộ Lĩnh",
+      "B": "Ngô Quyền",
+      "C": "Lê Hoàn",
+      "D": "Trần Hưng Đạo"
+    },
+    "correct": "B",
+    "explanation": "✓ Ngô Quyền đã cắm cọc gỗ đầu bịt sắt trên sông Bạch Đằng đánh tan quân Nam Hán năm 938",
+    "teacherQuote": "Chiến thắng Bạch Đằng chấm dứt hơn 1000 năm Bắc thuộc!"
+  },
+  {
+    "id": 23,
+    "subject": "Đố mẹo",
+    "grade": "Đố vui",
+    "question": "Con đường nào dài nhất thế giới?",
+    "options": {
+      "A": "Đường cao tốc",
+      "B": "Đường ray xe lửa",
+      "C": "Đường đời",
+      "D": "Đường Xích Đạo"
+    },
+    "correct": "C",
+    "explanation": "✓ Đường đời là con đường dài nhất ai cũng phải đi qua!",
+    "teacherQuote": "Câu này đố vui triết học nhẹ nhàng nha các em!"
+  },
+  {
+    "id": 24,
+    "subject": "Toán",
+    "grade": "Lớp 1",
+    "question": "Tính: 7 + 8 = ?",
+    "options": {
+      "A": "14",
+      "B": "15",
+      "C": "16",
+      "D": "17"
+    },
+    "correct": "B",
+    "explanation": "✓ 7 + 8 = 15",
+    "teacherQuote": "Câu này học sinh lớp 1 tính trong 1 nốt nhạc, ai sai là phạt!"
+  },
+  {
+    "id": 25,
+    "subject": "Khoa học",
+    "grade": "Lớp 5",
+    "question": "Khí nào chiếm tỉ lệ lớn nhất trong không khí?",
+    "options": {
+      "A": "Khí Oxi",
+      "B": "Khí Nitơ",
+      "C": "Khí Cacbonic",
+      "D": "Khí Hiđro"
+    },
+    "correct": "B",
+    "explanation": "✓ Khí Nitơ chiếm khoảng 78% thể tích không khí, Oxi chiếm khoảng 21%",
+    "teacherQuote": "Rất nhiều bạn nhầm là Oxi đấy nhé, thực chất là Nitơ!"
+  },
+  {
+    "id": 26,
+    "subject": "Tiếng Việt",
+    "grade": "Lớp 2",
+    "question": "Từ nào sau đây viết ĐÚNG:",
+    "options": {
+      "A": "Giành giật",
+      "B": "Dành giật",
+      "C": "Rành giật",
+      "D": "Giành dật"
+    },
+    "correct": "A",
+    "explanation": "✓ 'Giành giật' viết bằng âm gi ở cả hai tiếng",
+    "teacherQuote": "Dành cho nhau nhưng tranh giành, giành giật!"
+  },
+  {
+    "id": 27,
+    "subject": "Toán",
+    "grade": "Lớp 5",
+    "question": "Một hình tam giác có đáy 10cm, chiều cao 8cm. Diện tích hình tam giác đó là:",
+    "options": {
+      "A": "80 cm²",
+      "B": "40 cm²",
+      "C": "20 cm²",
+      "D": "18 cm²"
+    },
+    "correct": "B",
+    "explanation": "✓ Diện tích tam giác = (đáy × chiều cao) : 2 = (10 × 8) : 2 = 40 cm²",
+    "teacherQuote": "Đừng quên chia cho 2 khi tính diện tích tam giác nha!"
+  },
+  {
+    "id": 28,
+    "subject": "Đố mẹo",
+    "grade": "Đố vui",
+    "question": "Bỏ ngoài nướng trong, ăn ngoài bỏ trong là gì?",
+    "options": {
+      "A": "Bắp ngô (ngô nướng)",
+      "B": "Củ khoai",
+      "C": "Quả dưa hấu",
+      "D": "Con gà nướng"
+    },
+    "correct": "A",
+    "explanation": "✓ Bỏ vỏ ngoài để nướng hạt bên trong; khi ăn thì ăn hạt ngoài, bỏ cùi bên trong!",
+    "teacherQuote": "Món ăn vặt thơm ngon mùa đông quen thuộc!"
+  },
+  {
+    "id": 29,
+    "subject": "Địa lý",
+    "grade": "Lớp 5",
+    "question": "Đảo nào có diện tích lớn nhất Việt Nam?",
+    "options": {
+      "A": "Cát Bà",
+      "B": "Phú Quốc",
+      "C": "Côn Đảo",
+      "D": "Lý Sơn"
+    },
+    "correct": "B",
+    "explanation": "✓ Phú Quốc (tỉnh Kiên Giang) là hòn đảo lớn nhất nước ta với diện tích khoảng 589 km²",
+    "teacherQuote": "Đảo ngọc Phú Quốc xinh đẹp của Tổ quốc!"
+  },
+  {
+    "id": 30,
+    "subject": "Toán",
+    "grade": "Lớp 3",
+    "question": "Một năm nhuận có bao nhiêu ngày?",
+    "options": {
+      "A": "364 ngày",
+      "B": "365 ngày",
+      "C": "366 ngày",
+      "D": "367 ngày"
+    },
+    "correct": "C",
+    "explanation": "✓ Năm nhuận có 366 ngày (tháng 2 có 29 ngày)",
+    "teacherQuote": "Cứ 4 năm thì lại có một năm nhuận đấy các em!"
+  }
+]

@@ -1,0 +1,672 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Nunito:wght@700;800;900&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+}
+
+body {
+  background-color: #0b0f19;
+  font-family: 'Nunito', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* Khung 9:16 tương thích toàn màn hình TikTok LIVE */
+.game-viewport {
+  position: relative;
+  width: 100%;
+  max-width: 540px;
+  height: 960px;
+  max-height: 100vh;
+  aspect-ratio: 9 / 16;
+  background: #fdf6e2;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+  display: flex;
+  flex-direction: column;
+}
+
+/* NỀN LỚP HỌC */
+.classroom-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #fcebc7 0%, #fae2b1 42%, #ebcd97 100%);
+  z-index: 1;
+}
+
+/* Vạch kẻ sàn gạch lớp học */
+.classroom-floor-lines {
+  position: absolute;
+  top: 42%;
+  left: 0;
+  width: 100%;
+  height: 58%;
+  background-image: 
+    linear-gradient(rgba(209, 172, 115, 0.3) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(209, 172, 115, 0.3) 1px, transparent 1px);
+  background-size: 45px 35px;
+  pointer-events: none;
+}
+
+/* ================================================= */
+/* 1. NỬA TRÊN: BẢNG ĐEN LỚP HỌC (BLACKBOARD)       */
+/* ================================================= */
+.blackboard-section {
+  position: relative;
+  z-index: 10;
+  padding: 10px 12px 6px;
+}
+
+.blackboard-frame {
+  position: relative;
+  background: #17382d;
+  border: 7px solid #8d5b2c;
+  border-radius: 16px;
+  box-shadow: inset 0 0 15px rgba(0,0,0,0.6), 0 6px 14px rgba(0,0,0,0.3);
+  padding: 10px 12px;
+}
+
+/* Thanh thông tin trên đỉnh bảng */
+.chalkboard-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 800;
+  color: #bbf7d0;
+  margin-bottom: 6px;
+}
+
+.grade-badge {
+  background: #064e3b;
+  color: #a7f3d0;
+  padding: 2px 8px;
+  border-radius: 12px;
+  border: 1px solid #059669;
+}
+
+.subject-badge {
+  background: #f59e0b;
+  color: #fff;
+  padding: 2px 7px;
+  border-radius: 10px;
+  font-size: 10px;
+  margin-left: 4px;
+}
+
+.likes-badge {
+  color: #fca5a5;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+/* Tiêu đề câu hỏi */
+.question-title-box {
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.question-text {
+  font-family: 'Comfortaa', 'Nunito', cursive;
+  font-size: 17px;
+  font-weight: 900;
+  color: #ffffff;
+  line-height: 1.35;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+}
+
+/* 4 Lựa chọn A, B, C, D */
+.options-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.option-btn {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1.5px dashed rgba(255, 255, 255, 0.35);
+  border-radius: 12px;
+  padding: 6px 10px;
+  font-size: 14px;
+  font-weight: 800;
+  color: #ffffff;
+  transition: all 0.25s ease;
+}
+
+.opt-letter {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 900;
+  margin-right: 8px;
+  flex-shrink: 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.opt-A .opt-letter { background: #ff5252; color: #fff; }
+.opt-B .opt-letter { background: #f59e0b; color: #fff; }
+.opt-C .opt-letter { background: #06b6d4; color: #fff; }
+.opt-D .opt-letter { background: #10b981; color: #fff; }
+
+.opt-content {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Khi đáp án đúng được công bố */
+.option-btn.is-correct {
+  background: rgba(16, 185, 129, 0.35) !important;
+  border: 2px solid #10b981 !important;
+  box-shadow: 0 0 16px rgba(16, 185, 129, 0.9);
+  animation: correctPulse 1.2s infinite alternate;
+}
+
+.option-btn.is-wrong {
+  opacity: 0.35;
+  filter: grayscale(0.8);
+}
+
+@keyframes correctPulse {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.03); }
+}
+
+/* Thống kê & Thanh đếm ngược */
+.answer-stats-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 800;
+  color: #fde047;
+  margin-bottom: 4px;
+}
+
+.timer-progress-wrap {
+  width: 100%;
+  height: 7px;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 4px;
+}
+
+.timer-progress-fill {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #10b981 0%, #facc15 65%, #ef4444 100%);
+  border-radius: 6px;
+  transition: width 1s linear;
+}
+
+.reveal-explanation-box {
+  min-height: 18px;
+  font-size: 11px;
+  font-weight: 800;
+  color: #67e8f9;
+  text-align: center;
+}
+
+/* ================================================= */
+/* 2. BỤC GIẢNG: CÔ GIÁO & BỤC LỚP TRƯỞNG          */
+/* ================================================= */
+.podium-section {
+  position: relative;
+  z-index: 15;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 0 16px;
+  height: 105px;
+}
+
+/* CÔ GIÁO BÊN TRÁI */
+.teacher-area {
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+}
+
+.teacher-character {
+  width: 56px;
+  height: 95px;
+  position: relative;
+  animation: teacherIdle 2.5s infinite ease-in-out;
+}
+
+@keyframes teacherIdle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+.teacher-avatar-svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Bong bóng thoại của cô giáo */
+.teacher-speech-bubble {
+  position: absolute;
+  left: 62px;
+  bottom: 35px;
+  width: 175px;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 6px 9px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  font-size: 11px;
+  font-weight: 800;
+  color: #334155;
+  line-height: 1.3;
+  z-index: 20;
+}
+
+.teacher-speech-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: 10px;
+  left: -8px;
+  border-width: 5px 8px 5px 0;
+  border-style: solid;
+  border-color: transparent #ffffff transparent transparent;
+}
+
+/* BỤC LỚP TRƯỞNG BÊN PHẢI */
+.class-president-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.president-badge-title {
+  background: linear-gradient(180deg, #f59e0b 0%, #b45309 100%);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 900;
+  padding: 2px 10px;
+  border-radius: 12px;
+  border: 1.5px solid #fef08a;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+  margin-bottom: 2px;
+  letter-spacing: 0.5px;
+}
+
+.president-character-box {
+  width: 58px;
+  height: 68px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.president-crown {
+  position: absolute;
+  top: -10px;
+  font-size: 16px;
+  animation: crownBounce 1.5s infinite;
+}
+
+@keyframes crownBounce {
+  0%, 100% { transform: translateY(0) rotate(-5deg); }
+  50% { transform: translateY(-4px) rotate(5deg); }
+}
+
+.president-avatar-img {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 2px solid #f59e0b;
+  object-fit: cover;
+  background: #fff;
+}
+
+.president-name {
+  font-size: 10px;
+  font-weight: 800;
+  color: #1e293b;
+  background: #fef08a;
+  padding: 1px 6px;
+  border-radius: 8px;
+  max-width: 75px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 2px;
+}
+
+.president-rule-tip {
+  font-size: 9px;
+  font-weight: 800;
+  color: #78350f;
+  background: rgba(254, 243, 199, 0.95);
+  padding: 2px 6px;
+  border-radius: 6px;
+  margin-top: 2px;
+}
+
+/* ================================================= */
+/* 3. NỬA DƯỚI: LỚP HỌC & HỌC SINH (40 BÀN)          */
+/* ================================================= */
+.classroom-grid-section {
+  position: relative;
+  z-index: 10;
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 12px 12px;
+}
+
+/* Lối đi ở giữa */
+.classroom-aisle {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 28px;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.aisle-student-standing {
+  position: absolute;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Dãy bàn bên Trái và bên Phải */
+.desk-bank {
+  width: 46%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(10, 1fr);
+  gap: 5px 6px;
+  height: 100%;
+}
+
+/* Từng ô bàn học */
+.desk-unit {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: 52px;
+}
+
+/* Hình dáng bàn gỗ */
+.wooden-desk {
+  width: 100%;
+  height: 18px;
+  background: #c2884a;
+  border-top: 3px solid #dfa565;
+  border-radius: 4px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.18);
+  position: relative;
+  z-index: 1;
+}
+
+/* Học sinh ngồi tại bàn */
+.student-seated {
+  position: absolute;
+  bottom: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 3;
+  animation: studentPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes studentPop {
+  0% { transform: scale(0.3); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Cặp sách & Lưng học sinh */
+.student-backpack {
+  width: 24px;
+  height: 25px;
+  border-radius: 6px 6px 4px 4px;
+  position: relative;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.25);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.student-backpack::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  width: 11px;
+  height: 5px;
+  border: 2px solid rgba(255,255,255,0.7);
+  border-radius: 3px 3px 0 0;
+}
+
+/* Khăn quàng đỏ */
+.red-scarf {
+  position: absolute;
+  top: -2px;
+  width: 11px;
+  height: 8px;
+  background: #dc2626;
+  clip-path: polygon(50% 100%, 0 0, 100% 0);
+  z-index: 2;
+}
+
+/* Tên học sinh đính dưới bàn */
+.student-tag-name {
+  font-size: 9px;
+  font-weight: 800;
+  color: #0f172a;
+  background: #ffffff;
+  border: 1px solid #94a3b8;
+  padding: 1px 5px;
+  border-radius: 6px;
+  margin-top: 2px;
+  max-width: 58px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  z-index: 4;
+}
+
+/* BONG BÓNG ĐÁP ÁN (A, B, C, D) TRÊN ĐẦU HỌC SINH */
+.answer-bubble {
+  position: absolute;
+  top: -24px;
+  background: #ffffff;
+  color: #0f172a;
+  font-size: 12px;
+  font-weight: 900;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.35);
+  border: 2px solid #3b82f6;
+  animation: answerBounce 0.3s ease-out;
+  z-index: 10;
+}
+
+@keyframes answerBounce {
+  0% { transform: translateY(8px) scale(0.2); }
+  70% { transform: translateY(-3px) scale(1.15); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+/* DẤU TICK ĐÚNG / SAI KHI CÔNG BỐ */
+.result-mark {
+  position: absolute;
+  top: -22px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 900;
+  color: #fff;
+  z-index: 6;
+  animation: resultPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.result-mark.correct {
+  background: #10b981;
+  box-shadow: 0 0 10px #10b981;
+}
+
+.result-mark.wrong {
+  background: #ef4444;
+}
+
+@keyframes resultPop {
+  0% { transform: scale(0); }
+  80% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+/* BONG BÓNG CHAT TỰ DO CỦA HỌC SINH */
+.student-chat-bubble {
+  position: absolute;
+  bottom: 28px;
+  background: #ffffff;
+  color: #0f172a;
+  font-size: 9px;
+  font-weight: 800;
+  padding: 3px 7px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+  white-space: nowrap;
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  z-index: 15;
+  animation: chatFade 3.5s forwards ease-in-out;
+}
+
+@keyframes chatFade {
+  0% { transform: translateY(4px); opacity: 0; }
+  10% { transform: translateY(0); opacity: 1; }
+  85% { opacity: 1; }
+  100% { transform: translateY(-6px); opacity: 0; }
+}
+
+/* ================================================= */
+/* 4. OVERLAYS & HIỆU ỨNG (CONFETTI, GIFT POPUP)     */
+/* ================================================= */
+#confettiCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 50;
+}
+
+/* Thông báo tặng quà rực rỡ */
+.gift-banner-popup {
+  position: absolute;
+  top: 38%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.5);
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.95), rgba(245, 158, 11, 0.95));
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: 2px solid #fef08a;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+  font-size: 14px;
+  font-weight: 900;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 60;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.gift-banner-popup.active {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+}
+
+/* Thông báo Follower mới */
+.follow-banner-popup {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.5);
+  background: linear-gradient(135deg, rgba(236, 72, 153, 0.95), rgba(168, 85, 247, 0.95));
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: 2px solid #fbcfe8;
+  box-shadow: 0 8px 30px rgba(236, 72, 153, 0.45);
+  font-size: 14px;
+  font-weight: 900;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 60;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.follow-banner-popup.active {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+}
+
+/* Floating Likes (Trái tim bay) */
+.floating-heart {
+  position: absolute;
+  bottom: 60px;
+  right: 25px;
+  font-size: 20px;
+  pointer-events: none;
+  z-index: 40;
+  animation: heartFloat 2s forwards ease-out;
+}
+
+@keyframes heartFloat {
+  0% { transform: translateY(0) scale(0.7); opacity: 1; }
+  100% { transform: translateY(-180px) translateX(-30px) scale(1.4); opacity: 0; }
+}

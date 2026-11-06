@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Bạn Có Thông Minh Hơn Học Sinh Lớp 5? — TikTok LIVE</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+  <div class="game-viewport">
+    <!-- NỀN PHÒNG HỌC -->
+    <div class="classroom-background"></div>
+    <div class="classroom-floor-lines"></div>
+
+    <!-- 1. BẢNG ĐEN LỚP HỌC (BLACKBOARD) -->
+    <header class="blackboard-section">
+      <div class="blackboard-frame">
+        <div class="chalkboard-topbar">
+          <div>
+            <span class="grade-badge" id="gradeBadge">Lớp 3</span>
+            <span class="subject-badge" id="subjectBadge">Toán</span>
+            <span style="margin-left: 6px; color: #fde047;" id="roundBadge">Câu 1/30</span>
+          </div>
+          <div class="likes-badge">
+            <span>❤️</span>
+            <span id="likesCount">0</span>
+          </div>
+        </div>
+
+        <div class="question-title-box">
+          <div class="question-text" id="questionText">Đang tải câu hỏi...</div>
+        </div>
+
+        <div class="options-grid">
+          <div class="option-btn opt-A" id="optBtnA">
+            <span class="opt-letter">A</span>
+            <span class="opt-content" id="optTextA">...</span>
+          </div>
+          <div class="option-btn opt-B" id="optBtnB">
+            <span class="opt-letter">B</span>
+            <span class="opt-content" id="optTextB">...</span>
+          </div>
+          <div class="option-btn opt-C" id="optBtnC">
+            <span class="opt-letter">C</span>
+            <span class="opt-content" id="optTextC">...</span>
+          </div>
+          <div class="option-btn opt-D" id="optBtnD">
+            <span class="opt-letter">D</span>
+            <span class="opt-content" id="optTextD">...</span>
+          </div>
+        </div>
+
+        <div class="answer-stats-bar">
+          <span id="answeredStatsText">✍️ Đã có 0 bạn trả lời</span>
+          <span id="timerBadgeText" style="color: #6ee7b7;">⏱️ 20s</span>
+        </div>
+
+        <div class="timer-progress-wrap">
+          <div class="timer-progress-fill" id="timerFill"></div>
+        </div>
+
+        <div class="reveal-explanation-box" id="revealExplanation">
+          💡 Bình luận A, B, C hoặc D để ghi điểm vào lớp!
+        </div>
+      </div>
+    </header>
+
+    <!-- 2. BỤC GIẢNG: CÔ GIÁO & BỤC LỚP TRƯỞNG -->
+    <section class="podium-section">
+      <!-- CÔ GIÁO -->
+      <div class="teacher-area">
+        <div class="teacher-character">
+          <svg class="teacher-avatar-svg" viewBox="0 0 100 160">
+            <!-- Tóc -->
+            <path d="M 25 55 C 20 20, 80 20, 75 55 C 85 45, 90 65, 80 80 C 75 70, 75 55, 75 55 C 75 25, 25 25, 25 55 C 25 55, 25 70, 20 80 C 10 65, 15 45, 25 55 Z" fill="#292524" />
+            <!-- Khuôn mặt -->
+            <ellipse cx="50" cy="50" rx="22" ry="24" fill="#fed7aa" />
+            <!-- Mắt kính -->
+            <circle cx="42" cy="48" r="6" fill="none" stroke="#dc2626" stroke-width="2" />
+            <circle cx="58" cy="48" r="6" fill="none" stroke="#dc2626" stroke-width="2" />
+            <line x1="48" y1="48" x2="52" y2="48" stroke="#dc2626" stroke-width="2" />
+            <!-- Mắt -->
+            <circle cx="42" cy="48" r="2.5" fill="#1e293b" />
+            <circle cx="58" cy="48" r="2.5" fill="#1e293b" />
+            <!-- Miệng cười -->
+            <path d="M 45 62 Q 50 67 55 62" fill="none" stroke="#e11d48" stroke-width="2" stroke-linecap="round" />
+            <!-- Áo dài hồng -->
+            <path d="M 32 74 L 68 74 L 75 145 L 25 145 Z" fill="#f472b6" />
+            <path d="M 46 74 L 46 145" stroke="#db2777" stroke-width="2" />
+            <!-- Cây thước chỉ bảng -->
+            <line x1="68" y1="90" x2="95" y2="25" stroke="#78350f" stroke-width="3" stroke-linecap="round" />
+            <circle cx="95" cy="25" r="4" fill="#fbbf24" />
+          </svg>
+        </div>
+        <div class="teacher-speech-bubble" id="teacherSpeechBubble">
+          Chào các em! Hãy suy nghĩ thật kỹ để chọn đáp án đúng nhé!
+        </div>
+      </div>
+
+      <!-- BỤC LỚP TRƯỞNG -->
+      <div class="class-president-area">
+        <div class="president-badge-title">⭐ LỚP TRƯỞNG</div>
+        <div class="president-character-box">
+          <span class="president-crown">👑</span>
+          <img src="https://api.dicebear.com/7.x/bottts/svg?seed=president" class="president-avatar-img" id="presidentAvatar" alt="Lớp Trưởng">
+          <div class="president-name" id="presidentName">Đang trống</div>
+        </div>
+        <div class="president-rule-tip" id="presidentRuleTip">🎁 Tặng quà lên bục</div>
+      </div>
+    </section>
+
+    <!-- 3. NỬA DƯỚI: PHÒNG HỌC & DÃY BÀN HỌC SINH -->
+    <main class="classroom-grid-section">
+      <!-- DÃY TRÁI (20 BÀN) -->
+      <div class="desk-bank" id="deskBankLeft"></div>
+
+      <!-- LỐI ĐI Ở GIỮA -->
+      <div class="classroom-aisle">
+        <div class="aisle-student-standing" id="aisleStudent">
+          <div class="student-backpack" style="background: #10b981;">
+            <div class="red-scarf"></div>
+          </div>
+          <div class="student-tag-name">Trực nhật</div>
+        </div>
+      </div>
+
+      <!-- DÃY PHẢI (20 BÀN) -->
+      <div class="desk-bank" id="deskBankRight"></div>
+    </main>
+
+    <!-- THÔNG BÁO TẶNG QUÀ -->
+    <div class="gift-banner-popup" id="giftBannerPopup">
+      <span style="font-size: 24px;">🌹</span>
+      <span id="giftBannerText">Bạn đã gửi Hoa hồng!</span>
+    </div>
+
+    <!-- THÔNG BÁO FOLLOWER MỚI -->
+    <div class="follow-banner-popup" id="followBannerPopup">
+      <span style="font-size: 24px;">💖</span>
+      <span id="followBannerText">Cảm ơn bạn đã Follow!</span>
+    </div>
+
+    <!-- CANVAS PHÁO HOA & CONFETTI -->
+    <canvas id="confettiCanvas"></canvas>
+  </div>
+
+  <script src="audio.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>

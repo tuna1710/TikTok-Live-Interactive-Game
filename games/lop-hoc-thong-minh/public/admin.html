@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bảng Điều Khiển & Test Giả Lập — Lớp Học Thông Minh</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #0f172a;
+      color: #f8fafc;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      padding: 24px;
+    }
+    .container { max-width: 900px; margin: 0 auto; }
+    h1 { color: #38bdf8; margin-bottom: 8px; font-size: 24px; }
+    p.sub { color: #94a3b8; margin-bottom: 24px; font-size: 14px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 24px; }
+    .card {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 16px;
+    }
+    .card h2 { font-size: 16px; color: #f59e0b; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: none;
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.2s;
+      width: 100%;
+      margin-bottom: 8px;
+    }
+    .btn:hover { opacity: 0.9; transform: translateY(-1px); }
+    .btn-blue { background: #0284c7; color: #fff; }
+    .btn-green { background: #059669; color: #fff; }
+    .btn-rose { background: #e11d48; color: #fff; }
+    .btn-amber { background: #d97706; color: #fff; }
+    .btn-purple { background: #7c3aed; color: #fff; }
+    input[type="text"] {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 8px;
+      background: #0f172a;
+      border: 1px solid #475569;
+      color: #fff;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+    .status-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 20px;
+      background: #065f46;
+      color: #34d399;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .log-box {
+      background: #090d16;
+      border: 1px solid #1e293b;
+      border-radius: 8px;
+      padding: 12px;
+      font-family: monospace;
+      font-size: 12px;
+      height: 140px;
+      overflow-y: auto;
+      color: #a7f3d0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎓 BẢNG ĐIỀU KHIỂN — LỚP HỌC THÔNG MINH (TIKTOK LIVE)</h1>
+    <p class="sub">Màn hình xem Game 9:16: <a href="/" target="_blank" style="color: #38bdf8; text-decoration: underline;">Nhấp vào đây để mở Game</a></p>
+
+    <div class="grid">
+      <!-- 1. KẾT NỐI TIKTOK LIVE -->
+      <div class="card">
+        <h2>📡 Kết Nối TikTok LIVE</h2>
+        <input type="text" id="tiktokUsernameInput" placeholder="Nhập @username TikTok (VD: @user123)">
+        <button class="btn btn-blue" onclick="connectTikTok()">🔗 Kết Nối Phòng Live</button>
+        <div id="connStatus" class="status-badge">Trạng thái: Sẵn sàng kết nối</div>
+      </div>
+
+      <!-- 2. ĐIỀU KHIỂN CÂU HỎI -->
+      <div class="card">
+        <h2>⏱️ Quản Lý Vòng Chơi</h2>
+        <button class="btn btn-purple" onclick="nextQuestion()">⏭️ Chuyển Ngay Câu Tiếp Theo</button>
+        <button class="btn btn-amber" onclick="simulateBulkAnswers()">👥 Giả Lập 10 Học Sinh Trả Lời Ngẫu Nhiên</button>
+      </div>
+
+      <!-- 3. TEST TẶNG QUÀ & LỚP TRƯỞNG & FOLLOW -->
+      <div class="card">
+        <h2>🌹 Test Lớp Trưởng & Follow</h2>
+        <button class="btn btn-rose" onclick="simulateGift('Hoa Hồng', 1)">👑 LÊN LỚP TRƯỞNG (Ưu Tiên #1)</button>
+        <button class="btn btn-rose" onclick="simulateGift('Bánh Kem', 10)">🎂 Tặng Bánh Kem (Giữ 60s)</button>
+        <button class="btn btn-rose" onclick="simulateGift('Sư Tử Siêu Cấp', 50)">🦁 Tặng Sư Tử (Giữ 3 Phút)</button>
+        <button class="btn btn-purple" style="background: #ec4899; color: #fff;" onclick="simulateFollow()">💖 BẤM FOLLOW KÊNH (Ưu Tiên #2)</button>
+      </div>
+
+      <!-- 4. TEST BÌNH LUẬN & ĐÁP ÁN -->
+      <div class="card">
+        <h2>💬 Test Bình Luận Học Sinh</h2>
+        <button class="btn btn-green" onclick="simulateAnswer('A')">🅰️ Chọn Đáp Án A</button>
+        <button class="btn btn-green" onclick="simulateAnswer('B')">🅱️ Chọn Đáp Án B</button>
+        <button class="btn btn-green" onclick="simulateAnswer('C')">🅲 Chọn Đáp Án C</button>
+        <button class="btn btn-green" onclick="simulateAnswer('D')">🅳 Chọn Đáp Án D</button>
+        <button class="btn btn-blue" onclick="simulateChat('Em chào cô ạ!')">🙋 Chat: "Em chào cô ạ!"</button>
+        <button class="btn btn-blue" onclick="simulateChat('Câu này dễ quá cô ơi')">🙋 Chat: "Câu này dễ quá cô ơi"</button>
+      </div>
+    </div>
+
+    <!-- LOGS -->
+    <div class="card">
+      <h2>📝 Nhật Ký Hoạt Động (Logs)</h2>
+      <div class="log-box" id="logBox">Đang khởi tạo bảng điều khiển...</div>
+    </div>
+  </div>
+
+  <script>
+    function log(msg) {
+      const box = document.getElementById('logBox');
+      const time = new Date().toLocaleTimeString();
+      box.innerHTML = `[${time}] ${msg}<br>` + box.innerHTML;
+    }
+
+    async function connectTikTok() {
+      const username = document.getElementById('tiktokUsernameInput').value.trim();
+      if (!username) return alert('Vui lòng nhập username TikTok!');
+      log(`Đang gửi lệnh kết nối TikTok @${username}...`);
+      const res = await fetch('/api/control/connect-tiktok', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username })
+      });
+      const data = await res.json();
+      log(`Kết quả kết nối: ${JSON.stringify(data)}`);
+    }
+
+    async function nextQuestion() {
+      log('Đang chuyển câu tiếp theo...');
+      await fetch('/api/control/next', { method: 'POST' });
+    }
+
+    async function simulateAnswer(ans) {
+      const id = Math.floor(Math.random() * 25 + 1);
+      await fetch('/api/simulate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'answer',
+          username: `hoc_sinh_${id}`,
+          nickname: `Học Sinh ${id}`,
+          answer: ans
+        })
+      });
+      log(`Đã giả lập học sinh ${id} chọn đáp án ${ans}`);
+    }
+
+    async function simulateBulkAnswers() {
+      log('Đang giả lập 10 học sinh cùng bình luận đáp án...');
+      const opts = ['A', 'B', 'C', 'D'];
+      for (let i = 1; i <= 10; i++) {
+        const rndAns = opts[Math.floor(Math.random() * opts.length)];
+        fetch('/api/simulate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            type: 'answer',
+            username: `hoc_sinh_${i}`,
+            nickname: `Học Sinh ${i}`,
+            answer: rndAns
+          })
+        });
+      }
+    }
+
+    async function simulateGift(giftName, count) {
+      const names = ['Nguyễn Văn A', 'Trần Thị B', 'Lê Hoàng C', 'Phạm Minh D'];
+      const pickName = names[Math.floor(Math.random() * names.length)];
+      await fetch('/api/simulate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'gift',
+          username: `vip_${Date.now()}`,
+          nickname: pickName,
+          giftName,
+          count
+        })
+      });
+      log(`Đã giả lập ${pickName} tặng ${count}x ${giftName} lên làm Lớp Trưởng!`);
+    }
+
+    async function simulateFollow() {
+      const names = ['Bé Thảo Vy', 'Nguyễn Gia Bảo', 'Trần Thục Anh', 'Lê Minh Khôi', 'Võ Hoàng Nam'];
+      const pickName = names[Math.floor(Math.random() * names.length)];
+      await fetch('/api/simulate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'follow',
+          username: `follower_${Date.now()}`,
+          nickname: pickName
+        })
+      });
+      log(`Đã giả lập ${pickName} bấm Follow kênh!`);
+    }
+
+    async function simulateChat(msg) {
+      const id = Math.floor(Math.random() * 20 + 1);
+      await fetch('/api/simulate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'comment',
+          username: `hoc_sinh_${id}`,
+          nickname: `Học Sinh ${id}`,
+          comment: msg
+        })
+      });
+      log(`Học sinh ${id} chat: "${msg}"`);
+    }
+
+    log('Bảng điều khiển đã sẵn sàng.');
+  </script>
+</body>
+</html>

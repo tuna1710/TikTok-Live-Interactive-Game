@@ -51,6 +51,17 @@ Tự động chuyển hóa bình luận, lượt thả tim và quà tặng của
 
 ---
 
+### 4. 🎓 Bạn Có Thông Minh Hơn Học Sinh Lớp 5? (Lớp Học Vui Nhộn)
+* **Chủ đề:** Game giải đố trắc nghiệm tiểu học 9:16 tương tác trực quan mô phỏng phòng học 40 bàn ghế.
+* **Tương tác:**
+  * **Bình luận (`A`, `B`, `C`, `D`):** Chốt đáp án trắc nghiệm trên bảng đen, hiện bong bóng đáp án trên đầu nhân vật học sinh tại bàn học.
+  * **Bình luận tự do:** Hiện bong bóng thoại trên đầu nhân vật (*"Em chào cô ạ"*, *"Cô ơi đông quá"*...).
+  * **Tặng Quà (Hoa hồng / Quà tặng):** Tranh cử và bước lên bục vinh danh làm **LỚP TRƯỞNG**, kích hoạt pháo giấy chúc mừng và cô giáo xướng tên qua giọng đọc AI!
+  * **Thả tim (Likes):** Bắn tim ngập tràn phòng học và tích điểm thi đua.
+* **Thư mục:** `games/lop-hoc-thong-minh/`
+
+---
+
 ## 🚀 Hướng Dẫn Khởi Chạy (1-Click Trên Google Colab)
 
 Tất cả các game đều đã được tích hợp sẵn đường truyền **Cloudflare Tunnel công khai** (Không bao giờ bị lỗi hỏi đăng nhập GitHub, không lo lỗi màn hình đen):
