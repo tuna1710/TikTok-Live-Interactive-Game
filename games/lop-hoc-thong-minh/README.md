@@ -32,6 +32,17 @@ Trò chơi tương tác phòng học tiểu học chuẩn dọc 9:16 (`1080×192
    - **Ưu tiên #2: Follow Kênh** — Cảm ơn khán giả vừa bấm Follow kênh (*"Cảm ơn bạn [Tên] đã follow kênh! Chào mừng em gia nhập lớp học nhé! 💖"*).
    - **Ưu tiên #3: Câu hỏi & Công bố kết quả** — Đọc câu hỏi mới, đếm ngược và tuyên dương khi hết giờ làm bài.
 
+5. **Bảng Vàng Thi Đua & Logic Tính Điểm (Leaderboard & Scoring):**
+   - **Bảng Vàng Thi Đua (Top 3 Học Sinh Giỏi):** Hiển thị trực tiếp trên bục giảng (🥇 Top 1, 🥈 Top 2, 🥉 Top 3 kèm điểm số).
+   - **Thẻ tên bàn học kèm điểm:** Mỗi học sinh được hiển thị tên kèm điểm số (VD: `Minh Khôi • ★25đ`), kèm hiệu ứng số điểm `+10đ`, `+15đ` bay lên khi ghi điểm.
+   - **Logic tính điểm học tập:**
+     - **Thưởng nhanh tay nhất:** Học sinh đầu tiên chọn đúng đáp án được **+15 điểm**.
+     - **Các bạn trả lời đúng tiếp theo:** Được **+10 điểm**.
+     - **Chuỗi trả lời đúng liên tiếp (Streak Bonus):** Trả lời đúng từ 3 câu liên tiếp trở lên được thưởng thêm **+5 điểm**. Trả lời sai reset chuỗi combo.
+     - **Thưởng Hoa Điểm 10 (Tặng Quà):** 1 Hoa hồng (1 xu) = **+10 điểm**; Quà lớn tặng **+10 điểm/xu** thi đua.
+     - **Thưởng Nhập Học (Follow Kênh):** Bấm follow được tặng ngay **+10 điểm**.
+   - **Lưu điểm bền vững:** Điểm số được lưu trữ liên tục theo tài khoản người xem, không bị mất ngay cả khi học sinh bị đẩy khỏi 40 bàn do lớp đông.
+
 ---
 
 ## 🚀 Khởi Chạy Game

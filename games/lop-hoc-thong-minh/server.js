@@ -105,8 +105,47 @@ for (let i = 0; i < TOTAL_DESKS; i++) {
 // Bảng màu cặp sách học sinh (đỏ, hồng, xanh ngọc, vàng, cam...)
 const BAG_COLORS = ['#3b82f6', '#ec4899', '#10b981', '#f59e0b', '#8b5cf6', '#ef4444', '#06b6d4'];
 
-// Quản lý học sinh (Map: username -> Desk Index & Info)
+// Quản lý học sinh trên bàn học (Map: username -> Desk Index & Info)
 const studentsMap = new Map();
+
+// Bảng xếp hạng điểm bền vững (Map: username -> Player Info)
+const playerScores = new Map();
+
+function getOrCreatePlayer(user) {
+  const username = user.uniqueId || user.username || `user_${Date.now()}`;
+  if (!playerScores.has(username)) {
+    playerScores.set(username, {
+      username,
+      nickname: user.nickname || user.user || username,
+      avatar: user.profilePictureUrl || user.avatar || `https://api.dicebear.com/7.x/bottts/svg?seed=${username}`,
+      score: 0,
+      correctCount: 0,
+      streak: 0,
+      roses: 0,
+      lastActive: Date.now()
+    });
+  }
+  const player = playerScores.get(username);
+  if (user.nickname && user.nickname !== player.nickname) player.nickname = user.nickname;
+  if (user.profilePictureUrl && !player.avatar.includes('tiktokcdn')) player.avatar = user.profilePictureUrl;
+  player.lastActive = Date.now();
+  return player;
+}
+
+function getLeaderboard(limit = 10) {
+  return Array.from(playerScores.values())
+    .sort((a, b) => b.score - a.score || b.correctCount - a.correctCount)
+    .slice(0, limit)
+    .map((p, idx) => ({
+      rank: idx + 1,
+      username: p.username,
+      nickname: p.nickname,
+      avatar: p.avatar,
+      score: p.score,
+      streak: p.streak || 0,
+      correctCount: p.correctCount || 0
+    }));
+}
 
 // Lớp trưởng hiện tại
 let classPresident = {
@@ -167,13 +206,17 @@ function seatStudent(user) {
     targetDesk = oldestDesk;
   }
 
+  const player = getOrCreatePlayer(user);
+
   const studentObj = {
     username,
     nickname: user.nickname || username,
-    avatar: user.profilePictureUrl || `https://api.dicebear.com/7.x/bottts/svg?seed=${username}`,
+    avatar: user.profilePictureUrl || user.avatar || player.avatar,
     bagColor: BAG_COLORS[targetDesk.id % BAG_COLORS.length],
-    score: 0,
+    score: player.score,
+    pointsEarned: 0,
     currentAnswer: null,
+    answerTime: 0,
     isCorrect: null,
     lastActive: Date.now(),
     chatMsg: null,
@@ -201,6 +244,8 @@ function startNewQuestion() {
     if (d.student) {
       d.student.currentAnswer = null;
       d.student.isCorrect = null;
+      d.student.pointsEarned = 0;
+      d.student.answerTime = 0;
     }
   });
 
@@ -229,53 +274,84 @@ function startNewQuestion() {
   broadcastState();
 }
 
-// Công bố kết quả câu hỏi
+// Công bố kết quả câu hỏi & Tính điểm học sinh
 function revealAnswer() {
   gameState = 'REVEAL';
   timerCountdown = REVEAL_DURATION;
 
   let correctCount = 0;
   let totalAnswered = 0;
+  const correctStudents = [];
 
   desks.forEach(d => {
     if (d.student && d.student.currentAnswer) {
       totalAnswered++;
       if (d.student.currentAnswer === currentQuestion.correct) {
         d.student.isCorrect = true;
-        d.student.score += 10;
         correctCount++;
+        correctStudents.push(d.student);
       } else {
         d.student.isCorrect = false;
+        d.student.pointsEarned = 0;
+        const player = getOrCreatePlayer(d.student);
+        player.streak = 0; // Trả lời sai reset chuỗi combo
       }
+    } else if (d.student) {
+      d.student.pointsEarned = 0;
     }
+  });
+
+  // Xếp thứ tự trả lời đúng theo thời gian (ai chọn trước được thưởng nhanh tay)
+  correctStudents.sort((a, b) => (a.answerTime || 0) - (b.answerTime || 0));
+
+  correctStudents.forEach((student, index) => {
+    const player = getOrCreatePlayer(student);
+    const isFastest = index === 0; // Nhanh nhất lớp
+
+    // Logic tính điểm:
+    // +15đ cho bạn nhanh nhất, +10đ cho các bạn sau
+    // +5đ streak bonus nếu đúng liên tiếp >= 3 câu
+    player.streak = (player.streak || 0) + 1;
+    let earned = isFastest ? 15 : 10;
+    if (player.streak >= 3) {
+      earned += 5;
+    }
+
+    player.score += earned;
+    player.correctCount++;
+    student.score = player.score;
+    student.pointsEarned = earned;
   });
 
   answerStats.correctCount = correctCount;
   answerStats.total = totalAnswered;
 
-  let praise = `Đáp án đúng là ${currentQuestion.correct}! Có ${correctCount}/${totalAnswered} bạn đúng, giỏi lắm 👏`;
+  const top1Student = correctStudents[0];
+  let praise = `Đáp án đúng là ${currentQuestion.correct}! Có ${correctCount}/${totalAnswered} bạn đúng 👏`;
   if (totalAnswered === 0) {
     praise = `Hết giờ! Đáp án đúng là ${currentQuestion.correct}: ${currentQuestion.options[currentQuestion.correct]}!`;
-  } else if (correctCount === totalAnswered && totalAnswered > 0) {
-    praise = `Tuyệt vời! 100% cả lớp đều trả lời đúng đáp án ${currentQuestion.correct}! 🎉`;
-  } else if (correctCount === 0 && totalAnswered > 0) {
-    praise = `Tiếc quá, chưa có bạn nào trả lời đúng câu này! Cố gắng câu sau nhé!`;
+  } else if (top1Student) {
+    praise = `Đáp án đúng là ${currentQuestion.correct}! Bạn ${top1Student.nickname} nhanh tay nhất nhận +15 điểm! 🎉`;
   }
 
   teacherSpeech = { text: praise, time: Date.now(), priority: 3 };
+
+  const leaderboard = getLeaderboard(5);
 
   io.emit('round_reveal', {
     correct: currentQuestion.correct,
     explanation: currentQuestion.explanation,
     stats: answerStats,
     teacherSpeech,
+    leaderboard,
     desks: desks.map(d => ({
       id: d.id,
       student: d.student ? {
         username: d.student.username,
         currentAnswer: d.student.currentAnswer,
         isCorrect: d.student.isCorrect,
-        score: d.student.score
+        score: d.student.score,
+        pointsEarned: d.student.pointsEarned || 0
       } : null
     }))
   });
@@ -291,6 +367,7 @@ function broadcastState() {
     roundNumber,
     totalLikes,
     answerStats,
+    leaderboard: getLeaderboard(5),
     classPresident: {
       ...classPresident,
       remainingSec: Math.max(0, Math.ceil((classPresident.expiresAt - Date.now()) / 1000))
@@ -307,6 +384,7 @@ function broadcastState() {
         avatar: d.student.avatar,
         bagColor: d.student.bagColor,
         score: d.student.score,
+        pointsEarned: d.student.pointsEarned || 0,
         currentAnswer: d.student.currentAnswer,
         isCorrect: d.student.isCorrect,
         chatMsg: d.student.chatMsg,
@@ -379,6 +457,7 @@ function handleUserComment(data) {
       answerStats.total++;
     }
     desk.student.currentAnswer = answerChosen;
+    desk.student.answerTime = Date.now();
     answerStats[answerChosen] = (answerStats[answerChosen] || 0) + 1;
 
     io.emit('student_answered', {
@@ -414,6 +493,14 @@ function handleUserGift(data) {
   if (totalCoins >= 50) durationSec = 180;
   else if (totalCoins >= 10) durationSec = 60;
   else durationSec = Math.min(120, 20 * repeatCount);
+
+  // Cộng điểm thi đua quà tặng: 1 xu = +10 điểm
+  const player = getOrCreatePlayer(desk.student);
+  const giftPoints = totalCoins * 10;
+  player.score += giftPoints;
+  player.roses = (player.roses || 0) + repeatCount;
+  desk.student.score = player.score;
+  desk.student.pointsEarned = giftPoints;
 
   classPresident = {
     username: desk.student.username,
@@ -465,6 +552,15 @@ function handleUserFollow(data) {
     recentFollowers.delete(firstKey);
   }
 
+  // Cộng +10 điểm quà nhập học cho tân học sinh
+  const player = getOrCreatePlayer(data);
+  const followPoints = 10;
+  player.score += followPoints;
+  if (desk && desk.student) {
+    desk.student.score = player.score;
+    desk.student.pointsEarned = followPoints;
+  }
+
   const quotes = [
     `Cảm ơn bạn ${nickname} đã follow kênh! Chào mừng em gia nhập lớp học nhé! 💖`,
     `Hoan hô bạn ${nickname} vừa follow kênh! Chúc em học thật giỏi và đạt điểm cao! ✨`,
@@ -478,7 +574,8 @@ function handleUserFollow(data) {
       username,
       nickname,
       avatar,
-      deskId: desk ? desk.id : null
+      deskId: desk ? desk.id : null,
+      score: player.score
     },
     teacherSpeech
   };
@@ -553,6 +650,7 @@ app.get('/api/state', (req, res) => {
     totalLikes,
     answerStats,
     classPresident,
+    leaderboard: getLeaderboard(10),
     desksCount: desks.length,
     activeStudents: Array.from(studentsMap.values()).length
   });
@@ -615,6 +713,7 @@ io.on('connection', socket => {
     } : null,
     totalLikes,
     answerStats,
+    leaderboard: getLeaderboard(5),
     classPresident,
     teacherSpeech,
     desks

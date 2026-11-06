@@ -178,6 +178,7 @@ function initDesks() {
 
     deskWrap.innerHTML = `
       <div class="student-seated" id="student_wrap_${i}" style="display: none;">
+        <div class="floating-points" id="points_float_${i}">+10đ</div>
         <div class="answer-bubble" id="ans_bubble_${i}" style="display: none;"></div>
         <div class="result-mark" id="res_mark_${i}" style="display: none;"></div>
         <div class="student-chat-bubble" id="chat_bubble_${i}" style="display: none;"></div>
@@ -201,6 +202,47 @@ function initDesks() {
 
 initDesks();
 
+// Hiệu ứng cộng điểm bay lên trên đầu bàn học sinh
+function showFloatingPoints(deskId, pts) {
+  const el = document.getElementById(`points_float_${deskId}`);
+  if (!el || !pts) return;
+  el.textContent = `+${pts}đ`;
+  el.classList.remove('show');
+  void el.offsetWidth; // Trigger reflow
+  el.classList.add('show');
+  setTimeout(() => {
+    el.classList.remove('show');
+  }, 1600);
+}
+
+// Cập nhật Bảng Vàng Thi Đua (Top 3)
+function updateLeaderboardUI(leaderboard) {
+  if (!Array.isArray(leaderboard)) return;
+  const top1 = leaderboard[0];
+  const top2 = leaderboard[1];
+  const top3 = leaderboard[2];
+
+  const t1Name = document.getElementById('top1Name');
+  const t1Score = document.getElementById('top1Score');
+  const t2Name = document.getElementById('top2Name');
+  const t2Score = document.getElementById('top2Score');
+  const t3Name = document.getElementById('top3Name');
+  const t3Score = document.getElementById('top3Score');
+
+  if (t1Name && t1Score) {
+    t1Name.textContent = top1 ? (top1.nickname || top1.username) : 'Đang thi đua...';
+    t1Score.textContent = top1 ? `${top1.score}đ` : '0đ';
+  }
+  if (t2Name && t2Score) {
+    t2Name.textContent = top2 ? (top2.nickname || top2.username) : 'Đang thi đua...';
+    t2Score.textContent = top2 ? `${top2.score}đ` : '0đ';
+  }
+  if (t3Name && t3Score) {
+    t3Name.textContent = top3 ? (top3.nickname || top3.username) : 'Đang thi đua...';
+    t3Score.textContent = top3 ? `${top3.score}đ` : '0đ';
+  }
+}
+
 // Cập nhật vị trí học sinh trên bàn
 function updateDeskStudent(deskId, student) {
   const studentWrap = document.getElementById(`student_wrap_${deskId}`);
@@ -215,8 +257,17 @@ function updateDeskStudent(deskId, student) {
   }
 
   if (studentWrap) studentWrap.style.display = 'flex';
-  if (tagName) tagName.textContent = student.nickname || student.username;
+  if (tagName) {
+    const nick = student.nickname || student.username;
+    const score = student.score || 0;
+    tagName.innerHTML = `<span class="tag-nick">${nick}</span><span class="tag-score">★${score}đ</span>`;
+  }
   if (backpack) backpack.style.background = student.bagColor || '#3b82f6';
+
+  // Nếu học sinh vừa ghi điểm trong lượt này
+  if (student.pointsEarned && student.pointsEarned > 0) {
+    showFloatingPoints(deskId, student.pointsEarned);
+  }
 
   // Hiển thị đáp án đang chọn
   if (student.currentAnswer && currentGameState === 'QUESTION') {
@@ -294,6 +345,10 @@ socket.on('init_game', data => {
     updatePresidentUI(data.classPresident);
   }
 
+  if (data.leaderboard) {
+    updateLeaderboardUI(data.leaderboard);
+  }
+
   if (data.teacherSpeech) {
     teacherSpeechBubble.textContent = data.teacherSpeech.text;
   }
@@ -333,6 +388,10 @@ socket.on('round_question', data => {
 
 socket.on('round_reveal', data => {
   currentGameState = 'REVEAL';
+
+  if (data.leaderboard) {
+    updateLeaderboardUI(data.leaderboard);
+  }
 
   // Highlight đáp án đúng
   const correctOpt = data.correct; // 'A', 'B', 'C', 'D'
@@ -470,6 +529,9 @@ socket.on('celebration_effect', () => {
 });
 
 socket.on('game_state_update', data => {
+  if (data.leaderboard) {
+    updateLeaderboardUI(data.leaderboard);
+  }
   if (data.desks) {
     data.desks.forEach(d => updateDeskStudent(d.id, d.student));
   }

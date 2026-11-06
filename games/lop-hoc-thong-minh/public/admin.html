@@ -117,6 +117,14 @@
         <button class="btn btn-blue" onclick="simulateChat('Em chào cô ạ!')">🙋 Chat: "Em chào cô ạ!"</button>
         <button class="btn btn-blue" onclick="simulateChat('Câu này dễ quá cô ơi')">🙋 Chat: "Câu này dễ quá cô ơi"</button>
       </div>
+      <!-- 5. BẢNG ĐIỂM THI ĐUA -->
+      <div class="card">
+        <h2>🏆 Bảng Điểm Thi Đua (Top 5)</h2>
+        <div id="adminLeaderboardList" style="font-size: 13px; line-height: 1.8; color: #cbd5e1; margin-bottom: 8px;">
+          Đang tải bảng điểm...
+        </div>
+        <button class="btn btn-blue" onclick="fetchAdminState()">🔄 Làm Mới Bảng Điểm</button>
+      </div>
     </div>
 
     <!-- LOGS -->
@@ -131,6 +139,21 @@
       const box = document.getElementById('logBox');
       const time = new Date().toLocaleTimeString();
       box.innerHTML = `[${time}] ${msg}<br>` + box.innerHTML;
+    }
+
+    async function fetchAdminState() {
+      try {
+        const res = await fetch('/api/state');
+        const data = await res.json();
+        const box = document.getElementById('adminLeaderboardList');
+        if (data.leaderboard && data.leaderboard.length > 0) {
+          box.innerHTML = data.leaderboard.slice(0, 5).map(p => 
+            `<b>Top ${p.rank}:</b> ${p.nickname} — <span style="color:#facc15;font-weight:bold;">${p.score}đ</span> (Đúng: ${p.correctCount || 0}, Streak: ${p.streak || 0})`
+          ).join('<br>');
+        } else {
+          box.innerHTML = 'Chưa có học sinh nào ghi điểm.';
+        }
+      } catch (e) {}
     }
 
     async function connectTikTok() {
@@ -232,6 +255,8 @@
     }
 
     log('Bảng điều khiển đã sẵn sàng.');
+    fetchAdminState();
+    setInterval(fetchAdminState, 3000);
   </script>
 </body>
 </html>
