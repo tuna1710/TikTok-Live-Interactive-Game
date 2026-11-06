@@ -1777,6 +1777,82 @@
       cursor: pointer;
       box-shadow: 0 4px 12px rgba(255, 140, 0, 0.5);
     }
+
+    /* ========================================================
+       MỤC 7: CÂU ĐỐ TRÙM & GIỜ VÀNG (BOSS ROUND / RUSH HOUR x2)
+       ======================================================== */
+    .game-container.boss-mode {
+      border-color: #ef4444;
+      box-shadow: 0 0 35px rgba(239, 68, 68, 0.7), inset 0 0 25px rgba(249, 115, 22, 0.3);
+      animation: bossPulseGlow 2.5s infinite alternate ease-in-out;
+    }
+    @keyframes bossPulseGlow {
+      0% {
+        box-shadow: 0 0 25px rgba(239, 68, 68, 0.6), inset 0 0 15px rgba(249, 115, 22, 0.2);
+        border-color: #ef4444;
+      }
+      100% {
+        box-shadow: 0 0 45px rgba(255, 69, 0, 0.95), inset 0 0 35px rgba(255, 140, 0, 0.45);
+        border-color: #ffd700;
+      }
+    }
+    .boss-round-banner {
+      margin: 4px 16px 6px;
+      padding: 6px 12px;
+      background: linear-gradient(90deg, #b91c1c, #ea580c, #b91c1c);
+      background-size: 200% auto;
+      border: 1.5px solid #ffd700;
+      border-radius: 12px;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 11.5px;
+      font-weight: 900;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      box-shadow: 0 0 18px rgba(239, 68, 68, 0.85);
+      animation: fireGradient 3s linear infinite, bossBounce 1.5s infinite alternate;
+      z-index: 10;
+    }
+    @keyframes fireGradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    @keyframes bossBounce {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.02); }
+    }
+    .boss-flame {
+      font-size: 15px;
+      animation: flameWiggle 0.6s infinite alternate;
+      display: inline-block;
+    }
+    @keyframes flameWiggle {
+      0% { transform: scale(1) rotate(-8deg); }
+      100% { transform: scale(1.25) rotate(8deg); }
+    }
+    .game-container.boss-mode .timer-circle {
+      border-color: #ef4444 !important;
+      box-shadow: 0 0 24px rgba(239, 68, 68, 0.8), inset 0 0 12px rgba(255, 69, 0, 0.5) !important;
+      animation: bossTimerPulse 1s infinite alternate;
+    }
+    @keyframes bossTimerPulse {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.04); }
+    }
+    .game-container.boss-mode .round-tag {
+      background: linear-gradient(135deg, #ef4444, #f97316) !important;
+      border-color: #ffd700 !important;
+      color: #fff !important;
+      box-shadow: 0 0 12px rgba(239, 68, 68, 0.8) !important;
+    }
+    .winner-box.boss-win {
+      border-color: #ef4444;
+      box-shadow: 0 0 40px rgba(239, 68, 68, 0.95), inset 0 0 25px rgba(255, 215, 0, 0.4);
+    }
   </style>
 </head>
 <body>
@@ -1876,6 +1952,13 @@
 
     <!-- Container Tim Bay Khi Thả Like -->
     <div id="floatingHeartsContainer" class="floating-hearts-container"></div>
+
+    <!-- Banner Câu Đố Trùm (Boss Round / Rush Hour x2) -->
+    <div id="bossRoundBanner" class="boss-round-banner" style="display:none;">
+      <span class="boss-flame">🔥</span>
+      <span id="bossRoundBannerText">⚔️ CÂU ĐỐ TRÙM - GIỜ VÀNG x2 ĐIỂM (90s) ⚔️</span>
+      <span class="boss-flame">🔥</span>
+    </div>
 
     <!-- Thông tin Vòng & Chủ Đề -->
     <div class="info-bar">
@@ -2319,6 +2402,17 @@
       setTimeout(() => playTone(1108.73, 'sine', 0.35, 0.42), 290); // C#6
       setTimeout(() => playTone(1318.51, 'sine', 0.5, 0.48), 380); // E6
       setTimeout(() => playTone(1760, 'sine', 0.65, 0.55), 480); // A6
+    }
+
+    // 10. Tiếng Cảnh Báo Câu Đố Trùm & Giờ Vàng (Boss Round Siren / War Fanfare - Mục 7)
+    function soundBossWarning() {
+      if (!soundEnabled) return;
+      playTone(220, 'sawtooth', 0.2, 0.35); // A3
+      setTimeout(() => playTone(330, 'sawtooth', 0.25, 0.35), 120); // E4
+      setTimeout(() => playTone(440, 'sawtooth', 0.3, 0.4), 240); // A4
+      setTimeout(() => playTone(554.37, 'sawtooth', 0.35, 0.45), 360); // C#5
+      setTimeout(() => playTone(880, 'sawtooth', 0.45, 0.5), 480); // A5
+      setTimeout(() => playTone(1108.73, 'triangle', 0.5, 0.6), 620); // C#6
     }
 
     // ---------------------------------------------------------
@@ -2860,6 +2954,12 @@
       if (state.activeChestCelebration && state.isCelebratingChest) {
         showChestOpenCelebration(state.activeChestCelebration);
       }
+
+      const isBoss = Boolean(state.isBossRound);
+      const bossBanner = document.getElementById('bossRoundBanner');
+      const gameContainer = document.querySelector('.game-container');
+      if (gameContainer) gameContainer.classList.toggle('boss-mode', isBoss);
+      if (bossBanner) bossBanner.style.display = isBoss ? 'flex' : 'none';
     });
 
     // Cập nhật huy hiệu gợi ý quà tặng
@@ -3177,6 +3277,13 @@
       renderTargetSlots(state.targetPattern);
       updateGiftHintBadge(state.canRevealMore, state.remainingHiddenLetters);
 
+      const isBoss = Boolean(state.isBossRound);
+      const bossBanner = document.getElementById('bossRoundBanner');
+      const gameContainer = document.querySelector('.game-container');
+      if (gameContainer) gameContainer.classList.toggle('boss-mode', isBoss);
+      if (bossBanner) bossBanner.style.display = isBoss ? 'flex' : 'none';
+      if (isBoss) soundBossWarning();
+
       if (state.ttsText) {
         ttsManager.speak(state.ttsText, true);
       }
@@ -3365,25 +3472,31 @@
       winnerAnswer.textContent = data.word;
 
       if (winnerBox) {
-        winnerBox.classList.remove('streak-hot', 'streak-blazing', 'streak-godlike');
+        winnerBox.classList.remove('streak-hot', 'streak-blazing', 'streak-godlike', 'boss-win');
       }
 
       const isBuff = Boolean(data.hasDonorBuff || data.winner?.hasDonorBuff);
+      const isBoss = Boolean(data.isBossRound || data.winner?.isBossRound);
+
+      if (isBoss && winnerBox) {
+        winnerBox.classList.add('boss-win');
+      }
+
       if (streak && streak.count >= 2) {
         soundComboStreak(streak.count);
         if (winnerBox) {
           winnerBox.classList.add(`streak-${streak.flameLevel || 'hot'}`);
         }
         if (winnerPts) {
-          winnerPts.textContent = `+${streak.totalPoints} ĐIỂM CHIẾN THẮNG 🎯 (${isBuff ? '🎁 Buff x2 Quà & ' : ''}Thưởng +${streak.bonusPoints}đ 🔥)`;
+          winnerPts.textContent = `+${streak.totalPoints} ĐIỂM CHIẾN THẮNG 🎯 (${isBoss ? '⚔️ Trùm x2 + ' : ''}${isBuff ? '🎁 Buff x2 Quà + ' : ''}Thưởng +${streak.bonusPoints}đ 🔥)`;
         }
         if (winnerStreakCard) {
           winnerStreakCard.style.display = 'inline-flex';
           winnerStreakCard.className = `winner-streak-card streak-${streak.flameLevel || 'hot'}`;
-          if (wsBadge) wsBadge.textContent = isBuff ? '🎁⚡' : (streak.streakBadge || '🔥');
-          if (wsTitle) wsTitle.textContent = `${isBuff ? 'BUFF QUÀ x2 + ' : ''}COMBO THẮNG x${streak.count} ${streak.streakTitle || ''}`;
+          if (wsBadge) wsBadge.textContent = isBoss ? '⚔️🔥' : (isBuff ? '🎁⚡' : (streak.streakBadge || '🔥'));
+          if (wsTitle) wsTitle.textContent = `${isBoss ? 'HẠ TRÙM + ' : ''}${isBuff ? 'BUFF QUÀ x2 + ' : ''}COMBO THẮNG x${streak.count} ${streak.streakTitle || ''}`;
           if (wsMult) wsMult.textContent = `x${streak.multiplier}`;
-          if (wsDetail) wsDetail.textContent = `Gốc ${streak.basePoints || 100}đ + Thưởng chuỗi/buff ${streak.bonusPoints || 0}đ`;
+          if (wsDetail) wsDetail.textContent = `Gốc ${streak.basePoints || 100}đ${isBoss ? ' (Trùm x2)' : ''} + Thưởng ${streak.bonusPoints || 0}đ`;
         }
 
         if (window.confetti) {
@@ -3398,6 +3511,50 @@
           });
         }
         updateStreakTicker(streak);
+      } else if (isBoss && isBuff) {
+        soundComboStreak(4);
+        if (winnerPts) {
+          winnerPts.textContent = `+${data.winner.points || 400} ĐIỂM CHIẾN THẮNG 🎯 (⚔️ HẠ GỤC TRÙM x2 + 🎁 BUFF X2!)`;
+        }
+        if (winnerStreakCard) {
+          winnerStreakCard.style.display = 'inline-flex';
+          winnerStreakCard.className = 'winner-streak-card streak-godlike';
+          if (wsBadge) wsBadge.textContent = '⚔️🎁';
+          if (wsTitle) wsTitle.textContent = 'HẠ GỤC TRÙM + BUFF QUÀ NHÂN BỘI';
+          if (wsMult) wsMult.textContent = 'x4.0';
+          if (wsDetail) wsDetail.textContent = `Gốc Trùm 200đ x2 Bùa Lợi Quà Tặng = ${data.winner.points || 400}đ`;
+        }
+        if (window.confetti) {
+          confetti({
+            particleCount: 130,
+            spread: 90,
+            origin: { y: 0.55 },
+            colors: ['#ef4444', '#ffd700', '#ec4899', '#ffffff']
+          });
+        }
+        updateStreakTicker(null);
+      } else if (isBoss) {
+        soundComboStreak(3);
+        if (winnerPts) {
+          winnerPts.textContent = `+${data.winner.points || 200} ĐIỂM CHIẾN THẮNG 🎯 (⚔️ HẠ GỤC CÂU ĐỐ TRÙM x2 ĐIỂM!)`;
+        }
+        if (winnerStreakCard) {
+          winnerStreakCard.style.display = 'inline-flex';
+          winnerStreakCard.className = 'winner-streak-card streak-godlike';
+          if (wsBadge) wsBadge.textContent = '⚔️🔥';
+          if (wsTitle) wsTitle.textContent = 'HẠ GỤC CÂU ĐỐ TRÙM (GIỜ VÀNG x2)';
+          if (wsMult) wsMult.textContent = 'x2.0';
+          if (wsDetail) wsDetail.textContent = `Độ khó cao: Điểm gốc nhân đôi (+${data.winner.points || 200}đ)`;
+        }
+        if (window.confetti) {
+          confetti({
+            particleCount: 100,
+            spread: 80,
+            origin: { y: 0.6 },
+            colors: ['#ef4444', '#f59e0b', '#ffd700', '#ffffff']
+          });
+        }
+        updateStreakTicker(null);
       } else if (isBuff) {
         soundComboStreak(3);
         if (winnerPts) {

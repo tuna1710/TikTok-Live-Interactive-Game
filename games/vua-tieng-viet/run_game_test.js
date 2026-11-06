@@ -359,6 +359,41 @@ async function main() {
     execSync(`timeout 10 google-chrome --headless --no-sandbox --disable-gpu --window-size=480,854 --screenshot="${shot10}" "http://127.0.0.1:3005"`, { stdio: 'ignore' });
     console.log(`📸 Đã chụp ảnh màn hình Vinh Danh Buff Nhân Đôi Điểm x2: test_10_gift_buff_x2.png (${fs.statSync(shot10).size} bytes)`);
 
+    // 12. Kiểm thử Mục 7 - Câu Đố Trùm & Giờ Vàng (Boss Round / Rush Hour x2)
+    console.log('\n--- BƯỚC 12: KIỂM THỬ MỤC 7 - CÂU ĐỐ TRÙM & GIỜ VÀNG (BOSS ROUND x2) ---');
+    const bossRes = await (await fetch('http://127.0.0.1:3005/admin/api', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'startBossRoundNow' })
+    })).json();
+    console.log(`⚔️ Kích hoạt Câu Đố Trùm: ${bossRes.message}`);
+    await sleep(800);
+
+    const stateBoss = await (await fetch('http://127.0.0.1:3005/api/state')).json();
+    console.log(`🔥 [TRẠNG THÁI TRÙM] isBossRound: ${stateBoss.state.isBossRound}, Thời gian: ${stateBoss.state.timeLeft}s (Tổng ${stateBoss.state.roundTimeTotal}s)`);
+    console.log(`   - Từ Trùm cần đoán: "${stateBoss.actualWord}" (Chủ đề: ${stateBoss.state.category})`);
+
+    const shot11 = path.join(__dirname, 'public', 'test_11_boss_round.png');
+    execSync(`timeout 10 google-chrome --headless --no-sandbox --disable-gpu --window-size=480,854 --screenshot="${shot11}" "http://127.0.0.1:3005"`, { stdio: 'ignore' });
+    console.log(`📸 Đã chụp ảnh màn hình Câu Đố Trùm rực lửa: test_11_boss_round.png (${fs.statSync(shot11).size} bytes)`);
+
+    // Trả lời đúng Câu Đố Trùm
+    console.log(`🎯 Chiến Thần Đố Chữ hạ gục Câu Đố Trùm với đáp án: "${stateBoss.actualWord}"`);
+    await fetch('http://127.0.0.1:3005/admin/api', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'simulateChat', user: 'Chiến Thần Đố Chữ', text: stateBoss.actualWord })
+    });
+    await sleep(2000);
+
+    const stateAfterBoss = await (await fetch('http://127.0.0.1:3005/api/state')).json();
+    const lastWinner = stateAfterBoss.state.lastWinner;
+    console.log(`🏆 [HẠ GỤC TRÙM THÀNH CÔNG] Winner: ${lastWinner?.nickname}, Điểm nhận: ${lastWinner?.points}đ (Gốc: ${lastWinner?.basePoints}đ), isBossRound: ${lastWinner?.isBossRound}`);
+
+    const shot12 = path.join(__dirname, 'public', 'test_12_boss_victory.png');
+    execSync(`timeout 10 google-chrome --headless --no-sandbox --disable-gpu --window-size=480,854 --screenshot="${shot12}" "http://127.0.0.1:3005"`, { stdio: 'ignore' });
+    console.log(`📸 Đã chụp ảnh màn hình Vinh Danh Hạ Gục Câu Đố Trùm: test_12_boss_victory.png (${fs.statSync(shot12).size} bytes)`);
+
     console.log('\n========================================================================');
     console.log('🎉 TẤT CẢ CÁC TÍNH NĂNG ĐÃ ĐƯỢC TEST THÀNH CÔNG VÀ SẴN SÀNG ĐƯA VÀO LIVE!');
     console.log('========================================================================');

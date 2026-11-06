@@ -105,6 +105,8 @@ let gameState = {
   tiktokStatusMsg: 'Đang khởi động...',
   totalCommentsReceived: 0,
   ttsEnabled: true,
+  isBossRound: false,
+  roundTimeTotal: ROUND_TIME_DEFAULT,
 };
 
 let timerInterval = null;
@@ -147,6 +149,11 @@ let likeChestState = {
   chestsOpened: 0,
   lastChestOpened: null,
 };
+
+// Quản lý Câu Đố Trùm & Giờ Vàng (Boss Round / Rush Hour x2 - Mục 7)
+const BOSS_ROUND_INTERVAL = Number(process.env.BOSS_ROUND_INTERVAL) || 5; // Mặc định mỗi 5 vòng xuất hiện 1 câu đố trùm
+const BOSS_ROUND_TIME = Number(process.env.BOSS_ROUND_TIME) || 90; // 90 giây cho câu đố trùm
+let nextRoundIsBoss = false;
 
 let isCelebratingChest = false;
 let chestCelebrationTimer = null;
@@ -612,6 +619,29 @@ function pickNextWord() {
 }
 
 
+function pickBossWord() {
+  const bossCandidates = wordsData.filter(w => {
+    const wordCount = w.word.trim().split(/\s+/).length;
+    const isBossCategory = ['Thành Ngữ', 'Tục Ngữ', 'Ca Dao', 'Văn Học', 'Truyền Thuyết'].includes(w.category);
+    return wordCount >= 4 || (isBossCategory && w.word.length >= 10);
+  });
+
+  let unplayedBoss = bossCandidates.filter(w => !playedWordIds.has(w.id));
+  if (unplayedBoss.length === 0) {
+    unplayedBoss = bossCandidates;
+  }
+
+  const picked = unplayedBoss[Math.floor(Math.random() * unplayedBoss.length)] || pickNextWord();
+  playedWordIds.add(picked.id);
+  savePlayedWords();
+
+  const deckIdx = wordDeck.findIndex(w => w.id === picked.id);
+  if (deckIdx !== -1) wordDeck.splice(deckIdx, 1);
+
+  console.log(`[Boss Deck] ⚔️ Rút CÂU ĐỐ TRÙM id=${picked.id}: "${picked.word}" (${picked.category})`);
+  return picked;
+}
+
 function startNewRound() {
   if (timerInterval) clearInterval(timerInterval);
   if (nextRoundTimer) {
@@ -619,7 +649,10 @@ function startNewRound() {
     nextRoundTimer = null;
   }
 
-  const wordObj = pickNextWord();
+  const isBoss = nextRoundIsBoss || ((gameState.round + 1) % BOSS_ROUND_INTERVAL === 0);
+  nextRoundIsBoss = false;
+
+  const wordObj = isBoss ? pickBossWord() : pickNextWord();
   const rawChars = wordObj.word.split('');
 
   // Extract non-space characters for scrambling
@@ -635,15 +668,27 @@ function startNewRound() {
   const mask = rawChars.map(c => c === ' ');
 
   gameState.round++;
+  gameState.isBossRound = isBoss;
   gameState.currentWord = wordObj;
   gameState.scrambledLetters = scrambled;
   gameState.revealedMask = mask;
-  gameState.timeLeft = ROUND_TIME_DEFAULT;
+  gameState.roundTimeTotal = isBoss ? BOSS_ROUND_TIME : ROUND_TIME_DEFAULT;
+  gameState.timeLeft = gameState.roundTimeTotal;
   gameState.roundState = 'PLAYING';
 
-  console.log(`\n[Vòng ${gameState.round}] Từ cần đoán: "${wordObj.word}" (Chủ đề: ${wordObj.category})`);
+  if (isBoss) {
+    console.log(`\n🔥 [VÒNG ${gameState.round} - CÂU ĐỐ TRÙM] "${wordObj.word}" (${wordObj.category}) - ${BOSS_ROUND_TIME}s - x2 Điểm thưởng!`);
+  } else {
+    console.log(`\n[Vòng ${gameState.round}] Từ cần đoán: "${wordObj.word}" (Chủ đề: ${wordObj.category})`);
+  }
 
-  const ttsText = `Vòng ${gameState.round}. Chủ đề ${wordObj.category}. Gợi ý: ${wordObj.hint}`;
+  let ttsText = '';
+  if (isBoss) {
+    ttsText = `Cảnh báo! Vòng ${gameState.round} là CÂU ĐỐ TRÙM GIỜ VÀNG! Độ khó cao với ${BOSS_ROUND_TIME} giây và nhân đôi điểm thưởng! Gợi ý: ${wordObj.hint}`;
+  } else {
+    ttsText = `Vòng ${gameState.round}. Chủ đề ${wordObj.category}. Gợi ý: ${wordObj.hint}`;
+  }
+
   const roundPayload = {
     ...getClientGameState(),
     ttsText,
@@ -744,7 +789,7 @@ function checkGuess(user, text) {
       streakCount = currentStreakWinner.count + 1;
     }
 
-    let basePoints = 100;
+    let basePoints = gameState.isBossRound ? 200 : 100;
     let multiplier = 1.0;
     let streakBadge = '';
     let streakTitle = '';
@@ -837,14 +882,19 @@ function checkGuess(user, text) {
       flameLevel,
       hasDonorBuff,
       donorBuffGift: donorBuff?.giftName || '',
+      isBossRound: Boolean(gameState.isBossRound),
       word: target,
     };
 
-    console.log(`🏆 NGƯỜI CHIẾN THẮNG: ${existing.nickname} (+${totalPoints}đ${hasDonorBuff ? ' [🎁 BUFF X2 QUÀ TẶNG]' : ''}${streakCount >= 2 ? ` [Combo x${streakCount} ${streakBadge} ${streakTitle}]` : ''}, Tổng: ${existing.score}đ)`);
+    console.log(`🏆 NGƯỜI CHIẾN THẮNG: ${existing.nickname} (+${totalPoints}đ${gameState.isBossRound ? ' [⚔️ HẠ GỤC CÂU ĐỐ TRÙM]' : ''}${hasDonorBuff ? ' [🎁 BUFF X2 QUÀ TẶNG]' : ''}${streakCount >= 2 ? ` [Combo x${streakCount} ${streakBadge} ${streakTitle}]` : ''}, Tổng: ${existing.score}đ)`);
 
     const winnerName = existing.nickname;
     let ttsText = '';
-    if (hasDonorBuff && streakCount >= 2) {
+    if (gameState.isBossRound && hasDonorBuff) {
+      ttsText = `Chấn động toàn phòng live! Nhờ bùa lợi quà tặng kết hợp hạ gục Câu Đố Trùm, ${winnerName} nhận số điểm kỷ lục lên tới ${totalPoints} điểm cho đáp án: ${target}!`;
+    } else if (gameState.isBossRound) {
+      ttsText = `Chấn động toàn phòng live! ${winnerName} đã xuất sắc hạ gục Câu Đố Trùm ${target}, nhận ngay ${totalPoints} điểm chiến thắng gấp đôi!`;
+    } else if (hasDonorBuff && streakCount >= 2) {
       ttsText = `Tuyệt đỉnh! Nhờ có bùa lợi quà tặng ${donorBuff?.giftName || ''} kết hợp chuỗi thắng liên tiếp, ${winnerName} nhận số điểm gấp bội lên ${totalPoints} điểm!`;
     } else if (hasDonorBuff) {
       ttsText = `Tuyệt đỉnh! Nhờ có bùa lợi quà tặng ${donorBuff?.giftName || ''}, ${winnerName} được nhân đôi số điểm lên ${totalPoints} điểm cho đáp án chính xác: ${target}!`;
@@ -866,6 +916,7 @@ function checkGuess(user, text) {
       streak: currentStreakWinner,
       hasDonorBuff,
       donorBuff,
+      isBossRound: Boolean(gameState.isBossRound),
     });
     io.emit('streakUpdate', currentStreakWinner);
 
@@ -1038,6 +1089,11 @@ function getClientGameState() {
       ...activeChestCelebration,
       duration: Math.max(1, Math.round(activeChestCelebration.duration - (Date.now() - activeChestCelebration.startedAt) / 1000)),
     } : null,
+    isBossRound: Boolean(gameState.isBossRound),
+    bossMultiplier: gameState.isBossRound ? 2 : 1,
+    roundTimeTotal: gameState.roundTimeTotal || ROUND_TIME_DEFAULT,
+    nextRoundIsBoss: Boolean(nextRoundIsBoss),
+    bossRoundInterval: BOSS_ROUND_INTERVAL,
   };
 }
 
@@ -1267,6 +1323,23 @@ app.get('/api/state', (req, res) => {
 
 app.post('/admin/api', (req, res) => {
   const { action, text, user, seconds, channel } = req.body || {};
+
+  if (action === 'triggerBossRound' || action === 'setNextBossRound') {
+    nextRoundIsBoss = true;
+    return res.json({ ok: true, message: 'Đã cài đặt: Vòng kế tiếp sẽ là CÂU ĐỐ TRÙM (Boss Round)!' });
+  }
+
+  if (action === 'startBossRoundNow') {
+    nextRoundIsBoss = true;
+    if (timerInterval) clearInterval(timerInterval);
+    if (nextRoundTimer) {
+      clearTimeout(nextRoundTimer);
+      nextRoundTimer = null;
+    }
+    io.emit('milestoneEnd');
+    startNewRound();
+    return res.json({ ok: true, message: 'Đã kích hoạt CÂU ĐỐ TRÙM ngay lập tức!' });
+  }
 
   if (action === 'skip' || action === 'skipMilestone') {
     if (isCelebratingMilestone) {

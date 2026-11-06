@@ -123,8 +123,24 @@ Tài liệu này lưu trữ danh sách các tính năng nâng cấp tương tác
 
 ---
 
-### 📌 MỤC 7: CÂU ĐỐ TRÙM & GIỜ VÀNG (BOSS ROUND / RUSH HOUR)
-> **Mục tiêu:** Xuất hiện sau mỗi chu kỳ định kỳ (câu 5, 10, 15... hoặc Streamer kích hoạt). Câu đố thành ngữ/tục ngữ dài 4-8 từ, đếm ngược 90s, nhân đôi/ba điểm thưởng kèm theme giao diện rực lửa.
+### 📌 MỤC 7: CÂU ĐỐ TRÙM & GIỜ VÀNG (BOSS ROUND / RUSH HOUR x2) - [ĐÃ HOÀN THIỆN]
+> **Mục tiêu:** Xuất hiện sau mỗi chu kỳ định kỳ (mặc định mỗi 5 vòng, hoặc do Streamer kích hoạt thủ công từ Admin). Câu đố thành ngữ/tục ngữ/từ khóa dài $\ge 4$ từ hoặc $\ge 10$ ký tự, thời gian đếm ngược 90s, nhân đôi điểm số chiến thắng cơ bản (100đ -> 200đ) kết hợp hiệu ứng giao diện rực lửa, nhạc chuông cảnh báo chiến đấu và banner vinh danh hạ gục trùm.
+
+#### 7.1. Cơ chế kỹ thuật (Đã triển khai):
+1. **Phía Server (`server.js` & `server-youtube.js`):**
+   - Hằng số `BOSS_ROUND_INTERVAL = 5`, `BOSS_ROUND_TIME = 90`.
+   - Hàm `pickBossWord()` lọc các câu đố dài $\ge 4$ từ hoặc thuộc danh mục Ca Dao, Tục Ngữ, Thành Ngữ, Văn Học $\ge 10$ ký tự.
+   - Khi vào vòng trùm: đặt `gameState.isBossRound = true`, `gameState.roundTimeTotal = 90`, `gameState.timeLeft = 90`.
+   - Chấm điểm: `basePoints = gameState.isBossRound ? 200 : 100`. Nếu có thêm Buff quà tặng x2, tổng điểm lên tới 400đ!
+   - Thêm 2 API Admin: `startBossRoundNow` (kích hoạt ngay lập tức) và `triggerBossRound` (vòng kế tiếp sẽ là Trùm).
+2. **Phía Client (`public/index.html`):**
+   - Theme rực lửa `.game-container.boss-mode` với hiệu ứng viền lửa đỏ neon `bossPulseGlow`.
+   - Banner `🔥 CÂU ĐỐ TRÙM - GIỜ VÀNG x2 ĐIỂM (90s) 🔥` phía trên thanh thông tin.
+   - Đồng hồ đếm ngược 90s viền đỏ lửa chuyển động nhịp thở.
+   - Âm thanh cảnh báo `soundBossWarning()` (siren & kèn hiệu báo động).
+   - Banner chiến thắng: Huy hiệu `⚔️ HẠ GỤC CÂU ĐỐ TRÙM (GIỜ VÀNG x2)` với điểm số +200đ đến +400đ.
+3. **Phía Admin Panel (`public/admin.html`):**
+   - Bổ sung 2 nút điều khiển nhanh: `🔥 Kích Hoạt Trùm Ngay (90s)` và `⏳ Vòng Kế Tiếp Là Trùm`.
 
 ---
 
@@ -166,7 +182,7 @@ GIAI ĐOẠN 2: TỐI ƯU HÓA DONATE & VINH DANH TRẬN ĐẤU:
   └── [x] Bước 7: Mục 5 - Kết thúc game vinh danh cả người tặng quà (Top Donors Hall of Fame) - XONG
 
 GIAI ĐOẠN 3: TẠO CAO TRÀO & TÍNH NĂNG MỞ RỘNG:
-  ├── [ ] Bước 8: Mục 7 - Câu Đố Trùm & Giờ Vàng (Boss Round x2)
+  ├── [x] Bước 8: Mục 7 - Câu Đố Trùm & Giờ Vàng (Boss Round x2) - XONG
   ├── [ ] Bước 9: Mục 8 - Quản trị ngân hàng câu đố từ Admin (Question CMS)
   └── [ ] Bước 10: Mục 9 - Chế độ Chia Phe Đối Kháng (Team Red vs Team Blue)
 ```
