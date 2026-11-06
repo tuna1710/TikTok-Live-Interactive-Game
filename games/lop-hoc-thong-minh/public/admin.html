@@ -107,9 +107,13 @@
         <button class="btn btn-purple" style="background: #ec4899; color: #fff;" onclick="simulateFollow()">💖 BẤM FOLLOW KÊNH (Ưu Tiên #2)</button>
       </div>
 
-      <!-- 4. TEST BÌNH LUẬN & ĐÁP ÁN -->
+      <!-- 4. TEST BÌNH LUẬN & ĐÁP ÁN & VÀO LỚP -->
       <div class="card">
-        <h2>💬 Test Bình Luận Học Sinh</h2>
+        <h2>💬 Test Bình Luận & Vào Lớp</h2>
+        <div style="display: flex; gap: 8px; margin-bottom: 8px;">
+          <input type="text" id="simJoinName" placeholder="Nhập tên học sinh (VD: Bé Bi)..." style="flex: 1; padding: 7px 10px; border-radius: 6px; border: 1px solid #475569; background: #0f172a; color: #fff;">
+          <button class="btn btn-blue" style="margin: 0;" onclick="simulateJoin()">🎒 Vào Lớp Ngay</button>
+        </div>
         <button class="btn btn-green" onclick="simulateAnswer('A')">🅰️ Chọn Đáp Án A</button>
         <button class="btn btn-green" onclick="simulateAnswer('B')">🅱️ Chọn Đáp Án B</button>
         <button class="btn btn-green" onclick="simulateAnswer('C')">🅲 Chọn Đáp Án C</button>
@@ -172,6 +176,22 @@
     async function nextQuestion() {
       log('Đang chuyển câu tiếp theo...');
       await fetch('/api/control/next', { method: 'POST' });
+    }
+
+    async function simulateJoin() {
+      const inputEl = document.getElementById('simJoinName');
+      const name = (inputEl ? inputEl.value.trim() : '') || `Học Sinh ${Math.floor(Math.random() * 30 + 1)}`;
+      const id = `hs_${Date.now().toString().slice(-4)}`;
+      await fetch('/api/simulate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'join',
+          username: id,
+          nickname: name
+        })
+      });
+      log(`Đã cho học sinh <b>${name}</b> vào lớp ngồi bàn!`);
     }
 
     async function simulateAnswer(ans) {

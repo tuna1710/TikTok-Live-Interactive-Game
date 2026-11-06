@@ -177,6 +177,26 @@ let totalLikes = 0;
 let answerStats = { A: 0, B: 0, C: 0, D: 0, total: 0, correctCount: 0 };
 let teacherSpeech = { text: 'Chào mừng các em đến với lớp học!', time: Date.now() };
 
+// Gửi cập nhật riêng lẻ từng bàn học cho client theo thời gian thực
+function emitDeskUpdate(desk) {
+  if (!desk) return;
+  io.emit('desk_updated', {
+    deskId: desk.id,
+    student: desk.student ? {
+      username: desk.student.username,
+      nickname: desk.student.nickname,
+      avatar: desk.student.avatar,
+      bagColor: desk.student.bagColor,
+      score: desk.student.score,
+      pointsEarned: desk.student.pointsEarned || 0,
+      currentAnswer: desk.student.currentAnswer,
+      isCorrect: desk.student.isCorrect,
+      chatMsg: desk.student.chatMsg,
+      chatTime: desk.student.chatTime
+    } : null
+  });
+}
+
 // Xếp chỗ ngồi cho người xem
 function seatStudent(user) {
   const username = user.uniqueId || user.username || `user_${Date.now()}`;
@@ -185,6 +205,7 @@ function seatStudent(user) {
     existing.student.lastActive = Date.now();
     if (user.profilePictureUrl) existing.student.avatar = user.profilePictureUrl;
     if (user.nickname) existing.student.nickname = user.nickname;
+    emitDeskUpdate(existing);
     return existing;
   }
 
@@ -225,6 +246,7 @@ function seatStudent(user) {
 
   targetDesk.student = studentObj;
   studentsMap.set(username, targetDesk);
+  emitDeskUpdate(targetDesk);
   return targetDesk;
 }
 
@@ -460,9 +482,12 @@ function handleUserComment(data) {
     desk.student.answerTime = Date.now();
     answerStats[answerChosen] = (answerStats[answerChosen] || 0) + 1;
 
+    emitDeskUpdate(desk);
+
     io.emit('student_answered', {
       deskId: desk.id,
       username: desk.student.username,
+      student: desk.student,
       answer: answerChosen,
       stats: answerStats
     });
@@ -471,10 +496,13 @@ function handleUserComment(data) {
     desk.student.chatMsg = commentText.slice(0, 40);
     desk.student.chatTime = Date.now();
 
+    emitDeskUpdate(desk);
+
     io.emit('student_chat', {
       deskId: desk.id,
       username: desk.student.username,
       nickname: desk.student.nickname,
+      student: desk.student,
       message: desk.student.chatMsg
     });
   }
@@ -621,7 +649,10 @@ function connectTikTokLive(username) {
   tiktokConn.on(WebcastEvent.CHAT, data => handleUserComment(data));
   tiktokConn.on(WebcastEvent.GIFT, data => handleUserGift(data));
   tiktokConn.on(WebcastEvent.LIKE, data => handleUserLike(data));
-  tiktokConn.on(WebcastEvent.MEMBER, data => seatStudent(data));
+  tiktokConn.on(WebcastEvent.MEMBER, data => {
+    const desk = seatStudent(data);
+    if (desk) emitDeskUpdate(desk);
+  });
   tiktokConn.on(WebcastEvent.FOLLOW, data => handleUserFollow(data));
   tiktokConn.on(WebcastEvent.SOCIAL, data => {
     const action = String(data?.action || '');
@@ -665,7 +696,10 @@ app.post('/api/simulate', (req, res) => {
     profilePictureUrl: `https://api.dicebear.com/7.x/bottts/svg?seed=${username || Math.random()}`
   };
 
-  if (type === 'comment') {
+  if (type === 'join') {
+    const desk = seatStudent(mockUser);
+    emitDeskUpdate(desk);
+  } else if (type === 'comment') {
     handleUserComment({ ...mockUser, comment: comment || 'Em chào cô ạ!' });
   } else if (type === 'answer') {
     handleUserComment({ ...mockUser, comment: answer || 'A' });
@@ -717,6 +751,35 @@ io.on('connection', socket => {
     classPresident,
     teacherSpeech,
     desks
+  });
+
+  // Tương tác trực tiếp từ Web Client (cho người xem bấm trực tiếp trên trình duyệt)
+  socket.on('join_class', data => {
+    const user = {
+      uniqueId: data?.username || `web_${socket.id.slice(0, 6)}`,
+      nickname: data?.nickname || 'Bạn Học',
+      profilePictureUrl: data?.avatar || `https://api.dicebear.com/7.x/bottts/svg?seed=${socket.id}`
+    };
+    const desk = seatStudent(user);
+    emitDeskUpdate(desk);
+  });
+
+  socket.on('submit_answer', data => {
+    handleUserComment({
+      uniqueId: data?.username || `web_${socket.id.slice(0, 6)}`,
+      nickname: data?.nickname || 'Bạn Học',
+      profilePictureUrl: data?.avatar || `https://api.dicebear.com/7.x/bottts/svg?seed=${socket.id}`,
+      comment: data?.answer || 'A'
+    });
+  });
+
+  socket.on('send_chat', data => {
+    handleUserComment({
+      uniqueId: data?.username || `web_${socket.id.slice(0, 6)}`,
+      nickname: data?.nickname || 'Bạn Học',
+      profilePictureUrl: data?.avatar || `https://api.dicebear.com/7.x/bottts/svg?seed=${socket.id}`,
+      comment: data?.message || 'Em chào cô ạ!'
+    });
   });
 });
 

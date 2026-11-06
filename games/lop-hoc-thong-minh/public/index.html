@@ -165,6 +165,28 @@
 
     <!-- CANVAS PHÁO HOA & CONFETTI -->
     <canvas id="confettiCanvas"></canvas>
+
+    <!-- THANH ĐIỀU KHIỂN DÀNH CHO NGƯỜI CHƠI TRÊN WEB (Tự ẩn khi dùng link OBS: ?obs=1) -->
+    <div class="web-player-dock" id="webPlayerDock">
+      <div class="dock-header">
+        <span>🎒 BÀN HỌC CỦA BẠN:</span>
+        <span style="font-size: 11px; opacity: 0.8;">Nhập tên để nhận bàn & chọn đáp án</span>
+      </div>
+      <div class="dock-row">
+        <input type="text" id="dockNickInput" placeholder="Nhập tên bạn (VD: Minh Khôi)..." maxlength="20">
+        <button class="dock-btn-join" id="dockBtnJoin">Vào Lớp 🎒</button>
+      </div>
+      <div class="dock-row dock-answers">
+        <button class="dock-ans-btn btn-a" onclick="submitMyAnswer('A')">🅰️ A</button>
+        <button class="dock-ans-btn btn-b" onclick="submitMyAnswer('B')">🅱️ B</button>
+        <button class="dock-ans-btn btn-c" onclick="submitMyAnswer('C')">🅲 C</button>
+        <button class="dock-ans-btn btn-d" onclick="submitMyAnswer('D')">🅳 D</button>
+      </div>
+      <div class="dock-row">
+        <input type="text" id="dockChatInput" placeholder="Bình luận chào cô / giao lưu..." maxlength="40">
+        <button class="dock-btn-chat" id="dockBtnChat">Gửi 💬</button>
+      </div>
+    </div>
   </div>
 
   <script src="audio.js"></script>

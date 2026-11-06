@@ -457,7 +457,16 @@ socket.on('timer_tick', data => {
   }
 });
 
+socket.on('desk_updated', data => {
+  if (data && data.deskId !== undefined) {
+    updateDeskStudent(data.deskId, data.student);
+  }
+});
+
 socket.on('student_answered', data => {
+  if (data.student) {
+    updateDeskStudent(data.deskId, data.student);
+  }
   const ansBubble = document.getElementById(`ans_bubble_${data.deskId}`);
   if (ansBubble) {
     ansBubble.style.display = 'flex';
@@ -469,6 +478,9 @@ socket.on('student_answered', data => {
 });
 
 socket.on('student_chat', data => {
+  if (data.student) {
+    updateDeskStudent(data.deskId, data.student);
+  }
   showStudentChat(data.deskId, data.message);
 });
 
@@ -610,3 +622,119 @@ renderConfetti();
 document.addEventListener('click', () => {
   if (window.soundManager) window.soundManager.init();
 }, { once: true });
+
+// ==========================================
+// TƯƠNG TÁC NGƯỜI CHƠI TRỰC TIẾP TRÊN WEB
+// ==========================================
+let myStudent = {
+  username: localStorage.getItem('lop_hoc_uid') || `web_${Math.floor(1000 + Math.random() * 9000)}`,
+  nickname: localStorage.getItem('lop_hoc_nick') || '',
+  avatar: ''
+};
+localStorage.setItem('lop_hoc_uid', myStudent.username);
+
+// Điền sẵn tên nếu đã lưu trước đó
+const dockNickInput = document.getElementById('dockNickInput');
+const dockBtnJoin = document.getElementById('dockBtnJoin');
+const dockChatInput = document.getElementById('dockChatInput');
+const dockBtnChat = document.getElementById('dockBtnChat');
+const webPlayerDock = document.getElementById('webPlayerDock');
+
+if (dockNickInput && myStudent.nickname) {
+  dockNickInput.value = myStudent.nickname;
+}
+
+// Ẩn thanh dock nếu chạy dưới dạng nguồn phát OBS / TikTok Live Studio (?obs=1)
+const urlParams = new URLSearchParams(window.location.search);
+if (urlParams.get('obs') === '1' || window.location.hash === '#obs') {
+  if (webPlayerDock) webPlayerDock.style.display = 'none';
+}
+
+function joinClass(customName) {
+  const name = (customName || (dockNickInput ? dockNickInput.value : '')).trim();
+  if (name) {
+    myStudent.nickname = name;
+  } else if (!myStudent.nickname) {
+    myStudent.nickname = `Học Sinh ${Math.floor(Math.random() * 90 + 10)}`;
+  }
+  localStorage.setItem('lop_hoc_nick', myStudent.nickname);
+  if (dockNickInput) dockNickInput.value = myStudent.nickname;
+
+  socket.emit('join_class', {
+    username: myStudent.username,
+    nickname: myStudent.nickname
+  });
+  if (window.soundManager) window.soundManager.playPop();
+}
+
+function submitMyAnswer(ans) {
+  if (!myStudent.nickname) {
+    const inputName = dockNickInput ? dockNickInput.value.trim() : '';
+    const name = inputName || prompt('Nhập tên của bạn để vào lớp làm bài nhé:', 'Bạn Học');
+    if (!name) return;
+    myStudent.nickname = name.trim();
+    localStorage.setItem('lop_hoc_nick', myStudent.nickname);
+    if (dockNickInput) dockNickInput.value = myStudent.nickname;
+  }
+
+  socket.emit('submit_answer', {
+    username: myStudent.username,
+    nickname: myStudent.nickname,
+    answer: ans
+  });
+  if (window.soundManager) window.soundManager.playPop();
+}
+
+function sendMyChat() {
+  if (!dockChatInput) return;
+  const msg = dockChatInput.value.trim();
+  if (!msg) return;
+
+  if (!myStudent.nickname) {
+    const inputName = dockNickInput ? dockNickInput.value.trim() : '';
+    myStudent.nickname = inputName || `Học Sinh ${Math.floor(Math.random() * 90 + 10)}`;
+    localStorage.setItem('lop_hoc_nick', myStudent.nickname);
+  }
+
+  socket.emit('send_chat', {
+    username: myStudent.username,
+    nickname: myStudent.nickname,
+    message: msg
+  });
+
+  dockChatInput.value = '';
+}
+
+if (dockBtnJoin) {
+  dockBtnJoin.addEventListener('click', () => joinClass());
+}
+
+if (dockNickInput) {
+  dockNickInput.addEventListener('keydown', e => {
+    if (e.key === 'Enter') joinClass();
+  });
+}
+
+if (dockBtnChat) {
+  dockBtnChat.addEventListener('click', sendMyChat);
+}
+
+if (dockChatInput) {
+  dockChatInput.addEventListener('keydown', e => {
+    if (e.key === 'Enter') sendMyChat();
+  });
+}
+
+// Bấm trực tiếp vào 4 đáp án A, B, C, D trên Bảng Đen
+[
+  { el: optBtnA, ans: 'A' },
+  { el: optBtnB, ans: 'B' },
+  { el: optBtnC, ans: 'C' },
+  { el: optBtnD, ans: 'D' }
+].forEach(({ el, ans }) => {
+  if (el) {
+    el.style.cursor = 'pointer';
+    el.addEventListener('click', () => submitMyAnswer(ans));
+  }
+});
+
