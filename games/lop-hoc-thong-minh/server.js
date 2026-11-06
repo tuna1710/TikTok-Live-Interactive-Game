@@ -199,8 +199,30 @@ try {
   console.error('Không load được questions.json:', e);
 }
 
-let currentQuestionIndex = 0;
-let roundNumber = 1;
+// Thuật toán xáo trộn Fisher-Yates
+function shuffle(array) {
+  const arr = [...array];
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+let shuffledDeck = [];
+let deckIndex = 0;
+
+function refillAndShuffleDeck() {
+  if (questionsBank.length === 0) return;
+  shuffledDeck = shuffle(questionsBank);
+  deckIndex = 0;
+  console.log(`[Lớp Học] 🔀 Đã đảo lộn thứ tự ngẫu nhiên ${shuffledDeck.length} câu hỏi mới!`);
+}
+
+// Xáo trộn toàn bộ câu hỏi ngay lần đầu khởi động
+refillAndShuffleDeck();
+
+let roundNumber = 0;
 let currentQuestion = null;
 let gameState = 'QUESTION'; // 'QUESTION' | 'REVEAL' | 'INTERMISSION'
 let timerCountdown = QUESTION_DURATION;
@@ -287,8 +309,13 @@ function seatStudent(rawUser) {
 function startNewQuestion() {
   if (questionsBank.length === 0) return;
 
-  currentQuestion = questionsBank[currentQuestionIndex % questionsBank.length];
-  currentQuestionIndex++;
+  // Nếu đã chơi hết một vòng danh sách hoặc chưa khởi tạo, đảo lộn danh sách mới
+  if (shuffledDeck.length === 0 || deckIndex >= shuffledDeck.length) {
+    refillAndShuffleDeck();
+  }
+
+  currentQuestion = shuffledDeck[deckIndex];
+  deckIndex++;
   roundNumber++;
   gameState = 'QUESTION';
   timerCountdown = QUESTION_DURATION;
