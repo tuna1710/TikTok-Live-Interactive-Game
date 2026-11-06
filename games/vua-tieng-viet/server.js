@@ -10,7 +10,7 @@ const { Server } = require('socket.io');
 const { TikTokLiveConnection, WebcastEvent, ControlEvent } = require('tiktok-live-connector');
 
 const PORT = Number(process.env.PORT) || 3002;
-let TIKTOK_USERNAME = process.env.TIKTOK_USERNAME || '@2166541467';
+let TIKTOK_USERNAME = process.env.TIKTOK_USERNAME || '@vuatiengviet171095';
 let TIKTOK_SESSION_ID = process.env.TIKTOK_SESSION_ID || '';
 let tiktokConn = null;
 const ROUND_TIME_DEFAULT = Number(process.env.ROUND_TIME) || 300; // 5 phút (300 giây)

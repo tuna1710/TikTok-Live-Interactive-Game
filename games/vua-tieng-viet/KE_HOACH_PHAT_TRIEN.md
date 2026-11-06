@@ -173,6 +173,10 @@ Tài liệu này lưu trữ danh sách các tính năng nâng cấp tương tác
 > **Trạng thái:**  *Đã hoàn thiện (ID 1581 - 1630)*
 > **Mục tiêu:** Gia tăng chiều sâu ngôn ngữ và tính hóc búa cho game với các từ láy tạo hình, câu đố tục ngữ dân gian, món ngon đặc sản 3 miền và danh thắng non nước hùng vĩ.
 
+### 📌 MỤC 13: BỘ CÂU HỎI 30 CÂU HOT TREND, MEME & ĐỜI SỐNG MẠNG XÃ HỘI (QUESTION PACK 30 - PHẦN 3)
+> **Trạng thái:**  *Đã hoàn thiện (ID 1631 - 1660)*
+> **Mục tiêu:** Cập nhật các trào lưu và meme đình đám của mạng xã hội như *Công Viên Lãm Làng, Ăn Nói Xà Lơ, Chiến Thần Bán Hàng, Tin Chuẩn Chưa Anh, Gian Gian Líu Líu Mập Mờ, Chủ Tịch Giả Nghèo, Cà Thẻ Không Cần Nhìn Giá, Trà Sữa Đất Nung, Chê Nha, Bật Đèn Xanh, v.v.*
+
 ---
 
 ## 📅 LỘ TRÌNH THỰC HIỆN TỪNG BƯỚC (ROADMAP)
@@ -184,7 +188,8 @@ GIAI ĐOẠN 1: BỘ CÂU HỎI MỚI (LÀM TỪNG DANH MỤC):
   ├── [x] Bước 3: Danh mục 3 - Ẩm Thực & Đặc Sản 3 Miền (7 câu: ID 1517-1523)
   ├── [x] Bước 4: Danh mục 4 - Danh Lam Thắng Cảnh & Địa Danh (7 câu: ID 1524-1530)
   ├── [x] Bổ sung 1: Gói 50 câu Từ Lóng Gen Z & Hot Trend Viral 2024-2026 (ID 1531-1580) - XONG
-  └── [x] Bổ sung 2: Gói 50 câu Từ Láy, Tục Ngữ, Ẩm Thực & Danh Thắng (ID 1581-1630) - XONG
+  ├── [x] Bổ sung 2: Gói 50 câu Từ Láy, Tục Ngữ, Ẩm Thực & Danh Thắng (ID 1581-1630) - XONG
+  └── [x] Bổ sung 3: Gói 30 câu Hot Trend, Meme & Đời Sống Mạng Xã Hội (ID 1631-1660) - XONG
 
 GIAI ĐOẠN 2: TỐI ƯU HÓA DONATE & VINH DANH TRẬN ĐẤU:
   ├── [x] Bước 5: Mục 6 - Nâng mốc điểm kết thúc game lên 3.000 điểm (Milestone 3000) - XONG

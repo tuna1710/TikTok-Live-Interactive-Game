@@ -1,6 +1,6 @@
 'use strict';
 
-const TIKTOK_USERNAME = (process.env.TIKTOK_USERNAME || '2166541467').trim();
+const TIKTOK_USERNAME = (process.env.TIKTOK_USERNAME || 'vuatiengviet171095').trim();
 const TIKTOK_ROOM_ID = (process.env.TIKTOK_ROOM_ID || '').trim();
 const ADMIN_TOKEN = process.env.ADMIN_TOKEN || 'admindev';
 

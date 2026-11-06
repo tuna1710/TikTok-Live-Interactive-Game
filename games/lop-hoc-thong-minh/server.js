@@ -10,7 +10,7 @@ const { Server } = require('socket.io');
 const { TikTokLiveConnection, WebcastEvent, ControlEvent } = require('tiktok-live-connector');
 
 const PORT = Number(process.env.PORT) || 3006;
-let TIKTOK_USERNAME = process.env.TIKTOK_USERNAME || '@2166541467';
+let TIKTOK_USERNAME = process.env.TIKTOK_USERNAME || '@vuatiengviet171095';
 let TIKTOK_SESSION_ID = process.env.TIKTOK_SESSION_ID || '';
 let tiktokConn = null;
 let reconnectTimer = null;

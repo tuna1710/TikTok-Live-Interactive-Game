@@ -269,7 +269,7 @@ const DEFAULT_STATE = {
   tiktok: {
     connected: false,
     connecting: false,
-    username: '2166541467',
+    username: 'vuatiengviet171095',
     roomId: null,
     viewerCount: 0,
     lastError: null
@@ -1212,8 +1212,8 @@ server.listen(PORT, () => {
   console.log(`🔌 JSON-RPC 2.0 Endpoint   : http://localhost:${PORT}/rpc (ws://localhost:${PORT}/ws)`);
   console.log(`============================================================`);
 
-  // Tự động kết nối tới @2166541467 ngay khi khởi động server
-  const defaultChannel = process.env.TIKTOK_USER || state.tiktok?.username || '2166541467';
+  // Tự động kết nối tới @vuatiengviet171095 ngay khi khởi động server
+  const defaultChannel = process.env.TIKTOK_USER || state.tiktok?.username || 'vuatiengviet171095';
   if (defaultChannel) {
     connectTikTokLive(defaultChannel).catch((err) => {
       console.warn(`[Auto-Connect @${defaultChannel}] Chưa kết nối được ngay:`, err.message);
