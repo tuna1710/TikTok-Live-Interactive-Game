@@ -53,8 +53,8 @@ cd games/lop-hoc-thong-minh
 npm install
 node server.js
 ```
-- Màn hình game: `http://localhost:3004`
-- Bảng điều khiển giả lập test: `http://localhost:3004/admin.html`
+- Màn hình game: `http://localhost:3006`
+- Bảng điều khiển giả lập test: `http://localhost:3006/admin.html`
 
 ### Chạy trên Google Colab (1-Click kèm Cloudflare Tunnel):
 Chạy lệnh trong Colab notebook:

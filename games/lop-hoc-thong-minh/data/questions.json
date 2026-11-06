@@ -448,5 +448,605 @@
     "correct": "C",
     "explanation": "✓ Năm nhuận có 366 ngày (tháng 2 có 29 ngày)",
     "teacherQuote": "Cứ 4 năm thì lại có một năm nhuận đấy các em!"
+  },
+  {
+    "id": 31,
+    "subject": "Toán",
+    "grade": "Lớp 2",
+    "question": "1 giờ có bao nhiêu phút?",
+    "options": {
+      "A": "50 phút",
+      "B": "60 phút",
+      "C": "100 phút",
+      "D": "120 phút"
+    },
+    "correct": "B",
+    "explanation": "✓ 1 giờ = 60 phút.",
+    "teacherQuote": "Đố ai nhìn đồng hồ mà không biết 1 giờ có 60 phút nào!"
+  },
+  {
+    "id": 32,
+    "subject": "Tiếng Việt",
+    "grade": "Lớp 3",
+    "question": "Từ nào sau đây là từ chỉ HOẠT ĐỘNG?",
+    "options": {
+      "A": "Chạy nhảy",
+      "B": "Bông hoa",
+      "C": "Xinh đẹp",
+      "D": "Thông minh"
+    },
+    "correct": "A",
+    "explanation": "✓ 'Chạy nhảy' là từ chỉ hoạt động của con người/động vật.",
+    "teacherQuote": "Học sinh mà không biết 'chạy nhảy' thì chỉ có ngồi im cô phạt thôi!"
+  },
+  {
+    "id": 33,
+    "subject": "Khoa học",
+    "grade": "Lớp 5",
+    "question": "Cơ quan nào trong cơ thể người có chức năng co bóp bơm máu đi khắp cơ thể?",
+    "options": {
+      "A": "Dạ dày",
+      "B": "Lá phổi",
+      "C": "Trái tim",
+      "D": "Lá gan"
+    },
+    "correct": "C",
+    "explanation": "✓ Trái tim hoạt động như chiếc bơm đẩy máu đi khắp cơ thể qua hệ mạch.",
+    "teacherQuote": "Trái tim không chỉ để thả tim trên livestream mà còn để nuôi sống cả cơ thể nhé!"
+  },
+  {
+    "id": 34,
+    "subject": "Đố mẹo",
+    "grade": "Lớp 4",
+    "question": "Cái gì thuộc về bạn nhưng người khác lại dùng nhiều hơn bạn?",
+    "options": {
+      "A": "Tên của bạn",
+      "B": "Tiền của bạn",
+      "C": "Điện thoại",
+      "D": "Quần áo"
+    },
+    "correct": "A",
+    "explanation": "✓ Tên là của bạn nhưng bạn bè và người khác thường gọi nhiều hơn chính bạn tự gọi.",
+    "teacherQuote": "Câu đố mẹo này quá kinh điển, xem ai tinh mắt nào!"
+  },
+  {
+    "id": 35,
+    "subject": "Địa lý",
+    "grade": "Lớp 4",
+    "question": "Thủ đô của nước Cộng hòa Xã hội Chủ nghĩa Việt Nam là thành phố nào?",
+    "options": {
+      "A": "TP. Hồ Chí Minh",
+      "B": "Đà Nẵng",
+      "C": "Hà Nội",
+      "D": "Hải Phòng"
+    },
+    "correct": "C",
+    "explanation": "✓ Hà Nội là thủ đô ngàn năm văn hiến của nước ta.",
+    "teacherQuote": "Câu hỏi lịch sử địa lý thiêng liêng, 100% cả lớp phải đúng đấy!"
+  },
+  {
+    "id": 36,
+    "subject": "Toán",
+    "grade": "Lớp 4",
+    "question": "Số bé nhất có 5 chữ số KHÁC NHAU là số nào?",
+    "options": {
+      "A": "10000",
+      "B": "10234",
+      "C": "12345",
+      "D": "10123"
+    },
+    "correct": "B",
+    "explanation": "✓ Số bé nhất có 5 chữ số khác nhau là 10234 (chữ số đầu khác 0 nhỏ nhất là 1, tiếp theo là 0, 2, 3, 4).",
+    "teacherQuote": "Nhớ là các chữ số phải KHÁC NHAU nhé, đừng nhầm với 10000!"
+  },
+  {
+    "id": 37,
+    "subject": "Lịch sử",
+    "grade": "Lớp 5",
+    "question": "Chiến thắng Điện Biên Phủ 'lừng lẫy năm châu, chấn động địa cầu' diễn ra vào năm nào?",
+    "options": {
+      "A": "1945",
+      "B": "1954",
+      "C": "1975",
+      "D": "1968"
+    },
+    "correct": "B",
+    "explanation": "✓ Chiến dịch Điện Biên Phủ toàn thắng ngày 07/05/1954.",
+    "teacherQuote": "Chiến thắng Điện Biên Phủ hào hùng năm 1954, tự hào dân tộc Việt Nam!"
+  },
+  {
+    "id": 38,
+    "subject": "Tiếng Việt",
+    "grade": "Lớp 5",
+    "question": "Cặp từ trái nghĩa trong câu tục ngữ 'Lá lành đùm lá rách' là: ",
+    "options": {
+      "A": "Lá - Đùm",
+      "B": "Đùm - Rách",
+      "C": "Lành - Rách",
+      "D": "Lá lành - Lá"
+    },
+    "correct": "C",
+    "explanation": "✓ 'Lành' và 'Rách' là hai tính từ có ý nghĩa trái ngược nhau.",
+    "teacherQuote": "Tinh thần tương thân tương ái của người Việt Nam qua câu từ rất đẹp!"
+  },
+  {
+    "id": 39,
+    "subject": "Khoa học",
+    "grade": "Lớp 4",
+    "question": "Vào ban ngày, cây xanh quang hợp hấp thụ khí cacbonic và giải phóng ra khí gì?",
+    "options": {
+      "A": "Khí Oxy",
+      "B": "Khí Nitơ",
+      "C": "Khí Hiđrô",
+      "D": "Khí Metan"
+    },
+    "correct": "A",
+    "explanation": "✓ Quá trình quang hợp dưới ánh sáng Mặt Trời giúp cây hấp thụ CO2 và thải ra khí Oxy (O2).",
+    "teacherQuote": "Bởi vậy trồng nhiều cây xanh giúp không khí trong lành và giàu oxy đấy!"
+  },
+  {
+    "id": 40,
+    "subject": "Đố mẹo",
+    "grade": "Lớp 3",
+    "question": "Loài chim nào có cánh nhưng không biết bay, lại bơi lội và lặn cực giỏi ở xứ lạnh?",
+    "options": {
+      "A": "Chim cánh cụt",
+      "B": "Đà điểu",
+      "C": "Chim thiên nga",
+      "D": "Vịt trời"
+    },
+    "correct": "A",
+    "explanation": "✓ Chim cánh cụt biến cánh thành mái chèo để bơi lặn cực giỏi ở Nam Cực.",
+    "teacherQuote": "Những chú chim cánh cụt lạch bạch đáng yêu ở Nam Cực ai cũng biết nè!"
+  },
+  {
+    "id": 41,
+    "subject": "Toán",
+    "grade": "Lớp 3",
+    "question": "Một ngày đêm có tất cả bao nhiêu giờ?",
+    "options": {
+      "A": "12 giờ",
+      "B": "24 giờ",
+      "C": "36 giờ",
+      "D": "48 giờ"
+    },
+    "correct": "B",
+    "explanation": "✓ Một ngày đêm có 24 giờ.",
+    "teacherQuote": "24 giờ mỗi ngày hãy dành chút thời gian học tập chăm chỉ cùng cô giáo nhé!"
+  },
+  {
+    "id": 42,
+    "subject": "Tiếng Việt",
+    "grade": "Lớp 4",
+    "question": "Từ nào sau đây viết ĐÚNG chính tả tiếng Việt?",
+    "options": {
+      "A": "Suôn sẻ",
+      "B": "Xuông xẻ",
+      "C": "Suôn xẻ",
+      "D": "Xuôn sẻ"
+    },
+    "correct": "A",
+    "explanation": "✓ Từ đúng là 'Suôn sẻ' (sử dụng s-s, không dùng x).",
+    "teacherQuote": "Rất nhiều người lớn đi làm rồi vẫn viết sai chữ này đó nha!"
+  },
+  {
+    "id": 43,
+    "subject": "Địa lý",
+    "grade": "Lớp 5",
+    "question": "Hình dáng lãnh thổ đất liền của Việt Nam trông giống chữ cái nào?",
+    "options": {
+      "A": "Chữ U",
+      "B": "Chữ S",
+      "C": "Chữ C",
+      "D": "Chữ V"
+    },
+    "correct": "B",
+    "explanation": "✓ Dải đất hình chữ S cong cong bên bờ Biển Đông thân yêu.",
+    "teacherQuote": "Tổ quốc hình chữ S thân yêu, ai chọn sai phạt đứng góc lớp!"
+  },
+  {
+    "id": 44,
+    "subject": "Toán",
+    "grade": "Lớp 5",
+    "question": "Diện tích hình tròn có bán kính r = 2cm là bao nhiêu? (Lấy số pi = 3,14)",
+    "options": {
+      "A": "6,28 cm²",
+      "B": "12,56 cm²",
+      "C": "25,12 cm²",
+      "D": "18,84 cm²"
+    },
+    "correct": "B",
+    "explanation": "✓ S = r × r × 3,14 = 2 × 2 × 3,14 = 12,56 cm².",
+    "teacherQuote": "Công thức tính diện tích hình tròn lớp 5, nhớ nhân r với r trước nhé!"
+  },
+  {
+    "id": 45,
+    "subject": "Khoa học",
+    "grade": "Lớp 5",
+    "question": "Năng lượng ánh sáng Mặt Trời có thể chuyển hóa thành điện năng nhờ thiết bị nào?",
+    "options": {
+      "A": "Pin mặt trời",
+      "B": "Quạt gió",
+      "C": "Tua-bin nước",
+      "D": "Động cơ hơi nước"
+    },
+    "correct": "A",
+    "explanation": "✓ Tấm pin quang điện (Pin mặt trời) chuyển quang năng thành điện năng sạch.",
+    "teacherQuote": "Năng lượng tái tạo sạch bảo vệ môi trường, học sinh thông minh phải biết!"
+  },
+  {
+    "id": 46,
+    "subject": "Lịch sử",
+    "grade": "Lớp 5",
+    "question": "Người chiến sĩ cắm lá cờ Giải phóng trên nóc Dinh Độc Lập trưa 30/4/1975 là ai?",
+    "options": {
+      "A": "Đại đội trưởng Bùi Quang Thận",
+      "B": "Nguyễn Văn Trỗi",
+      "C": "Lê Văn Tám",
+      "D": "Kim Đồng"
+    },
+    "correct": "A",
+    "explanation": "✓ Đồng chí Bùi Quang Thận chỉ huy xe tăng 843 đã tiến vào cắm cờ trên nóc Dinh Độc Lập lúc 11h30 ngày 30/4/1975.",
+    "teacherQuote": "Giờ phút lịch sử thiêng liêng non sông thu về một mối!"
+  },
+  {
+    "id": 47,
+    "subject": "Đố mẹo",
+    "grade": "Lớp 5",
+    "question": "Núi nào bị chặt ra từng khúc nhỏ?",
+    "options": {
+      "A": "Núi Thái Sơn",
+      "B": "Núi Thái Lát",
+      "C": "Núi Ba Vì",
+      "D": "Núi Ngũ Hành Sơn"
+    },
+    "correct": "B",
+    "explanation": "✓ Đố chữ mẹo: 'Thái lát' nghĩa là cắt ra từng lát mỏng.",
+    "teacherQuote": "Câu đố chơi chữ cực vui, các bạn đã bị cô lừa chưa nào?"
+  },
+  {
+    "id": 48,
+    "subject": "Toán",
+    "grade": "Lớp 3",
+    "question": "Kết quả của phép nhân 7 × 8 bằng bao nhiêu?",
+    "options": {
+      "A": "54",
+      "B": "56",
+      "C": "64",
+      "D": "48"
+    },
+    "correct": "B",
+    "explanation": "✓ Bảng cửu chương 7: 7 × 8 = 56.",
+    "teacherQuote": "Bảng cửu chương 7 là thử thách kinh điển của học sinh lớp 3 nè!"
+  },
+  {
+    "id": 49,
+    "subject": "Tiếng Việt",
+    "grade": "Lớp 2",
+    "question": "Điền từ còn thiếu: 'Công cha như núi Thái Sơn, nghĩa mẹ như nước trong ... chảy ra.'",
+    "options": {
+      "A": "Giếng",
+      "B": "Biển",
+      "C": "Nguồn",
+      "D": "Suối"
+    },
+    "correct": "C",
+    "explanation": "✓ Bài ca dao: 'Công cha như núi Thái Sơn / Nghĩa mẹ như nước trong nguồn chảy ra'.",
+    "teacherQuote": "Bài ca dao công ơn cha mẹ sâu nặng, khắc cốt ghi tâm mỗi chúng ta!"
+  },
+  {
+    "id": 50,
+    "subject": "Khoa học",
+    "grade": "Lớp 4",
+    "question": "Ở áp suất tiêu chuẩn, nước nguyên chất chuyển từ thể lỏng sang thể rắn (đóng băng) ở nhiệt độ nào?",
+    "options": {
+      "A": "-5°C",
+      "B": "0°C",
+      "C": "4°C",
+      "D": "10°C"
+    },
+    "correct": "B",
+    "explanation": "✓ Nước tinh khiết đóng băng ở 0°C và sôi ở 100°C.",
+    "teacherQuote": "0 độ C là mốc đóng băng, 100 độ C là mốc sôi, nhớ kỹ nhé cả lớp!"
+  },
+  {
+    "id": 51,
+    "subject": "Địa lý",
+    "grade": "Lớp 5",
+    "question": "Biển bao bọc phần đất liền của nước ta ở những hướng nào?",
+    "options": {
+      "A": "Phía Bắc",
+      "B": "Phía Tây",
+      "C": "Phía Đông, Nam và Tây Nam",
+      "D": "Phía Tây Bắc"
+    },
+    "correct": "C",
+    "explanation": "✓ Biển Đông bao bọc phần đất liền Việt Nam ở phía Đông, Nam và Tây Nam với hơn 3260km bờ biển.",
+    "teacherQuote": "Bờ biển dài hơn 3260 km uốn lượn ôm trọn dải đất hình chữ S!"
+  },
+  {
+    "id": 52,
+    "subject": "Toán",
+    "grade": "Lớp 4",
+    "question": "Số lớn nhất có 4 chữ số là số nào?",
+    "options": {
+      "A": "9999",
+      "B": "9876",
+      "C": "1000",
+      "D": "9990"
+    },
+    "correct": "A",
+    "explanation": "✓ Số có 4 chữ số lớn nhất là 9999 (khi các chữ số không yêu cầu khác nhau).",
+    "teacherQuote": "Câu hỏi khởi động dễ nhất lớp 4, ai trả lời sai là phạt nhé!"
+  },
+  {
+    "id": 53,
+    "subject": "Đố mẹo",
+    "grade": "Lớp 2",
+    "question": "Con chuột nào có thể đi bằng hai chân?",
+    "options": {
+      "A": "Chuột cống",
+      "B": "Chuột Mickey",
+      "C": "Chuột đồng",
+      "D": "Chuột túi"
+    },
+    "correct": "B",
+    "explanation": "✓ Chuột Mickey là nhân vật hoạt hình nổi tiếng đi bằng 2 chân.",
+    "teacherQuote": "Đố mẹo hoạt hình vui nhộn của tuổi thơ đây rồi!"
+  },
+  {
+    "id": 54,
+    "subject": "Tiếng Việt",
+    "grade": "Lớp 5",
+    "question": "Biện pháp tu từ nào được sử dụng trong câu: 'Trăng tròn như quả bóng bạc treo lơ lửng'?",
+    "options": {
+      "A": "So sánh",
+      "B": "Nhân hóa",
+      "C": "Điệp từ",
+      "D": "Ẩn dụ"
+    },
+    "correct": "A",
+    "explanation": "✓ Có từ so sánh 'như', đối chiếu trăng tròn với quả bóng bạc.",
+    "teacherQuote": "Từ 'như' báo hiệu rõ ràng biện pháp so sánh ngữ văn lớp 5!"
+  },
+  {
+    "id": 55,
+    "subject": "Lịch sử",
+    "grade": "Lớp 4",
+    "question": "Cuộc khởi nghĩa Hai Bà Trưng phất cờ chống quân xâm lược nhà Hán nổ ra vào năm nào?",
+    "options": {
+      "A": "Năm 40 (sau Công nguyên)",
+      "B": "Năm 938",
+      "C": "Năm 1010",
+      "D": "Năm 1288"
+    },
+    "correct": "A",
+    "explanation": "✓ Mùa xuân năm 40 sau Công nguyên, Hai Bà Trưng dựng cờ khởi nghĩa tại Hát Môn.",
+    "teacherQuote": "Hai Bà Trưng cưỡi voi ra trận năm 40 là biểu tượng anh hùng của phụ nữ Việt Nam!"
+  },
+  {
+    "id": 56,
+    "subject": "Toán",
+    "grade": "Lớp 5",
+    "question": "Đổi 2,5 tấn sang đơn vị ki-lô-gam (kg) ta được: ",
+    "options": {
+      "A": "25 kg",
+      "B": "250 kg",
+      "C": "2500 kg",
+      "D": "25000 kg"
+    },
+    "correct": "C",
+    "explanation": "✓ 1 tấn = 1000 kg => 2,5 tấn = 2,5 × 1000 = 2500 kg.",
+    "teacherQuote": "Bảng đơn vị đo khối lượng lớp 5, nhớ dịch chuyển dấu phẩy đúng nhé!"
+  },
+  {
+    "id": 57,
+    "subject": "Khoa học",
+    "grade": "Lớp 5",
+    "question": "Loài động vật nào dưới đây thuộc lớp bò sát?",
+    "options": {
+      "A": "Ếch đồng",
+      "B": "Cá sấu",
+      "C": "Cá voi xanh",
+      "D": "Chim cánh cụt"
+    },
+    "correct": "B",
+    "explanation": "✓ Cá sấu là loài bò sát thở bằng phổi, da có vảy sừng bao bọc (Cá voi là thú có vú, ếch là lưỡng cư).",
+    "teacherQuote": "Đừng thấy chữ 'cá' mà tưởng cá bơi dưới nước thở bằng mang nha!"
+  },
+  {
+    "id": 58,
+    "subject": "Đố mẹo",
+    "grade": "Lớp 3",
+    "question": "Con vịt nào bình thường đi bằng hai chân?",
+    "options": {
+      "A": "Chỉ vịt Donald",
+      "B": "Chỉ vịt cỏ",
+      "C": "Chỉ vịt xiêm",
+      "D": "Tất cả các con vịt (trừ vịt bị què)"
+    },
+    "correct": "D",
+    "explanation": "✓ Loài vịt nào bình thường chẳng đi bằng 2 chân, đâu chỉ riêng vịt hoạt hình!",
+    "teacherQuote": "Haha câu đố bẫy rất nhiều bạn hấp tấp chọn vịt Donald nè!"
+  },
+  {
+    "id": 59,
+    "subject": "Tiếng Việt",
+    "grade": "Lớp 4",
+    "question": "Từ nào sau đây viết ĐÚNG chính tả: ",
+    "options": {
+      "A": "Giành giật",
+      "B": "Dành giật",
+      "C": "Giành dật",
+      "D": "Dành dật"
+    },
+    "correct": "A",
+    "explanation": "✓ Từ đúng là 'Giành giật' (đều bắt đầu bằng âm 'gi').",
+    "teacherQuote": "Phân biệt 'dành' (dành dụm, để dành) và 'giành' (giành giật, giành thắng lợi) nha các em!"
+  },
+  {
+    "id": 60,
+    "subject": "Địa lý",
+    "grade": "Lớp 4",
+    "question": "Kỳ quan thiên nhiên nào ở Quảng Ninh đã được UNESCO hai lần công nhận là Di sản Thiên nhiên Thế giới?",
+    "options": {
+      "A": "Vịnh Cam Ranh",
+      "B": "Vịnh Hạ Long",
+      "C": "Vịnh Vân Phong",
+      "D": "Vịnh Lăng Cô"
+    },
+    "correct": "B",
+    "explanation": "✓ Vịnh Hạ Long được vinh danh năm 1994 (về cảnh quan) và năm 2000 (về địa chất, địa mạo).",
+    "teacherQuote": "Kỳ quan thế giới Vịnh Hạ Long, niềm tự hào tuyệt đẹp của non sông Việt Nam!"
+  },
+  {
+    "id": 61,
+    "subject": "Toán",
+    "grade": "Lớp 1",
+    "question": "Kết quả của phép tính: 10 + 20 = ?",
+    "options": {
+      "A": "20",
+      "B": "30",
+      "C": "40",
+      "D": "50"
+    },
+    "correct": "B",
+    "explanation": "✓ 10 + 20 = 30 (1 chục cộng 2 chục bằng 3 chục).",
+    "teacherQuote": "Câu này của học sinh lớp 1, bạn nào trả lời sai là bị cô tịch thu kẹo nhé!"
+  },
+  {
+    "id": 62,
+    "subject": "Khoa học",
+    "grade": "Lớp 4",
+    "question": "Âm thanh có thể truyền qua được những môi trường vật chất nào?",
+    "options": {
+      "A": "Chỉ truyền qua chất rắn",
+      "B": "Chỉ truyền qua chất lỏng",
+      "C": "Chất rắn, chất lỏng và chất khí",
+      "D": "Chân không"
+    },
+    "correct": "C",
+    "explanation": "✓ Âm thanh truyền qua chất rắn, lỏng, khí và KHÔNG truyền được trong chân không.",
+    "teacherQuote": "Trong chân không ngoài vũ trụ không có âm thanh đâu nhé!"
+  },
+  {
+    "id": 63,
+    "subject": "Đố mẹo",
+    "grade": "Lớp 5",
+    "question": "Cầu gì biết chạy băng băng trên sân cỏ?",
+    "options": {
+      "A": "Cầu lông",
+      "B": "Cầu thủ",
+      "C": "Cầu chì",
+      "D": "Cầu vồng"
+    },
+    "correct": "B",
+    "explanation": "✓ 'Cầu thủ' bóng đá chạy tranh bóng trên sân cỏ.",
+    "teacherQuote": "Cầu thủ bóng đá chạy khỏe nhất trên sân cỏ luôn!"
+  },
+  {
+    "id": 64,
+    "subject": "Lịch sử",
+    "grade": "Lớp 4",
+    "question": "Năm 1010, vua Lý Thái Tổ ban Chiếu dời đô từ Hoa Lư về thành nào?",
+    "options": {
+      "A": "Thành Cổ Loa",
+      "B": "Cố đô Huế",
+      "C": "Thành Thăng Long (Hà Nội ngày nay)",
+      "D": "Thành Lam Sơn"
+    },
+    "correct": "C",
+    "explanation": "✓ Vua Lý Thái Tổ thấy rồng vàng bay lên nên đặt tên là thành Thăng Long vào năm 1010.",
+    "teacherQuote": "Mốc son lịch sử định đô Thăng Long ngàn năm văn hiến thiêng liêng!"
+  },
+  {
+    "id": 65,
+    "subject": "Tiếng Việt",
+    "grade": "Lớp 3",
+    "question": "Điền vào chỗ trống thành ngữ sau: 'Uống nước nhớ ...'",
+    "options": {
+      "A": "Nguồn",
+      "B": "Suối",
+      "C": "Sông",
+      "D": "Biển"
+    },
+    "correct": "A",
+    "explanation": "✓ 'Uống nước nhớ nguồn' là đạo lý tri ân tốt đẹp của dân tộc ta.",
+    "teacherQuote": "Đạo lý làm người: Uống nước nhớ nguồn, ăn quả nhớ kẻ trồng cây!"
+  },
+  {
+    "id": 66,
+    "subject": "Toán",
+    "grade": "Lớp 4",
+    "question": "Trung bình cộng của hai số là 50. Biết số thứ nhất là 40, tìm số thứ hai: ",
+    "options": {
+      "A": "50",
+      "B": "60",
+      "C": "45",
+      "D": "70"
+    },
+    "correct": "B",
+    "explanation": "✓ Tổng hai số là 50 × 2 = 100. Số thứ hai là 100 - 40 = 60.",
+    "teacherQuote": "Bài toán trung bình cộng quen thuộc của các bạn học sinh lớp 4!"
+  },
+  {
+    "id": 67,
+    "subject": "Khoa học",
+    "grade": "Lớp 5",
+    "question": "Ở điều kiện thường, thể nào của chất có hình dạng xác định và thể tích xác định?",
+    "options": {
+      "A": "Thể lỏng",
+      "B": "Thể rắn",
+      "C": "Thể khí",
+      "D": "Thể plasma"
+    },
+    "correct": "B",
+    "explanation": "✓ Chất rắn có hình dạng và thể tích xác định (chất lỏng chỉ có thể tích xác định, chất khí không có cả hai).",
+    "teacherQuote": "Viên phấn, cái bàn là thể rắn; nước ngọt là thể lỏng; không khí là thể khí nhé!"
+  },
+  {
+    "id": 68,
+    "subject": "Đố mẹo",
+    "grade": "Lớp 4",
+    "question": "Có bao nhiêu chữ C trong câu: 'Cơm, canh, cháo gì tớ cũng thích ăn'?",
+    "options": {
+      "A": "2 chữ C",
+      "B": "3 chữ C",
+      "C": "4 chữ C",
+      "D": "1 chữ C"
+    },
+    "correct": "C",
+    "explanation": "✓ Có 4 chữ C: Cơm (1), Canh (2), Cháo (3), Cũng (4).",
+    "teacherQuote": "Đố các bạn đếm không sót chữ 'c' trong từ 'cũng' đó nha!"
+  },
+  {
+    "id": 69,
+    "subject": "Địa lý",
+    "grade": "Lớp 5",
+    "question": "Cao nguyên nào nổi tiếng với khí hậu mát mẻ quanh năm và thành phố ngàn hoa Đà Lạt?",
+    "options": {
+      "A": "Cao nguyên Mộc Châu",
+      "B": "Cao nguyên Lâm Viên",
+      "C": "Cao nguyên Đắk Lắk",
+      "D": "Cao nguyên Pleiku"
+    },
+    "correct": "B",
+    "explanation": "✓ Đà Lạt nằm trên cao nguyên Lâm Viên (Lang Biang) ở độ cao khoảng 1500m so với mực nước biển.",
+    "teacherQuote": "Thành phố ngàn hoa Đà Lạt mát lạnh nằm trên cao nguyên Lâm Viên thơ mộng!"
+  },
+  {
+    "id": 70,
+    "subject": "Toán",
+    "grade": "Lớp 5",
+    "question": "Tính kết quả phép cộng hai phân số: 1/2 + 1/4 = ?",
+    "options": {
+      "A": "2/6",
+      "B": "3/4",
+      "C": "2/4",
+      "D": "1/6"
+    },
+    "correct": "B",
+    "explanation": "✓ Quy đồng mẫu số: 1/2 = 2/4. Khi đó 2/4 + 1/4 = 3/4.",
+    "teacherQuote": "Quy đồng mẫu số phân số lớp 5, ai lấy tử cộng tử mẫu cộng mẫu là bị cô gõ thước kẻ đấy!"
   }
 ]

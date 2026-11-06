@@ -33,20 +33,20 @@ subprocess.run(["pkill", "-9", "-f", "games/lop-hoc-thong-minh/server.js"], stde
 subprocess.run(["pkill", "-9", "-f", "cloudflared"], stderr=subprocess.DEVNULL)
 time.sleep(1)
 
-# 4. Khởi chạy Server Game Lớp Học (Port 3004)
+# 4. Khởi chạy Server Game Lớp Học (Port 3006)
 print("🚀 Đang khởi chạy Server Game Lớp Học...")
 env = os.environ.copy()
-env["PORT"] = "3004"
+env["PORT"] = "3006"
 env["TIKTOK_USERNAME"] = os.environ.get("TIKTOK_USERNAME", "")
 
 server_log = open("/tmp/lophoc_server.log", "w")
 server_proc = subprocess.Popen(["node", "server.js"], cwd=GAME_DIR, env=env, stdout=server_log, stderr=subprocess.STDOUT)
 time.sleep(3)
 
-# 5. Khởi chạy Cloudflare Tunnel cho cổng 3004
+# 5. Khởi chạy Cloudflare Tunnel cho cổng 3006
 print("🌐 Đang tạo đường dẫn HTTPS công khai...")
 cf_log = open("/tmp/lophoc_cloudflared.log", "w")
-tunnel_proc = subprocess.Popen([cloudflared_bin, "tunnel", "--url", "http://localhost:3004"], stdout=cf_log, stderr=subprocess.STDOUT)
+tunnel_proc = subprocess.Popen([cloudflared_bin, "tunnel", "--url", "http://localhost:3006"], stdout=cf_log, stderr=subprocess.STDOUT)
 
 public_url = None
 for _ in range(15):
@@ -74,7 +74,7 @@ if public_url:
     print("   - Khán giả comment A/B/C/D để chọn đáp án, tặng quà để lên làm Lớp Trưởng!\n")
 else:
     print("⚠️ Không lấy được link Cloudflare. Kiểm tra log tại /tmp/lophoc_cloudflared.log")
-    print("Server cục bộ đang chạy tại: http://localhost:3004")
+    print("Server cục bộ đang chạy tại: http://localhost:3006")
 
 # Giữ tiến trình sống
 try:
