@@ -1048,5 +1048,1505 @@
     "correct": "B",
     "explanation": "✓ Quy đồng mẫu số: 1/2 = 2/4. Khi đó 2/4 + 1/4 = 3/4.",
     "teacherQuote": "Quy đồng mẫu số phân số lớp 5, ai lấy tử cộng tử mẫu cộng mẫu là bị cô gõ thước kẻ đấy!"
+  },
+  {
+    "id": 71,
+    "subject": "Toán",
+    "grade": "Lớp 1",
+    "question": "Số nào cộng với bất kỳ số nào cũng bằng chính số đó?",
+    "options": {
+      "A": "Số 0",
+      "B": "Số 1",
+      "C": "Số 10",
+      "D": "Số 2"
+    },
+    "correct": "A",
+    "explanation": "✓ Bất kỳ số a nào cộng với 0 cũng bằng a (a + 0 = a).",
+    "teacherQuote": "Phép toán đầu đời của lớp 1 nè, ai quên là cô phạt nhé!"
+  },
+  {
+    "id": 72,
+    "subject": "Tiếng Việt",
+    "grade": "Lớp 1",
+    "question": "Bảng chữ cái Tiếng Việt chuẩn có tất cả bao nhiêu chữ cái?",
+    "options": {
+      "A": "26 chữ cái",
+      "B": "28 chữ cái",
+      "C": "29 chữ cái",
+      "D": "30 chữ cái"
+    },
+    "correct": "C",
+    "explanation": "✓ Bảng chữ cái tiếng Việt gồm 29 chữ cái (từ A đến Y).",
+    "teacherQuote": "29 chữ cái tiếng Việt thân thương, học sinh lớp 1 phải thuộc làu làu nha!"
+  },
+  {
+    "id": 73,
+    "subject": "Khoa học",
+    "grade": "Lớp 2",
+    "question": "Bộ phận nào của cây làm nhiệm vụ hút nước và chất khoáng trong lòng đất?",
+    "options": {
+      "A": "Lá cây",
+      "B": "Rễ cây",
+      "C": "Thân cây",
+      "D": "Hoa"
+    },
+    "correct": "B",
+    "explanation": "✓ Rễ cây đâm sâu vào đất hút nước và muối khoáng nuôi cây.",
+    "teacherQuote": "Rễ cây như đôi chân vững chắc cắm sâu vào lòng đất mẹ!"
+  },
+  {
+    "id": 74,
+    "subject": "Đố mẹo",
+    "grade": "Lớp 3",
+    "question": "Cái gì có mặt nhưng không có miệng, có 3 chân nhưng không biết đi?",
+    "options": {
+      "A": "Cái bàn",
+      "B": "Cái đồng hồ",
+      "C": "Cái kiềng 3 chân",
+      "D": "Cái ghế"
+    },
+    "correct": "C",
+    "explanation": "✓ Dù ai nói ngả nói nghiêng, lòng ta vẫn vững như kiềng ba chân.",
+    "teacherQuote": "Vững như kiềng ba chân, học tập phải kiên trì như vậy nhé!"
+  },
+  {
+    "id": 75,
+    "subject": "Toán",
+    "grade": "Lớp 2",
+    "question": "1 mét (m) bằng bao nhiêu xăng-ti-mét (cm)?",
+    "options": {
+      "A": "10 cm",
+      "B": "100 cm",
+      "C": "1000 cm",
+      "D": "50 cm"
+    },
+    "correct": "B",
+    "explanation": "✓ 1m = 100cm = 10dm.",
+    "teacherQuote": "Đổi đơn vị đo độ dài lớp 2, ai quên là lấy thước kẻ đo lại nha!"
+  },
+  {
+    "id": 76,
+    "subject": "Tiếng Việt",
+    "grade": "Lớp 3",
+    "question": "Từ nào sau đây viết ĐÚNG chính tả?",
+    "options": {
+      "A": "Chân thành",
+      "B": "Trân thành",
+      "C": "Chân thàng",
+      "D": "Trân thàng"
+    },
+    "correct": "A",
+    "explanation": "✓ Từ đúng là Chân thành (dùng ch, không dùng tr).",
+    "teacherQuote": "Chân thành trong cuộc sống, đừng viết nhầm sang trân thành nha các em!"
+  },
+  {
+    "id": 77,
+    "subject": "Lịch sử",
+    "grade": "Lớp 4",
+    "question": "Vị vua đầu tiên của triều đại nhà Tiền Lê là ai?",
+    "options": {
+      "A": "Lê Lợi",
+      "B": "Lê Hoàn (Lê Đại Hành)",
+      "C": "Lê Thánh Tông",
+      "D": "Lê Chiêu Thống"
+    },
+    "correct": "B",
+    "explanation": "✓ Lê Hoàn lên ngôi năm 980, mở đầu triều Tiền Lê và đánh tan quân Tống năm 981.",
+    "teacherQuote": "Phân biệt Lê Hoàn (Tiền Lê) và Lê Lợi (Hậu Lê) nha cả lớp!"
+  },
+  {
+    "id": 78,
+    "subject": "Địa lý",
+    "grade": "Lớp 4",
+    "question": "Hồ nước ngọt tự nhiên lớn nhất ở miền Bắc nước ta là hồ nào?",
+    "options": {
+      "A": "Hồ Tây",
+      "B": "Hồ Ba Bể",
+      "C": "Hồ Thác Bà",
+      "D": "Hồ Hòa Bình"
+    },
+    "correct": "B",
+    "explanation": "✓ Hồ Ba Bể (tỉnh Bắc Kạn) là hồ nước ngọt tự nhiên lớn nhất miền Bắc.",
+    "teacherQuote": "Hồ Ba Bể non xanh nước biếc tuyệt đẹp nơi vùng núi Đông Bắc!"
+  },
+  {
+    "id": 79,
+    "subject": "Toán",
+    "grade": "Lớp 3",
+    "question": "Tìm một số biết rằng lấy số đó chia cho 5 thì được 8 dư 2.",
+    "options": {
+      "A": "40",
+      "B": "42",
+      "C": "45",
+      "D": "38"
+    },
+    "correct": "B",
+    "explanation": "✓ Số bị chia = Thương × Số chia + Số dư = 8 × 5 + 2 = 42.",
+    "teacherQuote": "Bài toán tìm số bị chia có dư lớp 3, tính nhẩm một nốt nhạc!"
+  },
+  {
+    "id": 80,
+    "subject": "Đố mẹo",
+    "grade": "Lớp 2",
+    "question": "Con gì đầu dê mình ốc?",
+    "options": {
+      "A": "Con ốc bươu",
+      "B": "Con dốc",
+      "C": "Con nhím",
+      "D": "Con rùa"
+    },
+    "correct": "B",
+    "explanation": "✓ Ghép chữ: Dê (D) + Ốc = Dốc (con dốc leo núi).",
+    "teacherQuote": "Đố chữ hài hước, ai leo dốc rồi chắc chắn đoán ra ngay!"
+  },
+  {
+    "id": 81,
+    "subject": "Khoa học",
+    "grade": "Lớp 4",
+    "question": "Con người cần những yếu tố thiết yếu nào để duy trì sự sống?",
+    "options": {
+      "A": "Chỉ cần thức ăn",
+      "B": "Chỉ cần nước uống",
+      "C": "Không khí, nước, thức ăn và ánh sáng",
+      "D": "Chỉ cần điện thoại"
+    },
+    "correct": "C",
+    "explanation": "✓ Không khí (oxy), nước, chất dinh dưỡng và nhiệt độ/ánh sáng thích hợp là thiết yếu cho sự sống.",
+    "teacherQuote": "Đừng bạn nào chọn chỉ cần điện thoại để lướt TikTok nha!"
+  },
+  {
+    "id": 82,
+    "subject": "Toán",
+    "grade": "Lớp 4",
+    "question": "1 thế kỷ bằng bao nhiêu năm?",
+    "options": {
+      "A": "10 năm",
+      "B": "50 năm",
+      "C": "100 năm",
+      "D": "1000 năm"
+    },
+    "correct": "C",
+    "explanation": "✓ 1 thế kỷ = 100 năm; 1 thiên niên kỷ = 1000 năm.",
+    "teacherQuote": "Chúng ta đang sống ở thế kỷ 21 đó các em ơi!"
+  },
+  {
+    "id": 83,
+    "subject": "Tiếng Việt",
+    "grade": "Lớp 4",
+    "question": "Từ nào dưới đây là từ LÁY?",
+    "options": {
+      "A": "Lung linh",
+      "B": "Nhà cửa",
+      "C": "Xe cộ",
+      "D": "Cây cối"
+    },
+    "correct": "A",
+    "explanation": "✓ Lung linh là từ láy âm đầu (L). Các từ còn lại là từ ghép đẳng nghĩa.",
+    "teacherQuote": "Phân biệt từ láy và từ ghép là trọng tâm ôn tập ngữ văn lớp 4 nhé!"
+  },
+  {
+    "id": 84,
+    "subject": "Lịch sử",
+    "grade": "Lớp 5",
+    "question": "Tổ chức nào lãnh đạo nhân dân ta giành thắng lợi trong Cách mạng Tháng Tám năm 1945?",
+    "options": {
+      "A": "Đảng Cộng sản Việt Nam",
+      "B": "Hội Việt Nam Cách mạng Thanh niên",
+      "C": "Việt Nam Quốc dân Đảng",
+      "D": "Đảng Dân chủ"
+    },
+    "correct": "A",
+    "explanation": "✓ Dưới sự lãnh đạo sáng suốt của Đảng Cộng sản và Chủ tịch Hồ Chí Minh, Cách mạng Tháng Tám đã thành công rực rỡ.",
+    "teacherQuote": "Mùa thu Tháng Tám năm 1945 đã mở ra kỷ nguyên độc lập tự do cho Tổ quốc!"
+  },
+  {
+    "id": 85,
+    "subject": "Địa lý",
+    "grade": "Lớp 5",
+    "question": "Đồng bằng nào lớn nhất và là vựa lúa lớn nhất của Việt Nam?",
+    "options": {
+      "A": "Đồng bằng sông Hồng",
+      "B": "Đồng bằng sông Cửu Long",
+      "C": "Đồng bằng duyên hải miền Trung",
+      "D": "Đồng bằng Thanh Hóa"
+    },
+    "correct": "B",
+    "explanation": "✓ Đồng bằng sông Cửu Long (Nam Bộ) là đồng bằng rộng nhất và vựa lúa, trái cây lớn nhất cả nước.",
+    "teacherQuote": "Miền Tây sông nước Cửu Long trù phú màu mỡ phù sa!"
+  },
+  {
+    "id": 86,
+    "subject": "Toán",
+    "grade": "Lớp 5",
+    "question": "Phân số 1/5 được viết dưới dạng tỉ số phần trăm là:",
+    "options": {
+      "A": "10%",
+      "B": "20%",
+      "C": "25%",
+      "D": "50%"
+    },
+    "correct": "B",
+    "explanation": "✓ 1/5 = 20/100 = 20%.",
+    "teacherQuote": "Chuyển phân số sang tỉ số phần trăm, nhân tử và mẫu với 20 nhé!"
+  },
+  {
+    "id": 87,
+    "subject": "Đố mẹo",
+    "grade": "Lớp 4",
+    "question": "Hoa gì biết nói, biết cười, biết đi?",
+    "options": {
+      "A": "Hoa hồng",
+      "B": "Hoa hướng dương",
+      "C": "Hoa hậu",
+      "D": "Hoa sen"
+    },
+    "correct": "C",
+    "explanation": "✓ Hoa hậu là người đẹp đoạt giải sắc đẹp, biết nói cười và bước đi duyên dáng.",
+    "teacherQuote": "Hoa hậu xinh đẹp vừa biết nói vừa biết cười, ai trả lời đúng nào!"
+  },
+  {
+    "id": 88,
+    "subject": "Khoa học",
+    "grade": "Lớp 5",
+    "question": "Sự biến đổi hóa học xảy ra trong trường hợp nào sau đây?",
+    "options": {
+      "A": "Nước đá tan thành nước lỏng",
+      "B": "Xé một tờ giấy làm đôi",
+      "C": "Đốt cháy que diêm thành tro than",
+      "D": "Nghiền nát hạt muối ăn"
+    },
+    "correct": "C",
+    "explanation": "✓ Đốt que diêm sinh ra chất mới (tro than, khói CO2) nên là biến đổi hóa học.",
+    "teacherQuote": "Có sinh ra chất mới thì mới là biến đổi hóa học nha cả lớp!"
+  },
+  {
+    "id": 89,
+    "subject": "Tiếng Việt",
+    "grade": "Lớp 3",
+    "question": "Tìm bộ phận trả lời cho câu hỏi Làm gì? trong câu: Đàn chim én đang chao liệng trên bầu trời xanh.",
+    "options": {
+      "A": "Đàn chim én",
+      "B": "Đang chao liệng trên bầu trời xanh",
+      "C": "Trên bầu trời xanh",
+      "D": "Bầu trời xanh"
+    },
+    "correct": "B",
+    "explanation": "✓ Đang chao liệng trên bầu trời xanh nêu hoạt động của đàn chim én.",
+    "teacherQuote": "Mô hình câu Ai làm gì? lớp 3 quá quen thuộc rồi!"
+  },
+  {
+    "id": 90,
+    "subject": "Toán",
+    "grade": "Lớp 4",
+    "question": "Góc vuông có số đo bằng bao nhiêu độ?",
+    "options": {
+      "A": "45 độ",
+      "B": "60 độ",
+      "C": "90 độ",
+      "D": "180 độ"
+    },
+    "correct": "C",
+    "explanation": "✓ Góc vuông bằng 90°; góc bẹt bằng 180°; góc nhọn < 90°; góc tù > 90°.",
+    "teacherQuote": "Dùng ê-ke đo góc vuông 90 độ chuẩn chỉ nha học sinh yêu quý!"
+  },
+  {
+    "id": 91,
+    "subject": "Lịch sử",
+    "grade": "Lớp 4",
+    "question": "Tác phẩm văn học lịch sử bất hủ nào được xem là bản Tuyên ngôn độc lập đầu tiên của nước ta?",
+    "options": {
+      "A": "Bình Ngô đại cáo",
+      "B": "Nam quốc sơn hà (Sông núi nước Nam)",
+      "C": "Hịch tướng sĩ",
+      "D": "Tuyên ngôn Độc lập 1945"
+    },
+    "correct": "B",
+    "explanation": "✓ Bài thơ thần Nam quốc sơn hà vang lên bên bờ sông Như Nguyệt năm 1077 khẳng định chủ quyền non sông.",
+    "teacherQuote": "Nam quốc sơn hà Nam đế cư - niềm tự hào ngàn năm của dân tộc!"
+  },
+  {
+    "id": 92,
+    "subject": "Địa lý",
+    "grade": "Lớp 4",
+    "question": "Dãy núi nào cao và đồ sộ nhất Việt Nam?",
+    "options": {
+      "A": "Dãy Trường Sơn Bắc",
+      "B": "Dãy Hoàng Liên Sơn",
+      "C": "Dãy Bạch Mã",
+      "D": "Dãy Hoành Sơn"
+    },
+    "correct": "B",
+    "explanation": "✓ Dãy Hoàng Liên Sơn có đỉnh Fansipan cao 3.143m đồ sộ nhất nước ta.",
+    "teacherQuote": "Hoàng Liên Sơn hùng vĩ trên vùng Tây Bắc quanh năm sương mây bao phủ!"
+  },
+  {
+    "id": 93,
+    "subject": "Đố mẹo",
+    "grade": "Lớp 1",
+    "question": "Càng cất đi thì lại càng to ra là cái gì?",
+    "options": {
+      "A": "Cái hố / Cái lỗ",
+      "B": "Đống cát",
+      "C": "Bong bóng",
+      "D": "Cái túi"
+    },
+    "correct": "A",
+    "explanation": "✓ Càng đào đất cất đi thì cái hố lại càng to ra.",
+    "teacherQuote": "Câu đố vui dân gian thách thức trí tưởng tượng phong phú!"
+  },
+  {
+    "id": 94,
+    "subject": "Toán",
+    "grade": "Lớp 5",
+    "question": "Một hình hộp chữ nhật có chiều dài 5m, chiều rộng 4m, chiều cao 3m. Thể tích của hình đó là:",
+    "options": {
+      "A": "60 m³",
+      "B": "12 m³",
+      "C": "47 m³",
+      "D": "30 m³"
+    },
+    "correct": "A",
+    "explanation": "✓ Thể tích V = a × b × c = 5 × 4 × 3 = 60 m³.",
+    "teacherQuote": "Công thức tính thể tích hình hộp chữ nhật lớp 5: Dài nhân rộng nhân cao!"
+  },
+  {
+    "id": 95,
+    "subject": "Khoa học",
+    "grade": "Lớp 4",
+    "question": "Vật liệu nào sau đây dẫn điện TỐT nhất?",
+    "options": {
+      "A": "Thủy tinh",
+      "B": "Nhựa xốp",
+      "C": "Đồng (kim loại)",
+      "D": "Gỗ khô"
+    },
+    "correct": "C",
+    "explanation": "✓ Đồng và các kim loại dẫn điện rất tốt, thường dùng làm lõi dây điện.",
+    "teacherQuote": "Nhớ cẩn thận an toàn điện, không chạm tay ướt vào dây điện nhé!"
+  },
+  {
+    "id": 96,
+    "subject": "Tiếng Việt",
+    "grade": "Lớp 2",
+    "question": "Điền chữ cái thích hợp: Con ...ong chăm chỉ hút mật hoa.",
+    "options": {
+      "A": "o",
+      "B": "ô",
+      "C": "ơ",
+      "D": "u"
+    },
+    "correct": "A",
+    "explanation": "✓ Con ong (bắt đầu bằng o, không phải con ông).",
+    "teacherQuote": "Chăm chỉ như chú ong non tìm mật ngọt cho đời!"
+  },
+  {
+    "id": 97,
+    "subject": "Lịch sử",
+    "grade": "Lớp 5",
+    "question": "Chiến dịch nào đã kết thúc thắng lợi cuộc kháng chiến chống Mỹ cứu nước, giải phóng hoàn toàn miền Nam?",
+    "options": {
+      "A": "Chiến dịch Việt Bắc",
+      "B": "Chiến dịch Tây Nguyên",
+      "C": "Chiến dịch Hồ Chí Minh lịch sử",
+      "D": "Chiến dịch Đường 9 - Nam Lào"
+    },
+    "correct": "C",
+    "explanation": "✓ Chiến dịch Hồ Chí Minh mùa xuân năm 1975 giải phóng Sài Gòn, thống nhất đất nước.",
+    "teacherQuote": "Chiến dịch mang tên Bác kính yêu đã hoàn thành ước nguyện non sông thống nhất!"
+  },
+  {
+    "id": 98,
+    "subject": "Toán",
+    "grade": "Lớp 3",
+    "question": "Số lớn nhất có 3 chữ số là số nào?",
+    "options": {
+      "A": "900",
+      "B": "990",
+      "C": "999",
+      "D": "100"
+    },
+    "correct": "C",
+    "explanation": "✓ 999 là số tự nhiên có 3 chữ số lớn nhất.",
+    "teacherQuote": "Cộng thêm 1 nữa là thành 1000 tròn trĩnh rồi đấy!"
+  },
+  {
+    "id": 99,
+    "subject": "Địa lý",
+    "grade": "Lớp 5",
+    "question": "Nước ta có bao nhiêu dân tộc anh em cùng chung sống?",
+    "options": {
+      "A": "52 dân tộc",
+      "B": "54 dân tộc",
+      "C": "56 dân tộc",
+      "D": "64 dân tộc"
+    },
+    "correct": "B",
+    "explanation": "✓ Việt Nam có 54 dân tộc anh em đoàn kết gắn bó keo sơn.",
+    "teacherQuote": "54 dân tộc anh em một nhà đoàn kết yêu thương nhau!"
+  },
+  {
+    "id": 100,
+    "subject": "Đố mẹo",
+    "grade": "Lớp 4",
+    "question": "Quả gì ở tận trên cây, tên nghe như thể suốt ngày lo âu?",
+    "options": {
+      "A": "Quả xoài",
+      "B": "Quả dừa",
+      "C": "Quả sầu riêng",
+      "D": "Quả bơ"
+    },
+    "correct": "C",
+    "explanation": "✓ Sầu riêng mang chữ sầu nghe như nỗi buồn rầu, lo âu.",
+    "teacherQuote": "Sầu riêng thơm nức mũi, ăn một miếng là vui ngay chứ không hề buồn đâu!"
+  },
+  {
+    "id": 101,
+    "subject": "Toán",
+    "grade": "Lớp 1",
+    "question": "Số liền trước số 10 là số nào?",
+    "options": {
+      "A": "8",
+      "B": "9",
+      "C": "11",
+      "D": "0"
+    },
+    "correct": "B",
+    "explanation": "✓ Số liền trước của 10 là 10 - 1 = 9.",
+    "teacherQuote": "Đếm từ 1 đến 10 xuôi ngược đều phải nhanh nha các em!"
+  },
+  {
+    "id": 102,
+    "subject": "Tiếng Việt",
+    "grade": "Lớp 5",
+    "question": "Dấu gạch ngang trong câu văn dùng để làm gì?",
+    "options": {
+      "A": "Đánh dấu chỗ bắt đầu lời nói của nhân vật",
+      "B": "Kết thúc câu cảm",
+      "C": "Hỏi người khác",
+      "D": "Báo hiệu từ viết sai"
+    },
+    "correct": "A",
+    "explanation": "✓ Dấu gạch ngang đánh dấu lời nói trực tiếp của nhân vật trong đối thoại hoặc phần chú thích.",
+    "teacherQuote": "Tác dụng của các dấu câu trong Tiếng Việt lớp 5 nhớ ghi nhớ kỹ nhé!"
+  },
+  {
+    "id": 103,
+    "subject": "Khoa học",
+    "grade": "Lớp 5",
+    "question": "Loại năng lượng nào sau đây KHÔNG gây ô nhiễm môi trường?",
+    "options": {
+      "A": "Đốt than đá",
+      "B": "Đốt dầu mỏ",
+      "C": "Năng lượng gió",
+      "D": "Đốt củi khô"
+    },
+    "correct": "C",
+    "explanation": "✓ Gió là nguồn năng lượng tái tạo sạch, không phát thải khí nhà kính độc hại.",
+    "teacherQuote": "Những cánh đồng điện gió quay tít vừa đẹp vừa tạo điện năng sạch!"
+  },
+  {
+    "id": 104,
+    "subject": "Đố mẹo",
+    "grade": "Lớp 3",
+    "question": "Con gì có mũi có lưỡi hẳn hoi, nhưng không có mắt có tai bao giờ?",
+    "options": {
+      "A": "Con voi",
+      "B": "Con dao",
+      "C": "Cái kim",
+      "D": "Cây bút"
+    },
+    "correct": "B",
+    "explanation": "✓ Con dao có mũi dao và lưỡi dao sắc bén nhưng không có mắt tai.",
+    "teacherQuote": "Câu đố đồ vật sắc bén trong căn bếp mẹ nấu cơm nè!"
+  },
+  {
+    "id": 105,
+    "subject": "Toán",
+    "grade": "Lớp 4",
+    "question": "Dấu hiệu chia hết cho 5 là gì?",
+    "options": {
+      "A": "Chữ số tận cùng là số chẵn",
+      "B": "Chữ số tận cùng là 0 hoặc 5",
+      "C": "Tổng các chữ số chia hết cho 5",
+      "D": "Chữ số đầu tiên là 5"
+    },
+    "correct": "B",
+    "explanation": "✓ Các số có chữ số tận cùng là 0 hoặc 5 thì chia hết cho 5.",
+    "teacherQuote": "Quy tắc chia hết cho 2, cho 5 nhìn vào đuôi là biết ngay!"
+  },
+  {
+    "id": 106,
+    "subject": "Lịch sử",
+    "grade": "Lớp 4",
+    "question": "Ba lần đánh tan quân xâm lược Mông - Nguyên diễn ra dưới triều đại nào trong lịch sử nước ta?",
+    "options": {
+      "A": "Nhà Lý",
+      "B": "Nhà Trần",
+      "C": "Nhà Hậu Lê",
+      "D": "Nhà Nguyễn"
+    },
+    "correct": "B",
+    "explanation": "✓ Triều đại nhà Trần (thế kỷ XIII) với Hưng Đạo Vương Trần Quốc Tuấn ba lần đại thắng giặc Nguyên Mông.",
+    "teacherQuote": "Hào khí Đông A nhà Trần oanh liệt ba lần quét sạch quân Mông Nguyên!"
+  },
+  {
+    "id": 107,
+    "subject": "Địa lý",
+    "grade": "Lớp 4",
+    "question": "Thành phố nào ở Tây Nguyên được mệnh danh là Thủ phủ Cà phê của Việt Nam?",
+    "options": {
+      "A": "Pleiku",
+      "B": "Buôn Ma Thuột",
+      "C": "Kon Tum",
+      "D": "Gia Nghĩa"
+    },
+    "correct": "B",
+    "explanation": "✓ Thành phố Buôn Ma Thuột (Đắk Lắk) nổi tiếng thế giới về hương vị cà phê Robusta.",
+    "teacherQuote": "Hương vị cà phê nồng nàn thơm lừng xứ sở đất đỏ bazan Buôn Ma Thuột!"
+  },
+  {
+    "id": 108,
+    "subject": "Toán",
+    "grade": "Lớp 5",
+    "question": "Tính: 0,5 × 0,4 = ?",
+    "options": {
+      "A": "0,2",
+      "B": "0,02",
+      "C": "2,0",
+      "D": "0,9"
+    },
+    "correct": "A",
+    "explanation": "✓ 5 × 4 = 20, có 2 chữ số ở phần thập phân => 0,20 = 0,2.",
+    "teacherQuote": "Nhân hai số thập phân, đếm số chữ số sau dấu phẩy cho chuẩn nhé!"
+  },
+  {
+    "id": 109,
+    "subject": "Tiếng Việt",
+    "grade": "Lớp 4",
+    "question": "Từ nào sau đây viết SAI chính tả?",
+    "options": {
+      "A": "Gọn gàng",
+      "B": "Ngăn nắp",
+      "C": "Bổ sung",
+      "D": "Bổ xung"
+    },
+    "correct": "D",
+    "explanation": "✓ Từ đúng là Bổ sung (dùng s, không dùng x). Do đó Bổ xung là sai.",
+    "teacherQuote": "Bổ sung kiến thức chứ đừng bổ xung lung tung nha các em!"
+  },
+  {
+    "id": 110,
+    "subject": "Khoa học",
+    "grade": "Lớp 5",
+    "question": "Giai đoạn chuyển tiếp từ trẻ con sang người lớn được gọi là tuổi gì?",
+    "options": {
+      "A": "Tuổi ấu thơ",
+      "B": "Tuổi dậy thì",
+      "C": "Tuổi trung niên",
+      "D": "Tuổi già"
+    },
+    "correct": "B",
+    "explanation": "✓ Tuổi dậy thì là giai đoạn cơ thể phát triển nhanh vượt bậc về thể chất và tâm sinh lý.",
+    "teacherQuote": "Tuổi dậy thì nhiều biến đổi diệu kỳ của cơ thể tuổi học trò!"
+  },
+  {
+    "id": 111,
+    "subject": "Toán",
+    "grade": "Lớp 2",
+    "question": "Một tuần lễ em đi học từ thứ Hai đến thứ Sáu. Hỏi em đi học mấy ngày trong tuần?",
+    "options": {
+      "A": "4 ngày",
+      "B": "5 ngày",
+      "C": "6 ngày",
+      "D": "7 ngày"
+    },
+    "correct": "B",
+    "explanation": "✓ Thứ Hai, Ba, Tư, Năm, Sáu là 5 ngày đi học chăm ngoan.",
+    "teacherQuote": "5 ngày học vui vẻ ở trường, cuối tuần nghỉ ngơi cùng gia đình nhé!"
+  },
+  {
+    "id": 112,
+    "subject": "Đố mẹo",
+    "grade": "Lớp 4",
+    "question": "Bức tường nào dài nhất thế giới?",
+    "options": {
+      "A": "Vạn Lý Trường Thành",
+      "B": "Bức tường Berlin",
+      "C": "Tường nhà bạn",
+      "D": "Bờ thành Cổ Loa"
+    },
+    "correct": "A",
+    "explanation": "✓ Vạn Lý Trường Thành ở Trung Quốc dài hơn 21.000 km.",
+    "teacherQuote": "Kỳ quan kiến trúc khổng lồ dài nhất hành tinh!"
+  },
+  {
+    "id": 113,
+    "subject": "Lịch sử",
+    "grade": "Lớp 5",
+    "question": "Ngày Bác Hồ ra đi tìm đường cứu nước từ bến cảng Nhà Rồng là ngày nào?",
+    "options": {
+      "A": "02/09/1945",
+      "B": "05/06/1911",
+      "C": "19/05/1890",
+      "D": "30/04/1975"
+    },
+    "correct": "B",
+    "explanation": "✓ Ngày 05/06/1911, người thanh niên Nguyễn Tất Thành bước lên tàu Amiral Latouche-Tréville ra đi tìm đường cứu nước.",
+    "teacherQuote": "Mốc son 05/06/1911 mở đầu hành trình cứu nước vĩ đại của Bác!"
+  },
+  {
+    "id": 114,
+    "subject": "Tiếng Việt",
+    "grade": "Lớp 3",
+    "question": "Từ ngữ nào sau đây chỉ TÍNH CHẤT của đồ vật hoặc con người?",
+    "options": {
+      "A": "Chăm chỉ",
+      "B": "Học bài",
+      "C": "Quyển sách",
+      "D": "Cây bút"
+    },
+    "correct": "A",
+    "explanation": "✓ Chăm chỉ là tính từ chỉ phẩm chất, tính nết của con người.",
+    "teacherQuote": "Chăm chỉ cần cù bù thông minh nha cả lớp!"
+  },
+  {
+    "id": 115,
+    "subject": "Toán",
+    "grade": "Lớp 4",
+    "question": "1 tấn bằng bao nhiêu tạ?",
+    "options": {
+      "A": "10 tạ",
+      "B": "100 tạ",
+      "C": "1000 tạ",
+      "D": "5 tạ"
+    },
+    "correct": "A",
+    "explanation": "✓ 1 tấn = 10 tạ = 100 yến = 1000 kg.",
+    "teacherQuote": "Tấn, tạ, yến, ki-lô-gam... đọc theo thứ tự giảm dần là nhớ ngay!"
+  },
+  {
+    "id": 116,
+    "subject": "Địa lý",
+    "grade": "Lớp 5",
+    "question": "Đảo Phú Quốc thuộc tỉnh/thành phố nào của nước ta?",
+    "options": {
+      "A": "Kiên Giang",
+      "B": "Cà Mau",
+      "C": "Bà Rịa - Vũng Tàu",
+      "D": "Khánh Hòa"
+    },
+    "correct": "A",
+    "explanation": "✓ Thành phố đảo Phú Quốc xinh đẹp trực thuộc tỉnh Kiên Giang.",
+    "teacherQuote": "Đảo ngọc Phú Quốc biển xanh cát trắng nắng vàng tuyệt đẹp!"
+  },
+  {
+    "id": 117,
+    "subject": "Khoa học",
+    "grade": "Lớp 4",
+    "question": "Quá trình hơi nước bốc lên cao gặp lạnh ngưng tụ thành những hạt nước nhỏ li ti tạo thành hiện tượng gì?",
+    "options": {
+      "A": "Gió",
+      "B": "Mây",
+      "C": "Nắng",
+      "D": "Sấm sét"
+    },
+    "correct": "B",
+    "explanation": "✓ Hơi nước bay lên cao gặp lạnh ngưng tụ tạo thành mây, mây nặng hạt rơi xuống thành mưa.",
+    "teacherQuote": "Vòng tuần hoàn của nước trong tự nhiên kỳ diệu lắm các em ơi!"
+  },
+  {
+    "id": 118,
+    "subject": "Đố mẹo",
+    "grade": "Lớp 2",
+    "question": "Cái gì đen khi bạn mua nó, đỏ khi bạn dùng nó, và xám xịt khi bạn vứt nó đi?",
+    "options": {
+      "A": "Cục than tổ ong",
+      "B": "Bao thuốc lá",
+      "C": "Cây bút chì",
+      "D": "Chiếc xe máy"
+    },
+    "correct": "A",
+    "explanation": "✓ Than lúc mua màu đen, khi đốt cháy màu đỏ hồng, cháy xong thành tro màu xám xịt.",
+    "teacherQuote": "Câu đố dân gian về viên than đun bếp xưa kia quá chuẩn!"
+  },
+  {
+    "id": 119,
+    "subject": "Toán",
+    "grade": "Lớp 3",
+    "question": "Hình tam giác có độ dài ba cạnh lần lượt là 3cm, 4cm, 5cm. Chu vi của hình tam giác đó là:",
+    "options": {
+      "A": "12 cm",
+      "B": "60 cm",
+      "C": "10 cm",
+      "D": "15 cm"
+    },
+    "correct": "A",
+    "explanation": "✓ Chu vi hình tam giác = Tổng độ dài 3 cạnh = 3 + 4 + 5 = 12 cm.",
+    "teacherQuote": "Tính chu vi tam giác thì cứ cộng hết 3 cạnh lại là xong!"
+  },
+  {
+    "id": 120,
+    "subject": "Tiếng Việt",
+    "grade": "Lớp 5",
+    "question": "Cụm từ Chân cứng đá mềm có ý nghĩa biểu đạt điều gì?",
+    "options": {
+      "A": "Chân làm bằng sắt thép",
+      "B": "Ý chí kiên cường, vượt qua mọi gian lao trắc trở",
+      "C": "Đá bị nát vụn",
+      "D": "Đau chân khi đi đường"
+    },
+    "correct": "B",
+    "explanation": "✓ Chân cứng đá mềm là lời chúc bình an, mong người đi xa có nghị lực vững vàng vượt qua khó khăn.",
+    "teacherQuote": "Chúc các bạn học sinh chân cứng đá mềm chinh phục mọi kỳ thi nhé!"
+  },
+  {
+    "id": 121,
+    "subject": "Khoa học",
+    "grade": "Lớp 5",
+    "question": "Bộ phận nào của hoa có chức năng tạo ra phấn hoa?",
+    "options": {
+      "A": "Nhị hoa",
+      "B": "Nhụy hoa",
+      "C": "Cánh hoa",
+      "D": "Đài hoa"
+    },
+    "correct": "A",
+    "explanation": "✓ Nhị hoa mang bao phấn chứa các hạt phấn sinh sản đực.",
+    "teacherQuote": "Nhị mang hạt phấn, nhụy nhận hạt phấn để thụ quả nha!"
+  },
+  {
+    "id": 122,
+    "subject": "Toán",
+    "grade": "Lớp 5",
+    "question": "Một ô tô đi quãng đường 120km hết 2 giờ. Vận tốc của ô tô là bao nhiêu km/h?",
+    "options": {
+      "A": "50 km/h",
+      "B": "60 km/h",
+      "C": "70 km/h",
+      "D": "240 km/h"
+    },
+    "correct": "B",
+    "explanation": "✓ Vận tốc v = s : t = 120 : 2 = 60 km/h.",
+    "teacherQuote": "Công thức v = s chia t, toán chuyển động đều lớp 5 siêu dễ!"
+  },
+  {
+    "id": 123,
+    "subject": "Địa lý",
+    "grade": "Lớp 4",
+    "question": "Thành phố ngàn thông và nhiều thác nước đẹp ở Tây Nguyên là:",
+    "options": {
+      "A": "Đà Lạt",
+      "B": "Nha Trang",
+      "C": "Phan Thiết",
+      "D": "Vũng Tàu"
+    },
+    "correct": "A",
+    "explanation": "✓ Thành phố Đà Lạt (tỉnh Lâm Đồng) nằm trên cao nguyên mát mẻ với ngàn thông reo.",
+    "teacherQuote": "Đà Lạt mộng mơ mát lành, ai đi du lịch rồi chắc chắn nhớ mãi!"
+  },
+  {
+    "id": 124,
+    "subject": "Đố mẹo",
+    "grade": "Lớp 3",
+    "question": "Bỏ ngoài nướng trong, ăn ngoài bỏ trong là quả gì?",
+    "options": {
+      "A": "Quả dưa hấu",
+      "B": "Bắp ngô (Bắp bắp)",
+      "C": "Quả chuối",
+      "D": "Củ khoai lang"
+    },
+    "correct": "B",
+    "explanation": "✓ Bóc bỏ vỏ bẹ ngoài đem nướng bắp, khi ăn thì ăn hạt bên ngoài rồi bỏ lại cùi bắp bên trong.",
+    "teacherQuote": "Bắp ngô nướng mỡ hành thơm phức mùa đông ấm lòng!"
+  },
+  {
+    "id": 125,
+    "subject": "Lịch sử",
+    "grade": "Lớp 4",
+    "question": "Hội nghị Diên Hồng nổi tiếng dưới thời Trần với tiếng hô đồng thanh ĐÁNH! là do ai triệu tập?",
+    "options": {
+      "A": "Trần Thủ Độ",
+      "B": "Thượng hoàng Trần Thánh Tông",
+      "C": "Trần Quốc Tuấn",
+      "D": "Trần Nhân Tông"
+    },
+    "correct": "B",
+    "explanation": "✓ Năm 1284, Thượng hoàng Trần Thánh Tông triệu tập các bô lão cả nước tại điện Diên Hồng để hỏi kế đánh giặc.",
+    "teacherQuote": "Tiếng hô ĐÁNH vang dội non sông thể hiện ý chí quật cường của toàn dân tộc!"
+  },
+  {
+    "id": 126,
+    "subject": "Toán",
+    "grade": "Lớp 4",
+    "question": "Tổng của hai số là 100, hiệu của hai số là 20. Số lớn là:",
+    "options": {
+      "A": "50",
+      "B": "60",
+      "C": "70",
+      "D": "40"
+    },
+    "correct": "B",
+    "explanation": "✓ Số lớn = (Tổng + Hiệu) : 2 = (100 + 20) : 2 = 60.",
+    "teacherQuote": "Dạng toán tìm hai số khi biết Tổng và Hiệu lớp 4, thuộc công thức là thắng!"
+  },
+  {
+    "id": 127,
+    "subject": "Tiếng Việt",
+    "grade": "Lớp 1",
+    "question": "Từ nào sau đây viết ĐÚNG chính tả:",
+    "options": {
+      "A": "Cây che",
+      "B": "Cây tre",
+      "C": "Kây tre",
+      "D": "Kây che"
+    },
+    "correct": "B",
+    "explanation": "✓ Cây tre (dùng c và tr, không dùng ch hay k).",
+    "teacherQuote": "Cây tre Việt Nam kiên cường bất khuất, nhớ viết tr nhé!"
+  },
+  {
+    "id": 128,
+    "subject": "Khoa học",
+    "grade": "Lớp 5",
+    "question": "Chất nào dưới đây tan hoàn toàn trong nước tạo thành dung dịch trong suốt?",
+    "options": {
+      "A": "Dầu ăn",
+      "B": "Cát biển",
+      "C": "Đường kính",
+      "D": "Bột mì"
+    },
+    "correct": "C",
+    "explanation": "✓ Đường tan hoàn toàn trong nước tạo thành dung dịch nước đường trong suốt.",
+    "teacherQuote": "Khuấy cốc nước đường giải khát mùa hè mát lạnh ngọt ngào!"
+  },
+  {
+    "id": 129,
+    "subject": "Đố mẹo",
+    "grade": "Lớp 2",
+    "question": "Con gì đập cánh bay cao, mà chân lại dính một đường dây tơ dài?",
+    "options": {
+      "A": "Con chim én",
+      "B": "Con diều giấy",
+      "C": "Con ong vàng",
+      "D": "Con bướm đêm"
+    },
+    "correct": "B",
+    "explanation": "✓ Con diều bay lượn trên bầu trời nhờ sức gió và nối với tay người bằng sợi dây.",
+    "teacherQuote": "Thả diều cánh cung vi vu trên đê làng tuổi thơ êm đềm!"
+  },
+  {
+    "id": 130,
+    "subject": "Toán",
+    "grade": "Lớp 5",
+    "question": "1m³ (mét khối) bằng bao nhiêu lít nước?",
+    "options": {
+      "A": "10 lít",
+      "B": "100 lít",
+      "C": "1.000 lít",
+      "D": "10.000 lít"
+    },
+    "correct": "C",
+    "explanation": "✓ 1 m³ = 1000 dm³ = 1000 lít.",
+    "teacherQuote": "Nhớ kỹ mốc 1 mét khối = 1000 lít nước để tính tiền nước sinh hoạt nha!"
+  },
+  {
+    "id": 131,
+    "subject": "Lịch sử",
+    "grade": "Lớp 5",
+    "question": "Anh hùng nào đã lấy thân mình chèn bánh pháo trong chiến dịch Điện Biên Phủ?",
+    "options": {
+      "A": "Tô Vĩnh Diện",
+      "B": "Phan Đình Giót",
+      "C": "Bế Văn Đàn",
+      "D": "Cù Chính Lan"
+    },
+    "correct": "A",
+    "explanation": "✓ Liệt sĩ Tô Vĩnh Diện đã anh dũng hy sinh lấy thân chèn bánh pháo không để pháo lăn xuống vực thẳm.",
+    "teacherQuote": "Tấm gương hy sinh quả cảm của anh hùng Tô Vĩnh Diện sáng mãi ngàn thu!"
+  },
+  {
+    "id": 132,
+    "subject": "Địa lý",
+    "grade": "Lớp 4",
+    "question": "Sông Hồng bắt nguồn từ nước nào trước khi chảy vào lãnh thổ Việt Nam?",
+    "options": {
+      "A": "Lào",
+      "B": "Campuchia",
+      "C": "Trung Quốc",
+      "D": "Thái Lan"
+    },
+    "correct": "C",
+    "explanation": "✓ Sông Hồng bắt nguồn từ tỉnh Vân Nam (Trung Quốc) chảy vào Việt Nam tại tỉnh Lào Cai.",
+    "teacherQuote": "Sông Hồng bồi đắp nên đồng bằng Bắc Bộ trù phú từ nghìn đời nay!"
+  },
+  {
+    "id": 133,
+    "subject": "Tiếng Việt",
+    "grade": "Lớp 4",
+    "question": "Chủ ngữ trong câu: Mấy chú chim sơn ca đang hót véo von. là gì?",
+    "options": {
+      "A": "Mấy chú chim",
+      "B": "Mấy chú chim sơn ca",
+      "C": "Đang hót véo von",
+      "D": "Hót véo von"
+    },
+    "correct": "B",
+    "explanation": "✓ Mấy chú chim sơn ca là cụm danh từ làm chủ ngữ trả lời cho câu hỏi Ai/Con gì?.",
+    "teacherQuote": "Xác định chủ ngữ vị ngữ lớp 4 chính xác từng từ nha các em!"
+  },
+  {
+    "id": 134,
+    "subject": "Khoa học",
+    "grade": "Lớp 4",
+    "question": "Động vật nào sau đây là động vật ăn cỏ (thực vật)?",
+    "options": {
+      "A": "Con hổ (cọp)",
+      "B": "Con trâu",
+      "C": "Con chó sói",
+      "D": "Con cá sấu"
+    },
+    "correct": "B",
+    "explanation": "✓ Con trâu, con bò, con ngựa là động vật ăn cỏ và rơm rạ.",
+    "teacherQuote": "Con trâu là đầu cơ nghiệp, trâu chỉ ăn cỏ xanh thôi nè!"
+  },
+  {
+    "id": 135,
+    "subject": "Đố mẹo",
+    "grade": "Lớp 5",
+    "question": "Bệnh gì mà bác sĩ trên toàn thế giới đều bó tay không chữa được?",
+    "options": {
+      "A": "Bệnh đau mắt đỏ",
+      "B": "Bệnh gãy tay",
+      "C": "Bệnh sâu răng",
+      "D": "Bệnh cảm cúm"
+    },
+    "correct": "B",
+    "explanation": "✓ Gãy tay thì bác sĩ phải bó bột vào cánh tay (gọi là bó tay).",
+    "teacherQuote": "Haha chơi chữ bó tay theo nghĩa đen, ai bị lừa giơ tay nào!"
+  },
+  {
+    "id": 136,
+    "subject": "Toán",
+    "grade": "Lớp 3",
+    "question": "Một hình chữ nhật có chiều dài 8cm, chiều rộng 5cm. Chu vi của hình đó là:",
+    "options": {
+      "A": "40 cm",
+      "B": "13 cm",
+      "C": "26 cm",
+      "D": "20 cm"
+    },
+    "correct": "C",
+    "explanation": "✓ Chu vi = (Dài + Rộng) × 2 = (8 + 5) × 2 = 26 cm.",
+    "teacherQuote": "Nhớ cộng dài với rộng trước rồi mới nhân 2 nha!"
+  },
+  {
+    "id": 137,
+    "subject": "Lịch sử",
+    "grade": "Lớp 4",
+    "question": "Trần Quốc Toản vì còn nhỏ tuổi không được dự bàn việc nước nên đã bóp nát quả gì trong tay?",
+    "options": {
+      "A": "Quả táo",
+      "B": "Quả cam",
+      "C": "Quả bưởi",
+      "D": "Quả chanh"
+    },
+    "correct": "B",
+    "explanation": "✓ Người anh hùng thiếu niên Trần Quốc Toản vì căm giận giặc đã bóp nát quả cam vua ban lúc nào không hay.",
+    "teacherQuote": "Lá cờ thêu sáu chữ vàng Phá cường địch, báo hoàng ân của người thiếu niên anh hùng!"
+  },
+  {
+    "id": 138,
+    "subject": "Địa lý",
+    "grade": "Lớp 5",
+    "question": "Châu lục nào có diện tích lớn nhất và dân số đông nhất thế giới?",
+    "options": {
+      "A": "Châu Âu",
+      "B": "Châu Phi",
+      "C": "Châu Á",
+      "D": "Châu Mỹ"
+    },
+    "correct": "C",
+    "explanation": "✓ Châu Á là châu lục rộng lớn nhất và đông dân nhất hành tinh, trong đó có Việt Nam.",
+    "teacherQuote": "Việt Nam nằm ở khu vực Đông Nam Á thuộc châu Á bao la!"
+  },
+  {
+    "id": 139,
+    "subject": "Tiếng Việt",
+    "grade": "Lớp 3",
+    "question": "Điền vào chỗ trống: Một con ngựa đau, cả tàu ... cỏ.",
+    "options": {
+      "A": "Ăn",
+      "B": "Bỏ",
+      "C": "Chia",
+      "D": "Tranh"
+    },
+    "correct": "B",
+    "explanation": "✓ Câu thành ngữ: Một con ngựa đau, cả tàu bỏ cỏ nói về tình đoàn kết, tương trợ lẫn nhau.",
+    "teacherQuote": "Tinh thần gắn kết đồng lòng, tương trợ lẫn nhau lúc khó khăn hoạn nạn!"
+  },
+  {
+    "id": 140,
+    "subject": "Toán",
+    "grade": "Lớp 5",
+    "question": "Tính nhanh: 12,5 × 8 = ?",
+    "options": {
+      "A": "10",
+      "B": "100",
+      "C": "1000",
+      "D": "90"
+    },
+    "correct": "B",
+    "explanation": "✓ 12,5 × 8 = 100 (vì 125 × 8 = 1000, lùi một dấu phẩy thành 100).",
+    "teacherQuote": "Cặp số bạn thân nhân nhẩm siêu nhanh: 12,5 nhân 8 bằng tròn 100!"
+  },
+  {
+    "id": 141,
+    "subject": "Khoa học",
+    "grade": "Lớp 5",
+    "question": "Bệnh sốt rét lây truyền qua trung gian là loài sinh vật nào?",
+    "options": {
+      "A": "Ruồi nhà",
+      "B": "Muỗi A-nô-phen (Anopheles)",
+      "C": "Chuột cống",
+      "D": "Bọ chét"
+    },
+    "correct": "B",
+    "explanation": "✓ Muỗi A-nô-phen cái truyền ký sinh trùng sốt rét khi đốt người bệnh rồi đốt người lành.",
+    "teacherQuote": "Ngủ nhớ mắc màn để phòng tránh muỗi đốt bảo vệ sức khỏe nhé!"
+  },
+  {
+    "id": 142,
+    "subject": "Đố mẹo",
+    "grade": "Lớp 2",
+    "question": "Cái gì có cổ mà không có miệng, có đáy mà không có chân?",
+    "options": {
+      "A": "Cái chai / Cái lọ",
+      "B": "Cái áo",
+      "C": "Cái bát",
+      "D": "Cây quạt"
+    },
+    "correct": "A",
+    "explanation": "✓ Cái chai có cổ chai và đáy chai nhưng không có miệng hay chân đi.",
+    "teacherQuote": "Cái chai uống nước mỗi ngày bạn nào cũng cầm trên tay nè!"
+  },
+  {
+    "id": 143,
+    "subject": "Lịch sử",
+    "grade": "Lớp 4",
+    "question": "Văn Miếu - Quốc Tử Giám (Hà Nội) được xây dựng vào năm 1070 dưới triều vua nào?",
+    "options": {
+      "A": "Lý Thái Tổ",
+      "B": "Lý Thánh Tông",
+      "C": "Lý Nhân Tông",
+      "D": "Lý Thường Kiệt"
+    },
+    "correct": "B",
+    "explanation": "✓ Năm 1070, vua Lý Thánh Tông cho lập Văn Miếu. Năm 1076, vua Lý Nhân Tông mở Quốc Tử Giám - trường đại học đầu tiên.",
+    "teacherQuote": "Quốc Tử Giám - cái nôi đại học đầu tiên ghi danh ngàn năm hiếu học Việt Nam!"
+  },
+  {
+    "id": 144,
+    "subject": "Toán",
+    "grade": "Lớp 1",
+    "question": "Số lớn nhất có một chữ số là số nào?",
+    "options": {
+      "A": "1",
+      "B": "9",
+      "C": "10",
+      "D": "0"
+    },
+    "correct": "B",
+    "explanation": "✓ 9 là số tự nhiên có một chữ số lớn nhất.",
+    "teacherQuote": "10 là số có hai chữ số rồi, đừng để bị lừa nha các bạn nhỏ!"
+  },
+  {
+    "id": 145,
+    "subject": "Tiếng Việt",
+    "grade": "Lớp 4",
+    "question": "Cặp từ nào dưới đây là từ TRÁI NGHĨA?",
+    "options": {
+      "A": "Chăm chỉ - Siêng năng",
+      "B": "Dũng cảm - Hèn nhát",
+      "C": "Thông minh - Sáng dạ",
+      "D": "Bao la - Rộng lớn"
+    },
+    "correct": "B",
+    "explanation": "✓ Dũng cảm đối lập hoàn toàn nghĩa với Hèn nhát. Các cặp khác là từ đồng nghĩa.",
+    "teacherQuote": "Dũng cảm là đức tính cao đẹp của người học sinh gương mẫu!"
+  },
+  {
+    "id": 146,
+    "subject": "Địa lý",
+    "grade": "Lớp 4",
+    "question": "Thành phố cảng lớn nhất ở miền Bắc nước ta là thành phố nào?",
+    "options": {
+      "A": "Hà Nội",
+      "B": "Hải Phòng",
+      "C": "Hạ Long",
+      "D": "Nam Định"
+    },
+    "correct": "B",
+    "explanation": "✓ Hải Phòng - thành phố Hoa Phượng Đỏ là trung tâm cảng biển lớn nhất phía Bắc.",
+    "teacherQuote": "Thành phố cảng Hải Phòng rực rỡ sắc đỏ hoa phượng vĩ mỗi độ hè về!"
+  },
+  {
+    "id": 147,
+    "subject": "Khoa học",
+    "grade": "Lớp 5",
+    "question": "Hươu cao cổ có chiếc cổ rất dài để làm gì?",
+    "options": {
+      "A": "Để hót cho hay",
+      "B": "Để với tới những chiếc lá non trên ngọn cây cao",
+      "C": "Để bơi lội dưới sông",
+      "D": "Để đào đất"
+    },
+    "correct": "B",
+    "explanation": "✓ Cổ dài giúp hươu cao cổ vươn tới tán lá cao nhất ở thảo nguyên châu Phi.",
+    "teacherQuote": "Chú hươu cao cổ đáng yêu ngắm trời mây trên đồng cỏ bao la!"
+  },
+  {
+    "id": 148,
+    "subject": "Đố mẹo",
+    "grade": "Lớp 3",
+    "question": "Tháng nào trong năm người ta ngủ ít nhất?",
+    "options": {
+      "A": "Tháng Một",
+      "B": "Tháng Hai",
+      "C": "Tháng Mười Hai",
+      "D": "Tháng Bảy"
+    },
+    "correct": "B",
+    "explanation": "✓ Tháng Hai chỉ có 28 hoặc 29 ngày (ít ngày nhất) nên tổng thời gian ngủ ít nhất.",
+    "teacherQuote": "Haha câu đố mẹo số ngày trong tháng quá thú vị đúng không nào!"
+  },
+  {
+    "id": 149,
+    "subject": "Toán",
+    "grade": "Lớp 4",
+    "question": "Tìm số chia hết cho cả 2 và 3 trong các số dưới đây:",
+    "options": {
+      "A": "14",
+      "B": "15",
+      "C": "18",
+      "D": "20"
+    },
+    "correct": "C",
+    "explanation": "✓ 18 là số chẵn (chia hết cho 2) và có tổng chữ số 1 + 8 = 9 chia hết cho 3.",
+    "teacherQuote": "Số chia hết cho cả 2 và 3 chính là chia hết cho 6 đấy nhé!"
+  },
+  {
+    "id": 150,
+    "subject": "Tiếng Việt",
+    "grade": "Lớp 2",
+    "question": "Từ ngữ nào sau đây viết ĐÚNG chính tả?",
+    "options": {
+      "A": "Xinh xắn",
+      "B": "Sinh xắn",
+      "C": "Xinh sắn",
+      "D": "Sinh sắn"
+    },
+    "correct": "A",
+    "explanation": "✓ Từ đúng là Xinh xắn (đều bắt đầu bằng âm x).",
+    "teacherQuote": "Những bông hoa điểm mười xinh xắn tặng cha mẹ thầy cô!"
+  },
+  {
+    "id": 151,
+    "subject": "Lịch sử",
+    "grade": "Lớp 5",
+    "question": "Tên bài hát Quốc ca chính thức của nước Cộng hòa Xã hội Chủ nghĩa Việt Nam là:",
+    "options": {
+      "A": "Tiến quân ca",
+      "B": "Như có Bác trong ngày đại thắng",
+      "C": "Đoàn ca",
+      "D": "Bài ca hy vọng"
+    },
+    "correct": "A",
+    "explanation": "✓ Tiến quân ca do cố nhạc sĩ Văn Cao sáng tác năm 1944 là Quốc ca hào hùng của Việt Nam.",
+    "teacherQuote": "Đoàn quân Việt Nam đi chung lòng cứu quốc... trang nghiêm trong lễ chào cờ!"
+  },
+  {
+    "id": 152,
+    "subject": "Địa lý",
+    "grade": "Lớp 5",
+    "question": "Dòng sông nào chảy qua thủ đô Hà Nội và tạo nên nét văn hóa đặc trưng của vùng đồng bằng Bắc Bộ?",
+    "options": {
+      "A": "Sông Lam",
+      "B": "Sông Hồng",
+      "C": "Sông Cửu Long",
+      "D": "Sông Hương"
+    },
+    "correct": "B",
+    "explanation": "✓ Sông Hồng đỏ nặng phù sa chảy uốn lượn qua lòng thủ đô Hà Nội.",
+    "teacherQuote": "Cầu Long Biên lịch sử bắc qua dòng sông Hồng cuộn sóng phù sa!"
+  },
+  {
+    "id": 153,
+    "subject": "Toán",
+    "grade": "Lớp 5",
+    "question": "Một ô tô khởi hành lúc 7 giờ 15 phút và đến nơi lúc 9 giờ 45 phút. Thời gian ô tô chạy là:",
+    "options": {
+      "A": "2 giờ 30 phút",
+      "B": "2 giờ",
+      "C": "2 giờ 15 phút",
+      "D": "3 giờ"
+    },
+    "correct": "A",
+    "explanation": "✓ 9 giờ 45 phút - 7 giờ 15 phút = 2 giờ 30 phút.",
+    "teacherQuote": "Phép trừ số đo thời gian lớp 5, lấy phút trừ phút, giờ trừ giờ nhé!"
+  },
+  {
+    "id": 154,
+    "subject": "Khoa học",
+    "grade": "Lớp 4",
+    "question": "Tại sao vào ban đêm không nên để quá nhiều cây xanh trong phòng ngủ đóng kín cửa?",
+    "options": {
+      "A": "Vì cây sẽ lớn nhanh",
+      "B": "Vì ban đêm cây hô hấp hút khí Oxy và thải khí Cacbonic",
+      "C": "Vì cây sẽ tạo ra nhiều nước",
+      "D": "Vì rễ cây sẽ mọc dài"
+    },
+    "correct": "B",
+    "explanation": "✓ Ban đêm không có ánh sáng quang hợp, cây chỉ hô hấp hút O2 và thải CO2 dễ gây ngột ngạt nếu phòng kín.",
+    "teacherQuote": "Kiến thức khoa học đời sống thực tế rất quan trọng đó các em!"
+  },
+  {
+    "id": 155,
+    "subject": "Đố mẹo",
+    "grade": "Lớp 4",
+    "question": "Cây gì nghiêng bóng bên hồ, rủ cành tha thướt tựa làn tóc mây?",
+    "options": {
+      "A": "Cây bàng",
+      "B": "Cây liễu",
+      "C": "Cây xương rồng",
+      "D": "Cây chuối"
+    },
+    "correct": "B",
+    "explanation": "✓ Cây liễu rủ cành lá tha thướt soi bóng bên mặt nước hồ Gươm.",
+    "teacherQuote": "Hàng liễu rủ thơ mộng bên bờ hồ Hoàn Kiếm Hà Nội!"
+  },
+  {
+    "id": 156,
+    "subject": "Toán",
+    "grade": "Lớp 3",
+    "question": "Số gồm 4 nghìn, 5 trăm và 6 đơn vị được viết là:",
+    "options": {
+      "A": "456",
+      "B": "4056",
+      "C": "4506",
+      "D": "4560"
+    },
+    "correct": "C",
+    "explanation": "✓ 4 nghìn (4000) + 5 trăm (500) + 0 chục (00) + 6 đơn vị (6) = 4506.",
+    "teacherQuote": "Cẩn thận số 0 ở hàng chục kẻo nhầm lẫn sang số khác nhé!"
+  },
+  {
+    "id": 157,
+    "subject": "Tiếng Việt",
+    "grade": "Lớp 5",
+    "question": "Từ Đồng trong Đồng lòng, Đồng hương, Đồng chí có nghĩa là gì?",
+    "options": {
+      "A": "Kim loại đồng",
+      "B": "Đồng ruộng trồng lúa",
+      "C": "Cùng nhau, giống nhau",
+      "D": "Đồng tiền xu"
+    },
+    "correct": "C",
+    "explanation": "✓ Từ Hán Việt Đồng ở đây có nghĩa là cùng (cùng chí hướng, cùng quê hương, cùng tấm lòng).",
+    "teacherQuote": "Nét đẹp phong phú và tinh tế của từ ngữ Tiếng Việt thân yêu!"
+  },
+  {
+    "id": 158,
+    "subject": "Lịch sử",
+    "grade": "Lớp 4",
+    "question": "Vị tướng tài ba nào đã có câu nói khẳng khái: Nếu bệ hạ muốn hàng, xin hãy chém đầu thần trước đã!?",
+    "options": {
+      "A": "Trần Quốc Tuấn (Trần Hưng Đạo)",
+      "B": "Trần Thủ Độ",
+      "C": "Trần Quang Khải",
+      "D": "Trần Nhật Duật"
+    },
+    "correct": "A",
+    "explanation": "✓ Trần Hưng Đạo trả lời vua Trần Thánh Tông thể hiện quyết tâm đánh giặc bảo vệ giang sơn.",
+    "teacherQuote": "Khí phách ngút trời của Quốc công Tiết chế Hưng Đạo Đại vương!"
+  },
+  {
+    "id": 159,
+    "subject": "Địa lý",
+    "grade": "Lớp 5",
+    "question": "Dòng sông êm đềm chảy qua thành phố cố đô Huế là sông nào?",
+    "options": {
+      "A": "Sông Thu Bồn",
+      "B": "Sông Hương",
+      "C": "Sông Thạch Hãn",
+      "D": "Sông Trà Khúc"
+    },
+    "correct": "B",
+    "explanation": "✓ Sông Hương thơ mộng êm đềm chảy qua lòng thành phố Huế mộng mơ.",
+    "teacherQuote": "Dòng sông Hương êm ả lững lờ trôi dưới chân cầu Tràng Tiền cổ kính!"
+  },
+  {
+    "id": 160,
+    "subject": "Đố mẹo",
+    "grade": "Lớp 2",
+    "question": "Bánh gì nghe tên tưởng béo ngậy mà ăn vào lại thanh mát ngọt ngào?",
+    "options": {
+      "A": "Bánh da lợn",
+      "B": "Bánh rán thịt",
+      "C": "Bánh mì bơ",
+      "D": "Bánh kem béo"
+    },
+    "correct": "A",
+    "explanation": "✓ Bánh da lợn là món bánh ngọt truyền thống làm từ bột năng, đậu xanh và lá dứa.",
+    "teacherQuote": "Món bánh da lợn dai dai ngọt mát của miền Tây Nam Bộ thân thương!"
+  },
+  {
+    "id": 161,
+    "subject": "Toán",
+    "grade": "Lớp 2",
+    "question": "Phép tính nào sau đây có kết quả bằng 100?",
+    "options": {
+      "A": "45 + 45",
+      "B": "60 + 40",
+      "C": "80 + 30",
+      "D": "50 + 40"
+    },
+    "correct": "B",
+    "explanation": "✓ 60 + 40 = 100 (6 chục cộng 4 chục bằng 10 chục = 1 trăm).",
+    "teacherQuote": "Các số tròn chục cộng lại với nhau ra tròn trăm đẹp mắt!"
+  },
+  {
+    "id": 162,
+    "subject": "Khoa học",
+    "grade": "Lớp 5",
+    "question": "Cơ quan nào của cá giúp cá thở và lấy oxy hòa tan trong nước?",
+    "options": {
+      "A": "Mang cá",
+      "B": "Phổi cá",
+      "C": "Vây cá",
+      "D": "Đuôi cá"
+    },
+    "correct": "A",
+    "explanation": "✓ Cá thở bằng mang; nước chảy qua mang giúp các mao mạch hấp thụ oxy hòa tan.",
+    "teacherQuote": "Những chú cá vàng bơi lội tung tăng thở bằng mang dưới nước nè!"
+  },
+  {
+    "id": 163,
+    "subject": "Tiếng Việt",
+    "grade": "Lớp 3",
+    "question": "Từ nào sau đây viết ĐÚNG chính tả:",
+    "options": {
+      "A": "Gọn gàng",
+      "B": "Gọn gàn",
+      "C": "Rọn ràng",
+      "D": "Rọn gàng"
+    },
+    "correct": "A",
+    "explanation": "✓ Từ đúng là Gọn gàng (ngăn nắp, gọn gàng).",
+    "teacherQuote": "Góc học tập phải luôn sạch sẽ, gọn gàng nha các bạn học sinh!"
+  },
+  {
+    "id": 164,
+    "subject": "Lịch sử",
+    "grade": "Lớp 4",
+    "question": "Người anh hùng thiếu niên dũng cảm vác súng xông pha trận mạc, hy sinh khi mới 14 tuổi là ai?",
+    "options": {
+      "A": "Anh Kim Đồng (Nông Văn Dền)",
+      "B": "Anh Vừ A Dính",
+      "C": "Chị Võ Thị Sáu",
+      "D": "Anh Lê Văn Tám"
+    },
+    "correct": "A",
+    "explanation": "✓ Anh Kim Đồng (1929 - 1943) là đội trưởng đầu tiên của Đội Nhi đồng Cứu quốc (Đội Thiếu niên Tiền phong).",
+    "teacherQuote": "Anh Kim Đồng dũng cảm liên lạc bảo vệ cán bộ cách mạng mãi là tấm gương sáng!"
+  },
+  {
+    "id": 165,
+    "subject": "Địa lý",
+    "grade": "Lớp 5",
+    "question": "Nước nào ở khu vực Đông Nam Á có thủ đô là Viêng Chăn và có đường biên giới giáp phía Tây nước ta?",
+    "options": {
+      "A": "Lào",
+      "B": "Thái Lan",
+      "C": "Campuchia",
+      "D": "Myanmar"
+    },
+    "correct": "A",
+    "explanation": "✓ Nước Cộng hòa Dân chủ Nhân dân Lào là nước láng giềng thân thiết có thủ đô là Viêng Chăn.",
+    "teacherQuote": "Tình hữu nghị keo sơn Việt - Lào thắm thiết ngàn năm!"
+  },
+  {
+    "id": 166,
+    "subject": "Toán",
+    "grade": "Lớp 4",
+    "question": "Hình thoi có độ dài hai đường chéo là 8cm và 6cm. Diện tích của hình thoi đó là:",
+    "options": {
+      "A": "48 cm²",
+      "B": "24 cm²",
+      "C": "14 cm²",
+      "D": "28 cm²"
+    },
+    "correct": "B",
+    "explanation": "✓ Diện tích hình thoi S = (m × n) : 2 = (8 × 6) : 2 = 24 cm².",
+    "teacherQuote": "Tích hai đường chéo chia cho 2, công thức diện tích hình thoi lớp 4!"
+  },
+  {
+    "id": 167,
+    "subject": "Đố mẹo",
+    "grade": "Lớp 3",
+    "question": "Cái gì bạn phải mở ra trước khi bạn có thể dùng được nó?",
+    "options": {
+      "A": "Quả trứng",
+      "B": "Bức thư",
+      "C": "Quyển sách",
+      "D": "Tất cả các đáp án trên"
+    },
+    "correct": "D",
+    "explanation": "✓ Quả trứng (đập mở vỏ), bức thư (mở phong bì), quyển sách (mở trang) đều phải mở ra mới dùng được.",
+    "teacherQuote": "Câu hỏi mẹo tổng hợp rất thú vị, ai chọn D là nhận điểm tuyệt đối!"
+  },
+  {
+    "id": 168,
+    "subject": "Khoa học",
+    "grade": "Lớp 4",
+    "question": "Hiện tượng tự nhiên nào xảy ra do sự phóng điện giữa các đám mây tích điện trái dấu hoặc giữa mây và mặt đất?",
+    "options": {
+      "A": "Sấm sét / Tia chớp",
+      "B": "Cầu vồng",
+      "C": "Mưa phùn",
+      "D": "Sương mù"
+    },
+    "correct": "A",
+    "explanation": "✓ Tia chớp và sấm sét sinh ra do sự phóng điện mãnh liệt trong cơn dông bão.",
+    "teacherQuote": "Trời mưa dông sấm sét nhớ ở trong nhà, không đứng dưới gốc cây to nhé!"
+  },
+  {
+    "id": 169,
+    "subject": "Tiếng Việt",
+    "grade": "Lớp 1",
+    "question": "Điền vào chỗ trống: Con chim hót líu ... trên cành cây.",
+    "options": {
+      "A": "lo",
+      "B": "loát",
+      "C": "líu",
+      "D": "lao"
+    },
+    "correct": "A",
+    "explanation": "✓ Líu lo là từ láy mô tả tiếng chim hót vui tươi ríu rít.",
+    "teacherQuote": "Chim ca líu lo chào đón một ngày mới tràn ngập niềm vui!"
+  },
+  {
+    "id": 170,
+    "subject": "Toán",
+    "grade": "Lớp 5",
+    "question": "Tìm x biết: x + 1,25 = 5. Giá trị của x là:",
+    "options": {
+      "A": "3,75",
+      "B": "4,75",
+      "C": "6,25",
+      "D": "3,25"
+    },
+    "correct": "A",
+    "explanation": "✓ x = 5 - 1,25 = 3,75.",
+    "teacherQuote": "Chúc mừng các bạn đã hoàn thành xuất sắc câu số 170 của Lớp Học Thông Minh! 🎉"
   }
 ]
