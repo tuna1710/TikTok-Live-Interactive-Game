@@ -362,6 +362,7 @@ function endMilestoneAndResetLeaderboard() {
 function triggerMilestoneCelebration(user, score = MILESTONE_SCORE, duration = MILESTONE_DURATION) {
   isCelebratingMilestone = true;
   const top5List = getLeaderboardList().slice(0, 5);
+  const topDonorsList = getDonorLeaderboardList().slice(0, 5);
 
   let top5Tts = '';
   if (top5List.length > 0) {
@@ -369,9 +370,16 @@ function triggerMilestoneCelebration(user, score = MILESTONE_SCORE, duration = M
     top5Tts = ` Vinh danh bảng vàng Top 5: ${listDescriptions}.`;
   }
 
-  const ttsText = `Nhiệt liệt chúc mừng ${user.nickname} đã xuất sắc cán mốc ${score} điểm!${top5Tts} Mời mọi người nhanh tay chụp màn hình kỷ niệm!`;
+  let topDonorsTts = '';
+  if (topDonorsList.length > 0) {
+    const top1 = topDonorsList[0];
+    topDonorsTts = ` Trân trọng tri ân đại phú hộ ${top1.nickname} với ${top1.diamonds} xu cùng các nhà hảo tâm đã ủng hộ hết mình!`;
+  }
+
+  const ttsText = `Nhiệt liệt chúc mừng ${user.nickname} đã xuất sắc cán mốc ${score} điểm!${top5Tts}${topDonorsTts} Mời mọi người nhanh tay chụp màn hình kỷ niệm!`;
   console.log(`🌟 ĐẠI VINH DANH CÁN MỐC: ${user.nickname} đạt ${score} điểm! (${duration}s)`);
-  console.log(`📢 BẢNG VÀNG TOP 5:\n` + top5List.map((p, i) => `   Top ${i + 1}: ${p.nickname} (${p.score}đ)`).join('\n'));
+  console.log(`📢 BẢNG VÀNG TOP 5 CAO THỦ:\n` + top5List.map((p, i) => `   Top ${i + 1}: ${p.nickname} (${p.score}đ)`).join('\n'));
+  console.log(`💎 BẢNG VÀNG TOP NHÀ HẢO TÂM:\n` + topDonorsList.map((d, i) => `   Top ${i + 1}: ${d.nickname} (${d.diamonds} xu)`).join('\n'));
 
   activeMilestone = {
     user: {
@@ -382,6 +390,7 @@ function triggerMilestoneCelebration(user, score = MILESTONE_SCORE, duration = M
       wins: user.wins || Math.floor(score / 100),
     },
     top5: top5List,
+    topDonors: topDonorsList,
     milestone: score,
     title: 'ĐẠI KIỆN TƯỚNG TIẾNG VIỆT',
     duration: duration,
@@ -1289,6 +1298,14 @@ app.post('/admin/api', (req, res) => {
       leaderboard.set('top4_demo', { uniqueId: 'top4_demo', nickname: 'Chiến Thần Đố Chữ', avatar: '', score: 2100, wins: 21 });
       leaderboard.set('top5_demo', { uniqueId: 'top5_demo', nickname: 'Minh Tuấn Vlog', avatar: '', score: 1800, wins: 18 });
       io.emit('leaderboardReset', getLeaderboardList());
+    }
+    if (donorLeaderboard.size < 2) {
+      donorLeaderboard.set('donor_demo1', { uniqueId: 'donor_demo1', nickname: 'Đại Gia Trâm Anh 💎', avatar: '', diamonds: 888, giftsCount: 5, lastGiftName: 'Sư Tử VIP' });
+      donorLeaderboard.set('donor_demo2', { uniqueId: 'donor_demo2', nickname: 'Anh Hai Sài Gòn 🚀', avatar: '', diamonds: 350, giftsCount: 3, lastGiftName: 'Tên Lửa' });
+      donorLeaderboard.set('donor_demo3', { uniqueId: 'donor_demo3', nickname: 'Bé Bống Dễ Thương 💖', avatar: '', diamonds: 150, giftsCount: 8, lastGiftName: 'Nước Hoa' });
+      donorLeaderboard.set('donor_demo4', { uniqueId: 'donor_demo4', nickname: 'Hoàng Tử Gió 🌹', avatar: '', diamonds: 80, giftsCount: 12, lastGiftName: 'Hoa Hồng' });
+      donorLeaderboard.set('donor_demo5', { uniqueId: 'donor_demo5', nickname: 'Mạnh Thường Quân 🎁', avatar: '', diamonds: 50, giftsCount: 4, lastGiftName: 'Bánh Quy' });
+      io.emit('donorUpdate', { donorLeaderboard: getDonorLeaderboardList(), topDonor: getDonorLeaderboardList()[0] });
     }
     const dur = Number(req.body.duration) || MILESTONE_DURATION;
     triggerMilestoneCelebration(demoUser, demoUser.score, dur);

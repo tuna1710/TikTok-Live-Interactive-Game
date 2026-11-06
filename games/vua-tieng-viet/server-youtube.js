@@ -233,6 +233,7 @@ function endMilestoneAndResetLeaderboard() {
 function triggerMilestoneCelebration(user, score = MILESTONE_SCORE, duration = MILESTONE_DURATION) {
   isCelebratingMilestone = true;
   const top5List = getLeaderboardList().slice(0, 5);
+  const topDonorsList = getDonorLeaderboardList().slice(0, 5);
 
   let top5Tts = '';
   if (top5List.length > 0) {
@@ -240,9 +241,16 @@ function triggerMilestoneCelebration(user, score = MILESTONE_SCORE, duration = M
     top5Tts = ` Vinh danh bảng vàng Top 5: ${listDescriptions}.`;
   }
 
-  const ttsText = `Nhiệt liệt chúc mừng ${user.nickname} đã xuất sắc cán mốc ${score} điểm!${top5Tts} Mời mọi người nhanh tay chụp màn hình kỷ niệm!`;
+  let topDonorsTts = '';
+  if (topDonorsList.length > 0) {
+    const top1 = topDonorsList[0];
+    topDonorsTts = ` Trân trọng tri ân đại phú hộ ${top1.nickname} với ${top1.diamonds} xu cùng các nhà hảo tâm đã ủng hộ hết mình!`;
+  }
+
+  const ttsText = `Nhiệt liệt chúc mừng ${user.nickname} đã xuất sắc cán mốc ${score} điểm!${top5Tts}${topDonorsTts} Mời mọi người nhanh tay chụp màn hình kỷ niệm!`;
   console.log(`🌟 ĐẠI VINH DANH CÁN MỐC: ${user.nickname} đạt ${score} điểm! (${duration}s)`);
   console.log(`📢 BẢNG VÀNG TOP 5:\n` + top5List.map((p, i) => `   Top ${i + 1}: ${p.nickname} (${p.score}đ)`).join('\n'));
+  console.log(`💎 BẢNG VÀNG TOP NHÀ HẢO TÂM:\n` + topDonorsList.map((d, i) => `   Top ${i + 1}: ${d.nickname} (${d.diamonds} xu)`).join('\n'));
 
   activeMilestone = {
     user: {
@@ -253,6 +261,7 @@ function triggerMilestoneCelebration(user, score = MILESTONE_SCORE, duration = M
       wins: user.wins || Math.floor(score / 100),
     },
     top5: top5List,
+    topDonors: topDonorsList,
     milestone: score,
     title: 'ĐẠI KIỆN TƯỚNG TIẾNG VIỆT',
     duration: duration,

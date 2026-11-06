@@ -1327,17 +1327,28 @@
     .cta-sub { font-size: 10px; color: #fdf2f8; font-weight: 600; margin-top: 2px; }
     .countdown-highlight { font-weight: 900; color: #ffd700; font-size: 13px; }
 
-    /* Bảng Vàng Top 5 Trong Modal Vinh Danh */
-    .milestone-top5-card {
-      background: rgba(12, 6, 26, 0.65);
-      border: 1px solid rgba(255, 215, 0, 0.35);
-      border-radius: 12px;
-      padding: 7px 10px;
-      margin: 6px 0 9px;
-      text-align: left;
+    /* Bảng Vàng Chia Đôi 2 Cột Trong Modal Vinh Danh: Top Cao Thủ & Top Nhà Hảo Tâm */
+    .milestone-split-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7px;
+      margin: 6px 0 8px;
     }
-    .mtop5-header {
-      font-size: 10.5px;
+    .milestone-col-card {
+      background: rgba(12, 6, 26, 0.75);
+      border-radius: 10px;
+      padding: 6px 6px 7px;
+      text-align: left;
+      border: 1px solid rgba(255, 215, 0, 0.35);
+      display: flex;
+      flex-direction: column;
+    }
+    .milestone-col-card.col-donor {
+      border-color: rgba(236, 72, 153, 0.45);
+      background: linear-gradient(180deg, rgba(35, 12, 45, 0.8), rgba(16, 6, 26, 0.8));
+    }
+    .mcol-header {
+      font-size: 9.5px;
       font-weight: 900;
       color: #ffd700;
       text-align: center;
@@ -1345,50 +1356,54 @@
       margin-bottom: 5px;
       text-transform: uppercase;
     }
-    .mtop5-list {
+    .milestone-col-card.col-donor .mcol-header {
+      color: #f472b6;
+    }
+    .mcol-list {
       display: flex;
       flex-direction: column;
-      gap: 3.5px;
+      gap: 3px;
     }
-    .mtop5-row {
+    .mcol-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 3.5px 8px;
-      border-radius: 6px;
+      padding: 2.5px 5px;
+      border-radius: 5px;
       background: rgba(255, 255, 255, 0.05);
-      font-size: 11px;
+      font-size: 10px;
     }
-    .mtop5-row.rank-0 {
+    .mcol-row.rank-0 {
       background: linear-gradient(90deg, rgba(255, 215, 0, 0.22), rgba(255, 255, 255, 0.04));
-      border-left: 3px solid #ffd700;
+      border-left: 2px solid #ffd700;
     }
-    .mtop5-row.rank-1 {
-      border-left: 3px solid #cbd5e1;
+    .mcol-row.rank-0.donor-top {
+      background: linear-gradient(90deg, rgba(236, 72, 153, 0.25), rgba(255, 255, 255, 0.04));
+      border-left: 2px solid #ec4899;
     }
-    .mtop5-row.rank-2 {
-      border-left: 3px solid #f97316;
-    }
-    .mtop5-left {
+    .mcol-left {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 4px;
       min-width: 0;
     }
-    .mtop5-medal { font-size: 12px; flex-shrink: 0; }
-    .mtop5-name {
+    .mcol-medal { font-size: 10px; flex-shrink: 0; }
+    .mcol-name {
       font-weight: 700;
       color: #fff;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      max-width: 200px;
+      max-width: 90px;
     }
-    .mtop5-score {
+    .mcol-val {
       font-weight: 900;
       color: #ffd700;
       flex-shrink: 0;
-      font-size: 11px;
+      font-size: 9.5px;
+    }
+    .mcol-val.donor-val {
+      color: #f472b6;
     }
 
     /* Thông báo nổi (Toast khi mở gợi ý hoặc cộng giờ) */
@@ -1992,16 +2007,24 @@
           </div>
         </div>
 
-        <!-- Bảng Vàng Top 5 Cao Thủ Đứng Đầu -->
-        <div class="milestone-top5-card">
-          <div class="mtop5-header">👑 BẢNG VÀNG TOP 5 CAO THỦ 👑</div>
-          <div class="mtop5-list" id="milestoneTop5List">
-            <!-- Render động danh sách top 5 -->
+        <!-- Bảng Vàng Chia Đôi 2 Cột: Top Cao Thủ & Top Nhà Hảo Tâm -->
+        <div class="milestone-split-grid">
+          <div class="milestone-col-card col-player">
+            <div class="mcol-header">👑 TOP CAO THỦ 👑</div>
+            <div class="mcol-list" id="milestoneTop5List">
+              <!-- Render động top 5 cao thủ -->
+            </div>
+          </div>
+          <div class="milestone-col-card col-donor">
+            <div class="mcol-header">💎 TOP NHÀ HẢO TÂM 💎</div>
+            <div class="mcol-list" id="milestoneTopDonorsList">
+              <!-- Render động top 5 nhà hảo tâm -->
+            </div>
           </div>
         </div>
 
         <div class="milestone-congrats-text">
-          🌟 Vinh danh Top 5 cao thủ! Bảng điểm sẽ làm mới sau đếm ngược 🌟
+          🌟 Vinh danh Quán Quân & Các Nhà Hảo Tâm! Bảng điểm sẽ làm mới sau đếm ngược 🌟
         </div>
 
         <div class="milestone-screenshot-cta">
@@ -3191,16 +3214,36 @@
         const list = data.top5 || [];
         if (list.length > 0) {
           mTop5List.innerHTML = list.map((p, idx) => `
-            <div class="mtop5-row rank-${idx}">
-              <div class="mtop5-left">
-                <span class="mtop5-medal">${medals[idx] || (idx + 1)}</span>
-                <span class="mtop5-name">${p.nickname || p.uniqueId}</span>
+            <div class="mcol-row rank-${idx}">
+              <div class="mcol-left">
+                <span class="mcol-medal">${medals[idx] || (idx + 1)}</span>
+                <span class="mcol-name" title="${p.nickname || p.uniqueId}">${p.nickname || p.uniqueId}</span>
               </div>
-              <div class="mtop5-score">${(p.score || 0).toLocaleString('vi-VN')}đ</div>
+              <div class="mcol-val">${(p.score || 0).toLocaleString('vi-VN')}đ</div>
             </div>
           `).join('');
         } else {
-          mTop5List.innerHTML = '<div style="font-size:10px;color:#94a3b8;text-align:center;padding:4px;">Chưa có dữ liệu Top 5</div>';
+          mTop5List.innerHTML = '<div style="font-size:9px;color:#94a3b8;text-align:center;padding:4px;">Chưa có dữ liệu</div>';
+        }
+      }
+
+      const mTopDonorsList = document.getElementById('milestoneTopDonorsList');
+      if (mTopDonorsList) {
+        mTopDonorsList.innerHTML = '';
+        const donorBadges = ['👑', '💎', '🌟', '💖', '🎁'];
+        const donors = data.topDonors || [];
+        if (donors.length > 0) {
+          mTopDonorsList.innerHTML = donors.map((d, idx) => `
+            <div class="mcol-row rank-${idx} ${idx === 0 ? 'donor-top' : ''}">
+              <div class="mcol-left">
+                <span class="mcol-medal">${donorBadges[idx] || '💎'}</span>
+                <span class="mcol-name" title="${d.nickname || d.uniqueId}">${d.nickname || d.uniqueId}</span>
+              </div>
+              <div class="mcol-val donor-val">${(d.diamonds || 0).toLocaleString('vi-VN')} xu</div>
+            </div>
+          `).join('');
+        } else {
+          mTopDonorsList.innerHTML = '<div style="font-size:9px;color:#94a3b8;text-align:center;padding:4px;">Chưa có lượt tặng</div>';
         }
       }
 
