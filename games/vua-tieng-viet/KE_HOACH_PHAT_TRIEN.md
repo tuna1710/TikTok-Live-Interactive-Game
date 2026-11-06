@@ -16,7 +16,7 @@ Tài liệu này lưu trữ danh sách các tính năng nâng cấp tương tác
 | **5** | 👑💎 **Kết thúc game vinh danh cả người tặng quà** *(Top Donors Hall of Fame)* | Tri ân nhà tài trợ/phú hộ phòng live bên cạnh quán quân | **P1 (Mới)** |  Đã xong |
 | **6** | 🏁 **Nâng mốc điểm kết thúc game lên 3.000 điểm** *(Target Score 3000)* | Tăng độ kịch tính, kéo dài trận đấu vừa vặn với một phiên live | **P1 (Mới)** |  Đã xong |
 | **7** | 🎯 **Câu Đố Trùm & Giờ Vàng** *(Boss Round / Rush Hour x2)* | Tạo cao trào, giải tỏa nhịp độ đều đều sau mỗi 5 - 10 vòng | **P2** | ⏳ Chờ làm |
-| **8** | 📚 **Quản lý ngân hàng câu đố từ Admin** *(Question CMS)* | Tiện lợi cho Streamer cập nhật câu đố trend không cần sửa code | **P2** | ⏳ Chờ làm |
+| **8** | 📚 **Chọn câu hỏi & Quản lý câu đố từ Admin** *(Streamer Word Picker & CMS)* | Streamer chủ động tìm, chọn câu hỏi hoặc tự nhập câu mới theo ý muốn | **P2** |  Đã xong |
 | **9** | ⚔️ **Chế độ Chia Phe Đối Kháng** *(Team Red vs Team Blue)* | Tạo hiệu ứng đám đông, rủ bạn bè comment theo phe | **P3** | ⏳ Chờ làm |
 
 ---
@@ -198,7 +198,7 @@ GIAI ĐOẠN 2: TỐI ƯU HÓA DONATE & VINH DANH TRẬN ĐẤU:
 
 GIAI ĐOẠN 3: TẠO CAO TRÀO & TÍNH NĂNG MỞ RỘNG:
   ├── [x] Bước 8: Mục 7 - Câu Đố Trùm & Giờ Vàng (Boss Round x2) - XONG
-  ├── [ ] Bước 9: Mục 8 - Quản trị ngân hàng câu đố từ Admin (Question CMS)
+  ├── [x] Bước 9: Mục 8 - Chọn câu hỏi & Quản trị câu đố từ Admin (Streamer Word Picker & CMS) - XONG
   └── [ ] Bước 10: Mục 9 - Chế độ Chia Phe Đối Kháng (Team Red vs Team Blue)
 ```
 

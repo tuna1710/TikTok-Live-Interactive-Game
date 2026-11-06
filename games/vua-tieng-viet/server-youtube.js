@@ -136,6 +136,7 @@ const POINTS_PER_DIAMOND = Number(process.env.POINTS_PER_DIAMOND) || 10;
 const BOSS_ROUND_INTERVAL = Number(process.env.BOSS_ROUND_INTERVAL) || 5; // Mặc định mỗi 5 vòng xuất hiện 1 câu đố trùm
 const BOSS_ROUND_TIME = Number(process.env.BOSS_ROUND_TIME) || 90; // 90 giây cho câu đố trùm
 let nextRoundIsBoss = false;
+let pendingStreamerWord = null;
 
 function onUserFollow(user) {
   const uniqueId = user.uniqueId || user.nickname || 'user_' + Date.now();
@@ -515,7 +516,18 @@ function startNewRound() {
   const isBoss = nextRoundIsBoss || ((gameState.round + 1) % BOSS_ROUND_INTERVAL === 0);
   nextRoundIsBoss = false;
 
-  const wordObj = isBoss ? pickBossWord() : pickNextWord();
+  let wordObj;
+  if (pendingStreamerWord) {
+    wordObj = { ...pendingStreamerWord };
+    pendingStreamerWord = null;
+    if (wordObj.id) {
+      playedWordIds.add(wordObj.id);
+      savePlayedWords();
+    }
+    console.log(`[Streamer Pick] 🎯 Phát câu hỏi do Streamer chỉ định: "${wordObj.word}" (${wordObj.category})`);
+  } else {
+    wordObj = isBoss ? pickBossWord() : pickNextWord();
+  }
   const rawChars = wordObj.word.split('');
 
   const nonSpaces = rawChars.filter(c => c !== ' ');
@@ -946,6 +958,13 @@ function getClientGameState() {
     roundTimeTotal: gameState.roundTimeTotal || ROUND_TIME_DEFAULT,
     nextRoundIsBoss: Boolean(nextRoundIsBoss),
     bossRoundInterval: BOSS_ROUND_INTERVAL,
+    pendingStreamerWord: pendingStreamerWord ? {
+      id: pendingStreamerWord.id,
+      word: pendingStreamerWord.word,
+      category: pendingStreamerWord.category,
+      hint: pendingStreamerWord.hint,
+      isBoss: Boolean(pendingStreamerWord.isBoss),
+    } : null,
   };
 }
 
@@ -1116,8 +1135,110 @@ app.get('/api/state', (req, res) => {
   });
 });
 
+app.get('/api/words/categories', (req, res) => {
+  const cats = Array.from(new Set(wordsData.map(w => w.category).filter(Boolean))).sort();
+  res.json({ ok: true, categories: cats });
+});
+
+app.get('/api/words/search', (req, res) => {
+  const q = (req.query.q || '').trim().toLowerCase();
+  const category = (req.query.category || '').trim();
+  const limit = Math.min(Number(req.query.limit) || 30, 100);
+
+  let filtered = wordsData;
+  if (category && category !== 'all') {
+    filtered = filtered.filter(w => (w.category || '').toLowerCase() === category.toLowerCase());
+  }
+  if (q) {
+    filtered = filtered.filter(w =>
+      String(w.id) === q ||
+      (w.word || '').toLowerCase().includes(q) ||
+      (w.hint || '').toLowerCase().includes(q)
+    );
+  }
+  res.json({
+    ok: true,
+    total: filtered.length,
+    words: filtered.slice(0, limit)
+  });
+});
+
 app.post('/admin/api', (req, res) => {
   const { action, text, user, seconds, channel, liveId } = req.body || {};
+
+  if (action === 'setNextWord' || action === 'playWordNow') {
+    let targetWord = null;
+    if (req.body.wordId) {
+      targetWord = wordsData.find(w => w.id === Number(req.body.wordId));
+      if (targetWord) {
+        targetWord = { ...targetWord };
+      }
+    } else if (req.body.word) {
+      const cleanWord = String(req.body.word).trim().toUpperCase();
+      if (!cleanWord) {
+        return res.status(400).json({ ok: false, message: 'Từ khóa không được để trống!' });
+      }
+      targetWord = {
+        id: req.body.id || Date.now(),
+        word: cleanWord,
+        category: String(req.body.category || 'Tự Chọn').trim(),
+        hint: String(req.body.hint || 'Câu đố do Streamer tạo').trim()
+      };
+    }
+
+    if (!targetWord || !targetWord.word) {
+      return res.status(400).json({ ok: false, message: 'Không tìm thấy câu hỏi hợp lệ!' });
+    }
+
+    if (req.body.isBoss !== undefined) {
+      targetWord.isBoss = Boolean(req.body.isBoss);
+    }
+
+    pendingStreamerWord = targetWord;
+    if (targetWord.isBoss) {
+      nextRoundIsBoss = true;
+    }
+
+    if (action === 'playWordNow') {
+      if (timerInterval) clearInterval(timerInterval);
+      if (nextRoundTimer) {
+        clearTimeout(nextRoundTimer);
+        nextRoundTimer = null;
+      }
+      io.emit('milestoneEnd');
+      startNewRound();
+      return res.json({
+        ok: true,
+        message: `Đã phát câu hỏi ngay lập tức: "${targetWord.word}" (${targetWord.category})!`
+      });
+    } else {
+      io.emit('gameState', getClientGameState());
+      return res.json({
+        ok: true,
+        message: `Đã xếp câu hỏi "${targetWord.word}" (${targetWord.category}) vào vòng kế tiếp!`
+      });
+    }
+  }
+
+  if (action === 'playPendingWordNow') {
+    if (!pendingStreamerWord) {
+      return res.status(400).json({ ok: false, message: 'Hiện chưa có câu hỏi nào được đặt trước!' });
+    }
+    if (timerInterval) clearInterval(timerInterval);
+    if (nextRoundTimer) {
+      clearTimeout(nextRoundTimer);
+      nextRoundTimer = null;
+    }
+    io.emit('milestoneEnd');
+    startNewRound();
+    return res.json({ ok: true, message: 'Đã phát câu hỏi đặt trước ngay lập tức!' });
+  }
+
+  if (action === 'clearPendingWord') {
+    pendingStreamerWord = null;
+    io.emit('gameState', getClientGameState());
+    return res.json({ ok: true, message: 'Đã hủy câu hỏi chờ phát của Streamer.' });
+  }
 
   if (action === 'triggerBossRound' || action === 'setNextBossRound') {
     nextRoundIsBoss = true;

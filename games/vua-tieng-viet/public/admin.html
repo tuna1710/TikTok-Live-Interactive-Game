@@ -141,6 +141,64 @@
     <button class="btn-pink" onclick="sendAction('addTime', { seconds: 30 })">⏱️ Cộng Thêm 30 Giây</button>
   </div>
 
+  <!-- Streamer Chủ Động Chọn Câu Hỏi -->
+  <div class="card" style="border: 1px solid rgba(16, 185, 129, 0.4); box-shadow: 0 0 15px rgba(16, 185, 129, 0.1);">
+    <div class="card-title" style="color: #34d399;">🎯 Chọn Câu Hỏi Theo Ý Streamer</div>
+
+    <!-- Banner câu hỏi đang chờ phát ở vòng kế -->
+    <div id="pendingWordBanner" style="display:none;background:rgba(16,185,129,0.15);border:1px solid #10b981;padding:10px 12px;border-radius:8px;margin-bottom:12px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <span style="font-size:11px;color:#34d399;font-weight:700;">⏳ ĐÃ ĐẶT CHO VÒNG KẾ TIẾP:</span>
+        <button class="btn-red" style="margin:0;padding:2px 8px;font-size:11px;width:auto;" onclick="clearPendingWord()">❌ Hủy Đặt</button>
+      </div>
+      <div style="font-size:15px;font-weight:900;color:#fff;margin:4px 0;" id="pendingWordText">-</div>
+      <div style="font-size:12px;color:#cbd5e1;" id="pendingWordHint">-</div>
+      <button class="btn-gold" style="margin-top:6px;padding:6px;font-size:12px;" onclick="playPendingWordNow()">▶️ Phát Câu Này Ngay Bây Giờ</button>
+    </div>
+
+    <!-- 2 Tab Chế Độ -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px;">
+      <button id="tabSearchBtn" class="btn-green" style="margin:0;padding:7px;font-size:12px;" onclick="switchWordPickerTab('search')">🔍 Tìm Trong Kho (1.660 câu)</button>
+      <button id="tabCustomBtn" class="btn-purple" style="margin:0;padding:7px;font-size:12px;opacity:0.6;" onclick="switchWordPickerTab('custom')">✍️ Tự Nhập Câu Mới</button>
+    </div>
+
+    <!-- Tab 1: Tra cứu từ kho -->
+    <div id="wordSearchTab">
+      <div style="display:grid;grid-template-columns: 2fr 1fr;gap:6px;">
+        <input type="text" id="wordSearchInput" placeholder="Gõ từ khóa, gợi ý hoặc ID..." style="margin:0;" oninput="debounceSearchWords()" />
+        <select id="wordCategorySelect" style="margin:0;padding:8px;font-size:12px;" onchange="searchWords()">
+          <option value="all">-- Tất cả thể loại --</option>
+        </select>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px;font-size:12px;color:#94a3b8;">
+        <label style="display:flex;align-items:center;gap:4px;cursor:pointer;">
+          <input type="checkbox" id="searchIsBossCheckbox" /> ⚔️ Đặt làm Câu Đố Trùm (90s, x2 Điểm)
+        </label>
+        <span id="wordSearchCount" style="font-size:11px;color:#38bdf8;">Đang tải...</span>
+      </div>
+
+      <div id="wordSearchResults" style="max-height:230px;overflow-y:auto;margin-top:8px;border:1px solid rgba(255,255,255,0.1);border-radius:6px;padding:4px;background:rgba(0,0,0,0.3);">
+        <div style="text-align:center;font-size:12px;color:#64748b;padding:12px;">Đang tải danh sách câu hỏi...</div>
+      </div>
+    </div>
+
+    <!-- Tab 2: Tự tạo câu hỏi thủ công -->
+    <div id="wordCustomTab" style="display:none;">
+      <input type="text" id="customWordInput" placeholder="Từ khóa đáp án (vd: VIỆT NAM VÔ ĐỊCH)" style="margin:0;" />
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px;">
+        <input type="text" id="customCategoryInput" placeholder="Thể loại (vd: Thể Thao)" value="Đố Vui" style="margin:0;" />
+        <label style="display:flex;align-items:center;gap:4px;font-size:12px;color:#cbd5e1;cursor:pointer;">
+          <input type="checkbox" id="customIsBossCheckbox" /> ⚔️ Vòng Trùm x2 Điểm
+        </label>
+      </div>
+      <input type="text" id="customHintInput" placeholder="Gợi ý câu đố (vd: Khẩu hiệu cổ vũ bóng đá rực lửa)" style="margin-top:6px;" />
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px;">
+        <button class="btn-green" style="margin:0;padding:8px;font-size:12px;" onclick="submitCustomWord(true)">▶️ Đố Ngay Câu Này</button>
+        <button class="btn-gold" style="margin:0;padding:8px;font-size:12px;" onclick="submitCustomWord(false)">⏳ Đặt Cho Vòng Sau</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Kết Nối Kênh TikTok Live -->
   <div class="card">
     <div class="card-title">📡 Kênh TikTok Live Đang Kết Nối</div>
@@ -390,6 +448,18 @@
             const co = document.getElementById('chestsOpenedDisplay');
             if (co) co.textContent = `${lc.chestsOpened} rương`;
           }
+          const pBanner = document.getElementById('pendingWordBanner');
+          if (pBanner) {
+            if (json.state.pendingStreamerWord) {
+              pBanner.style.display = 'block';
+              const pw = json.state.pendingStreamerWord;
+              const bossBadge = pw.isBoss ? '🔥 [TRÙM x2] ' : '';
+              document.getElementById('pendingWordText').textContent = `${bossBadge}#${pw.id || 'Custom'}: ${pw.word} (${pw.category})`;
+              document.getElementById('pendingWordHint').textContent = `Gợi ý: ${pw.hint}`;
+            } else {
+              pBanner.style.display = 'none';
+            }
+          }
         }
       } catch (e) {}
     }
@@ -524,6 +594,114 @@
         setTimeout(() => playAdminTone(164.81, 'sawtooth', 0.4), 200);
       }
     }
+
+    // Streamer Word Picker Logic
+    let searchDebounceTimer = null;
+    function debounceSearchWords() {
+      clearTimeout(searchDebounceTimer);
+      searchDebounceTimer = setTimeout(searchWords, 250);
+    }
+
+    function switchWordPickerTab(tab) {
+      const isSearch = tab === 'search';
+      document.getElementById('wordSearchTab').style.display = isSearch ? 'block' : 'none';
+      document.getElementById('wordCustomTab').style.display = isSearch ? 'none' : 'block';
+      document.getElementById('tabSearchBtn').style.opacity = isSearch ? '1' : '0.6';
+      document.getElementById('tabCustomBtn').style.opacity = isSearch ? '0.6' : '1';
+    }
+
+    async function loadWordCategories() {
+      try {
+        const res = await fetch('/api/words/categories');
+        const json = await res.json();
+        if (json.ok && Array.isArray(json.categories)) {
+          const sel = document.getElementById('wordCategorySelect');
+          if (sel) {
+            sel.innerHTML = '<option value="all">-- Tất cả thể loại (' + json.categories.length + ') --</option>' +
+              json.categories.map(c => `<option value="${c}">${c}</option>`).join('');
+          }
+        }
+      } catch (e) {}
+    }
+
+    async function searchWords() {
+      const q = (document.getElementById('wordSearchInput')?.value || '').trim();
+      const cat = document.getElementById('wordCategorySelect')?.value || 'all';
+      const container = document.getElementById('wordSearchResults');
+      const countLabel = document.getElementById('wordSearchCount');
+
+      if (!container) return;
+
+      try {
+        const params = new URLSearchParams({ q, category: cat, limit: '40' });
+        const res = await fetch(`/api/words/search?${params.toString()}`);
+        const json = await res.json();
+
+        if (!json.ok || !json.words) {
+          container.innerHTML = '<div style="color:#ef4444;padding:8px;text-align:center;">Lỗi tải câu hỏi</div>';
+          return;
+        }
+
+        if (countLabel) {
+          countLabel.textContent = `Tìm thấy ${json.total} câu (hiện ${json.words.length})`;
+        }
+
+        if (json.words.length === 0) {
+          container.innerHTML = '<div style="color:#64748b;padding:12px;text-align:center;">Không tìm thấy câu hỏi phù hợp</div>';
+          return;
+        }
+
+        container.innerHTML = json.words.map(w => {
+          return `
+            <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:6px;padding:6px 8px;margin-bottom:5px;display:flex;justify-content:space-between;align-items:center;gap:6px;">
+              <div style="flex:1;min-width:0;">
+                <div style="display:flex;gap:6px;align-items:center;">
+                  <span style="font-size:11px;background:#3b82f6;color:#fff;padding:1px 5px;border-radius:3px;font-weight:700;">#${w.id}</span>
+                  <span style="font-size:11px;background:rgba(255,255,255,0.1);color:#ffd700;padding:1px 5px;border-radius:3px;">${w.category}</span>
+                  <span style="font-weight:700;font-size:13px;color:#fff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${w.word}</span>
+                </div>
+                <div style="font-size:11px;color:#94a3b8;margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${w.hint}">${w.hint}</div>
+              </div>
+              <div style="display:flex;gap:4px;flex-shrink:0;">
+                <button class="btn-green" style="margin:0;padding:4px 8px;font-size:11px;width:auto;" onclick="selectWord(${w.id}, true)" title="Phát câu này ngay lập tức">▶️ Ngay</button>
+                <button class="btn-gold" style="margin:0;padding:4px 8px;font-size:11px;width:auto;" onclick="selectWord(${w.id}, false)" title="Đặt cho vòng kế tiếp">⏳ Sau</button>
+              </div>
+            </div>
+          `;
+        }).join('');
+      } catch (e) {
+        container.innerHTML = `<div style="color:#ef4444;padding:8px;text-align:center;">Lỗi: ${e.message}</div>`;
+      }
+    }
+
+    function selectWord(wordId, playNow) {
+      const isBoss = document.getElementById('searchIsBossCheckbox')?.checked || false;
+      sendAction(playNow ? 'playWordNow' : 'setNextWord', { wordId, isBoss });
+    }
+
+    function submitCustomWord(playNow) {
+      const word = document.getElementById('customWordInput')?.value.trim();
+      const category = document.getElementById('customCategoryInput')?.value.trim() || 'Tự Chọn';
+      const hint = document.getElementById('customHintInput')?.value.trim() || 'Câu đố do Streamer tạo';
+      const isBoss = document.getElementById('customIsBossCheckbox')?.checked || false;
+
+      if (!word) {
+        alert('Vui lòng nhập từ khóa đáp án!');
+        return;
+      }
+      sendAction(playNow ? 'playWordNow' : 'setNextWord', { word, category, hint, isBoss });
+    }
+
+    function playPendingWordNow() {
+      sendAction('playPendingWordNow');
+    }
+
+    function clearPendingWord() {
+      sendAction('clearPendingWord');
+    }
+
+    loadWordCategories();
+    searchWords();
 
     setInterval(loadCurrentState, 2000);
     loadCurrentState();
