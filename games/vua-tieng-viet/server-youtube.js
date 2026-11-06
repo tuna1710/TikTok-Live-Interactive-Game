@@ -126,6 +126,10 @@ let lastFollowEvent = null;
 // Quản lý Chuỗi Thắng Liên Tiếp (Combo Win Streak & Flame - Mục 2)
 let currentStreakWinner = null;
 
+// Quản lý Bùa Lợi Quà Tặng (Buff x2 Điểm Đoán Đúng & +10 Điểm/Xu)
+const donorScoreBuffs = new Map();
+const POINTS_PER_DIAMOND = Number(process.env.POINTS_PER_DIAMOND) || 10;
+
 function onUserFollow(user) {
   const uniqueId = user.uniqueId || user.nickname || 'user_' + Date.now();
   const nickname = user.nickname || user.user || uniqueId;
@@ -321,6 +325,55 @@ function recordGiftDonation(user, giftName, diamonds = 1, repeatCount = 1) {
   };
 
   io.emit('donorUpdate', payload);
+
+  // 1. Cứ 1 xu tặng quà cộng 10 điểm vào bảng xếp hạng
+  const pointsFromGift = totalDiamonds * POINTS_PER_DIAMOND;
+  const donorKey = user.uniqueId || key;
+  const playerInLeaderboard = leaderboard.get(donorKey) || {
+    uniqueId: donorKey,
+    nickname: user.nickname || existing.nickname,
+    avatar: user.avatar || existing.avatar || '',
+    score: 0,
+    wins: 0,
+    streak: 0,
+    maxStreak: 0,
+    milestones: [],
+  };
+  if (!playerInLeaderboard.milestones) playerInLeaderboard.milestones = [];
+  playerInLeaderboard.score += pointsFromGift;
+  if (user.avatar && !playerInLeaderboard.avatar) playerInLeaderboard.avatar = user.avatar;
+  if (user.nickname && user.nickname !== playerInLeaderboard.nickname) playerInLeaderboard.nickname = user.nickname;
+  leaderboard.set(donorKey, playerInLeaderboard);
+  io.emit('leaderboardReset', getLeaderboardList());
+
+  // 2. Kích hoạt Bùa Lợi Nhân Đôi Điểm (Buff x2) cho lần đoán đúng tiếp theo
+  donorScoreBuffs.set(donorKey, {
+    active: true,
+    multiplier: 2,
+    giftName: giftName,
+    diamonds: totalDiamonds,
+    giftPoints: pointsFromGift,
+    activatedAt: Date.now(),
+  });
+
+  io.emit('donorBuffActivated', {
+    uniqueId: donorKey,
+    nickname: playerInLeaderboard.nickname,
+    avatar: playerInLeaderboard.avatar,
+    giftName,
+    diamonds: totalDiamonds,
+    giftPoints: pointsFromGift,
+    multiplier: 2,
+    totalScore: playerInLeaderboard.score,
+  });
+
+  const reachedMilestone = playerInLeaderboard.score >= MILESTONE_SCORE && !playerInLeaderboard.milestones.includes(MILESTONE_SCORE);
+  if (reachedMilestone) {
+    playerInLeaderboard.milestones.push(MILESTONE_SCORE);
+    if (!isCelebratingMilestone) {
+      triggerMilestoneCelebration(playerInLeaderboard, MILESTONE_SCORE, MILESTONE_DURATION);
+    }
+  }
 
   if (!isCelebratingMilestone) {
     if (totalDiamonds >= 50 || (oldTop1Id !== existing.uniqueId && newTopDonor?.uniqueId === existing.uniqueId && existing.diamonds >= 20)) {
@@ -569,7 +622,18 @@ function checkGuess(user, text, msgTime = null) {
       flameLevel = 'hot';
     }
 
-    const totalPoints = Math.round(basePoints * multiplier);
+    // Kiểm tra Bùa Lợi Quà Tặng (Buff x2 Điểm)
+    let hasDonorBuff = false;
+    let donorBuff = null;
+    if (donorScoreBuffs.has(user.uniqueId)) {
+      hasDonorBuff = true;
+      donorBuff = donorScoreBuffs.get(user.uniqueId);
+      donorScoreBuffs.delete(user.uniqueId);
+    }
+
+    const buffMultiplier = hasDonorBuff ? 2.0 : 1.0;
+    const effectiveMultiplier = Number((multiplier * buffMultiplier).toFixed(2));
+    const totalPoints = Math.round(basePoints * effectiveMultiplier);
     const bonusPoints = totalPoints - basePoints;
 
     for (const [k, u] of leaderboard.entries()) {
@@ -603,7 +667,7 @@ function checkGuess(user, text, msgTime = null) {
       nickname: existing.nickname,
       avatar: existing.avatar,
       count: streakCount,
-      multiplier,
+      multiplier: effectiveMultiplier,
       basePoints,
       bonusPoints,
       totalPoints,
@@ -619,19 +683,25 @@ function checkGuess(user, text, msgTime = null) {
       points: totalPoints,
       basePoints,
       bonusPoints,
-      multiplier,
+      multiplier: effectiveMultiplier,
       streakCount,
       streakBadge,
       streakTitle,
       flameLevel,
+      hasDonorBuff,
+      donorBuffGift: donorBuff?.giftName || '',
       word: target,
     };
 
-    console.log(`🏆 CHIẾN THẮNG: ${existing.nickname} (+${totalPoints}đ${streakCount >= 2 ? ` [Combo x${streakCount} ${streakBadge} ${streakTitle}]` : ''}, Tổng: ${existing.score}đ)`);
+    console.log(`🏆 CHIẾN THẮNG: ${existing.nickname} (+${totalPoints}đ${hasDonorBuff ? ' [🎁 BUFF X2 QUÀ TẶNG]' : ''}${streakCount >= 2 ? ` [Combo x${streakCount} ${streakBadge} ${streakTitle}]` : ''}, Tổng: ${existing.score}đ)`);
 
     const winnerName = existing.nickname;
     let ttsText = '';
-    if (streakCount >= 5) {
+    if (hasDonorBuff && streakCount >= 2) {
+      ttsText = `Tuyệt đỉnh! Nhờ có bùa lợi quà tặng ${donorBuff?.giftName || ''} kết hợp chuỗi thắng, ${winnerName} nhận số điểm gấp bội lên ${totalPoints} điểm!`;
+    } else if (hasDonorBuff) {
+      ttsText = `Tuyệt đỉnh! Nhờ có bùa lợi quà tặng ${donorBuff?.giftName || ''}, ${winnerName} được nhân đôi số điểm lên ${totalPoints} điểm cho đáp án: ${target}!`;
+    } else if (streakCount >= 5) {
       ttsText = `Thần tốc bất bại! ${winnerName} đã lập kỷ lục chuỗi ${streakCount} câu thắng liên tiếp, nhân đôi điểm số lên ${totalPoints} điểm!`;
     } else if (streakCount >= 3) {
       ttsText = `Quá bốc lửa! ${winnerName} đạt chuỗi ${streakCount} câu thắng liên tiếp, nhận ${totalPoints} điểm!`;
@@ -647,6 +717,8 @@ function checkGuess(user, text, msgTime = null) {
       leaderboard: getLeaderboardList(),
       ttsText,
       streak: currentStreakWinner,
+      hasDonorBuff,
+      donorBuff,
     });
     io.emit('streakUpdate', currentStreakWinner);
 

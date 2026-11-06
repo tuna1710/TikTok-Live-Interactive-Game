@@ -57,14 +57,14 @@ async function main() {
     const state2 = await resState2.json();
     console.log(`✅ Đã chuyển sang Vòng ${state2.state.round}! Từ mới: "${state2.actualWord}"`);
 
-    // 4. Giả lập tặng quà (Bảng Tấm Lòng Vàng)
-    console.log('\n--- BƯỚC 3: KIỂM THỬ TẶNG QUÀ (TẤM LÒNG VÀNG) ---');
+    // 4. Giả lập tặng quà (1 xu = +10đ & Kích hoạt Buff x2 Điểm)
+    console.log('\n--- BƯỚC 3: KIỂM THỬ TẶNG QUÀ (+10Đ/XU & KÍCH HOẠT BUFF X2 ĐOÁN ĐÚNG) ---');
     await fetch('http://127.0.0.1:3005/admin/api', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ action: 'simulateGift', user: 'Mạnh Thường Quân Tuấn', giftName: 'Tên Lửa VIP', diamonds: 100 })
     });
-    console.log('✅ Đã kích hoạt tặng quà "Tên Lửa VIP" (100 xu) cho Mạnh Thường Quân Tuấn');
+    console.log('✅ Đã tặng "Tên Lửa VIP" (100 xu): Nhận ngay +1.000 điểm trên BXH và kích hoạt BUFF X2!');
 
     // 5. Kiểm thử cán mốc 3.000 điểm & Vinh danh Top 5
     console.log('\n--- BƯỚC 4: KIỂM THỬ VINH DANH 3.000 ĐIỂM & BẢNG VÀNG TOP 5 ---');
@@ -336,6 +336,28 @@ async function main() {
     const shot9 = path.join(__dirname, 'public', 'test_9_admin_chest.png');
     execSync(`timeout 10 google-chrome --headless --no-sandbox --disable-gpu --window-size=520,800 --screenshot="${shot9}" "http://127.0.0.1:3005/admin.html"`, { stdio: 'ignore' });
     console.log(`📸 Đã chụp ảnh Bảng Admin với thống kê Rương Kho Báu: test_9_admin_chest.png (${fs.statSync(shot9).size} bytes)`);
+
+    // 11. Kiểm thử Bùa Lợi Quà Tặng (Buff x2 Điểm Đoán Đúng)
+    console.log('\n--- BƯỚC 11: KIỂM THỬ BUFF X2 ĐIỂM KHI ĐOÁN ĐÚNG ---');
+    await fetch('http://127.0.0.1:3005/admin/api', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'simulateGift', user: 'Bé Mai 🌸', giftName: 'Hoa Hồng', diamonds: 1 })
+    });
+    console.log('✅ Bé Mai 🌸 tặng Hoa Hồng (1 xu): Được cộng +10đ và kích hoạt BUFF X2!');
+
+    const stateBuff = await (await fetch('http://127.0.0.1:3005/api/state')).json();
+    console.log(`🎯 Bé Mai 🌸 đoán đúng từ: "${stateBuff.actualWord}"`);
+    await fetch('http://127.0.0.1:3005/admin/api', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'simulateChat', user: 'Bé Mai 🌸', text: stateBuff.actualWord })
+    });
+    await sleep(2000);
+
+    const shot10 = path.join(__dirname, 'public', 'test_10_gift_buff_x2.png');
+    execSync(`timeout 10 google-chrome --headless --no-sandbox --disable-gpu --window-size=480,854 --screenshot="${shot10}" "http://127.0.0.1:3005"`, { stdio: 'ignore' });
+    console.log(`📸 Đã chụp ảnh màn hình Vinh Danh Buff Nhân Đôi Điểm x2: test_10_gift_buff_x2.png (${fs.statSync(shot10).size} bytes)`);
 
     console.log('\n========================================================================');
     console.log('🎉 TẤT CẢ CÁC TÍNH NĂNG ĐÃ ĐƯỢC TEST THÀNH CÔNG VÀ SẴN SÀNG ĐƯA VÀO LIVE!');

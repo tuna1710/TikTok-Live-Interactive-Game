@@ -3325,21 +3325,22 @@
         winnerBox.classList.remove('streak-hot', 'streak-blazing', 'streak-godlike');
       }
 
+      const isBuff = Boolean(data.hasDonorBuff || data.winner?.hasDonorBuff);
       if (streak && streak.count >= 2) {
         soundComboStreak(streak.count);
         if (winnerBox) {
           winnerBox.classList.add(`streak-${streak.flameLevel || 'hot'}`);
         }
         if (winnerPts) {
-          winnerPts.textContent = `+${streak.totalPoints} ĐIỂM CHIẾN THẮNG 🎯 (Thưởng +${streak.bonusPoints}đ 🔥)`;
+          winnerPts.textContent = `+${streak.totalPoints} ĐIỂM CHIẾN THẮNG 🎯 (${isBuff ? '🎁 Buff x2 Quà & ' : ''}Thưởng +${streak.bonusPoints}đ 🔥)`;
         }
         if (winnerStreakCard) {
           winnerStreakCard.style.display = 'inline-flex';
           winnerStreakCard.className = `winner-streak-card streak-${streak.flameLevel || 'hot'}`;
-          if (wsBadge) wsBadge.textContent = streak.streakBadge || '🔥';
-          if (wsTitle) wsTitle.textContent = `COMBO THẮNG x${streak.count} ${streak.streakTitle || ''}`;
+          if (wsBadge) wsBadge.textContent = isBuff ? '🎁⚡' : (streak.streakBadge || '🔥');
+          if (wsTitle) wsTitle.textContent = `${isBuff ? 'BUFF QUÀ x2 + ' : ''}COMBO THẮNG x${streak.count} ${streak.streakTitle || ''}`;
           if (wsMult) wsMult.textContent = `x${streak.multiplier}`;
-          if (wsDetail) wsDetail.textContent = `Gốc ${streak.basePoints || 100}đ + Thưởng chuỗi ${streak.bonusPoints || 0}đ`;
+          if (wsDetail) wsDetail.textContent = `Gốc ${streak.basePoints || 100}đ + Thưởng chuỗi/buff ${streak.bonusPoints || 0}đ`;
         }
 
         if (window.confetti) {
@@ -3354,6 +3355,28 @@
           });
         }
         updateStreakTicker(streak);
+      } else if (isBuff) {
+        soundComboStreak(3);
+        if (winnerPts) {
+          winnerPts.textContent = `+${data.winner.points || 200} ĐIỂM CHIẾN THẮNG 🎯 (🎁 BUFF X2 QUÀ TẶNG!)`;
+        }
+        if (winnerStreakCard) {
+          winnerStreakCard.style.display = 'inline-flex';
+          winnerStreakCard.className = 'winner-streak-card streak-blazing';
+          if (wsBadge) wsBadge.textContent = '🎁⚡';
+          if (wsTitle) wsTitle.textContent = 'BUFF TẶNG QUÀ NHÂN ĐÔI ĐIỂM';
+          if (wsMult) wsMult.textContent = 'x2.0';
+          if (wsDetail) wsDetail.textContent = `Đoán trúng nhận gấp đôi điểm (+${data.winner.bonusPoints || 100}đ)`;
+        }
+        if (window.confetti) {
+          confetti({
+            particleCount: 100,
+            spread: 80,
+            origin: { y: 0.6 },
+            colors: ['#ffd700', '#ec4899', '#3b82f6', '#ffffff']
+          });
+        }
+        updateStreakTicker(null);
       } else {
         soundWin();
         if (winnerPts) {
@@ -3374,6 +3397,11 @@
       if (data.ttsText) {
         ttsManager.speak(data.ttsText, true);
       }
+    });
+
+    socket.on('donorBuffActivated', data => {
+      showToastNotice(`🎁 <b>${data.nickname}</b> tặng <b>${data.giftName}</b>: Nhận <b>+${data.giftPoints}đ</b> & Kích hoạt <b>⚡ BUFF X2 ĐIỂM</b>!`);
+      soundComboStreak(2);
     });
 
     socket.on('streakUpdate', streak => {
