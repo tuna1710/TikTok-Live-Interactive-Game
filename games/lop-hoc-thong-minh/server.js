@@ -7,12 +7,13 @@ const http = require('http');
 const express = require('express');
 const cors = require('cors');
 const { Server } = require('socket.io');
-const { TikTokLiveConnection, WebcastEvent } = require('tiktok-live-connector');
+const { TikTokLiveConnection, WebcastEvent, ControlEvent } = require('tiktok-live-connector');
 
 const PORT = Number(process.env.PORT) || 3006;
 let TIKTOK_USERNAME = process.env.TIKTOK_USERNAME || '@2166541467';
 let TIKTOK_SESSION_ID = process.env.TIKTOK_SESSION_ID || '';
 let tiktokConn = null;
+let reconnectTimer = null;
 
 const QUESTION_DURATION = 20; // 20 giây mỗi câu hỏi
 const REVEAL_DURATION = 7;    // 7 giây công bố kết quả
@@ -623,27 +624,71 @@ function handleUserLike(data) {
   });
 }
 
+function scheduleReconnect(delay = 5000) {
+  if (reconnectTimer) clearTimeout(reconnectTimer);
+  reconnectTimer = setTimeout(() => {
+    connectTikTokLive(TIKTOK_USERNAME);
+  }, delay);
+}
+
 // Kết nối TikTok Live
 function connectTikTokLive(username) {
-  if (tiktokConn) {
-    try { tiktokConn.disconnect(); } catch (e) {}
+  if (reconnectTimer) {
+    clearTimeout(reconnectTimer);
+    reconnectTimer = null;
   }
 
-  TIKTOK_USERNAME = username.replace(/^@/, '');
+  if (tiktokConn) {
+    try { tiktokConn.disconnect(); } catch (e) {}
+    tiktokConn = null;
+  }
+
+  TIKTOK_USERNAME = (username || TIKTOK_USERNAME || '').replace(/^@/, '').trim();
+  if (!TIKTOK_USERNAME) {
+    console.warn('[TikTok] Chưa có username TikTok để kết nối.');
+    io.emit('tiktok_status', { connected: false, error: 'Chưa có username' });
+    return;
+  }
+
   console.log(`[TikTok] Đang kết nối tới Live của @${TIKTOK_USERNAME}...`);
 
-  tiktokConn = new TikTokLiveConnection(TIKTOK_USERNAME, {
-    processInitialData: false,
-    enableExtendedGiftInfo: true,
-    sessionId: TIKTOK_SESSION_ID || undefined
+  const connectionOptions = {
+    processInitialData: true,
+    fetchRoomInfoOnConnect: false,
+    enableExtendedGiftInfo: false
+  };
+
+  if (TIKTOK_SESSION_ID) {
+    connectionOptions.sessionId = TIKTOK_SESSION_ID;
+  }
+
+  tiktokConn = new TikTokLiveConnection(TIKTOK_USERNAME, connectionOptions);
+
+  tiktokConn.on(ControlEvent.CONNECTED, state => {
+    const roomId = state?.roomId || tiktokConn?.roomId || '';
+    console.log(`[TikTok] ✅ Đã kết nối Live thành công tới phòng @${TIKTOK_USERNAME} (Room ID: ${roomId})!`);
+    io.emit('tiktok_status', { connected: true, username: TIKTOK_USERNAME, roomId });
+  });
+
+  tiktokConn.on(ControlEvent.DISCONNECTED, () => {
+    console.warn(`[TikTok] ⚠️ Mất kết nối tới @${TIKTOK_USERNAME}. Tự động kết nối lại sau 5s...`);
+    io.emit('tiktok_status', { connected: false, username: TIKTOK_USERNAME, error: 'Disconnected' });
+    scheduleReconnect(5000);
+  });
+
+  tiktokConn.on(ControlEvent.ERROR, err => {
+    const errMsg = err?.message || String(err);
+    console.warn(`[TikTok] Lỗi Socket @${TIKTOK_USERNAME}:`, errMsg);
   });
 
   tiktokConn.connect().then(state => {
-    console.log(`[TikTok] Đã kết nối Live thành công tới phòng ${state.roomId}!`);
-    io.emit('tiktok_status', { connected: true, username: TIKTOK_USERNAME, roomId: state.roomId });
+    const roomId = state?.roomId || tiktokConn?.roomId || '';
+    console.log(`[TikTok] ✅ Kết nối thành công tới phòng ${roomId}!`);
+    io.emit('tiktok_status', { connected: true, username: TIKTOK_USERNAME, roomId });
   }).catch(err => {
-    console.warn(`[TikTok] Không thể kết nối tới @${TIKTOK_USERNAME}:`, err.message);
+    console.warn(`[TikTok] ⚠️ Chưa thể kết nối tới @${TIKTOK_USERNAME} (${err.message}). Tự động thử lại sau 5s...`);
     io.emit('tiktok_status', { connected: false, error: err.message, username: TIKTOK_USERNAME });
+    scheduleReconnect(5000);
   });
 
   tiktokConn.on(WebcastEvent.CHAT, data => handleUserComment(data));

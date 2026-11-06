@@ -37,7 +37,7 @@ time.sleep(1)
 print("🚀 Đang khởi chạy Server Game Lớp Học...")
 env = os.environ.copy()
 env["PORT"] = "3006"
-env["TIKTOK_USERNAME"] = os.environ.get("TIKTOK_USERNAME", "")
+env["TIKTOK_USERNAME"] = os.environ.get("TIKTOK_USERNAME", "@2166541467")
 
 server_log = open("/tmp/lophoc_server.log", "w")
 server_proc = subprocess.Popen(["node", "server.js"], cwd=GAME_DIR, env=env, stdout=server_log, stderr=subprocess.STDOUT)
