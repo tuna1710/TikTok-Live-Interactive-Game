@@ -136,24 +136,41 @@ Tài liệu này lưu trữ danh sách các tính năng nâng cấp tương tác
 ### 📌 MỤC 9: CHẾ ĐỘ CHIA PHE ĐỐI KHÁNG (TEAM RED VS TEAM BLUE)
 > **Mục tiêu:** Người xem bình luận `#do` hoặc `#xanh` để gia nhập phe và kéo co điểm số thời gian thực (Tug of War).
 
+### 📌 MỤC 10: BỘ CÂU HỎI MỚI 30 CÂU THEO 4 DANH MỤC (QUESTION PACK 30)
+> **Mục tiêu:** Bổ sung ngân hàng câu hỏi mới lạ, hấp dẫn, không trùng lặp, chia theo 4 danh mục thịnh hành để tăng sự phong phú cho phòng live.
+
+#### 10.1. Danh sách 4 danh mục câu hỏi (30 câu):
+- **Danh mục 1: 🌟 Giới Trẻ & Hot Trend (8 câu: ID 1501 - 1508)**
+  - *Chữa Lành, Bắt Trend, Gắn Thẻ, Sống Ảo, Thả Thính, Cực Phẩm, Quẩy Hết Mình, Tiểu Thuyết Ngôn Tình*.
+- **Danh mục 2: 📜 Thành Ngữ & Tục Ngữ Mới (8 câu: ID 1509 - 1516)**
+  - *Mưa Dầm Thấm Lâu, Đi Một Ngày Đàng, Đồng Cam Cộng Khổ, Một Nắng Hai Sương, Vụng Chèo Khéo Chống, Gạo Chợ Nước Sông, Dời Non Lấp Bể, Đường Dài Mới Biết Ngựa Hay*.
+- **Danh mục 3: 🍲 Ẩm Thực & Đặc Sản 3 Miền (7 câu: ID 1517 - 1523)**
+  - *Cơm Cháy Ninh Bình, Nước Mía Trân Châu, Bún Quậy Phú Quốc, Mì Quảng Tôm Thịt, Bánh Tráng Phơi Sương, Bò Tơ Củ Chi, Cá Bớp Kho Tộ*.
+- **Danh mục 4: 🏞️ Danh Lam Thắng Cảnh & Địa Danh (7 câu: ID 1524 - 1530)**
+  - *Hoàng Liên Sơn, Đảo Ngọc Phú Quốc, Cố Đô Hoa Lư, Mũi Né Phan Thiết, Cao Nguyên Mộc Châu, Đầm Thị Nại, Quần Đảo Côn Đảo*.
+
 ---
 
 ## 📅 LỘ TRÌNH THỰC HIỆN TỪNG BƯỚC (ROADMAP)
 
 ```text
-GIAI ĐOẠN HIỆN TẠI: TỐI ƯU HÓA DONATE & VINH DANH TRẬN ĐẤU (ƯU TIÊN LÀM TRƯỚC)
-  ├── [x] Bước 1: Mục 1 - Tặng quà mở chữ cái gợi ý (Interactive Gift Hint) - XONG
-  ├── [x] Bước 2: Mục 2 - Chuỗi thắng liên tiếp (Combo Win Streak & Flame) - XONG
-  ├── [x] Bước 3: Mục 3 - Rương Kho Báu & Mốc Tim Thả Like (Like Chest) - XONG
-  ├── [ ] Bước 4: Mục 6 - Nâng mốc điểm kết thúc game lên 3.000 điểm (Milestone 3000)
-  ├── [ ] Bước 5: Mục 4 - Tặng quà trả lời đúng được nhân đôi điểm (Donor Buff x2 Points)
-  └── [ ] Bước 6: Mục 5 - Kết thúc game vinh danh cả người tặng quà (Top Donors Hall of Fame)
+GIAI ĐOẠN 1: BỘ CÂU HỎI MỚI (LÀM TỪNG DANH MỤC):
+  ├── [x] Bước 1: Danh mục 1 - Giới Trẻ & Hot Trend (8 câu: ID 1501-1508)
+  ├── [ ] Bước 2: Danh mục 2 - Thành Ngữ & Tục Ngữ Mới (8 câu: ID 1509-1516)
+  ├── [ ] Bước 3: Danh mục 3 - Ẩm Thực & Đặc Sản 3 Miền (7 câu: ID 1517-1523)
+  └── [ ] Bước 4: Danh mục 4 - Danh Lam Thắng Cảnh & Địa Danh (7 câu: ID 1524-1530)
 
-GIAI ĐOẠN TIẾP THEO (TẠO CAO TRÀO & NỘI DUNG):
-  ├── [ ] Bước 7: Mục 7 - Câu Đố Trùm & Giờ Vàng (Boss Round x2)
-  ├── [ ] Bước 8: Mục 8 - Quản trị ngân hàng câu đố từ Admin (Question CMS)
-  └── [ ] Bước 9: Mục 9 - Chế độ Chia Phe Đối Kháng (Team Red vs Team Blue)
+GIAI ĐOẠN 2: TỐI ƯU HÓA DONATE & VINH DANH TRẬN ĐẤU:
+  ├── [ ] Bước 5: Mục 6 - Nâng mốc điểm kết thúc game lên 3.000 điểm (Milestone 3000)
+  ├── [ ] Bước 6: Mục 4 - Tặng quà trả lời đúng được nhân đôi điểm (Donor Buff x2 Points)
+  └── [ ] Bước 7: Mục 5 - Kết thúc game vinh danh cả người tặng quà (Top Donors Hall of Fame)
+
+GIAI ĐOẠN 3: TẠO CAO TRÀO & TÍNH NĂNG MỞ RỘNG:
+  ├── [ ] Bước 8: Mục 7 - Câu Đố Trùm & Giờ Vàng (Boss Round x2)
+  ├── [ ] Bước 9: Mục 8 - Quản trị ngân hàng câu đố từ Admin (Question CMS)
+  └── [ ] Bước 10: Mục 9 - Chế độ Chia Phe Đối Kháng (Team Red vs Team Blue)
 ```
 
 ---
 *Kế hoạch này đã được cập nhật và lưu trữ vào `KE_HOACH_PHAT_TRIEN.md`.*
+
