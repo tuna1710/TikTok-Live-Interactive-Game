@@ -305,6 +305,103 @@ function seatStudent(rawUser) {
   return targetDesk;
 }
 
+// Bộ sưu tập câu thoại phong phú của cô giáo khi ra đề
+function getQuestionTeacherSpeech(q, round) {
+  const subject = q.subject || 'Kiến thức';
+  const grade = q.grade || 'Tiểu học';
+  const customQuote = q.teacherQuote;
+
+  const subjectQuotes = {
+    'Toán': [
+      `Câu số ${round}, môn Toán ${grade}! Thần đồng tính nhẩm hãy cho cô thấy đáp án nào!`,
+      `Bài toán này ai giải đúng đầu tiên cô thưởng ngay điểm 10 vào sổ nhé!`,
+      `Đề bài môn Toán ${grade} đã lên bảng, suy nghĩ kỹ kẻo nhầm phép tính nha!`,
+      `Câu đố toán học cực kỳ hóc búa, xem bạn nào nhanh trí nhất lớp mình nhé!`
+    ],
+    'Tiếng Việt': [
+      `Câu số ${round}, môn Tiếng Việt ${grade}! Chú ý chính tả và từ ngữ nha cả lớp!`,
+      `Đọc kỹ câu hỏi Tiếng Việt kẻo bị cô gài bẫy đó nhé các em!`,
+      `Một câu đố Tiếng Việt rất giàu đẹp và thú vị, đáp án là gì nhỉ?`,
+      `Ai tự tin vốn từ vựng phong phú thì chọn nhanh đáp án cho cô xem nào!`
+    ],
+    'Khoa học': [
+      `Câu số ${round}, môn Khoa học ${grade}! Cùng khám phá bí ẩn tự nhiên nào!`,
+      `Một câu hỏi Khoa học đời sống cực kỳ thú vị, xem ai biết đáp án nào!`,
+      `Khoa học muôn màu, các nhà bác học nhí hãy chốt đáp án A, B, C hay D nhé!`
+    ],
+    'Lịch sử': [
+      `Câu số ${round}, môn Lịch sử ${grade}! Tự hào truyền thống non sông Việt Nam!`,
+      `Cùng ôn lại những trang sử hào hùng nào, đáp án chính xác là gì các em?`
+    ],
+    'Địa lý': [
+      `Câu số ${round}, môn Địa lý ${grade}! Chu du khắp mọi miền đất nước cùng cô nhé!`,
+      `Khám phá danh lam thắng cảnh quê hương Việt Nam nào cả lớp!`
+    ],
+    'Đạo đức': [
+      `Câu số ${round}, bài học Đạo đức ý nghĩa! Hãy chọn hành vi chuẩn mực nhất nhé!`,
+      `Bé ngoan học giỏi, cùng làm bài tập Đạo đức cùng cô nào các em!`
+    ]
+  };
+
+  const genericQuotes = [
+    `Câu ${round}: Cả lớp trật tự nhìn lên bảng đen và chọn nhanh đáp án nào!`,
+    `Câu số ${round}! Nhanh tay bình luận A, B, C hoặc D để giành vị trí Top 1 nhé!`,
+    `Cô mời cả lớp cùng suy nghĩ và đưa ra câu trả lời thật chính xác!`,
+    `Bạn nào trả lời nhanh và chuẩn nhất sẽ được cô xướng tên bảng vàng nhé!`,
+    `Bút sa gà chết, suy nghĩ thật kỹ trước khi chốt đáp án nhé các trò!`
+  ];
+
+  const pool = [...(subjectQuotes[subject] || []), ...genericQuotes];
+  if (customQuote) pool.unshift(customQuote);
+
+  return pool[Math.floor(Math.random() * pool.length)];
+}
+
+// Bộ sưu tập câu thoại phong phú của cô giáo khi công bố kết quả
+function getRevealTeacherSpeech(q, correctCount, totalAnswered, top1Student) {
+  const correctOpt = q.correct;
+  const correctText = q.options ? q.options[correctOpt] : '';
+
+  if (totalAnswered === 0) {
+    const noAnswerQuotes = [
+      `Hết giờ rồi mà chưa bạn nào trả lời! Đáp án đúng là ${correctOpt}: ${correctText} nhé!`,
+      `Hết giờ! Câu này hơi khó đúng không cả lớp? Đáp án chính xác là ${correctOpt}: ${correctText}!`,
+      `Thời gian đã hết! Hãy nhớ đáp án chuẩn là ${correctOpt} nhé các em, câu sau cố gắng lên nào!`
+    ];
+    return noAnswerQuotes[Math.floor(Math.random() * noAnswerQuotes.length)];
+  }
+
+  if (correctCount === 0) {
+    const allWrongQuotes = [
+      `Ôi tiếc quá, cả lớp đều chưa đoán đúng câu này rồi! Đáp án chuẩn phải là ${correctOpt}: ${correctText} cơ!`,
+      `Không bạn nào đoán trúng đáp án ${correctOpt} rồi! Câu này cô gài bẫy hơi kỹ, câu sau gỡ lại nhé!`,
+      `Học tài thi phận, đáp án đúng là ${correctOpt}! Đừng nản lòng, chúng ta cùng cố gắng ở câu tiếp theo!`
+    ];
+    return allWrongQuotes[Math.floor(Math.random() * allWrongQuotes.length)];
+  }
+
+  const ratio = correctCount / totalAnswered;
+  if (ratio >= 0.7) {
+    const praiseHigh = [
+      `Tuyệt vời! Lớp mình hôm nay học giỏi quá, có tận ${correctCount} bạn trả lời đúng đáp án ${correctOpt}!`,
+      `Hoan hô cả lớp! Đa số các em đều chọn chuẩn đáp án ${correctOpt}: ${correctText}! Cô có lời khen!`,
+      top1Student
+        ? `Xuất sắc! Đáp án chuẩn là ${correctOpt}! Bạn ${top1Student.nickname} nhanh như chớp nhận ngay 15 điểm!`
+        : `Đáp án chính xác là ${correctOpt}! Cả lớp học rất chăm chú và xuất sắc!`
+    ];
+    return praiseHigh[Math.floor(Math.random() * praiseHigh.length)];
+  }
+
+  const normalQuotes = [
+    `Đáp án đúng là ${correctOpt}: ${correctText}! Có ${correctCount} trên ${totalAnswered} bạn ghi điểm xuất sắc!`,
+    top1Student
+      ? `Chúc mừng bạn ${top1Student.nickname} đã nhanh tay nhất chọn đúng ${correctOpt} và nhận 15 điểm!`
+      : `Đáp án chính xác là ${correctOpt}! Chúc mừng các bạn đã trả lời đúng nhé!`,
+    `Đáp án chuẩn là ${correctOpt}! Các bạn chưa đúng đừng buồn, tích cực giơ tay ở câu tiếp theo nhé!`
+  ];
+  return normalQuotes[Math.floor(Math.random() * normalQuotes.length)];
+}
+
 // Bắt đầu câu hỏi mới
 function startNewQuestion() {
   if (questionsBank.length === 0) return;
@@ -331,13 +428,7 @@ function startNewQuestion() {
     }
   });
 
-  const quotes = [
-    `Câu ${roundNumber}: ${currentQuestion.subject} cấp ${currentQuestion.grade}. Các em suy nghĩ kỹ nhé!`,
-    currentQuestion.teacherQuote || 'Hãy nhanh tay bình luận đáp án A, B, C hoặc D nào!',
-    'Cô mời cả lớp cùng suy nghĩ và đưa ra câu trả lời!',
-    'Bạn nào trả lời nhanh và chính xác nhất sẽ được cô khen!'
-  ];
-  const quote = quotes[Math.floor(Math.random() * quotes.length)];
+  const quote = getQuestionTeacherSpeech(currentQuestion, roundNumber);
   teacherSpeech = { text: quote, time: Date.now(), priority: 3 };
 
   io.emit('round_question', {
@@ -409,12 +500,7 @@ function revealAnswer() {
   answerStats.total = totalAnswered;
 
   const top1Student = correctStudents[0];
-  let praise = `Đáp án đúng là ${currentQuestion.correct}! Có ${correctCount}/${totalAnswered} bạn đúng 👏`;
-  if (totalAnswered === 0) {
-    praise = `Hết giờ! Đáp án đúng là ${currentQuestion.correct}: ${currentQuestion.options[currentQuestion.correct]}!`;
-  } else if (top1Student) {
-    praise = `Đáp án đúng là ${currentQuestion.correct}! Bạn ${top1Student.nickname} nhanh tay nhất nhận +15 điểm! 🎉`;
-  }
+  const praise = getRevealTeacherSpeech(currentQuestion, correctCount, totalAnswered, top1Student);
 
   teacherSpeech = { text: praise, time: Date.now(), priority: 3 };
 
@@ -497,7 +583,13 @@ timerInterval = setInterval(() => {
     } else if (gameState === 'REVEAL') {
       gameState = 'INTERMISSION';
       timerCountdown = INTERMISSION_DURATION;
-      teacherSpeech = { text: 'Chuẩn bị sang câu hỏi tiếp theo nhé!', time: Date.now(), priority: 3 };
+      const intermissionQuotes = [
+        'Hít thở sâu nào, câu hỏi tiếp theo sẽ xuất hiện ngay sau đây!',
+        'Cả lớp sẵn sàng chưa? Câu hỏi mới cực kỳ thú vị chuẩn bị lên bảng!',
+        'Uống một ngụm nước rồi cùng cô giải câu hỏi tiếp theo nào!',
+        'Ai chưa ghi được điểm thì chuẩn bị nhanh tay ở câu tiếp theo nhé!'
+      ];
+      teacherSpeech = { text: intermissionQuotes[Math.floor(Math.random() * intermissionQuotes.length)], time: Date.now(), priority: 3 };
       broadcastState();
     } else if (gameState === 'INTERMISSION') {
       startNewQuestion();
@@ -602,7 +694,14 @@ function handleUserGift(data) {
     title: 'LỚP TRƯỞNG'
   };
 
-  const teacherAnnounce = `Cô mời bạn ${desk.student.nickname} lên làm lớp trưởng nhé! 🎉`;
+  const presidentQuotes = [
+    `Cả lớp đứng dậy vỗ tay chúc mừng tân Lớp Trưởng ${desk.student.nickname} nào! 🎉`,
+    `Cô chính thức bổ nhiệm bạn ${desk.student.nickname} làm Lớp Trưởng quyền lực của lớp học! 👑`,
+    `Cảm ơn món quà tuyệt vời của bạn ${desk.student.nickname}! Cả lớp nghe theo hiệu lệnh Lớp Trưởng nhé! ✨`,
+    `Lớp Trưởng ${desk.student.nickname} vừa đăng quang! Bạn nào quậy phá là bị ghi tên vào sổ đầu bài ngay nha!`,
+    `Chào đón Lớp Trưởng tài ba ${desk.student.nickname} bước lên bục vinh dự! Cả lớp cùng chúc mừng bạn nào!`
+  ];
+  const teacherAnnounce = presidentQuotes[Math.floor(Math.random() * presidentQuotes.length)];
   teacherSpeech = { text: teacherAnnounce, time: Date.now(), priority: 1 };
 
   io.emit('new_class_president', {
@@ -656,7 +755,10 @@ function handleUserFollow(data) {
   const quotes = [
     `Cảm ơn bạn ${nickname} đã follow kênh! Chào mừng em gia nhập lớp học nhé! 💖`,
     `Hoan hô bạn ${nickname} vừa follow kênh! Chúc em học thật giỏi và đạt điểm cao! ✨`,
-    `Chào mừng tân học sinh ${nickname} đã theo dõi lớp học thông minh! 🎉`
+    `Chào mừng tân học sinh ${nickname} đã theo dõi lớp học thông minh! 🎉`,
+    `Một thành viên mới toanh vừa gia nhập lớp, cả lớp cùng chào đón bạn ${nickname} nào! 🌟`,
+    `Bạn ${nickname} đã điểm danh vào lớp học! Nhận ngay một bàn học và 10 điểm thưởng nhé! 📚`,
+    `Cảm ơn ${nickname} đã nhấn theo dõi lớp! Chúc em có những giờ học bổ ích và săn thật nhiều điểm 10!`
   ];
   const teacherAnnounce = quotes[Math.floor(Math.random() * quotes.length)];
   teacherSpeech = { text: teacherAnnounce, time: Date.now(), priority: 2 };
@@ -677,6 +779,8 @@ function handleUserFollow(data) {
   return payload;
 }
 
+let lastCheerLikeCount = 0;
+
 function handleUserLike(data) {
   const user = extractUser(data);
   const likeCount = Number(data.likeCount || data.count || 1);
@@ -686,6 +790,20 @@ function handleUserLike(data) {
     added: likeCount,
     username: user.nickname || user.uniqueId
   });
+
+  // Cứ mỗi 100 tim tích lũy, cô giáo động viên cả lớp
+  if (totalLikes - lastCheerLikeCount >= 100) {
+    lastCheerLikeCount = totalLikes;
+    const cheerQuotes = [
+      'Cảm ơn cả lớp đã tích cực thả tim! Phòng học đang tràn ngập yêu thương rồi! 💖',
+      'Bão tim rực rỡ quá, cô gửi ngàn lời yêu thương đến các học sinh chăm chỉ nhé! ✨',
+      'Hoan nghênh tinh thần đoàn kết của cả lớp, thả tim hăng say quá các em ơi! 🎉'
+    ];
+    const cheer = cheerQuotes[Math.floor(Math.random() * cheerQuotes.length)];
+    teacherSpeech = { text: cheer, time: Date.now(), priority: 3 };
+    io.emit('teacher_cheer', { teacherSpeech });
+    broadcastState();
+  }
 }
 
 function scheduleReconnect(delay = 5000) {

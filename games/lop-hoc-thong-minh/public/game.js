@@ -554,12 +554,22 @@ socket.on('celebration_effect', () => {
   spawnConfetti(60);
 });
 
+socket.on('teacher_cheer', data => {
+  if (data && data.teacherSpeech) {
+    teacherSpeechBubble.textContent = data.teacherSpeech.text;
+    playTeacherVoice(data.teacherSpeech.text, data.teacherSpeech.priority || 3);
+  }
+});
+
 socket.on('game_state_update', data => {
   if (data.leaderboard) {
     updateLeaderboardUI(data.leaderboard);
   }
   if (data.desks) {
     data.desks.forEach(d => updateDeskStudent(d.id, d.student));
+  }
+  if (data.teacherSpeech && currentGameState === 'INTERMISSION') {
+    teacherSpeechBubble.textContent = data.teacherSpeech.text;
   }
 });
 
