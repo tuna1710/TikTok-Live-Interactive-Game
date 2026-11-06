@@ -1046,7 +1046,7 @@ function revealOneHint(donor = null, giftName = '', force = false, skipTts = fal
     letter: rawChars[pickIdx],
     revealedMask: gameState.revealedMask,
     donor: donorInfo,
-    isGiftTriggered: !!donorInfo && donorInfo.nickname !== 'Streamer',
+    isGiftTriggered: !!donorInfo && donorInfo.nickname !== 'Streamer' && !giftName?.includes('Follow') && !giftName?.includes('Rương'),
     giftName: giftName || (donorInfo ? donorInfo.giftName : ''),
     remainingHidden,
     canRevealMore,
@@ -1061,6 +1061,122 @@ function revealOneHint(donor = null, giftName = '', force = false, skipTts = fal
   console.log(`💡 [MỞ CHỮ GỢI Ý] Vị trí ${pickIdx}: "${rawChars[pickIdx]}" bởi ${donorInfo?.nickname || 'MC'} (Còn ${remainingHidden} chữ ẩn)`);
   io.emit('hintRevealed', payload);
   return payload;
+}
+
+function revealGiftHints(donor = null, giftName = '', diamonds = 1, force = false) {
+  if (gameState.roundState !== 'PLAYING' || !gameState.currentWord) return null;
+
+  const totalCoins = Math.max(1, Number(diamonds) || 1);
+  const rawChars = gameState.currentWord.word.split('');
+  const donorInfo = donor ? {
+    uniqueId: donor.uniqueId || 'donor_' + Date.now(),
+    nickname: donor.nickname || donor.user || 'Khán Giả',
+    avatar: donor.avatar || 'https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/default-avatar.jpeg',
+    giftName: giftName || 'Hoa Hồng',
+    diamonds: totalCoins,
+  } : null;
+
+  const revealedItems = [];
+  let reachedLimit = false;
+
+  for (let step = 0; step < totalCoins; step++) {
+    const unrevealedIndices = [];
+    rawChars.forEach((ch, idx) => {
+      if (ch !== ' ' && !gameState.revealedMask[idx]) {
+        unrevealedIndices.push(idx);
+      }
+    });
+
+    if (unrevealedIndices.length === 0) {
+      break;
+    }
+
+    if (!force && unrevealedIndices.length <= giftHintConfig.keepLastLettersSecret) {
+      reachedLimit = true;
+      break;
+    }
+
+    const pickIdx = unrevealedIndices[Math.floor(Math.random() * unrevealedIndices.length)];
+    gameState.revealedMask[pickIdx] = true;
+    revealedItems.push({
+      index: pickIdx,
+      letter: rawChars[pickIdx],
+    });
+  }
+
+  const remainingHidden = getHiddenLettersCount();
+  const canRevealMore = remainingHidden > giftHintConfig.keepLastLettersSecret;
+
+  if (revealedItems.length === 0) {
+    if (reachedLimit) {
+      const notifyPayload = {
+        message: `Đã mở tối đa gợi ý! Chỉ còn ${remainingHidden} chữ cái bí mật, hãy nhanh tay đoán từ khóa!`,
+        donor: donorInfo ? donorInfo.nickname : null,
+        giftName: giftName || 'Quà Tặng',
+        remainingHidden,
+        limitReached: true,
+        ttsText: donorInfo ? `Cảm ơn ${donorInfo.nickname} đã tặng ${donorInfo.giftName}! Hiện đã mở tối đa gợi ý, còn đúng ${remainingHidden} chữ cái bí mật cuối cùng!` : 'Đã mở tối đa gợi ý!'
+      };
+      console.log(`⚠️ [GIFT HINT] Đã chạm giới hạn giữ chữ bí mật (${remainingHidden} chữ còn lại)`);
+      io.emit('giftHintLimitReached', notifyPayload);
+      return notifyPayload;
+    }
+    return null;
+  }
+
+  let ttsText = '';
+  const lettersJoined = revealedItems.map(item => item.letter).join(', ');
+  if (donorInfo && donorInfo.nickname !== 'Streamer') {
+    if (revealedItems.length === 1) {
+      ttsText = `Cảm ơn ${donorInfo.nickname} đã tặng ${donorInfo.giftName} mở chữ cái ${lettersJoined}!`;
+    } else {
+      ttsText = `Cảm ơn ${donorInfo.nickname} đã tặng ${donorInfo.giftName} mở tặng ${revealedItems.length} chữ cái: ${lettersJoined}!`;
+    }
+    if (reachedLimit) {
+      ttsText += ` Đã mở tối đa gợi ý, chỉ còn chữ cái bí mật cuối cùng!`;
+    }
+  }
+
+  revealedItems.forEach((item, idx) => {
+    const isLast = (idx === revealedItems.length - 1);
+    io.emit('hintRevealed', {
+      index: item.index,
+      letter: item.letter,
+      revealedMask: gameState.revealedMask,
+      donor: donorInfo,
+      isGiftTriggered: true,
+      skipPopup: !isLast,
+      giftName: giftName || (donorInfo ? donorInfo.giftName : ''),
+      revealedCount: revealedItems.length,
+      lettersList: revealedItems.map(r => r.letter),
+      lettersText: lettersJoined,
+      remainingHidden,
+      canRevealMore,
+      ttsText: isLast ? ttsText : '',
+      timestamp: Date.now(),
+    });
+  });
+
+  const summaryPayload = {
+    indices: revealedItems.map(r => r.index),
+    letter: lettersJoined,
+    lettersList: revealedItems.map(r => r.letter),
+    revealedCount: revealedItems.length,
+    revealedMask: gameState.revealedMask,
+    donor: donorInfo,
+    isGiftTriggered: true,
+    giftName: giftName || (donorInfo ? donorInfo.giftName : ''),
+    remainingHidden,
+    canRevealMore,
+    limitReached: reachedLimit,
+    ttsText,
+    timestamp: Date.now(),
+  };
+
+  lastGiftHintEvent = summaryPayload;
+  console.log(`💡 [GIFT HINT] ${donorInfo?.nickname} tặng ${giftName} (${totalCoins} xu) mở ${revealedItems.length} chữ: [${lettersJoined}] (Còn ${remainingHidden} chữ ẩn)`);
+
+  return summaryPayload;
 }
 
 function addTime(seconds, reason = '') {
@@ -1276,7 +1392,7 @@ async function connectTikTokLive(usernameOrUrl) {
     recordGiftDonation({ uniqueId, nickname: user, avatar }, giftName, diamondCount, repeatCount);
 
     if (giftHintConfig.enabled && totalDiamonds >= giftHintConfig.minDiamonds) {
-      revealOneHint({ uniqueId, nickname: user, avatar, diamonds: totalDiamonds }, giftName, false);
+      revealGiftHints({ uniqueId, nickname: user, avatar, diamonds: totalDiamonds }, giftName, totalDiamonds, false);
     }
 
     if (totalDiamonds >= 10) {
@@ -1581,18 +1697,23 @@ app.post('/admin/api', (req, res) => {
     };
 
     recordGiftDonation(giftUser, giftName, diamonds, repeatCount);
+    let hintResult = null;
     if (giftHintConfig.enabled && totalDiamonds >= giftHintConfig.minDiamonds) {
-      revealOneHint(giftUser, giftName, false);
+      hintResult = revealGiftHints(giftUser, giftName, totalDiamonds, false);
     }
     if (totalDiamonds >= 10) {
       addTime(30, `${giftUser.nickname} tặng ${giftName} (+30s)`);
     }
-    return res.json({ ok: true, message: `Đã kích hoạt quà tặng: ${giftUser.nickname} gửi ${giftName} (${totalDiamonds} xu)` });
+    return res.json({
+      ok: true,
+      hintResult,
+      message: `Đã kích hoạt quà tặng: ${giftUser.nickname} gửi ${giftName} (${totalDiamonds} xu${hintResult?.revealedCount ? ` - Mở ${hintResult.revealedCount} chữ` : ''})`
+    });
   }
 
   if (action === 'simulateGiftHint') {
     const diamonds = Number(req.body.diamonds) || 1;
-    const giftName = req.body.giftName || 'Hoa Hồng';
+    const giftName = req.body.giftName || (diamonds >= 10 ? 'Nước Hoa' : 'Hoa Hồng');
     const giftUser = {
       uniqueId: req.body.uniqueId || user || 'donor_hint_' + Math.floor(100 + Math.random() * 900),
       nickname: req.body.nickname || user || 'Bé Mai 🌸',
@@ -1601,13 +1722,13 @@ app.post('/admin/api', (req, res) => {
     };
 
     recordGiftDonation(giftUser, giftName, diamonds, 1);
-    const result = revealOneHint(giftUser, giftName, false);
+    const result = revealGiftHints(giftUser, giftName, diamonds, false);
     return res.json({
       ok: true,
       result,
-      message: result?.limitReached
+      message: result?.limitReached && (!result.revealedCount || result.revealedCount === 0)
         ? `Đã tặng ${giftName}! ${result.message}`
-        : `Đã kích hoạt quà tặng ${giftName} từ ${giftUser.nickname} mở chữ: "${result?.letter}"`
+        : `Đã kích hoạt quà tặng ${giftName} (${diamonds} xu) từ ${giftUser.nickname} mở ${result?.revealedCount || 0} chữ: "${result?.letter || ''}"`
     });
   }
 

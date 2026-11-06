@@ -27,7 +27,7 @@ Tài liệu này lưu trữ danh sách các tính năng nâng cấp tương tác
 
 ### 📌 MỤC 1: TẶNG QUÀ MỞ CHỮ CÁI GỢI Ý (INTERACTIVE GIFT HINT)
 > **Trạng thái:**  *Đã hoàn thiện*
-- Khán giả gửi quà tặng nhỏ (Hoa Hồng, Bánh Quy,...) tự động mở ngẫu nhiên 1 chữ cái trong ô đáp án kèm hiệu ứng xoay thẻ vàng óng ánh và TTS cảm ơn.
+- Khán giả gửi quà tặng: 1 xu = 1 chữ cái gợi ý (Hoa Hồng 1 xu mở 1 chữ, Nước Hoa 10 xu mở 10 chữ, combo N xu mở N chữ) trong ô đáp án kèm hiệu ứng thẻ vàng óng ánh và TTS cảm ơn trang trọng (vẫn giữ chữ cái cuối bí mật theo cấu hình).
 
 ---
 

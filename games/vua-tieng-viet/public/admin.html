@@ -229,11 +229,11 @@
 
     <!-- Khu vực Tặng Quà Mở Chữ Cái (Interactive Gift Hint) -->
     <div style="margin-top:12px;padding-top:10px;border-top:1px dashed rgba(255,255,255,0.15);">
-      <div style="font-size:12px;color:#f59e0b;font-weight:700;margin-bottom:6px;">🎁 Thử Nghiệm Tặng Quà Mở Chữ Cái (Interactive Gift Hint):</div>
+      <div style="font-size:12px;color:#f59e0b;font-weight:700;margin-bottom:6px;">🎁 Thử Nghiệm Tặng Quà Mở Chữ (1 Xu = 1 Chữ, 10 Xu = 10 Chữ):</div>
       <input type="text" id="giftHintUserName" placeholder="Tên người tặng quà mở chữ (vd: Bé Mai 🌸)" value="Bé Mai 🌸" style="margin-top:0;" />
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px;">
-        <button class="btn-pink" style="margin-top:0;padding:8px;font-size:12px;" onclick="simulateGiftHintTest('Hoa Hồng', 1)">🌹 Tặng Hoa Hồng (1 xu)</button>
-        <button class="btn-purple" style="margin-top:0;padding:8px;font-size:12px;" onclick="simulateGiftHintTest('Nước Hoa', 10)">💖 Tặng Nước Hoa (10 xu)</button>
+        <button class="btn-pink" style="margin-top:0;padding:8px;font-size:12px;" onclick="simulateGiftHintTest('Hoa Hồng', 1)">🌹 Hoa Hồng (1 xu = 1 chữ)</button>
+        <button class="btn-purple" style="margin-top:0;padding:8px;font-size:12px;" onclick="simulateGiftHintTest('Nước Hoa', 10)">💖 Nước Hoa (10 xu = 10 chữ)</button>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px;">
         <button class="btn-gold" style="margin-top:0;padding:8px;font-size:12px;" onclick="sendAction('reveal')">💡 MC Ép Mở 1 Chữ</button>
@@ -243,13 +243,13 @@
 
     <!-- Khu vực tặng quà & Vinh danh nhà hảo tâm -->
     <div style="margin-top:12px;padding-top:10px;border-top:1px dashed rgba(255,255,255,0.15);">
-      <div style="font-size:12px;color:#f472b6;font-weight:700;margin-bottom:6px;">🎁 Giả Lập Tặng Quà (1 xu = +10đ & Kích Hoạt Buff x2 Đoán Đúng):</div>
+      <div style="font-size:12px;color:#f472b6;font-weight:700;margin-bottom:6px;">🎁 Giả Lập Tặng Quà (1 Xu = 1 Chữ, +10đ/xu & Kích Hoạt Buff x2):</div>
       <input type="text" id="donorNameInput" placeholder="Tên người tặng (vd: Đại Gia Tuấn)" style="margin-top:0;" />
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px;">
-        <button class="btn-pink" style="margin-top:0;padding:8px;font-size:12px;" onclick="simulateCustomGift('Hoa Hồng', 1)">🌹 Hoa Hồng (1 xu)</button>
-        <button class="btn-purple" style="margin-top:0;padding:8px;font-size:12px;" onclick="simulateCustomGift('Nước Hoa', 10)">💖 Nước Hoa (10 xu)</button>
-        <button class="btn-gold" style="margin-top:0;padding:8px;font-size:12px;" onclick="simulateCustomGift('Tên Lửa', 100)">🚀 Tên Lửa (100 xu)</button>
-        <button class="btn-green" style="margin-top:0;padding:8px;font-size:12px;" onclick="simulateCustomGift('Sư Tử VIP', 500)">🦁 Sư Tử (500 xu)</button>
+        <button class="btn-pink" style="margin-top:0;padding:8px;font-size:12px;" onclick="simulateCustomGift('Hoa Hồng', 1)">🌹 Hoa Hồng (1 xu = 1 chữ)</button>
+        <button class="btn-purple" style="margin-top:0;padding:8px;font-size:12px;" onclick="simulateCustomGift('Nước Hoa', 10)">💖 Nước Hoa (10 xu = 10 chữ)</button>
+        <button class="btn-gold" style="margin-top:0;padding:8px;font-size:12px;" onclick="simulateCustomGift('Tên Lửa', 100)">🚀 Tên Lửa (100 xu = Tất cả chữ)</button>
+        <button class="btn-green" style="margin-top:0;padding:8px;font-size:12px;" onclick="simulateCustomGift('Sư Tử VIP', 500)">🦁 Sư Tử VIP (500 xu)</button>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px;">
         <button class="btn-gold" style="margin-top:0;padding:8px;font-size:12px;" onclick="simulateDonorHonorTest()">🌟 Vinh Danh Nhà Hảo Tâm</button>

@@ -607,6 +607,7 @@
       z-index: 116;
       box-shadow: 0 0 35px rgba(255, 215, 0, 0.85), 0 0 16px rgba(244, 114, 182, 0.5);
       white-space: nowrap;
+      max-width: 92vw;
       pointer-events: none;
       opacity: 0;
       transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -1925,7 +1926,7 @@
         <div class="gh-tag">🎁 QUÀ TẶNG MỞ CHỮ GỢI Ý!</div>
         <div class="gh-donor"><span id="ghDonorName">Khán Giả</span> vừa tặng <span id="ghGiftName" style="color:#ffd700;">Hoa Hồng</span></div>
         <div class="gh-unlocked">
-          Đã mở chữ: <span id="ghLetter" class="gh-letter-glow">A</span>
+          <span id="ghUnlockedTitle">Đã mở chữ</span>: <span id="ghLetter" class="gh-letter-glow">A</span>
           <span id="ghRemain" class="gh-remain-badge">(Còn 2 chữ)</span>
         </div>
       </div>
@@ -2016,7 +2017,7 @@
     <!-- Hướng dẫn tương tác -->
     <div class="cta-banner">
       <div class="cta-item" style="color:#00f2fe;font-weight:700;">💖 <b>Follow = Mở 3 Ô Chữ</b></div>
-      <div class="cta-item highlight-gift">🌹 <b>Hoa Hồng = Mở 1 Chữ</b> <span id="giftHintCtaBadge" class="hint-remain-pill">Sẵn sàng</span></div>
+      <div class="cta-item highlight-gift">🌹 <b>1 Xu = 1 Chữ • 10 Xu = 10 Chữ</b> <span id="giftHintCtaBadge" class="hint-remain-pill">Sẵn sàng</span></div>
       <div class="cta-item">💬 <b>Bình luận đoán từ</b></div>
     </div>
 
@@ -3033,9 +3034,25 @@
         giftBadge.textContent = gName.includes('Tên Lửa') ? '🚀' : (gName.includes('Sư Tử') ? '🦁' : (gName.includes('Nước Hoa') ? '💖' : '🌹'));
       }
 
-      letter.textContent = data.letter || '?';
-      if (data.canRevealMore && data.remainingHidden > 1) {
-        remain.textContent = `(Còn ${data.remainingHidden - 1} chữ)`;
+      const unlockedTitle = document.getElementById('ghUnlockedTitle');
+      if (unlockedTitle) {
+        unlockedTitle.textContent = (data.revealedCount && data.revealedCount > 1)
+          ? `Đã mở ${data.revealedCount} chữ`
+          : `Đã mở chữ`;
+      }
+
+      const letterText = data.lettersText || data.letter || '?';
+      letter.textContent = letterText;
+      if (letterText.length > 6) {
+        letter.style.fontSize = '14px';
+        letter.style.letterSpacing = '1px';
+      } else {
+        letter.style.fontSize = '18px';
+        letter.style.letterSpacing = 'normal';
+      }
+
+      if (data.canRevealMore && data.remainingHidden >= 1) {
+        remain.textContent = `(Còn ${data.remainingHidden} chữ)`;
       } else {
         remain.textContent = '(Đã mở tối đa!)';
       }
@@ -3449,7 +3466,9 @@
       updateGiftHintBadge(data.canRevealMore, data.remainingHidden);
 
       if (data.isGiftTriggered && data.donor) {
-        enqueueGiftHint(data);
+        if (!data.skipPopup) {
+          enqueueGiftHint(data);
+        }
       } else {
         soundReveal();
         const donorNick = data.donor ? (data.donor.nickname || data.donor) : null;
