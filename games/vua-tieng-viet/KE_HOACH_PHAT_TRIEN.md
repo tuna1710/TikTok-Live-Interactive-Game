@@ -14,7 +14,7 @@ Tài liệu này lưu trữ danh sách các tính năng nâng cấp tương tác
 | **3** | 🎡 **Rương Kho Báu / Mốc Tim Thả Like** *(Like Milestone Chest)* | Thúc đẩy khán giả tích cực chạm màn hình thả tim (Likes) | **P1** |  Đã xong |
 | **4** | 🎁⚡ **Tặng quà trả lời đúng nhân đôi điểm** *(Donor Double Points Buff)* | Tạo động lực cực lớn cho người chơi tặng quà để bứt phá BXH | **P1 (Mới)** | ⏳ Chờ làm |
 | **5** | 👑💎 **Kết thúc game vinh danh cả người tặng quà** *(Top Donors Hall of Fame)* | Tri ân nhà tài trợ/phú hộ phòng live bên cạnh quán quân | **P1 (Mới)** | ⏳ Chờ làm |
-| **6** | 🏁 **Nâng mốc điểm kết thúc game lên 3.000 điểm** *(Target Score 3000)* | Tăng độ kịch tính, kéo dài trận đấu vừa vặn với một phiên live | **P1 (Mới)** | ⏳ Chờ làm |
+| **6** | 🏁 **Nâng mốc điểm kết thúc game lên 3.000 điểm** *(Target Score 3000)* | Tăng độ kịch tính, kéo dài trận đấu vừa vặn với một phiên live | **P1 (Mới)** |  Đã xong |
 | **7** | 🎯 **Câu Đố Trùm & Giờ Vàng** *(Boss Round / Rush Hour x2)* | Tạo cao trào, giải tỏa nhịp độ đều đều sau mỗi 5 - 10 vòng | **P2** | ⏳ Chờ làm |
 | **8** | 📚 **Quản lý ngân hàng câu đố từ Admin** *(Question CMS)* | Tiện lợi cho Streamer cập nhật câu đố trend không cần sửa code | **P2** | ⏳ Chờ làm |
 | **9** | ⚔️ **Chế độ Chia Phe Đối Kháng** *(Team Red vs Team Blue)* | Tạo hiệu ứng đám đông, rủ bạn bè comment theo phe | **P3** | ⏳ Chờ làm |
@@ -161,7 +161,7 @@ GIAI ĐOẠN 1: BỘ CÂU HỎI MỚI (LÀM TỪNG DANH MỤC):
   └── [ ] Bước 4: Danh mục 4 - Danh Lam Thắng Cảnh & Địa Danh (7 câu: ID 1524-1530)
 
 GIAI ĐOẠN 2: TỐI ƯU HÓA DONATE & VINH DANH TRẬN ĐẤU:
-  ├── [ ] Bước 5: Mục 6 - Nâng mốc điểm kết thúc game lên 3.000 điểm (Milestone 3000)
+  ├── [x] Bước 5: Mục 6 - Nâng mốc điểm kết thúc game lên 3.000 điểm (Milestone 3000) - XONG
   ├── [ ] Bước 6: Mục 4 - Tặng quà trả lời đúng được nhân đôi điểm (Donor Buff x2 Points)
   └── [ ] Bước 7: Mục 5 - Kết thúc game vinh danh cả người tặng quà (Top Donors Hall of Fame)
 

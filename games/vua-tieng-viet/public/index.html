@@ -1175,7 +1175,7 @@
       box-shadow: 0 0 22px rgba(255, 215, 0, 0.9);
     }
 
-    /* Siêu Vinh Danh 2.000 Điểm (Hall of Fame Screenshot Certificate) */
+    /* Siêu Vinh Danh 3.000 Điểm (Hall of Fame Screenshot Certificate) */
     .milestone-overlay {
       position: absolute;
       inset: 0;
@@ -1965,7 +1965,7 @@
       </div>
     </div>
 
-    <!-- Siêu Vinh Danh Cán Mốc 2000 Điểm (Khoảng 1 phút để chụp màn hình khoe) -->
+    <!-- Siêu Vinh Danh Cán Mốc 3000 Điểm (Khoảng 1 phút để chụp màn hình khoe) -->
     <div class="milestone-overlay" id="milestoneOverlay">
       <div class="milestone-card">
         <div class="milestone-badge-top">🎖️ BẢNG VÀNG DANH DỰ 🎖️</div>
@@ -1982,12 +1982,12 @@
 
         <div class="milestone-stats-box">
           <div class="mstat-item">
-            <div class="mstat-val" id="milestoneScore">2.000</div>
+            <div class="mstat-val" id="milestoneScore">3.000</div>
             <div class="mstat-lbl">ĐIỂM CÁN MỐC</div>
           </div>
           <div class="mstat-divider"></div>
           <div class="mstat-item">
-            <div class="mstat-val" id="milestoneWins">20+</div>
+            <div class="mstat-val" id="milestoneWins">30+</div>
             <div class="mstat-lbl">CHIẾN THẮNG</div>
           </div>
         </div>
@@ -2219,7 +2219,7 @@
       } catch (e) {}
     }
 
-    // Tiếng kèn đại chiến thắng vinh danh mốc 2000đ (Grand Fanfare)
+    // Tiếng kèn đại chiến thắng vinh danh mốc 3000đ (Grand Fanfare)
     function soundGrandFanfare() {
       if (!soundEnabled) return;
       soundWin();
@@ -3177,8 +3177,8 @@
       mName.textContent = data.user.nickname || data.user.uniqueId;
       mUniqueId.textContent = data.user.uniqueId ? `@${data.user.uniqueId.replace(/^@/, '')}` : '';
       if (data.user.avatar) mAvatar.src = data.user.avatar;
-      mScore.textContent = (data.user.score || data.milestone || 2000).toLocaleString('vi-VN');
-      mWins.textContent = `${data.user.wins || 20}+`;
+      mScore.textContent = (data.user.score || data.milestone || 3000).toLocaleString('vi-VN');
+      mWins.textContent = `${data.user.wins || 30}+`;
       if (data.title) mTitle.textContent = data.title;
 
       let remaining = Math.max(1, data.duration || 60);

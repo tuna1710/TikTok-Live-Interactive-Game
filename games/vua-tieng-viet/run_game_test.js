@@ -66,37 +66,37 @@ async function main() {
     });
     console.log('✅ Đã kích hoạt tặng quà "Tên Lửa VIP" (100 xu) cho Mạnh Thường Quân Tuấn');
 
-    // 5. Kiểm thử cán mốc 2.000 điểm & Vinh danh Top 5
-    console.log('\n--- BƯỚC 4: KIỂM THỬ VINH DANH 2.000 ĐIỂM & BẢNG VÀNG TOP 5 ---');
+    // 5. Kiểm thử cán mốc 3.000 điểm & Vinh danh Top 5
+    console.log('\n--- BƯỚC 4: KIỂM THỬ VINH DANH 3.000 ĐIỂM & BẢNG VÀNG TOP 5 ---');
     // Thiết lập điểm cho Top 5
     await fetch('http://127.0.0.1:3005/admin/api', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ action: 'setUserScore', uniqueId: 'player_champion', nickname: 'Cao Thủ Tuấn', score: 1900, wins: 19 })
+      body: JSON.stringify({ action: 'setUserScore', uniqueId: 'player_champion', nickname: 'Cao Thủ Tuấn', score: 2900, wins: 29 })
     });
     await fetch('http://127.0.0.1:3005/admin/api', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ action: 'setUserScore', uniqueId: 'top2', nickname: 'Anh Ba Miền Tây', score: 1800, wins: 18 })
+      body: JSON.stringify({ action: 'setUserScore', uniqueId: 'top2', nickname: 'Anh Ba Miền Tây', score: 2700, wins: 27 })
     });
     await fetch('http://127.0.0.1:3005/admin/api', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ action: 'setUserScore', uniqueId: 'top3', nickname: 'Bé Na Chăm Học', score: 1500, wins: 15 })
+      body: JSON.stringify({ action: 'setUserScore', uniqueId: 'top3', nickname: 'Bé Na Chăm Học', score: 2400, wins: 24 })
     });
     await fetch('http://127.0.0.1:3005/admin/api', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ action: 'setUserScore', uniqueId: 'top4', nickname: 'Chiến Thần Đố Chữ', score: 1200, wins: 12 })
+      body: JSON.stringify({ action: 'setUserScore', uniqueId: 'top4', nickname: 'Chiến Thần Đố Chữ', score: 2000, wins: 20 })
     });
     await fetch('http://127.0.0.1:3005/admin/api', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ action: 'setUserScore', uniqueId: 'top5', nickname: 'Minh Tuấn Vlog', score: 900, wins: 9 })
+      body: JSON.stringify({ action: 'setUserScore', uniqueId: 'top5', nickname: 'Minh Tuấn Vlog', score: 1600, wins: 16 })
     });
-    console.log('✅ Đã thiết lập bảng điểm Top 5: Cao Thủ Tuấn đang có 1.900đ.');
+    console.log('✅ Đã thiết lập bảng điểm Top 5: Cao Thủ Tuấn đang có 2.900đ.');
 
-    // Cao Thủ Tuấn đoán đúng từ hiện tại để chạm mốc 2.000đ!
+    // Cao Thủ Tuấn đoán đúng từ hiện tại để chạm mốc 3.000đ!
     console.log(`🎯 Cao Thủ Tuấn đoán từ: "${state2.actualWord}"`);
     await fetch('http://127.0.0.1:3005/admin/api', {
       method: 'POST',
@@ -104,13 +104,13 @@ async function main() {
       body: JSON.stringify({ action: 'simulateChat', user: 'player_champion', text: state2.actualWord })
     });
 
-    console.log('⏳ Chờ 4s để modal Siêu Vinh Danh 2.000đ kích hoạt...');
+    console.log('⏳ Chờ 4s để modal Siêu Vinh Danh 3.000đ kích hoạt...');
     await sleep(4500);
 
-    // Chụp ảnh giao diện Siêu Vinh Danh 2.000đ & Top 5
+    // Chụp ảnh giao diện Siêu Vinh Danh 3.000đ & Top 5
     const shot2 = path.join(__dirname, 'public', 'test_2_milestone_top5.png');
     execSync(`timeout 10 google-chrome --headless --no-sandbox --disable-gpu --window-size=480,854 --screenshot="${shot2}" "http://127.0.0.1:3005"`, { stdio: 'ignore' });
-    console.log(`📸 Đã chụp ảnh màn hình Siêu Vinh Danh 2.000đ: test_2_milestone_top5.png (${fs.statSync(shot2).size} bytes)`);
+    console.log(`📸 Đã chụp ảnh màn hình Siêu Vinh Danh 3.000đ: test_2_milestone_top5.png (${fs.statSync(shot2).size} bytes)`);
 
     // Chụp ảnh bảng điều khiển Admin
     const shot3 = path.join(__dirname, 'public', 'test_3_admin_dashboard.png');

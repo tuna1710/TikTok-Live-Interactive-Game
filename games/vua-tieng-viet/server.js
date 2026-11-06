@@ -112,7 +112,7 @@ let reconnectTimer = null;
 let nextRoundTimer = null;
 let isCelebratingMilestone = false;
 let activeMilestone = null;
-const MILESTONE_SCORE = Number(process.env.MILESTONE_SCORE) || 2000;
+const MILESTONE_SCORE = Number(process.env.MILESTONE_SCORE) || 3000;
 const MILESTONE_DURATION = Number(process.env.MILESTONE_DURATION) || 60; // 60 giây vinh danh cho khán giả chụp màn hình
 const leaderboard = new Map();      // uniqueId -> { uniqueId, nickname, avatar, score, wins, milestones }
 const donorLeaderboard = new Map(); // uniqueId -> { uniqueId, nickname, avatar, diamonds, giftsCount, lastGiftName, lastGiftTime }
@@ -1204,15 +1204,15 @@ app.post('/admin/api', (req, res) => {
       nickname: req.body.nickname || 'Đại Kiện Tướng Tuấn',
       avatar: req.body.avatar || 'https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/default-avatar.jpeg',
       score: Number(req.body.score) || MILESTONE_SCORE,
-      wins: Number(req.body.wins) || 20,
+      wins: Number(req.body.wins) || 30,
     };
     // Nếu bảng điểm chưa có đủ dữ liệu, tự động tạo Top 5 mẫu sinh động để kiểm thử
     if (leaderboard.size < 2) {
       leaderboard.set(demoUser.uniqueId, { ...demoUser, score: demoUser.score });
-      leaderboard.set('top2_demo', { uniqueId: 'top2_demo', nickname: 'Anh Ba Miền Tây', avatar: '', score: 1800, wins: 18 });
-      leaderboard.set('top3_demo', { uniqueId: 'top3_demo', nickname: 'Bé Na Chăm Học', avatar: '', score: 1500, wins: 15 });
-      leaderboard.set('top4_demo', { uniqueId: 'top4_demo', nickname: 'Chiến Thần Đố Chữ', avatar: '', score: 1200, wins: 12 });
-      leaderboard.set('top5_demo', { uniqueId: 'top5_demo', nickname: 'Minh Tuấn Vlog', avatar: '', score: 900, wins: 9 });
+      leaderboard.set('top2_demo', { uniqueId: 'top2_demo', nickname: 'Anh Ba Miền Tây', avatar: '', score: 2800, wins: 28 });
+      leaderboard.set('top3_demo', { uniqueId: 'top3_demo', nickname: 'Bé Na Chăm Học', avatar: '', score: 2500, wins: 25 });
+      leaderboard.set('top4_demo', { uniqueId: 'top4_demo', nickname: 'Chiến Thần Đố Chữ', avatar: '', score: 2100, wins: 21 });
+      leaderboard.set('top5_demo', { uniqueId: 'top5_demo', nickname: 'Minh Tuấn Vlog', avatar: '', score: 1800, wins: 18 });
       io.emit('leaderboardReset', getLeaderboardList());
     }
     const dur = Number(req.body.duration) || MILESTONE_DURATION;
