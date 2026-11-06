@@ -242,6 +242,7 @@ function emitDeskUpdate(desk) {
       avatar: desk.student.avatar,
       bagColor: desk.student.bagColor,
       score: desk.student.score,
+      streak: desk.student.streak || 0,
       pointsEarned: desk.student.pointsEarned || 0,
       currentAnswer: desk.student.currentAnswer,
       isCorrect: desk.student.isCorrect,
@@ -290,6 +291,7 @@ function seatStudent(rawUser) {
     avatar: user.avatar || player.avatar,
     bagColor: BAG_COLORS[targetDesk.id % BAG_COLORS.length],
     score: player.score,
+    streak: player.streak || 0,
     pointsEarned: 0,
     currentAnswer: null,
     answerTime: 0,
@@ -358,7 +360,7 @@ function getQuestionTeacherSpeech(q, round) {
 }
 
 // Bộ sưu tập câu thoại phong phú của cô giáo khi công bố kết quả
-function getRevealTeacherSpeech(q, correctCount, totalAnswered, top1Student) {
+function getRevealTeacherSpeech(q, correctCount, totalAnswered, top1Student, topStreakStudent) {
   const correctOpt = q.correct;
   const correctText = q.options ? q.options[correctOpt] : '';
 
@@ -378,6 +380,19 @@ function getRevealTeacherSpeech(q, correctCount, totalAnswered, top1Student) {
       `Học tài thi phận, đáp án đúng là ${correctOpt}! Đừng nản lòng, chúng ta cùng cố gắng ở câu tiếp theo!`
     ];
     return allWrongQuotes[Math.floor(Math.random() * allWrongQuotes.length)];
+  }
+
+  // Ưu tiên khen ngợi học sinh có chuỗi winstreak khủng (từ 3 câu liên tiếp trở lên)
+  if (topStreakStudent && topStreakStudent.streak >= 3) {
+    const streakQuotes = [
+      `Không thể cản phá! Bạn ${topStreakStudent.nickname} vừa đạt chuỗi ${topStreakStudent.streak} câu đúng liên tiếp! Quá siêu!`,
+      `Đỉnh nóc kịch trần! Bạn ${topStreakStudent.nickname} bùng nổ với chuỗi ${topStreakStudent.streak} câu đúng liên tiếp!`,
+      `Cả lớp vỗ tay chúc mừng bạn ${topStreakStudent.nickname} đang có chuỗi thắng ${topStreakStudent.streak} câu liên tục nào!`,
+      `Phong độ quá đỉnh cao! Bạn ${topStreakStudent.nickname} nối dài chuỗi đúng lên con số ${topStreakStudent.streak}!`
+    ];
+    if (topStreakStudent.streak >= 5 || Math.random() < 0.6) {
+      return streakQuotes[Math.floor(Math.random() * streakQuotes.length)];
+    }
   }
 
   const ratio = correctCount / totalAnswered;
@@ -466,41 +481,59 @@ function revealAnswer() {
       } else {
         d.student.isCorrect = false;
         d.student.pointsEarned = 0;
+        d.student.streak = 0;
         const player = getOrCreatePlayer(d.student);
         player.streak = 0; // Trả lời sai reset chuỗi combo
       }
     } else if (d.student) {
       d.student.pointsEarned = 0;
+      d.student.streak = 0;
+      const player = getOrCreatePlayer(d.student);
+      player.streak = 0;
     }
   });
 
   // Xếp thứ tự trả lời đúng theo thời gian (ai chọn trước được thưởng nhanh tay)
   correctStudents.sort((a, b) => (a.answerTime || 0) - (b.answerTime || 0));
 
+  let topStreakStudent = null;
+
   correctStudents.forEach((student, index) => {
     const player = getOrCreatePlayer(student);
     const isFastest = index === 0; // Nhanh nhất lớp
 
-    // Logic tính điểm:
-    // +15đ cho bạn nhanh nhất, +10đ cho các bạn sau
-    // +5đ streak bonus nếu đúng liên tiếp >= 3 câu
+    // Thưởng chuỗi thắng (winstreak):
+    // - Streak 2: +2đ (Combo x2)
+    // - Streak 3-4: +5đ (Combo x3-x4)
+    // - Streak 5+: +10đ (Siêu Combo x5+ 🔥)
     player.streak = (player.streak || 0) + 1;
-    let earned = isFastest ? 15 : 10;
-    if (player.streak >= 3) {
-      earned += 5;
+    let streakBonus = 0;
+    if (player.streak >= 5) {
+      streakBonus = 10;
+    } else if (player.streak >= 3) {
+      streakBonus = 5;
+    } else if (player.streak === 2) {
+      streakBonus = 2;
     }
 
+    const earned = (isFastest ? 15 : 10) + streakBonus;
     player.score += earned;
     player.correctCount++;
     student.score = player.score;
     student.pointsEarned = earned;
+    student.streak = player.streak;
+    student.streakBonus = streakBonus;
+
+    if (!topStreakStudent || player.streak > (topStreakStudent.streak || 0)) {
+      topStreakStudent = student;
+    }
   });
 
   answerStats.correctCount = correctCount;
   answerStats.total = totalAnswered;
 
   const top1Student = correctStudents[0];
-  const praise = getRevealTeacherSpeech(currentQuestion, correctCount, totalAnswered, top1Student);
+  const praise = getRevealTeacherSpeech(currentQuestion, correctCount, totalAnswered, top1Student, topStreakStudent);
 
   teacherSpeech = { text: praise, time: Date.now(), priority: 3 };
 
@@ -516,9 +549,13 @@ function revealAnswer() {
       id: d.id,
       student: d.student ? {
         username: d.student.username,
+        nickname: d.student.nickname,
+        avatar: d.student.avatar,
+        bagColor: d.student.bagColor,
         currentAnswer: d.student.currentAnswer,
         isCorrect: d.student.isCorrect,
         score: d.student.score,
+        streak: d.student.streak || 0,
         pointsEarned: d.student.pointsEarned || 0
       } : null
     }))
@@ -552,6 +589,7 @@ function broadcastState() {
         avatar: d.student.avatar,
         bagColor: d.student.bagColor,
         score: d.student.score,
+        streak: d.student.streak || 0,
         pointsEarned: d.student.pointsEarned || 0,
         currentAnswer: d.student.currentAnswer,
         isCorrect: d.student.isCorrect,

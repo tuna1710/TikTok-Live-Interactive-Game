@@ -183,6 +183,7 @@ function initDesks() {
         <div class="result-mark" id="res_mark_${i}" style="display: none;"></div>
         <div class="student-chat-bubble" id="chat_bubble_${i}" style="display: none;"></div>
         <div class="student-avatar-box" id="avatar_box_${i}">
+          <div class="winstreak-badge" id="winstreak_${i}" style="display: none;">🔥x2</div>
           <img class="student-avatar-img" id="avatar_img_${i}" src="" alt="avatar">
           <div class="student-mini-scarf"></div>
         </div>
@@ -203,11 +204,17 @@ function initDesks() {
 
 initDesks();
 
-// Hiệu ứng cộng điểm bay lên trên đầu bàn học sinh
-function showFloatingPoints(deskId, pts) {
+// Hiệu ứng cộng điểm bay lên trên đầu bàn học sinh (kèm hiển thị chuỗi winstreak)
+function showFloatingPoints(deskId, pts, streak) {
   const el = document.getElementById(`points_float_${deskId}`);
   if (!el || !pts) return;
-  el.textContent = `+${pts}đ`;
+  if (streak && streak >= 2) {
+    el.innerHTML = `+${pts}đ <span class="combo-text">🔥x${streak}</span>`;
+    el.classList.add('combo');
+  } else {
+    el.textContent = `+${pts}đ`;
+    el.classList.remove('combo');
+  }
   el.classList.remove('show');
   void el.offsetWidth; // Trigger reflow
   el.classList.add('show');
@@ -216,7 +223,7 @@ function showFloatingPoints(deskId, pts) {
   }, 1600);
 }
 
-// Cập nhật Bảng Vàng Thi Đua (Top 3)
+// Cập nhật Bảng Vàng Thi Đua (Top 3) kèm huy hiệu chuỗi thắng liên tiếp
 function updateLeaderboardUI(leaderboard) {
   if (!Array.isArray(leaderboard)) return;
   const top1 = leaderboard[0];
@@ -230,18 +237,22 @@ function updateLeaderboardUI(leaderboard) {
   const t3Name = document.getElementById('top3Name');
   const t3Score = document.getElementById('top3Score');
 
-  if (t1Name && t1Score) {
-    t1Name.textContent = top1 ? (top1.nickname || top1.username) : 'Đang thi đua...';
-    t1Score.textContent = top1 ? `${top1.score}đ` : '0đ';
-  }
-  if (t2Name && t2Score) {
-    t2Name.textContent = top2 ? (top2.nickname || top2.username) : 'Đang thi đua...';
-    t2Score.textContent = top2 ? `${top2.score}đ` : '0đ';
-  }
-  if (t3Name && t3Score) {
-    t3Name.textContent = top3 ? (top3.nickname || top3.username) : 'Đang thi đua...';
-    t3Score.textContent = top3 ? `${top3.score}đ` : '0đ';
-  }
+  const formatSlot = (elName, elScore, p) => {
+    if (!elName || !elScore) return;
+    if (!p) {
+      elName.textContent = 'Đang thi đua...';
+      elScore.textContent = '0đ';
+      return;
+    }
+    const name = p.nickname || p.username;
+    const streakBadge = (p.streak && p.streak >= 2) ? ` <span class="streak-pill">🔥x${p.streak}</span>` : '';
+    elName.innerHTML = `${name}${streakBadge}`;
+    elScore.textContent = `${p.score}đ`;
+  };
+
+  formatSlot(t1Name, t1Score, top1);
+  formatSlot(t2Name, t2Score, top2);
+  formatSlot(t3Name, t3Score, top3);
 }
 
 // Cập nhật vị trí học sinh trên bàn
@@ -252,6 +263,7 @@ function updateDeskStudent(deskId, student) {
   const avatarBox = document.getElementById(`avatar_box_${deskId}`);
   const ansBubble = document.getElementById(`ans_bubble_${deskId}`);
   const resMark = document.getElementById(`res_mark_${deskId}`);
+  const winstreakBadge = document.getElementById(`winstreak_${deskId}`);
 
   if (!student) {
     if (studentWrap) studentWrap.style.display = 'none';
@@ -274,13 +286,37 @@ function updateDeskStudent(deskId, student) {
       avatarImg.src = defaultAvt;
     };
   }
+
+  const streak = (student && student.streak) || 0;
+
   if (avatarBox) {
     avatarBox.style.borderColor = student.bagColor || '#3b82f6';
+    avatarBox.classList.remove('avatar-streak', 'avatar-burning');
+    if (streak >= 5) {
+      avatarBox.classList.add('avatar-burning');
+    } else if (streak >= 3) {
+      avatarBox.classList.add('avatar-streak');
+    }
+  }
+
+  // Hiển thị huy hiệu chuỗi thắng (winstreak)
+  if (winstreakBadge) {
+    if (streak >= 2) {
+      winstreakBadge.style.display = 'flex';
+      winstreakBadge.textContent = `🔥x${streak}`;
+      if (streak >= 5) {
+        winstreakBadge.className = 'winstreak-badge super-streak';
+      } else {
+        winstreakBadge.className = 'winstreak-badge';
+      }
+    } else {
+      winstreakBadge.style.display = 'none';
+    }
   }
 
   // Nếu học sinh vừa ghi điểm trong lượt này
   if (student.pointsEarned && student.pointsEarned > 0) {
-    showFloatingPoints(deskId, student.pointsEarned);
+    showFloatingPoints(deskId, student.pointsEarned, student.streak);
   }
 
   // Hiển thị đáp án đang chọn
@@ -427,10 +463,11 @@ socket.on('round_reveal', data => {
     playTeacherVoice(data.teacherSpeech.text, data.teacherSpeech.priority || 3);
   }
 
-  // Cập nhật dấu Đúng / Sai trên từng bàn học sinh
+  // Cập nhật dấu Đúng / Sai và đồng bộ dữ liệu (điểm số, streak) trên từng bàn học sinh
   if (data.desks) {
     data.desks.forEach(d => {
       if (d.student) {
+        updateDeskStudent(d.id, d.student);
         const resMark = document.getElementById(`res_mark_${d.id}`);
         const ansBubble = document.getElementById(`ans_bubble_${d.id}`);
         if (ansBubble) ansBubble.style.display = 'none';

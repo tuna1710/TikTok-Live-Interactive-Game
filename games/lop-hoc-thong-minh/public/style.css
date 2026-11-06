@@ -371,6 +371,21 @@ body {
 }
 .honor-slot.rank-1 .slot-score { color: #facc15; }
 
+.streak-pill {
+  display: inline-flex;
+  align-items: center;
+  background: linear-gradient(135deg, #f97316, #ef4444);
+  color: #ffffff;
+  font-size: 8px;
+  font-weight: 900;
+  padding: 0px 4px;
+  border-radius: 6px;
+  margin-left: 3px;
+  border: 1px solid #fef08a;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+  vertical-align: middle;
+}
+
 /* BỤC LỚP TRƯỞNG BÊN PHẢI */
 .class-president-area {
   display: flex;
@@ -540,6 +555,69 @@ body {
   align-items: center;
   background: #1e293b;
   overflow: visible;
+  transition: all 0.3s ease;
+}
+
+/* Hiệu ứng viền phát sáng khi có winstreak */
+.student-avatar-box.avatar-streak {
+  border-color: #f59e0b !important;
+  box-shadow: 0 0 8px rgba(245, 158, 11, 0.9), 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.student-avatar-box.avatar-burning {
+  border-color: #ef4444 !important;
+  animation: avatarPulseFlame 1s infinite alternate;
+}
+
+@keyframes avatarPulseFlame {
+  0% {
+    box-shadow: 0 0 6px #f97316, 0 0 12px rgba(239, 68, 68, 0.85);
+    transform: scale(1);
+  }
+  100% {
+    box-shadow: 0 0 14px #fbbf24, 0 0 20px rgba(239, 68, 68, 1);
+    transform: scale(1.08);
+  }
+}
+
+/* Huy hiệu Winstreak (chuỗi đúng liên tiếp) gắn góc trên avatar */
+.winstreak-badge {
+  position: absolute;
+  top: -9px;
+  right: -10px;
+  background: linear-gradient(135deg, #f97316, #ef4444);
+  color: #ffffff;
+  font-size: 8px;
+  font-weight: 900;
+  padding: 1px 4px;
+  border-radius: 8px;
+  border: 1.5px solid #fef08a;
+  box-shadow: 0 2px 6px rgba(239, 68, 68, 0.6), 0 0 4px rgba(249, 115, 22, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  z-index: 5;
+  letter-spacing: -0.2px;
+  animation: streakPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.winstreak-badge.super-streak {
+  background: linear-gradient(135deg, #ef4444, #b91c1c);
+  border-color: #ffd700;
+  box-shadow: 0 0 10px #f59e0b, 0 0 16px #ef4444;
+  animation: streakFlame 0.8s infinite alternate ease-in-out;
+}
+
+@keyframes streakFlame {
+  0% { transform: scale(1) rotate(-3deg); box-shadow: 0 0 6px #f59e0b, 0 0 12px #ef4444; }
+  100% { transform: scale(1.15) rotate(3deg); box-shadow: 0 0 12px #fbbf24, 0 0 18px #dc2626; }
+}
+
+@keyframes streakPop {
+  0% { transform: scale(0.2); opacity: 0; }
+  70% { transform: scale(1.25); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
 }
 
 .student-avatar-img {
@@ -612,6 +690,24 @@ body {
 .floating-points.show {
   opacity: 1;
   transform: translateY(-16px) scale(1.25);
+}
+
+.floating-points.combo {
+  color: #f59e0b;
+  text-shadow: 0 0 10px #f59e0b, 0 0 18px #ef4444, 0 2px 4px rgba(0,0,0,0.8);
+  font-size: 14px;
+}
+
+.floating-points .combo-text {
+  font-size: 10px;
+  color: #ffedd5;
+  background: linear-gradient(135deg, #f97316, #dc2626);
+  padding: 1px 4px;
+  border-radius: 6px;
+  margin-left: 2px;
+  border: 1px solid #fef08a;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 /* BONG BÓNG ĐÁP ÁN (A, B, C, D) TRÊN ĐẦU HỌC SINH */
