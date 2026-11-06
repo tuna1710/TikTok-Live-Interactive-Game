@@ -4048,5 +4048,1505 @@
     "correct": "B",
     "explanation": "✓ Cái giẻ lau khi lau bụi bẩn từ các vật khác thì càng lau nó lại càng gom vết bẩn vào mình.",
     "teacherQuote": "Chúc mừng các bạn đã xuất sắc chinh phục trọn vẹn cột mốc 270 câu hỏi của Lớp Học Thông Minh! 🎉"
+  },
+  {
+    "id": 271,
+    "subject": "Toán",
+    "grade": "Lớp 1",
+    "question": "Số liền trước của số 20 là số nào?",
+    "options": {
+      "A": "19",
+      "B": "21",
+      "C": "18",
+      "D": "10"
+    },
+    "correct": "A",
+    "explanation": "✓ Muốn tìm số liền trước của một số, ta lấy số đó bớt đi 1: 20 - 1 = 19.",
+    "teacherQuote": "Đúng rồi! Liền trước thì bớt 1, liền sau thì thêm 1 nhé!"
+  },
+  {
+    "id": 272,
+    "subject": "Toán",
+    "grade": "Lớp 1",
+    "question": "Bạn An có 8 quả cam, mẹ cho thêm 2 quả nữa. Hỏi An có tất cả bao nhiêu quả cam?",
+    "options": {
+      "A": "6 quả",
+      "B": "10 quả",
+      "C": "12 quả",
+      "D": "9 quả"
+    },
+    "correct": "B",
+    "explanation": "✓ Phép tính: 8 + 2 = 10 quả cam.",
+    "teacherQuote": "Phép cộng tròn chục đầu đời rất dễ nhớ và chuẩn xác!"
+  },
+  {
+    "id": 273,
+    "subject": "Toán",
+    "grade": "Lớp 2",
+    "question": "1 mét đổi ra đơn vị xăng-ti-mét (cm) bằng bao nhiêu?",
+    "options": {
+      "A": "10 cm",
+      "B": "1000 cm",
+      "C": "100 cm",
+      "D": "1 cm"
+    },
+    "correct": "C",
+    "explanation": "✓ Bảng đơn vị đo độ dài: 1m = 10dm = 100cm.",
+    "teacherQuote": "Chính xác! 1 mét bằng đúng 100 xăng-ti-mét."
+  },
+  {
+    "id": 274,
+    "subject": "Toán",
+    "grade": "Lớp 2",
+    "question": "Số nào khi nhân với bất kỳ số nào cũng đều cho kết quả bằng 0?",
+    "options": {
+      "A": "Số 1",
+      "B": "Số 0",
+      "C": "Số 10",
+      "D": "Số 2"
+    },
+    "correct": "B",
+    "explanation": "✓ Quy tắc phép nhân: Số 0 nhân với bất kỳ số nào cũng bằng 0.",
+    "teacherQuote": "Số 0 kỳ diệu, nhân với bao nhiêu thì kết quả vẫn là 0!"
+  },
+  {
+    "id": 275,
+    "subject": "Toán",
+    "grade": "Lớp 2",
+    "question": "Kết quả của phép chia 40 : 5 là:",
+    "options": {
+      "A": "6",
+      "B": "7",
+      "C": "9",
+      "D": "8"
+    },
+    "correct": "D",
+    "explanation": "✓ Bảng chia 5: 40 : 5 = 8 (vì 5 x 8 = 40).",
+    "teacherQuote": "Bảng nhân chia 5 học thuộc làu làu rồi, giỏi lắm!"
+  },
+  {
+    "id": 276,
+    "subject": "Toán",
+    "grade": "Lớp 3",
+    "question": "Số chẵn liền sau của số 98 là số nào?",
+    "options": {
+      "A": "99",
+      "B": "100",
+      "C": "102",
+      "D": "96"
+    },
+    "correct": "B",
+    "explanation": "✓ Hai số chẵn liên tiếp hơn kém nhau 2 đơn vị: 98 + 2 = 100.",
+    "teacherQuote": "Rất tỉnh táo! 99 là số lẻ liền sau, còn số chẵn liền sau phải là 100."
+  },
+  {
+    "id": 277,
+    "subject": "Toán",
+    "grade": "Lớp 3",
+    "question": "Một mảnh vườn hình chữ nhật có chiều dài 8m, chiều rộng 5m. Diện tích mảnh vườn là:",
+    "options": {
+      "A": "26 m²",
+      "B": "40 m²",
+      "C": "13 m²",
+      "D": "35 m²"
+    },
+    "correct": "B",
+    "explanation": "✓ Diện tích hình chữ nhật S = dài x rộng = 8 x 5 = 40 m².",
+    "teacherQuote": "Chuẩn luôn! Dài nhân rộng cùng đơn vị đo là ra diện tích ngay."
+  },
+  {
+    "id": 278,
+    "subject": "Toán",
+    "grade": "Lớp 3",
+    "question": "Một tuần lễ có 7 ngày. Hỏi 6 tuần lễ có tất cả bao nhiêu ngày?",
+    "options": {
+      "A": "36 ngày",
+      "B": "40 ngày",
+      "C": "42 ngày",
+      "D": "49 ngày"
+    },
+    "correct": "C",
+    "explanation": "✓ Số ngày trong 6 tuần lễ = 7 x 6 = 42 ngày.",
+    "teacherQuote": "Phép nhân trong bảng cửu chương 7 áp dụng cực kỳ chuẩn!"
+  },
+  {
+    "id": 279,
+    "subject": "Toán",
+    "grade": "Lớp 4",
+    "question": "Giá trị của biểu thức 125 + 75 x 2 là:",
+    "options": {
+      "A": "400",
+      "B": "275",
+      "C": "350",
+      "D": "250"
+    },
+    "correct": "B",
+    "explanation": "✓ Thứ tự thực hiện: Nhân chia trước, cộng trừ sau: 75 x 2 = 150; 125 + 150 = 275.",
+    "teacherQuote": "Tuyệt vời! Không bị bẫy thực hiện từ trái sang phải, nhân trước cộng sau!"
+  },
+  {
+    "id": 280,
+    "subject": "Toán",
+    "grade": "Lớp 4",
+    "question": "Số nào dưới đây chia hết cho 9?",
+    "options": {
+      "A": "124",
+      "B": "235",
+      "C": "324",
+      "D": "412"
+    },
+    "correct": "C",
+    "explanation": "✓ Tổng các chữ số: 3 + 2 + 4 = 9 chia hết cho 9 => 324 chia hết cho 9.",
+    "teacherQuote": "Dấu hiệu chia hết cho 9: Tổng các chữ số chia hết cho 9 thì số đó chia hết cho 9."
+  },
+  {
+    "id": 281,
+    "subject": "Toán",
+    "grade": "Lớp 4",
+    "question": "Một hình thoi có độ dài hai đường chéo lần lượt là 6cm và 8cm. Diện tích hình thoi là:",
+    "options": {
+      "A": "48 cm²",
+      "B": "24 cm²",
+      "C": "14 cm²",
+      "D": "28 cm²"
+    },
+    "correct": "B",
+    "explanation": "✓ Diện tích hình thoi = (m x n) : 2 = (6 x 8) : 2 = 24 cm².",
+    "teacherQuote": "Đúng rồi! Tích độ dài hai đường chéo chia cho 2 là công thức hình thoi."
+  },
+  {
+    "id": 282,
+    "subject": "Toán",
+    "grade": "Lớp 4",
+    "question": "Rút gọn phân số 15/20 về phân số tối giản ta được:",
+    "options": {
+      "A": "3/5",
+      "B": "1/2",
+      "C": "3/4",
+      "D": "5/4"
+    },
+    "correct": "C",
+    "explanation": "✓ Chia cả tử và mẫu cho 5: 15 : 5 = 3, 20 : 5 = 4 => 3/4.",
+    "teacherQuote": "Chia cả tử và mẫu cho ước chung lớn nhất 5, rất nhanh và chính xác!"
+  },
+  {
+    "id": 283,
+    "subject": "Toán",
+    "grade": "Lớp 5",
+    "question": "Số thập phân 0,75 khi viết dưới dạng phân số tối giản là:",
+    "options": {
+      "A": "1/4",
+      "B": "75/10",
+      "C": "7/5",
+      "D": "3/4"
+    },
+    "correct": "D",
+    "explanation": "✓ 0,75 = 75/100 = 3/4.",
+    "teacherQuote": "Chuyển đổi giữa số thập phân và phân số tối giản rất thành thạo!"
+  },
+  {
+    "id": 284,
+    "subject": "Toán",
+    "grade": "Lớp 5",
+    "question": "Một hình thang có đáy lớn 10cm, đáy bé 6cm và chiều cao 4cm. Diện tích hình thang là:",
+    "options": {
+      "A": "64 cm²",
+      "B": "32 cm²",
+      "C": "16 cm²",
+      "D": "40 cm²"
+    },
+    "correct": "B",
+    "explanation": "✓ Diện tích hình thang S = (đáy lớn + đáy bé) x chiều cao : 2 = (10 + 6) x 4 : 2 = 32 cm².",
+    "teacherQuote": "'Muốn tính diện tích hình thang, đáy lớn đáy nhỏ ta đem cộng vào, cộng vào nhân với chiều cao, chia đôi lấy nửa thế nào cũng ra'!"
+  },
+  {
+    "id": 285,
+    "subject": "Toán",
+    "grade": "Lớp 5",
+    "question": "Một ô tô đi quãng đường dài 120km với vận tốc 60 km/giờ. Thời gian ô tô đi hết quãng đường đó là:",
+    "options": {
+      "A": "1,5 giờ",
+      "B": "2,5 giờ",
+      "C": "2 giờ",
+      "D": "3 giờ"
+    },
+    "correct": "C",
+    "explanation": "✓ Thời gian t = s : v = 120 : 60 = 2 giờ.",
+    "teacherQuote": "Công thức toán chuyển động đều lớp 5 nắm rất chắc tay!"
+  },
+  {
+    "id": 286,
+    "subject": "Tiếng Việt",
+    "grade": "Lớp 1",
+    "question": "Con vật nào cất tiếng gáy vang 'ò ó o o' đánh thức mọi người dậy đón bình minh?",
+    "options": {
+      "A": "Con vịt bầu",
+      "B": "Con gà trống",
+      "C": "Con chim sâu",
+      "D": "Con mèo tam thể"
+    },
+    "correct": "B",
+    "explanation": "✓ Chú gà trống với tiếng gáy dõng dạc gọi mặt trời thức giấc mỗi sớm mai.",
+    "teacherQuote": "Tiếng gà gáy rộn ràng nơi thôn quê thanh bình mỗi sớm mai!"
+  },
+  {
+    "id": 287,
+    "subject": "Tiếng Việt",
+    "grade": "Lớp 1",
+    "question": "Từ nào sau đây viết đúng chính tả tiếng Việt?",
+    "options": {
+      "A": "Ngăn nắp",
+      "B": "Ngăn lặp",
+      "C": "Ngăn nắc",
+      "D": "Lgăn nắp"
+    },
+    "correct": "A",
+    "explanation": "✓ 'Ngăn nắp' viết đúng bằng âm 'n' và vần 'ắp', nghĩa là gọn gàng, trật tự.",
+    "teacherQuote": "Góc học tập ngăn nắp sẽ giúp các em học hành tập trung và hiệu quả hơn!"
+  },
+  {
+    "id": 288,
+    "subject": "Tiếng Việt",
+    "grade": "Lớp 2",
+    "question": "Trong câu 'Đàn cá tung tăng bơi lội dưới làn nước mát.', từ ngữ chỉ hoạt động là:",
+    "options": {
+      "A": "Đàn cá",
+      "B": "Làn nước mát",
+      "C": "Tung tăng bơi lội",
+      "D": "Dưới"
+    },
+    "correct": "C",
+    "explanation": "✓ 'Bơi lội' (kèm từ láy mô tả 'tung tăng') là từ chỉ hoạt động của đàn cá.",
+    "teacherQuote": "Xác định từ chỉ hoạt động rất chuẩn xác!"
+  },
+  {
+    "id": 289,
+    "subject": "Tiếng Việt",
+    "grade": "Lớp 2",
+    "question": "Cặp từ nào sau đây là cặp từ đồng nghĩa?",
+    "options": {
+      "A": "Cao - Thấp",
+      "B": "Nhanh - Chậm",
+      "C": "Chăm chỉ - Siêng năng",
+      "D": "Béo - Gầy"
+    },
+    "correct": "C",
+    "explanation": "✓ 'Chăm chỉ' và 'siêng năng' có nghĩa giống nhau, chỉ sự nỗ lực làm việc cần mẫn.",
+    "teacherQuote": "Phân biệt từ đồng nghĩa và từ trái nghĩa rất tốt, hoan hô em!"
+  },
+  {
+    "id": 290,
+    "subject": "Tiếng Việt",
+    "grade": "Lớp 3",
+    "question": "Câu nào dưới đây sử dụng dấu chấm hỏi (?) đúng quy tắc ngữ pháp?",
+    "options": {
+      "A": "Hôm nay trời nhiều mây và có gió mát?",
+      "B": "Bạn có thích đọc truyện cổ tích không?",
+      "C": "Em đang chuẩn bị tập vẽ tranh phong cảnh?",
+      "D": "Bông hoa hồng nhung nở đẹp quá?"
+    },
+    "correct": "B",
+    "explanation": "✓ Câu 'Bạn có thích đọc truyện cổ tích không?' là câu hỏi dùng để hỏi thông tin, cuối câu dùng dấu hỏi.",
+    "teacherQuote": "Dấu chấm hỏi đặt cuối câu nghi vấn, nhận biết rất đúng!"
+  },
+  {
+    "id": 291,
+    "subject": "Tiếng Việt",
+    "grade": "Lớp 3",
+    "question": "Điền từ thích hợp vào câu thành ngữ truyền thống: 'Uống nước nhớ ...'",
+    "options": {
+      "A": "sông",
+      "B": "cội",
+      "C": "nguồn",
+      "D": "suối"
+    },
+    "correct": "C",
+    "explanation": "✓ 'Uống nước nhớ nguồn' là đạo lý biết ơn tổ tiên, cội nguồn của người Việt.",
+    "teacherQuote": "Đạo lý 'Uống nước nhớ nguồn' là truyền thống tốt đẹp ngàn đời của dân tộc ta."
+  },
+  {
+    "id": 292,
+    "subject": "Tiếng Việt",
+    "grade": "Lớp 3",
+    "question": "Trong câu 'Bé là nụ hoa xinh xắn của gia đình.', hình ảnh so sánh là gì?",
+    "options": {
+      "A": "Bé được so sánh với nụ hoa",
+      "B": "Bé được so sánh với chiếc lá",
+      "C": "Bé được so sánh với gia đình",
+      "D": "Nụ hoa được so sánh với chiếc lá"
+    },
+    "correct": "A",
+    "explanation": "✓ Từ so sánh 'là': Sự vật 1 (Bé) được so sánh với Sự vật 2 (nụ hoa).",
+    "teacherQuote": "Hình ảnh so sánh thật đáng yêu, trẻ em như búp trên cành vậy!"
+  },
+  {
+    "id": 293,
+    "subject": "Tiếng Việt",
+    "grade": "Lớp 4",
+    "question": "Từ nào dưới đây là tính từ chỉ màu sắc?",
+    "options": {
+      "A": "Chạy nhảy",
+      "B": "Xanh biếc",
+      "C": "Ngôi trường",
+      "D": "Bạn bè"
+    },
+    "correct": "B",
+    "explanation": "✓ 'Xanh biếc' là tính từ miêu tả màu xanh lam trong trẻo, tươi sáng.",
+    "teacherQuote": "Đúng rồi! 'Xanh biếc' là tính từ gọi màu sắc thiên nhiên đất trời."
+  },
+  {
+    "id": 294,
+    "subject": "Tiếng Việt",
+    "grade": "Lớp 4",
+    "question": "Câu tục ngữ 'Có công mài sắt, có ngày nên kim' khuyên răn con người điều gì?",
+    "options": {
+      "A": "Phải có lòng kiên trì và nhẫn nại",
+      "B": "Phải tiết kiệm tiền của",
+      "C": "Phải biết giữ gìn đồ dùng học tập",
+      "D": "Phải hòa đồng với bạn bè"
+    },
+    "correct": "A",
+    "explanation": "✓ Câu tục ngữ khuyên ta dù việc khó khăn đến đâu, nếu bền lòng kiên trì ắt sẽ gặt hái thành công.",
+    "teacherQuote": "Có công mài sắt có ngày nên kim! Lòng kiên trì đưa ta đến mọi đỉnh cao tri thức."
+  },
+  {
+    "id": 295,
+    "subject": "Tiếng Việt",
+    "grade": "Lớp 4",
+    "question": "Từ nào sau đây là từ ghép tổng hợp?",
+    "options": {
+      "A": "Xe đạp",
+      "B": "Xe máy",
+      "C": "Xe cộ",
+      "D": "Xe ô tô"
+    },
+    "correct": "C",
+    "explanation": "✓ 'Xe cộ' là từ ghép tổng hợp chỉ chung các loại phương tiện giao thông.",
+    "teacherQuote": "Chính xác! Phân biệt từ ghép phân loại và từ ghép tổng hợp rất tốt."
+  },
+  {
+    "id": 296,
+    "subject": "Tiếng Việt",
+    "grade": "Lớp 4",
+    "question": "Trong câu 'Vào mùa xuân, hoa mơ nở trắng khắp núi rừng Tây Bắc.', bộ phận trạng ngữ là:",
+    "options": {
+      "A": "Hoa mơ",
+      "B": "Nở trắng khắp núi rừng Tây Bắc",
+      "C": "Vào mùa xuân",
+      "D": "Tây Bắc"
+    },
+    "correct": "C",
+    "explanation": "✓ 'Vào mùa xuân' trả lời câu hỏi 'Khi nào?', là trạng ngữ chỉ thời gian.",
+    "teacherQuote": "Xác định thành phần trạng ngữ chỉ thời gian rất nhanh và chuẩn xác!"
+  },
+  {
+    "id": 297,
+    "subject": "Tiếng Việt",
+    "grade": "Lớp 5",
+    "question": "Từ 'mũi' trong 'mũi người' và 'mũi thuyền' có mối liên hệ nghĩa nào dưới đây?",
+    "options": {
+      "A": "Đều thở được không khí",
+      "B": "Đều chỉ bộ phận nhọn nhô ra phía trước",
+      "C": "Đều làm bằng chất liệu gỗ",
+      "D": "Không có điểm tương đồng nào"
+    },
+    "correct": "B",
+    "explanation": "✓ Đây là hiện tượng từ nhiều nghĩa: cùng có nét nghĩa chuyển là phần đầu nhọn nhô ra phía trước.",
+    "teacherQuote": "Rất tinh tế! Nét nghĩa chuyển dựa trên sự tương đồng về hình dáng."
+  },
+  {
+    "id": 298,
+    "subject": "Tiếng Việt",
+    "grade": "Lớp 5",
+    "question": "Đại từ xưng hô nào dùng cho ngôi thứ nhất số nhiều (người nói đại diện cho cả nhóm)?",
+    "options": {
+      "A": "Chúng nó",
+      "B": "Các bạn",
+      "C": "Họ",
+      "D": "Chúng tôi"
+    },
+    "correct": "D",
+    "explanation": "✓ 'Chúng tôi', 'chúng em', 'chúng mình' là đại từ xưng hô ngôi thứ nhất số nhiều.",
+    "teacherQuote": "Đúng rồi! Ngôi thứ nhất số nhiều là người nói bao gồm cả bản thân mình trong nhóm."
+  },
+  {
+    "id": 299,
+    "subject": "Tiếng Việt",
+    "grade": "Lớp 5",
+    "question": "Câu ghép: 'Nếu ngày mai trời đẹp thì cả lớp sẽ đi dã ngoại.' biểu thị mối quan hệ gì giữa hai vế?",
+    "options": {
+      "A": "Nguyên nhân - Kết quả",
+      "B": "Điều kiện - Kết quả",
+      "C": "Tương phản",
+      "D": "Tăng tiến"
+    },
+    "correct": "B",
+    "explanation": "✓ Cặp từ 'Nếu... thì...' biểu thị mối quan hệ điều kiện (giả thiết) và kết quả.",
+    "teacherQuote": "Chính xác! Trời đẹp là điều kiện để cả lớp tổ chức chuyến dã ngoại."
+  },
+  {
+    "id": 300,
+    "subject": "Tiếng Việt",
+    "grade": "Lớp 5",
+    "question": "Từ 'đồng' trong 'cánh đồng lúa' và 'đồng tiền xu' có quan hệ từ vựng gì với nhau?",
+    "options": {
+      "A": "Từ đồng nghĩa",
+      "B": "Từ trái nghĩa",
+      "C": "Từ đồng âm",
+      "D": "Từ nhiều nghĩa"
+    },
+    "correct": "C",
+    "explanation": "✓ Hai từ có âm đọc giống nhau nhưng nghĩa hoàn toàn khác nhau và không liên quan ngữ nghĩa, đó là từ đồng âm.",
+    "teacherQuote": "Tuyệt vời! Nhận biết từ đồng âm khác với từ nhiều nghĩa là điểm sáng của học sinh giỏi Lớp 5."
+  },
+  {
+    "id": 301,
+    "subject": "Khoa học",
+    "grade": "Lớp 1",
+    "question": "Cây cối cần những điều kiện nào sau đây của tự nhiên để nảy mầm và lớn lên xanh tốt?",
+    "options": {
+      "A": "Nước, không khí, ánh sáng và chất dinh dưỡng trong đất",
+      "B": "Chỉ cần bóng râm hoàn toàn",
+      "C": "Chỉ cần nước ngọt có ga",
+      "D": "Chỉ cần gió bão"
+    },
+    "correct": "A",
+    "explanation": "✓ Thực vật cần đầy đủ ánh sáng, nước, không khí và khoáng chất trong đất để sinh trưởng.",
+    "teacherQuote": "Chăm sóc cây xanh cần tưới nước vừa đủ và cho cây đón ánh nắng mặt trời nhé!"
+  },
+  {
+    "id": 302,
+    "subject": "Khoa học",
+    "grade": "Lớp 2",
+    "question": "Loài vật nào dưới đây thuộc lớp côn trùng (thân chia 3 phần, có 6 chân)?",
+    "options": {
+      "A": "Con ếch đồng",
+      "B": "Con thằn lằn",
+      "C": "Con ong mật",
+      "D": "Con ốc sên"
+    },
+    "correct": "C",
+    "explanation": "✓ Con ong là loài côn trùng có 6 chân, thân gồm đầu, ngực, bụng và có cánh.",
+    "teacherQuote": "Chú ong chăm chỉ bay lượn tìm hoa hút mật mỗi ngày!"
+  },
+  {
+    "id": 303,
+    "subject": "Khoa học",
+    "grade": "Lớp 3",
+    "question": "Bộ phận nào của cây xanh có nhiệm vụ chính là cắm sâu hút nước và muối khoáng nuôi cây?",
+    "options": {
+      "A": "Thân cây",
+      "B": "Lá cây",
+      "C": "Hoa của cây",
+      "D": "Rễ cây"
+    },
+    "correct": "D",
+    "explanation": "✓ Rễ cây đâm sâu và lan rộng trong đất để hút nước và các chất khoáng vận chuyển lên thân.",
+    "teacherQuote": "Rễ sâu thì cây mới vững chãi trước gió bão, y như nền tảng kiến thức của chúng ta!"
+  },
+  {
+    "id": 304,
+    "subject": "Khoa học",
+    "grade": "Lớp 3",
+    "question": "Cơ quan tuần hoàn của cơ thể người bao gồm những bộ phận chính nào?",
+    "options": {
+      "A": "Tim và các mạch máu",
+      "B": "Tim và hai lá phổi",
+      "C": "Dạ dày và ruột non",
+      "D": "Thận và bóng đái"
+    },
+    "correct": "A",
+    "explanation": "✓ Cơ quan tuần hoàn gồm trái tim (bơm máu) và mạng lưới mạch máu đưa máu đi khắp cơ thể.",
+    "teacherQuote": "Trái tim đập liên tục không ngừng nghỉ để đưa máu đi nuôi dưỡng từng tế bào."
+  },
+  {
+    "id": 305,
+    "subject": "Khoa học",
+    "grade": "Lớp 4",
+    "question": "Không khí sạch xung quanh chúng ta có những tính chất vật lý cơ bản nào?",
+    "options": {
+      "A": "Có màu trắng đục và vị ngọt",
+      "B": "Có mùi thơm nhẹ thoang thoảng",
+      "C": "Trong suốt, không màu, không mùi, không vị",
+      "D": "Có hình cầu cố định"
+    },
+    "correct": "C",
+    "explanation": "✓ Không khí nguyên chất trong suốt, không màu, không mùi, không vị và không có hình dạng nhất định.",
+    "teacherQuote": "Đúng rồi! Không khí tuy vô hình nhưng bao bọc và bảo vệ sự sống khắp địa cầu."
+  },
+  {
+    "id": 306,
+    "subject": "Khoa học",
+    "grade": "Lớp 4",
+    "question": "Nhiệt độ cơ thể của một người bình thường lúc khỏe mạnh đo bằng nhiệt kế khoảng bao nhiêu?",
+    "options": {
+      "A": "Khoảng 30°C",
+      "B": "Khoảng 37°C",
+      "C": "Khoảng 40°C",
+      "D": "Khoảng 42°C"
+    },
+    "correct": "B",
+    "explanation": "✓ Nhiệt độ trung bình của người khỏe mạnh ổn định ở mức khoảng 36,5°C - 37°C.",
+    "teacherQuote": "Nếu thân nhiệt vượt quá 37,5°C - 38°C là cơ thể đang bị sốt đấy, các em nhớ chú ý nhé!"
+  },
+  {
+    "id": 307,
+    "subject": "Khoa học",
+    "grade": "Lớp 4",
+    "question": "Ánh sáng từ Mặt Trời truyền xuyên qua không gian đến Trái Đất mất khoảng bao lâu?",
+    "options": {
+      "A": "Khoảng 8 giây",
+      "B": "Khoảng 8 phút 20 giây",
+      "C": "Khoảng 1 giờ",
+      "D": "Khoảng 1 ngày"
+    },
+    "correct": "B",
+    "explanation": "✓ Với vận tốc ánh sáng xấp xỉ 300.000 km/s, ánh sáng mất khoảng 8 phút 20 giây để đến Trái Đất.",
+    "teacherQuote": "Khoảng cách 150 triệu km xa xôi mà ánh sáng chỉ cần hơn 8 phút đã chạm đến chúng ta!"
+  },
+  {
+    "id": 308,
+    "subject": "Khoa học",
+    "grade": "Lớp 4",
+    "question": "Nhóm thực phẩm nào sau đây là nguồn cung cấp chất đạm (protein) dồi dào cho sự phát triển cơ bắp?",
+    "options": {
+      "A": "Gạo, ngô, khoai, sắn",
+      "B": "Rau cải, mồng tơi, cà chua",
+      "C": "Dầu mè, mỡ heo, bơ",
+      "D": "Thịt, cá, trứng, sữa và các loại đậu"
+    },
+    "correct": "D",
+    "explanation": "✓ Thịt, cá, trứng, sữa và đậu nành chứa hàm lượng protein cao giúp xây dựng và tái tạo tế bào.",
+    "teacherQuote": "Ăn uống đủ chất đạm giúp các bạn nhỏ cao lớn khỏe mạnh và thông minh vượt trội!"
+  },
+  {
+    "id": 309,
+    "subject": "Khoa học",
+    "grade": "Lớp 4",
+    "question": "Âm thanh có thể truyền qua những môi trường vật chất nào sau đây?",
+    "options": {
+      "A": "Chất rắn, chất lỏng và chất khí",
+      "B": "Chỉ truyền được trong không khí",
+      "C": "Chỉ truyền được qua kim loại",
+      "D": "Truyền được trong môi trường chân không"
+    },
+    "correct": "A",
+    "explanation": "✓ Âm thanh truyền qua chất rắn, chất lỏng và khí (nhanh nhất trong chất rắn), không truyền được trong chân không.",
+    "teacherQuote": "Chính xác! Trong chân không không có hạt vật chất nên sóng âm không thể truyền đi."
+  },
+  {
+    "id": 310,
+    "subject": "Khoa học",
+    "grade": "Lớp 5",
+    "question": "Hiện tượng Trái Đất tự quay quanh trục của nó theo hướng từ tây sang đông sinh ra hiện tượng gì?",
+    "options": {
+      "A": "Bốn mùa xuân, hạ, thu, đông",
+      "B": "Hiện tượng ngày và đêm luân phiên",
+      "C": "Sóng thần trên biển",
+      "D": "Nhật thực toàn phần"
+    },
+    "correct": "B",
+    "explanation": "✓ Khi Trái Đất tự quay quanh trục, nửa hướng về Mặt Trời là ban ngày, nửa khuất là ban đêm luân phiên.",
+    "teacherQuote": "Nhờ Trái Đất không ngừng tự quay mà chúng ta có ngày để học tập và đêm để nghỉ ngơi!"
+  },
+  {
+    "id": 311,
+    "subject": "Khoa học",
+    "grade": "Lớp 5",
+    "question": "Hiện tượng kết hợp giữa tinh trùng của bố và tế bào trứng của mẹ để tạo thành hợp tử gọi là gì?",
+    "options": {
+      "A": "Sự thụ phấn",
+      "B": "Sự thụ tinh",
+      "C": "Sự phân chia",
+      "D": "Sự nảy mầm"
+    },
+    "correct": "B",
+    "explanation": "✓ Sự thụ tinh là sự kết hợp giữa giao tử đực (tinh trùng) và giao tử cái (trứng) để khởi đầu một sinh mệnh mới.",
+    "teacherQuote": "Kỳ diệu của sự sống bắt đầu từ sự thụ tinh tạo nên mầm sống mới thiêng liêng!"
+  },
+  {
+    "id": 312,
+    "subject": "Khoa học",
+    "grade": "Lớp 5",
+    "question": "Nguồn năng lượng nào sau đây là nhiên liệu hóa thạch, phải mất hàng triệu năm hình thành và có nguy cơ cạn kiệt?",
+    "options": {
+      "A": "Năng lượng gió",
+      "B": "Năng lượng ánh sáng mặt trời",
+      "C": "Than đá và dầu mỏ",
+      "D": "Năng lượng thủy triều"
+    },
+    "correct": "C",
+    "explanation": "✓ Than đá, dầu mỏ và khí đốt tự nhiên là nhiên liệu hóa thạch không thể tái tạo trong thời gian ngắn.",
+    "teacherQuote": "Hãy tiết kiệm điện và nhiên liệu để bảo vệ tài nguyên quý giá của Trái Đất các em nhé!"
+  },
+  {
+    "id": 313,
+    "subject": "Khoa học",
+    "grade": "Lớp 5",
+    "question": "Để bảo vệ nguồn nước sạch và môi trường sống, hành động nào sau đây là SAI?",
+    "options": {
+      "A": "Xả trực tiếp rác thải và nước giặt tẩy xuống kênh rạch",
+      "B": "Khóa chặt vòi nước khi đánh răng",
+      "C": "Dọn dẹp rác xung quanh miệng giếng",
+      "D": "Tuyên truyền mọi người không vứt chai lọ thuốc trừ sâu bừa bãi"
+    },
+    "correct": "A",
+    "explanation": "✓ Xả rác và hóa chất xuống kênh rạch gây ô nhiễm nghiêm trọng nguồn nước sinh hoạt và hủy hoại thủy sản.",
+    "teacherQuote": "Tuyệt đối không xả rác bừa bãi xuống dòng sông quê hương để giữ nguồn nước trong lành!"
+  },
+  {
+    "id": 314,
+    "subject": "Khoa học",
+    "grade": "Lớp 5",
+    "question": "Bệnh sốt rét là căn bệnh truyền nhiễm do ký sinh trùng lây truyền qua loài muỗi nào?",
+    "options": {
+      "A": "Muỗi vằn",
+      "B": "Muỗi cống",
+      "C": "Muỗi A-nô-phen (Anopheles)",
+      "D": "Ruồi vàng"
+    },
+    "correct": "C",
+    "explanation": "✓ Muỗi A-nô-phen (thường chổng ngược bụng khi đậu) là vật chủ truyền ký sinh trùng sốt rét Plasmodium.",
+    "teacherQuote": "Phân biệt rất rõ ràng: Muỗi vằn truyền sốt xuất huyết, muỗi A-nô-phen truyền sốt rét!"
+  },
+  {
+    "id": 315,
+    "subject": "Khoa học",
+    "grade": "Lớp 5",
+    "question": "Hợp kim giữa đồng và thiếc (hoặc kẽm) đã tạo nên kim loại bền chắc, gắn liền với nền văn hóa nổi tiếng nào của tổ tiên ta?",
+    "options": {
+      "A": "Thời đại đồ đá mới",
+      "B": "Thời đại đồ đồng (Văn hóa Đông Sơn)",
+      "C": "Thời đại đồ nhựa",
+      "D": "Thời đại đồ nhôm"
+    },
+    "correct": "B",
+    "explanation": "✓ Đồng thau là hợp kim của đồng, gắn liền với Trống đồng Đông Sơn đỉnh cao nghệ thuật đúc đồng.",
+    "teacherQuote": "Trống đồng Đông Sơn khắc họa chim Lạc bay lượn là đỉnh cao luyện kim của ông cha ta."
+  },
+  {
+    "id": 316,
+    "subject": "Lịch sử",
+    "grade": "Lớp 4",
+    "question": "Theo truyền thuyết dân gian, Thánh Gióng cưỡi ngựa sắt, mặc áo giáp sắt và nhổ tre đằng ngà đánh tan giặc nào?",
+    "options": {
+      "A": "Giặc Minh",
+      "B": "Giặc Thanh",
+      "C": "Giặc Ân",
+      "D": "Giặc Nam Hán"
+    },
+    "correct": "C",
+    "explanation": "✓ Thánh Gióng (Phù Đổng Thiên Vương) có công đánh đuổi giặc Ân thời Hùng Vương thứ sáu.",
+    "teacherQuote": "Hình tượng Thánh Gióng vươn vai thành dũng sĩ biểu trưng cho sức mạnh quật cường của dân tộc!"
+  },
+  {
+    "id": 317,
+    "subject": "Lịch sử",
+    "grade": "Lớp 4",
+    "question": "Nữ anh hùng Bà Triệu (Triệu Thị Trinh) khởi nghĩa chống quân Ngô năm 248 gắn liền với câu nói khí phách nào?",
+    "options": {
+      "A": "'Sát Thát'",
+      "B": "'Tôi muốn cưỡi cơn gió mạnh, đạp luồng sóng dữ, chém cá kình ở biển Đông...'",
+      "C": "'Không có gì quý hơn độc lập tự do'",
+      "D": "'Bao giờ người Tây nhổ hết cỏ nước Nam mới hết người Nam đánh Tây'"
+    },
+    "correct": "B",
+    "explanation": "✓ Lời tuyên ngôn hào hùng của Bà Triệu: 'Tôi muốn cưỡi cơn gió mạnh, đạp luồng sóng dữ, chém cá kình ở biển Đông, giành lại giang sơn, cởi ách nô lệ...'.",
+    "teacherQuote": "Khí phách hiên ngang của phụ nữ Việt Nam rạng danh non sông đất nước muôn đời!"
+  },
+  {
+    "id": 318,
+    "subject": "Lịch sử",
+    "grade": "Lớp 4",
+    "question": "Vị anh hùng cờ lau Đinh Bộ Lĩnh đã đánh dẹp loạn bao nhiêu sứ quân để thống nhất đất nước và lập ra nhà Đinh?",
+    "options": {
+      "A": "8 sứ quân",
+      "B": "10 sứ quân",
+      "C": "12 sứ quân",
+      "D": "16 sứ quân"
+    },
+    "correct": "C",
+    "explanation": "✓ Đinh Bộ Lĩnh dẹp yên loạn 12 sứ quân năm 968, lên ngôi Hoàng đế (Đinh Tiên Hoàng) đặt tên nước là Đại Cồ Việt.",
+    "teacherQuote": "Tập trận cờ lau từ thuở bé, lớn lên thống nhất non sông, Đinh Tiên Hoàng thật vĩ đại!"
+  },
+  {
+    "id": 319,
+    "subject": "Lịch sử",
+    "grade": "Lớp 4",
+    "question": "Năm 981, vị anh hùng nào lãnh đạo quân dân Đại Cồ Việt đánh tan quân Tống lần thứ nhất trên sông Bạch Đằng?",
+    "options": {
+      "A": "Lê Hoàn (Lê Đại Hành)",
+      "B": "Ngô Quyền",
+      "C": "Lý Thường Kiệt",
+      "D": "Trần Nhân Tông"
+    },
+    "correct": "A",
+    "explanation": "✓ Lê Hoàn được Thái hậu Dương Vân Nga trao áo long bào, thống lĩnh quân dân đại phá quân Tống năm 981.",
+    "teacherQuote": "Chiến công hiển hách trên sông Bạch Đằng năm 981 giữ yên bờ cõi Đại Cồ Việt!"
+  },
+  {
+    "id": 320,
+    "subject": "Lịch sử",
+    "grade": "Lớp 4",
+    "question": "Trường đại học đầu tiên của Việt Nam được xây dựng năm 1076 dưới triều Lý có tên là gì?",
+    "options": {
+      "A": "Văn Miếu",
+      "B": "Quốc Tử Giám",
+      "C": "Đông Kinh Nghĩa Thục",
+      "D": "Viện Hàn Lâm"
+    },
+    "correct": "B",
+    "explanation": "✓ Quốc Tử Giám được vua Lý Nhân Tông cho xây dựng năm 1076, là trường đại học đầu tiên của nước ta.",
+    "teacherQuote": "Văn Miếu - Quốc Tử Giám là biểu tượng rực rỡ của truyền thống hiếu học ngàn năm văn hiến!"
+  },
+  {
+    "id": 321,
+    "subject": "Lịch sử",
+    "grade": "Lớp 4",
+    "question": "Trong cuộc kháng chiến chống quân Nguyên, vị danh tướng nào khẳng khái đáp vua: 'Nếu bệ hạ muốn hàng, xin hãy chém đầu thần trước đã'?",
+    "options": {
+      "A": "Trần Thủ Độ",
+      "B": "Trần Quang Khải",
+      "C": "Trần Quốc Tuấn (Hưng Đạo Vương)",
+      "D": "Phạm Ngũ Lão"
+    },
+    "correct": "C",
+    "explanation": "✓ Hưng Đạo Đại Vương Trần Quốc Tuấn thể hiện ý chí quyết chiến sắt đá, thà hy sinh chứ không đầu hàng giặc ngoại xâm.",
+    "teacherQuote": "Lời nói đanh thép làm nức lòng toàn quân, cổ vũ hào khí Đông A ba lần đại thắng quân Mông - Nguyên!"
+  },
+  {
+    "id": 322,
+    "subject": "Lịch sử",
+    "grade": "Lớp 4",
+    "question": "Câu nói bất hủ 'Ta thà làm ma nước Nam chứ không thèm làm vương đất Bắc' là của vị tướng anh dũng nào?",
+    "options": {
+      "A": "Trần Bình Trọng",
+      "B": "Trần Khánh Dư",
+      "C": "Trần Quốc Toản",
+      "D": "Yết Kiêu"
+    },
+    "correct": "A",
+    "explanation": "✓ Tướng quân Trần Bình Trọng khi bị quân Nguyên bắt đã khẳng khái từ chối mọi tước vị cám dỗ và hy sinh anh dũng.",
+    "teacherQuote": "Tấm lòng trung trinh vì nước quên thân của Trần Bình Trọng sáng mãi ngàn thu!"
+  },
+  {
+    "id": 323,
+    "subject": "Lịch sử",
+    "grade": "Lớp 4",
+    "question": "Tại Hội nghị Diên Hồng năm 1284, khi Thượng hoàng Trần Thánh Tông hỏi kế đánh giặc, các bô lão đã đồng thanh hô vang từ gì?",
+    "options": {
+      "A": "HÒA!",
+      "B": "ĐÁNH!",
+      "C": "THỦ!",
+      "D": "RÚT!"
+    },
+    "correct": "B",
+    "explanation": "✓ Toàn thể các bậc bô lão đại diện muôn dân cả nước đồng thanh hô vang 'ĐÁNH!', biểu thị khối đại đoàn kết toàn dân tộc.",
+    "teacherQuote": "Tiếng hô 'ĐÁNH!' vang dội điện Diên Hồng là sức mạnh vô địch của toàn thể nhân dân Đại Việt."
+  },
+  {
+    "id": 324,
+    "subject": "Lịch sử",
+    "grade": "Lớp 4",
+    "question": "Danh nhân văn hóa thế giới nào là tác giả của áng thiên cổ hùng văn 'Bình Ngô đại cáo'?",
+    "options": {
+      "A": "Lê Lợi",
+      "B": "Nguyễn Trãi",
+      "C": "Chu Văn An",
+      "D": "Nguyễn Bỉnh Khiêm"
+    },
+    "correct": "B",
+    "explanation": "✓ Nguyễn Trãi thừa lệnh Lê Lợi viết bản 'Bình Ngô đại cáo' tuyên bố toàn thắng sau khởi nghĩa Lam Sơn 1428.",
+    "teacherQuote": "'Việc nhân nghĩa cốt ở yên dân / Quân điếu phạt trước lo trừ bạo' - áng thiên cổ hùng văn chói lọi muôn đời!"
+  },
+  {
+    "id": 325,
+    "subject": "Lịch sử",
+    "grade": "Lớp 5",
+    "question": "Phong trào Đông Du đưa thanh niên yêu nước Việt Nam sang Nhật Bản học tập do ai khởi xướng?",
+    "options": {
+      "A": "Phan Châu Trinh",
+      "B": "Phan Bội Châu",
+      "C": "Hoàng Hoa Thám",
+      "D": "Nguyễn Trường Tộ"
+    },
+    "correct": "B",
+    "explanation": "✓ Nhà chí sĩ Phan Bội Châu khởi xướng phong trào Đông Du (1905-1908) với mục đích học tập để giải phóng dân tộc.",
+    "teacherQuote": "Lòng yêu nước nồng nàn và khát vọng canh tân cứu quốc của cụ Phan Bội Châu thật đáng kính phục."
+  },
+  {
+    "id": 326,
+    "subject": "Lịch sử",
+    "grade": "Lớp 5",
+    "question": "Người anh hùng thiếu niên dân tộc Tày, hy sinh anh dũng khi làm nhiệm vụ giao liên, mang bí danh quen thuộc là gì?",
+    "options": {
+      "A": "Vừ A Dính",
+      "B": "Lê Văn Tám",
+      "C": "Kim Đồng (Nông Văn Dền)",
+      "D": "Nguyễn Bá Ngọc"
+    },
+    "correct": "C",
+    "explanation": "✓ Anh Kim Đồng tên thật là Nông Văn Dền, là đội trưởng đầu tiên của Đội Thiếu niên Tiền phong Hồ Chí Minh.",
+    "teacherQuote": "Người đội viên đầu tiên Kim Đồng quả cảm hy sinh để bảo vệ cán bộ an toàn tuyệt đối."
+  },
+  {
+    "id": 327,
+    "subject": "Lịch sử",
+    "grade": "Lớp 5",
+    "question": "Nữ anh hùng lực lượng vũ trang trẻ tuổi quê ở miền Đất Đỏ (Bà Rịa - Vũng Tàu), kiên cường trước mũi súng quân xâm lược tại Côn Đảo là ai?",
+    "options": {
+      "A": "Chị Võ Thị Sáu",
+      "B": "Chị Nguyễn Thị Minh Khai",
+      "C": "Chị Út Tịch",
+      "D": "Mẹ Suốt"
+    },
+    "correct": "A",
+    "explanation": "✓ Chị Võ Thị Sáu anh dũng hy sinh năm 1952 khi chưa đầy 20 tuổi, bất khuất cài hoa lên mái tóc trước họng súng quân thù.",
+    "teacherQuote": "'Mùa hoa lê-ki-ma nở ở quê ta miền Đất Đỏ / Thôn xóm vẫn nhắc tên người anh hùng' - chị Võ Thị Sáu bất tử!"
+  },
+  {
+    "id": 328,
+    "subject": "Lịch sử",
+    "grade": "Lớp 5",
+    "question": "Những con 'Tàu Không số' cảm tử bí mật chở vũ khí chi viện cho chiến trường miền Nam gắn liền với tuyến đường huyền thoại nào?",
+    "options": {
+      "A": "Đường mòn Bắc Nam trên cạn",
+      "B": "Đường Hồ Chí Minh trên biển",
+      "C": "Đường Quốc lộ 1A xuyên Việt",
+      "D": "Đường 9 Nam Lào"
+    },
+    "correct": "B",
+    "explanation": "✓ Đường Hồ Chí Minh trên biển cùng đoàn tàu Không số là kỳ tích độc đáo và hào hùng của Hải quân nhân dân Việt Nam.",
+    "teacherQuote": "Kỳ tích huyền thoại vượt muôn trùng sóng gió và phong tỏa của kẻ thù để chi viện cho miền Nam ruột thịt!"
+  },
+  {
+    "id": 329,
+    "subject": "Lịch sử",
+    "grade": "Lớp 5",
+    "question": "Chiến thắng bắn rơi pháo đài bay B-52 trong 12 ngày đêm cuối tháng 12/1972 trên bầu trời Hà Nội được gọi là chiến thắng gì?",
+    "options": {
+      "A": "Chiến dịch Đường 9 - Khe Sanh",
+      "B": "Điện Biên Phủ trên không",
+      "C": "Chiến dịch Tây Nguyên",
+      "D": "Chiến dịch Quảng Trị"
+    },
+    "correct": "B",
+    "explanation": "✓ Chiến thắng 'Điện Biên Phủ trên không' đã đập tan cuộc tập kích chiến lược đường không bằng B-52 của Mỹ vào Hà Nội và Hải Phòng.",
+    "teacherQuote": "Bầu trời Thủ đô rực lửa chiến thắng, buộc đối phương phải ký kết Hiệp định Pa-ri!"
+  },
+  {
+    "id": 330,
+    "subject": "Lịch sử",
+    "grade": "Lớp 5",
+    "question": "Hiệp định Pa-ri về chấm dứt chiến tranh, lập lại hòa bình ở Việt Nam chính thức được ký kết vào năm nào?",
+    "options": {
+      "A": "Năm 1954",
+      "B": "Năm 1972",
+      "C": "Năm 1973",
+      "D": "Năm 1975"
+    },
+    "correct": "C",
+    "explanation": "✓ Ngày 27/1/1973, Hiệp định Pa-ri được ký kết, buộc quân đội Mỹ phải rút quân về nước.",
+    "teacherQuote": "Mốc son ngoại giao lẫy lừng năm 1973 mở đường cho ngày đại thắng mùa xuân 1975 thống nhất non sông!"
+  },
+  {
+    "id": 331,
+    "subject": "Địa lý",
+    "grade": "Lớp 4",
+    "question": "Vùng Trung du Bắc Bộ (như ở Phú Thọ, Thái Nguyên) nổi tiếng nhất với loại cây công nghiệp đặc sản nào?",
+    "options": {
+      "A": "Cây chè (trà)",
+      "B": "Cây cà phê",
+      "C": "Cây cao su",
+      "D": "Cây dừa"
+    },
+    "correct": "A",
+    "explanation": "✓ Vùng đồi trung du Bắc Bộ rất thích hợp trồng chè, những nương chè xanh mướt uốn lượn hình mâm xôi.",
+    "teacherQuote": "Đồi chè Thái Nguyên thơm ngon nức tiếng gần xa khắp bốn phương!"
+  },
+  {
+    "id": 332,
+    "subject": "Địa lý",
+    "grade": "Lớp 4",
+    "question": "Lễ hội Đua voi truyền thống sôi động thường được tổ chức tại vùng nào của nước ta?",
+    "options": {
+      "A": "Đồng bằng sông Hồng",
+      "B": "Tây Bắc",
+      "C": "Tây Nguyên (Bản Đôn - Đắk Lắk)",
+      "D": "Duyên hải miền Trung"
+    },
+    "correct": "C",
+    "explanation": "✓ Hội đua voi ở Bản Đôn (Đắk Lắk - Tây Nguyên) thể hiện tinh thần thượng võ và tài thuần dưỡng voi rừng của đồng bào.",
+    "teacherQuote": "Tiếng cồng chiêng ngân vang hòa cùng bước chân voi rộn ràng giữa đại ngàn Tây Nguyên!"
+  },
+  {
+    "id": 333,
+    "subject": "Địa lý",
+    "grade": "Lớp 4",
+    "question": "Hình thức chợ nổi trên sông (như Cái Răng, Ngã Bảy) là nét văn hóa buôn bán độc đáo của vùng nào?",
+    "options": {
+      "A": "Đồng bằng sông Cửu Long",
+      "B": "Đồng bằng sông Hồng",
+      "C": "Vùng núi Đông Bắc",
+      "D": "Tây Nguyên"
+    },
+    "correct": "A",
+    "explanation": "✓ Hệ thống kênh rạch chằng chịt ở miền Tây Nam Bộ hình thành nét văn hóa chợ nổi trên sông đặc sắc.",
+    "teacherQuote": "Cây bẹo treo gì bán nấy trên ghe xuồng tấp nập sông nước miền Tây!"
+  },
+  {
+    "id": 334,
+    "subject": "Địa lý",
+    "grade": "Lớp 4",
+    "question": "Đèo Hải Vân cắt ngang dãy núi nào, tạo thành ranh giới tự nhiên giữa Thừa Thiên Huế và thành phố Đà Nẵng?",
+    "options": {
+      "A": "Dãy Hoàng Liên Sơn",
+      "B": "Dãy Bạch Mã",
+      "C": "Dãy Trường Sơn Nam",
+      "D": "Dãy Hoành Sơn"
+    },
+    "correct": "B",
+    "explanation": "✓ Đèo Hải Vân vắt mình qua dãy núi Bạch Mã đâm ngang ra biển, được xưng tụng là 'Thiên hạ đệ nhất hùng quan'.",
+    "teacherQuote": "Hải Vân quan mây phủ lưng đèo, phong cảnh non xanh nước biếc đẹp nao lòng du khách."
+  },
+  {
+    "id": 335,
+    "subject": "Địa lý",
+    "grade": "Lớp 4",
+    "question": "Ngôi nhà chung cao lớn, mái vút lên trời như hình lưỡi rìu ngửa là biểu tượng văn hóa cộng đồng của các dân tộc ở đâu?",
+    "options": {
+      "A": "Nhà sàn vùng Tây Bắc",
+      "B": "Nhà rông vùng Tây Nguyên",
+      "C": "Nhà ngói ba gian Bắc Bộ",
+      "D": "Nhà bè Nam Bộ"
+    },
+    "correct": "B",
+    "explanation": "✓ Nhà rông là nơi hội họp, sinh hoạt lễ hội cộng đồng của buôn làng đồng bào các dân tộc Tây Nguyên.",
+    "teacherQuote": "Mái nhà rông sừng sững giữa bầu trời đại ngàn là niềm tự hào của buôn làng Tây Nguyên."
+  },
+  {
+    "id": 336,
+    "subject": "Địa lý",
+    "grade": "Lớp 4",
+    "question": "Thành phố cảng Hải Phòng gắn liền với tên gọi loài hoa rực rỡ nào mỗi độ hè về?",
+    "options": {
+      "A": "Thành phố Hoa Sen",
+      "B": "Thành phố Hoa Phượng Đỏ",
+      "C": "Thành phố Hoa Ban",
+      "D": "Thành phố Hoa Mai"
+    },
+    "correct": "B",
+    "explanation": "✓ Hải Phòng được mệnh danh là 'Thành phố Hoa Phượng Đỏ' bởi những hàng phượng rực cháy sắc đỏ hai bên bờ sông Cấm.",
+    "teacherQuote": "Tháng năm rợp trời hoa phượng đỏ rực rỡ đón chào ngày hội thành phố Cảng Hải Phòng!"
+  },
+  {
+    "id": 337,
+    "subject": "Địa lý",
+    "grade": "Lớp 4",
+    "question": "Hai quần đảo tiền tiêu xa xôi là một phần máu thịt thiêng liêng không thể tách rời của Tổ quốc Việt Nam ở Biển Đông là:",
+    "options": {
+      "A": "Hoàng Sa và Trường Sa",
+      "B": "Phú Quốc và Thổ Chu",
+      "C": "Côn Đảo và Phú Quý",
+      "D": "Cát Bà và Cô Tô"
+    },
+    "correct": "A",
+    "explanation": "✓ Quần đảo Hoàng Sa (TP Đà Nẵng) và quần đảo Trường Sa (tỉnh Khánh Hòa) là chủ quyền thiêng liêng muôn đời của Việt Nam.",
+    "teacherQuote": "Hoàng Sa, Trường Sa là của Việt Nam! Tình yêu biển đảo luôn rực cháy trong triệu trái tim."
+  },
+  {
+    "id": 338,
+    "subject": "Địa lý",
+    "grade": "Lớp 5",
+    "question": "Trên đất liền, nước ta tiếp giáp với ba quốc gia láng giềng nào?",
+    "options": {
+      "A": "Trung Quốc, Lào, Thái Lan",
+      "B": "Trung Quốc, Lào, Cam-pu-chia",
+      "C": "Lào, Cam-pu-chia, Mi-an-ma",
+      "D": "Trung Quốc, Thái Lan, Ma-lai-xi-a"
+    },
+    "correct": "B",
+    "explanation": "✓ Việt Nam giáp Trung Quốc ở phía Bắc, giáp Lào và Cam-pu-chia ở phía Tây.",
+    "teacherQuote": "Tình láng giềng hữu nghị keo sơn với Trung Quốc, Lào và Cam-pu-chia đời đời bền vững."
+  },
+  {
+    "id": 339,
+    "subject": "Địa lý",
+    "grade": "Lớp 5",
+    "question": "Dạng địa hình nào chiếm phần lớn lãnh thổ đất liền của nước ta (khoảng 3/4 diện tích)?",
+    "options": {
+      "A": "Đồng bằng",
+      "B": "Đồi núi",
+      "C": "Đầm phá ven biển",
+      "D": "Sa mạc cát"
+    },
+    "correct": "B",
+    "explanation": "✓ Đồi núi chiếm 3/4 diện tích lãnh thổ, nhưng chủ yếu là đồi núi thấp dưới 1.000m.",
+    "teacherQuote": "Đúng rồi! Đồi núi chiếm 3/4 diện tích, đồng bằng chiếm 1/4 diện tích lãnh thổ đất nước ta."
+  },
+  {
+    "id": 340,
+    "subject": "Địa lý",
+    "grade": "Lớp 5",
+    "question": "Khí hậu nước ta mang tính chất nhiệt đới gió mùa, với hai mùa gió chính là gió mùa đông bắc và:",
+    "options": {
+      "A": "Gió mùa tây nam",
+      "B": "Gió tây khô nóng",
+      "C": "Gió si-rô-cô",
+      "D": "Gió mậu dịch"
+    },
+    "correct": "A",
+    "explanation": "✓ Gió mùa đông bắc mang lại mùa đông lạnh ở miền Bắc; gió mùa tây nam mang lại mùa mưa ẩm mùa hè.",
+    "teacherQuote": "Hai luồng gió mùa thổi luân phiên tạo nên khí hậu trù phú cho mùa màng tốt tươi quanh năm."
+  },
+  {
+    "id": 341,
+    "subject": "Địa lý",
+    "grade": "Lớp 5",
+    "question": "Châu lục nào lạnh nhất thế giới, quanh năm bị băng tuyết bao phủ dày đặc và không có cư dân sinh sống thường xuyên?",
+    "options": {
+      "A": "Châu Âu",
+      "B": "Châu Đại Dương",
+      "C": "Châu Nam Cực",
+      "D": "Châu Phi"
+    },
+    "correct": "C",
+    "explanation": "✓ Châu Nam Cực là vùng hoang mạc băng giá lạnh nhất hành tinh, nhiệt độ có nơi xuống dưới -80°C.",
+    "teacherQuote": "Chỉ có những chú chim cánh cụt dũng cảm và các nhà thám hiểm khoa học làm bạn nơi đây thôi!"
+  },
+  {
+    "id": 342,
+    "subject": "Địa lý",
+    "grade": "Lớp 5",
+    "question": "Rừng mưa nhiệt đới Amazon - được ví như 'lá phổi xanh của Trái Đất' nằm ở châu lục nào?",
+    "options": {
+      "A": "Châu Á",
+      "B": "Châu Mỹ (Nam Mỹ)",
+      "C": "Châu Phi",
+      "D": "Châu Âu"
+    },
+    "correct": "B",
+    "explanation": "✓ Rừng Amazon nằm ở khu vực Nam Mỹ, chủ yếu trên lãnh thổ Brazil, là khu rừng mưa nhiệt đới lớn nhất địa cầu.",
+    "teacherQuote": "Lá phổi xanh Amazon điều hòa khí hậu toàn cầu, cần được bảo vệ trước nạn chặt phá rừng!"
+  },
+  {
+    "id": 343,
+    "subject": "Địa lý",
+    "grade": "Lớp 5",
+    "question": "Sa mạc nhiệt đới nào có diện tích lớn nhất thế giới, nằm trải rộng ở khu vực Bắc Phi?",
+    "options": {
+      "A": "Sa mạc Gobi",
+      "B": "Sa mạc Sahara",
+      "C": "Sa mạc Kalahari",
+      "D": "Sa mạc Atacama"
+    },
+    "correct": "B",
+    "explanation": "✓ Sahara rộng hơn 9 triệu km², là sa mạc nóng lớn nhất thế giới với những đụn cát bạt ngàn.",
+    "teacherQuote": "Chính xác! Đoàn lạc đà bền bỉ là biểu tượng kiên cường băng qua sa mạc Sahara rực nắng."
+  },
+  {
+    "id": 344,
+    "subject": "Địa lý",
+    "grade": "Lớp 5",
+    "question": "Tháp Eiffel bằng thép sừng sững bên dòng sông Seine là biểu tượng du lịch của thành phố và quốc gia nào?",
+    "options": {
+      "A": "Thủ đô Luân Đôn (Nước Anh)",
+      "B": "Thủ đô Pa-ri (Nước Pháp)",
+      "C": "Thủ đô Rô-ma (Nước Ý)",
+      "D": "Thủ đô Béc-lin (Nước Đức)"
+    },
+    "correct": "B",
+    "explanation": "✓ Tháp Eiffel tọa lạc tại thủ đô Paris, nước Pháp, là một trong những công trình nổi tiếng nhất thế giới.",
+    "teacherQuote": "Kỳ quan kiến trúc kim loại Paris hoa lệ đón hàng chục triệu lượt du khách ghé thăm mỗi năm."
+  },
+  {
+    "id": 345,
+    "subject": "Địa lý",
+    "grade": "Lớp 5",
+    "question": "Dòng sông Mê Kông bắt nguồn từ cao nguyên Tây Tạng, chảy qua 6 quốc gia rồi đổ ra Biển Đông qua mấy cửa sông tại Việt Nam?",
+    "options": {
+      "A": "3 cửa sông",
+      "B": "5 cửa sông",
+      "C": "9 cửa sông (Cửu Long)",
+      "D": "12 cửa sông"
+    },
+    "correct": "C",
+    "explanation": "✓ Sông Mê Kông khi chảy vào Việt Nam chia thành hai nhánh Tiền Giang và Hậu Giang rồi đổ ra biển qua 9 cửa sông.",
+    "teacherQuote": "Chín cửa sông rồng uốn lượn đã ban tặng phù sa màu mỡ cho bà con Nam Bộ trù phú bao đời nay."
+  },
+  {
+    "id": 346,
+    "subject": "Đố mẹo",
+    "grade": "Đố vui",
+    "question": "Vịt nào đi bằng hai chân?",
+    "options": {
+      "A": "Chỉ vịt Donald",
+      "B": "Chỉ vịt xiêm",
+      "C": "Tất cả các con vịt bình thường",
+      "D": "Không có con vịt nào"
+    },
+    "correct": "C",
+    "explanation": "✓ Đố mẹo: Vịt nào mà chẳng đi bằng hai chân chứ!",
+    "teacherQuote": "Haha, đừng để bị lừa nhé! Con vịt nào sinh ra cũng có 2 chân để đi đứng mà!"
+  },
+  {
+    "id": 347,
+    "subject": "Đố mẹo",
+    "grade": "Đố vui",
+    "question": "Con gì có mũi nhọn nhưng không có mắt, có lưỡi sắc bén nhưng không có miệng?",
+    "options": {
+      "A": "Con voi rừng",
+      "B": "Con cá sấu",
+      "C": "Con dao thái",
+      "D": "Con ốc sên"
+    },
+    "correct": "C",
+    "explanation": "✓ Con dao có 'mũi dao' và 'lưỡi dao' nhưng hoàn toàn không phải sinh vật sống.",
+    "teacherQuote": "Đố chữ vật dụng hằng ngày rất sáng tạo và thông minh!"
+  },
+  {
+    "id": 348,
+    "subject": "Đố mẹo",
+    "grade": "Đố vui",
+    "question": "Bánh gì nghe tên ngỡ như một hình phạt đau đớn, nhưng cắn vào lại dẻo thơm nhân đậu xanh thịt mỡ?",
+    "options": {
+      "A": "Bánh tét",
+      "B": "Bánh chưng",
+      "C": "Bánh gai",
+      "D": "Bánh xèo"
+    },
+    "correct": "A",
+    "explanation": "✓ 'Tét' trong tiếng miền Nam thường là tét đòn/tét roi, nhưng 'bánh tét' lại là món bánh Tết ngon tuyệt vời.",
+    "teacherQuote": "Đúng rồi! Bánh tét đón Tết miền Nam thơm nức mũi mùi nếp mới và lá chuối."
+  },
+  {
+    "id": 349,
+    "subject": "Đố mẹo",
+    "grade": "Đố vui",
+    "question": "Ngôi nhà màu đỏ ở bên trái, ngôi nhà màu xanh ở bên phải. Vậy hỏi 'Nhà Trắng' (White House) nằm ở đâu?",
+    "options": {
+      "A": "Nằm ở giữa hai nhà",
+      "B": "Nằm ở thủ đô Oa-sinh-tơn (Nước Mỹ)",
+      "C": "Nằm ở trên đỉnh núi cao",
+      "D": "Nằm ở dưới tầng hầm"
+    },
+    "correct": "B",
+    "explanation": "✓ 'Nhà Trắng' là nơi làm việc và dinh thự chính thức của Tổng thống Hợp chúng quốc Hoa Kỳ.",
+    "teacherQuote": "Một câu đố mẹo địa lý - chính trị vừa hài hước vừa mở rộng hiểu biết!"
+  },
+  {
+    "id": 350,
+    "subject": "Đố mẹo",
+    "grade": "Đố vui",
+    "question": "Cái gì có thể chứa đựng cả ngọn núi cao, đại dương sâu thẳm nhưng lại không đựng nổi một giọt nước thực tế?",
+    "options": {
+      "A": "Tấm bản đồ địa lý",
+      "B": "Chiếc rổ tre thưa",
+      "C": "Đám mây trắng",
+      "D": "Chiếc bình hoa rỗng"
+    },
+    "correct": "A",
+    "explanation": "✓ Tấm bản đồ vẽ đầy đủ núi non biển hồ nhưng chỉ là giấy vẽ, không giữ được giọt nước thật.",
+    "teacherQuote": "Bản đồ thu cả thế giới bao la vào trong một trang giấy nhỏ gọn!"
+  },
+  {
+    "id": 351,
+    "subject": "Đố mẹo",
+    "grade": "Đố vui",
+    "question": "Mắt tròn xoe long lanh, bốn chân đi êm ru không tiếng động, ria mép dài vểnh ra, bắt chuột rất tài là ai?",
+    "options": {
+      "A": "Con chó con",
+      "B": "Con mèo nhà",
+      "C": "Con thỏ trắng",
+      "D": "Con chuột túi"
+    },
+    "correct": "B",
+    "explanation": "✓ Chú mèo nhà với đệm thịt dưới chân giúp bước đi nhẹ tênh, chuyên gia rình bắt chuột.",
+    "teacherQuote": "Meo meo meo, chú mèo lười sưởi nắng nhưng bắt chuột thì nhanh thoăn thoắt!"
+  },
+  {
+    "id": 352,
+    "subject": "Đố mẹo",
+    "grade": "Đố vui",
+    "question": "Vật gì bạn có thể dễ dàng cầm nắm bằng bàn tay trái nhưng vĩnh viễn không thể cầm bằng bàn tay phải?",
+    "options": {
+      "A": "Cái cốc thủy tinh",
+      "B": "Cây bút chì",
+      "C": "Bàn tay phải của chính bạn",
+      "D": "Quyển sách toán"
+    },
+    "correct": "C",
+    "explanation": "✓ Bàn tay phải không thể tự cầm nắm chính nó được!",
+    "teacherQuote": "Logic đơn giản mà đánh lừa rất nhiều người, bạn thật thông minh!"
+  },
+  {
+    "id": 353,
+    "subject": "Đố mẹo",
+    "grade": "Đố vui",
+    "question": "Cái gì bình thường càng kéo ra thì lại càng ngắn lại dần?",
+    "options": {
+      "A": "Sợi dây cao su đàn hồi",
+      "B": "Điếu thuốc lá đang cháy",
+      "C": "Cây kẹo kéo mạch nha",
+      "D": "Cái lò xo thép"
+    },
+    "correct": "B",
+    "explanation": "✓ Khi hút (kéo một hơi) điếu thuốc thì điếu thuốc bị cháy tàn và ngắn lại.",
+    "teacherQuote": "Chính xác! Thuốc lá rất có hại cho sức khỏe, chúng ta cùng nói không với khói thuốc nhé!"
+  },
+  {
+    "id": 354,
+    "subject": "Đố mẹo",
+    "grade": "Đố vui",
+    "question": "Con cua tám cẳng hai càng, một mai hai mắt bò ngang rõ ràng. Hỏi sau khi bị luộc chín đỏ, nó có mấy chân?",
+    "options": {
+      "A": "8 chân",
+      "B": "10 chân (tính cả càng và chân)",
+      "C": "0 chân",
+      "D": "6 chân"
+    },
+    "correct": "B",
+    "explanation": "✓ Cua luộc chín đổi màu đỏ nhưng số chân và càng vẫn nguyên vẹn 10 cái (8 chân bò và 2 càng bơi/kẹp).",
+    "teacherQuote": "Luộc chín thì màu sắc đổi sang đỏ rực thơm ngon chứ chân càng vẫn còn nguyên vẹn nhé!"
+  },
+  {
+    "id": 355,
+    "subject": "Đố mẹo",
+    "grade": "Đố vui",
+    "question": "Câu đố nhân sinh: Sáng đi 4 chân, trưa đi 2 chân, chiều tối đi 3 chân là ai?",
+    "options": {
+      "A": "Con khỉ đột",
+      "B": "Con người (bò lúc bé, đi lúc lớn, chống gậy lúc già)",
+      "C": "Con gấu nâu",
+      "D": "Cái bàn bốn chân"
+    },
+    "correct": "B",
+    "explanation": "✓ Câu đố nổi tiếng của nhân sư: Buổi sáng cuộc đời em bé bò bằng 4 chi, trưa thanh niên đi 2 chân, chiều về già chống gậy là 3 chân.",
+    "teacherQuote": "Câu đố trí tuệ kinh điển nhắc nhở chúng ta trân trọng mọi chặng đường của đời người."
+  },
+  {
+    "id": 356,
+    "subject": "Đố mẹo",
+    "grade": "Đố vui",
+    "question": "Cái gì luôn luôn ở phía trước mặt mỗi chúng ta nhưng mắt thường không bao giờ nhìn thấy trước được?",
+    "options": {
+      "A": "Cái mũi của mình",
+      "B": "Tương lai ngày mai",
+      "C": "Cặp lông mày",
+      "D": "Ánh bình minh"
+    },
+    "correct": "B",
+    "explanation": "✓ Tương lai luôn nằm ở phía trước, muốn có tương lai rạng rỡ hãy nỗ lực học tập từ hôm nay.",
+    "teacherQuote": "Tương lai tươi sáng đang chờ đợi những bạn học sinh siêng năng và chăm chỉ!"
+  },
+  {
+    "id": 357,
+    "subject": "Đố mẹo",
+    "grade": "Đố vui",
+    "question": "Cây gì thân thẳng đốt dài, cành lá rì rào che chở xóm làng, là biểu tượng kiên cường bất khuất của dân tộc Việt Nam?",
+    "options": {
+      "A": "Cây tre xanh",
+      "B": "Cây dừa xiêm",
+      "C": "Cây bàng biển",
+      "D": "Cây phượng vĩ"
+    },
+    "correct": "A",
+    "explanation": "✓ Cây tre Việt Nam dẻo dai, măng mọc thẳng hàng, biểu tượng cho tinh thần đoàn kết và bất khuất.",
+    "teacherQuote": "'Tre xanh xanh tự bao giờ / Chuyện ngày xưa đã có bờ tre xanh' - biểu tượng thiêng liêng của làng quê!"
+  },
+  {
+    "id": 358,
+    "subject": "Đố mẹo",
+    "grade": "Đố vui",
+    "question": "Hoa gì không nở trên cành cây, chỉ bừng sáng rực rỡ muôn màu trên bầu trời đêm Giao thừa mừng năm mới?",
+    "options": {
+      "A": "Hoa đào Nhật Tân",
+      "B": "Hoa mai vàng",
+      "C": "Hoa pháo hoa",
+      "D": "Hoa cúc đại đóa"
+    },
+    "correct": "C",
+    "explanation": "✓ Pháo hoa bừng nở trên bầu trời thời khắc giao thừa linh thiêng đón chào năm mới may mắn.",
+    "teacherQuote": "Tiếng pháo hoa giòn giã mang theo ước nguyện an khang, hạnh phúc đến muôn nhà!"
+  },
+  {
+    "id": 359,
+    "subject": "Đố mẹo",
+    "grade": "Đố vui",
+    "question": "Cái gì có cổ mà không có đầu, có hai cánh tay nhưng lại không có bàn tay và ngón tay?",
+    "options": {
+      "A": "Chiếc quần dài",
+      "B": "Chiếc áo sơ mi",
+      "C": "Chiếc bình hoa",
+      "D": "Cái đồng hồ đeo tay"
+    },
+    "correct": "B",
+    "explanation": "✓ Chiếc áo có cổ áo và tay áo (ống tay) che chở giữ ấm cho cơ thể con người.",
+    "teacherQuote": "Rất sáng tạo! Chiếc áo quen thuộc hằng ngày của chúng ta chứ đâu!"
+  },
+  {
+    "id": 360,
+    "subject": "Đố mẹo",
+    "grade": "Đố vui",
+    "question": "Loài vật nào đội ngôi nhà mai cứng trên lưng, bước đi chậm rãi và có thể sống thọ hơn 100 năm tuổi?",
+    "options": {
+      "A": "Con ốc sên",
+      "B": "Con cua biển",
+      "C": "Con rùa",
+      "D": "Con nhím gai"
+    },
+    "correct": "C",
+    "explanation": "✓ Rùa mang mai cứng trên lưng, di chuyển thong thả và là biểu tượng của sự trường thọ trong tứ linh.",
+    "teacherQuote": "Chậm mà chắc! Chú rùa kiên trì cuối cùng đã chiến thắng thỏ kiêu ngạo trong truyện ngụ ngôn đấy."
+  },
+  {
+    "id": 361,
+    "subject": "Đố mẹo",
+    "grade": "Đố vui",
+    "question": "Thứ quý giá gì khi ta trao tặng cho người khác thì bản thân ta không hề vơi đi mà trái lại còn nhân đôi niềm hạnh phúc?",
+    "options": {
+      "A": "Tiền xu",
+      "B": "Nụ cười và sự sẻ chia",
+      "C": "Chiếc bút máy",
+      "D": "Gói kẹo ngọt"
+    },
+    "correct": "B",
+    "explanation": "✓ Nụ cười và lòng tốt khi sẻ chia sẽ lan tỏa niềm vui đến mọi người xung quanh.",
+    "teacherQuote": "Một nụ cười bằng mười thang thuốc bổ, hãy luôn mỉm cười và lan tỏa tình yêu thương nhé!"
+  },
+  {
+    "id": 362,
+    "subject": "Đố mẹo",
+    "grade": "Đố vui",
+    "question": "Điền từ còn thiếu vào câu ca dao quen thuộc: 'Công cha như núi Thái Sơn / Nghĩa mẹ như nước trong ... chảy ra'?",
+    "options": {
+      "A": "suối",
+      "B": "nguồn",
+      "C": "sông",
+      "D": "biển"
+    },
+    "correct": "B",
+    "explanation": "✓ 'Công cha như núi Thái Sơn, Nghĩa mẹ như nước trong nguồn chảy ra' ngợi ca công ơn trời biển của đấng sinh thành.",
+    "teacherQuote": "Phận làm con phải hiếu thảo, khắc ghi công cha nghĩa mẹ sinh thành nuôi dưỡng."
+  },
+  {
+    "id": 363,
+    "subject": "Đố mẹo",
+    "grade": "Đố vui",
+    "question": "Đố bạn: Chú chuột hoạt hình nào nổi tiếng khắp thế giới luôn đi đứng đĩnh đạc bằng hai chân và mặc quần soóc đỏ?",
+    "options": {
+      "A": "Chuột Jerry",
+      "B": "Chuột túi Kangaroo",
+      "C": "Chuột Mickey",
+      "D": "Chuột hamster"
+    },
+    "correct": "C",
+    "explanation": "✓ Chuột Mickey (Mickey Mouse) là nhân vật hoạt hình huyền thoại của hãng Walt Disney.",
+    "teacherQuote": "Chú chuột Mickey vui nhộn gắn liền với tuổi thơ của bao thế hệ thiếu nhi trên thế giới!"
+  },
+  {
+    "id": 364,
+    "subject": "Đố mẹo",
+    "grade": "Đố vui",
+    "question": "Con gì sống dưới nước có râu dài, hai mắt lồi, khi bơi phóng giật lùi rất nhanh?",
+    "options": {
+      "A": "Con tôm",
+      "B": "Con cua",
+      "C": "Con mực",
+      "D": "Con rùa"
+    },
+    "correct": "A",
+    "explanation": "✓ Con tôm khi gặp nguy hiểm thường cong đuôi búng giật lùi về phía sau cực kỳ nhanh lẹ.",
+    "teacherQuote": "Đúng rồi! 'Tôm búng lùi, cua bò ngang' - những đặc tính sinh học thú vị của tự nhiên."
+  },
+  {
+    "id": 365,
+    "subject": "Đố mẹo",
+    "grade": "Đố vui",
+    "question": "Trong truyền thuyết hoàng tử Lang Liêu làm bánh dâng vua Hùng, chiếc bánh màu trắng hình tròn tượng trưng cho điều gì?",
+    "options": {
+      "A": "Bánh giầy tượng trưng cho Trời",
+      "B": "Bánh chưng tượng trưng cho Đất",
+      "C": "Bánh tét tượng trưng cho Núi",
+      "D": "Bánh gai tượng trưng cho Rừng"
+    },
+    "correct": "A",
+    "explanation": "✓ Theo quan niệm cổ xưa: Trời tròn Đất vuông; bánh giầy hình tròn tượng trưng cho Trời, bánh chưng vuông tượng trưng cho Đất.",
+    "teacherQuote": "Bánh chưng bánh giầy chứa đựng nét đẹp văn hóa tâm linh và lòng thành kính tổ tiên."
+  },
+  {
+    "id": 366,
+    "subject": "Đố mẹo",
+    "grade": "Đố vui",
+    "question": "Bánh chưng truyền thống ngày Tết của dân tộc ta được gói bằng loại lá xanh gì quen thuộc?",
+    "options": {
+      "A": "Lá sen",
+      "B": "Lá dong",
+      "C": "Lá dừa",
+      "D": "Lá bàng"
+    },
+    "correct": "B",
+    "explanation": "✓ Bánh chưng miền Bắc gói bằng lá dong xanh mướt, luộc lên cho hạt gạo nếp dẻo thơm và màu xanh tự nhiên.",
+    "teacherQuote": "Lá dong xanh gói chặt gạo nếp đậu xanh thịt mỡ tạo nên hương vị Tết đầm ấm."
+  },
+  {
+    "id": 367,
+    "subject": "Đố mẹo",
+    "grade": "Đố vui",
+    "question": "Cái gì trên một đồ vật càng có nhiều vết khoét lỗ thì đồ vật đó lại càng nhẹ đi?",
+    "options": {
+      "A": "Cái bao tải",
+      "B": "Miếng pho mát (hoặc chiếc lỗ thủng)",
+      "C": "Cục đá hoa cương",
+      "D": "Chiếc ô che mưa"
+    },
+    "correct": "B",
+    "explanation": "✓ Càng nhiều lỗ thủng (mất bớt vật chất) thì khối lượng của vật thể càng giảm đi nên càng nhẹ hơn.",
+    "teacherQuote": "Câu đố nghịch lý dí dỏm giúp rèn luyện tư duy logic phản biện rất hay!"
+  },
+  {
+    "id": 368,
+    "subject": "Đố mẹo",
+    "grade": "Đố vui",
+    "question": "Môn thể thao nào có lượng người hâm mộ đông đảo nhất hành tinh và được tôn vinh là 'Môn thể thao Vua'?",
+    "options": {
+      "A": "Bóng rổ",
+      "B": "Bóng đá",
+      "C": "Quần vợt (Tennis)",
+      "D": "Điền kinh"
+    },
+    "correct": "B",
+    "explanation": "✓ Bóng đá kết nối hàng tỷ trái tim trên toàn cầu, là môn thể thao vua đầy cảm xúc.",
+    "teacherQuote": "Trái bóng tròn lăn trên sân cỏ thắp lửa tinh thần thể thao đoàn kết và trung thực!"
+  },
+  {
+    "id": 369,
+    "subject": "Đố mẹo",
+    "grade": "Đố vui",
+    "question": "Loài chim nào lông trắng muốt ngậm cành ô-liu là biểu tượng quốc tế cho Hòa bình và Tự do?",
+    "options": {
+      "A": "Chim đại bàng",
+      "B": "Chim hải âu",
+      "C": "Chim bồ câu trắng",
+      "D": "Chim thiên nga"
+    },
+    "correct": "C",
+    "explanation": "✓ Chim bồ câu trắng tung cánh ngậm cành ô-liu là biểu tượng bất diệt của hòa bình thế giới.",
+    "teacherQuote": "Hãy cùng chắp cánh cho những cánh chim bồ câu hòa bình bay rợp trời xanh bình yên!"
+  },
+  {
+    "id": 370,
+    "subject": "Đố mẹo",
+    "grade": "Đố vui",
+    "question": "Cột mốc 370 câu hỏi: Cuốn sổ lưu giữ điểm số và nhận xét rèn luyện trong suốt 5 năm tiểu học của học sinh là gì?",
+    "options": {
+      "A": "Sổ tay nhật ký",
+      "B": "Học bạ tiểu học",
+      "C": "Vở bài tập",
+      "D": "Sách hướng dẫn học tập"
+    },
+    "correct": "B",
+    "explanation": "✓ Học bạ tiểu học ghi dấu hành trình trưởng thành, nỗ lực và kết quả học tập của các em học sinh.",
+    "teacherQuote": "Nhiệt liệt chúc mừng các bạn đã xuất sắc chinh phục trọn vẹn 370 câu hỏi của Lớp Học Thông Minh! 🌟🎉"
   }
 ]
