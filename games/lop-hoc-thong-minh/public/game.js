@@ -182,8 +182,9 @@ function initDesks() {
         <div class="answer-bubble" id="ans_bubble_${i}" style="display: none;"></div>
         <div class="result-mark" id="res_mark_${i}" style="display: none;"></div>
         <div class="student-chat-bubble" id="chat_bubble_${i}" style="display: none;"></div>
-        <div class="student-backpack" id="backpack_${i}">
-          <div class="red-scarf"></div>
+        <div class="student-avatar-box" id="avatar_box_${i}">
+          <img class="student-avatar-img" id="avatar_img_${i}" src="" alt="avatar">
+          <div class="student-mini-scarf"></div>
         </div>
         <div class="student-tag-name" id="tag_name_${i}">---</div>
       </div>
@@ -247,7 +248,8 @@ function updateLeaderboardUI(leaderboard) {
 function updateDeskStudent(deskId, student) {
   const studentWrap = document.getElementById(`student_wrap_${deskId}`);
   const tagName = document.getElementById(`tag_name_${deskId}`);
-  const backpack = document.getElementById(`backpack_${deskId}`);
+  const avatarImg = document.getElementById(`avatar_img_${deskId}`);
+  const avatarBox = document.getElementById(`avatar_box_${deskId}`);
   const ansBubble = document.getElementById(`ans_bubble_${deskId}`);
   const resMark = document.getElementById(`res_mark_${deskId}`);
 
@@ -262,7 +264,19 @@ function updateDeskStudent(deskId, student) {
     const score = student.score || 0;
     tagName.innerHTML = `<span class="tag-nick">${nick}</span><span class="tag-score">★${score}đ</span>`;
   }
-  if (backpack) backpack.style.background = student.bagColor || '#3b82f6';
+  if (avatarImg) {
+    const defaultAvt = `https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(student.username || deskId)}`;
+    const avtUrl = student.avatar || defaultAvt;
+    if (avatarImg.src !== avtUrl) {
+      avatarImg.src = avtUrl;
+    }
+    avatarImg.onerror = () => {
+      avatarImg.src = defaultAvt;
+    };
+  }
+  if (avatarBox) {
+    avatarBox.style.borderColor = student.bagColor || '#3b82f6';
+  }
 
   // Nếu học sinh vừa ghi điểm trong lượt này
   if (student.pointsEarned && student.pointsEarned > 0) {
