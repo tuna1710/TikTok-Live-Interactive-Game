@@ -89,6 +89,7 @@ const AVAILABLE_PACKS = [
   { id: 'day_7', name: '📅 Gói Ngày 7: Đố Vui Hài Hước & Trend Mạng Xã Hội (300 câu)', file: './data/packs/day_7.json', totalWords: 300 },
   { id: 'day_8', name: '🟢 Gói Ngày 8: Từ Ngắn Dễ Đoán & Đời Sống Quen Thuộc (300 câu)', file: './data/packs/day_8.json', totalWords: 300 },
   { id: 'day_9', name: '🟢 Gói Ngày 9: Từ Ngắn Dễ Đoán & Thế Giới Xung Quanh (300 câu)', file: './data/packs/day_9.json', totalWords: 300 },
+  { id: 'day_10', name: '🟢 Gói Ngày 10: Từ Ngắn Dễ Đoán & Khám Phá Cuộc Sống (300 câu)', file: './data/packs/day_10.json', totalWords: 300 },
 ];
 let currentPackId = 'special';
 let wordsData = [...require('./data/words.json')];
