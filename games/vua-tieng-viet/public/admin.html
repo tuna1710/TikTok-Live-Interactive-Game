@@ -133,12 +133,35 @@
     </div>
   </div>
 
+  <!-- Quản Lý Gói Câu Hỏi Live Hôm Nay -->
+  <div class="card" style="border: 1px solid rgba(255, 215, 0, 0.4); box-shadow: 0 0 15px rgba(255, 215, 0, 0.15);">
+    <div class="card-title" style="color: #ffd700;">📦 Chọn Gói Câu Hỏi Live Hôm Nay</div>
+    <div class="stat-row">
+      <span class="stat-label">Gói đang phát:</span>
+      <span class="stat-val gold" id="currentPackName">Đang tải...</span>
+    </div>
+    <div style="margin-top:6px;">
+      <select id="packSelect" onchange="changePack(this.value)">
+        <option value="special">🌟 Gói Đặc Biệt (1.660 câu tổng hợp)</option>
+        <option value="day_1">📅 Gói Ngày 1: Đời Sống & Thành Ngữ Mới (300 câu)</option>
+        <option value="day_2">📅 Gói Ngày 2: Ẩm Thực 3 Miền & Quê Hương (300 câu)</option>
+        <option value="day_3">📅 Gói Ngày 3: Tục Ngữ Dân Gian & Tự Nhiên (300 câu)</option>
+        <option value="day_4">📅 Gói Ngày 4: Danh Lam Cổ Tích & Con Người (300 câu)</option>
+        <option value="day_5">📅 Gói Ngày 5: Hot Trend & Đời Sống Xã Hội (300 câu)</option>
+      </select>
+    </div>
+    <div style="font-size:11px;color:#94a3b8;margin-top:6px;">
+      💡 Mỗi ngày live chọn 1 gói riêng biệt (300 câu) để người xem không bị lặp lại câu hỏi!
+    </div>
+  </div>
+
   <!-- Nút Thao Tác Nhanh -->
   <div class="card">
     <div class="card-title">⚡ Thao Tác Trận Đấu</div>
     <button class="btn-gold" onclick="sendAction('skip')">⏭️ Đổi Sang Câu Đố Khác Ngay</button>
     <button class="btn-purple" onclick="sendAction('reveal')">💡 Mở Ngay 1 Chữ Cái Gợi Ý</button>
     <button class="btn-pink" onclick="sendAction('addTime', { seconds: 30 })">⏱️ Cộng Thêm 30 Giây</button>
+    <button class="btn-green" style="margin-top:8px;" onclick="sendAction('triggerTopicVote')">🗳️ Kích Hoạt Bình Chọn Chủ Đề (Vòng 500đ)</button>
   </div>
 
   <!-- Streamer Chủ Động Chọn Câu Hỏi -->
@@ -447,9 +470,26 @@
             } else {
               pBanner.style.display = 'none';
             }
+          if (json.state.currentPackName) {
+            const cpName = document.getElementById('currentPackName');
+            if (cpName) cpName.textContent = json.state.currentPackName;
+            const pSel = document.getElementById('packSelect');
+            if (pSel && Array.isArray(json.state.availablePacks) && json.state.availablePacks.length > 0) {
+              if (pSel.children.length !== json.state.availablePacks.length) {
+                pSel.innerHTML = json.state.availablePacks.map(p => `<option value="${p.id}">${p.name}</option>`).join('');
+              }
+            }
+            if (pSel && json.state.currentPackId && pSel.value !== json.state.currentPackId) {
+              pSel.value = json.state.currentPackId;
+            }
           }
         }
       } catch (e) {}
+    }
+
+    function changePack(packId) {
+      if (!packId) return;
+      sendAction('selectPack', { packId });
     }
 
     function simulateLikeTest(count = 20) {

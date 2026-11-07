@@ -82,11 +82,35 @@ app.get('/api/tts', (req, res) => {
 const server = http.createServer(app);
 const io = new Server(server, { cors: { origin: '*' } });
 
-// Load Words & Quản lý Deck Shuffle (Tránh lặp câu)
-const wordsData = require('./data/words.json');
+// Quản lý Gói Câu Hỏi (Packs: Gói Đặc Biệt 1.660 câu, Gói Ngày 1 đến Ngày 5 mỗi gói 300 câu...)
+const AVAILABLE_PACKS = [
+  { id: 'special', name: '🌟 Gói Đặc Biệt (1.660 câu tổng hợp)', file: './data/words.json', totalWords: 1660 },
+  { id: 'day_1', name: '📅 Gói Ngày 1: Đời Sống & Thành Ngữ Mới (300 câu)', file: './data/packs/day_1.json', totalWords: 300 },
+  { id: 'day_2', name: '📅 Gói Ngày 2: Ẩm Thực 3 Miền & Quê Hương (300 câu)', file: './data/packs/day_2.json', totalWords: 300 },
+  { id: 'day_3', name: '📅 Gói Ngày 3: Tục Ngữ Dân Gian & Tự Nhiên (300 câu)', file: './data/packs/day_3.json', totalWords: 300 },
+  { id: 'day_4', name: '📅 Gói Ngày 4: Danh Lam Cổ Tích & Con Người (300 câu)', file: './data/packs/day_4.json', totalWords: 300 },
+  { id: 'day_5', name: '📅 Gói Ngày 5: Hot Trend & Đời Sống Xã Hội (300 câu)', file: './data/packs/day_5.json', totalWords: 300 },
+];
+let currentPackId = 'special';
+let wordsData = [...require('./data/words.json')];
 const PLAYED_WORDS_FILE = path.join(__dirname, 'data', 'played_words.json');
 let playedWordIds = new Set();
 let wordDeck = [];
+
+// Quản lý Vòng Bình Chọn Chủ Đề Khán Giả (Cứ 15 câu 1 lần -> Câu đặc biệt 500 điểm)
+const TOPIC_VOTE_INTERVAL = 15;
+let questionsInVoteCycle = 0;
+let isSpecial500Round = false;
+let nextSpecialCategory = null;
+
+let topicVoteState = {
+  active: false,
+  options: [],
+  votedUsers: new Set(),
+  timeLeft: 12,
+  duration: 12,
+  timer: null,
+};
 
 // Game State
 let gameState = {
@@ -95,7 +119,7 @@ let gameState = {
   scrambledLetters: [],   // ['H', 'Ồ', 'N', 'G', 'O', 'A']
   revealedMask: [],       // boolean[] for each char in currentWord.word
   timeLeft: ROUND_TIME_DEFAULT,
-  roundState: 'WAITING',   // 'PLAYING' | 'WON' | 'TIMEOUT'
+  roundState: 'WAITING',   // 'PLAYING' | 'WON' | 'TIMEOUT' | 'TOPIC_VOTING'
   lastWinner: null,
   totalLikes: 0,
   connectedChannel: TIKTOK_USERNAME.startsWith('@') ? TIKTOK_USERNAME : '@' + TIKTOK_USERNAME,
@@ -107,6 +131,8 @@ let gameState = {
   ttsEnabled: true,
   isBossRound: false,
   roundTimeTotal: ROUND_TIME_DEFAULT,
+  isSpecial500: false,
+  pointsReward: 100,
 };
 
 let timerInterval = null;
@@ -723,6 +749,121 @@ function pickBossWord() {
   return picked;
 }
 
+function loadPack(packId) {
+  const pack = AVAILABLE_PACKS.find(p => p.id === packId) || AVAILABLE_PACKS[0];
+  currentPackId = pack.id;
+  try {
+    const pFile = path.resolve(__dirname, pack.file);
+    const raw = JSON.parse(fs.readFileSync(pFile, 'utf-8'));
+    if (Array.isArray(raw)) {
+      wordsData = [...raw];
+      pack.totalWords = wordsData.length;
+      console.log(`📦 [GÓI CÂU HỎI] Đã nạp "${pack.name}": ${wordsData.length} câu.`);
+      buildDeck();
+      io.emit('packChanged', {
+        currentPackId,
+        packName: pack.name,
+        totalWords: wordsData.length,
+        remainingInDeck: wordDeck.length,
+        playedCount: playedWordIds.size,
+      });
+      return true;
+    }
+  } catch (e) {
+    console.error('[GÓI CÂU HỎI LỖI]', e.message);
+  }
+  return false;
+}
+
+function startTopicVoting() {
+  if (gameState.roundState === 'TOPIC_VOTING') return;
+  if (isCelebratingMilestone || isCelebratingDonorHonor) return;
+
+  const allCats = [...new Set(wordsData.map(w => w.category))];
+  const shuffledCats = shuffle(allCats).slice(0, 3);
+  const options = shuffledCats.map((cat, idx) => ({
+    id: idx + 1,
+    name: cat,
+    votes: 0,
+    percent: 0,
+  }));
+
+  topicVoteState = {
+    active: true,
+    options,
+    votedUsers: new Set(),
+    timeLeft: 12,
+    duration: 12,
+    timer: null,
+  };
+
+  gameState.roundState = 'TOPIC_VOTING';
+  const ttsText = `Cả phòng hãy cùng bình chọn chủ đề cho câu hỏi tiếp theo! Bình luận 1 cho ${options[0].name}, 2 cho ${options[1].name}, hoặc 3 cho ${options[2].name}! Câu hỏi đặc biệt này sẽ được thưởng 500 điểm!`;
+  console.log(`🗳️ [BÌNH CHỌN CHỦ ĐỀ] Bắt đầu 12s bình chọn giữa 3 chủ đề: 1: ${options[0].name} | 2: ${options[1].name} | 3: ${options[2].name}`);
+
+  io.emit('topicVotingStart', {
+    options: topicVoteState.options,
+    duration: topicVoteState.duration,
+    timeLeft: topicVoteState.timeLeft,
+    ttsText,
+  });
+
+  if (topicVoteState.timer) clearInterval(topicVoteState.timer);
+  topicVoteState.timer = setInterval(() => {
+    topicVoteState.timeLeft--;
+    io.emit('topicVotingTick', {
+      timeLeft: topicVoteState.timeLeft,
+      options: topicVoteState.options,
+    });
+
+    if (topicVoteState.timeLeft <= 0) {
+      endTopicVoting();
+    }
+  }, 1000);
+}
+
+function endTopicVoting() {
+  if (topicVoteState.timer) {
+    clearInterval(topicVoteState.timer);
+    topicVoteState.timer = null;
+  }
+  topicVoteState.active = false;
+
+  const sorted = [...topicVoteState.options].sort((a, b) => b.votes - a.votes);
+  const topVotes = sorted[0].votes;
+  const topTied = sorted.filter(o => o.votes === topVotes);
+  const winner = topTied[Math.floor(Math.random() * topTied.length)];
+
+  nextSpecialCategory = winner.name;
+  isSpecial500Round = true;
+
+  const ttsText = `Chủ đề ${winner.name} đã chiến thắng bình chọn với ${winner.votes} phiếu! Xin mời quý vị cùng đến với câu hỏi đặc biệt 500 điểm!`;
+  console.log(`🎉 [KẾT QUẢ BÌNH CHỌN] Chủ đề chiến thắng: "${winner.name}" (${winner.votes} phiếu) -> Kích hoạt câu hỏi đặc biệt 500đ!`);
+
+  io.emit('topicVotingEnd', {
+    winner,
+    options: topicVoteState.options,
+    ttsText,
+    isSpecial500: true,
+  });
+
+  if (nextRoundTimer) clearTimeout(nextRoundTimer);
+  nextRoundTimer = setTimeout(() => {
+    startNewRound();
+  }, 3500);
+}
+
+function scheduleNextRound() {
+  questionsInVoteCycle++;
+  console.log(`📌 Tiến độ chu kỳ bình chọn chủ đề: ${questionsInVoteCycle}/${TOPIC_VOTE_INTERVAL} câu`);
+  if (questionsInVoteCycle >= TOPIC_VOTE_INTERVAL) {
+    questionsInVoteCycle = 0;
+    startTopicVoting();
+  } else {
+    startNewRound();
+  }
+}
+
 function startNewRound() {
   if (timerInterval) clearInterval(timerInterval);
   if (nextRoundTimer) {
@@ -741,6 +882,18 @@ function startNewRound() {
       savePlayedWords();
     }
     console.log(`[Streamer Pick] 🎯 Phát câu hỏi do Streamer chỉ định: "${wordObj.word}" (${wordObj.category})`);
+  } else if (isSpecial500Round && nextSpecialCategory) {
+    const candidates = wordDeck.filter(w => w.category === nextSpecialCategory);
+    if (candidates.length > 0) {
+      wordObj = candidates[Math.floor(Math.random() * candidates.length)];
+      const idx = wordDeck.findIndex(w => w.id === wordObj.id);
+      if (idx !== -1) wordDeck.splice(idx, 1);
+      playedWordIds.add(wordObj.id);
+      savePlayedWords();
+    } else {
+      wordObj = pickNextWord();
+    }
+    console.log(`🌟 [CÂU HỎI ĐẶC BIỆT 500Đ] Rút câu theo chủ đề bình chọn "${wordObj.category}": "${wordObj.word}"`);
   } else {
     wordObj = pickNextWord();
   }
@@ -767,9 +920,24 @@ function startNewRound() {
   gameState.timeLeft = gameState.roundTimeTotal;
   gameState.roundState = 'PLAYING';
 
-  console.log(`\n[Vòng ${gameState.round}] Từ cần đoán: "${wordObj.word}" (Chủ đề: ${wordObj.category})`);
+  if (isSpecial500Round) {
+    gameState.isSpecial500 = true;
+    gameState.pointsReward = 500;
+  } else {
+    gameState.isSpecial500 = false;
+    gameState.pointsReward = 100;
+  }
+  isSpecial500Round = false;
+  nextSpecialCategory = null;
 
-  const ttsText = `Vòng ${gameState.round}. Chủ đề ${wordObj.category}. Gợi ý: ${wordObj.hint}`;
+  console.log(`\n[Vòng ${gameState.round}] ${gameState.isSpecial500 ? '🌟 CÂU HỎI ĐẶC BIỆT 500Đ 🌟 | ' : ''}Từ cần đoán: "${wordObj.word}" (Chủ đề: ${wordObj.category})`);
+
+  let ttsText = '';
+  if (gameState.isSpecial500) {
+    ttsText = `Vòng ${gameState.round}. Câu hỏi đặc biệt 500 điểm! Chủ đề: ${wordObj.category}. Gợi ý là: ${wordObj.hint}`;
+  } else {
+    ttsText = `Vòng ${gameState.round}. Chủ đề ${wordObj.category}. Gợi ý: ${wordObj.hint}`;
+  }
 
   const roundPayload = {
     ...getClientGameState(),
@@ -824,7 +992,7 @@ function handleTimeout() {
 
   if (nextRoundTimer) clearTimeout(nextRoundTimer);
   nextRoundTimer = setTimeout(() => {
-    startNewRound();
+    scheduleNextRound();
   }, 5000);
 }
 
@@ -832,6 +1000,33 @@ function checkGuess(user, text) {
   if (!text) return;
   gameState.totalCommentsReceived++;
   resetIdleTimer();
+
+  // Xử lý bình chọn chủ đề (1, 2, 3)
+  if (gameState.roundState === 'TOPIC_VOTING' && topicVoteState.active) {
+    const raw = String(text || '').trim();
+    let chosenId = null;
+    if (raw === '1' || raw.startsWith('1 ') || raw === '11' || raw.toLowerCase().includes('chon 1')) chosenId = 1;
+    else if (raw === '2' || raw.startsWith('2 ') || raw === '22' || raw.toLowerCase().includes('chon 2')) chosenId = 2;
+    else if (raw === '3' || raw.startsWith('3 ') || raw === '33' || raw.toLowerCase().includes('chon 3')) chosenId = 3;
+
+    if (chosenId) {
+      const userKey = user.uniqueId || user.nickname;
+      if (!topicVoteState.votedUsers.has(userKey)) {
+        topicVoteState.votedUsers.add(userKey);
+        const opt = topicVoteState.options.find(o => o.id === chosenId);
+        if (opt) {
+          opt.votes++;
+          const totalVotes = topicVoteState.options.reduce((sum, o) => sum + o.votes, 0);
+          topicVoteState.options.forEach(o => {
+            o.percent = totalVotes > 0 ? Math.round((o.votes / totalVotes) * 100) : 0;
+          });
+          io.emit('topicVoteUpdate', { options: topicVoteState.options, totalVotes, user: user.nickname, vote: chosenId });
+          console.log(`🗳️ [VOTE] ${user.nickname} bình chọn chủ đề ${chosenId}: ${opt.name} (Tổng phiếu: ${opt.votes})`);
+        }
+      }
+    }
+    return;
+  }
 
   if (gameState.roundState !== 'PLAYING' || !gameState.currentWord) return;
 
@@ -880,7 +1075,7 @@ function checkGuess(user, text) {
       streakCount = currentStreakWinner.count + 1;
     }
 
-    let basePoints = 100;
+    let basePoints = gameState.pointsReward || 100;
     let multiplier = 1.0;
     let streakBadge = '';
     let streakTitle = '';
@@ -969,7 +1164,9 @@ function checkGuess(user, text) {
 
     const winnerName = existing.nickname;
     let ttsText = '';
-    if (streakCount >= 5) {
+    if (basePoints >= 500) {
+      ttsText = `Tuyệt đỉnh! ${winnerName} đã xuất sắc đoán đúng câu hỏi đặc biệt bình chọn và nhận ngay ${totalPoints} điểm!`;
+    } else if (streakCount >= 5) {
       ttsText = `Thần tốc bất bại! ${winnerName} đã lập kỷ lục chuỗi ${streakCount} câu thắng liên tiếp, nhân đôi điểm số lên ${totalPoints} điểm!`;
     } else if (streakCount >= 3) {
       ttsText = `Quá bốc lửa! ${winnerName} đạt chuỗi ${streakCount} câu thắng liên tiếp, nhận ${totalPoints} điểm!`;
@@ -1002,7 +1199,7 @@ function checkGuess(user, text) {
     } else {
       if (nextRoundTimer) clearTimeout(nextRoundTimer);
       nextRoundTimer = setTimeout(() => {
-        startNewRound();
+        scheduleNextRound();
       }, 5000);
     }
   }
@@ -1281,6 +1478,18 @@ function getClientGameState() {
     isBossRound: false,
     bossMultiplier: 1,
     roundTimeTotal: gameState.roundTimeTotal || ROUND_TIME_DEFAULT,
+    isSpecial500: !!gameState.isSpecial500,
+    pointsReward: gameState.pointsReward || 100,
+    questionsInVoteCycle: questionsInVoteCycle,
+    topicVoteInterval: TOPIC_VOTE_INTERVAL,
+    topicVoteState: topicVoteState.active ? {
+      options: topicVoteState.options,
+      timeLeft: topicVoteState.timeLeft,
+      duration: topicVoteState.duration,
+    } : null,
+    currentPackId,
+    currentPackName: AVAILABLE_PACKS.find(p => p.id === currentPackId)?.name || 'Gói Hiện Tại',
+    availablePacks: AVAILABLE_PACKS.map(p => ({ id: p.id, name: p.name, totalWords: p.totalWords })),
     nextRoundIsBoss: false,
     pendingStreamerWord: pendingStreamerWord ? {
       id: pendingStreamerWord.id,
@@ -1994,6 +2203,42 @@ app.post('/admin/api', (req, res) => {
     gameState.ttsEnabled = (req.body.ttsEnabled !== undefined) ? !!req.body.ttsEnabled : !gameState.ttsEnabled;
     io.emit('ttsConfig', { ttsEnabled: gameState.ttsEnabled });
     return res.json({ ok: true, ttsEnabled: gameState.ttsEnabled, message: `Giọng đọc đã ${gameState.ttsEnabled ? 'BẬT' : 'TẮT'}` });
+  }
+
+  if (action === 'selectPack') {
+    const packId = req.body.packId;
+    const ok = loadPack(packId);
+    if (ok) {
+      return res.json({
+        ok: true,
+        currentPackId,
+        packName: AVAILABLE_PACKS.find(p => p.id === currentPackId)?.name,
+        totalWords: wordsData.length,
+        remainingInDeck: wordDeck.length,
+        message: `Đã chuyển sang gói: ${AVAILABLE_PACKS.find(p => p.id === currentPackId)?.name}`,
+      });
+    }
+    return res.status(400).json({ ok: false, message: 'Không thể nạp gói câu hỏi yêu cầu' });
+  }
+
+  if (action === 'getPacks') {
+    return res.json({
+      ok: true,
+      currentPackId,
+      availablePacks: AVAILABLE_PACKS.map(p => ({ id: p.id, name: p.name, totalWords: p.totalWords })),
+      playedCount: playedWordIds.size,
+      remainingInDeck: wordDeck.length,
+    });
+  }
+
+  if (action === 'triggerTopicVote') {
+    if (timerInterval) clearInterval(timerInterval);
+    if (nextRoundTimer) {
+      clearTimeout(nextRoundTimer);
+      nextRoundTimer = null;
+    }
+    startTopicVoting();
+    return res.json({ ok: true, message: 'Đã kích hoạt bình chọn chủ đề 12s cho khán giả (vòng đặc biệt 500 điểm)!' });
   }
 
   return res.status(400).json({ ok: false, error: 'Unknown action' });

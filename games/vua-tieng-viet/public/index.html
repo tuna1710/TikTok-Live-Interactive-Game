@@ -1869,6 +1869,220 @@
       border-color: #ef4444;
       box-shadow: 0 0 40px rgba(239, 68, 68, 0.95), inset 0 0 25px rgba(255, 215, 0, 0.4);
     }
+
+    /* Vòng bình chọn chủ đề 15 câu 1 lần & Câu hỏi đặc biệt 500đ */
+    .topic-vote-overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(20, 10, 45, 0.96), rgba(5, 2, 15, 0.98));
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 125;
+      padding: 16px;
+      animation: zoomIn 0.3s ease-out;
+    }
+    .topic-vote-overlay.show { display: flex; }
+    .topic-vote-card {
+      width: 92%;
+      max-width: 440px;
+      background: linear-gradient(160deg, #1f113a 0%, #120926 60%, #29124a 100%);
+      padding: 20px 18px;
+      border-radius: 20px;
+      text-align: center;
+      border: 3px solid #00f2fe;
+      box-shadow: 0 0 35px rgba(0, 242, 254, 0.5), inset 0 0 20px rgba(0, 242, 254, 0.2);
+      position: relative;
+    }
+    .vote-badge-top {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: #00f2fe;
+      background: rgba(0, 242, 254, 0.15);
+      border: 1px solid rgba(0, 242, 254, 0.4);
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 8px;
+    }
+    .vote-main-title {
+      font-size: 19px;
+      font-weight: 900;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+      text-shadow: 0 2px 10px rgba(0, 242, 254, 0.6);
+    }
+    .vote-sub-desc {
+      font-size: 13px;
+      color: #e2e8f0;
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+    .vote-reward-pill {
+      display: inline-block;
+      margin-top: 6px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 800;
+      background: linear-gradient(90deg, #ff8c00, #ffd700);
+      color: #1a0033;
+      box-shadow: 0 0 12px rgba(255, 215, 0, 0.6);
+      animation: pulseReward 1s infinite alternate;
+    }
+    @keyframes pulseReward {
+      from { transform: scale(1); }
+      to { transform: scale(1.05); }
+    }
+    .vote-timer-wrap {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 14px;
+    }
+    .vote-timer-circle {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(0, 0, 0, 0.5);
+      border: 2px solid #ff007f;
+      padding: 4px 16px;
+      border-radius: 30px;
+      font-size: 16px;
+      font-weight: 900;
+      color: #fff;
+      box-shadow: 0 0 15px rgba(255, 0, 127, 0.5);
+    }
+    .vote-options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .vote-opt-item {
+      position: relative;
+      background: rgba(255, 255, 255, 0.06);
+      border: 2px solid rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+      overflow: hidden;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.2s ease;
+    }
+    .vote-opt-item.lead {
+      border-color: #ffd700;
+      box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+    }
+    .vote-opt-progress {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      background: linear-gradient(90deg, rgba(0, 242, 254, 0.25), rgba(121, 40, 202, 0.35));
+      transition: width 0.3s ease;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .vote-opt-item.lead .vote-opt-progress {
+      background: linear-gradient(90deg, rgba(255, 215, 0, 0.35), rgba(255, 140, 0, 0.45));
+    }
+    .vote-opt-info {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-align: left;
+    }
+    .vote-opt-key {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: #00f2fe;
+      color: #0b071a;
+      font-weight: 900;
+      font-size: 15px;
+      box-shadow: 0 2px 8px rgba(0, 242, 254, 0.5);
+    }
+    .vote-opt-name {
+      font-size: 15px;
+      font-weight: 800;
+      color: #fff;
+    }
+    .vote-opt-stats {
+      position: relative;
+      z-index: 2;
+      text-align: right;
+    }
+    .vote-opt-percent {
+      font-size: 16px;
+      font-weight: 900;
+      color: #00f2fe;
+    }
+    .vote-opt-item.lead .vote-opt-percent {
+      color: #ffd700;
+    }
+    .vote-opt-count {
+      font-size: 11px;
+      color: #94a3b8;
+    }
+    .vote-winner-box {
+      margin-top: 10px;
+      padding: 12px;
+      background: rgba(255, 215, 0, 0.15);
+      border: 2px solid #ffd700;
+      border-radius: 12px;
+      animation: zoomIn 0.3s ease;
+    }
+    .vote-winner-cheer {
+      font-size: 12px;
+      font-weight: 900;
+      color: #ffd700;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+    .vote-winner-name {
+      font-size: 18px;
+      font-weight: 900;
+      color: #fff;
+      text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+      margin-bottom: 2px;
+    }
+    .vote-winner-sub {
+      font-size: 12px;
+      color: #e2e8f0;
+    }
+
+    /* Banner vòng đặc biệt 500đ */
+    .special-500-banner {
+      margin: 4px 14px 6px;
+      padding: 6px 12px;
+      border-radius: 10px;
+      background: linear-gradient(90deg, #b8860b, #ffd700, #ff8c00);
+      color: #170932;
+      font-weight: 900;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      box-shadow: 0 0 18px rgba(255, 215, 0, 0.7);
+      animation: specialGlow 1.2s infinite alternate;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    @keyframes specialGlow {
+      from { box-shadow: 0 0 10px rgba(255, 215, 0, 0.5); }
+      to { box-shadow: 0 0 24px rgba(255, 215, 0, 0.95); }
+    }
   </style>
 </head>
 <body>
@@ -1980,6 +2194,13 @@
       <div class="round-tag">
         VÒNG <span id="roundNumber">1</span>
       </div>
+    </div>
+
+    <!-- Huy hiệu Vòng Đặc Biệt 500 Điểm -->
+    <div id="special500Banner" class="special-500-banner" style="display:none;">
+      <span class="special-star">🌟</span>
+      <span class="special-title">CÂU HỎI ĐẶC BIỆT BÌNH CHỌN: THƯỞNG 500 ĐIỂM!</span>
+      <span class="special-star">🌟</span>
     </div>
 
     <!-- Gợi ý câu hỏi -->
@@ -2194,6 +2415,34 @@
           <!-- Render danh sách phần thưởng mở rương -->
         </div>
         <button class="chest-close-btn" onclick="closeChestOverlay()">❤️ TIẾP TỤC THẢ TIM</button>
+      </div>
+    </div>
+
+    <!-- Modal Bình Chọn Chủ Đề (Cứ 15 câu 1 lần -> Thưởng 500đ) -->
+    <div id="topicVoteOverlay" class="topic-vote-overlay">
+      <div class="topic-vote-card">
+        <div class="vote-badge-top">🗳️ VÒNG KHÁN GIẢ BÌNH CHỌN 🗳️</div>
+        <div class="vote-main-title">CHỌN CHỦ ĐỀ CÂU TIẾP THEO</div>
+        <div class="vote-sub-desc">
+          Bình luận <b style="color:#00f2fe;">1</b>, <b style="color:#ffd700;">2</b> hoặc <b style="color:#ff007f;">3</b> ngay trên Live!
+          <div><span class="vote-reward-pill">🌟 CÂU HỎI ĐƯỢC CHỌN THƯỞNG 500 ĐIỂM! 🌟</span></div>
+        </div>
+        <div class="vote-timer-wrap">
+          <div class="vote-timer-circle" id="voteTimerCircle">
+            <span>⏱️</span>
+            <span id="voteTimerSec">12</span>s
+          </div>
+        </div>
+
+        <div class="vote-options-list" id="voteOptionsList">
+          <!-- Render 3 lựa chọn với tiến độ phiếu và % -->
+        </div>
+
+        <div id="voteWinnerBox" class="vote-winner-box" style="display:none;">
+          <div class="vote-winner-cheer">🎉 CHỦ ĐỀ CHIẾN THẮNG 🎉</div>
+          <div class="vote-winner-name" id="voteWinnerName">...</div>
+          <div class="vote-winner-sub">Chuẩn bị đến với câu hỏi đặc biệt 500 điểm!</div>
+        </div>
       </div>
     </div>
   </div>
@@ -2964,7 +3213,15 @@
       updateStreakTicker(state.currentStreak);
       if (state.likeChest) updateLikeChestBar(state.likeChest);
 
-
+      const s500 = document.getElementById('special500Banner');
+      if (s500) {
+        s500.style.display = state.isSpecial500 ? 'flex' : 'none';
+      }
+      if (state.topicVoteState && state.roundState === 'TOPIC_VOTING') {
+        renderTopicVoting(state.topicVoteState.options, state.topicVoteState.timeLeft);
+      } else {
+        closeTopicVoteOverlay();
+      }
     });
 
     // Cập nhật huy hiệu gợi ý quà tặng
@@ -3296,10 +3553,93 @@
       if (overlay) overlay.classList.remove('show');
     }
 
+    const topicVoteOverlay = document.getElementById('topicVoteOverlay');
+    const voteTimerSec = document.getElementById('voteTimerSec');
+    const voteOptionsList = document.getElementById('voteOptionsList');
+    const voteWinnerBox = document.getElementById('voteWinnerBox');
+    const voteWinnerName = document.getElementById('voteWinnerName');
+
+    function closeTopicVoteOverlay() {
+      if (topicVoteOverlay) topicVoteOverlay.classList.remove('show');
+    }
+
+    function renderTopicVoting(options, timeLeft) {
+      if (!topicVoteOverlay) return;
+      topicVoteOverlay.classList.add('show');
+      if (voteWinnerBox) voteWinnerBox.style.display = 'none';
+      if (voteTimerSec && timeLeft !== undefined) {
+        voteTimerSec.textContent = timeLeft;
+      }
+      if (voteOptionsList && Array.isArray(options)) {
+        const maxVotes = Math.max(1, ...options.map(o => o.votes || 0));
+        voteOptionsList.innerHTML = options.map(opt => {
+          const isLead = (opt.votes > 0 && opt.votes === maxVotes);
+          return `
+            <div class="vote-opt-item ${isLead ? 'lead' : ''}">
+              <div class="vote-opt-progress" style="width: ${opt.percent || 0}%;"></div>
+              <div class="vote-opt-info">
+                <span class="vote-opt-key">${opt.id}</span>
+                <span class="vote-opt-name">${opt.name}</span>
+              </div>
+              <div class="vote-opt-stats">
+                <div class="vote-opt-percent">${opt.percent || 0}%</div>
+                <div class="vote-opt-count">${opt.votes || 0} phiếu</div>
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+    }
+
+    socket.on('topicVotingStart', data => {
+      winnerOverlay.classList.remove('show');
+      closeMilestoneOverlay();
+      closeDonorHonorOverlay();
+      renderTopicVoting(data.options, data.timeLeft || data.duration || 12);
+      soundEffects.playVictoryFanfare();
+      if (data.ttsText) {
+        ttsManager.speak(data.ttsText, true);
+      }
+    });
+
+    socket.on('topicVotingTick', data => {
+      if (voteTimerSec) voteTimerSec.textContent = data.timeLeft;
+      if (data.options) {
+        renderTopicVoting(data.options, data.timeLeft);
+      }
+    });
+
+    socket.on('topicVoteUpdate', data => {
+      if (data.options) {
+        renderTopicVoting(data.options);
+      }
+      soundEffects.playChime();
+    });
+
+    socket.on('topicVotingEnd', data => {
+      if (data.winner) {
+        if (voteWinnerBox && voteWinnerName) {
+          voteWinnerName.textContent = `${data.winner.name} (${data.winner.votes} phiếu)`;
+          voteWinnerBox.style.display = 'block';
+        }
+      }
+      soundEffects.playCelebrationBells();
+      if (data.ttsText) {
+        ttsManager.speak(data.ttsText, true);
+      }
+    });
+
     socket.on('roundStart', state => {
       winnerOverlay.classList.remove('show');
       closeMilestoneOverlay();
       closeDonorHonorOverlay();
+      closeTopicVoteOverlay();
+
+      const s500 = document.getElementById('special500Banner');
+      if (s500) {
+        s500.style.display = state.isSpecial500 ? 'flex' : 'none';
+      }
+
       roundNumber.textContent = state.round;
       categoryLabel.textContent = state.category;
       clueText.textContent = state.hint;
@@ -3308,8 +3648,6 @@
       renderScramble(state.scrambledLetters);
       renderTargetSlots(state.targetPattern);
       updateGiftHintBadge(state.canRevealMore, state.remainingHiddenLetters);
-
-
 
       if (state.ttsText) {
         ttsManager.speak(state.ttsText, true);

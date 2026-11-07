@@ -16,8 +16,8 @@ Tài liệu này lưu trữ danh sách các tính năng nâng cấp tương tác
 | **5** | 👑💎 **Kết thúc game vinh danh cả người tặng quà** *(Top Donors Hall of Fame)* | Tri ân nhà tài trợ/phú hộ phòng live bên cạnh quán quân | **P1 (Mới)** |  Đã xong |
 | **6** | 🏁 **Nâng mốc điểm kết thúc game lên 3.000 điểm** *(Target Score 3000)* | Tăng độ kịch tính, kéo dài trận đấu vừa vặn với một phiên live | **P1 (Mới)** |  Đã xong |
 | **7** | 🎯 **Câu Đố Trùm & Giờ Vàng** *(Boss Round / Rush Hour x2)* | Tạo cao trào, giải tỏa nhịp độ đều đều sau mỗi 5 - 10 vòng | **P2** | ⏳ Chờ làm |
-| **8** | 📚 **Chọn câu hỏi & Quản lý câu đố từ Admin** *(Streamer Word Picker & CMS)* | Streamer chủ động tìm, chọn câu hỏi hoặc tự nhập câu mới theo ý muốn | **P2** |  Đã xong |
-| **9** | ⚔️ **Chế độ Chia Phe Đối Kháng** *(Team Red vs Team Blue)* | Tạo hiệu ứng đám đông, rủ bạn bè comment theo phe | **P3** | ⏳ Chờ làm |
+| **9** | 📦 **Hệ Thống Gói Câu Hỏi Theo Từng Ngày** *(Question Packs Day 1, 2, 3...)* | Streamer mỗi ngày live chọn 1 gói riêng biệt 300 câu, chống trùng lặp | **P1** | 🔄 Đang triển khai |
+| **-** | ❌ ~~Chế độ Chia Phe Đối Kháng (Team Red vs Team Blue)~~ | *(Đã hủy theo yêu cầu của người dùng)* | -- | 🚫 Đã hủy |
 
 ---
 
@@ -148,8 +148,11 @@ Tài liệu này lưu trữ danh sách các tính năng nâng cấp tương tác
 
 ---
 
-### 📌 MỤC 9: CHẾ ĐỘ CHIA PHE ĐỐI KHÁNG (TEAM RED VS TEAM BLUE)
-> **Mục tiêu:** Người xem bình luận `#do` hoặc `#xanh` để gia nhập phe và kéo co điểm số thời gian thực (Tug of War).
+### 📌 MỤC 9: HỆ THỐNG GÓI CÂU HỎI THEO TỪNG NGÀY (QUESTION PACKS DAY 1, 2, 3...)
+> **Mục tiêu:** Streamer mỗi ngày live chọn một gói câu hỏi riêng biệt (~300 câu/gói). Khán giả trung thành theo dõi nhiều buổi livestream liên tiếp sẽ luôn được trải nghiệm câu đố mới, tránh lặp lại câu hỏi cũ.
+
+### 📌 ~~MỤC CŨ: CHẾ ĐỘ CHIA PHE ĐỐI KHÁNG (TEAM RED VS TEAM BLUE)~~
+> *(Đã hủy bỏ theo yêu cầu của người dùng, tập trung trải nghiệm giải đố Vua Tiếng Việt truyền thống & tương tác quà tặng)*
 
 ### 📌 MỤC 10: BỘ CÂU HỎI MỚI 30 CÂU THEO 4 DANH MỤC (QUESTION PACK 30)
 > **Mục tiêu:** Bổ sung ngân hàng câu hỏi mới lạ, hấp dẫn, không trùng lặp, chia theo 4 danh mục thịnh hành để tăng sự phong phú cho phòng live.
@@ -195,10 +198,12 @@ GIAI ĐOẠN 2: TỐI ƯU HÓA DONATE & VINH DANH TRẬN ĐẤU:
   ├── [x] Bước 6: Mục 4 - Tặng quà trả lời đúng được nhân đôi điểm (Donor Buff x2 Points) - XONG
   └── [x] Bước 7: Mục 5 - Kết thúc game vinh danh cả người tặng quà (Top Donors Hall of Fame) - XONG
 
-GIAI ĐOẠN 3: TẠO CAO TRÀO & TÍNH NĂNG MỞ RỘNG:
+GIAI ĐOẠN 3: TẠO CAO TRÀO & HỆ THỐNG GÓI CÂU HỎI THEO NGÀY:
   ├── [x] Bỏ Câu Đố Trùm (Boss Round) - Theo ý kiến người dùng
   ├── [x] Bước 9: Mục 8 - Chọn câu hỏi & Quản trị câu đố từ Admin (Streamer Word Picker & CMS) - XONG
-  └── [ ] Bước 10: Mục 9 - Chế độ Chia Phe Đối Kháng (Team Red vs Team Blue)
+  ├── [x] Hủy bỏ Chế độ Chia Phe Đối Kháng (Team Red vs Team Blue) theo yêu cầu
+  └── [x] Bước 10: Vòng Bình Chọn Chủ Đề 12s & Câu Hỏi Đặc Biệt 500đ - XONG
+  └── [🔄] Bước 11: Hệ Thống Gói Câu Hỏi Theo Từng Ngày (Gói Ngày 1, Ngày 2, Ngày 3, Ngày 4, Ngày 5...) - ĐANG LÀM
 
 GIAI ĐOẠN 4: CẢI TIẾN TRẢI NGHIỆM LIVESTREAM THEO YÊU CẦU:
   ├── [x] 1. Bỏ Câu Đố Trùm (không còn ngắt quãng nhịp chơi)
