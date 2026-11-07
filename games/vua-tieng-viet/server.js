@@ -253,12 +253,12 @@ function triggerLikeChestOpen(luckyUser = null) {
   // 1. Phần thưởng 1: Tự động mở chữ cái gợi ý (trợ giúp phòng live)
   const lettersRevealed = [];
   if (gameState.roundState === 'PLAYING' && gameState.currentWord) {
-    const r1 = revealOneHint({ nickname: 'Rương Kho Báu 🎁', avatar: '', diamonds: 0 }, 'Rương Tim Mở', true);
+    const r1 = revealOneHint({ nickname: 'Rương Tim Mở', avatar: '', diamonds: 0 }, 'Thả Tim', true, true);
     if (r1 && r1.letter) lettersRevealed.push(r1.letter);
 
     // Nếu từ còn nhiều chữ ẩn (>= 2 chữ), mở thêm 1 chữ thứ 2 cho hào sảng
     if (getHiddenLettersCount() >= 2) {
-      const r2 = revealOneHint({ nickname: 'Rương Kho Báu 🎁', avatar: '', diamonds: 0 }, 'Rương Tim Mở', true);
+      const r2 = revealOneHint({ nickname: 'Rương Tim Mở', avatar: '', diamonds: 0 }, 'Thả Tim', true, true);
       if (r2 && r2.letter) lettersRevealed.push(r2.letter);
     }
   }
@@ -280,10 +280,10 @@ function triggerLikeChestOpen(luckyUser = null) {
 
   let letterDesc = '';
   if (lettersRevealed.length > 0) {
-    letterDesc = ` Mở chữ cái: ${lettersRevealed.join(', ')}!`;
+    letterDesc = ` Trợ giúp mở chữ cái: ${lettersRevealed.join(', ')}!`;
   }
 
-  const ttsText = `Rương kho báu thứ ${likeChestState.chestsOpened} đã mở tung! Cả phòng được cộng thêm 30 giây suy nghĩ!${letterDesc} Cảm ơn mọi người đã cùng nhau thả tim!`;
+  const ttsText = `Cảm ơn mọi người đã nhiệt tình thả tim để mở rương!${letterDesc} Cả phòng được cộng thêm 30 giây suy nghĩ!`;
 
   const payload = {
     chestNumber: likeChestState.chestsOpened,
@@ -1075,7 +1075,11 @@ function revealOneHint(donor = null, giftName = '', force = false, skipTts = fal
 
   let ttsText = '';
   if (!skipTts && donorInfo && donorInfo.nickname !== 'Streamer') {
-    ttsText = `Cảm ơn ${donorInfo.nickname} đã tặng ${donorInfo.giftName} mở chữ cái ${rawChars[pickIdx]}!`;
+    if (donorInfo.nickname.includes('Rương') || giftName.includes('Rương') || giftName.includes('Thả Tim')) {
+      ttsText = `Cảm ơn mọi người đã cùng nhau thả tim để mở chữ cái ${rawChars[pickIdx]}!`;
+    } else {
+      ttsText = `Cảm ơn ${donorInfo.nickname} đã tặng ${donorInfo.giftName} mở chữ cái ${rawChars[pickIdx]}!`;
+    }
   }
 
   const payload = {

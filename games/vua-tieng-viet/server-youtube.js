@@ -933,7 +933,11 @@ function revealOneHint(donor = null, giftName = '', force = false, skipTts = fal
 
   let ttsText = '';
   if (!skipTts && donorInfo && donorInfo.nickname !== 'Streamer') {
-    ttsText = `Cảm ơn ${donorInfo.nickname} đã tặng ${donorInfo.giftName} mở chữ cái ${rawChars[pickIdx]}!`;
+    if (donorInfo.nickname.includes('Rương') || giftName.includes('Rương') || giftName.includes('Thả Tim')) {
+      ttsText = `Cảm ơn mọi người đã cùng nhau thả tim để mở chữ cái ${rawChars[pickIdx]}!`;
+    } else {
+      ttsText = `Cảm ơn ${donorInfo.nickname} đã tặng ${donorInfo.giftName} mở chữ cái ${rawChars[pickIdx]}!`;
+    }
   }
 
   const payload = {

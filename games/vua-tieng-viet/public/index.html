@@ -3455,10 +3455,10 @@
       } else {
         soundReveal();
         const donorNick = data.donor ? (data.donor.nickname || data.donor) : null;
-        if (donorNick) {
+        if (donorNick && !donorNick.includes('Rương')) {
           showToast(`🌹 ${donorNick} mở chữ: "${data.letter}"`);
         } else {
-          showToast(`💡 Gợi ý đã mở: "${data.letter}"`);
+          showToast(`💡 Rương thả tim mở chữ: "${data.letter}"`);
         }
         if (data.ttsText) {
           ttsManager.speak(data.ttsText, false);
@@ -3688,6 +3688,10 @@
         showToastNotice(`🎁 RƯƠNG KHO BÁU MỞ: Trợ giúp mở chữ [ ${data.lettersRevealed.join(', ')} ]!`);
       } else {
         showToastNotice('🎁 RƯƠNG KHO BÁU ĐÃ MỞ!');
+      }
+
+      if (data.ttsText) {
+        ttsManager.speak(data.ttsText, false);
       }
 
       // Đảm bảo modal overlay không bao giờ mở
