@@ -170,10 +170,7 @@
           <option value="all">-- Tất cả thể loại --</option>
         </select>
       </div>
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px;font-size:12px;color:#94a3b8;">
-        <label style="display:flex;align-items:center;gap:4px;cursor:pointer;">
-          <input type="checkbox" id="searchIsBossCheckbox" /> ⚔️ Đặt làm Câu Đố Trùm (90s, x2 Điểm)
-        </label>
+      <div style="display:flex;justify-content:flex-end;align-items:center;margin-top:6px;font-size:12px;color:#94a3b8;">
         <span id="wordSearchCount" style="font-size:11px;color:#38bdf8;">Đang tải...</span>
       </div>
 
@@ -185,11 +182,8 @@
     <!-- Tab 2: Tự tạo câu hỏi thủ công -->
     <div id="wordCustomTab" style="display:none;">
       <input type="text" id="customWordInput" placeholder="Từ khóa đáp án (vd: VIỆT NAM VÔ ĐỊCH)" style="margin:0;" />
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px;">
+      <div style="margin-top:6px;">
         <input type="text" id="customCategoryInput" placeholder="Thể loại (vd: Thể Thao)" value="Đố Vui" style="margin:0;" />
-        <label style="display:flex;align-items:center;gap:4px;font-size:12px;color:#cbd5e1;cursor:pointer;">
-          <input type="checkbox" id="customIsBossCheckbox" /> ⚔️ Vòng Trùm x2 Điểm
-        </label>
       </div>
       <input type="text" id="customHintInput" placeholder="Gợi ý câu đố (vd: Khẩu hiệu cổ vũ bóng đá rực lửa)" style="margin-top:6px;" />
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px;">
@@ -243,12 +237,12 @@
 
     <!-- Khu vực tặng quà & Vinh danh nhà hảo tâm -->
     <div style="margin-top:12px;padding-top:10px;border-top:1px dashed rgba(255,255,255,0.15);">
-      <div style="font-size:12px;color:#f472b6;font-weight:700;margin-bottom:6px;">🎁 Giả Lập Tặng Quà (1 Xu = 1 Chữ, +10đ/xu & Kích Hoạt Buff x2):</div>
+      <div style="font-size:12px;color:#f472b6;font-weight:700;margin-bottom:6px;">🎁 Giả Lập Tặng Quà (1 Xu = 1 Chữ, +500đ/Xu, Max 1.900đ):</div>
       <input type="text" id="donorNameInput" placeholder="Tên người tặng (vd: Đại Gia Tuấn)" style="margin-top:0;" />
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px;">
-        <button class="btn-pink" style="margin-top:0;padding:8px;font-size:12px;" onclick="simulateCustomGift('Hoa Hồng', 1)">🌹 Hoa Hồng (1 xu = 1 chữ)</button>
-        <button class="btn-purple" style="margin-top:0;padding:8px;font-size:12px;" onclick="simulateCustomGift('Nước Hoa', 10)">💖 Nước Hoa (10 xu = 10 chữ)</button>
-        <button class="btn-gold" style="margin-top:0;padding:8px;font-size:12px;" onclick="simulateCustomGift('Tên Lửa', 100)">🚀 Tên Lửa (100 xu = Tất cả chữ)</button>
+        <button class="btn-pink" style="margin-top:0;padding:8px;font-size:12px;" onclick="simulateCustomGift('Hoa Hồng', 1)">🌹 Hoa Hồng (1 xu = +500đ)</button>
+        <button class="btn-purple" style="margin-top:0;padding:8px;font-size:12px;" onclick="simulateCustomGift('Nước Hoa', 10)">💖 Nước Hoa (10 xu = Max 1.900đ)</button>
+        <button class="btn-gold" style="margin-top:0;padding:8px;font-size:12px;" onclick="simulateCustomGift('Tên Lửa', 100)">🚀 Tên Lửa (100 xu = Max 1.900đ)</button>
         <button class="btn-green" style="margin-top:0;padding:8px;font-size:12px;" onclick="simulateCustomGift('Sư Tử VIP', 500)">🦁 Sư Tử VIP (500 xu)</button>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px;">
@@ -257,13 +251,13 @@
       </div>
     </div>
 
-    <!-- Khu vực thử nghiệm Vinh Danh 3.000 điểm -->
+    <!-- Khu vực thử nghiệm Vinh Danh 2.000 điểm -->
     <div style="margin-top:12px;padding-top:10px;border-top:1px dashed rgba(255,255,255,0.15);">
-      <div style="font-size:12px;color:#ffd700;font-weight:700;margin-bottom:6px;">🏆 Vinh Danh Cán Mốc 3.000 Điểm (Khoảng 1 phút):</div>
+      <div style="font-size:12px;color:#ffd700;font-weight:700;margin-bottom:6px;">🏆 Vinh Danh Cán Mốc 2.000 Điểm (Khoảng 1 phút):</div>
       <input type="text" id="milestoneTestName" placeholder="Tên người vinh danh (vd: Đại Kiện Tướng Tuấn)" style="margin-top:0;" />
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px;">
-        <button class="btn-gold" style="margin-top:0;padding:8px;font-size:12px;" onclick="simulateMilestoneTest()">🎖️ Kích Hoạt Vinh Danh 3.000đ</button>
-        <button class="btn-purple" style="margin-top:0;padding:8px;font-size:12px;" onclick="setScore2900()">🎯 Đặt Điểm 2.900đ (Chờ Đoán 1 Câu)</button>
+        <button class="btn-gold" style="margin-top:0;padding:8px;font-size:12px;" onclick="simulateMilestoneTest()">🎖️ Kích Hoạt Vinh Danh 2.000đ</button>
+        <button class="btn-purple" style="margin-top:0;padding:8px;font-size:12px;" onclick="setScore1900()">🎯 Đặt Điểm 1.900đ (Chờ Đoán 1 Câu)</button>
       </div>
       <button class="btn-red" style="margin-top:6px;padding:8px;font-size:12px;" onclick="sendAction('skipMilestone')">⏭️ Bỏ Qua Vinh Danh (Chuyển Vòng Ngay)</button>
     </div>
@@ -279,15 +273,6 @@
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px;">
         <button class="btn-purple" style="margin-top:0;padding:8px;font-size:12px;" onclick="simulateStreakTest(5)">⚡ Chuỗi x5 (+200đ, x2.0)</button>
         <button class="btn-red" style="margin-top:0;padding:8px;font-size:12px;" onclick="sendAction('resetStreak')">❄️ Ngắt Chuỗi Thắng</button>
-      </div>
-    </div>
-
-    <!-- Khu vực Câu Đố Trùm & Giờ Vàng (Mục 7) -->
-    <div style="margin-top:12px;padding-top:10px;border-top:1px dashed rgba(255,255,255,0.15);">
-      <div style="font-size:12px;color:#ef4444;font-weight:700;margin-bottom:6px;">⚔️ Câu Đố Trùm & Giờ Vàng (Rush Hour x2 Điểm - Mục 7):</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px;">
-        <button class="btn-red" style="margin-top:0;padding:8px;font-size:12px;" onclick="sendAction('startBossRoundNow')">🔥 Kích Hoạt Trùm Ngay (90s)</button>
-        <button class="btn-gold" style="margin-top:0;padding:8px;font-size:12px;" onclick="sendAction('triggerBossRound')">⏳ Vòng Kế Tiếp Là Trùm</button>
       </div>
     </div>
 
@@ -541,19 +526,19 @@
       sendAction('simulateMilestone', {
         nickname: name,
         uniqueId: name.toLowerCase().replace(/[\s\W]+/g, '_'),
-        score: 3000,
-        wins: 30,
-        duration: 60
+        score: 2000,
+        wins: 20,
+        duration: 20
       });
     }
 
-    function setScore2900() {
+    function setScore1900() {
       const name = document.getElementById('milestoneTestName').value.trim() || 'Người Chơi Test';
       sendAction('setUserScore', {
         nickname: name,
         uniqueId: name.toLowerCase().replace(/[\s\W]+/g, '_'),
-        score: 2900,
-        wins: 29
+        score: 1900,
+        wins: 19
       });
     }
 
@@ -675,21 +660,19 @@
     }
 
     function selectWord(wordId, playNow) {
-      const isBoss = document.getElementById('searchIsBossCheckbox')?.checked || false;
-      sendAction(playNow ? 'playWordNow' : 'setNextWord', { wordId, isBoss });
+      sendAction(playNow ? 'playWordNow' : 'setNextWord', { wordId });
     }
 
     function submitCustomWord(playNow) {
       const word = document.getElementById('customWordInput')?.value.trim();
       const category = document.getElementById('customCategoryInput')?.value.trim() || 'Tự Chọn';
       const hint = document.getElementById('customHintInput')?.value.trim() || 'Câu đố do Streamer tạo';
-      const isBoss = document.getElementById('customIsBossCheckbox')?.checked || false;
 
       if (!word) {
         alert('Vui lòng nhập từ khóa đáp án!');
         return;
       }
-      sendAction(playNow ? 'playWordNow' : 'setNextWord', { word, category, hint, isBoss });
+      sendAction(playNow ? 'playWordNow' : 'setNextWord', { word, category, hint });
     }
 
     function playPendingWordNow() {

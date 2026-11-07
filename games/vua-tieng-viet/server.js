@@ -114,8 +114,8 @@ let reconnectTimer = null;
 let nextRoundTimer = null;
 let isCelebratingMilestone = false;
 let activeMilestone = null;
-const MILESTONE_SCORE = Number(process.env.MILESTONE_SCORE) || 3000;
-const MILESTONE_DURATION = Number(process.env.MILESTONE_DURATION) || 60; // 60 giây vinh danh cho khán giả chụp màn hình
+const MILESTONE_SCORE = Number(process.env.MILESTONE_SCORE) || 2000;
+const MILESTONE_DURATION = Number(process.env.MILESTONE_DURATION) || 20; // 20 giây vinh danh cho khán giả chụp màn hình
 const leaderboard = new Map();      // uniqueId -> { uniqueId, nickname, avatar, score, wins, milestones }
 const donorLeaderboard = new Map(); // uniqueId -> { uniqueId, nickname, avatar, diamonds, giftsCount, lastGiftName, lastGiftTime }
 let recentGuesses = [];             // last 15 guesses
@@ -131,9 +131,9 @@ let lastFollowEvent = null;
 // Quản lý Chuỗi Thắng Liên Tiếp (Combo Win Streak & Flame - Mục 2)
 let currentStreakWinner = null; // { uniqueId, nickname, avatar, count, multiplier, basePoints, bonusPoints, totalPoints, streakBadge, streakTitle, flameLevel }
 
-// Quản lý Bùa Lợi Quà Tặng (Buff x2 Điểm Đoán Đúng & +10 Điểm/Xu)
-const donorScoreBuffs = new Map(); // uniqueId -> { active: true, multiplier: 2, giftName, diamonds, giftPoints, activatedAt }
-const POINTS_PER_DIAMOND = Number(process.env.POINTS_PER_DIAMOND) || 10; // Cứ 1 xu tặng quà cộng 10 điểm xếp hạng
+// Quản lý Điểm Quà Tặng (1 Xu = 500 Điểm, Tối đa từ quà = 1.900đ, Bỏ Buff x2)
+const POINTS_PER_DIAMOND = Number(process.env.POINTS_PER_DIAMOND) || 500; // 1 xu tặng quà = +500 điểm
+const MAX_GIFT_SCORE = 1900; // Điểm tối đa từ tặng quà là 1.900đ, phải trả lời đúng 1 câu mới thắng (2.000đ)
 
 // Quản lý Rương Kho Báu & Mốc Thả Tim (Like Milestone Chest - Mục 6)
 const likeChestConfig = {
@@ -150,9 +150,7 @@ let likeChestState = {
   lastChestOpened: null,
 };
 
-// Quản lý Câu Đố Trùm & Giờ Vàng (Boss Round / Rush Hour x2 - Mục 7)
-const BOSS_ROUND_INTERVAL = Number(process.env.BOSS_ROUND_INTERVAL) || 5; // Mặc định mỗi 5 vòng xuất hiện 1 câu đố trùm
-const BOSS_ROUND_TIME = Number(process.env.BOSS_ROUND_TIME) || 90; // 90 giây cho câu đố trùm
+// Quản lý Câu Đố Trùm (Đã bỏ theo yêu cầu)
 let nextRoundIsBoss = false;
 let pendingStreamerWord = null;
 
@@ -404,7 +402,7 @@ function triggerMilestoneCelebration(user, score = MILESTONE_SCORE, duration = M
     topDonorsTts = ` Trân trọng tri ân đại phú hộ ${top1.nickname} với ${top1.diamonds} xu cùng các nhà hảo tâm đã ủng hộ hết mình!`;
   }
 
-  const ttsText = `Nhiệt liệt chúc mừng ${user.nickname} đã xuất sắc cán mốc ${score} điểm!${top5Tts}${topDonorsTts} Mời mọi người nhanh tay chụp màn hình kỷ niệm!`;
+  const ttsText = `Nhiệt liệt chúc mừng ${user.nickname} đã xuất sắc cán mốc ${score} điểm trở thành Đại Kiện Tướng Tiếng Việt!${top5Tts}${topDonorsTts} Chân thành cảm ơn mọi người đã tham gia phiên live rất nhiệt tình! Xin quý vị vui lòng chờ đợi giây lát để chúng ta cùng bước vào màn tiếp theo!`;
   console.log(`🌟 ĐẠI VINH DANH CÁN MỐC: ${user.nickname} đạt ${score} điểm! (${duration}s)`);
   console.log(`📢 BẢNG VÀNG TOP 5 CAO THỦ:\n` + top5List.map((p, i) => `   Top ${i + 1}: ${p.nickname} (${p.score}đ)`).join('\n'));
   console.log(`💎 BẢNG VÀNG TOP NHÀ HẢO TÂM:\n` + topDonorsList.map((d, i) => `   Top ${i + 1}: ${d.nickname} (${d.diamonds} xu)`).join('\n'));
@@ -492,7 +490,7 @@ function recordGiftDonation(user, giftName, diamonds = 1, repeatCount = 1) {
 
   io.emit('donorUpdate', payload);
 
-  // 1. Cứ 1 xu tặng quà cộng 10 điểm vào bảng xếp hạng
+  // 1. Cứ 1 xu tặng quà cộng 500 điểm vào bảng xếp hạng (Tối đa từ quà là 1.900đ)
   const pointsFromGift = totalDiamonds * POINTS_PER_DIAMOND;
   const donorKey = user.uniqueId || key;
   const playerInLeaderboard = leaderboard.get(donorKey) || {
@@ -506,43 +504,31 @@ function recordGiftDonation(user, giftName, diamonds = 1, repeatCount = 1) {
     milestones: [],
   };
   if (!playerInLeaderboard.milestones) playerInLeaderboard.milestones = [];
-  playerInLeaderboard.score += pointsFromGift;
+
+  const oldScore = playerInLeaderboard.score;
+  const newScore = Math.min(MAX_GIFT_SCORE, oldScore + pointsFromGift);
+  const actualAddedPoints = Math.max(0, newScore - oldScore);
+  playerInLeaderboard.score = newScore;
+
   if (user.avatar && !playerInLeaderboard.avatar) playerInLeaderboard.avatar = user.avatar;
   if (user.nickname && user.nickname !== playerInLeaderboard.nickname) playerInLeaderboard.nickname = user.nickname;
   leaderboard.set(donorKey, playerInLeaderboard);
   io.emit('leaderboardReset', getLeaderboardList());
 
-  // 2. Kích hoạt Bùa Lợi Nhân Đôi Điểm (Buff x2) cho lần đoán đúng tiếp theo
-  donorScoreBuffs.set(donorKey, {
-    active: true,
-    multiplier: 2,
-    giftName: giftName,
-    diamonds: totalDiamonds,
-    giftPoints: pointsFromGift,
-    activatedAt: Date.now(),
-  });
-
-  io.emit('donorBuffActivated', {
+  io.emit('donorScoreAdded', {
     uniqueId: donorKey,
     nickname: playerInLeaderboard.nickname,
     avatar: playerInLeaderboard.avatar,
     giftName,
     diamonds: totalDiamonds,
-    giftPoints: pointsFromGift,
-    multiplier: 2,
+    giftPoints: actualAddedPoints,
+    rawPoints: pointsFromGift,
     totalScore: playerInLeaderboard.score,
+    maxGiftScore: MAX_GIFT_SCORE,
+    reachCap: playerInLeaderboard.score >= MAX_GIFT_SCORE,
   });
 
-  console.log(`🎁 [Buff Quà Tặng] ${playerInLeaderboard.nickname} nhận +${pointsFromGift}đ (${totalDiamonds} xu) & kích hoạt Buff x2 Điểm cho câu đoán đúng kế tiếp! (Tổng: ${playerInLeaderboard.score}đ)`);
-
-  // Kiểm tra nếu chạm mốc điểm chiến thắng (MILESTONE_SCORE)
-  const reachedMilestone = playerInLeaderboard.score >= MILESTONE_SCORE && !playerInLeaderboard.milestones.includes(MILESTONE_SCORE);
-  if (reachedMilestone) {
-    playerInLeaderboard.milestones.push(MILESTONE_SCORE);
-    if (!isCelebratingMilestone) {
-      triggerMilestoneCelebration(playerInLeaderboard, MILESTONE_SCORE, MILESTONE_DURATION);
-    }
-  }
+  console.log(`🎁 [Tặng Quà +Điểm] ${playerInLeaderboard.nickname} tặng ${giftName} (${totalDiamonds} xu): +${actualAddedPoints}đ (Tổng: ${playerInLeaderboard.score}đ / Max quà: ${MAX_GIFT_SCORE}đ)`);
 
   // Kích hoạt Siêu Vinh Danh Nhà Hảo Tâm nếu:
   // 1) Lượt tặng này có giá trị lớn (>= 50 xu)
@@ -670,7 +656,6 @@ function startNewRound() {
     nextRoundTimer = null;
   }
 
-  const isBoss = nextRoundIsBoss || ((gameState.round + 1) % BOSS_ROUND_INTERVAL === 0);
   nextRoundIsBoss = false;
 
   let wordObj;
@@ -683,7 +668,7 @@ function startNewRound() {
     }
     console.log(`[Streamer Pick] 🎯 Phát câu hỏi do Streamer chỉ định: "${wordObj.word}" (${wordObj.category})`);
   } else {
-    wordObj = isBoss ? pickBossWord() : pickNextWord();
+    wordObj = pickNextWord();
   }
   const rawChars = wordObj.word.split('');
 
@@ -700,26 +685,17 @@ function startNewRound() {
   const mask = rawChars.map(c => c === ' ');
 
   gameState.round++;
-  gameState.isBossRound = isBoss;
+  gameState.isBossRound = false;
   gameState.currentWord = wordObj;
   gameState.scrambledLetters = scrambled;
   gameState.revealedMask = mask;
-  gameState.roundTimeTotal = isBoss ? BOSS_ROUND_TIME : ROUND_TIME_DEFAULT;
+  gameState.roundTimeTotal = ROUND_TIME_DEFAULT;
   gameState.timeLeft = gameState.roundTimeTotal;
   gameState.roundState = 'PLAYING';
 
-  if (isBoss) {
-    console.log(`\n🔥 [VÒNG ${gameState.round} - CÂU ĐỐ TRÙM] "${wordObj.word}" (${wordObj.category}) - ${BOSS_ROUND_TIME}s - x2 Điểm thưởng!`);
-  } else {
-    console.log(`\n[Vòng ${gameState.round}] Từ cần đoán: "${wordObj.word}" (Chủ đề: ${wordObj.category})`);
-  }
+  console.log(`\n[Vòng ${gameState.round}] Từ cần đoán: "${wordObj.word}" (Chủ đề: ${wordObj.category})`);
 
-  let ttsText = '';
-  if (isBoss) {
-    ttsText = `Cảnh báo! Vòng ${gameState.round} là CÂU ĐỐ TRÙM GIỜ VÀNG! Độ khó cao với ${BOSS_ROUND_TIME} giây và nhân đôi điểm thưởng! Gợi ý: ${wordObj.hint}`;
-  } else {
-    ttsText = `Vòng ${gameState.round}. Chủ đề ${wordObj.category}. Gợi ý: ${wordObj.hint}`;
-  }
+  const ttsText = `Vòng ${gameState.round}. Chủ đề ${wordObj.category}. Gợi ý: ${wordObj.hint}`;
 
   const roundPayload = {
     ...getClientGameState(),
@@ -821,7 +797,7 @@ function checkGuess(user, text) {
       streakCount = currentStreakWinner.count + 1;
     }
 
-    let basePoints = gameState.isBossRound ? 200 : 100;
+    let basePoints = 100;
     let multiplier = 1.0;
     let streakBadge = '';
     let streakTitle = '';
@@ -844,17 +820,7 @@ function checkGuess(user, text) {
       flameLevel = 'hot';
     }
 
-    // Kiểm tra Bùa Lợi Quà Tặng (Buff x2 Điểm)
-    let hasDonorBuff = false;
-    let donorBuff = null;
-    if (donorScoreBuffs.has(user.uniqueId)) {
-      hasDonorBuff = true;
-      donorBuff = donorScoreBuffs.get(user.uniqueId);
-      donorScoreBuffs.delete(user.uniqueId); // Tiêu hao bùa lợi sau khi dùng
-    }
-
-    const buffMultiplier = hasDonorBuff ? 2.0 : 1.0;
-    const effectiveMultiplier = Number((multiplier * buffMultiplier).toFixed(2));
+    const effectiveMultiplier = multiplier;
     const totalPoints = Math.round(basePoints * effectiveMultiplier);
     const bonusPoints = totalPoints - basePoints;
 
@@ -912,25 +878,15 @@ function checkGuess(user, text) {
       streakBadge,
       streakTitle,
       flameLevel,
-      hasDonorBuff,
-      donorBuffGift: donorBuff?.giftName || '',
-      isBossRound: Boolean(gameState.isBossRound),
+      isBossRound: false,
       word: target,
     };
 
-    console.log(`🏆 NGƯỜI CHIẾN THẮNG: ${existing.nickname} (+${totalPoints}đ${gameState.isBossRound ? ' [⚔️ HẠ GỤC CÂU ĐỐ TRÙM]' : ''}${hasDonorBuff ? ' [🎁 BUFF X2 QUÀ TẶNG]' : ''}${streakCount >= 2 ? ` [Combo x${streakCount} ${streakBadge} ${streakTitle}]` : ''}, Tổng: ${existing.score}đ)`);
+    console.log(`🏆 NGƯỜI CHIẾN THẮNG: ${existing.nickname} (+${totalPoints}đ${streakCount >= 2 ? ` [Combo x${streakCount} ${streakBadge} ${streakTitle}]` : ''}, Tổng: ${existing.score}đ)`);
 
     const winnerName = existing.nickname;
     let ttsText = '';
-    if (gameState.isBossRound && hasDonorBuff) {
-      ttsText = `Chấn động toàn phòng live! Nhờ bùa lợi quà tặng kết hợp hạ gục Câu Đố Trùm, ${winnerName} nhận số điểm kỷ lục lên tới ${totalPoints} điểm cho đáp án: ${target}!`;
-    } else if (gameState.isBossRound) {
-      ttsText = `Chấn động toàn phòng live! ${winnerName} đã xuất sắc hạ gục Câu Đố Trùm ${target}, nhận ngay ${totalPoints} điểm chiến thắng gấp đôi!`;
-    } else if (hasDonorBuff && streakCount >= 2) {
-      ttsText = `Tuyệt đỉnh! Nhờ có bùa lợi quà tặng ${donorBuff?.giftName || ''} kết hợp chuỗi thắng liên tiếp, ${winnerName} nhận số điểm gấp bội lên ${totalPoints} điểm!`;
-    } else if (hasDonorBuff) {
-      ttsText = `Tuyệt đỉnh! Nhờ có bùa lợi quà tặng ${donorBuff?.giftName || ''}, ${winnerName} được nhân đôi số điểm lên ${totalPoints} điểm cho đáp án chính xác: ${target}!`;
-    } else if (streakCount >= 5) {
+    if (streakCount >= 5) {
       ttsText = `Thần tốc bất bại! ${winnerName} đã lập kỷ lục chuỗi ${streakCount} câu thắng liên tiếp, nhân đôi điểm số lên ${totalPoints} điểm!`;
     } else if (streakCount >= 3) {
       ttsText = `Quá bốc lửa! ${winnerName} đạt chuỗi ${streakCount} câu thắng liên tiếp, nhận ${totalPoints} điểm!`;
@@ -946,9 +902,7 @@ function checkGuess(user, text) {
       leaderboard: getLeaderboardList(),
       ttsText,
       streak: currentStreakWinner,
-      hasDonorBuff,
-      donorBuff,
-      isBossRound: Boolean(gameState.isBossRound),
+      isBossRound: false,
     });
     io.emit('streakUpdate', currentStreakWinner);
 
@@ -1237,17 +1191,15 @@ function getClientGameState() {
       ...activeChestCelebration,
       duration: Math.max(1, Math.round(activeChestCelebration.duration - (Date.now() - activeChestCelebration.startedAt) / 1000)),
     } : null,
-    isBossRound: Boolean(gameState.isBossRound),
-    bossMultiplier: gameState.isBossRound ? 2 : 1,
+    isBossRound: false,
+    bossMultiplier: 1,
     roundTimeTotal: gameState.roundTimeTotal || ROUND_TIME_DEFAULT,
-    nextRoundIsBoss: Boolean(nextRoundIsBoss),
-    bossRoundInterval: BOSS_ROUND_INTERVAL,
+    nextRoundIsBoss: false,
     pendingStreamerWord: pendingStreamerWord ? {
       id: pendingStreamerWord.id,
       word: pendingStreamerWord.word,
       category: pendingStreamerWord.category,
       hint: pendingStreamerWord.hint,
-      isBoss: Boolean(pendingStreamerWord.isBoss),
     } : null,
   };
 }
@@ -1581,21 +1533,8 @@ app.post('/admin/api', (req, res) => {
     return res.json({ ok: true, message: 'Đã hủy câu hỏi chờ phát của Streamer.' });
   }
 
-  if (action === 'triggerBossRound' || action === 'setNextBossRound') {
-    nextRoundIsBoss = true;
-    return res.json({ ok: true, message: 'Đã cài đặt: Vòng kế tiếp sẽ là CÂU ĐỐ TRÙM (Boss Round)!' });
-  }
-
-  if (action === 'startBossRoundNow') {
-    nextRoundIsBoss = true;
-    if (timerInterval) clearInterval(timerInterval);
-    if (nextRoundTimer) {
-      clearTimeout(nextRoundTimer);
-      nextRoundTimer = null;
-    }
-    io.emit('milestoneEnd');
-    startNewRound();
-    return res.json({ ok: true, message: 'Đã kích hoạt CÂU ĐỐ TRÙM ngay lập tức!' });
+  if (action === 'triggerBossRound' || action === 'setNextBossRound' || action === 'startBossRoundNow') {
+    return res.json({ ok: false, message: 'Tính năng Câu Đố Trùm đã được tắt theo yêu cầu.' });
   }
 
   if (action === 'skip' || action === 'skipMilestone') {
@@ -1618,15 +1557,15 @@ app.post('/admin/api', (req, res) => {
       nickname: req.body.nickname || 'Đại Kiện Tướng Tuấn',
       avatar: req.body.avatar || 'https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/default-avatar.jpeg',
       score: Number(req.body.score) || MILESTONE_SCORE,
-      wins: Number(req.body.wins) || 30,
+      wins: Number(req.body.wins) || 20,
     };
     // Nếu bảng điểm chưa có đủ dữ liệu, tự động tạo Top 5 mẫu sinh động để kiểm thử
     if (leaderboard.size < 2) {
       leaderboard.set(demoUser.uniqueId, { ...demoUser, score: demoUser.score });
-      leaderboard.set('top2_demo', { uniqueId: 'top2_demo', nickname: 'Anh Ba Miền Tây', avatar: '', score: 2800, wins: 28 });
-      leaderboard.set('top3_demo', { uniqueId: 'top3_demo', nickname: 'Bé Na Chăm Học', avatar: '', score: 2500, wins: 25 });
-      leaderboard.set('top4_demo', { uniqueId: 'top4_demo', nickname: 'Chiến Thần Đố Chữ', avatar: '', score: 2100, wins: 21 });
-      leaderboard.set('top5_demo', { uniqueId: 'top5_demo', nickname: 'Minh Tuấn Vlog', avatar: '', score: 1800, wins: 18 });
+      leaderboard.set('top2_demo', { uniqueId: 'top2_demo', nickname: 'Anh Ba Miền Tây', avatar: '', score: 1800, wins: 18 });
+      leaderboard.set('top3_demo', { uniqueId: 'top3_demo', nickname: 'Bé Na Chăm Học', avatar: '', score: 1500, wins: 15 });
+      leaderboard.set('top4_demo', { uniqueId: 'top4_demo', nickname: 'Chiến Thần Đố Chữ', avatar: '', score: 1200, wins: 12 });
+      leaderboard.set('top5_demo', { uniqueId: 'top5_demo', nickname: 'Minh Tuấn Vlog', avatar: '', score: 900, wins: 9 });
       io.emit('leaderboardReset', getLeaderboardList());
     }
     if (donorLeaderboard.size < 2) {

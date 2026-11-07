@@ -107,19 +107,18 @@ Tài liệu này lưu trữ danh sách các tính năng nâng cấp tương tác
 
 ---
 
-### 📌 MỤC 6 (YÊU CẦU MỚI 3): TĂNG MỐC ĐIỂM KẾT THÚC GAME LÊN 3.000 ĐIỂM (TARGET SCORE 3000)
-> **Mục tiêu:** Tăng giới hạn điểm chạm đích từ 2.000 lên 3.000 điểm để thời lượng trận đấu kéo dài tầm 25 - 35 câu hỏi, tạo cơ hội cho nhiều người chơi cạnh tranh và rượt đuổi tỷ số gay cấn hơn.
+### 📌 MỤC 6 (YÊU CẦU MỚI 3): ĐIỀU CHỈNH MỐC ĐIỂM KẾT THÚC GAME VỀ 2.000 ĐIỂM (TARGET SCORE 2000)
+> **Mục tiêu:** Điều chỉnh giới hạn điểm chạm đích về 2.000 điểm (thay vì 3.000 điểm) để nhịp độ game vừa vặn, kết thúc trận đấu đúng lúc và tăng tính cạnh tranh.
 
 #### 6.1. Chi tiết điều chỉnh (Workflow)
 1. **Phía Server (`server.js` & `server-youtube.js`):**
    - Cập nhật biến cấu hình:
      ```javascript
-     const MILESTONE_SCORE = Number(process.env.MILESTONE_SCORE) || 3000;
+     const MILESTONE_SCORE = Number(process.env.MILESTONE_SCORE) || 2000;
      ```
 2. **Phía Client (`public/index.html` & `public/admin.html`):**
-   - Cập nhật giao diện thanh tiến độ (Progress Bar) theo mốc tối đa 3.000đ.
-   - Cập nhật banner, text mô tả: *"ĐUA TOP 3.000 ĐIỂM"*, *"Chạm mốc 3.000 điểm để thành Đại Kiện Tướng"*.
-   - Cập nhật script kiểm thử tự động `run_game_test.js` để test mốc vinh danh 3.000 điểm.
+   - Cập nhật giao diện modal Siêu Vinh Danh theo mốc 2.000đ.
+   - Cập nhật script kiểm thử tự động `run_game_test.js` để test mốc vinh danh 2.000 điểm.
 
 ---
 
@@ -197,9 +196,17 @@ GIAI ĐOẠN 2: TỐI ƯU HÓA DONATE & VINH DANH TRẬN ĐẤU:
   └── [x] Bước 7: Mục 5 - Kết thúc game vinh danh cả người tặng quà (Top Donors Hall of Fame) - XONG
 
 GIAI ĐOẠN 3: TẠO CAO TRÀO & TÍNH NĂNG MỞ RỘNG:
-  ├── [x] Bước 8: Mục 7 - Câu Đố Trùm & Giờ Vàng (Boss Round x2) - XONG
+  ├── [x] Bỏ Câu Đố Trùm (Boss Round) - Theo ý kiến người dùng
   ├── [x] Bước 9: Mục 8 - Chọn câu hỏi & Quản trị câu đố từ Admin (Streamer Word Picker & CMS) - XONG
   └── [ ] Bước 10: Mục 9 - Chế độ Chia Phe Đối Kháng (Team Red vs Team Blue)
+
+GIAI ĐOẠN 4: CẢI TIẾN TRẢI NGHIỆM LIVESTREAM THEO YÊU CẦU:
+  ├── [x] 1. Bỏ Câu Đố Trùm (không còn ngắt quãng nhịp chơi)
+  ├── [x] 2. Tặng quà cộng thẳng điểm (1 xu = 500đ, n xu = 500*n), bỏ Buff x2
+  ├── [x] 3. Rương tim đầy không hiện popup bảng che màn hình, chỉ mở chữ cái gợi ý
+  ├── [x] 4. Giới hạn quà cộng tối đa 1.900đ, bắt buộc đoán đúng 1 câu mới cán mốc 2.000đ để thắng
+  ├── [x] 5. Giảm thời gian vinh danh xuống 20 giây (thay vì 60 giây)
+  └── [x] 6. TTS vinh danh: cảm ơn mọi người đã tham gia và báo khán giả chờ đợi giây lát để sang màn tiếp theo
 ```
 
 ---

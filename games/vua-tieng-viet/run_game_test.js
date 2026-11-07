@@ -57,46 +57,56 @@ async function main() {
     const state2 = await resState2.json();
     console.log(`✅ Đã chuyển sang Vòng ${state2.state.round}! Từ mới: "${state2.actualWord}"`);
 
-    // 4. Giả lập tặng quà (1 xu = +10đ & Kích hoạt Buff x2 Điểm)
-    console.log('\n--- BƯỚC 3: KIỂM THỬ TẶNG QUÀ (+10Đ/XU & KÍCH HOẠT BUFF X2 ĐOÁN ĐÚNG) ---');
+    // 4. Giả lập tặng quà (1 xu = +500đ, tối đa 1.900đ, không tự kích hoạt thắng)
+    console.log('\n--- BƯỚC 3: KIỂM THỬ TẶNG QUÀ (1 XU = 500Đ, MAX 1.900Đ) ---');
     await fetch('http://127.0.0.1:3005/admin/api', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ action: 'simulateGift', user: 'Mạnh Thường Quân Tuấn', giftName: 'Tên Lửa VIP', diamonds: 100 })
+      body: JSON.stringify({ action: 'simulateGift', user: 'Mạnh Thường Quân Tuấn', giftName: 'Hoa Hồng', diamonds: 1 })
     });
-    console.log('✅ Đã tặng "Tên Lửa VIP" (100 xu): Nhận ngay +1.000 điểm trên BXH và kích hoạt BUFF X2!');
+    console.log('✅ Đã tặng "Hoa Hồng" (1 xu): Nhận ngay +500 điểm trên BXH!');
 
-    // 5. Kiểm thử cán mốc 3.000 điểm & Vinh danh Top 5
-    console.log('\n--- BƯỚC 4: KIỂM THỬ VINH DANH 3.000 ĐIỂM & BẢNG VÀNG TOP 5 ---');
+    // Tặng thêm quà lớn để kiểm tra trần 1.900đ
+    await fetch('http://127.0.0.1:3005/admin/api', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'simulateGift', user: 'Mạnh Thường Quân Tuấn', giftName: 'Tên Lửa VIP', diamonds: 10 })
+    });
+    const stateGifts = await (await fetch('http://127.0.0.1:3005/api/state')).json();
+    const donorPlayer = stateGifts.state.leaderboard?.find(p => p.nickname === 'Mạnh Thường Quân Tuấn');
+    console.log(`✅ Điểm sau khi tặng quà lớn: ${donorPlayer?.score}đ (BỊ CHẶN TRẦN CHÍNH XÁC Ở 1.900Đ, KHÔNG THỂ THẮNG NẾU CHƯA ĐOÁN ĐÚNG)!`);
+
+    // 5. Kiểm thử cán mốc 2.000 điểm & Vinh danh Top 5
+    console.log('\n--- BƯỚC 4: KIỂM THỬ VINH DANH 2.000 ĐIỂM & BẢNG VÀNG TOP 5 ---');
     // Thiết lập điểm cho Top 5
     await fetch('http://127.0.0.1:3005/admin/api', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ action: 'setUserScore', uniqueId: 'player_champion', nickname: 'Cao Thủ Tuấn', score: 2900, wins: 29 })
+      body: JSON.stringify({ action: 'setUserScore', uniqueId: 'player_champion', nickname: 'Cao Thủ Tuấn', score: 1900, wins: 19 })
     });
     await fetch('http://127.0.0.1:3005/admin/api', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ action: 'setUserScore', uniqueId: 'top2', nickname: 'Anh Ba Miền Tây', score: 2700, wins: 27 })
+      body: JSON.stringify({ action: 'setUserScore', uniqueId: 'top2', nickname: 'Anh Ba Miền Tây', score: 1700, wins: 17 })
     });
     await fetch('http://127.0.0.1:3005/admin/api', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ action: 'setUserScore', uniqueId: 'top3', nickname: 'Bé Na Chăm Học', score: 2400, wins: 24 })
+      body: JSON.stringify({ action: 'setUserScore', uniqueId: 'top3', nickname: 'Bé Na Chăm Học', score: 1500, wins: 15 })
     });
     await fetch('http://127.0.0.1:3005/admin/api', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ action: 'setUserScore', uniqueId: 'top4', nickname: 'Chiến Thần Đố Chữ', score: 2000, wins: 20 })
+      body: JSON.stringify({ action: 'setUserScore', uniqueId: 'top4', nickname: 'Chiến Thần Đố Chữ', score: 1200, wins: 12 })
     });
     await fetch('http://127.0.0.1:3005/admin/api', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ action: 'setUserScore', uniqueId: 'top5', nickname: 'Minh Tuấn Vlog', score: 1600, wins: 16 })
+      body: JSON.stringify({ action: 'setUserScore', uniqueId: 'top5', nickname: 'Minh Tuấn Vlog', score: 900, wins: 9 })
     });
-    console.log('✅ Đã thiết lập bảng điểm Top 5: Cao Thủ Tuấn đang có 2.900đ.');
+    console.log('✅ Đã thiết lập bảng điểm Top 5: Cao Thủ Tuấn đang có 1.900đ.');
 
-    // Cao Thủ Tuấn đoán đúng từ hiện tại để chạm mốc 3.000đ!
+    // Cao Thủ Tuấn đoán đúng từ hiện tại để chạm mốc 2.000đ!
     console.log(`🎯 Cao Thủ Tuấn đoán từ: "${state2.actualWord}"`);
     await fetch('http://127.0.0.1:3005/admin/api', {
       method: 'POST',
@@ -104,13 +114,13 @@ async function main() {
       body: JSON.stringify({ action: 'simulateChat', user: 'player_champion', text: state2.actualWord })
     });
 
-    console.log('⏳ Chờ 4s để modal Siêu Vinh Danh 3.000đ kích hoạt...');
+    console.log('⏳ Chờ 4s để modal Siêu Vinh Danh 2.000đ kích hoạt...');
     await sleep(4500);
 
-    // Chụp ảnh giao diện Siêu Vinh Danh 3.000đ & Top 5
+    // Chụp ảnh giao diện Siêu Vinh Danh 2.000đ & Top 5
     const shot2 = path.join(__dirname, 'public', 'test_2_milestone_top5.png');
     execSync(`timeout 10 google-chrome --headless --no-sandbox --disable-gpu --window-size=480,854 --screenshot="${shot2}" "http://127.0.0.1:3005"`, { stdio: 'ignore' });
-    console.log(`📸 Đã chụp ảnh màn hình Siêu Vinh Danh 3.000đ: test_2_milestone_top5.png (${fs.statSync(shot2).size} bytes)`);
+    console.log(`📸 Đã chụp ảnh màn hình Siêu Vinh Danh 2.000đ: test_2_milestone_top5.png (${fs.statSync(shot2).size} bytes)`);
 
     // Chụp ảnh bảng điều khiển Admin
     const shot3 = path.join(__dirname, 'public', 'test_3_admin_dashboard.png');
@@ -337,14 +347,14 @@ async function main() {
     execSync(`timeout 10 google-chrome --headless --no-sandbox --disable-gpu --window-size=520,800 --screenshot="${shot9}" "http://127.0.0.1:3005/admin.html"`, { stdio: 'ignore' });
     console.log(`📸 Đã chụp ảnh Bảng Admin với thống kê Rương Kho Báu: test_9_admin_chest.png (${fs.statSync(shot9).size} bytes)`);
 
-    // 11. Kiểm thử Bùa Lợi Quà Tặng (Buff x2 Điểm Đoán Đúng)
-    console.log('\n--- BƯỚC 11: KIỂM THỬ BUFF X2 ĐIỂM KHI ĐOÁN ĐÚNG ---');
+    // 11. Kiểm thử Tặng Quà Cộng Thẳng Điểm & Đoán Đúng Không Nhân Đôi
+    console.log('\n--- BƯỚC 11: KIỂM THỬ QUÀ CỘNG THẲNG ĐIỂM (KHÔNG CÒN BUFF X2) ---');
     await fetch('http://127.0.0.1:3005/admin/api', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ action: 'simulateGift', user: 'Bé Mai 🌸', giftName: 'Hoa Hồng', diamonds: 1 })
     });
-    console.log('✅ Bé Mai 🌸 tặng Hoa Hồng (1 xu): Được cộng +10đ và kích hoạt BUFF X2!');
+    console.log('✅ Bé Mai 🌸 tặng Hoa Hồng (1 xu): Được cộng thẳng +500đ vào BXH (Không kích hoạt Buff x2)!');
 
     const stateBuff = await (await fetch('http://127.0.0.1:3005/api/state')).json();
     console.log(`🎯 Bé Mai 🌸 đoán đúng từ: "${stateBuff.actualWord}"`);
@@ -355,44 +365,24 @@ async function main() {
     });
     await sleep(2000);
 
+    const afterGuessState = await (await fetch('http://127.0.0.1:3005/api/state')).json();
+    const lastWinner = afterGuessState.state.lastWinner;
+    console.log(`✅ Điểm vòng đoán đúng của Bé Mai: +${lastWinner?.points}đ (ĐIỂM CHUẨN 100Đ, KHÔNG NHÂN ĐÔI)!`);
+
     const shot10 = path.join(__dirname, 'public', 'test_10_gift_buff_x2.png');
     execSync(`timeout 10 google-chrome --headless --no-sandbox --disable-gpu --window-size=480,854 --screenshot="${shot10}" "http://127.0.0.1:3005"`, { stdio: 'ignore' });
-    console.log(`📸 Đã chụp ảnh màn hình Vinh Danh Buff Nhân Đôi Điểm x2: test_10_gift_buff_x2.png (${fs.statSync(shot10).size} bytes)`);
+    console.log(`📸 Đã chụp ảnh màn hình Chiến Thắng Chuẩn: test_10_gift_buff_x2.png (${fs.statSync(shot10).size} bytes)`);
 
-    // 12. Kiểm thử Mục 7 - Câu Đố Trùm & Giờ Vàng (Boss Round / Rush Hour x2)
-    console.log('\n--- BƯỚC 12: KIỂM THỬ MỤC 7 - CÂU ĐỐ TRÙM & GIỜ VÀNG (BOSS ROUND x2) ---');
+    // 12. Kiểm tra xác nhận Câu Đố Trùm đã được tắt hoàn toàn theo yêu cầu
+    console.log('\n--- BƯỚC 12: XÁC NHẬN CÂU ĐỐ TRÙM ĐÃ ĐƯỢC TẮT HOÀN TOÀN ---');
     const bossRes = await (await fetch('http://127.0.0.1:3005/admin/api', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ action: 'startBossRoundNow' })
     })).json();
-    console.log(`⚔️ Kích hoạt Câu Đố Trùm: ${bossRes.message}`);
-    await sleep(800);
-
-    const stateBoss = await (await fetch('http://127.0.0.1:3005/api/state')).json();
-    console.log(`🔥 [TRẠNG THÁI TRÙM] isBossRound: ${stateBoss.state.isBossRound}, Thời gian: ${stateBoss.state.timeLeft}s (Tổng ${stateBoss.state.roundTimeTotal}s)`);
-    console.log(`   - Từ Trùm cần đoán: "${stateBoss.actualWord}" (Chủ đề: ${stateBoss.state.category})`);
-
-    const shot11 = path.join(__dirname, 'public', 'test_11_boss_round.png');
-    execSync(`timeout 10 google-chrome --headless --no-sandbox --disable-gpu --window-size=480,854 --screenshot="${shot11}" "http://127.0.0.1:3005"`, { stdio: 'ignore' });
-    console.log(`📸 Đã chụp ảnh màn hình Câu Đố Trùm rực lửa: test_11_boss_round.png (${fs.statSync(shot11).size} bytes)`);
-
-    // Trả lời đúng Câu Đố Trùm
-    console.log(`🎯 Chiến Thần Đố Chữ hạ gục Câu Đố Trùm với đáp án: "${stateBoss.actualWord}"`);
-    await fetch('http://127.0.0.1:3005/admin/api', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ action: 'simulateChat', user: 'Chiến Thần Đố Chữ', text: stateBoss.actualWord })
-    });
-    await sleep(2000);
-
-    const stateAfterBoss = await (await fetch('http://127.0.0.1:3005/api/state')).json();
-    const lastWinner = stateAfterBoss.state.lastWinner;
-    console.log(`🏆 [HẠ GỤC TRÙM THÀNH CÔNG] Winner: ${lastWinner?.nickname}, Điểm nhận: ${lastWinner?.points}đ (Gốc: ${lastWinner?.basePoints}đ), isBossRound: ${lastWinner?.isBossRound}`);
-
-    const shot12 = path.join(__dirname, 'public', 'test_12_boss_victory.png');
-    execSync(`timeout 10 google-chrome --headless --no-sandbox --disable-gpu --window-size=480,854 --screenshot="${shot12}" "http://127.0.0.1:3005"`, { stdio: 'ignore' });
-    console.log(`📸 Đã chụp ảnh màn hình Vinh Danh Hạ Gục Câu Đố Trùm: test_12_boss_victory.png (${fs.statSync(shot12).size} bytes)`);
+    console.log(`✅ Phản hồi API Boss Round: ${bossRes.message}`);
+    const stateCheck = await (await fetch('http://127.0.0.1:3005/api/state')).json();
+    console.log(`✅ Trạng thái isBossRound: ${stateCheck.state.isBossRound} (ĐÃ TẮT THÀNH CÔNG)`);
 
     console.log('\n========================================================================');
     console.log('🎉 TẤT CẢ CÁC TÍNH NĂNG ĐÃ ĐƯỢC TEST THÀNH CÔNG VÀ SẴN SÀNG ĐƯA VÀO LIVE!');

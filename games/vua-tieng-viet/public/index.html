@@ -113,46 +113,54 @@
       border-radius: 8px;
     }
 
-    /* Đồng hồ đếm ngược */
+    /* Đồng hồ đếm ngược (xếp gọn dạng thanh pill) */
     .timer-wrap {
       display: flex;
-      flex-direction: column;
+      justify-content: center;
       align-items: center;
-      margin: 4px 0 10px;
+      margin: 4px 14px 6px;
     }
     .timer-circle {
-      width: 72px;
-      height: 72px;
-      border-radius: 50%;
-      background: radial-gradient(circle, #25184d, #140d2e);
-      border: 3px solid #ff007f;
-      display: flex;
-      flex-direction: column;
+      display: inline-flex;
+      flex-direction: row;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 0 20px rgba(255, 0, 127, 0.5);
+      gap: 6px;
+      padding: 4px 16px;
+      height: 32px;
+      border-radius: 20px;
+      background: radial-gradient(circle, #25184d, #140d2e);
+      border: 2px solid #ff007f;
+      box-shadow: 0 0 12px rgba(255, 0, 127, 0.4);
       transition: all 0.3s;
     }
     .timer-circle.urgent {
       border-color: #ff1744;
-      box-shadow: 0 0 25px rgba(255, 23, 68, 0.8);
+      box-shadow: 0 0 20px rgba(255, 23, 68, 0.8);
       animation: urgentPulse 0.6s infinite alternate;
     }
     @keyframes urgentPulse {
       0% { transform: scale(1); }
-      100% { transform: scale(1.08); }
+      100% { transform: scale(1.06); }
+    }
+    .timer-icon {
+      font-size: 15px;
+      line-height: 1;
     }
     .timer-sec {
-      font-size: 26px;
+      font-size: 18px;
       font-weight: 900;
       color: #fff;
       line-height: 1;
+      font-variant-numeric: tabular-nums;
     }
     .timer-lbl {
-      font-size: 9px;
+      font-size: 10px;
+      font-weight: 700;
       text-transform: uppercase;
-      color: #aaa;
-      letter-spacing: 1px;
+      color: #ff80bf;
+      letter-spacing: 0.8px;
+      line-height: 1;
     }
 
     /* Khu vực Chữ Bị Đảo Lộn */
@@ -1682,21 +1690,12 @@
       }
     }
 
-    /* Modal Mở Rương Kho Báu Hoành Tráng */
+    /* Modal Mở Rương Kho Báu Hoành Tráng (Đã chuyển sang chỉ mở chữ và toast gọn nhẹ) */
     .chest-open-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(9, 3, 20, 0.88);
-      backdrop-filter: blur(10px);
-      z-index: 99999;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 16px;
-      animation: fadeIn 0.3s ease-out;
+      display: none !important;
     }
     .chest-open-overlay.show {
-      display: flex;
+      display: none !important;
     }
     .chest-open-card {
       width: 100%;
@@ -1970,12 +1969,7 @@
     <!-- Container Tim Bay Khi Thả Like -->
     <div id="floatingHeartsContainer" class="floating-hearts-container"></div>
 
-    <!-- Banner Câu Đố Trùm (Boss Round / Rush Hour x2) -->
-    <div id="bossRoundBanner" class="boss-round-banner" style="display:none;">
-      <span class="boss-flame">🔥</span>
-      <span id="bossRoundBannerText">⚔️ CÂU ĐỐ TRÙM - GIỜ VÀNG x2 ĐIỂM (90s) ⚔️</span>
-      <span class="boss-flame">🔥</span>
-    </div>
+
 
     <!-- Thông tin Vòng & Chủ Đề -->
     <div class="info-bar">
@@ -1988,12 +1982,10 @@
       </div>
     </div>
 
-    <!-- Đồng hồ đếm ngược -->
-    <div class="timer-wrap">
-      <div class="timer-circle" id="timerCircle">
-        <div class="timer-sec" id="timerSec">300</div>
-        <div class="timer-lbl">GIÂY</div>
-      </div>
+    <!-- Gợi ý câu hỏi -->
+    <div class="clue-box">
+      <span class="clue-icon">💡</span>
+      <span id="clueText">Gợi ý đang tải...</span>
     </div>
 
     <!-- Ô Chữ Bị Đảo Lộn -->
@@ -2008,16 +2000,19 @@
       <div class="target-slots" id="targetSlots"></div>
     </div>
 
-    <!-- Gợi ý câu hỏi -->
-    <div class="clue-box">
-      <span class="clue-icon">💡</span>
-      <span id="clueText">Gợi ý đang tải...</span>
+    <!-- Đồng hồ đếm ngược (đã xếp gọn lại) -->
+    <div class="timer-wrap">
+      <div class="timer-circle" id="timerCircle">
+        <span class="timer-icon">⏱️</span>
+        <span class="timer-sec" id="timerSec">300</span>
+        <span class="timer-lbl">GIÂY</span>
+      </div>
     </div>
 
     <!-- Hướng dẫn tương tác -->
     <div class="cta-banner">
       <div class="cta-item" style="color:#00f2fe;font-weight:700;">💖 <b>Follow = Mở 3 Ô Chữ</b></div>
-      <div class="cta-item highlight-gift">🌹 <b>1 Xu = 1 Chữ • 10 Xu = 10 Chữ</b> <span id="giftHintCtaBadge" class="hint-remain-pill">Sẵn sàng</span></div>
+      <div class="cta-item highlight-gift">🌹 <b>1 Xu = 1 Chữ (+500đ)</b> <span id="giftHintCtaBadge" class="hint-remain-pill">Sẵn sàng</span></div>
       <div class="cta-item">💬 <b>Bình luận đoán từ</b></div>
     </div>
 
@@ -2080,7 +2075,7 @@
       </div>
     </div>
 
-    <!-- Siêu Vinh Danh Cán Mốc 3000 Điểm (Khoảng 1 phút để chụp màn hình khoe) -->
+    <!-- Siêu Vinh Danh Cán Mốc 2000 Điểm (Khoảng 1 phút để chụp màn hình khoe) -->
     <div class="milestone-overlay" id="milestoneOverlay">
       <div class="milestone-card">
         <div class="milestone-badge-top">🎖️ BẢNG VÀNG DANH DỰ 🎖️</div>
@@ -2097,12 +2092,12 @@
 
         <div class="milestone-stats-box">
           <div class="mstat-item">
-            <div class="mstat-val" id="milestoneScore">3.000</div>
+            <div class="mstat-val" id="milestoneScore">2.000</div>
             <div class="mstat-lbl">ĐIỂM CÁN MỐC</div>
           </div>
           <div class="mstat-divider"></div>
           <div class="mstat-item">
-            <div class="mstat-val" id="milestoneWins">30+</div>
+            <div class="mstat-val" id="milestoneWins">20+</div>
             <div class="mstat-lbl">CHIẾN THẮNG</div>
           </div>
         </div>
@@ -2124,14 +2119,14 @@
         </div>
 
         <div class="milestone-congrats-text">
-          🌟 Vinh danh Quán Quân & Các Nhà Hảo Tâm! Bảng điểm sẽ làm mới sau đếm ngược 🌟
+          🌟 Cảm ơn mọi người đã nhiệt tình tham gia! Xin vui lòng chờ đợi giây lát để đến màn tiếp theo 🌟
         </div>
 
         <div class="milestone-screenshot-cta">
           <div class="camera-icon-anim">📸</div>
           <div class="cta-text-group">
             <div class="cta-title">HÃY CHỤP MÀN HÌNH ĐỂ KHOE NGAY!</div>
-            <div class="cta-sub">Thời gian lưu lại: <span id="milestoneCountdown" class="countdown-highlight">60s</span></div>
+            <div class="cta-sub">Thời gian lưu lại: <span id="milestoneCountdown" class="countdown-highlight">20s</span></div>
           </div>
         </div>
       </div>
@@ -2968,15 +2963,8 @@
       updateGiftHintBadge(state.canRevealMore, state.remainingHiddenLetters);
       updateStreakTicker(state.currentStreak);
       if (state.likeChest) updateLikeChestBar(state.likeChest);
-      if (state.activeChestCelebration && state.isCelebratingChest) {
-        showChestOpenCelebration(state.activeChestCelebration);
-      }
 
-      const isBoss = Boolean(state.isBossRound);
-      const bossBanner = document.getElementById('bossRoundBanner');
-      const gameContainer = document.querySelector('.game-container');
-      if (gameContainer) gameContainer.classList.toggle('boss-mode', isBoss);
-      if (bossBanner) bossBanner.style.display = isBoss ? 'flex' : 'none';
+
     });
 
     // Cập nhật huy hiệu gợi ý quà tặng
@@ -3321,12 +3309,7 @@
       renderTargetSlots(state.targetPattern);
       updateGiftHintBadge(state.canRevealMore, state.remainingHiddenLetters);
 
-      const isBoss = Boolean(state.isBossRound);
-      const bossBanner = document.getElementById('bossRoundBanner');
-      const gameContainer = document.querySelector('.game-container');
-      if (gameContainer) gameContainer.classList.toggle('boss-mode', isBoss);
-      if (bossBanner) bossBanner.style.display = isBoss ? 'flex' : 'none';
-      if (isBoss) soundBossWarning();
+
 
       if (state.ttsText) {
         ttsManager.speak(state.ttsText, true);
@@ -3351,11 +3334,11 @@
       mName.textContent = data.user.nickname || data.user.uniqueId;
       mUniqueId.textContent = data.user.uniqueId ? `@${data.user.uniqueId.replace(/^@/, '')}` : '';
       if (data.user.avatar) mAvatar.src = data.user.avatar;
-      mScore.textContent = (data.user.score || data.milestone || 3000).toLocaleString('vi-VN');
-      mWins.textContent = `${data.user.wins || 30}+`;
+      mScore.textContent = (data.user.score || data.milestone || 2000).toLocaleString('vi-VN');
+      mWins.textContent = `${data.user.wins || 20}+`;
       if (data.title) mTitle.textContent = data.title;
 
-      let remaining = Math.max(1, data.duration || 60);
+      let remaining = Math.max(1, data.duration || 20);
       mCountdown.textContent = `${remaining}s`;
 
       const mTop5List = document.getElementById('milestoneTop5List');
@@ -3521,28 +3504,21 @@
         winnerBox.classList.remove('streak-hot', 'streak-blazing', 'streak-godlike', 'boss-win');
       }
 
-      const isBuff = Boolean(data.hasDonorBuff || data.winner?.hasDonorBuff);
-      const isBoss = Boolean(data.isBossRound || data.winner?.isBossRound);
-
-      if (isBoss && winnerBox) {
-        winnerBox.classList.add('boss-win');
-      }
-
       if (streak && streak.count >= 2) {
         soundComboStreak(streak.count);
         if (winnerBox) {
           winnerBox.classList.add(`streak-${streak.flameLevel || 'hot'}`);
         }
         if (winnerPts) {
-          winnerPts.textContent = `+${streak.totalPoints} ĐIỂM CHIẾN THẮNG 🎯 (${isBoss ? '⚔️ Trùm x2 + ' : ''}${isBuff ? '🎁 Buff x2 Quà + ' : ''}Thưởng +${streak.bonusPoints}đ 🔥)`;
+          winnerPts.textContent = `+${streak.totalPoints} ĐIỂM CHIẾN THẮNG 🎯 (Thưởng Chuỗi +${streak.bonusPoints}đ 🔥)`;
         }
         if (winnerStreakCard) {
           winnerStreakCard.style.display = 'inline-flex';
           winnerStreakCard.className = `winner-streak-card streak-${streak.flameLevel || 'hot'}`;
-          if (wsBadge) wsBadge.textContent = isBoss ? '⚔️🔥' : (isBuff ? '🎁⚡' : (streak.streakBadge || '🔥'));
-          if (wsTitle) wsTitle.textContent = `${isBoss ? 'HẠ TRÙM + ' : ''}${isBuff ? 'BUFF QUÀ x2 + ' : ''}COMBO THẮNG x${streak.count} ${streak.streakTitle || ''}`;
+          if (wsBadge) wsBadge.textContent = streak.streakBadge || '🔥';
+          if (wsTitle) wsTitle.textContent = `COMBO THẮNG x${streak.count} ${streak.streakTitle || ''}`;
           if (wsMult) wsMult.textContent = `x${streak.multiplier}`;
-          if (wsDetail) wsDetail.textContent = `Gốc ${streak.basePoints || 100}đ${isBoss ? ' (Trùm x2)' : ''} + Thưởng ${streak.bonusPoints || 0}đ`;
+          if (wsDetail) wsDetail.textContent = `Gốc ${streak.basePoints || 100}đ + Thưởng ${streak.bonusPoints || 0}đ`;
         }
 
         if (window.confetti) {
@@ -3557,76 +3533,10 @@
           });
         }
         updateStreakTicker(streak);
-      } else if (isBoss && isBuff) {
-        soundComboStreak(4);
-        if (winnerPts) {
-          winnerPts.textContent = `+${data.winner.points || 400} ĐIỂM CHIẾN THẮNG 🎯 (⚔️ HẠ GỤC TRÙM x2 + 🎁 BUFF X2!)`;
-        }
-        if (winnerStreakCard) {
-          winnerStreakCard.style.display = 'inline-flex';
-          winnerStreakCard.className = 'winner-streak-card streak-godlike';
-          if (wsBadge) wsBadge.textContent = '⚔️🎁';
-          if (wsTitle) wsTitle.textContent = 'HẠ GỤC TRÙM + BUFF QUÀ NHÂN BỘI';
-          if (wsMult) wsMult.textContent = 'x4.0';
-          if (wsDetail) wsDetail.textContent = `Gốc Trùm 200đ x2 Bùa Lợi Quà Tặng = ${data.winner.points || 400}đ`;
-        }
-        if (window.confetti) {
-          confetti({
-            particleCount: 130,
-            spread: 90,
-            origin: { y: 0.55 },
-            colors: ['#ef4444', '#ffd700', '#ec4899', '#ffffff']
-          });
-        }
-        updateStreakTicker(null);
-      } else if (isBoss) {
-        soundComboStreak(3);
-        if (winnerPts) {
-          winnerPts.textContent = `+${data.winner.points || 200} ĐIỂM CHIẾN THẮNG 🎯 (⚔️ HẠ GỤC CÂU ĐỐ TRÙM x2 ĐIỂM!)`;
-        }
-        if (winnerStreakCard) {
-          winnerStreakCard.style.display = 'inline-flex';
-          winnerStreakCard.className = 'winner-streak-card streak-godlike';
-          if (wsBadge) wsBadge.textContent = '⚔️🔥';
-          if (wsTitle) wsTitle.textContent = 'HẠ GỤC CÂU ĐỐ TRÙM (GIỜ VÀNG x2)';
-          if (wsMult) wsMult.textContent = 'x2.0';
-          if (wsDetail) wsDetail.textContent = `Độ khó cao: Điểm gốc nhân đôi (+${data.winner.points || 200}đ)`;
-        }
-        if (window.confetti) {
-          confetti({
-            particleCount: 100,
-            spread: 80,
-            origin: { y: 0.6 },
-            colors: ['#ef4444', '#f59e0b', '#ffd700', '#ffffff']
-          });
-        }
-        updateStreakTicker(null);
-      } else if (isBuff) {
-        soundComboStreak(3);
-        if (winnerPts) {
-          winnerPts.textContent = `+${data.winner.points || 200} ĐIỂM CHIẾN THẮNG 🎯 (🎁 BUFF X2 QUÀ TẶNG!)`;
-        }
-        if (winnerStreakCard) {
-          winnerStreakCard.style.display = 'inline-flex';
-          winnerStreakCard.className = 'winner-streak-card streak-blazing';
-          if (wsBadge) wsBadge.textContent = '🎁⚡';
-          if (wsTitle) wsTitle.textContent = 'BUFF TẶNG QUÀ NHÂN ĐÔI ĐIỂM';
-          if (wsMult) wsMult.textContent = 'x2.0';
-          if (wsDetail) wsDetail.textContent = `Đoán trúng nhận gấp đôi điểm (+${data.winner.bonusPoints || 100}đ)`;
-        }
-        if (window.confetti) {
-          confetti({
-            particleCount: 100,
-            spread: 80,
-            origin: { y: 0.6 },
-            colors: ['#ffd700', '#ec4899', '#3b82f6', '#ffffff']
-          });
-        }
-        updateStreakTicker(null);
       } else {
         soundWin();
         if (winnerPts) {
-          winnerPts.textContent = `+${data.winner.points || 100} ĐIỂM CHIẾN THẮNG 🎯`;
+          winnerPts.textContent = `+${data.winner?.points || 100} ĐIỂM CHIẾN THẮNG 🎯`;
         }
         if (winnerStreakCard) {
           winnerStreakCard.style.display = 'none';
@@ -3644,10 +3554,15 @@
         ttsManager.speak(data.ttsText, true);
       }
     });
+    socket.on('donorScoreAdded', data => {
+      const capText = data.reachCap ? ' • <i>Đã đạt trần 1.900đ (Đoán đúng 1 câu để Thắng!)</i>' : '';
+      showToastNotice(`🎁 <b>${data.nickname}</b> tặng <b>${data.giftName}</b> (${data.diamonds} xu): <b>+${data.giftPoints}đ</b> (BXH: <b>${data.totalScore}đ</b>)${capText}`);
+      soundGift();
+    });
 
     socket.on('donorBuffActivated', data => {
-      showToastNotice(`🎁 <b>${data.nickname}</b> tặng <b>${data.giftName}</b>: Nhận <b>+${data.giftPoints}đ</b> & Kích hoạt <b>⚡ BUFF X2 ĐIỂM</b>!`);
-      soundComboStreak(2);
+      showToastNotice(`🎁 <b>${data.nickname}</b> tặng <b>${data.giftName}</b>: <b>+${data.giftPoints}đ</b>!`);
+      soundGift();
     });
 
     socket.on('streakUpdate', streak => {
@@ -3753,62 +3668,24 @@
     let chestOverlayTimer = null;
     function showChestOpenCelebration(data) {
       if (!data) return;
-      const overlay = document.getElementById('chestOpenOverlay');
-      if (!overlay) return;
 
-      const threshold = document.getElementById('chestLikesThreshold');
-      const grid = document.getElementById('chestRewardsGrid');
-      if (threshold) threshold.textContent = data.milestone || 200;
-
-      if (grid) {
-        let itemsHtml = '';
-        if (data.lettersRevealed && data.lettersRevealed.length > 0) {
-          itemsHtml += `
-            <div class="chest-reward-item">
-              <span class="chest-reward-icon">💡</span>
-              <span>Trợ giúp mở chữ: <span class="chest-reward-val">${data.lettersRevealed.map(c => `[ ${c} ]`).join(' ')}</span></span>
-            </div>
-          `;
-        }
-        if (data.addedSeconds) {
-          itemsHtml += `
-            <div class="chest-reward-item">
-              <span class="chest-reward-icon">⏱️</span>
-              <span>Cộng thêm thời gian: <span class="chest-reward-val">+${data.addedSeconds} Giây</span></span>
-            </div>
-          `;
-        }
-        if (data.luckyReward) {
-          itemsHtml += `
-            <div class="chest-reward-item">
-              <span class="chest-reward-icon">🌟</span>
-              <span>Khán giả may mắn: <span class="chest-reward-val">${data.luckyReward.nickname} (+${data.luckyReward.bonus}đ)</span></span>
-            </div>
-          `;
-        }
-        grid.innerHTML = itemsHtml || `
-          <div class="chest-reward-item">
-            <span class="chest-reward-icon">🎁</span>
-            <span>Cả phòng nhận lời tri ân đặc biệt từ Streamer!</span>
-          </div>
-        `;
-      }
-
-      overlay.classList.add('show');
+      // Âm thanh mở rương
       soundChestOpen();
 
+      // Hiệu ứng pháo hoa nhẹ nhàng ăn mừng
       if (window.confetti) {
-        confetti({ particleCount: 90, spread: 75, origin: { y: 0.5 } });
+        confetti({ particleCount: 50, spread: 60, origin: { y: 0.8 } });
       }
 
-      if (data.ttsText) {
-        ttsManager.speak(data.ttsText, true);
+      // Thông báo toast nhỏ gọn, không hiện bảng che màn hình
+      if (data.lettersRevealed && data.lettersRevealed.length > 0) {
+        showToastNotice(`🎁 RƯƠNG KHO BÁU MỞ: Trợ giúp mở chữ [ ${data.lettersRevealed.join(', ')} ]!`);
+      } else {
+        showToastNotice('🎁 RƯƠNG KHO BÁU ĐÃ MỞ!');
       }
 
-      if (chestOverlayTimer) clearTimeout(chestOverlayTimer);
-      chestOverlayTimer = setTimeout(() => {
-        closeChestOverlay();
-      }, 7500);
+      // Đảm bảo modal overlay không bao giờ mở
+      closeChestOverlay();
     }
 
     function closeChestOverlay() {
