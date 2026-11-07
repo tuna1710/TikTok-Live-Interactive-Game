@@ -26,15 +26,16 @@ def main():
     for cat in cat_groups:
         random.shuffle(cat_groups[cat])
 
-    # Chia cho 4 gói: day_2, day_3, day_4, day_5 (mỗi gói đúng 300 câu)
-    target_packs = {2: [], 3: [], 4: [], 5: []}
+    # Chia cho 6 gói: day_2 đến day_7 (mỗi gói đúng 300 câu)
+    pack_nums = [2, 3, 4, 5, 6, 7]
+    target_packs = {p: [] for p in pack_nums}
 
-    # Phân bổ tỷ lệ từng danh mục vào 4 gói
+    # Phân bổ tỷ lệ từng danh mục vào 6 gói
     for cat, items in cat_groups.items():
-        quota = len(items) // 4
+        quota = len(items) // len(pack_nums)
         if quota > 0:
-            for p in [2, 3, 4, 5]:
-                start = (p - 2) * quota
+            for idx, p in enumerate(pack_nums):
+                start = idx * quota
                 end = start + quota
                 space_left = 300 - len(target_packs[p])
                 if space_left > 0:
@@ -45,7 +46,7 @@ def main():
     leftover = [w for w in available_words if w['id'] not in used_ids]
     random.shuffle(leftover)
 
-    for p in [2, 3, 4, 5]:
+    for p in pack_nums:
         while len(target_packs[p]) < 300 and leftover:
             target_packs[p].append(leftover.pop())
 
@@ -54,12 +55,14 @@ def main():
         2: '📅 Gói Ngày 2: Ẩm Thực 3 Miền & Quê Hương (300 câu)',
         3: '📅 Gói Ngày 3: Tục Ngữ Dân Gian & Thế Giới Tự Nhiên (300 câu)',
         4: '📅 Gói Ngày 4: Danh Lam Cổ Tích & Con Người Việt Nam (300 câu)',
-        5: '📅 Gói Ngày 5: Hot Trend Gen Z & Đời Sống Mạng Xã Hội (300 câu)'
+        5: '📅 Gói Ngày 5: Hot Trend Gen Z & Đời Sống Mạng Xã Hội (300 câu)',
+        6: '📅 Gói Ngày 6: Ca Dao Tục Ngữ & Trí Tuệ Dân Gian (300 câu)',
+        7: '📅 Gói Ngày 7: Đố Vui Hài Hước & Trend Mạng Xã Hội (300 câu)'
     }
 
     all_assigned_ids = set()
-    start_ids = {2: 2301, 3: 2601, 4: 2901, 5: 3201}
-    for p in [2, 3, 4, 5]:
+    start_ids = {2: 2301, 3: 2601, 4: 2901, 5: 3201, 6: 3501, 7: 3801}
+    for p in pack_nums:
         pack_list = target_packs[p]
         formatted_list = []
         cur_id = start_ids[p]
@@ -79,7 +82,7 @@ def main():
         print(f"\n✅ Đã tạo {file_path}: {len(formatted_list)} câu ({len(cats)} danh mục)")
         print(f"   Top danh mục: {cats.most_common(5)}")
 
-    print(f"\n🎉 Tổng số câu độc bản được chia thành công: {len(all_assigned_ids)} câu!")
+    print(f"\n🎉 Tổng số câu độc bản được chia thành công: {len(all_assigned_ids)} câu across day_2..day_7!")
 
 if __name__ == '__main__':
     main()

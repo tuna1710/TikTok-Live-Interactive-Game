@@ -77,14 +77,16 @@ app.get('/api/tts', (req, res) => {
 const server = http.createServer(app);
 const io = new Server(server, { cors: { origin: '*' } });
 
-// Quản lý Gói Câu Hỏi (Packs: Gói Đặc Biệt 1.660 câu, Gói Ngày 1 đến Ngày 5 mỗi gói 300 câu...)
+// Quản lý Gói Câu Hỏi (Packs: Gói Đặc Biệt 2.160 câu, Gói Ngày 1 đến Ngày 7 mỗi gói 300 câu...)
 const AVAILABLE_PACKS = [
-  { id: 'special', name: '🌟 Gói Đặc Biệt (1.660 câu tổng hợp)', file: './data/words.json', totalWords: 1660 },
+  { id: 'special', name: '🌟 Gói Đặc Biệt (2.160 câu tổng hợp)', file: './data/words.json', totalWords: 2160 },
   { id: 'day_1', name: '📅 Gói Ngày 1: Đời Sống & Thành Ngữ Mới (300 câu)', file: './data/packs/day_1.json', totalWords: 300 },
   { id: 'day_2', name: '📅 Gói Ngày 2: Ẩm Thực 3 Miền & Quê Hương (300 câu)', file: './data/packs/day_2.json', totalWords: 300 },
   { id: 'day_3', name: '📅 Gói Ngày 3: Tục Ngữ Dân Gian & Tự Nhiên (300 câu)', file: './data/packs/day_3.json', totalWords: 300 },
   { id: 'day_4', name: '📅 Gói Ngày 4: Danh Lam Cổ Tích & Con Người (300 câu)', file: './data/packs/day_4.json', totalWords: 300 },
   { id: 'day_5', name: '📅 Gói Ngày 5: Hot Trend & Đời Sống Xã Hội (300 câu)', file: './data/packs/day_5.json', totalWords: 300 },
+  { id: 'day_6', name: '📅 Gói Ngày 6: Ca Dao Tục Ngữ & Trí Tuệ Dân Gian (300 câu)', file: './data/packs/day_6.json', totalWords: 300 },
+  { id: 'day_7', name: '📅 Gói Ngày 7: Đố Vui Hài Hước & Trend Mạng Xã Hội (300 câu)', file: './data/packs/day_7.json', totalWords: 300 },
 ];
 let currentPackId = 'special';
 let wordsData = [...require('./data/words.json')];

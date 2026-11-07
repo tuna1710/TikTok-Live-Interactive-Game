@@ -23,8 +23,8 @@ async function runTests() {
     const state0 = await (await fetch('http://127.0.0.1:3006/api/state')).json();
     console.log(`📦 Gói hiện tại ban đầu: ${state0.state.currentPackName} (ID: ${state0.state.currentPackId})`);
 
-    // Đổi và kiểm tra lần lượt cả 5 gói Ngày 1 -> Ngày 5
-    const packsToTest = ['day_1', 'day_2', 'day_3', 'day_4', 'day_5'];
+    // Đổi và kiểm tra lần lượt cả 7 gói Ngày 1 -> Ngày 7
+    const packsToTest = ['day_1', 'day_2', 'day_3', 'day_4', 'day_5', 'day_6', 'day_7'];
     for (const pId of packsToTest) {
       const pRes = await (await fetch('http://127.0.0.1:3006/admin/api', {
         method: 'POST',
@@ -40,7 +40,7 @@ async function runTests() {
         throw new Error(`Đổi gói ${pId} thất bại: currentPackId=${sPack.state.currentPackId}, deck=${sPack.state.remainingInDeck}`);
       }
     }
-    console.log('🎯 [PASS] Cả 5 Gói Ngày 1, 2, 3, 4, 5 đều được nạp và hoạt động chính xác (300 câu/gói)!');
+    console.log('🎯 [PASS] Cả 7 Gói Ngày 1 đến Ngày 7 đều được nạp và hoạt động chính xác (300 câu/gói)!');
 
     // Đổi lại gói đặc biệt
     await fetch('http://127.0.0.1:3006/admin/api', {
