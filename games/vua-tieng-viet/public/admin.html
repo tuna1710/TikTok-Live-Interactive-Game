@@ -150,6 +150,10 @@
         <option value="day_5">📅 Gói Ngày 5: Hot Trend & Đời Sống Xã Hội (300 câu)</option>
         <option value="day_6">📅 Gói Ngày 6: Ca Dao Tục Ngữ & Trí Tuệ Dân Gian (300 câu)</option>
         <option value="day_7">📅 Gói Ngày 7: Đố Vui Hài Hước & Trend Mạng Xã Hội (300 câu)</option>
+        <option value="day_8">🟢 Gói Ngày 8: Từ Ngắn Dễ Đoán & Đời Sống Quen Thuộc (300 câu)</option>
+        <option value="day_9">🟢 Gói Ngày 9: Từ Ngắn Dễ Đoán & Thế Giới Xung Quanh (300 câu)</option>
+        <option value="day_10">🟢 Gói Ngày 10: Từ Ngắn Dễ Đoán & Khám Phá Cuộc Sống (300 câu)</option>
+        <option value="day_11">🟢 Gói Ngày 11: Từ Ngắn Dễ Đoán & Nét Đẹp Quê Hương (300 câu)</option>
       </select>
     </div>
     <div style="font-size:11px;color:#94a3b8;margin-top:6px;">
@@ -170,6 +174,9 @@
   <div class="card" style="border: 1px solid rgba(16, 185, 129, 0.4); box-shadow: 0 0 15px rgba(16, 185, 129, 0.1);">
     <div class="card-title" style="color: #34d399;">🎯 Chọn Câu Hỏi Theo Ý Streamer</div>
 
+    <!-- Thông báo kết quả thao tác trực tiếp của Streamer -->
+    <div id="streamerPickAlert" style="display:none;padding:10px 12px;border-radius:8px;font-size:13px;font-weight:700;margin-bottom:10px;text-align:center;"></div>
+
     <!-- Banner câu hỏi đang chờ phát ở vòng kế -->
     <div id="pendingWordBanner" style="display:none;background:rgba(16,185,129,0.15);border:1px solid #10b981;padding:10px 12px;border-radius:8px;margin-bottom:12px;">
       <div style="display:flex;justify-content:space-between;align-items:center;">
@@ -183,18 +190,34 @@
 
     <!-- 2 Tab Chế Độ -->
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px;">
-      <button id="tabSearchBtn" class="btn-green" style="margin:0;padding:7px;font-size:12px;" onclick="switchWordPickerTab('search')">🔍 Tìm Trong Kho (2.160 câu)</button>
+      <button id="tabSearchBtn" class="btn-green" style="margin:0;padding:7px;font-size:12px;" onclick="switchWordPickerTab('search')">🔍 Tìm Trong Kho (5.460 câu)</button>
       <button id="tabCustomBtn" class="btn-purple" style="margin:0;padding:7px;font-size:12px;opacity:0.6;" onclick="switchWordPickerTab('custom')">✍️ Tự Nhập Câu Mới</button>
     </div>
 
     <!-- Tab 1: Tra cứu từ kho -->
     <div id="wordSearchTab">
-      <div style="display:grid;grid-template-columns: 2fr 1fr;gap:6px;">
-        <input type="text" id="wordSearchInput" placeholder="Gõ từ khóa, gợi ý hoặc ID..." style="margin:0;" oninput="debounceSearchWords()" />
+      <div style="display:grid;grid-template-columns: 1fr 1fr;gap:6px;margin-bottom:6px;">
+        <select id="wordPackFilterSelect" style="margin:0;padding:8px;font-size:12px;" onchange="onWordPackFilterChange()">
+          <option value="all">🌐 Toàn bộ kho (5.460 câu)</option>
+          <option value="current">📦 Gói đang phát hiện tại</option>
+          <option value="special">🌟 Gói Đặc Biệt (2.160 câu)</option>
+          <option value="day_1">📅 Gói Ngày 1 (300 câu)</option>
+          <option value="day_2">📅 Gói Ngày 2 (300 câu)</option>
+          <option value="day_3">📅 Gói Ngày 3 (300 câu)</option>
+          <option value="day_4">📅 Gói Ngày 4 (300 câu)</option>
+          <option value="day_5">📅 Gói Ngày 5 (300 câu)</option>
+          <option value="day_6">📅 Gói Ngày 6 (300 câu)</option>
+          <option value="day_7">📅 Gói Ngày 7 (300 câu)</option>
+          <option value="day_8">🟢 Gói Ngày 8 (300 câu)</option>
+          <option value="day_9">🟢 Gói Ngày 9 (300 câu)</option>
+          <option value="day_10">🟢 Gói Ngày 10 (300 câu)</option>
+          <option value="day_11">🟢 Gói Ngày 11 (300 câu)</option>
+        </select>
         <select id="wordCategorySelect" style="margin:0;padding:8px;font-size:12px;" onchange="searchWords()">
           <option value="all">-- Tất cả thể loại --</option>
         </select>
       </div>
+      <input type="text" id="wordSearchInput" placeholder="Gõ từ khóa, gợi ý hoặc ID (vd: MÈO, 12, hoa hồng)..." style="margin:0;" oninput="debounceSearchWords()" />
       <div style="display:flex;justify-content:flex-end;align-items:center;margin-top:6px;font-size:12px;color:#94a3b8;">
         <span id="wordSearchCount" style="font-size:11px;color:#38bdf8;">Đang tải...</span>
       </div>
@@ -493,6 +516,10 @@
     function changePack(packId) {
       if (!packId) return;
       sendAction('selectPack', { packId });
+      setTimeout(() => {
+        loadWordCategories();
+        searchWords();
+      }, 350);
     }
 
     function simulateLikeTest(count = 20) {
@@ -628,6 +655,32 @@
 
     // Streamer Word Picker Logic
     let searchDebounceTimer = null;
+    let streamerAlertTimer = null;
+
+    function showStreamerAlert(msg, isSuccess = true) {
+      const el = document.getElementById('streamerPickAlert');
+      if (!el) return;
+      clearTimeout(streamerAlertTimer);
+      el.textContent = msg;
+      el.style.display = 'block';
+      el.style.background = isSuccess ? 'rgba(16, 185, 129, 0.2)' : 'rgba(239, 68, 68, 0.2)';
+      el.style.border = isSuccess ? '1px solid #10b981' : '1px solid #ef4444';
+      el.style.color = isSuccess ? '#34d399' : '#f87171';
+      streamerAlertTimer = setTimeout(() => {
+        el.style.display = 'none';
+      }, 4000);
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
     function debounceSearchWords() {
       clearTimeout(searchDebounceTimer);
       searchDebounceTimer = setTimeout(searchWords, 250);
@@ -641,15 +694,25 @@
       document.getElementById('tabCustomBtn').style.opacity = isSearch ? '0.6' : '1';
     }
 
+    function onWordPackFilterChange() {
+      loadWordCategories();
+      searchWords();
+    }
+
     async function loadWordCategories() {
       try {
-        const res = await fetch('/api/words/categories');
+        const packId = document.getElementById('wordPackFilterSelect')?.value || 'all';
+        const res = await fetch(`/api/words/categories?scope=${encodeURIComponent(packId)}`);
         const json = await res.json();
         if (json.ok && Array.isArray(json.categories)) {
           const sel = document.getElementById('wordCategorySelect');
           if (sel) {
+            const currentVal = sel.value;
             sel.innerHTML = '<option value="all">-- Tất cả thể loại (' + json.categories.length + ') --</option>' +
-              json.categories.map(c => `<option value="${c}">${c}</option>`).join('');
+              json.categories.map(c => `<option value="${escapeHtml(c)}">${escapeHtml(c)}</option>`).join('');
+            if (json.categories.includes(currentVal)) {
+              sel.value = currentVal;
+            }
           }
         }
       } catch (e) {}
@@ -658,13 +721,14 @@
     async function searchWords() {
       const q = (document.getElementById('wordSearchInput')?.value || '').trim();
       const cat = document.getElementById('wordCategorySelect')?.value || 'all';
+      const packId = document.getElementById('wordPackFilterSelect')?.value || 'all';
       const container = document.getElementById('wordSearchResults');
       const countLabel = document.getElementById('wordSearchCount');
 
       if (!container) return;
 
       try {
-        const params = new URLSearchParams({ q, category: cat, limit: '40' });
+        const params = new URLSearchParams({ q, category: cat, packId, limit: '40' });
         const res = await fetch(`/api/words/search?${params.toString()}`);
         const json = await res.json();
 
@@ -677,25 +741,36 @@
           countLabel.textContent = `Tìm thấy ${json.total} câu (hiện ${json.words.length})`;
         }
 
+        if (json.masterTotal) {
+          const tabBtn = document.getElementById('tabSearchBtn');
+          if (tabBtn) tabBtn.textContent = `🔍 Tìm Trong Kho (${json.masterTotal.toLocaleString('vi-VN')} câu)`;
+        }
+
         if (json.words.length === 0) {
           container.innerHTML = '<div style="color:#64748b;padding:12px;text-align:center;">Không tìm thấy câu hỏi phù hợp</div>';
           return;
         }
 
         container.innerHTML = json.words.map(w => {
+          const safeWord = escapeHtml(w.word);
+          const safeCat = escapeHtml(w.category);
+          const safeHint = escapeHtml(w.hint);
+          const safePack = escapeHtml(w.packName || '');
+          const safePackId = escapeHtml(w.packId || '');
           return `
             <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:6px;padding:6px 8px;margin-bottom:5px;display:flex;justify-content:space-between;align-items:center;gap:6px;">
               <div style="flex:1;min-width:0;">
-                <div style="display:flex;gap:6px;align-items:center;">
-                  <span style="font-size:11px;background:#3b82f6;color:#fff;padding:1px 5px;border-radius:3px;font-weight:700;">#${w.id}</span>
-                  <span style="font-size:11px;background:rgba(255,255,255,0.1);color:#ffd700;padding:1px 5px;border-radius:3px;">${w.category}</span>
-                  <span style="font-weight:700;font-size:13px;color:#fff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${w.word}</span>
+                <div style="display:flex;gap:4px;align-items:center;flex-wrap:wrap;">
+                  <span style="font-size:10px;background:#3b82f6;color:#fff;padding:1px 5px;border-radius:3px;font-weight:700;">#${w.id}</span>
+                  <span style="font-size:10px;background:#059669;color:#fff;padding:1px 5px;border-radius:3px;max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${safePack}">${safePack}</span>
+                  <span style="font-size:10px;background:rgba(255,255,255,0.1);color:#ffd700;padding:1px 5px;border-radius:3px;">${safeCat}</span>
+                  <span style="font-weight:700;font-size:13px;color:#fff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${safeWord}</span>
                 </div>
-                <div style="font-size:11px;color:#94a3b8;margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${w.hint}">${w.hint}</div>
+                <div style="font-size:11px;color:#94a3b8;margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${safeHint}">${safeHint}</div>
               </div>
               <div style="display:flex;gap:4px;flex-shrink:0;">
-                <button class="btn-green" style="margin:0;padding:4px 8px;font-size:11px;width:auto;" onclick="selectWord(${w.id}, true)" title="Phát câu này ngay lập tức">▶️ Ngay</button>
-                <button class="btn-gold" style="margin:0;padding:4px 8px;font-size:11px;width:auto;" onclick="selectWord(${w.id}, false)" title="Đặt cho vòng kế tiếp">⏳ Sau</button>
+                <button class="btn-green" style="margin:0;padding:5px 8px;font-size:11px;width:auto;" onclick="selectWord('${w.id}', '${safePackId}', true)" title="Phát câu này ngay lập tức">▶️ Ngay</button>
+                <button class="btn-gold" style="margin:0;padding:5px 8px;font-size:11px;width:auto;" onclick="selectWord('${w.id}', '${safePackId}', false)" title="Đặt cho vòng kế tiếp">⏳ Sau</button>
               </div>
             </div>
           `;
@@ -705,28 +780,96 @@
       }
     }
 
-    function selectWord(wordId, playNow) {
-      sendAction(playNow ? 'playWordNow' : 'setNextWord', { wordId });
+    async function selectWord(wordId, packId, playNow) {
+      try {
+        log.textContent = 'Đang gửi lệnh: ' + (playNow ? 'playWordNow' : 'setNextWord') + '...';
+        const res = await fetch('/admin/api', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: playNow ? 'playWordNow' : 'setNextWord', wordId, packId })
+        });
+        const json = await res.json();
+        log.textContent = 'Phản hồi: ' + JSON.stringify(json, null, 2);
+        if (json.ok) {
+          showStreamerAlert(json.message || (playNow ? '✅ Đã phát câu hỏi ngay lập tức!' : '⏳ Đã đặt cho vòng kế tiếp!'), true);
+        } else {
+          showStreamerAlert('❌ Lỗi: ' + (json.message || 'Không thể chọn câu hỏi'), false);
+        }
+        loadCurrentState();
+      } catch (e) {
+        log.textContent = 'Lỗi: ' + e.message;
+        showStreamerAlert('❌ Lỗi: ' + e.message, false);
+      }
     }
 
-    function submitCustomWord(playNow) {
+    async function submitCustomWord(playNow) {
       const word = document.getElementById('customWordInput')?.value.trim();
       const category = document.getElementById('customCategoryInput')?.value.trim() || 'Tự Chọn';
       const hint = document.getElementById('customHintInput')?.value.trim() || 'Câu đố do Streamer tạo';
 
       if (!word) {
+        showStreamerAlert('⚠️ Vui lòng nhập từ khóa đáp án!', false);
         alert('Vui lòng nhập từ khóa đáp án!');
         return;
       }
-      sendAction(playNow ? 'playWordNow' : 'setNextWord', { word, category, hint });
+
+      try {
+        log.textContent = 'Đang gửi câu hỏi tự nhập...';
+        const res = await fetch('/admin/api', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: playNow ? 'playWordNow' : 'setNextWord', word, category, hint })
+        });
+        const json = await res.json();
+        log.textContent = 'Phản hồi: ' + JSON.stringify(json, null, 2);
+        if (json.ok) {
+          showStreamerAlert(json.message || (playNow ? `✅ Đã phát: "${word}"!` : `⏳ Đã xếp: "${word}" vào vòng sau!`), true);
+          document.getElementById('customWordInput').value = '';
+          document.getElementById('customHintInput').value = '';
+        } else {
+          showStreamerAlert('❌ Lỗi: ' + (json.message || 'Không thể tạo câu hỏi'), false);
+        }
+        loadCurrentState();
+      } catch (e) {
+        log.textContent = 'Lỗi: ' + e.message;
+        showStreamerAlert('❌ Lỗi: ' + e.message, false);
+      }
     }
 
-    function playPendingWordNow() {
-      sendAction('playPendingWordNow');
+    async function playPendingWordNow() {
+      try {
+        const res = await fetch('/admin/api', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'playPendingWordNow' })
+        });
+        const json = await res.json();
+        log.textContent = 'Phản hồi: ' + JSON.stringify(json, null, 2);
+        if (json.ok) {
+          showStreamerAlert(json.message || '✅ Đã phát câu hỏi đặt trước ngay lập tức!', true);
+        } else {
+          showStreamerAlert('❌ ' + (json.message || 'Lỗi phát câu đặt trước'), false);
+        }
+        loadCurrentState();
+      } catch (e) {
+        showStreamerAlert('❌ Lỗi: ' + e.message, false);
+      }
     }
 
-    function clearPendingWord() {
-      sendAction('clearPendingWord');
+    async function clearPendingWord() {
+      try {
+        const res = await fetch('/admin/api', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'clearPendingWord' })
+        });
+        const json = await res.json();
+        log.textContent = 'Phản hồi: ' + JSON.stringify(json, null, 2);
+        showStreamerAlert(json.message || '❌ Đã hủy câu hỏi đặt trước.', true);
+        loadCurrentState();
+      } catch (e) {
+        showStreamerAlert('❌ Lỗi: ' + e.message, false);
+      }
     }
 
     loadWordCategories();

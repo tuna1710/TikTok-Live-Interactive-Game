@@ -98,6 +98,53 @@ const PLAYED_WORDS_FILE = path.join(__dirname, 'data', 'played_words.json');
 let playedWordIds = new Set();
 let wordDeck = [];
 
+// Kho câu hỏi tổng hợp tất cả các gói (Toàn bộ kho câu hỏi)
+function loadAllWordsMaster() {
+  const list = [];
+  for (const p of AVAILABLE_PACKS) {
+    try {
+      const pFile = path.resolve(__dirname, p.file);
+      if (fs.existsSync(pFile)) {
+        const raw = JSON.parse(fs.readFileSync(pFile, 'utf-8'));
+        if (Array.isArray(raw)) {
+          for (const item of raw) {
+            if (item && item.word) {
+              list.push({
+                ...item,
+                packId: p.id,
+                packName: p.name,
+              });
+            }
+          }
+        }
+      }
+    } catch (e) {
+      console.error(`[Master Words] Lỗi đọc gói ${p.id}:`, e.message);
+    }
+  }
+  return list;
+}
+const allWordsMaster = loadAllWordsMaster();
+
+function findWordById(wordId, packId = null) {
+  const idNum = Number(wordId);
+  if (packId && packId !== 'all' && packId !== 'current') {
+    const match = allWordsMaster.find(w => w.id === idNum && w.packId === packId);
+    if (match) return { ...match };
+  }
+  const currentMatch = wordsData.find(w => w.id === idNum);
+  if (currentMatch) {
+    return {
+      ...currentMatch,
+      packId: currentPackId,
+      packName: AVAILABLE_PACKS.find(p => p.id === currentPackId)?.name || 'Gói Hiện Tại'
+    };
+  }
+  const anyMatch = allWordsMaster.find(w => w.id === idNum);
+  if (anyMatch) return { ...anyMatch };
+  return null;
+}
+
 // Quản lý Vòng Bình Chọn Chủ Đề Khán Giả (Cứ 15 câu 1 lần -> Câu đặc biệt 500 điểm)
 const TOPIC_VOTE_INTERVAL = 15;
 let questionsInVoteCycle = 0;
@@ -749,6 +796,8 @@ function startNewRound() {
     if (wordObj.id) {
       playedWordIds.add(wordObj.id);
       savePlayedWords();
+      const deckIdx = wordDeck.findIndex(w => w.id === wordObj.id);
+      if (deckIdx !== -1) wordDeck.splice(deckIdx, 1);
     }
     console.log(`[Streamer Pick] 🎯 Phát câu hỏi do Streamer chỉ định: "${wordObj.word}" (${wordObj.category})`);
   } else if (isSpecial500Round && nextSpecialCategory) {
@@ -1528,16 +1577,35 @@ app.get('/api/state', (req, res) => {
 });
 
 app.get('/api/words/categories', (req, res) => {
-  const cats = Array.from(new Set(wordsData.map(w => w.category).filter(Boolean))).sort();
-  res.json({ ok: true, categories: cats });
+  const scope = (req.query.scope || req.query.packId || 'all').trim();
+  let source = allWordsMaster;
+  if (scope === 'current') {
+    source = wordsData;
+  } else if (scope !== 'all') {
+    source = allWordsMaster.filter(w => w.packId === scope);
+  }
+  const cats = Array.from(new Set(source.map(w => w.category).filter(Boolean))).sort();
+  res.json({ ok: true, categories: cats, totalCategories: cats.length, totalWords: source.length });
 });
 
 app.get('/api/words/search', (req, res) => {
   const q = (req.query.q || '').trim().toLowerCase();
   const category = (req.query.category || '').trim();
-  const limit = Math.min(Number(req.query.limit) || 30, 100);
+  const packId = (req.query.packId || req.query.scope || 'all').trim();
+  const limit = Math.min(Number(req.query.limit) || 40, 100);
 
-  let filtered = wordsData;
+  let source = allWordsMaster;
+  if (packId === 'current') {
+    source = wordsData.map(w => ({
+      ...w,
+      packId: currentPackId,
+      packName: AVAILABLE_PACKS.find(p => p.id === currentPackId)?.name || 'Gói Hiện Tại'
+    }));
+  } else if (packId !== 'all') {
+    source = allWordsMaster.filter(w => w.packId === packId);
+  }
+
+  let filtered = source;
   if (category && category !== 'all') {
     filtered = filtered.filter(w => (w.category || '').toLowerCase() === category.toLowerCase());
   }
@@ -1551,7 +1619,16 @@ app.get('/api/words/search', (req, res) => {
   res.json({
     ok: true,
     total: filtered.length,
-    words: filtered.slice(0, limit)
+    masterTotal: allWordsMaster.length,
+    currentPackId,
+    words: filtered.slice(0, limit).map(w => ({
+      id: w.id,
+      word: w.word,
+      category: w.category,
+      hint: w.hint,
+      packId: w.packId || currentPackId,
+      packName: w.packName || AVAILABLE_PACKS.find(p => p.id === (w.packId || currentPackId))?.name || 'Gói Hiện Tại'
+    }))
   });
 });
 
@@ -1560,21 +1637,20 @@ app.post('/admin/api', (req, res) => {
 
   if (action === 'setNextWord' || action === 'playWordNow') {
     let targetWord = null;
-    if (req.body.wordId) {
-      targetWord = wordsData.find(w => w.id === Number(req.body.wordId));
-      if (targetWord) {
-        targetWord = { ...targetWord };
-      }
+    if (req.body.wordId !== undefined && req.body.wordId !== null && req.body.wordId !== '') {
+      targetWord = findWordById(req.body.wordId, req.body.packId);
     } else if (req.body.word) {
       const cleanWord = String(req.body.word).trim().toUpperCase();
       if (!cleanWord) {
         return res.status(400).json({ ok: false, message: 'Từ khóa không được để trống!' });
       }
       targetWord = {
-        id: req.body.id || Date.now(),
+        id: req.body.id || ('C' + Date.now().toString().slice(-6)),
         word: cleanWord,
         category: String(req.body.category || 'Tự Chọn').trim(),
-        hint: String(req.body.hint || 'Câu đố do Streamer tạo').trim()
+        hint: String(req.body.hint || 'Câu đố do Streamer tạo').trim(),
+        packId: 'custom',
+        packName: '✍️ Tự Streamer Nhập',
       };
     }
 
@@ -1597,16 +1673,25 @@ app.post('/admin/api', (req, res) => {
         clearTimeout(nextRoundTimer);
         nextRoundTimer = null;
       }
+      isCelebratingMilestone = false;
+      activeMilestone = null;
+      isCelebratingDonorHonor = false;
+      activeDonorHonor = null;
       io.emit('milestoneEnd');
+      io.emit('donorHonorEnd');
+      io.emit('topicVotingEnd');
       startNewRound();
+      io.emit('gameState', getClientGameState());
       return res.json({
         ok: true,
+        word: targetWord,
         message: `Đã phát câu hỏi ngay lập tức: "${targetWord.word}" (${targetWord.category})!`
       });
     } else {
       io.emit('gameState', getClientGameState());
       return res.json({
         ok: true,
+        word: targetWord,
         message: `Đã xếp câu hỏi "${targetWord.word}" (${targetWord.category}) vào vòng kế tiếp!`
       });
     }
@@ -1621,9 +1706,17 @@ app.post('/admin/api', (req, res) => {
       clearTimeout(nextRoundTimer);
       nextRoundTimer = null;
     }
+    isCelebratingMilestone = false;
+    activeMilestone = null;
+    isCelebratingDonorHonor = false;
+    activeDonorHonor = null;
     io.emit('milestoneEnd');
+    io.emit('donorHonorEnd');
+    io.emit('topicVotingEnd');
+    const playedWord = { ...pendingStreamerWord };
     startNewRound();
-    return res.json({ ok: true, message: 'Đã phát câu hỏi đặt trước ngay lập tức!' });
+    io.emit('gameState', getClientGameState());
+    return res.json({ ok: true, word: playedWord, message: `Đã phát câu hỏi đặt trước ngay lập tức: "${playedWord.word}"!` });
   }
 
   if (action === 'clearPendingWord') {
