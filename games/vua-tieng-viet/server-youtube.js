@@ -273,7 +273,7 @@ function triggerMilestoneCelebration(user, score = MILESTONE_SCORE, duration = M
     topDonorsTts = ` Trân trọng tri ân đại phú hộ ${top1.nickname} với ${top1.diamonds} xu cùng các nhà hảo tâm đã ủng hộ hết mình!`;
   }
 
-  const ttsText = `Nhiệt liệt chúc mừng ${user.nickname} đã xuất sắc cán mốc ${score} điểm trở thành Đại Kiện Tướng Tiếng Việt!${top5Tts}${topDonorsTts} Chân thành cảm ơn mọi người đã tham gia phiên live rất nhiệt tình! Xin quý vị vui lòng chờ đợi giây lát để chúng ta cùng bước vào màn tiếp theo!`;
+  const ttsText = `Nhiệt liệt chúc mừng Đại Kiện Tướng ${user.nickname} đã xuất sắc đoán đúng câu quyết định để chạm mốc ${score} điểm!${top5Tts}${topDonorsTts} Chân thành cảm ơn tất cả quý khán giả đã nhiệt tình tham gia và tương tác cùng phòng live! Xin mời mọi người cùng chờ đợi trong giây lát để bước vào màn chơi tiếp theo!`;
   console.log(`🌟 ĐẠI VINH DANH CÁN MỐC: ${user.nickname} đạt ${score} điểm! (${duration}s)`);
   console.log(`📢 BẢNG VÀNG TOP 5:\n` + top5List.map((p, i) => `   Top ${i + 1}: ${p.nickname} (${p.score}đ)`).join('\n'));
   console.log(`💎 BẢNG VÀNG TOP NHÀ HẢO TÂM:\n` + topDonorsList.map((d, i) => `   Top ${i + 1}: ${d.nickname} (${d.diamonds} xu)`).join('\n'));
