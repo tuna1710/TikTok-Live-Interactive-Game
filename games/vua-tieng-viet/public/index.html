@@ -3588,6 +3588,12 @@
       }
     });
 
+    socket.on('idleReminder', data => {
+      if (data && data.ttsText) {
+        ttsManager.speak(data.ttsText, false);
+      }
+    });
+
     socket.on('ttsCustom', data => {
       if (data.ttsText) {
         ttsManager.speak(data.ttsText, true);

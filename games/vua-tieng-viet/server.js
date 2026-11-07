@@ -135,6 +135,77 @@ let currentStreakWinner = null; // { uniqueId, nickname, avatar, count, multipli
 const POINTS_PER_DIAMOND = Number(process.env.POINTS_PER_DIAMOND) || 500; // 1 xu tặng quà = +500 điểm
 const MAX_GIFT_SCORE = 1900; // Điểm tối đa từ tặng quà là 1.900đ, phải trả lời đúng 1 câu mới thắng (2.000đ)
 
+// Quản lý Chống Khoảng Lặng (Anti-Dead Air: 10s im lặng phát giọng đọc khuấy động hoặc nhắc câu hỏi)
+const IDLE_TIMEOUT_SECONDS = Number(process.env.IDLE_TIMEOUT_SECONDS) || 10;
+let idleSecondsCount = 0;
+let idleReminderToggle = false;
+let unusedIdleLines = [];
+
+const IDLE_ENGAGING_LINES = [
+  "Ủa cả phòng mình đi đâu hết rồi? Câu này dễ thế này mà chưa ai đoán ra sao?",
+  "Các cao thủ Tiếng Việt phòng live đâu hết rồi ạ? Mau xuất chiêu cho mọi người trầm trồ nào!",
+  "Đừng bảo với tôi là câu đố này làm khó được các bậc thầy ngôn ngữ ở đây nhé!",
+  "Trầm ngâm lâu quá nha quý vị ơi! Nhanh tay gõ đáp án vào ô bình luận nào!",
+  "Hình như câu này hơi hóc búa thì phải, có ai giải cứu phòng live lúc này không?",
+  "Im ắng thế này là mọi người đang vắt óc suy nghĩ hay là đang đi uống trà sữa vậy ta?",
+  "Ai sẽ là người đầu tiên phá vỡ sự im lặng và rinh ngay một trăm điểm vòng này đây?",
+  "Thời gian đang trôi dần rồi cả nhà ơi, nhìn kỹ các chữ cái bị xáo trộn kìa!",
+  "Chữ cái đã bày ra trước mắt rồi, ghép lại một chút là ra ngay đáp án thôi!",
+  "Gợi ý to đùng ở góc màn hình kìa quý vị, đọc kỹ một chút là thấy ngay đáp án!",
+  "Ai chưa rõ câu hỏi thì nhìn lên góc phải nhé, gợi ý rất rõ ràng luôn đó!",
+  "Chỉ cần một đáp án chính xác thôi, ai sẽ là vị cứu tinh của vòng này nào?",
+  "Nhanh tay lên nào mọi người ơi, đồng hồ đếm ngược không chờ đợi ai đâu nhé!",
+  "Nếu bí từ quá thì cùng nhau chạm nhẹ tay vào màn hình thả tim để mở rương lấy thêm chữ cái gợi ý nhé!",
+  "Mọi người cùng nhau nhấp đôi vào màn hình thả tim nào, rương kho báu sắp mở bung rồi đó!",
+  "Thả tim nhiệt tình lên cả nhà ơi, rương mở ra là có thêm chữ cái gợi ý và cộng thêm thời gian liền!",
+  "Tiến độ rương tim đang tăng rất nhanh, cả nhà cùng chung tay thả tim mở khóa đáp án nào!",
+  "Câu này khó quá thì gửi nhẹ một bông hoa hồng một xu là hệ thống mở ngay một chữ cái nhé!",
+  "Bí đáp án thì đừng quên tuyệt chiêu tặng một bông hoa để hé lộ ngay chữ cái bí mật nha!",
+  "Chỉ cần một xu là mở ngay một ô chữ, ai sẽ là người tiên phong mở đường vòng này đây?",
+  "Muốn vượt lên top bảng xếp hạng? Tặng quà vừa mở chữ vừa cộng thẳng năm trăm điểm luôn nhé!",
+  "Cố lên nào các bạn ơi, chiến thắng chỉ cách một bình luận chính xác mà thôi!",
+  "Đừng ngại thử vận may, cứ gõ suy đoán của mình vào bình luận, biết đâu lại đúng!",
+  "Không khí đang nóng dần lên rồi, hãy cho tôi thấy cánh tay của các chiến thần đố chữ nào!",
+  "Mọi người tập trung cao độ quá, sắp có đáp án chính xác xuất hiện rồi đúng không?",
+  "Đáp án đang ở ngay trên đầu lưỡi rồi kìa, nhanh tay gõ vào phần chat đi nào!",
+  "Đồng hồ đang tích tắc trôi, cơ hội ghi điểm đang tuột dần đó quý vị ơi!",
+  "Thời gian suy nghĩ không còn nhiều đâu, nhanh tay gửi câu trả lời nào cả nhà!",
+  "Chỉ còn ít giây nữa thôi, ai sẽ giành trọn điểm số vòng này trước khi hết giờ đây?",
+  "Chuông báo sắp reo rồi, bình luận ngay đáp án của bạn trước khi quá muộn nhé!"
+];
+
+function resetIdleTimer() {
+  idleSecondsCount = 0;
+}
+
+function getNextIdleLine() {
+  if (unusedIdleLines.length === 0) {
+    unusedIdleLines = [...IDLE_ENGAGING_LINES].sort(() => Math.random() - 0.5);
+  }
+  return unusedIdleLines.pop();
+}
+
+function triggerIdleReminder(force = false) {
+  if (!force && gameState.roundState !== 'PLAYING') return null;
+  if (!force && !gameState.currentWord) return null;
+  if (!force && (isCelebratingMilestone || isCelebratingDonorHonor)) return null;
+  if (!force && gameState.timeLeft <= 8) return null;
+
+  idleReminderToggle = !idleReminderToggle;
+  let ttsText = '';
+
+  if (idleReminderToggle && gameState.currentWord) {
+    ttsText = `Xin nhắc lại câu hỏi vòng ${gameState.round}. Chủ đề: ${gameState.currentWord.category}. Gợi ý là: ${gameState.currentWord.hint}`;
+  } else {
+    ttsText = getNextIdleLine();
+  }
+
+  console.log(`🎙️ [CHỐNG KHOẢNG LẶNG 10S] Phát giọng đọc: "${ttsText}"`);
+  io.emit('idleReminder', { ttsText });
+  resetIdleTimer();
+  return ttsText;
+}
+
 // Quản lý Rương Kho Báu & Mốc Thả Tim (Like Milestone Chest - Mục 6)
 const likeChestConfig = {
   milestoneStep: Number(process.env.LIKE_CHEST_STEP) || 200, // Mặc định mỗi 200 tim thì mở 1 rương
@@ -245,6 +316,7 @@ function triggerLikeChestOpen(luckyUser = null) {
 }
 
 function onLikeReceived(count = 1, user = null) {
+  resetIdleTimer();
   const inc = Math.max(1, Number(count) || 1);
   likeChestState.currentLikes += inc;
   likeChestState.chestLikes += inc;
@@ -264,6 +336,7 @@ function onLikeReceived(count = 1, user = null) {
 }
 
 function onUserFollow(user) {
+  resetIdleTimer();
   const uniqueId = user.uniqueId || user.nickname || 'user_' + Date.now();
   const nickname = user.nickname || user.user || uniqueId;
   const avatar = user.avatar || 'https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/default-avatar.jpeg';
@@ -445,6 +518,7 @@ function getDonorLeaderboardList() {
 }
 
 function recordGiftDonation(user, giftName, diamonds = 1, repeatCount = 1) {
+  resetIdleTimer();
   const count = Math.max(1, Number(repeatCount) || 1);
   const singleValue = Math.max(1, Number(diamonds) || 1);
   const totalDiamonds = singleValue * count;
@@ -703,11 +777,19 @@ function startNewRound() {
   };
 
   io.emit('roundStart', roundPayload);
+  resetIdleTimer();
 
   timerInterval = setInterval(() => {
     if (gameState.roundState !== 'PLAYING') return;
 
     gameState.timeLeft--;
+    idleSecondsCount++;
+
+    if (idleSecondsCount >= IDLE_TIMEOUT_SECONDS) {
+      triggerIdleReminder();
+      idleSecondsCount = 0;
+    }
+
     io.emit('timerTick', { timeLeft: gameState.timeLeft });
 
     if (gameState.timeLeft <= 0) {
@@ -749,6 +831,7 @@ function handleTimeout() {
 function checkGuess(user, text) {
   if (!text) return;
   gameState.totalCommentsReceived++;
+  resetIdleTimer();
 
   if (gameState.roundState !== 'PLAYING' || !gameState.currentWord) return;
 
@@ -1896,6 +1979,11 @@ app.post('/admin/api', (req, res) => {
       return res.json({ ok: true, message: `Đang phát giọng đọc: "${ttsText}"` });
     }
     return res.status(400).json({ ok: false, error: 'Văn bản đọc trống' });
+  }
+
+  if (action === 'simulateIdleReminder' || action === 'triggerIdleReminder') {
+    const reminderText = triggerIdleReminder(true);
+    return res.json({ ok: true, message: `Đã kích hoạt giọng đọc chống im lặng: "${reminderText}"`, text: reminderText });
   }
 
   if (action === 'toggleTts') {

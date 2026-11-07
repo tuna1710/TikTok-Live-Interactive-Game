@@ -206,7 +206,8 @@ GIAI ĐOẠN 4: CẢI TIẾN TRẢI NGHIỆM LIVESTREAM THEO YÊU CẦU:
   ├── [x] 3. Rương tim đầy không hiện popup bảng che màn hình, chỉ mở chữ cái gợi ý
   ├── [x] 4. Giới hạn quà cộng tối đa 1.900đ, bắt buộc đoán đúng 1 câu mới cán mốc 2.000đ để thắng
   ├── [x] 5. Giảm thời gian vinh danh xuống 20 giây (thay vì 60 giây)
-  └── [x] 6. TTS vinh danh: cảm ơn mọi người đã tham gia và báo khán giả chờ đợi giây lát để sang màn tiếp theo
+  ├── [x] 6. TTS vinh danh: cảm ơn mọi người đã tham gia và báo khán giả chờ đợi giây lát để sang màn tiếp theo
+  └── [x] 7. MC Chống Khoảng Lặng (Anti-Dead Air): Tự động nhắc câu hỏi hoặc đọc 30 câu khuấy động khi im lặng 10s
 ```
 
 ---
