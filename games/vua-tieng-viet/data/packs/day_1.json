@@ -8,14 +8,14 @@
   },
   {
     "id": 2002,
-    "word": "BÁNH CĂNG ĐÀ LẠT",
+    "word": "BÁNH CĂN ĐÀ LẠT",
     "category": "Ẩm Thực",
     "hint": "Bánh nướng chén đất xốp giòn chấm nước mắm mỡ hành và xíu mại cay",
     "pack": "day_1"
   },
   {
     "id": 2003,
-    "word": "BÁNH GẬẬU XANH HẢI DƯƠNG",
+    "word": "BÁNH ĐẬU XANH HẢI DƯƠNG",
     "category": "Ẩm Thực",
     "hint": "Bánh ngọt thơm mịn làm từ bột đậu xanh béo ngậy thưởng cùng trà sen",
     "pack": "day_1"
@@ -197,9 +197,9 @@
   },
   {
     "id": 2029,
-    "word": "SỦNG SẴNG VỊT QUAY",
+    "word": "MÌ VỊT TIỀM THẢO MỘC",
     "category": "Ẩm Thực",
-    "hint": "Món ăn bổ dưỡng gia truyền người Hoa xúp vịt tiềm thảo mộc ngọt thanh đậm đà",
+    "hint": "Món ăn bổ dưỡng gia truyền người Hoa mì trứng dai ăn cùng vịt tiềm thảo mộc ngọt thanh đậm đà",
     "pack": "day_1"
   },
   {
@@ -225,9 +225,9 @@
   },
   {
     "id": 2033,
-    "word": "LẠ TỬ BẤT KHẢ KHUYẾN",
+    "word": "HỦ MỘC BẤT KHẢ ĐIÊU",
     "category": "Thành Ngữ",
-    "hint": "Lời khuyên răn kẻ u mê không biết sửa mình khó lòng cứu vãn",
+    "hint": "Lời khuyên răn kẻ u mê không biết sửa mình khó lòng cứu vãn (gỗ mục không thể chạm khắc)",
     "pack": "day_1"
   },
   {
@@ -1345,7 +1345,7 @@
   },
   {
     "id": 2193,
-    "word": "TI NÍ NHƯ HẠT VỪNG",
+    "word": "LI TI NHƯ HẠT VỪNG",
     "category": "Từ Láy",
     "hint": "Từ láy gợi tả kích thước vô cùng nhỏ bé li ti mắt thường khó thấy",
     "pack": "day_1"
@@ -1359,9 +1359,9 @@
   },
   {
     "id": 2195,
-    "word": "THẢ THƠ THƠ THỦN NGOÀI SÂN",
+    "word": "THƠ THẨN NGOÀI SÂN",
     "category": "Từ Láy",
-    "hint": "Từ láy miêu tả dáng vẻ đi đi lại lại thong dong không vướng bận",
+    "hint": "Từ láy miêu tả dáng vẻ đi đi lại lại thong dong không vướng bận việc đời",
     "pack": "day_1"
   },
   {
@@ -1415,7 +1415,7 @@
   },
   {
     "id": 2203,
-    "word": "SONG PHẲNG TRONG MỌI CHUYỆN",
+    "word": "SÒNG PHẲNG TRONG MỌI CHUYỆN",
     "category": "Từ Láy",
     "hint": "Thái độ minh bạch rõ ràng không mập mờ tính toán ăn chia đều đặn",
     "pack": "day_1"
@@ -1443,9 +1443,9 @@
   },
   {
     "id": 2207,
-    "word": "BÁNH GẬU QUẢNG NAM",
+    "word": "BÁNH ĐẬU QUẢNG NAM",
     "category": "Ẩm Thực",
-    "hint": "Bánh nướng thơm lừng từ gạo nếp và mật mía ép khuôn dẹt",
+    "hint": "Bánh đậu xanh nướng thơm lừng xứ Quảng ép khuôn dẹt giòn tan ngọt bùi",
     "pack": "day_1"
   },
   {
