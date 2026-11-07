@@ -1628,23 +1628,52 @@ async function connectTikTokLive(usernameOrUrl) {
     }
   });
 
+  const giftComboTracker = new Map();
+
   tiktokConn.on(WebcastEvent.GIFT, (data) => {
     const { user, uniqueId, avatar } = extractUserFromEvent(data);
     const giftObj = data?.gift || data?.giftDetails || {};
-    const giftName = giftObj?.name || data?.giftName || 'Hoa Hồng';
-    const diamondCount = Number(giftObj?.diamondCount || data?.diamondCount || 1);
-    const repeatCount = Math.max(1, Number(data?.repeatCount || data?.comboCount || 1));
-    const totalDiamonds = diamondCount * repeatCount;
+    const giftId = String(data?.giftId || giftObj?.id || giftObj?.gift_id || 'rose');
+    const groupId = String(data?.groupId || `${uniqueId}_${giftId}`);
+    const repeatCount = Math.max(1, Number(data?.repeatCount || data?.comboCount || giftObj?.repeat_count || 1));
+    const rawRepeatEnd = data?.repeatEnd ?? data?.repeat_end ?? giftObj?.repeat_end;
+    const isRepeatEnd = rawRepeatEnd === true || rawRepeatEnd === 1 || rawRepeatEnd === '1';
 
-    console.log(`[Quà tặng] ${user} gửi ${giftName} (${totalDiamonds} xu)`);
-    recordGiftDonation({ uniqueId, nickname: user, avatar }, giftName, diamondCount, repeatCount);
+    const entry = giftComboTracker.get(groupId);
+    const now = Date.now();
+    const prevCount = (entry && (now - entry.updatedAt < 6000)) ? entry.count : 0;
+
+    if (repeatCount <= prevCount) {
+      if (isRepeatEnd) {
+        giftComboTracker.delete(groupId);
+      }
+      return;
+    }
+    const deltaCount = repeatCount - prevCount;
+    giftComboTracker.set(groupId, { count: repeatCount, updatedAt: now });
+
+    if (giftComboTracker.size > 500) {
+      const firstKey = giftComboTracker.keys().next().value;
+      giftComboTracker.delete(firstKey);
+    }
+    if (isRepeatEnd) {
+      giftComboTracker.delete(groupId);
+    }
+
+    const diamondCount = Math.max(1, Number(giftObj?.diamondCount || data?.diamondCount || 1));
+    const totalDiamonds = diamondCount * deltaCount;
+    const rawGiftName = giftObj?.name || data?.giftName || 'Hoa Hồng';
+    const displayGiftName = deltaCount > 1 ? `${deltaCount}x ${rawGiftName}` : rawGiftName;
+
+    console.log(`[Quà tặng] ${user} gửi ${displayGiftName} (+${totalDiamonds} xu)`);
+    recordGiftDonation({ uniqueId, nickname: user, avatar }, rawGiftName, diamondCount, deltaCount);
 
     if (giftHintConfig.enabled && totalDiamonds >= giftHintConfig.minDiamonds) {
-      revealGiftHints({ uniqueId, nickname: user, avatar, diamonds: totalDiamonds }, giftName, totalDiamonds, false);
+      revealGiftHints({ uniqueId, nickname: user, avatar, diamonds: totalDiamonds }, rawGiftName, totalDiamonds, false);
     }
 
     if (totalDiamonds >= 10) {
-      addTime(30, `${user} tặng ${giftName} (+30s)`);
+      addTime(30, `${user} tặng ${rawGiftName} (+30s)`);
     }
   });
 
