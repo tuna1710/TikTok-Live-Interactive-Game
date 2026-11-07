@@ -3533,8 +3533,14 @@
       updateTopDonorTicker(null);
     });
 
-    socket.on('leaderboardReset', () => {
-      updateLeaderboard([]);
+    socket.on('leaderboardUpdate', list => {
+      if (Array.isArray(list)) {
+        updateLeaderboard(list);
+      }
+    });
+
+    socket.on('leaderboardReset', list => {
+      updateLeaderboard(Array.isArray(list) ? list : []);
     });
 
     let milestoneTimer = null;
@@ -3893,6 +3899,9 @@
       }
     });
     socket.on('donorScoreAdded', data => {
+      if (data.leaderboard) {
+        updateLeaderboard(data.leaderboard);
+      }
       const capText = data.reachCap ? ' • <i>Đã đạt trần 1.900đ (Đoán đúng 1 câu để Thắng!)</i>' : '';
       showToastNotice(`🎁 <b>${data.nickname}</b> tặng <b>${data.giftName}</b> (${data.diamonds} xu): <b>+${data.giftPoints}đ</b> (BXH: <b>${data.totalScore}đ</b>)${capText}`);
       soundGift();
