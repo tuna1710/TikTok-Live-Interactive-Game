@@ -1,0 +1,2102 @@
+[
+  {
+    "id": 4101,
+    "word": "CON MÈO",
+    "category": "Động Vật",
+    "hint": "Vật nuôi thích bắt chuột, hay sưởi nắng và kêu meo meo",
+    "pack": "day_8"
+  },
+  {
+    "id": 4102,
+    "word": "CON CHÓ",
+    "category": "Động Vật",
+    "hint": "Vật nuôi bốn chân trung thành trông giữ nhà cửa",
+    "pack": "day_8"
+  },
+  {
+    "id": 4103,
+    "word": "CON GÀ",
+    "category": "Động Vật",
+    "hint": "Gia cầm gáy ò ó o gọi bình minh mỗi sớm",
+    "pack": "day_8"
+  },
+  {
+    "id": 4104,
+    "word": "CON VỊT",
+    "category": "Động Vật",
+    "hint": "Thủy cầm kêu cạp cạp thích bơi lội dưới ao",
+    "pack": "day_8"
+  },
+  {
+    "id": 4105,
+    "word": "CON HỔ",
+    "category": "Động Vật",
+    "hint": "Chúa sơn lâm dũng mãnh của rừng già",
+    "pack": "day_8"
+  },
+  {
+    "id": 4106,
+    "word": "CON VOI",
+    "category": "Động Vật",
+    "hint": "Loài thú khổng lồ có vòi dài và đôi ngà trắng",
+    "pack": "day_8"
+  },
+  {
+    "id": 4107,
+    "word": "CON KHỈ",
+    "category": "Động Vật",
+    "hint": "Con vật tinh nghịch leo trèo thoăn thoắt thích ăn chuối",
+    "pack": "day_8"
+  },
+  {
+    "id": 4108,
+    "word": "CON CÁ",
+    "category": "Động Vật",
+    "hint": "Động vật bơi dưới nước bằng vây và thở bằng mang",
+    "pack": "day_8"
+  },
+  {
+    "id": 4109,
+    "word": "CON ONG",
+    "category": "Động Vật",
+    "hint": "Côn trùng chăm chỉ bay lượn hút mật hoa",
+    "pack": "day_8"
+  },
+  {
+    "id": 4110,
+    "word": "CON BƯỚM",
+    "category": "Động Vật",
+    "hint": "Côn trùng có đôi cánh rực rỡ sắc màu bay lượn quanh hoa",
+    "pack": "day_8"
+  },
+  {
+    "id": 4111,
+    "word": "CON THỎ",
+    "category": "Động Vật",
+    "hint": "Con vật tai dài mắt hồng chạy nhanh và thích ăn cà rốt",
+    "pack": "day_8"
+  },
+  {
+    "id": 4112,
+    "word": "CON NGỰA",
+    "category": "Động Vật",
+    "hint": "Thú bốn chân có bờm đẹp phi nhanh như gió",
+    "pack": "day_8"
+  },
+  {
+    "id": 4113,
+    "word": "CON BÒ",
+    "category": "Động Vật",
+    "hint": "Gia súc hiền lành nhai cỏ và cho sữa tươi",
+    "pack": "day_8"
+  },
+  {
+    "id": 4114,
+    "word": "CON TRÂU",
+    "category": "Động Vật",
+    "hint": "Bạn thân của nhà nông kéo cày trên đồng ruộng",
+    "pack": "day_8"
+  },
+  {
+    "id": 4115,
+    "word": "CON HƯƠU",
+    "category": "Động Vật",
+    "hint": "Loài thú hiền lành chạy nhanh có cặp sừng phân nhánh đẹp",
+    "pack": "day_8"
+  },
+  {
+    "id": 4116,
+    "word": "CHIM SẺ",
+    "category": "Động Vật",
+    "hint": "Loài chim nhỏ bé chuyền cành hót líu lo quanh sân nhà",
+    "pack": "day_8"
+  },
+  {
+    "id": 4117,
+    "word": "CHIM ÉN",
+    "category": "Động Vật",
+    "hint": "Loài chim chao lượn trên bầu trời báo hiệu mùa xuân về",
+    "pack": "day_8"
+  },
+  {
+    "id": 4118,
+    "word": "BỒ CÂU",
+    "category": "Động Vật",
+    "hint": "Loài chim hiền hòa biểu tượng cho hòa bình",
+    "pack": "day_8"
+  },
+  {
+    "id": 4119,
+    "word": "RÙA CON",
+    "category": "Động Vật",
+    "hint": "Bò chậm chạp có mai cứng bảo vệ trên lưng",
+    "pack": "day_8"
+  },
+  {
+    "id": 4120,
+    "word": "ẾCH CON",
+    "category": "Động Vật",
+    "hint": "Ngồi trên lá sen cất tiếng kêu ộp ộp đón mưa",
+    "pack": "day_8"
+  },
+  {
+    "id": 4121,
+    "word": "CÁ VÀNG",
+    "category": "Động Vật",
+    "hint": "Loài cá cảnh nhỏ xinh bơi tung tăng trong bể nước",
+    "pack": "day_8"
+  },
+  {
+    "id": 4122,
+    "word": "CÁ MẬP",
+    "category": "Động Vật",
+    "hint": "Kẻ săn mồi hung dữ với hàm răng sắc nhọn dưới đại dương",
+    "pack": "day_8"
+  },
+  {
+    "id": 4123,
+    "word": "TÔM CÀNG",
+    "category": "Động Vật",
+    "hint": "Thủy sản sống dưới nước có đôi càng to khỏe và râu dài",
+    "pack": "day_8"
+  },
+  {
+    "id": 4124,
+    "word": "CUA BIỂN",
+    "category": "Động Vật",
+    "hint": "Có hai càng to tám cẳng và thói quen bò ngang",
+    "pack": "day_8"
+  },
+  {
+    "id": 4125,
+    "word": "CÁ SẤU",
+    "category": "Động Vật",
+    "hint": "Bò sát săn mồi hung dữ ở đầm lầy có bộ hàm cực khỏe",
+    "pack": "day_8"
+  },
+  {
+    "id": 4126,
+    "word": "CỪU CON",
+    "category": "Động Vật",
+    "hint": "Gia súc hiền lành cho bộ lông cừu trắng muốt làm áo ấm",
+    "pack": "day_8"
+  },
+  {
+    "id": 4127,
+    "word": "DÊ NÚI",
+    "category": "Động Vật",
+    "hint": "Loài thú có sừng cong thích leo vách đá cheo leo",
+    "pack": "day_8"
+  },
+  {
+    "id": 4128,
+    "word": "NGỖNG TRẮNG",
+    "category": "Động Vật",
+    "hint": "Loài thủy cầm cổ dài tiếng kêu to trông nhà rất giỏi",
+    "pack": "day_8"
+  },
+  {
+    "id": 4129,
+    "word": "CHIM CÚT",
+    "category": "Động Vật",
+    "hint": "Loài chim nhỏ nuôi lấy trứng cút luộc chấm muối tiêu",
+    "pack": "day_8"
+  },
+  {
+    "id": 4130,
+    "word": "CON CÒ",
+    "category": "Động Vật",
+    "hint": "Loài chim lặn lội bờ sông có bộ lông trắng muốt",
+    "pack": "day_8"
+  },
+  {
+    "id": 4131,
+    "word": "CON VẸT",
+    "category": "Động Vật",
+    "hint": "Loài chim có bộ lông sặc sỡ và bắt chước được tiếng người",
+    "pack": "day_8"
+  },
+  {
+    "id": 4132,
+    "word": "CHIM CÚ",
+    "category": "Động Vật",
+    "hint": "Loài chim ăn đêm có đôi mắt to tròn sáng quắc",
+    "pack": "day_8"
+  },
+  {
+    "id": 4133,
+    "word": "ĐÀ ĐIỂU",
+    "category": "Động Vật",
+    "hint": "Loài chim to lớn chạy rất nhanh nhưng không biết bay",
+    "pack": "day_8"
+  },
+  {
+    "id": 4134,
+    "word": "CÁNH CỤT",
+    "category": "Động Vật",
+    "hint": "Loài chim xứ lạnh Nam Cực bơi lội cực giỏi",
+    "pack": "day_8"
+  },
+  {
+    "id": 4135,
+    "word": "TẮC KÈ",
+    "category": "Động Vật",
+    "hint": "Bò sát có khả năng biến đổi màu da ngụy trang khéo léo",
+    "pack": "day_8"
+  },
+  {
+    "id": 4136,
+    "word": "CON LƯƠN",
+    "category": "Động Vật",
+    "hint": "Loài động vật thân tròn da trơn tuột sống dưới bùn lầy",
+    "pack": "day_8"
+  },
+  {
+    "id": 4137,
+    "word": "SÒ HUYẾT",
+    "category": "Động Vật",
+    "hint": "Hải sản vỏ có nhiều rãnh ruột màu đỏ ăn rất bổ máu",
+    "pack": "day_8"
+  },
+  {
+    "id": 4138,
+    "word": "TÔM SÚ",
+    "category": "Động Vật",
+    "hint": "Loài tôm biển cỡ lớn thịt chắc ngọt làm món nướng hấp",
+    "pack": "day_8"
+  },
+  {
+    "id": 4139,
+    "word": "BÒ SỮA",
+    "category": "Động Vật",
+    "hint": "Giống bò khoang đen trắng nuôi để lấy sữa tươi nguyên chất",
+    "pack": "day_8"
+  },
+  {
+    "id": 4140,
+    "word": "GÀ CON",
+    "category": "Động Vật",
+    "hint": "Những chú gà con lông tơ vàng óng kêu chiêm chiếp lon ton",
+    "pack": "day_8"
+  },
+  {
+    "id": 4141,
+    "word": "VỊT CON",
+    "category": "Động Vật",
+    "hint": "Chú vịt nhỏ nhắn bơi lội nối đuôi nhau theo mẹ dưới ao",
+    "pack": "day_8"
+  },
+  {
+    "id": 4142,
+    "word": "BỒ NÔNG",
+    "category": "Động Vật",
+    "hint": "Loài chim nước có chiếc túi mỏ to chuyên dùng xúc cá",
+    "pack": "day_8"
+  },
+  {
+    "id": 4143,
+    "word": "CON NAI",
+    "category": "Động Vật",
+    "hint": "Loài thú hiền lành sống nơi rừng sâu có đôi mắt tròn ngơ ngác",
+    "pack": "day_8"
+  },
+  {
+    "id": 4144,
+    "word": "CON CHUỘT",
+    "category": "Động Vật",
+    "hint": "Loài gặm nhấm nhỏ bé chạy thoăn thoắt trong đêm",
+    "pack": "day_8"
+  },
+  {
+    "id": 4145,
+    "word": "CON HEO",
+    "category": "Động Vật",
+    "hint": "Vật nuôi béo tròn ủn ỉn ăn no lại nằm ngủ",
+    "pack": "day_8"
+  },
+  {
+    "id": 4146,
+    "word": "CON LỢN",
+    "category": "Động Vật",
+    "hint": "Gia súc nuôi lấy thịt béo tốt kêu eng éc",
+    "pack": "day_8"
+  },
+  {
+    "id": 4147,
+    "word": "CON DÊ",
+    "category": "Động Vật",
+    "hint": "Loài gia súc thích ăn lá cây có chòm râu dưới cằm",
+    "pack": "day_8"
+  },
+  {
+    "id": 4148,
+    "word": "CON NGỖNG",
+    "category": "Động Vật",
+    "hint": "Gia cầm to khỏe cổ dài đi lạch bạch quanh sân",
+    "pack": "day_8"
+  },
+  {
+    "id": 4149,
+    "word": "CON NGAN",
+    "category": "Động Vật",
+    "hint": "Loài thủy cầm giống vịt nhưng to hơn và mào đỏ quanh mắt",
+    "pack": "day_8"
+  },
+  {
+    "id": 4150,
+    "word": "CHIM CHÍCH",
+    "category": "Động Vật",
+    "hint": "Loài chim nhỏ chuyền cành thoăn thoắt bắt sâu bọ",
+    "pack": "day_8"
+  },
+  {
+    "id": 4151,
+    "word": "HỌA MI",
+    "category": "Động Vật",
+    "hint": "Loài chim rừng có tiếng hót véo von trong trẻo",
+    "pack": "day_8"
+  },
+  {
+    "id": 4152,
+    "word": "CHÀO MÀO",
+    "category": "Động Vật",
+    "hint": "Loài chim có chỏm mào nhọn trên đầu thích ăn trái cây",
+    "pack": "day_8"
+  },
+  {
+    "id": 4153,
+    "word": "GÕ KIẾN",
+    "category": "Động Vật",
+    "hint": "Bác sĩ của rừng xanh dùng mỏ gõ cành cây bắt sâu",
+    "pack": "day_8"
+  },
+  {
+    "id": 4154,
+    "word": "HẢI ÂU",
+    "category": "Động Vật",
+    "hint": "Loài chim biển sải cánh bay lượn trên ngọn sóng đại dương",
+    "pack": "day_8"
+  },
+  {
+    "id": 4155,
+    "word": "THIÊN NGA",
+    "category": "Động Vật",
+    "hint": "Loài chim nước tuyệt đẹp có bộ lông trắng muốt và cổ cong kiêu sa",
+    "pack": "day_8"
+  },
+  {
+    "id": 4156,
+    "word": "BÚT CHÌ",
+    "category": "Đồ Dùng",
+    "hint": "Dụng cụ viết vẽ của học sinh có thể tẩy sạch bằng gôm",
+    "pack": "day_8"
+  },
+  {
+    "id": 4157,
+    "word": "BÚT MỰC",
+    "category": "Đồ Dùng",
+    "hint": "Cây bút bơm mực viết nên những trang vở chữ đẹp",
+    "pack": "day_8"
+  },
+  {
+    "id": 4158,
+    "word": "THƯỚC KẺ",
+    "category": "Đồ Dùng",
+    "hint": "Thanh dẹp bằng nhựa hoặc gỗ dùng kẻ đoạn thẳng ngay ngắn",
+    "pack": "day_8"
+  },
+  {
+    "id": 4159,
+    "word": "CỤC TẨY",
+    "category": "Đồ Dùng",
+    "hint": "Dụng cụ bằng cao su dùng để xóa sạch vết bút chì",
+    "pack": "day_8"
+  },
+  {
+    "id": 4160,
+    "word": "CẶP SÁCH",
+    "category": "Đồ Dùng",
+    "hint": "Túi đeo lưng đựng sách vở theo em tới lớp mỗi ngày",
+    "pack": "day_8"
+  },
+  {
+    "id": 4161,
+    "word": "BÀN HỌC",
+    "category": "Đồ Dùng",
+    "hint": "Nơi ngồi đọc sách và làm bài tập ngay ngắn",
+    "pack": "day_8"
+  },
+  {
+    "id": 4162,
+    "word": "CÁI GHẾ",
+    "category": "Đồ Dùng",
+    "hint": "Vật dụng bốn chân vững chãi dùng để ngồi làm việc",
+    "pack": "day_8"
+  },
+  {
+    "id": 4163,
+    "word": "TỦ LẠNH",
+    "category": "Đồ Dùng",
+    "hint": "Thiết bị giữ lạnh bảo quản thực phẩm tươi ngon trong bếp",
+    "pack": "day_8"
+  },
+  {
+    "id": 4164,
+    "word": "MÁY GIẶT",
+    "category": "Đồ Dùng",
+    "hint": "Thiết bị tự động giặt giũ quần áo thơm tho sạch sẽ",
+    "pack": "day_8"
+  },
+  {
+    "id": 4165,
+    "word": "QUẠT GIÓ",
+    "category": "Đồ Dùng",
+    "hint": "Thiết bị quay cánh tạo luồng gió mát mẻ ngày hè",
+    "pack": "day_8"
+  },
+  {
+    "id": 4166,
+    "word": "ĐÈN BÀN",
+    "category": "Đồ Dùng",
+    "hint": "Thiết bị chiếu sáng hỗ trợ việc đọc sách ban đêm",
+    "pack": "day_8"
+  },
+  {
+    "id": 4167,
+    "word": "ĐỒNG HỒ",
+    "category": "Đồ Dùng",
+    "hint": "Thiết bị đo đếm thời gian với kim giây kim phút tích tắc",
+    "pack": "day_8"
+  },
+  {
+    "id": 4168,
+    "word": "CÁI BÁT",
+    "category": "Đồ Dùng",
+    "hint": "Dụng cụ dùng để xới cơm thưởng thức bữa ăn hàng ngày",
+    "pack": "day_8"
+  },
+  {
+    "id": 4169,
+    "word": "CÁI ĐĨA",
+    "category": "Đồ Dùng",
+    "hint": "Vật dụng lòng nông dùng bày các món xào luộc lên bàn ăn",
+    "pack": "day_8"
+  },
+  {
+    "id": 4170,
+    "word": "ĐÔI ĐŨA",
+    "category": "Đồ Dùng",
+    "hint": "Hai chiếc que nhỏ dùng để gắp thức ăn trong bữa cơm Việt",
+    "pack": "day_8"
+  },
+  {
+    "id": 4171,
+    "word": "CÁI THÌA",
+    "category": "Đồ Dùng",
+    "hint": "Dụng cụ dùng múc canh ăn súp hoặc xúc cơm",
+    "pack": "day_8"
+  },
+  {
+    "id": 4172,
+    "word": "CÁI NỒI",
+    "category": "Đồ Dùng",
+    "hint": "Đồ nấu có hai quai dùng để nấu canh hầm cháo",
+    "pack": "day_8"
+  },
+  {
+    "id": 4173,
+    "word": "CÁI CHẢO",
+    "category": "Đồ Dùng",
+    "hint": "Dụng cụ lòng nông có tay cầm dùng chiên rán thức ăn",
+    "pack": "day_8"
+  },
+  {
+    "id": 4174,
+    "word": "DAO BẾP",
+    "category": "Đồ Dùng",
+    "hint": "Dụng cụ sắc bén dùng để gọt củ quả và thái thịt cá",
+    "pack": "day_8"
+  },
+  {
+    "id": 4175,
+    "word": "CÁI THỚT",
+    "category": "Đồ Dùng",
+    "hint": "Tấm gỗ hoặc nhựa dùng kê phẳng khi băm thái thức ăn",
+    "pack": "day_8"
+  },
+  {
+    "id": 4176,
+    "word": "ÁO MƯA",
+    "category": "Đồ Dùng",
+    "hint": "Trang phục chống thấm nước mặc khi đi xe gặp mưa",
+    "pack": "day_8"
+  },
+  {
+    "id": 4177,
+    "word": "CÂY DÙ",
+    "category": "Đồ Dùng",
+    "hint": "Vật dụng che mưa che nắng tiện lợi có thể gấp gọn",
+    "pack": "day_8"
+  },
+  {
+    "id": 4178,
+    "word": "CHIẾC NÓN",
+    "category": "Đồ Dùng",
+    "hint": "Vật đội đầu che nắng truyền thống làm từ lá cọ lá dừa",
+    "pack": "day_8"
+  },
+  {
+    "id": 4179,
+    "word": "CÁI KÍNH",
+    "category": "Đồ Dùng",
+    "hint": "Vật dụng đeo trước mắt hỗ trợ thị lực hoặc chống tia UV",
+    "pack": "day_8"
+  },
+  {
+    "id": 4180,
+    "word": "KHẨU TRANG",
+    "category": "Đồ Dùng",
+    "hint": "Vật che mũi miệng phòng tránh khói bụi và vi khuẩn",
+    "pack": "day_8"
+  },
+  {
+    "id": 4181,
+    "word": "ĐÔI GIÀY",
+    "category": "Đồ Dùng",
+    "hint": "Vật mang vào chân bảo vệ đôi bàn chân khi tập thể thao",
+    "pack": "day_8"
+  },
+  {
+    "id": 4182,
+    "word": "ĐÔI DÉP",
+    "category": "Đồ Dùng",
+    "hint": "Vật xỏ chân nhẹ nhàng đi lại trong nhà hoặc dạo phố",
+    "pack": "day_8"
+  },
+  {
+    "id": 4183,
+    "word": "BÌNH NƯỚC",
+    "category": "Đồ Dùng",
+    "hint": "Đồ vật hình trụ dùng đựng nước mang theo khi đi làm",
+    "pack": "day_8"
+  },
+  {
+    "id": 4184,
+    "word": "CÁI GỐI",
+    "category": "Đồ Dùng",
+    "hint": "Vật êm ái dùng gối đầu cho giấc ngủ ngon",
+    "pack": "day_8"
+  },
+  {
+    "id": 4185,
+    "word": "CHIẾC CHĂN",
+    "category": "Đồ Dùng",
+    "hint": "Tấm vải dày đắp lên người giữ ấm vào ban đêm lạnh",
+    "pack": "day_8"
+  },
+  {
+    "id": 4186,
+    "word": "CÁI GƯƠNG",
+    "category": "Đồ Dùng",
+    "hint": "Mặt kính tráng bạc phản chiếu hình ảnh người soi",
+    "pack": "day_8"
+  },
+  {
+    "id": 4187,
+    "word": "BÀN CHẢI",
+    "category": "Đồ Dùng",
+    "hint": "Dụng cụ lông mềm dùng vệ sinh răng miệng mỗi ngày",
+    "pack": "day_8"
+  },
+  {
+    "id": 4188,
+    "word": "KHĂN MẶT",
+    "category": "Đồ Dùng",
+    "hint": "Tấm khăn bông mềm dùng lau khô mặt sau khi rửa",
+    "pack": "day_8"
+  },
+  {
+    "id": 4189,
+    "word": "MÓC ÁO",
+    "category": "Đồ Dùng",
+    "hint": "Vật dụng dùng định hình và phơi khô quần áo trên dây",
+    "pack": "day_8"
+  },
+  {
+    "id": 4190,
+    "word": "XE MÁY",
+    "category": "Đồ Dùng",
+    "hint": "Phương tiện giao thông hai bánh gắn động cơ phổ biến nhất",
+    "pack": "day_8"
+  },
+  {
+    "id": 4191,
+    "word": "ẤM NƯỚC",
+    "category": "Đồ Dùng",
+    "hint": "Đồ dùng kim loại có vòi dùng để đun nước pha trà",
+    "pack": "day_8"
+  },
+  {
+    "id": 4192,
+    "word": "CÁI LY",
+    "category": "Đồ Dùng",
+    "hint": "Vật dụng bằng thủy tinh đựng nước lọc hoặc nước ngọt",
+    "pack": "day_8"
+  },
+  {
+    "id": 4193,
+    "word": "RỔ NHỰA",
+    "category": "Đồ Dùng",
+    "hint": "Đồ dùng có nhiều lỗ thoáng dùng đựng rau củ cho ráo nước",
+    "pack": "day_8"
+  },
+  {
+    "id": 4194,
+    "word": "CÁI KÉO",
+    "category": "Đồ Dùng",
+    "hint": "Dụng cụ có hai lưỡi bắt chéo dùng cắt giấy hoặc vải",
+    "pack": "day_8"
+  },
+  {
+    "id": 4195,
+    "word": "ĐÈN PIN",
+    "category": "Đồ Dùng",
+    "hint": "Thiết bị chiếu sáng cầm tay chạy bằng pin khi mất điện",
+    "pack": "day_8"
+  },
+  {
+    "id": 4196,
+    "word": "CÁI CHỔI",
+    "category": "Đồ Dùng",
+    "hint": "Vật dụng bện bằng rơm hoặc cỏ dùng quét sạch bụi sàn nhà",
+    "pack": "day_8"
+  },
+  {
+    "id": 4197,
+    "word": "BÚT BI",
+    "category": "Đồ Dùng",
+    "hint": "Cây bút viết thông dụng của học sinh và người đi làm",
+    "pack": "day_8"
+  },
+  {
+    "id": 4198,
+    "word": "GIẤY TRẮNG",
+    "category": "Đồ Dùng",
+    "hint": "Tờ giấy sạch tinh tươm để viết chữ và vẽ tranh",
+    "pack": "day_8"
+  },
+  {
+    "id": 4199,
+    "word": "VỞ VIẾT",
+    "category": "Đồ Dùng",
+    "hint": "Tập vở kẻ ô ly xinh xắn dùng để ghi chép bài học",
+    "pack": "day_8"
+  },
+  {
+    "id": 4200,
+    "word": "TÚI XÁCH",
+    "category": "Đồ Dùng",
+    "hint": "Phụ kiện thời trang cầm tay dùng để đựng ví tiền điện thoại",
+    "pack": "day_8"
+  },
+  {
+    "id": 4201,
+    "word": "DÂY NỊT",
+    "category": "Đồ Dùng",
+    "hint": "Thắt lưng da giúp cố định lưng quần vừa vặn gọn gàng",
+    "pack": "day_8"
+  },
+  {
+    "id": 4202,
+    "word": "BÔNG TAI",
+    "category": "Đồ Dùng",
+    "hint": "Trang sức nhỏ xinh lấp lánh đeo trên vành tai",
+    "pack": "day_8"
+  },
+  {
+    "id": 4203,
+    "word": "VÒNG TAY",
+    "category": "Đồ Dùng",
+    "hint": "Trang sức đeo ở cổ tay làm bằng vàng bạc hoặc đá quý",
+    "pack": "day_8"
+  },
+  {
+    "id": 4204,
+    "word": "DÂY CHUYỀN",
+    "category": "Đồ Dùng",
+    "hint": "Sợi dây kim loại quý đeo quanh cổ làm duyên",
+    "pack": "day_8"
+  },
+  {
+    "id": 4205,
+    "word": "CHIẾC NHẪN",
+    "category": "Đồ Dùng",
+    "hint": "Vòng kim loại nhỏ xinh đeo vào ngón tay làm kỷ niệm",
+    "pack": "day_8"
+  },
+  {
+    "id": 4206,
+    "word": "LỌ HOA",
+    "category": "Đồ Dùng",
+    "hint": "Bình gốm hoặc thủy tinh dùng cắm những cành hoa tươi thắm",
+    "pack": "day_8"
+  },
+  {
+    "id": 4207,
+    "word": "TÁCH TRÀ",
+    "category": "Đồ Dùng",
+    "hint": "Chiếc chén nhỏ bằng sứ dùng để nhâm nhi chén trà nóng",
+    "pack": "day_8"
+  },
+  {
+    "id": 4208,
+    "word": "PHÍCH NƯỚC",
+    "category": "Đồ Dùng",
+    "hint": "Bình thủy giữ nhiệt giúp giữ nước nóng lâu để pha trà",
+    "pack": "day_8"
+  },
+  {
+    "id": 4209,
+    "word": "CÁI MUÔI",
+    "category": "Đồ Dùng",
+    "hint": "Dụng cụ lòng sâu cán dài dùng múc canh nóng từ nồi ra bát",
+    "pack": "day_8"
+  },
+  {
+    "id": 4210,
+    "word": "NẮP VUNG",
+    "category": "Đồ Dùng",
+    "hint": "Chiếc nắp đậy kín miệng xoong nồi khi nấu thức ăn",
+    "pack": "day_8"
+  },
+  {
+    "id": 4211,
+    "word": "BẬT LỬA",
+    "category": "Đồ Dùng",
+    "hint": "Dụng cụ nhỏ quẹt ra ngọn lửa mồi bếp ga hoặc thắp nến",
+    "pack": "day_8"
+  },
+  {
+    "id": 4212,
+    "word": "BA LÔ",
+    "category": "Đồ Dùng",
+    "hint": "Túi hai quai đeo chắc chắn sau lưng khi đi học đi chơi",
+    "pack": "day_8"
+  },
+  {
+    "id": 4213,
+    "word": "CÁI XÔ",
+    "category": "Đồ Dùng",
+    "hint": "Vật dụng hình tròn có quai xách dùng để xách nước lau sàn",
+    "pack": "day_8"
+  },
+  {
+    "id": 4214,
+    "word": "ỐNG HÚT",
+    "category": "Đồ Dùng",
+    "hint": "Ống nhỏ thon dài dùng để hút nước ngọt trà sữa sinh tố",
+    "pack": "day_8"
+  },
+  {
+    "id": 4215,
+    "word": "CHẬU NHỰA",
+    "category": "Đồ Dùng",
+    "hint": "Vật dụng lòng sâu dùng để giặt đồ hoặc rửa rau củ",
+    "pack": "day_8"
+  },
+  {
+    "id": 4216,
+    "word": "TỦ QUẦN ÁO",
+    "category": "Đồ Dùng",
+    "hint": "Tủ gỗ lớn nhiều ngăn dùng cất giữ quần áo gọn gàng",
+    "pack": "day_8"
+  },
+  {
+    "id": 4217,
+    "word": "GIƯỜNG NGỦ",
+    "category": "Đồ Dùng",
+    "hint": "Nơi ngả lưng êm ái nghỉ ngơi sau ngày dài làm việc",
+    "pack": "day_8"
+  },
+  {
+    "id": 4218,
+    "word": "NỆM ÊM",
+    "category": "Đồ Dùng",
+    "hint": "Tấm đệm dày trải trên giường tạo cảm giác êm ái khi ngủ",
+    "pack": "day_8"
+  },
+  {
+    "id": 4219,
+    "word": "CHIẾU TRÚC",
+    "category": "Đồ Dùng",
+    "hint": "Tấm chiếu đan từ các hạt trúc bóng mát rượi ngày hè",
+    "pack": "day_8"
+  },
+  {
+    "id": 4220,
+    "word": "MÙNG NGỦ",
+    "category": "Đồ Dùng",
+    "hint": "Tấm lưới vải voan mỏng giăng quanh giường chống muỗi",
+    "pack": "day_8"
+  },
+  {
+    "id": 4221,
+    "word": "RÈM CỬA",
+    "category": "Đồ Dùng",
+    "hint": "Tấm vải buông che bớt ánh nắng chói chang chiếu qua khung cửa",
+    "pack": "day_8"
+  },
+  {
+    "id": 4222,
+    "word": "CỬA SỔ",
+    "category": "Đồ Dùng",
+    "hint": "Ô cửa trên tường mở ra đón gió mát và ánh sáng tự nhiên",
+    "pack": "day_8"
+  },
+  {
+    "id": 4223,
+    "word": "CỬA CHÍNH",
+    "category": "Đồ Dùng",
+    "hint": "Lối ra vào lớn nhất dẫn vào phòng khách của ngôi nhà",
+    "pack": "day_8"
+  },
+  {
+    "id": 4224,
+    "word": "KHÓA CỬA",
+    "category": "Đồ Dùng",
+    "hint": "Thiết bị kim loại bảo vệ an toàn cho ngôi nhà khi vắng chủ",
+    "pack": "day_8"
+  },
+  {
+    "id": 4225,
+    "word": "CHÌA KHÓA",
+    "category": "Đồ Dùng",
+    "hint": "Vật kim loại nhỏ dùng để mở ổ khóa cửa xe hoặc tủ",
+    "pack": "day_8"
+  },
+  {
+    "id": 4226,
+    "word": "CHUÔNG CỬA",
+    "category": "Đồ Dùng",
+    "hint": "Nút bấm phát tiếng reng reng báo hiệu có khách ghé thăm",
+    "pack": "day_8"
+  },
+  {
+    "id": 4227,
+    "word": "THẢM CHÂN",
+    "category": "Đồ Dùng",
+    "hint": "Tấm thảm đặt trước cửa ra vào để lau sạch bụi bẩn ở đế giày",
+    "pack": "day_8"
+  },
+  {
+    "id": 4228,
+    "word": "THÙNG RÁC",
+    "category": "Đồ Dùng",
+    "hint": "Nơi chứa đồ bỏ đi giúp giữ gìn phòng ốc luôn sạch sẽ",
+    "pack": "day_8"
+  },
+  {
+    "id": 4229,
+    "word": "VÒI NƯỚC",
+    "category": "Đồ Dùng",
+    "hint": "Van xoay mở nước sạch chảy vào chậu rửa",
+    "pack": "day_8"
+  },
+  {
+    "id": 4230,
+    "word": "BỒN TẮM",
+    "category": "Đồ Dùng",
+    "hint": "Bồn lớn chứa nước ấm để ngâm mình thư giãn",
+    "pack": "day_8"
+  },
+  {
+    "id": 4231,
+    "word": "VÒI SEN",
+    "category": "Đồ Dùng",
+    "hint": "Dụng cụ phun tia nước li ti tắm mát trong phòng tắm",
+    "pack": "day_8"
+  },
+  {
+    "id": 4232,
+    "word": "BỒN CẦU",
+    "category": "Đồ Dùng",
+    "hint": "Thiết bị sứ vệ sinh thiết yếu trong mỗi gia đình",
+    "pack": "day_8"
+  },
+  {
+    "id": 4233,
+    "word": "XÀ BÔNG",
+    "category": "Đồ Dùng",
+    "hint": "Bánh xà phòng thơm tạo bọt làm sạch đôi bàn tay",
+    "pack": "day_8"
+  },
+  {
+    "id": 4234,
+    "word": "DẦU GỘI",
+    "category": "Đồ Dùng",
+    "hint": "Dung dịch làm sạch tóc và da đầu thơm ngát",
+    "pack": "day_8"
+  },
+  {
+    "id": 4235,
+    "word": "CƠM TRẮNG",
+    "category": "Ẩm Thực",
+    "hint": "Thực phẩm chính nấu từ hạt gạo trong bữa cơm gia đình",
+    "pack": "day_8"
+  },
+  {
+    "id": 4236,
+    "word": "BÁNH BAO",
+    "category": "Ẩm Thực",
+    "hint": "Bánh vỏ bột trắng hấp chín bên trong có nhân thịt và trứng cút",
+    "pack": "day_8"
+  },
+  {
+    "id": 4237,
+    "word": "BÚN BÒ",
+    "category": "Ẩm Thực",
+    "hint": "Món bún sợi to nước dùng cay nồng hương vị cố đô Huế",
+    "pack": "day_8"
+  },
+  {
+    "id": 4238,
+    "word": "HỦ TIẾU",
+    "category": "Ẩm Thực",
+    "hint": "Món sợi chan nước dùng xương ngọt thanh trứ danh miền Nam",
+    "pack": "day_8"
+  },
+  {
+    "id": 4239,
+    "word": "XÔI XÉO",
+    "category": "Ẩm Thực",
+    "hint": "Món xôi vàng óng phủ đậu xanh bào mịn và hành phi thơm phức",
+    "pack": "day_8"
+  },
+  {
+    "id": 4240,
+    "word": "TRỨNG RÁN",
+    "category": "Ẩm Thực",
+    "hint": "Món ăn nhanh đơn giản làm từ trứng gà đánh tan chiên vàng",
+    "pack": "day_8"
+  },
+  {
+    "id": 4241,
+    "word": "CANH CUA",
+    "category": "Ẩm Thực",
+    "hint": "Món canh thanh mát nấu từ cua đồng ăn với cà pháo giòn",
+    "pack": "day_8"
+  },
+  {
+    "id": 4242,
+    "word": "THỊT KHO",
+    "category": "Ẩm Thực",
+    "hint": "Món thịt heo kho mềm rục đậm đà cùng trứng và nước dừa",
+    "pack": "day_8"
+  },
+  {
+    "id": 4243,
+    "word": "CÁ KHO",
+    "category": "Ẩm Thực",
+    "hint": "Món cá tẩm ướp nước màu kho săn ăn rất tốn cơm",
+    "pack": "day_8"
+  },
+  {
+    "id": 4244,
+    "word": "RAU MUỐNG",
+    "category": "Ẩm Thực",
+    "hint": "Loài rau dân dã quen thuộc luộc chấm tương hoặc xào tỏi",
+    "pack": "day_8"
+  },
+  {
+    "id": 4245,
+    "word": "CHÈ ĐẬU",
+    "category": "Ẩm Thực",
+    "hint": "Món tráng miệng ngọt ngào nấu từ hạt đậu đen đậu xanh giải nhiệt",
+    "pack": "day_8"
+  },
+  {
+    "id": 4246,
+    "word": "SINH TỐ",
+    "category": "Ẩm Thực",
+    "hint": "Thức uống bổ dưỡng xay nhuyễn từ trái cây tươi cùng sữa đá",
+    "pack": "day_8"
+  },
+  {
+    "id": 4247,
+    "word": "TRÀ ĐÁ",
+    "category": "Ẩm Thực",
+    "hint": "Thức uống bình dân mát lạnh phổ biến ở mọi góc phố quán cóc",
+    "pack": "day_8"
+  },
+  {
+    "id": 4248,
+    "word": "NƯỚC DỪA",
+    "category": "Ẩm Thực",
+    "hint": "Nước uống ngọt mát tự nhiên rót thẳng từ trái dừa xiêm",
+    "pack": "day_8"
+  },
+  {
+    "id": 4249,
+    "word": "SỮA CHUA",
+    "category": "Ẩm Thực",
+    "hint": "Món ăn lên men từ sữa vị chua ngọt thanh mát tốt cho tiêu hóa",
+    "pack": "day_8"
+  },
+  {
+    "id": 4250,
+    "word": "NƯỚC CAM",
+    "category": "Ẩm Thực",
+    "hint": "Thức uống chua ngọt giàu vitamin C vắt từ trái cam mọng nước",
+    "pack": "day_8"
+  },
+  {
+    "id": 4251,
+    "word": "KEM DÂU",
+    "category": "Ẩm Thực",
+    "hint": "Món kem mát lạnh màu hồng thơm ngát vị dâu tây ngọt ngào",
+    "pack": "day_8"
+  },
+  {
+    "id": 4252,
+    "word": "KẸO DẺO",
+    "category": "Ẩm Thực",
+    "hint": "Món đồ ngọt mềm dai nhiều hình dáng trẻ nhỏ rất yêu thích",
+    "pack": "day_8"
+  },
+  {
+    "id": 4253,
+    "word": "BẮP NƯỚNG",
+    "category": "Ẩm Thực",
+    "hint": "Món ăn vặt đường phố nướng thơm lừng quết mỡ hành béo ngậy",
+    "pack": "day_8"
+  },
+  {
+    "id": 4254,
+    "word": "KHOAI LANG",
+    "category": "Ẩm Thực",
+    "hint": "Củ giàu tinh bột luộc chín hoặc nướng thơm bùi ngọt",
+    "pack": "day_8"
+  },
+  {
+    "id": 4255,
+    "word": "BÁNH RÁN",
+    "category": "Ẩm Thực",
+    "hint": "Món bánh bột chiên vàng giòn nhân đậu xanh ngọt bùi",
+    "pack": "day_8"
+  },
+  {
+    "id": 4256,
+    "word": "MIẾN GÀ",
+    "category": "Ẩm Thực",
+    "hint": "Bát miến sợi trong chan nước dùng thanh ngọt thịt gà xé phay",
+    "pack": "day_8"
+  },
+  {
+    "id": 4257,
+    "word": "BÒ KHO",
+    "category": "Ẩm Thực",
+    "hint": "Món thịt bò hầm mềm đậm đà thơm mùi sả hồi chấm bánh mì",
+    "pack": "day_8"
+  },
+  {
+    "id": 4258,
+    "word": "CANH CHUA",
+    "category": "Ẩm Thực",
+    "hint": "Món canh cá thơm ngon nấu với dứa cà chua và me chua",
+    "pack": "day_8"
+  },
+  {
+    "id": 4259,
+    "word": "BÁNH BÒ",
+    "category": "Ẩm Thực",
+    "hint": "Bánh hấp xốp mềm vị ngọt béo ngậy từ nước cốt dừa",
+    "pack": "day_8"
+  },
+  {
+    "id": 4260,
+    "word": "CHÈ SEN",
+    "category": "Ẩm Thực",
+    "hint": "Món chè hạt sen ngọt thanh bùi bùi bổ dưỡng an thần",
+    "pack": "day_8"
+  },
+  {
+    "id": 4261,
+    "word": "ĐẬU NÀNH",
+    "category": "Ẩm Thực",
+    "hint": "Sữa hạt thơm ngậy bổ dưỡng uống nóng hoặc đá đều ngon",
+    "pack": "day_8"
+  },
+  {
+    "id": 4262,
+    "word": "TRÀ CHANH",
+    "category": "Ẩm Thực",
+    "hint": "Nước giải khát vị chua ngọt mát lạnh quen thuộc góc phố",
+    "pack": "day_8"
+  },
+  {
+    "id": 4263,
+    "word": "KEM CÂY",
+    "category": "Ẩm Thực",
+    "hint": "Que kem mát lạnh cầm tay xua tan cái nóng trưa hè",
+    "pack": "day_8"
+  },
+  {
+    "id": 4264,
+    "word": "BỎNG NGÔ",
+    "category": "Ẩm Thực",
+    "hint": "Món bắp rang bơ thơm ngậy giòn tan nhâm nhi xem phim",
+    "pack": "day_8"
+  },
+  {
+    "id": 4265,
+    "word": "DƯA MUỐI",
+    "category": "Ẩm Thực",
+    "hint": "Món dưa cải lên men chua giòn ăn kèm thịt kho chống ngấy",
+    "pack": "day_8"
+  },
+  {
+    "id": 4266,
+    "word": "CÀ MUỐI",
+    "category": "Ẩm Thực",
+    "hint": "Quả cà pháo giòn tan muối chua chấm mắm tôm ăn cùng canh cua",
+    "pack": "day_8"
+  },
+  {
+    "id": 4267,
+    "word": "CƠM RANG",
+    "category": "Ẩm Thực",
+    "hint": "Hạt cơm đảo trên chảo lửa săn vàng cùng trứng và lạp xưởng",
+    "pack": "day_8"
+  },
+  {
+    "id": 4268,
+    "word": "CƠM LAM",
+    "category": "Ẩm Thực",
+    "hint": "Cơm nếp nướng trong ống tre nứa thơm lừng vùng cao",
+    "pack": "day_8"
+  },
+  {
+    "id": 4269,
+    "word": "XÔI ĐẬU",
+    "category": "Ẩm Thực",
+    "hint": "Món xôi dẻo thơm nấu chung cùng đậu xanh hoặc đậu phộng",
+    "pack": "day_8"
+  },
+  {
+    "id": 4270,
+    "word": "BÁNH GIÒ",
+    "category": "Ẩm Thực",
+    "hint": "Bánh bột gạo gói lá chuối hình chóp nhân thịt băm mộc nhĩ",
+    "pack": "day_8"
+  },
+  {
+    "id": 4271,
+    "word": "BÁNH DÀY",
+    "category": "Ẩm Thực",
+    "hint": "Bánh nếp trắng dẻo tròn xoe kẹp miếng giò lụa thơm ngậy",
+    "pack": "day_8"
+  },
+  {
+    "id": 4272,
+    "word": "BÚN RIÊU",
+    "category": "Ẩm Thực",
+    "hint": "Món bún nước riêu cua chua thanh thêm đậu phụ rán giòn và cà chua",
+    "pack": "day_8"
+  },
+  {
+    "id": 4273,
+    "word": "BÚN ỐC",
+    "category": "Ẩm Thực",
+    "hint": "Bát bún nước ốc thanh chua dịu ăn cùng những con ốc béo giòn",
+    "pack": "day_8"
+  },
+  {
+    "id": 4274,
+    "word": "BÚN MỌC",
+    "category": "Ẩm Thực",
+    "hint": "Bát bún nước ngọt thanh ăn kèm những viên mọc giòn sần sật",
+    "pack": "day_8"
+  },
+  {
+    "id": 4275,
+    "word": "BÚN THANG",
+    "category": "Ẩm Thực",
+    "hint": "Món bún tinh tế Hà Nội với trứng tráng mỏng giò lụa thái chỉ gà xé",
+    "pack": "day_8"
+  },
+  {
+    "id": 4276,
+    "word": "BÚN MẮM",
+    "category": "Ẩm Thực",
+    "hint": "Món bún đậm đà hương mắm cá linh cá sặc miền Tây sông nước",
+    "pack": "day_8"
+  },
+  {
+    "id": 4277,
+    "word": "MÌ TÔM",
+    "category": "Ẩm Thực",
+    "hint": "Gói mì ăn liền cứu đói đêm khuya quen thuộc của bao thế hệ",
+    "pack": "day_8"
+  },
+  {
+    "id": 4278,
+    "word": "MÌ XÀO",
+    "category": "Ẩm Thực",
+    "hint": "Đĩa mì xào giòn hoặc mềm cùng rau cải và thịt bò thơm nức",
+    "pack": "day_8"
+  },
+  {
+    "id": 4279,
+    "word": "PHỞ GÀ",
+    "category": "Ẩm Thực",
+    "hint": "Bát phở nước dùng trong veo thơm mùi lá chanh và thịt gà ta",
+    "pack": "day_8"
+  },
+  {
+    "id": 4280,
+    "word": "CHÁO VỊT",
+    "category": "Ẩm Thực",
+    "hint": "Tô cháo nấu đậu xanh ăn cùng đĩa thịt vịt chấm mắm gừng",
+    "pack": "day_8"
+  },
+  {
+    "id": 4281,
+    "word": "CHÁO CÁ",
+    "category": "Ẩm Thực",
+    "hint": "Món cháo cá nóng hổi rắc hành hoa thì là thơm ấm bụng",
+    "pack": "day_8"
+  },
+  {
+    "id": 4282,
+    "word": "THỊT NƯỚNG",
+    "category": "Ẩm Thực",
+    "hint": "Những xiên thịt tẩm ướp nướng xèo xèo trên than hoa",
+    "pack": "day_8"
+  },
+  {
+    "id": 4283,
+    "word": "THỊT LUỘC",
+    "category": "Ẩm Thực",
+    "hint": "Món thịt heo ba chỉ luộc chín tới chấm mắm tôm hoặc mắm nêm",
+    "pack": "day_8"
+  },
+  {
+    "id": 4284,
+    "word": "GÀ LUỘC",
+    "category": "Ẩm Thực",
+    "hint": "Con gà luộc da vàng óng chấm muối tiêu chanh lá chanh",
+    "pack": "day_8"
+  },
+  {
+    "id": 4285,
+    "word": "VỊT QUAY",
+    "category": "Ẩm Thực",
+    "hint": "Thịt vịt quay da giòn bóng bẩy màu mật ong thơm nức",
+    "pack": "day_8"
+  },
+  {
+    "id": 4286,
+    "word": "CHẢ CÁ",
+    "category": "Ẩm Thực",
+    "hint": "Miếng chả làm từ cá tươi quết dai chiên vàng ruộm",
+    "pack": "day_8"
+  },
+  {
+    "id": 4287,
+    "word": "CHẢ MỰC",
+    "category": "Ẩm Thực",
+    "hint": "Đặc sản Hạ Long giã tay giòn sần sật chiên vàng óng",
+    "pack": "day_8"
+  },
+  {
+    "id": 4288,
+    "word": "QUẢ CAM",
+    "category": "Trái Cây",
+    "hint": "Trái cây có múi vỏ vàng nhiều nước vị chua ngọt giàu vitamin C",
+    "pack": "day_8"
+  },
+  {
+    "id": 4289,
+    "word": "QUẢ TÁO",
+    "category": "Trái Cây",
+    "hint": "Trái cây vỏ đỏ giòn ngọt cắn giòn tan thơm ngon",
+    "pack": "day_8"
+  },
+  {
+    "id": 4290,
+    "word": "TRÁI CHUỐI",
+    "category": "Trái Cây",
+    "hint": "Trái vỏ vàng dáng cong khi chín thơm lừng ngọt mềm",
+    "pack": "day_8"
+  },
+  {
+    "id": 4291,
+    "word": "QUẢ XOÀI",
+    "category": "Trái Cây",
+    "hint": "Trái cây nhiệt đới thịt vàng mọng nước vị ngọt lịm khi chín",
+    "pack": "day_8"
+  },
+  {
+    "id": 4292,
+    "word": "ĐU ĐỦ",
+    "category": "Trái Cây",
+    "hint": "Trái ruột màu cam mềm ngọt chứa nhiều hạt đen tròn nhỏ",
+    "pack": "day_8"
+  },
+  {
+    "id": 4293,
+    "word": "TRÁI DỨA",
+    "category": "Trái Cây",
+    "hint": "Trái nhiều mắt vỏ vàng vị chua ngọt thơm nức khi gọt",
+    "pack": "day_8"
+  },
+  {
+    "id": 4294,
+    "word": "QUẢ CHANH",
+    "category": "Trái Cây",
+    "hint": "Trái vỏ xanh vị chua gắt thường vắt vào nước chấm giải khát",
+    "pack": "day_8"
+  },
+  {
+    "id": 4295,
+    "word": "TRÁI BƯỞI",
+    "category": "Trái Cây",
+    "hint": "Trái múi to mọng nước có tép hồng tép trắng vỏ dày",
+    "pack": "day_8"
+  },
+  {
+    "id": 4296,
+    "word": "QUẢ NHO",
+    "category": "Trái Cây",
+    "hint": "Trái nhỏ mọng nước mọc thành từng chùm ngọt thanh",
+    "pack": "day_8"
+  },
+  {
+    "id": 4297,
+    "word": "TRÁI MẬN",
+    "category": "Trái Cây",
+    "hint": "Trái vỏ đỏ tím giòn sần sật vị chua thanh chấm muối tôm cay",
+    "pack": "day_8"
+  },
+  {
+    "id": 4298,
+    "word": "QUẢ VẢI",
+    "category": "Trái Cây",
+    "hint": "Trái vỏ đỏ gai sần cùi trắng trong mọng nước ngọt sắc ngày hè",
+    "pack": "day_8"
+  },
+  {
+    "id": 4299,
+    "word": "TRÁI NHÃN",
+    "category": "Trái Cây",
+    "hint": "Trái tròn vỏ nâu cùi trắng đục hạt đen ngọt lịm thơm tho",
+    "pack": "day_8"
+  },
+  {
+    "id": 4300,
+    "word": "DÂU TÂY",
+    "category": "Trái Cây",
+    "hint": "Trái màu đỏ tươi chấm hạt nhỏ li ti vị chua chua ngọt ngọt",
+    "pack": "day_8"
+  },
+  {
+    "id": 4301,
+    "word": "QUẢ HỒNG",
+    "category": "Trái Cây",
+    "hint": "Trái mùa thu vỏ màu cam đỏ ăn giòn ngọt hoặc ngâm giòn",
+    "pack": "day_8"
+  },
+  {
+    "id": 4302,
+    "word": "DƯA CHUỘT",
+    "category": "Trái Cây",
+    "hint": "Quả thon dài màu xanh giòn mát nhiều nước ăn giải nhiệt",
+    "pack": "day_8"
+  },
+  {
+    "id": 4303,
+    "word": "HOA CÚC",
+    "category": "Thực Vật",
+    "hint": "Loài hoa nhiều cánh bền lâu rực rỡ sắc vàng mùa thu",
+    "pack": "day_8"
+  },
+  {
+    "id": 4304,
+    "word": "HƯỚNG DƯƠNG",
+    "category": "Thực Vật",
+    "hint": "Loài hoa bông to sắc vàng rực luôn vươn về phía ánh mặt trời",
+    "pack": "day_8"
+  },
+  {
+    "id": 4305,
+    "word": "CÂY DỪA",
+    "category": "Thực Vật",
+    "hint": "Cây thân cao nghiêng bóng soi mình bên bờ biển hoặc bờ kênh",
+    "pack": "day_8"
+  },
+  {
+    "id": 4306,
+    "word": "CÂY CHUỐI",
+    "category": "Thực Vật",
+    "hint": "Cây thân thảo lá bản to xanh mướt cho buồng quả trĩu trịt",
+    "pack": "day_8"
+  },
+  {
+    "id": 4307,
+    "word": "CÀ PHÊ",
+    "category": "Thực Vật",
+    "hint": "Cây trồng đất đỏ bazan cho hạt rang thơm nức khắp năm châu",
+    "pack": "day_8"
+  },
+  {
+    "id": 4308,
+    "word": "CÀ RỐT",
+    "category": "Thực Vật",
+    "hint": "Củ màu cam ngọt giòn chứa nhiều vitamin A thỏ rất thích",
+    "pack": "day_8"
+  },
+  {
+    "id": 4309,
+    "word": "KHOAI TÂY",
+    "category": "Thực Vật",
+    "hint": "Củ vỏ nâu ruột vàng dùng chiên giòn chấm tương cà cực ngon",
+    "pack": "day_8"
+  },
+  {
+    "id": 4310,
+    "word": "BẮP CẢI",
+    "category": "Thực Vật",
+    "hint": "Bắp rau cuộn tròn xoe thành từng lớp lá xanh non bóng bẩy",
+    "pack": "day_8"
+  },
+  {
+    "id": 4311,
+    "word": "CÀ CHUA",
+    "category": "Thực Vật",
+    "hint": "Trái mọng nước màu đỏ tươi dùng nấu canh sốt và làm nộm",
+    "pack": "day_8"
+  },
+  {
+    "id": 4312,
+    "word": "BÍ ĐỎ",
+    "category": "Thực Vật",
+    "hint": "Quả to vỏ cứng ruột vàng cam ngọt bùi nấu canh hầm xương",
+    "pack": "day_8"
+  },
+  {
+    "id": 4313,
+    "word": "QUẢ MƯỚP",
+    "category": "Thực Vật",
+    "hint": "Quả dài vỏ xanh ruột mềm nấu canh tôm hoặc canh cua rất ngọt",
+    "pack": "day_8"
+  },
+  {
+    "id": 4314,
+    "word": "CÂY LÚA",
+    "category": "Thực Vật",
+    "hint": "Cây lương thực trổ bông vàng óng mang lại hạt gạo trắng ngần",
+    "pack": "day_8"
+  },
+  {
+    "id": 4315,
+    "word": "CỦ DỀN",
+    "category": "Thực Vật",
+    "hint": "Củ có màu đỏ thẫm bổ máu dùng nấu canh hầm súp",
+    "pack": "day_8"
+  },
+  {
+    "id": 4316,
+    "word": "HOA PHƯỢNG",
+    "category": "Thực Vật",
+    "hint": "Hoa nở đỏ rực góc sân trường báo hiệu mùa hè chia tay",
+    "pack": "day_8"
+  },
+  {
+    "id": 4317,
+    "word": "BẰNG LĂNG",
+    "category": "Thực Vật",
+    "hint": "Cây trổ những chùm hoa sắc tím biếc mộng mơ trên phố hè",
+    "pack": "day_8"
+  },
+  {
+    "id": 4318,
+    "word": "CƠN MƯA",
+    "category": "Thiên Nhiên",
+    "hint": "Những hạt nước rơi từ mây xám làm dịu mát đất trời",
+    "pack": "day_8"
+  },
+  {
+    "id": 4319,
+    "word": "CƠN GIÓ",
+    "category": "Thiên Nhiên",
+    "hint": "Luồng không khí lay động làm xào xạc lá cây",
+    "pack": "day_8"
+  },
+  {
+    "id": 4320,
+    "word": "MÂY TRẮNG",
+    "category": "Thiên Nhiên",
+    "hint": "Những khối hơi nước trắng xóa bồng bềnh giữa bầu trời xanh",
+    "pack": "day_8"
+  },
+  {
+    "id": 4321,
+    "word": "NẮNG VÀNG",
+    "category": "Thiên Nhiên",
+    "hint": "Những dải ánh sáng ấm áp rọi xuống sưởi ấm vạn vật",
+    "pack": "day_8"
+  },
+  {
+    "id": 4322,
+    "word": "GIỌT SƯƠNG",
+    "category": "Thiên Nhiên",
+    "hint": "Hạt nước trong veo đọng long lanh trên ngọn cỏ sớm mai",
+    "pack": "day_8"
+  },
+  {
+    "id": 4323,
+    "word": "CON SUỐI",
+    "category": "Thiên Nhiên",
+    "hint": "Dòng nước nhỏ trong vắt róc rách chảy qua khe đá rừng",
+    "pack": "day_8"
+  },
+  {
+    "id": 4324,
+    "word": "NGỌN NÚI",
+    "category": "Thiên Nhiên",
+    "hint": "Khối đất đá cao chót vót sừng sững giữa đất trời",
+    "pack": "day_8"
+  },
+  {
+    "id": 4325,
+    "word": "BÃI BIỂN",
+    "category": "Thiên Nhiên",
+    "hint": "Dải cát dài mịn màng rì rào tiếng sóng vỗ ngày đêm",
+    "pack": "day_8"
+  },
+  {
+    "id": 4326,
+    "word": "DÒNG SÔNG",
+    "category": "Thiên Nhiên",
+    "hint": "Dòng nước lớn chảy êm đềm mang phù sa bồi đắp đôi bờ",
+    "pack": "day_8"
+  },
+  {
+    "id": 4327,
+    "word": "BẦU TRỜI",
+    "category": "Thiên Nhiên",
+    "hint": "Khoảng không gian bao la rộng lớn phía trên mặt đất",
+    "pack": "day_8"
+  },
+  {
+    "id": 4328,
+    "word": "TUYẾT TRẮNG",
+    "category": "Thiên Nhiên",
+    "hint": "Những hạt tinh thể băng mềm xốp rơi xuống khi trời cực lạnh",
+    "pack": "day_8"
+  },
+  {
+    "id": 4329,
+    "word": "BÓNG RÂM",
+    "category": "Thiên Nhiên",
+    "hint": "Khoảng râm mát dưới tán cây lớn xua tan cái nắng gắt",
+    "pack": "day_8"
+  },
+  {
+    "id": 4330,
+    "word": "ĐỒI CÁT",
+    "category": "Thiên Nhiên",
+    "hint": "Cồn cát cao uốn lượn nhấp nhô theo từng cơn gió thổi",
+    "pack": "day_8"
+  },
+  {
+    "id": 4331,
+    "word": "RỪNG CÂY",
+    "category": "Thiên Nhiên",
+    "hint": "Thảm thực vật bạt ngàn cây cối xanh tươi chắn gió bão",
+    "pack": "day_8"
+  },
+  {
+    "id": 4332,
+    "word": "HỒ NƯỚC",
+    "category": "Thiên Nhiên",
+    "hint": "Vùng nước ngọt trong xanh tĩnh lặng giữa lòng công viên",
+    "pack": "day_8"
+  },
+  {
+    "id": 4333,
+    "word": "BỜ BIỂN",
+    "category": "Thiên Nhiên",
+    "hint": "Dải đất cát ven đại dương nơi sóng vỗ dập dềnh",
+    "pack": "day_8"
+  },
+  {
+    "id": 4334,
+    "word": "CÁNH ĐỒNG",
+    "category": "Thiên Nhiên",
+    "hint": "Khoảng đất mênh mông cò bay thẳng cánh trổ lúa xanh rì",
+    "pack": "day_8"
+  },
+  {
+    "id": 4335,
+    "word": "ĐỒI NÚI",
+    "category": "Thiên Nhiên",
+    "hint": "Vùng địa hình nhấp nhô cao thấp đất bazan trù phú",
+    "pack": "day_8"
+  },
+  {
+    "id": 4336,
+    "word": "THUNG LŨNG",
+    "category": "Thiên Nhiên",
+    "hint": "Khoảng đất bằng phẳng trù phú nằm kẹp giữa các dãy núi",
+    "pack": "day_8"
+  },
+  {
+    "id": 4337,
+    "word": "BỐ MẸ",
+    "category": "Đời Sống",
+    "hint": "Hai đấng sinh thành chăm sóc yêu thương con vô điều kiện",
+    "pack": "day_8"
+  },
+  {
+    "id": 4338,
+    "word": "ÔNG BÀ",
+    "category": "Đời Sống",
+    "hint": "Người lớn tuổi hiền từ sinh ra cha mẹ của chúng ta",
+    "pack": "day_8"
+  },
+  {
+    "id": 4339,
+    "word": "ANH EM",
+    "category": "Đời Sống",
+    "hint": "Những người ruột thịt sinh ra cùng một nhà luôn đùm bọc nhau",
+    "pack": "day_8"
+  },
+  {
+    "id": 4340,
+    "word": "BẠN BÈ",
+    "category": "Đời Sống",
+    "hint": "Những người đồng hành thân thiết cùng học cùng vui chơi",
+    "pack": "day_8"
+  },
+  {
+    "id": 4341,
+    "word": "NỤ CƯỜI",
+    "category": "Đời Sống",
+    "hint": "Nét mặt rạng rỡ tươi vui khi gặp điều may mắn hạnh phúc",
+    "pack": "day_8"
+  },
+  {
+    "id": 4342,
+    "word": "LỜI CHÚC",
+    "category": "Đời Sống",
+    "hint": "Những câu từ tốt đẹp gửi gắm cho nhau trong dịp vui ngày lễ",
+    "pack": "day_8"
+  },
+  {
+    "id": 4343,
+    "word": "NIỀM VUI",
+    "category": "Đời Sống",
+    "hint": "Cảm giác vui sướng hân hoan khi đạt được điều mong ước",
+    "pack": "day_8"
+  },
+  {
+    "id": 4344,
+    "word": "GIẤC MƠ",
+    "category": "Đời Sống",
+    "hint": "Những hình ảnh kỳ thú hiện ra trong tâm trí khi ngủ say",
+    "pack": "day_8"
+  },
+  {
+    "id": 4345,
+    "word": "TIẾNG HÁT",
+    "category": "Đời Sống",
+    "hint": "Âm vang trong trẻo truyền cảm của một giọng ca hay",
+    "pack": "day_8"
+  },
+  {
+    "id": 4346,
+    "word": "BÀI CA",
+    "category": "Đời Sống",
+    "hint": "Tác phẩm âm nhạc có ca từ và giai điệu du dương ngân vang",
+    "pack": "day_8"
+  },
+  {
+    "id": 4347,
+    "word": "TRÒ CHƠI",
+    "category": "Đời Sống",
+    "hint": "Hoạt động giải trí mang lại tiếng cười sảng khoái và gắn kết",
+    "pack": "day_8"
+  },
+  {
+    "id": 4348,
+    "word": "CÂU CHUYỆN",
+    "category": "Đời Sống",
+    "hint": "Mẩu chuyện kể hấp dẫn mang đến những bài học ý nghĩa",
+    "pack": "day_8"
+  },
+  {
+    "id": 4349,
+    "word": "BÀI HỌC",
+    "category": "Đời Sống",
+    "hint": "Kiến thức bổ ích thầy cô giảng dạy trên bục giảng",
+    "pack": "day_8"
+  },
+  {
+    "id": 4350,
+    "word": "QUÀ TẶNG",
+    "category": "Đời Sống",
+    "hint": "Món đồ ý nghĩa trao gửi cho bạn bè nhân ngày sinh nhật",
+    "pack": "day_8"
+  },
+  {
+    "id": 4351,
+    "word": "BỮA CƠM",
+    "category": "Đời Sống",
+    "hint": "Khoảnh khắc ấm cúng cả gia đình sum vầy quanh mâm đồ ăn",
+    "pack": "day_8"
+  },
+  {
+    "id": 4352,
+    "word": "LỜI HỨA",
+    "category": "Đời Sống",
+    "hint": "Câu nói cam kết làm điều gì đó và phải giữ chữ tín",
+    "pack": "day_8"
+  },
+  {
+    "id": 4353,
+    "word": "ƯỚC MƠ",
+    "category": "Đời Sống",
+    "hint": "Hoài bão tươi đẹp về một tương lai mà ta khát khao vươn tới",
+    "pack": "day_8"
+  },
+  {
+    "id": 4354,
+    "word": "BÌNH YÊN",
+    "category": "Đời Sống",
+    "hint": "Cảm giác thư thái an lành trong tâm hồn không chút âu lo",
+    "pack": "day_8"
+  },
+  {
+    "id": 4355,
+    "word": "ÁNH MẮT",
+    "category": "Đời Sống",
+    "hint": "Cửa sổ tâm hồn thể hiện cảm xúc chân thật nhất của con người",
+    "pack": "day_8"
+  },
+  {
+    "id": 4356,
+    "word": "BÀN TAY",
+    "category": "Đời Sống",
+    "hint": "Năm ngón cần mẫn làm việc viết chữ và chăm sóc người thân",
+    "pack": "day_8"
+  },
+  {
+    "id": 4357,
+    "word": "BƯỚC CHÂN",
+    "category": "Đời Sống",
+    "hint": "Hành trình di chuyển của đôi chân khám phá muôn nơi",
+    "pack": "day_8"
+  },
+  {
+    "id": 4358,
+    "word": "TRÁI TIM",
+    "category": "Đời Sống",
+    "hint": "Cơ quan đập rộn ràng trong lồng ngực là biểu tượng của tình yêu",
+    "pack": "day_8"
+  },
+  {
+    "id": 4359,
+    "word": "MÁI NHÀ",
+    "category": "Đời Sống",
+    "hint": "Nơi che chở gia đình trước nắng mưa bão bùng của cuộc đời",
+    "pack": "day_8"
+  },
+  {
+    "id": 4360,
+    "word": "LÀNG QUÊ",
+    "category": "Đời Sống",
+    "hint": "Miền thôn dã thanh bình có lũy tre xanh và ruộng đồng bát ngát",
+    "pack": "day_8"
+  },
+  {
+    "id": 4361,
+    "word": "PHỐ PHƯỜNG",
+    "category": "Đời Sống",
+    "hint": "Nơi đô thị nhộn nhịp đông vui xe cộ ngược xuôi đèn hoa rực rỡ",
+    "pack": "day_8"
+  },
+  {
+    "id": 4362,
+    "word": "SÂN TRƯỜNG",
+    "category": "Đời Sống",
+    "hint": "Khoảng sân rợp bóng cây nơi học trò nô đùa giờ ra chơi",
+    "pack": "day_8"
+  },
+  {
+    "id": 4363,
+    "word": "LỚP HỌC",
+    "category": "Đời Sống",
+    "hint": "Căn phòng thân thương có bảng đen phấn trắng và bạn bè",
+    "pack": "day_8"
+  },
+  {
+    "id": 4364,
+    "word": "THẦY CÔ",
+    "category": "Đời Sống",
+    "hint": "Người lái đò thầm lặng truyền dạy tri thức cho bao thế hệ học trò",
+    "pack": "day_8"
+  },
+  {
+    "id": 4365,
+    "word": "HỌC SINH",
+    "category": "Đời Sống",
+    "hint": "Người cắp sách đến trường tiếp thu kiến thức mỗi ngày",
+    "pack": "day_8"
+  },
+  {
+    "id": 4366,
+    "word": "THƯ VIỆN",
+    "category": "Đời Sống",
+    "hint": "Nơi yên tĩnh lưu trữ hàng ngàn cuốn sách bổ ích",
+    "pack": "day_8"
+  },
+  {
+    "id": 4367,
+    "word": "CÔNG VIÊN",
+    "category": "Đời Sống",
+    "hint": "Khuôn viên công cộng nhiều cây xanh ghế đá cho mọi người tập thể dục",
+    "pack": "day_8"
+  },
+  {
+    "id": 4368,
+    "word": "BỆNH VIỆN",
+    "category": "Đời Sống",
+    "hint": "Nơi chăm sóc và điều trị phục hồi sức khỏe cho bệnh nhân",
+    "pack": "day_8"
+  },
+  {
+    "id": 4369,
+    "word": "CHỢ HOA",
+    "category": "Đời Sống",
+    "hint": "Nơi bày bán rực rỡ muôn loài hoa khoe sắc ngày Tết",
+    "pack": "day_8"
+  },
+  {
+    "id": 4370,
+    "word": "CỬA HÀNG",
+    "category": "Đời Sống",
+    "hint": "Nơi bày bán các loại hàng hóa đồ dùng thiết yếu cho sinh hoạt",
+    "pack": "day_8"
+  },
+  {
+    "id": 4371,
+    "word": "SIÊU THỊ",
+    "category": "Đời Sống",
+    "hint": "Trung tâm mua sắm lớn với nhiều quầy kệ hàng hóa phong phú",
+    "pack": "day_8"
+  },
+  {
+    "id": 4372,
+    "word": "SÂN BAY",
+    "category": "Đời Sống",
+    "hint": "Nơi đón trả các chuyến bay cất cánh bay lên bầu trời",
+    "pack": "day_8"
+  },
+  {
+    "id": 4373,
+    "word": "GA TÀU",
+    "category": "Đời Sống",
+    "hint": "Trạm dừng chân đón khách của những đoàn tàu hỏa chạy đường ray",
+    "pack": "day_8"
+  },
+  {
+    "id": 4374,
+    "word": "ĐỒNG LÚA",
+    "category": "Đời Sống",
+    "hint": "Mảnh đất bao la trổ từng bông lúa trĩu hạt khi vào mùa",
+    "pack": "day_8"
+  },
+  {
+    "id": 4375,
+    "word": "BẾN XE",
+    "category": "Đời Sống",
+    "hint": "Nơi tập trung các tuyến xe khách đưa đón hành khách đi liên tỉnh",
+    "pack": "day_8"
+  },
+  {
+    "id": 4376,
+    "word": "CẦU VƯỢT",
+    "category": "Đời Sống",
+    "hint": "Cây cầu bắc trên cao giúp phân luồng xe tránh ùn tắc giao thông",
+    "pack": "day_8"
+  },
+  {
+    "id": 4377,
+    "word": "HẦM CHUI",
+    "category": "Đời Sống",
+    "hint": "Đường hầm đào xuyên qua lòng đất cho xe cộ lưu thông",
+    "pack": "day_8"
+  },
+  {
+    "id": 4378,
+    "word": "NGÃ TƯ",
+    "category": "Đời Sống",
+    "hint": "Giao lộ nơi bốn ngả đường gặp nhau có đèn tín hiệu giao thông",
+    "pack": "day_8"
+  },
+  {
+    "id": 4379,
+    "word": "VẠCH KẺ",
+    "category": "Đời Sống",
+    "hint": "Đường sơn trắng trên mặt đường dành cho người đi bộ qua đường",
+    "pack": "day_8"
+  },
+  {
+    "id": 4380,
+    "word": "XE TẢI",
+    "category": "Đời Sống",
+    "hint": "Phương tiện kích thước lớn chuyên dùng chở hàng hóa nặng",
+    "pack": "day_8"
+  },
+  {
+    "id": 4381,
+    "word": "CÔNG AN",
+    "category": "Nghề Nghiệp",
+    "hint": "Chiến sĩ giữ gìn trật tự an ninh bình yên cho xã hội",
+    "pack": "day_8"
+  },
+  {
+    "id": 4382,
+    "word": "THỢ XÂY",
+    "category": "Nghề Nghiệp",
+    "hint": "Người thợ xây nên những ngôi nhà cao tầng kiên cố",
+    "pack": "day_8"
+  },
+  {
+    "id": 4383,
+    "word": "TÀI XẾ",
+    "category": "Nghề Nghiệp",
+    "hint": "Người điều khiển vô lăng lái xe chở hành khách an toàn",
+    "pack": "day_8"
+  },
+  {
+    "id": 4384,
+    "word": "CHÚ HỀ",
+    "category": "Nghề Nghiệp",
+    "hint": "Người diễn hài với chiếc mũi đỏ mang lại nụ cười cho trẻ thơ",
+    "pack": "day_8"
+  },
+  {
+    "id": 4385,
+    "word": "THỢ MAY",
+    "category": "Nghề Nghiệp",
+    "hint": "Người dùng kim chỉ và máy may để may nên những bộ đồ đẹp",
+    "pack": "day_8"
+  },
+  {
+    "id": 4386,
+    "word": "THỦY THỦ",
+    "category": "Nghề Nghiệp",
+    "hint": "Người làm việc trên tàu biển vượt qua sóng gió trùng khơi",
+    "pack": "day_8"
+  },
+  {
+    "id": 4387,
+    "word": "THỢ MỘC",
+    "category": "Nghề Nghiệp",
+    "hint": "Người thợ khéo tay cưa đục gỗ tạo nên bàn ghế giường tủ",
+    "pack": "day_8"
+  },
+  {
+    "id": 4388,
+    "word": "THỢ HÀN",
+    "category": "Nghề Nghiệp",
+    "hint": "Người dùng mỏ hàn ghép nối những thanh kim loại sắt thép",
+    "pack": "day_8"
+  },
+  {
+    "id": 4389,
+    "word": "THỢ ĐIỆN",
+    "category": "Nghề Nghiệp",
+    "hint": "Người trèo cột điện lắp đặt và sửa chữa đường dây điện thắp sáng",
+    "pack": "day_8"
+  },
+  {
+    "id": 4390,
+    "word": "THỢ SỬA XE",
+    "category": "Nghề Nghiệp",
+    "hint": "Người bắt bệnh và thay thế phụ tùng cho chiếc xe máy chạy êm",
+    "pack": "day_8"
+  },
+  {
+    "id": 4391,
+    "word": "THỢ GỐM",
+    "category": "Nghề Nghiệp",
+    "hint": "Nghệ nhân chuốt đất sét trên bàn xoay nung nên những chiếc bình đẹp",
+    "pack": "day_8"
+  },
+  {
+    "id": 4392,
+    "word": "HỌA SĨ",
+    "category": "Nghề Nghiệp",
+    "hint": "Người nghệ sĩ dùng cọ vẽ và bảng màu phác họa nên những bức tranh",
+    "pack": "day_8"
+  },
+  {
+    "id": 4393,
+    "word": "NHÀ VĂN",
+    "category": "Nghề Nghiệp",
+    "hint": "Người sáng tác nên những cuốn tiểu thuyết và truyện ngắn đặc sắc",
+    "pack": "day_8"
+  },
+  {
+    "id": 4394,
+    "word": "ĐUA THUYỀN",
+    "category": "Thể Thao",
+    "hint": "Môn thể thao chèo thuyền tranh tài tốc độ rộn rã trên sông",
+    "pack": "day_8"
+  },
+  {
+    "id": 4395,
+    "word": "ĐUA XE",
+    "category": "Thể Thao",
+    "hint": "Môn thể thao tốc độ kịch tính trên đường đua nghẹt thở",
+    "pack": "day_8"
+  },
+  {
+    "id": 4396,
+    "word": "VÕ THUẬT",
+    "category": "Thể Thao",
+    "hint": "Môn rèn luyện quyền cước và tinh thần thượng võ dũng cảm",
+    "pack": "day_8"
+  },
+  {
+    "id": 4397,
+    "word": "ĐÁ CẦU",
+    "category": "Thể Thao",
+    "hint": "Trò chơi dùng mu bàn chân tâng quả cầu lông chuyền qua lại",
+    "pack": "day_8"
+  },
+  {
+    "id": 4398,
+    "word": "BẢNG ĐIỂM",
+    "category": "Thể Thao",
+    "hint": "Bảng điện tử hiển thị tỷ số trận đấu kịch tính",
+    "pack": "day_8"
+  },
+  {
+    "id": 4399,
+    "word": "QUẢ BÓNG",
+    "category": "Thể Thao",
+    "hint": "Khối cầu tròn xoe bằng da dùng trong các trận cầu sôi động",
+    "pack": "day_8"
+  },
+  {
+    "id": 4400,
+    "word": "TẬP GYM",
+    "category": "Thể Thao",
+    "hint": "Hoạt động nâng tạ rèn luyện cơ bắp thể hình săn chắc",
+    "pack": "day_8"
+  }
+]
