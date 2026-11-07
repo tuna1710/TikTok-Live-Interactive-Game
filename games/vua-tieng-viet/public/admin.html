@@ -285,17 +285,22 @@
 
     <!-- Khu vực tặng quà & Vinh danh nhà hảo tâm -->
     <div style="margin-top:12px;padding-top:10px;border-top:1px dashed rgba(255,255,255,0.15);">
-      <div style="font-size:12px;color:#f472b6;font-weight:700;margin-bottom:6px;">🎁 Giả Lập Tặng Quà (1 Xu = 1 Chữ, +500đ/Xu, Max 1.900đ):</div>
-      <input type="text" id="donorNameInput" placeholder="Tên người tặng (vd: Đại Gia Tuấn)" style="margin-top:0;" />
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px;">
-        <button class="btn-pink" style="margin-top:0;padding:8px;font-size:12px;" onclick="simulateCustomGift('Hoa Hồng', 1)">🌹 Hoa Hồng (1 xu = +500đ)</button>
-        <button class="btn-purple" style="margin-top:0;padding:8px;font-size:12px;" onclick="simulateCustomGift('Nước Hoa', 10)">💖 Nước Hoa (10 xu = Max 1.900đ)</button>
-        <button class="btn-gold" style="margin-top:0;padding:8px;font-size:12px;" onclick="simulateCustomGift('Tên Lửa', 100)">🚀 Tên Lửa (100 xu = Max 1.900đ)</button>
-        <button class="btn-green" style="margin-top:0;padding:8px;font-size:12px;" onclick="simulateCustomGift('Sư Tử VIP', 500)">🦁 Sư Tử VIP (500 xu)</button>
+      <div style="font-size:12px;color:#f472b6;font-weight:700;margin-bottom:6px;">🎁 Thử Nghiệm Bảng Vinh Danh Tặng Quà TikTok (+500đ/Xu, Có Avatar):</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+        <input type="text" id="donorNameInput" placeholder="Tên người tặng (vd: Bé Mai VIP)" style="margin-top:0;" />
+        <input type="number" id="donorRepeatInput" placeholder="Số lượng quà (combo)" value="1" min="1" max="100" style="margin-top:0;" />
       </div>
+      <input type="text" id="donorAvatarInput" placeholder="URL Avatar (để trống sẽ tự sinh avatar đẹp)" style="margin-top:6px;" />
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px;">
-        <button class="btn-gold" style="margin-top:0;padding:8px;font-size:12px;" onclick="simulateDonorHonorTest()">🌟 Vinh Danh Nhà Hảo Tâm</button>
-        <button class="btn-red" style="margin-top:0;padding:8px;font-size:12px;" onclick="sendAction('skipDonorHonor')">⏭️ Bỏ Qua Vinh Danh Quà</button>
+        <button class="btn-pink" style="margin-top:0;padding:8px;font-size:12px;" onclick="simulateCustomGift('Hoa Hồng', 1)">🌹 Hoa Hồng (1 xu)</button>
+        <button class="btn-pink" style="margin-top:0;padding:8px;font-size:12px;" onclick="simulateCustomGiftWithCount('Hoa Hồng', 1, 10)">🌹 Combo 10x Hoa Hồng</button>
+        <button class="btn-purple" style="margin-top:0;padding:8px;font-size:12px;" onclick="simulateCustomGift('Nước Hoa', 10)">💖 Nước Hoa (10 xu)</button>
+        <button class="btn-gold" style="margin-top:0;padding:8px;font-size:12px;" onclick="simulateCustomGift('Tên Lửa', 100)">🚀 Tên Lửa (100 xu)</button>
+        <button class="btn-green" style="margin-top:0;padding:8px;font-size:12px;" onclick="simulateCustomGift('Sư Tử VIP', 500)">🦁 Sư Tử VIP (500 xu)</button>
+        <button class="btn-gold" style="margin-top:0;padding:8px;font-size:12px;" onclick="simulateDonorHonorTest()">🌟 Siêu Bảng Vàng</button>
+      </div>
+      <div style="margin-top:6px;">
+        <button class="btn-red" style="margin-top:0;padding:8px;font-size:12px;width:100%;" onclick="sendAction('skipDonorHonor')">⏭️ Bỏ Qua Vinh Danh Quà</button>
       </div>
     </div>
 
@@ -574,7 +579,15 @@
 
     function simulateCustomGift(giftName, diamonds) {
       const user = document.getElementById('donorNameInput').value.trim() || 'Khán Giả VIP';
-      sendAction('simulateGift', { user, giftName, diamonds, repeatCount: 1 });
+      const repeatCount = Math.max(1, parseInt(document.getElementById('donorRepeatInput')?.value) || 1);
+      const avatar = document.getElementById('donorAvatarInput')?.value.trim() || '';
+      sendAction('simulateGift', { user, giftName, diamonds, repeatCount, avatar });
+    }
+
+    function simulateCustomGiftWithCount(giftName, diamonds, count = 10) {
+      const user = document.getElementById('donorNameInput').value.trim() || 'Khán Giả VIP';
+      const avatar = document.getElementById('donorAvatarInput')?.value.trim() || '';
+      sendAction('simulateGift', { user, giftName, diamonds, repeatCount: count, avatar });
     }
 
     function simulateFollowTest() {

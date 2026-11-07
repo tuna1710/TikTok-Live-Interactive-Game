@@ -624,25 +624,6 @@ function recordGiftDonation(user, giftName, diamonds = 1, repeatCount = 1) {
   if (user.nickname && user.nickname !== existing.nickname) existing.nickname = user.nickname;
   donorLeaderboard.set(key, existing);
 
-  const donorList = getDonorLeaderboardList();
-  const newTopDonor = donorList[0];
-
-  const payload = {
-    donor: {
-      uniqueId: existing.uniqueId,
-      nickname: existing.nickname,
-      avatar: existing.avatar
-    },
-    giftName,
-    diamonds: totalDiamonds,
-    repeatCount: count,
-    totalDiamonds: existing.diamonds,
-    donorLeaderboard: donorList,
-    topDonor: newTopDonor || null,
-  };
-
-  io.emit('donorUpdate', payload);
-
   // 1. Cứ 1 xu tặng quà cộng 500 điểm vào bảng xếp hạng (Tối đa từ quà là 1.900đ)
   const pointsFromGift = totalDiamonds * POINTS_PER_DIAMOND;
   const donorKey = user.uniqueId || key;
@@ -669,6 +650,33 @@ function recordGiftDonation(user, giftName, diamonds = 1, repeatCount = 1) {
   const currentLeaderboard = getLeaderboardList();
   io.emit('leaderboardUpdate', currentLeaderboard);
   io.emit('leaderboardReset', currentLeaderboard);
+
+  const donorList = getDonorLeaderboardList();
+  const newTopDonor = donorList[0];
+  const donorRankIndex = donorList.findIndex(d => d.uniqueId === existing.uniqueId);
+  const donorRank = donorRankIndex >= 0 ? donorRankIndex + 1 : donorList.length;
+
+  const payload = {
+    donor: {
+      uniqueId: existing.uniqueId,
+      nickname: existing.nickname,
+      avatar: existing.avatar || user.avatar || `https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(existing.uniqueId)}`
+    },
+    giftName,
+    diamonds: totalDiamonds,
+    repeatCount: count,
+    totalDiamonds: existing.diamonds,
+    donorRank,
+    donorLeaderboard: donorList,
+    topDonor: newTopDonor || null,
+    giftPoints: actualAddedPoints,
+    totalScore: playerInLeaderboard.score,
+    ttsText: `Cảm ơn bạn ${existing.nickname} đã tặng ${count > 1 ? count + ' ' : ''}${giftName} ủng hộ kênh!`,
+    timestamp: Date.now()
+  };
+
+  io.emit('donorUpdate', payload);
+  io.emit('giftHonorNotification', payload);
 
   io.emit('donorScoreAdded', {
     uniqueId: donorKey,
@@ -1575,10 +1583,14 @@ function extractUserFromEvent(data) {
   const avatar =
     u.profilePictureUrl ||
     u.avatarLarge?.urlList?.[0] ||
-    u.avatarThumb?.urlList?.[0] ||
     u.avatarMedium?.urlList?.[0] ||
+    u.avatarThumb?.urlList?.[0] ||
+    u.avatarLarge?.urls?.[0] ||
+    u.avatarMedium?.urls?.[0] ||
+    u.avatarThumb?.urls?.[0] ||
+    data?.userDetails?.profilePictureUrls?.[0] ||
     data?.profilePictureUrl ||
-    '';
+    (uniqueId ? `https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(uniqueId)}` : '');
   return { user, uniqueId, avatar };
 }
 
@@ -2041,10 +2053,11 @@ app.post('/admin/api', (req, res) => {
     const giftName = req.body.giftName || (diamonds >= 100 ? 'Tên Lửa' : (diamonds >= 10 ? 'Nước Hoa' : 'Hoa Hồng'));
     const totalDiamonds = diamonds * repeatCount;
     const donorNick = user || req.body.nickname || 'Đại Gia Hảo Tâm';
+    const donorUid = req.body.uniqueId || ('donor_' + donorNick.toLowerCase().replace(/[\s\W]+/g, '_'));
     const giftUser = {
-      uniqueId: req.body.uniqueId || ('donor_' + donorNick.toLowerCase().replace(/[\s\W]+/g, '_')),
+      uniqueId: donorUid,
       nickname: donorNick,
-      avatar: req.body.avatar || 'https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/default-avatar.jpeg',
+      avatar: req.body.avatar || `https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(donorUid)}`,
       diamonds: totalDiamonds,
     };
 

@@ -497,22 +497,6 @@ function recordGiftDonation(user, giftName, diamonds = 1, repeatCount = 1) {
   const donorList = getDonorLeaderboardList();
   const newTopDonor = donorList[0];
 
-  const payload = {
-    donor: {
-      uniqueId: existing.uniqueId,
-      nickname: existing.nickname,
-      avatar: existing.avatar
-    },
-    giftName,
-    diamonds: totalDiamonds,
-    repeatCount: count,
-    totalDiamonds: existing.diamonds,
-    donorLeaderboard: donorList,
-    topDonor: newTopDonor || null,
-  };
-
-  io.emit('donorUpdate', payload);
-
   // 1. Cứ 1 xu tặng quà cộng 500 điểm vào bảng xếp hạng (Tối đa từ quà là 1.900đ)
   const pointsFromGift = totalDiamonds * POINTS_PER_DIAMOND;
   const donorKey = user.uniqueId || key;
@@ -537,6 +521,33 @@ function recordGiftDonation(user, giftName, diamonds = 1, repeatCount = 1) {
   if (user.nickname && user.nickname !== playerInLeaderboard.nickname) playerInLeaderboard.nickname = user.nickname;
   leaderboard.set(donorKey, playerInLeaderboard);
   io.emit('leaderboardReset', getLeaderboardList());
+
+  const donorList = getDonorLeaderboardList();
+  const newTopDonor = donorList[0];
+  const donorRankIndex = donorList.findIndex(d => d.uniqueId === existing.uniqueId);
+  const donorRank = donorRankIndex >= 0 ? donorRankIndex + 1 : donorList.length;
+
+  const payload = {
+    donor: {
+      uniqueId: existing.uniqueId,
+      nickname: existing.nickname,
+      avatar: existing.avatar || user.avatar || `https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(existing.uniqueId)}`
+    },
+    giftName,
+    diamonds: totalDiamonds,
+    repeatCount: count,
+    totalDiamonds: existing.diamonds,
+    donorRank,
+    donorLeaderboard: donorList,
+    topDonor: newTopDonor || null,
+    giftPoints: actualAddedPoints,
+    totalScore: playerInLeaderboard.score,
+    ttsText: `Cảm ơn bạn ${existing.nickname} đã tặng ${count > 1 ? count + ' ' : ''}${giftName} ủng hộ kênh!`,
+    timestamp: Date.now()
+  };
+
+  io.emit('donorUpdate', payload);
+  io.emit('giftHonorNotification', payload);
 
   io.emit('donorScoreAdded', {
     uniqueId: donorKey,

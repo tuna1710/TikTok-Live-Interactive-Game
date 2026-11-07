@@ -541,6 +541,200 @@
       object-fit: cover;
     }
 
+    /* ========================================================= */
+    /* BẢNG VINH DANH TẶNG QUÀ TIKTOK (TIKTOK LIVE GIFT HONOR SHOWCASE) */
+    /* ========================================================= */
+    .gift-honor-showcase {
+      position: fixed;
+      top: 135px;
+      left: 50%;
+      transform: translateX(-50%) scale(0.65);
+      width: 90%;
+      max-width: 380px;
+      z-index: 1000;
+      pointer-events: none;
+      opacity: 0;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .gift-honor-showcase.show {
+      opacity: 1;
+      transform: translateX(-50%) scale(1);
+      pointer-events: auto;
+    }
+    .ghs-inner-card {
+      position: relative;
+      background: linear-gradient(135deg, rgba(28, 10, 48, 0.97) 0%, rgba(68, 18, 78, 0.97) 50%, rgba(20, 6, 36, 0.98) 100%);
+      border: 2.5px solid #ffd700;
+      border-radius: 20px;
+      padding: 16px 14px 14px;
+      text-align: center;
+      box-shadow: 0 0 35px rgba(255, 215, 0, 0.55), 0 0 65px rgba(236, 72, 153, 0.4), inset 0 0 20px rgba(255, 215, 0, 0.25);
+      overflow: hidden;
+      backdrop-filter: blur(12px);
+    }
+    .ghs-inner-card::before {
+      content: '';
+      position: absolute;
+      top: -60%;
+      left: -60%;
+      width: 220%;
+      height: 220%;
+      background: linear-gradient(60deg, transparent 40%, rgba(255, 215, 0, 0.22) 50%, transparent 60%);
+      transform: rotate(25deg);
+      animation: goldSheen 3.5s infinite linear;
+      pointer-events: none;
+    }
+    .ghs-badge-top {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 900;
+      color: #ffd700;
+      background: rgba(0, 0, 0, 0.55);
+      border: 1px solid rgba(255, 215, 0, 0.5);
+      padding: 3px 14px;
+      border-radius: 12px;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+      text-shadow: 0 0 8px rgba(255, 215, 0, 0.8);
+    }
+    .ghs-avatar-area {
+      position: relative;
+      display: inline-block;
+      margin: 2px auto 6px;
+    }
+    .ghs-avatar-halo {
+      position: absolute;
+      inset: -5px;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, #ffd700, #f43f5e, #a855f7, #ffd700);
+      animation: rotateHalo 3s linear infinite;
+      z-index: 1;
+    }
+    @keyframes rotateHalo {
+      100% { transform: rotate(360deg); }
+    }
+    .ghs-avatar {
+      position: relative;
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      border: 3px solid #1a082b;
+      object-fit: cover;
+      display: block;
+      z-index: 2;
+      background: #2b1055;
+    }
+    .ghs-crown {
+      position: absolute;
+      top: -14px;
+      right: -8px;
+      font-size: 24px;
+      z-index: 3;
+      filter: drop-shadow(0 2px 5px rgba(0,0,0,0.8));
+      animation: crownWiggle 1.2s infinite;
+    }
+    .ghs-gift-icon-bubble {
+      position: absolute;
+      bottom: -4px;
+      left: -6px;
+      width: 28px;
+      height: 28px;
+      background: #1e0933;
+      border: 2px solid #ffd700;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      z-index: 3;
+      box-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+      animation: bubbleBounce 1s infinite alternate;
+    }
+    @keyframes bubbleBounce {
+      0% { transform: scale(0.9); }
+      100% { transform: scale(1.15); }
+    }
+    .ghs-user-box {
+      margin-top: 2px;
+    }
+    .ghs-donor-name {
+      font-size: 18px;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: 0.5px;
+      text-shadow: 0 0 10px rgba(255, 215, 0, 0.9), 0 2px 4px rgba(0,0,0,0.8);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 320px;
+      margin: 0 auto;
+    }
+    .ghs-donor-id {
+      font-size: 11px;
+      font-weight: 700;
+      color: #fbcfe8;
+      opacity: 0.9;
+    }
+    .ghs-gift-announcement {
+      font-size: 13px;
+      font-weight: 800;
+      color: #fef08a;
+      margin: 6px 0 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      flex-wrap: wrap;
+    }
+    .ghs-highlight {
+      font-size: 15px;
+      font-weight: 900;
+      color: #f43f5e;
+      background: rgba(244, 63, 94, 0.18);
+      padding: 1px 6px;
+      border-radius: 6px;
+    }
+    .ghs-highlight-gold {
+      font-size: 14px;
+      font-weight: 900;
+      color: #ffd700;
+      text-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
+    }
+    .ghs-stats-pills {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+    .ghs-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 9px;
+      border-radius: 12px;
+      font-size: 10.5px;
+      font-weight: 800;
+      background: rgba(0, 0, 0, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .ghs-pill.pill-diamonds {
+      color: #f472b6;
+      border-color: rgba(244, 114, 182, 0.5);
+      background: rgba(244, 114, 182, 0.15);
+    }
+    .ghs-pill.pill-rank {
+      color: #ffd700;
+      border-color: rgba(255, 215, 0, 0.5);
+      background: rgba(255, 215, 0, 0.15);
+    }
+    .ghs-pill.pill-points {
+      color: #6ee7b7;
+      border-color: rgba(110, 231, 183, 0.5);
+      background: rgba(110, 231, 183, 0.15);
+    }
+
     /* Thanh Ticker Vinh Danh Top 1 Tặng Quà */
     .top-donor-ticker {
       margin: 4px 16px 0;
@@ -2274,6 +2468,46 @@
       </div>
     </div>
 
+    <!-- Bảng Vinh Danh Tặng Quà TikTok (TikTok Live Gift Honor Showcase) -->
+    <div id="giftHonorShowcase" class="gift-honor-showcase">
+      <div class="ghs-inner-card">
+        <div class="ghs-badge-top">💎 BẢNG VÀNG TRI ÂN TIKTOK 💎</div>
+        
+        <div class="ghs-avatar-area">
+          <div class="ghs-avatar-halo"></div>
+          <img id="ghsAvatar" class="ghs-avatar" src="https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/default-avatar.jpeg" alt="Avatar" />
+          <div class="ghs-crown" id="ghsCrown">👑</div>
+          <div class="ghs-gift-icon-bubble" id="ghsGiftBubble">🌹</div>
+        </div>
+
+        <div class="ghs-user-box">
+          <div class="ghs-donor-name" id="ghsDonorName">Khán Giả VIP</div>
+          <div class="ghs-donor-id" id="ghsDonorId">@tiktok_user</div>
+        </div>
+
+        <div class="ghs-gift-announcement" id="ghsGiftAnnouncement">
+          <span>Đã gửi tặng</span>
+          <span class="ghs-highlight" id="ghsGiftAmount">1x</span>
+          <span class="ghs-highlight-gold" id="ghsGiftName">Hoa Hồng</span>
+        </div>
+
+        <div class="ghs-stats-pills">
+          <div class="ghs-pill pill-diamonds" id="ghsDiamondPill">
+            <span>💎</span>
+            <span id="ghsDiamondsText">+1 Xu</span>
+          </div>
+          <div class="ghs-pill pill-rank" id="ghsRankPill">
+            <span>🏆</span>
+            <span id="ghsRankText">Top 1 BXH Quà</span>
+          </div>
+          <div class="ghs-pill pill-points" id="ghsPointsPill">
+            <span>⭐</span>
+            <span id="ghsPointsText">+500đ</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Toast thông báo nổi -->
     <div class="toast-notice" id="toastNotice">Gợi ý mở chữ!</div>
 
@@ -2993,6 +3227,139 @@
 
       // Chuyển sang tab donor để vinh danh ngay
       switchRightTab('donor', true);
+      enqueueGiftHonor(data);
+    }
+
+    // =========================================================
+    // QUẢN LÝ BẢNG VINH DANH TẶNG QUÀ TIKTOK (GIFT HONOR QUEUE)
+    // =========================================================
+    const giftHonorQueue = [];
+    let isShowingGiftHonor = false;
+    let giftHonorTimer = null;
+    let lastHandledGiftKey = '';
+
+    function getGiftEmoji(giftName = '') {
+      const g = (giftName || '').toLowerCase();
+      if (g.includes('tên lửa') || g.includes('rocket')) return '🚀';
+      if (g.includes('sư tử') || g.includes('lion')) return '🦁';
+      if (g.includes('nước hoa') || g.includes('perfume')) return '💖';
+      if (g.includes('hoa hồng') || g.includes('rose')) return '🌹';
+      if (g.includes('tim') || g.includes('heart')) return '❤️';
+      if (g.includes('vương miện') || g.includes('crown')) return '👑';
+      if (g.includes('du thuyền') || g.includes('yacht')) return '🛥️';
+      if (g.includes('xe') || g.includes('car')) return '🏎️';
+      if (g.includes('kim cương') || g.includes('diamond')) return '💎';
+      return '🎁';
+    }
+
+    function enqueueGiftHonor(data) {
+      if (!data) return;
+      const key = `${data.donor?.uniqueId}_${data.giftName}_${data.timestamp || data.totalDiamonds || Date.now()}`;
+      if (key === lastHandledGiftKey) return;
+      lastHandledGiftKey = key;
+      giftHonorQueue.push(data);
+      processGiftHonorQueue();
+    }
+
+    function processGiftHonorQueue() {
+      if (isShowingGiftHonor || giftHonorQueue.length === 0) return;
+      isShowingGiftHonor = true;
+      const data = giftHonorQueue.shift();
+
+      const card = document.getElementById('giftHonorShowcase');
+      const avatarEl = document.getElementById('ghsAvatar');
+      const donorNameEl = document.getElementById('ghsDonorName');
+      const donorIdEl = document.getElementById('ghsDonorId');
+      const giftAmountEl = document.getElementById('ghsGiftAmount');
+      const giftNameEl = document.getElementById('ghsGiftName');
+      const giftBubbleEl = document.getElementById('ghsGiftBubble');
+      const crownEl = document.getElementById('ghsCrown');
+      const diamondsTextEl = document.getElementById('ghsDiamondsText');
+      const rankTextEl = document.getElementById('ghsRankText');
+      const pointsTextEl = document.getElementById('ghsPointsText');
+      const pointsPill = document.getElementById('ghsPointsPill');
+
+      if (!card) {
+        isShowingGiftHonor = false;
+        return;
+      }
+
+      const donor = data.donor || {};
+      const uniqueId = donor.uniqueId || 'viewer';
+      const nickname = donor.nickname || uniqueId || 'Khán Giả';
+      const fallbackAvt = `https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(uniqueId)}`;
+      const avatarSrc = donor.avatar || fallbackAvt;
+
+      if (avatarEl) {
+        avatarEl.src = avatarSrc;
+        avatarEl.onerror = () => { avatarEl.src = fallbackAvt; };
+      }
+
+      if (donorNameEl) donorNameEl.textContent = nickname;
+      if (donorIdEl) donorIdEl.textContent = `@${String(uniqueId).replace(/^@/, '')}`;
+
+      const giftName = data.giftName || 'Hoa Hồng';
+      const count = data.repeatCount || 1;
+      const diamonds = data.diamonds || 1;
+      const totalDiamonds = data.totalDiamonds || diamonds;
+      const rank = data.donorRank || 1;
+      const giftPoints = data.giftPoints || 0;
+
+      if (giftAmountEl) giftAmountEl.textContent = `${count}x`;
+      if (giftNameEl) giftNameEl.textContent = giftName;
+      if (giftBubbleEl) giftBubbleEl.textContent = getGiftEmoji(giftName);
+
+      if (crownEl) {
+        crownEl.textContent = rank === 1 ? '👑' : (rank === 2 ? '🥈' : (rank === 3 ? '🥉' : '⭐'));
+      }
+
+      if (diamondsTextEl) {
+        diamondsTextEl.textContent = `+${diamonds.toLocaleString('vi-VN')} Xu (Tổng: ${totalDiamonds.toLocaleString('vi-VN')})`;
+      }
+
+      if (rankTextEl) {
+        rankTextEl.textContent = `Top #${rank} BXH Quà`;
+      }
+
+      if (pointsTextEl) {
+        if (giftPoints > 0) {
+          pointsTextEl.textContent = `+${giftPoints.toLocaleString('vi-VN')}đ`;
+          if (pointsPill) pointsPill.style.display = 'inline-flex';
+        } else if (pointsPill) {
+          pointsPill.style.display = 'none';
+        }
+      }
+
+      // Hiện bảng vinh danh
+      card.classList.add('show');
+      soundGift();
+
+      // Confetti rực rỡ
+      if (window.confetti) {
+        confetti({
+          particleCount: diamonds >= 10 ? 45 : 25,
+          spread: 70,
+          origin: { x: 0.5, y: 0.22 },
+          colors: ['#ffd700', '#f472b6', '#a855f7', '#ffffff']
+        });
+      }
+
+      // Giọng đọc AI đọc tri ân
+      if (data.ttsText && typeof ttsManager !== 'undefined' && ttsManager.enabled) {
+        ttsManager.speak(data.ttsText, false);
+      }
+
+      // Thời gian hiển thị: 4.5s cho quà thường, 6s cho quà lớn
+      const displayDuration = diamonds >= 50 ? 6000 : 4500;
+
+      if (giftHonorTimer) clearTimeout(giftHonorTimer);
+      giftHonorTimer = setTimeout(() => {
+        card.classList.remove('show');
+        setTimeout(() => {
+          isShowingGiftHonor = false;
+          processGiftHonorQueue();
+        }, 400);
+      }, displayDuration);
     }
 
     if (btnSoundToggle) {
@@ -3526,6 +3893,10 @@
       if (data.topDonor) {
         updateTopDonorTicker(data.topDonor);
       }
+    });
+
+    socket.on('giftHonorNotification', data => {
+      enqueueGiftHonor(data);
     });
 
     socket.on('donorReset', () => {
